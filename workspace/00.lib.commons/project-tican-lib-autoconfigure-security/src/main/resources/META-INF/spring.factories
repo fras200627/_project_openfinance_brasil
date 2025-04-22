@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.tican.lib.security.config.AppCorsFiltersConfig,\
+com.tican.lib.security.config.AppSecurityConfig,\
+com.tican.lib.security.config.FilterRegistrationBeanConfig
