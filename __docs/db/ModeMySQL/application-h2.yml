@@ -1,0 +1,146 @@
+#########################################################
+server:
+  port: ${TICAN_AUDIT_INTERNAL_PORT:0}
+  error:
+    include-message: always
+    #include-binding-errors: always
+    include-stacktrace: never
+    include-exception: false
+
+#########################################################
+app:
+  environment: ${API_ENVIRONMENT:dev}
+  app_info:
+    name: API Audit Services
+    title: Project API Audit Services
+    version: ${API_VERSION:1.0.0}
+    build: ${API_BUILD:v.02_2025}
+
+#########################################################
+spring:
+  application:
+    name: tican-audit-services-api
+  session:
+    store-type: jdbc
+  security:
+    filter:
+      dispatcher-types: request
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://${API_GATEWAY_HOST_NAME:tican-api-gateway}:${API_GATEWAY_EXPOSE_PORT:5001}/auth-server-svc
+  cloud:
+    openfeign:
+      client:
+        config:
+          feignName:
+            url: http://${API_GATEWAY_HOST_NAME:tican-api-gateway}:${API_GATEWAY_EXPOSE_PORT:5001}/
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: full
+            dismiss404: false
+            micrometer.enabled: false
+        uri-clients-routes:
+          oauth2-registered-clients-business: ${URI_OAUTH2_REGISTERED_CLIENTS_BUSINESS_API:tican-oauth2-registered-clients-business-api}
+          oauth2-registered-clients-domain: ${URI_OAUTH2_REGISTERED_CLIENTS_DOMAIN_API:tican-oauth2-registered-clients-domain-api}
+          oauth2-users-business: ${URI_OAUTH2_USERS_BUSINESS_API:tican-oauth2-users-business-api}
+          oauth2-users-domain: ${URI_OAUTH2_USERS_DOMAIN_API:tican-oauth2-users-domain-api}
+          medical-substances-domain: ${URI_MEDICAL_SUBSTANCES_DOMAIN_API:tican-medical-substances-domain-api}
+          medical-substances-business: ${URI_MEDICAL_SUBSTANCES_BUSINESS_API:tican-medical-substances-business-api}
+          medical-products-business: ${URI_MEDICAL_PRODUCTS_BUSINESS_API:tican-medical-products-business-api}
+          medical-products-domain: ${URI_MEDICAL_PRODUCTS_DOMAIN_API:tican-medical-products-domain-api}
+  datasource:
+    url: jdbc:h2:file:././h2/data/TicanAudit;MODE=MYSQL;AUTO_SERVER=TRUE;
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 123456
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  flyway:
+    baseline-description: true
+    baseline-on-migrate: true
+    create-schemas: true
+    default-schema: public
+    enabled: true
+    locations: classpath:db/migration/ModeMySQL
+    schemas: public
+    validate-on-migrate: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings.trace: false
+      settings.web-allow-others: false
+  data:
+    web:
+      pageable:
+        page-parameter: page
+        size-parameter: size
+      sort:
+        sort-parameter: sort
+  rabbitmq:
+    host: ${RABBITMQ_HOST_NAME:tican-rabbit-mq}
+    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
+    username: ${RABBITMQ_DEFAULT_USER:tican}
+    password: ${RABBITMQ_DEFAULT_PWD:tican}
+    listener:
+      simple:
+        retry:
+          enable: true
+          max-attempts: 2
+          initial-interval: 3000
+          max-interval: 10000
+          multiplier: 2
+          
+#########################################################
+eureka:
+  instance:
+    hostname: tican-discovery-service
+    instance-id: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://${SERVICE_DISCOVERY_HOST_NAME:tican-service-discovery}:${SERVICE_DISCOVERY_EXPOSE_PORT:5000}/eureka
+
+#########################################################
+resilience4j:
+  circuitBreaker:
+    instances:
+      auditServices:
+        waitDurationInOpenState: 50s
+        minimumNumberOfCalls: 2
+        slidingWindowSize: 3
+
+#########################################################        
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
+
+#########################################################     
+logging:
+  level:
+    com:
+      tican: ${API_LOGGING_LEVEL:error}
+    org:
+      springframework: ${API_LOGGING_LEVEL:error}
+
+#########################################################
+springdoc:
+  api-docs:
+    enabled: ${API_SWAGGER_ENABLE:true}
+  packagesToScan: com.tican
+  pathsToMatch: /**
+  swagger-ui:
+    enable: true
+    operationsSorter: alpha
+    path: /docs
+    tagsSorter: alpha
