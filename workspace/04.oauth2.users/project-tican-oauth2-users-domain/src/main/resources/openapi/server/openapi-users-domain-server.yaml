@@ -1,0 +1,513 @@
+openapi: 3.0.3
+info:
+  title: 'Project Tican OpenAPI'
+  description: 'Oauth2 Users Domain API'
+  version: 1.0.0
+servers:
+  - url: /users
+tags:
+  - name: users.domain.resources
+    description: 'Users Domain Resources'
+security:
+  - bearerAuth: []
+paths:
+  /domain:
+    post:
+      tags:
+        - users.domain.resources
+      summary: 'Create new user'
+      description: 'Create new user'
+      operationId: postCreateNewUser
+      requestBody:
+        description: 'Payload Body od a create new user'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRecord'
+      responses:
+        '201':
+          $ref: '#/components/responses/UserResponseTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+    put:
+      tags:
+        - users.domain.resources
+      summary: 'Update data of User'
+      description: 'Update data of User'
+      operationId: putUpdateUser
+      requestBody:
+        description: 'Payload Body on a update user'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRecord'
+      responses:
+        '202':
+          $ref: '#/components/responses/UserResponseTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /domain/change-password:
+    put:
+      tags:
+        - users.domain.resources
+      summary: 'Change a password of User'
+      description: 'Change a password of User'
+      operationId: putChangeUserPassord
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: 'OAuth2 Registered User Id'
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 99999
+            nullable: false
+        - name: passwordOld
+          in: header
+          required: true
+          description: 'Actual secret in use'
+          schema:
+            type: string
+            minLength: 4
+            maxLength: 255
+            nullable: false
+        - name: passwordNew
+          in: header
+          required: true
+          description: 'New secret to update (min 6 to max 30 characters)'
+          schema:
+            type: string
+            minLength: 4
+            maxLength: 255
+            nullable: false
+      responses:
+        '202':
+          $ref: '#/components/responses/ResponseCode202Template'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /domain/change-status:
+    put:
+      tags:
+        - users.domain.resources
+      summary: 'Change a Status of User'
+      description: 'Change a Status of User'
+      operationId: putChangeUserStatus
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: 'OAuth2 Registered User Id'
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 99999
+            nullable: false
+        - name: status
+          in: query
+          description: 'Option os the registered user status'
+          required: true
+          schema:
+            type: string
+            pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
+            default: 'DISABLED'
+            nullable: false
+      responses:
+        '202':
+          $ref: '#/components/responses/ResponseCode202Template'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /domain/exclusion/logical:
+    delete:
+      tags:
+        - users.domain.resources
+      summary: 'Logical Delete a User'
+      description: 'Logical Delete a User'
+      operationId: deleteUserLogical
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: 'OAuth2 Registered User Id'
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 99999
+            nullable: false
+        - name: reason
+          in: query
+          description: 'Reason of the delete logical user'
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 255
+            default: 'Operational execution'
+            nullable: false
+      responses:
+        '202':
+          $ref: '#/components/responses/ResponseCode202Template'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /domain/exclusion/physical:
+    delete:
+      tags:
+        - users.domain.resources
+      summary: 'Physical Delete a User'
+      description: 'Physical Delete a User'
+      operationId: deleteUserPhysical
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: 'OAuth2 Registered User Id'
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 99999
+            nullable: false
+        - name: reason
+          in: query
+          description: 'Reason of the delete physical user'
+          required: true
+          schema:
+            type: string
+            minLength: 10
+            maxLength: 255
+            default: 'Operational execution'
+            nullable: false
+      responses:
+        '202':
+          $ref: '#/components/responses/ResponseCode202Template'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+components:
+  schemas:
+    UserResponse:
+      type: object
+      description: 'OAuth2 User response record'
+      properties:
+        id:
+          type: string
+          description: 'OAuth2 User Id'
+          example: '99999'
+        name:
+          type: string
+          description: 'OAuth2 User Name'
+          example: 'Tican User 1'
+        eMail:
+          type: string
+          description: 'OAuth2 User eMail'
+          example: 'user1@tican.com'
+        type:
+          type: string
+          description: 'OAuth2 User Type: ADMIN or CLIENT'
+          example: 'ADMIN'
+        createdAt:
+          type: string
+          description: 'OAuth2 User created date'
+          example: '2025-04-14T12:00:00.000z'
+        status:
+          type: string
+          description: 'OAuth2 User status: ENALED, EXPIRED or LOCKED'
+          example: 'LOCKED'
+
+    UserCreateRecord:
+      type: object
+      description: 'OAuth2 User create a new record'
+      required:
+        - name
+        - password
+        - eMail
+        - type
+      properties:
+        name:
+          type: string
+          description: 'OAuth2 User Name'
+          minLength: 5
+          maxItems: 20
+          nullable: false
+        password:
+          type: string
+          description: 'OAuth2 User Password'
+          minLength: 4
+          maxItems: 255
+          nullable: false
+        eMail:
+          type: string
+          description: 'OAuth2 User eMail'
+          minLength: 8
+          maxLength: 200
+          nullable: false
+        type:
+          type: string
+          description: 'OAuth2 User Type: ADMIN or CLIENT'
+          pattern: '(ADMIN|CLIENT)'
+          nullable: false
+
+    UserUpdateRecord:
+      type: object
+      description: 'OAuth2 User update record'
+      required:
+        - name
+        - password
+        - eMail
+        - type
+        - status
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: 'Registered Client Id in format UUID'
+          minimum: 1
+          maximum: 99999
+          nullable: false
+        name:
+          type: string
+          description: 'OAuth2 User Name'
+          minLength: 5
+          maxLength: 20
+          nullable: false
+        eMail:
+          type: string
+          description: 'OAuth2 User eMail'
+          minLength: 8
+          maxLength: 200
+          nullable: false
+        type:
+          type: string
+          description: 'OAuth2 User Type: ADMIN or CLIENT'
+          pattern: '(ADMIN|CLIENT)'
+          nullable: false
+        status:
+          description: 'Option os the registered User status'
+          type: string
+          pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
+          default: 'DISABLED'
+          nullable: false
+
+    Code200Template:
+      title: 'Template for Http 200 code response'
+      description: 'Template for Http 200 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        message:
+          type: string
+          default: 'executed successfully'
+    Code201Template:
+      title: 'template for Http 201 code response'
+      description: 'template for Http 201 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 201
+        message:
+          type: string
+          default: 'created successfully'
+    Code202Template:
+      title: 'template for Http 202 code response'
+      description: 'template for Http 202 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 202
+        message:
+          type: string
+          default: 'accepted successfully'
+    Code204Template:
+      title: 'template for Http 204 code response'
+      description: 'template for Http 204 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 204
+        message:
+          type: string
+          default: 'no content'
+    Code400Template:
+      title: 'template for Http 400 code response'
+      description: 'template for Http 400 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 400
+        message:
+          type: string
+          default: 'bad request'
+    Code401Template:
+      title: 'template for Http 401 code response'
+      description: 'template for Http 401 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 401
+        message:
+          type: string
+          default: 'unauthorized'
+    Code403Template:
+      title: 'template for Http 403 code response'
+      description: 'template for Http 403 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 403
+        message:
+          type: string
+          default: 'forbiden (refusing action)'
+    Code404Template:
+      title: 'template for Http 404 code response'
+      description: 'template for Http 404 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 404
+        message:
+          type: string
+          default: 'not found (a one path, url, uri or object)'
+    Code500Template:
+      title: 'template for Http 500 code response'
+      description: 'template for Http 500 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 500
+        message:
+          type: string
+          default: 'internal server error'
+
+  responses:
+    UserResponseTemplate:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserResponse'
+    ResponseCode200Template:
+      description: 'executed successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code200Template'
+    ResponseCode201Template:
+      description: 'created  successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code201Template'
+    ResponseCode202Template:
+      description: 'accepted successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code202Template'
+    ResponseCode204Template:
+      description: 'no content'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code204Template'
+    ResponseCode400Template:
+      description: 'bad request'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code400Template'
+    ResponseCode401Template:
+      description: 'unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code401Template'
+    ResponseCode403Template:
+      description: 'forbiden (refusing action)'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code403Template'
+    ResponseCode404Template:
+      description: 'not found (a one path, url, uri or object)'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code404Template'
+    ResponseCode500Template:
+      description: 'internal server error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code500Template'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer

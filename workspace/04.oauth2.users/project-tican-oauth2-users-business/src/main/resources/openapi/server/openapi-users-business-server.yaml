@@ -1,0 +1,590 @@
+
+openapi: 3.0.3
+info:
+  title: 'Project Tican OpenAPI'
+  description: 'Oauth2 Users Bussiness API'
+  version: 1.0.0
+tags:
+  - name: users.business.resources
+    description: 'Users Business Resources'
+servers:
+  - url: /users
+    description: 'Users Business URI'
+security:
+  - bearerAuth: []
+paths:
+  /business/findById:
+    get:
+      tags:
+        - users.business.resources
+      summary: 'OAuth2 Users Find by Id'
+      description: 'OAuth2 Users Find by Id'
+      operationId: getFindById
+      parameters:
+        - name: userId
+          $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          $ref: '#/components/responses/UserResponseTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /business/findByName:
+    get:
+      tags:
+        - users.business.resources
+      summary: 'OAuth2 Users Find by Name'
+      description: 'OAuth2 Users Find by Name'
+      operationId: getFindByName
+      parameters:
+        - name: userName
+          $ref: '#/components/parameters/UserName'
+      responses:
+        '200':
+          $ref: '#/components/responses/UserResponseTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /business/findByEmail:
+    get:
+      tags:
+        - users.business.resources
+      summary: 'OAuth2 Users Find by Email'
+      description: 'OAuth2 Users Find by Email'
+      operationId: getFindByEmail
+      parameters:
+        - name: userEmail
+          $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          $ref: '#/components/responses/UserResponseTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /business/findAll:
+    get:
+      tags:
+        - users.business.resources
+      summary: 'OAuth2 Users FindAll'
+      description: 'OAuth2 Users FindAll'
+      operationId: getFindAll
+      parameters: []
+      responses:
+        '200':
+          $ref: '#/components/responses/UserListResponseTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /business/findByFilters:
+    get:
+      tags:
+        - users.business.resources
+      summary: 'OAuth2 Users Find by Filters'
+      description: 'OAuth2 Users Find by Filters'
+      operationId: getFindByFilters
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortField'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrder'
+        - name: userName
+          $ref: '#/components/parameters/UserNameOptional'
+        - name: userEmail
+          $ref: '#/components/parameters/UserEmailOptional'
+        - name: userType
+          $ref: '#/components/parameters/UserTypeOptional'
+        - name: userStatus
+          $ref: '#/components/parameters/UserStatusOptional'
+      responses:
+        '200':
+          $ref: '#/components/responses/UserResponsePageableTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /business/findByPageable:
+    get:
+      tags:
+        - users.business.resources
+      summary: 'OAuth2 Users Find by Pageable'
+      description: 'OAuth2 Users Find by Pageable'
+      operationId: getFindByPageable
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortField'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/UserResponsePageableTemplate'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+components:
+  parameters:
+    UserId:
+      name: userId
+      description: 'OAuth2 User Id. Example: 787899'
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+        min: 1
+        max: 999999999
+        nullable: false
+    UserIdOptional:
+      name: userId
+      description: 'OAuth2 User Id. Example: 787899'
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        min: 1
+        max: 999999999
+        nullable: true
+    UserName:
+      name: userName
+      description: 'OAuth2 User Name. Example: Tican User 1'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: false
+    UserNameOptional:
+      name: userName
+      description: 'OAuth2 User Name. Example: Tican User 1'
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: true
+    UserEmail:
+      name: userEmail
+      description: 'OAuth2 User Email. Example: user1@tican.com'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 15
+        maxLength: 50
+        nullable: false
+    UserEmailOptional:
+      name: userEmail
+      description: 'OAuth2 User Email. Example: user1@tican.com'
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 15
+        maxLength: 50
+        nullable: true
+    UserType:
+      name: userType
+      description: 'OAuth2 User Type. Example: ADMIN'
+      in: query
+      required: true
+      schema:
+        type: string
+        pattern: '(ADMIN|CLIENT)'
+        nullable: false
+    UserTypeOptional:
+      name: userType
+      description: 'OAuth2 User Type. Example: ADMIN'
+      in: query
+      required: false
+      schema:
+        type: string
+        pattern: '(ADMIN|CLIENT)'
+        nullable: true
+    UserStatus:
+      name: userStatus
+      description: 'OAuth2 User Status. Example: LOCKED'
+      in: query
+      required: true
+      schema:
+        type: string
+        pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
+        nullable: false
+    UserStatusOptional:
+      name: userStatus
+      description: 'OAuth2 User Status. Example: LOCKED'
+      in: query
+      required: false
+      schema:
+        type: string
+        pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
+        nullable: true
+    PageNumber:
+      name: pageNumber
+      in: query
+      description: 'Page Number'
+      required: false
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 999999
+        default: 1
+        nullable: true
+    PageSize:
+      name: pageSize
+      in: query
+      description: 'Page Size'
+      required: false
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 1000
+        default: 20
+        nullable: true
+    PageSortField:
+      name: pageSortField
+      in: query
+      description: 'Field used for sorting on pages (regex)'
+      required: false
+      schema:
+        type: string
+        pattern: '(id|name|email|type|status)'
+        default: 'id'
+        nullable: true
+    PageSortOrder:
+      name: pageSortOrder
+      in: query
+      description: "Required is: 'ASC or DESC'"
+      required: false
+      schema:
+        type: string
+        pattern: '(ASC|DESC)'
+        default: 'ASC'
+        nullable: true
+  schemas:
+    UserResponse:
+      type: object
+      description: 'OAuth2 User response record'
+      properties:
+        id:
+          type: string
+          description: 'OAuth2 User Id'
+          example: '99999'
+        name:
+          type: string
+          description: 'OAuth2 User Name'
+          example: 'Tican User 1'
+        eMail:
+          type: string
+          description: 'OAuth2 User eMail'
+          example: 'user1@tican.com'
+        type:
+          type: string
+          description: 'OAuth2 User Type: ADMIN or CLIENT'
+          example: 'ADMIN'
+        createdAt:
+          type: string
+          description: 'OAuth2 User created date'
+          example: '2025-04-14T12:00:00.000z'
+        status:
+          type: string
+          description: 'OAuth2 User status: ENALED, EXPIRED or LOCKED'
+          example: 'LOCKED'
+
+    UserListResponse:
+      type: array
+      description: 'OAuth2 User response List records'
+      items:
+        $ref: '#/components/schemas/UserResponse'
+
+    UserResponsePageable:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/UserListResponse'
+        pageable:
+          $ref: '#/components/schemas/PageableDetails'
+
+    PageableDetails:
+      type: object
+      description: 'Informations of pageable'
+      properties:
+        isEmptyResult:
+          type: boolean
+          example: false
+        pageNumberRequested:
+          type: integer
+          example: 1
+        pageSizeRequested:
+          type: integer
+          example: 10
+        sortFieldRequested:
+          type: string
+          example: field-a
+        pageNumberResulting:
+          type: integer
+          example: 1
+        pageSizeResulting:
+          type: integer
+          example: 20
+        isFirstPage:
+          type: boolean
+          example: true
+        isLastPage:
+          type: boolean
+          example: false
+        previousPageNumber:
+          type: integer
+          example: 1
+        nextPageNumber:
+          type: integer
+          example: 2
+        totalPagesExisting:
+          type: integer
+          example: 890
+        totalElementsExisting:
+          type: integer
+          example: 8899
+
+    Code200Template:
+      title: 'Template for Http 200 code response'
+      description: 'Template for Http 200 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        message:
+          type: string
+          default: 'executed successfully'
+    Code201Template:
+      title: 'template for Http 201 code response'
+      description: 'template for Http 201 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 201
+        message:
+          type: string
+          default: 'created successfully'
+    Code202Template:
+      title: 'template for Http 202 code response'
+      description: 'template for Http 202 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 202
+        message:
+          type: string
+          default: 'accepted successfully'
+    Code204Template:
+      title: 'template for Http 204 code response'
+      description: 'template for Http 204 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 204
+        message:
+          type: string
+          default: 'no content'
+    Code400Template:
+      title: 'template for Http 400 code response'
+      description: 'template for Http 400 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 400
+        message:
+          type: string
+          default: 'bad request'
+    Code401Template:
+      title: 'template for Http 401 code response'
+      description: 'template for Http 401 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 401
+        message:
+          type: string
+          default: 'unauthorized'
+    Code403Template:
+      title: 'template for Http 403 code response'
+      description: 'template for Http 403 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 403
+        message:
+          type: string
+          default: 'forbiden (refusing action)'
+    Code404Template:
+      title: 'template for Http 404 code response'
+      description: 'template for Http 404 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 404
+        message:
+          type: string
+          default: 'not found (a one path, url, uri or object)'
+    Code500Template:
+      title: 'template for Http 500 code response'
+      description: 'template for Http 500 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 500
+        message:
+          type: string
+          default: 'internal server error'
+
+  responses:
+
+    UserResponseTemplate:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserResponse'
+
+    UserListResponseTemplate:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserListResponse'
+
+    UserResponsePageableTemplate:
+      description: 'List of Ticket Records in Pageable options.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserResponsePageable'
+
+    ResponseCode200Template:
+      description: 'executed successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code200Template'
+    ResponseCode201Template:
+      description: 'created  successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code201Template'
+    ResponseCode202Template:
+      description: 'accepted successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code202Template'
+    ResponseCode204Template:
+      description: 'no content'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code204Template'
+    ResponseCode400Template:
+      description: 'bad request'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code400Template'
+    ResponseCode401Template:
+      description: 'unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code401Template'
+    ResponseCode403Template:
+      description: 'forbiden (refusing action)'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code403Template'
+    ResponseCode404Template:
+      description: 'not found (a one path, url, uri or object)'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code404Template'
+    ResponseCode500Template:
+      description: 'internal server error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code500Template'
+  #  requestBodies:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+

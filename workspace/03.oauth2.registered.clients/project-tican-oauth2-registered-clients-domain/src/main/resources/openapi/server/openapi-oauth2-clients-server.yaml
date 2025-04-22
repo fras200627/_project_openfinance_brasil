@@ -1,0 +1,578 @@
+openapi: 3.0.3
+info:
+  title: 'Project Tican - Registered Clients '
+  description: ' API OAuth2 Registered Cliente Domain Resources'
+  version: 1.0.0
+servers:
+  - url: /oauth2/registered/clients
+    description: 'Registered Clients Domain Resources'
+security:
+  - bearerAuth: []
+tags:
+  - name: registered.clients.resources
+    description: 'Registered clients domain resources '
+paths:
+  /domain:
+    post:
+      tags:
+        - registered.clients.resources
+      operationId: createRegisteredClient
+      summary: 'create a new registered client'
+      description: 'create a new registered client'
+      requestBody:
+        description: 'Payload Body od a create new client'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientCreateRecord'
+      responses:
+        '201':
+          $ref: '#/components/responses/OAuth2ClientResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+    put:
+      tags:
+        - registered.clients.resources
+      operationId: updateRegisteredClient
+      summary: 'update a registered client record'
+      description: 'update a registered client record'
+      requestBody:
+        description: 'Payload body a update data of a client'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientUpdateRecord'
+      responses:
+        '202':
+          $ref: '#/components/responses/OAuth2ClientResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /domain/change-client-secret:
+    put:
+      tags:
+        - registered.clients.resources
+      operationId: changeSecretRegisteredClient
+      summary: 'update a password secret a registered client'
+      description: 'update a password secret a registered client'
+      parameters:
+        - name: registeredId
+          in: query
+          required: true
+          description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 36
+            nullable: false
+        - name: clientSecretOld
+          in: header
+          required: true
+          description: 'Actual secret in use'
+          schema:
+            type: string
+            minLength: 6
+            maxLength: 30
+            nullable: false
+        - name: clientSecretNew
+          in: header
+          required: true
+          description: 'New secret to update (min 6 to max 30 characters)'
+          schema:
+            type: string
+            minLength: 6
+            maxLength: 30
+            nullable: false
+      responses:
+        '202':
+          $ref: '#/components/responses/ResponseCode202Template'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+  /domain/change-status:
+    put:
+      tags:
+        - registered.clients.resources
+      operationId: changeStatusRegisteredClient
+      summary: 'update a status a registered client'
+      description: 'update a status a registered client'
+      parameters:
+        - name: registeredId
+          in: query
+          description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+          required: true
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 36
+            nullable: false
+        - name: status
+          in: query
+          description: 'Option os the registered client status'
+          required: true
+          schema:
+            type: string
+            pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
+            default: 'DISABLED'
+            nullable: false
+      responses:
+        '202':
+          $ref: '#/components/responses/ResponseCode202Template'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+
+components:
+  schemas:
+    OAuth2ClientResponse:
+      type: object
+      description: 'OAuth2 Client Response'
+      properties:
+        registeredId:
+          type: string
+          description: 'Registered Client Id in format UUID'
+          example: '42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+        clientId:
+          type: string
+          description: 'Client id alias'
+          example: 'tican.client.1'
+        clientIdIssuedAt:
+          type: string
+          description: 'Create Date'
+          example: "2025-04-07T19:59:33.127Z"
+        clientSecretExpiresAt:
+          type: string
+          description: 'Expired Date'
+          example: "2025-04-07T19:59:33.127Z"
+        clientName:
+          type: string
+          description: 'Client name'
+          example: "Tican Client 1"
+        clientAuthenticationMethods:
+          type: string
+          description: 'Authentication Methods'
+          example: "bearer"
+        authorizationGrantTypes:
+          type: string
+          description: 'Grants Types'
+          example: "basic"
+        redirectUris:
+          type: string
+          description: 'Redirect URI (if used)'
+          example: "/redirect/authentication"
+        securityScope:
+          type: string
+          description: 'Authorization scopes'
+          example: "client.root"
+        clientSettings:
+          type: string
+          description: 'Client Settings'
+        tokenSettings:
+          type: string
+          description: 'Token Settings'
+        status:
+          type: string
+          description: 'Acces Status'
+          example: "ENABLED"
+        isAccountExpired:
+          type: string
+          description: 'Status of Account'
+          example: 'false'
+        isAccountLocked:
+          type: string
+          description: 'Status of Account'
+          example: 'false'
+        isCredentialsExpired:
+          type: string
+          description: 'Status of Credentials'
+          example: 'false'
+        isEnabled:
+          type: string
+          description: 'Access Status'
+          example: 'true'
+
+    ClientCreateRecord:
+      title: 'Payload a Client Create Record'
+      description: 'Payload a Client Create Record'
+      type: object
+      required:
+        - clientId
+        - clientSecret
+        - clientName
+        - tokenDurationOfMinutes
+        - clientSecretExpiresAtOfDays
+        - requireAuthorizationConsent
+        - listOfClientAuthenticationMethods
+        - listOfAuthorizationGrantTypes
+        - listOfRedirectUris
+        - listOfScopes
+      properties:
+        clientId:
+          type: string
+          description: 'Client Id is a Alias used for a client'
+          minLength: 3
+          maxLength: 100
+          nullable: false
+        clientSecret:
+          type: string
+          description: 'Client secret password'
+          minLength: 6
+          maxLength: 30
+          nullable: false
+        clientName:
+          type: string
+          description: 'Full description a Client Name'
+          minLength: 3
+          maxLength: 200
+          nullable: false
+        tokenDurationOfMinutes:
+          type: integer
+          description: 'Number a minutes a duration token access'
+          minimum: 1
+          maximum: 30
+          default: 30
+          nullable: false
+        clientSecretExpiresAtOfDays:
+          type: integer
+          description: 'Number a days a duration client secret password'
+          minimum: 10
+          maximum: 180
+          default: 30
+          nullable: false
+        requireAuthorizationConsent:
+          type: string
+          description: 'Client Authorization Consent'
+          pattern: '(true|false)'
+          default: 'true'
+          nullable: false
+        listOfClientAuthenticationMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Methods'
+        listOfAuthorizationGrantTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrandTypes'
+        listOfRedirectUris:
+          type: array
+          items:
+            $ref: '#/components/schemas/Uris'
+        listOfScopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scopes'
+
+    ClientUpdateRecord:
+      title: 'Payload a Client Update Record'
+      description: 'Payload a Client Update Record'
+      type: object
+      required:
+        - registeredId
+        - clientId
+        - clientName
+      properties:
+        registeredId:
+          type: string
+          description: 'Registered Client Id in format UUID'
+          minLength: 36
+          maxLength: 36
+          nullable: false
+        clientId:
+          type: string
+          description: 'Client Id is a Alias used for a client'
+          minLength: 3
+          maxLength: 100
+          nullable: false
+        clientName:
+          type: string
+          description: 'Full description a Client Name'
+          minLength: 3
+          maxLength: 200
+          nullable: false
+        tokenDurationOfMinutes:
+          type: integer
+          format: int32
+          description: 'Number a minutes a duration token access'
+          minimum: 1
+          maximum: 30
+          default: 30
+          nullable: false
+        clientSecretExpiresAtOfDays:
+          type: integer
+          format: int32
+          description: 'Number a days a duration client secret password'
+          minimum: 10
+          maximum: 180
+          default: 30
+          nullable: false
+        requireAuthorizationConsent:
+          type: string
+          description: 'Client Authorization Consent'
+          pattern: '(true|false)'
+          default: 'true'
+          nullable: false
+        status:
+          description: 'Option os the registered client status'
+          type: string
+          pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
+          default: 'DISABLED'
+          nullable: false
+        listOfClientAuthenticationMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Methods'
+        listOfAuthorizationGrantTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrandTypes'
+        listOfRedirectUris:
+          type: array
+          items:
+            $ref: '#/components/schemas/Uris'
+        listOfScopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scopes'
+
+    Methods:
+      type: object
+      properties:
+        clientAuthenticationMethod:
+          type: string
+          description: 'Client Authorization Mtehod'
+          pattern: '(basic|client_secret_basic|post|client_secret_post|client_secret_jwt|private_key_jwt|none)'
+          default: 'basic'
+          nullable: false
+
+    GrandTypes:
+      type: object
+      properties:
+        authorizationGrantType:
+          type: string
+          description: 'Authorization Grant Type'
+          pattern: '(authorization_code|implicit|refresh_token|client_credentials|password|jwt_bearer)'
+          default: 'jwt_bearer'
+          nullable: false
+
+    Uris:
+      type: object
+      properties:
+        redirectUri:
+          type: string
+          description: 'Redirect Uri'
+          minLength: 10
+          maxLength: 1000
+          default: 'none'
+          nullable: false
+
+    Scopes:
+      type: object
+      properties:
+        scope:
+          type: string
+          description: 'Security Scope'
+          pattern: '(client.read|client.write|client.root)'
+          default: 'client.root'
+          nullable: false
+
+
+    Code200Template:
+      title: 'Template for Http 200 code response'
+      description: 'Template for Http 200 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        message:
+          type: string
+          default: 'executed successfully'
+    Code201Template:
+      title: 'template for Http 201 code response'
+      description: 'template for Http 201 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 201
+        message:
+          type: string
+          default: 'created successfully'
+    Code202Template:
+      title: 'template for Http 202 code response'
+      description: 'template for Http 202 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 202
+        message:
+          type: string
+          default: 'accepted successfully'
+    Code204Template:
+      title: 'template for Http 204 code response'
+      description: 'template for Http 204 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 204
+        message:
+          type: string
+          default: 'no content'
+    Code400Template:
+      title: 'template for Http 400 code response'
+      description: 'template for Http 400 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 400
+        message:
+          type: string
+          default: 'bad request'
+    Code401Template:
+      title: 'template for Http 401 code response'
+      description: 'template for Http 401 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 401
+        message:
+          type: string
+          default: 'unauthorized'
+    Code403Template:
+      title: 'template for Http 403 code response'
+      description: 'template for Http 403 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 403
+        message:
+          type: string
+          default: 'forbiden (refusing action)'
+    Code404Template:
+      title: 'template for Http 404 code response'
+      description: 'template for Http 404 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 404
+        message:
+          type: string
+          default: 'not found (a one path, url, uri or object)'
+    Code500Template:
+      title: 'template for Http 500 code response'
+      description: 'template for Http 500 code response'
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 500
+        message:
+          type: string
+          default: 'internal server error'
+
+  responses:
+    OAuth2ClientResponse:
+      description: 'Registered Client Response'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuth2ClientResponse'
+
+    ResponseCode200Template:
+      description: 'executed successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code200Template'
+    ResponseCode201Template:
+      description: 'created  successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code201Template'
+    ResponseCode202Template:
+      description: 'accepted successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code202Template'
+    ResponseCode204Template:
+      description: 'no content'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code204Template'
+    ResponseCode400Template:
+      description: 'bad request'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code400Template'
+    ResponseCode401Template:
+      description: 'unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code401Template'
+    ResponseCode403Template:
+      description: 'forbiden (refusing action)'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code403Template'
+    ResponseCode404Template:
+      description: 'not found (a one path, url, uri or object)'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code404Template'
+    ResponseCode500Template:
+      description: 'internal server error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code500Template'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer

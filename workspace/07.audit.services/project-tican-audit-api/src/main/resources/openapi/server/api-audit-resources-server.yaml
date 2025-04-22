@@ -1,0 +1,527 @@
+
+
+#### NOTE: REFERENCE FOR CODING ###
+#  Schemas declared with 'enum' generate 'public enum' classes in the
+#  project and can be used in the necessary logic.
+#  The values of the enum class can be validated by creating
+#  the classes with 'implements Converter<String, TemplateEnumModelSchema>'
+#  and 'implements WebMvcConfigurer/registry.addConverter'
+#
+#### NOTE: REFERENCE FOR CODING ###
+# The value provided in the '- name: '  # tag must be the same as that
+# described in the @RequestMapping parameters.
+# The '$ref:' information can indicate any resource created in '#components/parameters'.
+#
+#### NOTE: REFERENCE FOR CODE ###
+# Parameters defined with regex pattern
+# are handled by GlobalControllerExceptionHandler
+#
+#### NOTE: REFERENCE FOR SECURITY ###
+# The securitySchemes: bearerAuth is used to configure SwaggerUI and
+# configure API classes??? but does not interfere with the
+# authentication of RESTfull endpoint calls.
+# For authentication to work correctly in REST calls, the APISecuritConfig class must be used.
+
+openapi: 3.0.3
+info:
+  title: 'Project Tican - OpenAPI 3.0.3'
+  description: 'Project Tican using Open API'
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: fras200627@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: audit.resources
+    description: 'API Resources'
+#servers:
+#  - url: ?url-dev
+#  - url: ?url-homolog
+#  - url: ?url-prod
+security:
+  - bearerAuth: [] # use the same name as above
+paths:
+  /audit/findByTicketNumber:
+    get:
+      tags:
+        - audit.resources
+      summary: 'Get one Ticket using ticket number id'
+      description: 'Get one Ticket using ticket number id'
+      operationId: getTicketByNumber
+      parameters:
+        - name: ticket
+          $ref: '#/components/parameters/ticket'
+      responses:
+        '200':
+          $ref: '#/components/responses/TicketResponseList'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /audit/findAllTickets:
+    get:
+      tags:
+        - audit.resources
+      summary: 'Get all Tickets'
+      description: 'Get all Tickets'
+      operationId: getAllTickets
+      parameters:
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortFieldRegEx'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrderRegEx'
+      responses:
+        '200':
+          $ref: '#/components/responses/TicketResponseList'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /audit/findTicketsByPageable:
+    get:
+      tags:
+        - audit.resources
+      summary: 'Get Tickets using filters and pagination'
+      description: 'Get Tickets using filters and pagination'
+      operationId: getTicketsByPageable
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortFieldRegEx'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrderRegEx'
+      responses:
+        '200':
+          $ref: '#/components/responses/TicketRecordPageableResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+components:
+  # block-01 :: PARAMETERS ############################################################
+  parameters:
+    # Global parameters #
+    PageNumber:
+      name: pageNumber
+      in: query
+      description: 'Page Number'
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 999999
+        default: 1
+        nullable: false
+    PageSize:
+      name: pageSize
+      in: query
+      description: 'Page Size'
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 1000
+        default: 20
+        nullable: false
+    PageSortFieldRegEx:
+      name: pageSortField
+      in: query
+      description: 'Field used for sorting on pages (regex)'
+      required: true
+      schema:
+        type: string
+        pattern: '(ticket|interactionId|requestUri|requestMethod|requestUserName|requestTime)'
+        default: 'ticket'
+        nullable: false
+    PageSortOrderRegEx:
+      name: pageSortOrder
+      in: query
+      description: "Required is: 'ASC or DESC' (regex)"
+      required: true
+      schema:
+        type: string
+        pattern: '(asc|Asc|ASC|desc|Desc|DESC)'
+        default: 'ASC'
+        nullable: false
+
+    ticket:
+      name: ticket
+      in: query
+      description: 'Ticket number Id'
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 999999999
+        nullable: false
+
+    interationId:
+      name: interactionId
+      in: query
+      description: 'X fapi interaction code Id. Example: 10db5b55-950f-49e8-ba5e-d1fd52903fa5'
+      required: true
+      schema:
+        type: string
+        minLength: 36
+        maxLength: 36
+        nullable: false
+
+    RequestTime:
+      name: requestTime
+      in: query
+      description: 'Request Time'
+      required: true
+      schema:
+        type: string
+        nullable: false
+
+    RequestUri:
+      name: requestUri
+      in: query
+      description: 'Request URI'
+      required: true
+      schema:
+        type: string
+        nullable: false
+        minLength: 3
+        maxLength: 30
+
+    RequestSource:
+      name: requestSource
+      in: query
+      description: 'Request Source'
+      required: true
+      schema:
+        type: string
+        nullable: false
+        minLength: 3
+        maxLength: 100
+
+    RequestMethod:
+      name: requestMethod
+      in: query
+      description: 'Request Method'
+      required: true
+      schema:
+        type: string
+        pattern: '(GET|POST|PUT|DELETE)'
+        nullable: false
+        minLength: 3
+        maxLength: 10
+        default: 'GET'
+
+    RequestUserName:
+      name: requestUserName
+      in: query
+      description: 'Request User Name'
+      required: true
+      schema:
+        type: string
+        nullable: false
+        minLength: 3
+        maxLength: 30
+
+    Payload:
+      name: payload
+      in: query
+      description: 'Payload content'
+      required: true
+      schema:
+        type: string
+        default: 'none'
+        minLength: 4
+        maxLength: 3000
+
+    Reason:
+      name: reason
+      in: query
+      description: 'Reason for deleting an audit ticket'
+      required: true
+      schema:
+        type: string
+        nullable: false
+        minLength: 10
+        maxLength: 300
+
+  # block-02 :: SCHEMAS ##############################################################
+  schemas:
+    PageableDetailsTemplate:
+      type: object
+      description: 'Informations of pageable'
+      properties:
+        isEmptyResult:
+          type: boolean
+          example: false
+        pageNumberRequested:
+          type: integer
+          example: 1
+        pageSizeRequested:
+          type: integer
+          example: 10
+        sortFieldRequested:
+          type: string
+          example: field-a
+        pageNumberResulting:
+          type: integer
+          example: 1
+        pageSizeResulting:
+          type: integer
+          example: 20
+        isFirstPage:
+          type: boolean
+          example: true
+        isLastPage:
+          type: boolean
+          example: false
+        previousPageNumber:
+          type: integer
+          example: 1
+        nextPageNumber:
+          type: integer
+          example: 2
+        totalPagesExisting:
+          type: integer
+          example: 890
+        totalElementsExisting:
+          type: integer
+          example: 8899
+    TicketResponse:
+      type: object
+      properties:
+        ticket:
+          type: string
+          description: 'Ticket Number Id'
+        interactionId:
+          type: string
+          description: 'interactionId Number'
+        requestTime:
+          type: string
+          description: 'Request Time'
+        requestUri:
+          type: string
+          description: 'Request URI'
+        requestSource:
+          type: string
+          description: 'Request Source'
+        requestMethod:
+          type: string
+          description: 'Request Method'
+          maxLength: 10
+        requestUserName:
+          type: string
+          description: 'Request User Name'
+        payload:
+          type: string
+          description: 'Payload content'
+    TicketResponseList:
+      description: List of Ticket Records
+      type: array
+      items:
+        $ref: '#/components/schemas/TicketResponse'
+    TicketRecordPageable:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/TicketResponseList'
+        pageable:
+          $ref: '#/components/schemas/PageableDetailsTemplate'
+    Code200Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        message:
+          type: string
+          default: 'message description'
+    Code201Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 201
+        message:
+          type: string
+          default: 'message description'
+    Code202Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 202
+        message:
+          type: string
+          default: 'message description'
+    Code400Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 400
+        message:
+          type: string
+          default: 'message description'
+    Code401Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 401
+        message:
+          type: string
+          default: 'message description'
+    Code403Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 403
+        message:
+          type: string
+          default: 'message description'
+    Code404Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 404
+        message:
+          type: string
+          default: 'message description'
+    Code500Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 500
+        message:
+          type: string
+          default: 'message description'
+    CodeDefaultTemplate:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 501
+        message:
+          type: string
+          default: 'message description'
+
+  # block-03 :: RESPONSES ##############################################################
+  responses:
+    # Global responses #
+    ResponseCode200Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code200Template'
+    ResponseCode201Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code201Template'
+    ResponseCode202Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code202Template'
+    ResponseCode400Template:
+      description: 'Bad request operation'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code400Template'
+    ResponseCode401Template:
+      description: 'Unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code401Template'
+    ResponseCode403Template:
+      description: 'Forbidden'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code403Template'
+    ResponseCode404Template:
+      description: 'Path or object not found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code404Template'
+    ResponseCode500Template:
+      description: 'Internal Server Error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code500Template'
+    ResponseCodeDefaultTemplate:
+      description: 'Not Implemented'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CodeDefaultTemplate'
+
+    # API responses #
+    TicketResponse:
+      description: 'Ticket Record Details.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TicketResponse'
+    TicketResponseList:
+      description: 'List of All Ticket Records.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TicketResponseList'
+    TicketRecordPageableResponse:
+      description: 'List of Ticket Records in Pageable options.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TicketRecordPageable'
+
+  # block-04 :: SECURITY ##############################################################
+  securitySchemes:
+    bearerAuth:
+      #      name: 'bearerAuth'
+      #      in: header
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
