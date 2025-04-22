@@ -1,0 +1,92 @@
+spring:
+  application:
+    name: ${API_GATEWAY_APP_NAME:tican-api-gateway}
+  cloud:
+    discovery:
+      enable: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+  main:
+    web-application-type: reactive # Required for OpenAPI x Cloud.Gateway compatibility
+server:
+  error:
+    include-stacktrace: never
+# Custom properties
+app:
+  listOfServers: #server item: id, description, url
+    - 0, 'Tican Server at LOCAL execution', http://localhost/3000
+    - 1, 'Tican Server at DOCKER execution', http://localhost/5000
+    - 2, 'Tican Server at K8S execution', http://localhost/7000
+
+eureka:
+  instance:
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
+    instance-id: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+# Swagger page: not work with spring.api.gateway
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+server:
+  port: 3001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  port: 3001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.1.1:3000/eureka
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+server:
+  port: 3001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.1.1:3000/eureka
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}

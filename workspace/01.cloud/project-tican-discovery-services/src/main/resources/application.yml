@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
+server:
+  error:
+    include-stacktrace: never
+# Custom properties
+app:
+  listOfServers: #server item: id, description, url
+    - 0, 'Tican Server at LOCAL execution', http://localhost/3000
+    - 1, 'Tican Server at DOCKER execution', http://localhost/5000
+    - 2, 'Tican Server at K8S execution', http://localhost/7000
+
+eureka:
+  instance:
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
+    instance-id: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+# Swagger page: not work with spring.discovery.services
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+server:
+  port: 3000
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  port: 5000
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+server:
+  port: 7000
