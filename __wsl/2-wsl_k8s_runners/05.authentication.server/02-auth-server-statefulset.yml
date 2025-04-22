@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: auth-server-services
+  labels:
+    app: auth-server-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-server-pod
+  template:
+    metadata:
+      name: auth-server-pod
+      labels:
+        app: auth-server-pod
+    spec:
+      containers:
+        - name: auth-server-container
+          image: fras200627/auth-server:1.0.0
+          ports:
+            - containerPort: 6002
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: auth-server-cmap  
+          volumeMounts:
+            - name: auth-server-persist
+              mountPath: /default/auth-server-pvc
+      volumes:
+        - name: auth-server-persist
+          persistentVolumeClaim:
+            claimName: auth-server-pvc
+  serviceName: auth-server-services-stateful
+    

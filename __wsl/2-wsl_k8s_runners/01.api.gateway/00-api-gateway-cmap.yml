@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-gateway-cmap
+  labels:
+    app: api-gateway-cmap
+data:
+  API_LOGGING_LEVEL             : "trace"
+    
+

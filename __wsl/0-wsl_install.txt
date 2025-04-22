@@ -1,0 +1,44 @@
+wsl.exe --update
+-------------------------------------------------------------------
+wsl --install Ubuntu
+user: tican/tican
+sudo -s
+-------------------------------------------------------------------
+chmod 0777 /mnt/c/_development/__projects/_project_tican_2_jdk17/workspace/ -R
+chmod 0777 /mnt/c/__wsl/ -R
+-------------------------------------------------------------------
+Configure:
+nano ~/.bashrc
+
+ADD LINES
+alias kubectl='microk8s kubectl'
+alias tican_path='cd /mnt/c/_development/__projects/_project_tican_2_jdk17/workspace/'
+alias wsl_path='cd /mnt/c/__wsl/'
+
+source ~/.bashrc
+-------------------------------------------------------------------
+cd /mnt/c/__wsl/
+
+Execute:
+./1.ubuntu_config.sh
+./2.docker_install.sh
+./3.k8s_install.sh
+-------------------------------------------------------------------
+Test:
+docker info
+systemctl status docker
+kubectl cluster-info
+docker-compose -v
+-------------------------------------------------------------------
+
+
+Docker images test
+------------------------------------------------------------------
+docker pull nginx
+docker run --name nginx-1 -d -p 8081:80 nginx
+test connect: http://localhost:8081
+-------------------------------------------------------------------
+docker pull httpd
+docker run --name apache-httpd -d -p 8083:80 nginx
+test connect: http://localhost:8083
+-------------------------------------------------------------------

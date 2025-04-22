@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: products-domain-services
+  labels:
+    app: products-domain-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products-domain-pod
+  template:
+    metadata:
+      name: products-domain-pod
+      labels:
+        app: products-domain-pod
+    spec:
+      containers:
+        - name: products-domain-container
+          image: fras200627/products-domain:1.0.0
+          ports:
+            - containerPort: 6009
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: products-domain-cmap  
+          volumeMounts:
+            - name: products-domain-persist
+              mountPath: /default/products-domain-pvc
+      volumes:
+        - name: products-domain-persist
+          persistentVolumeClaim:
+            claimName: products-domain-pvc
+  serviceName: products-domain-services-stateful
+    

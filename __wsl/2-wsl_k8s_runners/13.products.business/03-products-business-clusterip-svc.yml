@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-business-svc
+  labels:
+    app: products-business-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: products-business-pod
+  ports:
+    - port: 6010
+      targetPort: 6010

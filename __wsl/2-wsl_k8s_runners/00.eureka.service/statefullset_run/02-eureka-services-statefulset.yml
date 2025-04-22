@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: discovery-services
+  labels:
+    app: discovery-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discovery-services-pod
+  template:
+    metadata:
+      name: discovery-services-pod
+      labels:
+        app: discovery-services-pod
+    spec:
+      containers:
+        - name: discovery-services-container
+          image: fras200627/discovery-services:1.0.0
+          ports:
+            - containerPort: 6000
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults              
+            - configMapRef:
+                name: discovery-services-cmap  
+          volumeMounts:
+            - name: discovery-services-persist
+              mountPath: /default/discovery-services-pvc
+      volumes:
+        - name: discovery-services-persist
+          persistentVolumeClaim:
+            claimName: discovery-services-pvc
+  serviceName: discovery-services-stateful
+    

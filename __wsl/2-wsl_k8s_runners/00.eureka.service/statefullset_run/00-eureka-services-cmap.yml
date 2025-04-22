@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: discovery-services-cmap
+  labels:
+    app: discovery-services-cmap
+data:
+  API_LOGGING_LEVEL             : "trace"
+

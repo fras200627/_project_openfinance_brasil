@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: oauth2-clients-domain-services
+  labels:
+    app: oauth2-clients-domain-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth2-clients-domain-pod
+  template:
+    metadata:
+      name: oauth2-clients-domain-pod
+      labels:
+        app: oauth2-clients-domain-pod
+    spec:
+      containers:
+        - name: oauth2-clients-domain-container
+          image: fras200627/oauth2-clients-domain:1.0.0
+          ports:
+            - containerPort: 6003
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: oauth2-clients-domain-cmap  
+          volumeMounts:
+            - name: oauth2-clients-domain-persist
+              mountPath: /default/oauth2-clients-domain-pvc
+      volumes:
+        - name: oauth2-clients-domain-persist
+          persistentVolumeClaim:
+            claimName: oauth2-clients-domain-pvc
+  serviceName: oauth2-clients-domain-services-stateful
+    

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: products-business-cmap
+  labels:
+    app: products-business-cmap
+data:
+  API_LOGGING_LEVEL              : "error"
+  API_SWAGGER_ENABLE             : "false"
+  PRODUCTS_BUSINESS_REPLICAS     : "1"
+  

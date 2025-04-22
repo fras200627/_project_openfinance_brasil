@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-server-cmap
+  labels:
+    app: auth-server-cmap
+data:
+  API_LOGGING_LEVEL: "error"
+  API_SWAGGER_ENABLE: "false"
+  AUTHENTICATION_SERVER_REPLICAS : "1"
+  
+

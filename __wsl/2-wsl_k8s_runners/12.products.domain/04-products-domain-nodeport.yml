@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-domain-nodeport
+  labels:
+    app: products-domain-nodeport
+spec:
+  type: NodePort
+  ports:
+    - port: 6009
+      nodePort: 31009
+  selector:
+    app: products-domain-pod

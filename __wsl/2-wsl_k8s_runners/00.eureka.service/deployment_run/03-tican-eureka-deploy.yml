@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tican-eureka-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tican-eureka-pod
+  template:
+    metadata:
+      name: tican-eureka-pod
+      labels:
+        app: tican-eureka-pod
+    spec:
+      containers:
+        - name: tican-eureka-pod
+          image: fras200627/tican-service-discovery:1.0.0
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: tican-eureka-cmap  

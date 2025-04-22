@@ -1,0 +1,21 @@
+# ---------------------------------------------------------------
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-oracle-cmap
+  labels:
+    app: db-oracle-cmap
+data:
+  ORACLEXE_IMAGE       : 'gvenzl/oracle-xe'
+  ORACLEXE_HOST_NAME   : 'db-tican-oracle'
+  ORACLE_INTERNAL_PORT : '1521'
+  ORACLE_EXPOSE_PORT   : '31521'
+  ORACLE_USER          : 'sys'
+  ORACLE_PASSWORD      : 'tican'
+  ORACLE_TICAN_USER    : 'tican2_user'
+  ORACLE_TICAN_USER_PWD: 'tican'
+  ORACLE_SID           : 'XE'
+  ORACLE_DATA_VOLUME   : '/opt/containerd/volume-docker/oracle/oradata'
+  ORACLE_BACKUP_VOLUME : '/opt/containerd/volume-docker/oracle/backup'
+

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: api-gateway-services
+  labels:
+    app: api-gateway-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway-pod
+  template:
+    metadata:
+      name: api-gateway-pod
+      labels:
+        app: api-gateway-pod
+    spec:
+      containers:
+        - name: api-gateway-container
+          image: fras200627/api-gateway:1.0.0
+          ports:
+            - containerPort: 6001
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: api-gateway-cmap  
+          volumeMounts:
+            - name: api-gateway-persist
+              mountPath: /default/api-gateway-pvc
+      volumes:
+        - name: api-gateway-persist
+          persistentVolumeClaim:
+            claimName: api-gateway-pvc
+  serviceName: api-gateway-services-stateful
+    

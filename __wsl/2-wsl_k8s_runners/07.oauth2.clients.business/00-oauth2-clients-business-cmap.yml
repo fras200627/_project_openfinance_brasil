@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oauth2-clients-business-cmap
+  labels:
+    app: oauth2-clients-business-cmap
+data:
+  API_LOGGING_LEVEL                : "error"
+  API_SWAGGER_ENABLE               : "false"
+  OAUTH2_CLIENTS_BUSINESS_REPLICAS : "1"

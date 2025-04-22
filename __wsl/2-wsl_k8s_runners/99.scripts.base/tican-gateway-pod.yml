@@ -1,0 +1,28 @@
+# ---------------------------------------------------------------
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tican-gateway-pod
+  labels:
+    app: tican-gateway-pod
+spec:
+  containers:
+    - name: tican-gateway-pod
+      image: fras200627/tican-api-gateway:1.0.0
+      ports:
+        - containerPort: 5001
+      env:
+        - name: "spring.profiles.active"
+          value: "dev"
+        - name: "API_GATEWAY_INTERNAL_PORT"
+          value: "5001"
+        - name: "PROFILE_ACTIVE"
+          value: "dev"
+        - name: "API_LOGGING_LEVEL"
+          value: "trace"
+        - name: "SERVICE_DISCOVERY_HOST_NAME"
+          value: "tican-eureka-svc"
+        - name: "SERVICE_DISCOVERY_EXPOSE_PORT"
+          value: "5000"
+          
