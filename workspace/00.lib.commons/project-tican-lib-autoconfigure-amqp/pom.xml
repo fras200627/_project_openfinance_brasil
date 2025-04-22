@@ -23,7 +23,6 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
 		<lombok.version>1.18.36</lombok.version>
 		<org.mapstruct.version>1.6.3</org.mapstruct.version>
 		<junit-jupiter-engine-version>5.8.2</junit-jupiter-engine-version>
