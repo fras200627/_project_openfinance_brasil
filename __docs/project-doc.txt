@@ -10,7 +10,7 @@ Users Control OAuth2 API
     Lib Commons
 
 Next Steps:
-    Build Github repositories
+    Build Github repositories - OK 22.04.2025 - 09:29h
     Build Linux WSL with Kubernetes
     Study OpenFinance
     Create structure for OpenFinance
