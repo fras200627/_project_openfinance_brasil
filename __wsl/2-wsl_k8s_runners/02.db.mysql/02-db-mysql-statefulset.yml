@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: db-mysql-container
-          image: 'fras200627/db-tican-mysql:1.0.0'
+          image: mysql
           ports:
             - containerPort: 3306
           envFrom:

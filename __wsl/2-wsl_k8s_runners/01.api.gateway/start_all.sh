@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "create ConfigMap Defaults"
-microk8s kubectl apply -f ../00.config.map.defaults/00-config-map-defaults.yml
+microk8s kubectl apply -f ../2-wsl_k8s_runners/00.config.map.defaults/00-config-map-defaults.yml
 echo "create api-gateway ConfigMap"
 microk8s kubectl apply -f 00-api-gateway-cmap.yml
 echo "Create api-gateway PersistentVolumeClaim"

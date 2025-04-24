@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------
+# This script includes volume
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tican-eureka-pod
+  labels:
+    app: tican-eureka-pod
+spec:
+  containers:
+    - name: tican-eureka-pod
+      image: nginx
+#      volumeMounts:
+#        - mountPath: /eureka-service
+#          name: tican-eureka-vol
+      ports:
+        - containerPort: 31080
+          hostPort: 80
+#      envFrom:
+#        - configMapRef:
+#            name: tican-eureka-cmap
+#  volumes:
+#    - name: tican-eureka-vol
+#      hostPath:
+#        path: /C/temp/kubernetes/volumes
+#        type: Directory
