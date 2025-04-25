@@ -4,24 +4,23 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tican-eureka-pod
+  name: nginx-pod
   labels:
-    app: tican-eureka-pod
+    app: nginx-pod
 spec:
   containers:
-    - name: tican-eureka-pod
+    - name: nginx-pod
       image: nginx
 #      volumeMounts:
 #        - mountPath: /eureka-service
-#          name: tican-eureka-vol
+#          name: nginx-pod-vol
       ports:
-        - containerPort: 31080
-          hostPort: 80
+        - containerPort: 30083
 #      envFrom:
 #        - configMapRef:
-#            name: tican-eureka-cmap
+#            name: nginx-pod-cmap 
 #  volumes:
-#    - name: tican-eureka-vol
+#    - name: nginx-pod-vol
 #      hostPath:
 #        path: /C/temp/kubernetes/volumes
 #        type: Directory

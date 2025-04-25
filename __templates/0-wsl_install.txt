@@ -45,7 +45,6 @@ docker run --name apache-httpd -d -p 8083:80 nginx
 test connect: http://localhost:8083
 -------------------------------------------------------------------
 
-kubectl run nginx --image=nginx --port=8081 --expose=true
 
 Provisioning the new WSL instance Ubuntu-24.04
 This might take a while...
@@ -72,62 +71,3 @@ Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 5.15.167.4-microsoft-standard-WSL2 x86_
 
 This message is shown once a day. To disable it please create the
 /home/tican/.hushlogin file.
-
-
-
-
-
-echo '********************************************************************************************'
-echo '                                VERIFY MICROK8S COMMANDS'
-echo '********************************************************************************************'
-echo 'FOR GET ALL STATUS: '
-echo 'microk8s status --wait-ready'
-echo '--------------------------------------------------------------------------------------------'
-echo 'FOR GET ALL NAMESPACES: '
-echo 'microk8s kubectl get all --all-namespaces'
-echo '--------------------------------------------------------------------------------------------'
-echo 'FOR GET STATUS A DASHBOARD and SHOW URL AND TOKEN ACCESS: '
-echo 'microk8s dashboard-proxy'
-echo '--------------------------------------------------------------------------------------------'
-echo 'FOR GET TOKEN FOR USE IN DASHBOARD: '
-echo 'token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)'
-echo 'microk8s kubectl -n kube-system describe secret $token'
-echo
-echo 'microk8s kubectl create token default'
-echo '--------------------------------------------------------------------------------------------'
-echo
-echo '********************************************************************************************'
-echo
-echo
-
-
-'nc'	Versátil, fácil de usar	Não possui recursos avançados
-'nmap'	Recursos poderosos de descoberta de rede e auditoria de segurança	Curva de aprendizado mais íngreme
-
-  System load:  1.13                Processes:             54
-  Usage of /:   0.4% of 1006.85GB   Users logged in:       0
-  Memory usage: 2%                  IPv4 address for eth0: 172.19.140.58
-
-
-cd /etc/iptables
-nano rules.v4
-nano rules.v6
-
-apt-get install iptables-persistent
-apt-get install netfilter-persistent
-
-systemctl restart iptables
-service iptables status
-
-iptables-legacy-save
-ip6tables-legacy-save
-
-iptables-save  > /etc/iptables/rules.v4
-ip6tables-save > /etc/iptables/rules.v6
-
-iptables-restore  < /etc/iptables/rules.v4
-ip6tables-restore < /etc/iptables/rules.v6
-
-iptables -I INPUT -p tcp --dport 31435 -j ACCEPT
-
-nc -l -p 32631 -k

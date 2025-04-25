@@ -54,38 +54,8 @@ microk8s enable storage
 echo
 echo
 
-echo "STEP 06:    MICROK8S: INSTALL NGINX FOR TESTS"
-echo "-------------------------------------------------------------------------------------------"
-kubectl run nginx-pod --image=nginx --restart=Never --port=80 -n default
-kubectl expose pod nginx-pod --type=NodePort --port=80 --name=nginx-service
-echo
-echo
-
 echo "-------------------------------------------------------------------------------------------"
 echo "MICROK8S INSTALL FINISH"
 echo "-------------------------------------------------------------------------------------------"
-echo
-echo
-
-echo '********************************************************************************************'
-echo '                                VERIFY MICROK8S COMMANDS'
-echo '********************************************************************************************'
-echo 'FOR GET ALL STATUS: '
-echo 'microk8s status --wait-ready'
-echo '--------------------------------------------------------------------------------------------'
-echo 'FOR GET ALL NAMESPACES: '
-echo 'microk8s kubectl get all --all-namespaces'
-echo '--------------------------------------------------------------------------------------------'
-echo 'FOR GET STATUS A DASHBOARD and SHOW URL AND TOKEN ACCESS: '
-echo 'microk8s dashboard-proxy'
-echo '--------------------------------------------------------------------------------------------'
-echo 'FOR GET TOKEN FOR USE IN DASHBOARD: '
-echo 'token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)'
-echo 'microk8s kubectl -n kube-system describe secret $token'
-echo
-echo 'microk8s kubectl create token default'
-echo '--------------------------------------------------------------------------------------------'
-echo
-echo '********************************************************************************************'
 echo
 echo

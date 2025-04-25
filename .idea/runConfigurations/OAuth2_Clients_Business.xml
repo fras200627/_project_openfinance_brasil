@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="OAuth2-Clients-Business" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="com.tican.oauth2.clients.StartApplication" />
+    <module name="tican-oauth2-registered-clients-business-api" />
+    <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

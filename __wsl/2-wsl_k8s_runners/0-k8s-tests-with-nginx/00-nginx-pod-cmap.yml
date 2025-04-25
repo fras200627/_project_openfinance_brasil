@@ -3,12 +3,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: tican-eureka-cmap
+  name: nginx-pod-cmap
   labels:
-    app: tican-eureka-cmap
+    app: nginx-pod-cmap
 data:
   SPRING.PROFILES.ACTIVE        : "dev"
-  SERVICE_DISCOVERY_EXPOSE_PORT : "31080"
+  SERVICE_DISCOVERY_EXPOSE_PORT : "30083"
   PROFILE_ACTIVE                : "dev"
   API_LOGGING_LEVEL             : "trace"
 
