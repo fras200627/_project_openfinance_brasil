@@ -33,7 +33,7 @@ app:
 
 eureka:
   instance:
-    hostname: ${SERVICE_DISCOVERY_APP_NAME:tican-discovery-services}
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
     instance-id: ${spring.application.name}:${random.int}
     prefer-ip-address: true
   client:

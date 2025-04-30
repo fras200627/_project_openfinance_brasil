@@ -14,7 +14,7 @@
         <module name="tican-lib-autoconfigure-security" />
         <module name="tican-api-gateway" />
       </profile>
-      <profile name="Annotation profile for tican-oauth2-users-domain-api" enabled="true">
+      <profile name="Annotation profile for tican-audit-services-api" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

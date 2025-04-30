@@ -10,12 +10,12 @@ spec:
     app: mq-rabbit-pod
   ports:
     - port: 5672
-      targetPort: 5672
+      targetPort: 31672
       name: svc-port
     - port: 5673
-      targetPort: 5673
+      targetPort: 31673
       name: cluster-port
     - port: 15672
-      targetPort: 15672
+      targetPort: 32672
       name: dashboard-port
       

@@ -4,6 +4,7 @@ metadata:
   name: mq-rabbit-services
   labels:
     app: mq-rabbit-services
+    hostname: mq-rabbit-svc
 spec:
   replicas: 1
   selector:
@@ -17,14 +18,14 @@ spec:
     spec:
       containers:
         - name: mq-rabbit-container
-          image: 'fras200627/mq-tican-rabbit:210.0'
+          image: 'fras200627/mq-tican-rabbit:1.0.0'
           ports:
             - name: http
               protocol: TCP
               containerPort: 15672
             - name: amqp
               protocol: TCP
-              containerPort: 5672           
+              containerPort: 5672
           envFrom:
             - configMapRef:
                 name: config-map-defaults

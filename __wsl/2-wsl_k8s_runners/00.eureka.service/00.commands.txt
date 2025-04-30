@@ -8,37 +8,37 @@ kubectl exec -it <name pod> -- bash
 
 ## Run Eureka Service
 ---------------------------------------------------------------------
-microk8s kubectl apply -f 00-tican-eureka-cmap.yml
-microk8s kubectl apply -f 01-tican-eureka-svc.yml
-microk8s kubectl apply -f 02-tican-eureka-nodeport.yml
-microk8s kubectl apply -f 03-tican-eureka-deploy.yml
+microk8s kubectl apply -f 00-tican-discovery-services-cmap.yml
+microk8s kubectl apply -f 01-tican-discovery-services-svc.yml
+microk8s kubectl apply -f 02-tican-discovery-services-nodeport.yml
+microk8s kubectl apply -f 03-tican-discovery-services-deploy.yml
 or
-microk8s kubectl apply -f 03a-tican-eureka-pod
+microk8s kubectl apply -f 03a-tican-discovery-services-pod
 or
-microk8s kubectl apply -f 03-tican-eureka-rset.yml
+microk8s kubectl apply -f 03-tican-discovery-services-rset.yml
 
 ## Delete Eureka Service
 ---------------------------------------------------------------------
-microk8s kubectl delete -f 03-tican-eureka-deploy.yml
+microk8s kubectl delete -f 03-tican-discovery-services-deploy.yml
 or
-microk8s kubectl delete -f 03-tican-eureka-rset.yml
+microk8s kubectl delete -f 03-tican-discovery-services-rset.yml
 or
-microk8s kubectl delete -f 03a-tican-eureka-pod
-microk8s kubectl delete -f 02-tican-eureka-nodeport.yml
-microk8s kubectl delete -f 01-tican-eureka-svc.yml
-microk8s kubectl delete -f 00-tican-eureka-cmap.yml
+microk8s kubectl delete -f 03a-tican-discovery-services-pod
+microk8s kubectl delete -f 02-tican-discovery-services-nodeport.yml
+microk8s kubectl delete -f 01-tican-discovery-services-svc.yml
+microk8s kubectl delete -f 00-tican-discovery-services-cmap.yml
 
 ## Deployments #####################################################
 ## Run and show history deployments
 ---------------------------------------------------------------------
-microk8s kubectl apply -f tican-eureka-deploy.yml
-kubectl rollout history deployment tican-eureka-service
+microk8s kubectl apply -f tican-discovery-services-deploy.yml
+kubectl rollout history deployment tican-discovery-services-service
 
 ## Change Change-Couse to prefer informations
-kubectl annotate deployment tican-eureka-service kubernetes.io/change-cause="start versão 2.0.0"
+kubectl annotate deployment tican-discovery-services kubernetes.io/change-cause="start versão 3.0.0"
 
 ## Change Change-Cause to default
-microk8s kubectl apply -f tican-eureka-deploy.yml --record
+microk8s kubectl apply -f tican-discovery-services-deploy.yml --record
 
 ## Revert to old versions (from one number history)
-kubectl rollout undo deployment tican-eureka-service --to-revision=1
+kubectl rollout undo deployment tican-discovery-services-service --to-revision=1

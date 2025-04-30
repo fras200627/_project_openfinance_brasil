@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: api-gateway-cmap
+  name: tican-api-gateway-cmap
   labels:
-    app: api-gateway-cmap
+    app: tican-api-gateway-cmap
 data:
-  API_LOGGING_LEVEL             : "trace"
+  API_LOGGING_LEVEL: "trace"
     
 

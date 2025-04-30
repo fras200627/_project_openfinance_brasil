@@ -28,6 +28,7 @@ spec:
           volumeMounts:
             - name: db-oracle-persist
               mountPath: /default/db-oracle-pvc
+          hostname: db-oracle-svc
       volumes:
         - name: db-oracle-persist
           persistentVolumeClaim:

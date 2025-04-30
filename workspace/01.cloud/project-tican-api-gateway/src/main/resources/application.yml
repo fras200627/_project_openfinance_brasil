@@ -83,7 +83,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://10.152.183.30:3000/eureka
 amqp:
   audit_services:
     audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}

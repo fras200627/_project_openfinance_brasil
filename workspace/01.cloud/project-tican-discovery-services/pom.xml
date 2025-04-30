@@ -12,7 +12,7 @@
 	<groupId>com.tican</groupId>
 	<artifactId>tican-discovery-services</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.0-openapi</version>
 	<name>tican-discovery-services</name>
 	<description>Project Tican Discovery Services</description>
 
@@ -25,7 +25,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Necessary to avoid conflicts with OpenAPI -->
-		<start-class>com.tican.service.discovery.services.StartApplication</start-class>
+<!--		<start-class>com.tican.discovery.services.StartApplication</start-class>-->
 
 		<!-- additional information used in <goal>build-info</goal> -->
 		<info.additional.project.module.name>DISCOVERY.SERVICES</info.additional.project.module.name>

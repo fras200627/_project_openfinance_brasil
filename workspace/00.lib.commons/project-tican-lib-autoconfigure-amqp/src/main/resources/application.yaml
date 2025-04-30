@@ -23,7 +23,7 @@ spring:
     activate:
       on-profile: docker
   rabbitmq:
-    host: ${RABBITMQ_CLUSTERIP_SVC:mq-rabbit-svc}
+    host: ${RABBITMQ_CLUSTERIP_SVC:mq-rabbit-services-0}
     port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
     username: ${RABBITMQ_DEFAULT_USER:tican}
     password: ${RABBITMQ_DEFAULT_PASS:tican}

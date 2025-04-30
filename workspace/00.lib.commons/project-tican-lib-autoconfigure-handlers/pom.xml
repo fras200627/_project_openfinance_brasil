@@ -12,7 +12,7 @@
 
 	<groupId>com.tican</groupId>
 	<artifactId>tican-lib-autoconfigure-handlers</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 	<name>tican-lib-autoconfigure-handlers</name>
 	<description>Tican Lib AutoConfigure Handlers</description>

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: tican-discovery-services-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tican-discovery-services-pod
+  template:
+    metadata:
+      name: tican-discovery-services-pod
+      labels:
+        app: tican-discovery-services-pod
+    spec:
+      containers:
+        - name: tican-discovery-services-pod
+          image: fras200627/tican-service-discovery:1.0.0
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: tican-discovery-services-cmap
+
+
+
+  
+    

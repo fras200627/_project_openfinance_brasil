@@ -10,4 +10,4 @@ spec:
     app: db-oracle-pod
   ports:
     - port: 1521
-      targetPort: 1521
+      targetPort: 31521

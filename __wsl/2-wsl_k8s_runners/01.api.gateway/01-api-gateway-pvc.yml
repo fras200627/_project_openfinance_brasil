@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: api-gateway-pvc
+  name: tican-api-gateway-pvc
   labels:
-    app: api-gateway-pvc
+    app: tican-api-gateway-pvc
 spec:
   accessModes:
     - ReadWriteOnce

@@ -9,6 +9,7 @@ data:
   API_NAMESPACE                       : "tican-services"
   API_NAMESPACE_TITLE                 : "Tican Services Kubernetes Engine"
   SPRING.PROFILES.ACTIVE              : "k8s"
+  spring.profiles.active              : "k8s"
   PROFILE_ACTIVE                      : "k8s"
   API_LOGGING_LEVEL                   : "trace"
   API_SWAGGER_ENABLE                  : "true"
@@ -16,40 +17,29 @@ data:
   API_HIBERNATE_DDL_AUTO              : "none"
   
   # Discovery Services Settings
-  SERVICE_DISCOVERY_APP_NAME          : "discovery-services"
-  SERVICE_DISCOVERY_POD               : "discovery-services-pod"
-  SERVICE_DISCOVERY_CONTAINER         : "discovery-services-container"
-  SERVICE_DISCOVERY_REPLICAS          : "1"
-  SERVICE_DISCOVERY_CLUSTERIP_SVC     : "discovery-services-svc"
-  SERVICE_DISCOVERY_INTERNAL_PORT     : "6000"
-  SERVICE_DISCOVERY_EXPOSE_PORT       : "31000"
+  DISCOVERY_SERVICES_APP_NAME          : "tican-discovery-services"
+  DISCOVERY_SERVICES_POD               : "tican-discovery-services-pod"
+  DISCOVERY_SERVICES_CONTAINER         : "tican-discovery-services-container"
+  DISCOVERY_SERVICES_REPLICAS          : "1"
+  DISCOVERY_SERVICES_CLUSTERIP_SVC     : "tican-discovery-services-svc"
+  DISCOVERY_SERVICES_INTERNAL_PORT     : "3000"
+  DISCOVERY_SERVICES_EXPOSE_PORT       : "3000"
 
   # API Gateway Settings
-  API_GATEWAY_APP_NAME                : "api-gateway-services"
+  API_GATEWAY_APP_NAME                : "tican-api-gateway"
   API_GATEWAY_POD                     : "api-gateway-pod"
   API_GATEWAY_CONTAINER               : "api-gateway-container"
   API_GATEWAY_REPLICAS                : "1"
   API_GATEWAY_CLUSTERIP_SVC           : "api-gateway-svc"
-  API_GATEWAY_INTERNAL_PORT           : "6001"
-  API_GATEWAY_EXPOSE_PORT             : "31001"
-  
-  # API Gateway OpenFeign Settings
-  URI_OAUTH2_REGISTERED_CLIENTS_BUSINESS_API : "oauth2-clients-business-api"
-  URI_OAUTH2_REGISTERED_CLIENTS_DOMAIN_API   : "oauth2-clients-domain-api"
-  URI_OAUTH2_USERS_BUSINESS_API              : "oauth2-users-business-api"
-  URI_OAUTH2_USERS_DOMAIN_API                : "oauth2-users-domain-api"
-  URI_MEDICAL_SUBSTANCES_DOMAIN_API          : "substances-domain-api"
-  URI_MEDICAL_SUBSTANCES_BUSINESS_API        : "substances-business-api"
-  URI_MEDICAL_PRODUCTS_BUSINESS_API          : "products-business-api"
-  URI_MEDICAL_PRODUCTS_DOMAIN_API            : "products-domain-api"
-  URI_AUDIT_SERVICES_API                     : "audit-services-api"
+  API_GATEWAY_INTERNAL_PORT           : "3001"
+  API_GATEWAY_EXPOSE_PORT             : "3001"
 
   # Authentication Server Settings  
-  AUTHENTICATION_SERVER_APP_NAME      : "auth-server-services"
-  AUTHENTICATION_SERVER_POD           : "auth-server-services-pod"
-  AUTHENTICATION_SERVER_CONTAINER     : "auth-server-services-container"
+  AUTHENTICATION_SERVER_APP_NAME      : "tican-authentication-server"
+  AUTHENTICATION_SERVER_POD           : "tican-authentication-server-pod"
+  AUTHENTICATION_SERVER_CONTAINER     : "tican-authentication-server-container"
   AUTHENTICATION_SERVER_REPLICAS      : "1"
-  AUTHENTICATION_SERVER_CLUSTERIP_SVC : "auth-server-services-svc"
+  AUTHENTICATION_SERVER_CLUSTERIP_SVC : "tican-authentication-server-svc"
   AUTHENTICATION_SERVER_INTERNAL_PORT : "0" #"6002"
   AUTHENTICATION_SERVER_EXPOSE_PORT   : "31002"
   
@@ -95,43 +85,7 @@ data:
   OAUTH2_USERS_BUSINESS_INTERNAL_PORT   : "0" #"6006"
   OAUTH2_USERS_BUSINESS_EXPOSE_PORT     : "31006"
 
-  # OAuth2 Substances Domain Settings
-  SUBSTANCES_DOMAIN_APP_NAME          : "substances-domain-api"
-  SUBSTANCES_DOMAIN_POD               : "substances-domain-pod"
-  SUBSTANCES_DOMAIN_CONTAINER         : "substances-domain-container"
-  SUBSTANCES_DOMAIN_REPLICAS          : "1"
-  SUBSTANCES_DOMAIN_CLUSTERIP_SVC     : "substances-domain-svc"
-  SUBSTANCES_DOMAIN_INTERNAL_PORT     : "0" #"6007"
-  SUBSTANCES_DOMAIN_EXPOSE_PORT       : "31007"
-  
-  # OAuth2 Substances Business Settings
-  SUBSTANCES_BUSINESS_APP_NAME        : "substances-business-api"
-  SUBSTANCES_BUSINESS_POD             : "substances-business-pod"
-  SUBSTANCES_BUSINESS_CONTAINER       : "substances-business-container"
-  SUBSTANCES_BUSINESS_REPLICAS        : "1"
-  SUBSTANCES_BUSINESS_CLUSTERIP_SVC   : "substances-business-svc"
-  SUBSTANCES_BUSINESS_INTERNAL_PORT   : "0" #"6008"
-  SUBSTANCES_BUSINESS_EXPOSE_PORT     : "31008"
-
-  # OAuth2 Products Domain Settings
-  PRODUCTS_DOMAIN_APP_NAME          : "products-domain-api"
-  PRODUCTS_DOMAIN_POD               : "products-domain-pod"
-  PRODUCTS_DOMAIN_CONTAINER         : "products-domain-container"
-  PRODUCTS_DOMAIN_REPLICAS          : "1"
-  PRODUCTS_DOMAIN_CLUSTERIP_SVC     : "products-domain-svc"
-  PRODUCTS_DOMAIN_INTERNAL_PORT     : "0" #"6009"
-  PRODUCTS_DOMAIN_EXPOSE_PORT       : "31009"
-  
-  # OAuth2 Products Business Settings
-  PRODUCTS_BUSINESS_APP_NAME        : "products-business-api"
-  PRODUCTS_BUSINESS_POD             : "products-business-pod"
-  PRODUCTS_BUSINESS_CONTAINER       : "products-business-container"
-  PRODUCTS_BUSINESS_REPLICAS        : "1"
-  PRODUCTS_BUSINESS_CLUSTERIP_SVC   : "prodcuts-business-svc"
-  PRODUCTS_BUSINESS_INTERNAL_PORT   : "0" #"6010"
-  PRODUCTS_BUSINESS_EXPOSE_PORT     : "31010"
-
-  # Audit Services Settings  
+  # Audit Services Settings
   AUDIT_SERVICES_APP_NAME      : "audit-services"
   AUDIT_SERVICES_POD           : "audit-services-pod"
   AUDIT_SERVICES_CONTAINER     : "audit-services-container"
@@ -160,6 +114,7 @@ data:
   ORACLE_SID                          : "XE"
   ORACLE_USER                         : "sys"
   ORACLE_PWD                          : "tican"
+  ORACLE_PASSWORD                     : "tican"
   ORACLE_TICAN_USER                   : "tican2_user"
   ORACLE_TICAN_USER_PWD               : "tican"
  
@@ -167,13 +122,13 @@ data:
   RABBITMQ_POD                        : "mq-rabbit-pod"
   RABBITMQ_CONTAINER                  : "mq-rabbit-container"
   RABBITMQ_REPLICAS                   : "1"
-  RABBITMQ_CLUSTERIP_SVC              : "mq-rabbit-svc"
+  RABBITMQ_CLUSTERIP_SVC              : "mq-rabbit-services-0"
   RABBITMQ_SERVICE_INTERNAL_PORT      : "5672"
   RABBITMQ_CLUSTER_INTERNAL_PORT      : "5673"
   RABBITMQ_DASHBOARD_INTERNAL_PORT    : "15672"
   RABBITMQ_SERVICE_EXPOSE_PORT        : "0"
   RABBITMQ_CLUSTER_EXPOSE_PORT        : "0"
-  RABBITMQ_DASHBOARD_EXPOSE_PORT      : "31672"
+  RABBITMQ_DASHBOARD_EXPOSE_PORT      : "32672"
   RABBITMQ_DEFAULT_USER               : "tican"
   RABBITMQ_DEFAULT_PASS               : "tican"
   

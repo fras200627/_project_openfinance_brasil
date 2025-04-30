@@ -25,7 +25,7 @@ app:
     - 2, 'Tican Server at K8S execution', http://localhost/7000
 eureka:
   instance:
-    hostname: ${SERVICE_DISCOVERY_APP_NAME:tican-discovery-services}
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
     instance-id: ${spring.application.name}:${random.int}
     prefer-ip-address: true
   client:

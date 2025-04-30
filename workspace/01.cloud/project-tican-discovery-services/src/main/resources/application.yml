@@ -8,8 +8,8 @@ server:
 app:
   listOfServers: #server item: id, description, url
     - 0, 'Tican Server at LOCAL execution', http://localhost/3000
-    - 1, 'Tican Server at DOCKER execution', http://localhost/5000
-    - 2, 'Tican Server at K8S execution', http://localhost/7000
+    - 1, 'Tican Server at DOCKER execution', http://localhost/3000
+    - 2, 'Tican Server at K8S execution', http://localhost/3000
 
 eureka:
   instance:
@@ -43,11 +43,11 @@ spring:
     activate:
       on-profile: docker
 server:
-  port: 5000
+  port: 3000
 ---
 spring:
   config:
     activate:
       on-profile: k8s
 server:
-  port: 7000
+  port: 3000

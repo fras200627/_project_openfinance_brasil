@@ -12,7 +12,7 @@
 
 	<groupId>com.tican</groupId>
 	<artifactId>tican-lib-common-tools</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 	<name>tican-lib-common-tools</name>
 	<description>Tican Lib Common Tools</description>
