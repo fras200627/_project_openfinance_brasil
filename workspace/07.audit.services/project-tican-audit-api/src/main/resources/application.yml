@@ -42,8 +42,8 @@ server:
 app:
   listOfServers: #server item: id, description, url
     - 0, 'Tican Server at LOCAL execution', http://localhost/3000
-    - 1, 'Tican Server at DOCKER execution', http://localhost/5000
-    - 2, 'Tican Server at K8S execution', http://localhost/7000
+    - 1, 'Tican Server at DOCKER execution', http://localhost/3000
+    - 2, 'Tican Server at K8S execution', http://localhost/3000
 eureka:
   instance:
     hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
@@ -142,15 +142,15 @@ spring:
     oauth2:
       resource-server:
         jwt:
-          issuer-uri: http://10.0.1.2:3001/tican-authentication-server
+          issuer-uri: http://10.152.183.107:3001/tican-authentication-server
   datasource:
-    url: jdbc:oracle:thin:@10.0.1.101:1521:XE
+    url: jdbc:oracle:thin:@10.152.183.213:1521:XE
     username: ${ORACLE_TICAN_USER:tican2_user}
     password: ${ORACLE_TICAN_USER_PWD:tican}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://10.152.183.103:3000/eureka
 amqp:
   audit_services:
     audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}

@@ -103,6 +103,7 @@ data:
   MYSQL_EXPOSE_PORT                   : "31306"
   MYSQL_DATABASE                      : "user"
   MYSQL_ROOT_PASSWORD                 : root
+  MYSQL_ROOT_PWD                      : root
   
   # Oracle Services Services
   ORACLEXE_POD                        : "db-oracle-pod"
@@ -122,7 +123,8 @@ data:
   RABBITMQ_POD                        : "mq-rabbit-pod"
   RABBITMQ_CONTAINER                  : "mq-rabbit-container"
   RABBITMQ_REPLICAS                   : "1"
-  RABBITMQ_CLUSTERIP_SVC              : "mq-rabbit-services-0"
+  RABBITMQ_CLUSTERIP_SVC              : "10.152.183.205"
+
   RABBITMQ_SERVICE_INTERNAL_PORT      : "5672"
   RABBITMQ_CLUSTER_INTERNAL_PORT      : "5673"
   RABBITMQ_DASHBOARD_INTERNAL_PORT    : "15672"

@@ -18,13 +18,13 @@ echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "build a springboot project"
 echo "-------------------------------------------------------------------------------------------------"
-docker build -t fras200627/tican-api-gateway:1.0.0-openapi .
+docker build -t fras200627/tican-api-gateway:1.0.3-openapi .
 
 echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "push a image to docker platform"
 echo "-------------------------------------------------------------------------------------------------"
-docker push fras200627/tican-api-gateway:1.0.0-openapi
+docker push fras200627/tican-api-gateway:1.0.3-openapi
 
 echo
 echo "FINISH!"

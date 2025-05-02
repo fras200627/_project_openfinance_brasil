@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tican-oauth2-clients-domain-svc
+  labels:
+    app: tican-oauth2-clients-domain-svc
+spec:
+  type: ClusterIP
+  clusterIP: 10.152.183.121
+  selector:
+    app: tican-oauth2-clients-domain-pod
+  ports:
+    - port: 3061
+      targetPort: 30061
+      
+    
+  

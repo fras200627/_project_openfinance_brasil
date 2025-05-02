@@ -12,14 +12,14 @@
 
 	<groupId>com.tican</groupId>
 	<artifactId>tican-oauth2-registered-clients-business-api</artifactId>
-	<version>2.0.0</version>
+	<version>1.0.3-openapi</version>
 	<packaging>jar</packaging>
 	<name>tican-oauth2-registered-clients-business-api</name>
 	<description>Project Tican OAuth2 Registered Clients Business API</description>
 
 	<properties>
 		<!-- Optional to avoid conflicts with OpenAPI -->
-		<start-class>com.tican.oauth2.clients.StartApplication</start-class>
+<!--		<start-class>com.tican.oauth2.clients.StartApplication</start-class>-->
 
 		<!-- Project default infos -->
 		<java.version>17</java.version>

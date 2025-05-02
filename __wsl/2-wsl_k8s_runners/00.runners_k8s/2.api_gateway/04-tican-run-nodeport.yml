@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tican-api-gateway-nodeport
+  labels:
+    app: tican-api-gateway-nodeport
+spec:
+  type: NodePort
+  clusterIP: 10.152.183.107
+  ports:
+    - port: 3001
+      nodePort: 30001
+  selector:
+    app: tican-api-gateway-pod

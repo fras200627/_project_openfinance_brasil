@@ -14,7 +14,7 @@
 	<groupId>com.tican</groupId>
 	<artifactId>tican-audit-services-api</artifactId>
 	<packaging>jar</packaging>
-	<version>2.0.0</version>
+	<version>1.0.2-openapi</version>
 	<name>tican-audit-services-api</name>
 	<description>Project API Audit Services</description>
 
@@ -27,7 +27,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		
 		<!-- Optional to avoid conflicts with OpenAPI -->
-		<start-class>com.tican.audit.StartApplication</start-class>
+<!--		<start-class>com.tican.audit.StartApplication</start-class>-->
 
 		<!-- ATTENTION! IMPORTANT! Generate.OpenAPI Parameters Configuration-->
 		<exclude.generate.sources.tests>${project.build.directory}/generated-sources/audit/api/server/src/test/java/org</exclude.generate.sources.tests>

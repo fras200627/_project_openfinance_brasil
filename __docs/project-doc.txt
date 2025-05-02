@@ -1,3 +1,19 @@
+WSL >>  kubectl get svc
+NAME                                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)
+mq-rabbit-nodeport                      NodePort    10.152.183.205   <none>        15672:32672/TCP,5672:31672/TCP
+db-mysql-nodeport                       NodePort    10.152.183.209   <none>        3306:31306/TCP
+db-oracle-nodeport                      NodePort    10.152.183.213   <none>        1521:31521/TCP
+-----------------------------------------------------------------------------------------------------------------
+tican-discovery-services-nodeport       NodePort    10.152.183.103   <none>        3000:30000/TCP
+tican-api-gateway-nodeport              NodePort    10.152.183.107   <none>        3001:30001/TCP
+tican-authentication-servers-nodeport   NodePort    10.152.183.111   <none>        3031:30031/TCP
+tican-audit-services-nodeport           NodePort    10.152.183.115   <none>        3041:30041/TCP
+tican-oauth2-clients-business-nodeport  NodePort    10.152.183.119   <none>        3051:30051/TCP
+tican-oauth2-clients-domain-nodeport    NodePort    10.152.183.123   <none>        3061:30061/TCP
+tican-oauth2-users-business-nodeport    NodePort    10.152.183.127   <none>        3071:30071/TCP
+tican-oauth2-users-domain-nodeport      NodePort    10.152.183.131   <none>        3081:30081/TCP
+
+
 WSL with Ubuntu-24.04
 microk8s classic
 172.19.140.58

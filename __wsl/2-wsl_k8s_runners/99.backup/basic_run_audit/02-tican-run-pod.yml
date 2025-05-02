@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tican-audit-services-pod
+  labels:
+    app: tican-audit-services-pod
+spec:
+  containers:
+    - name: tican-audit-services-container
+      image: fras200627/tican-audit-services-api:1.0.1-openapi
+      ports:
+        - containerPort: 3041
+      envFrom:
+        - configMapRef:
+            name: config-map-defaults
+        - configMapRef:
+            name: tican-audit-services-cmap
+      volumeMounts:
+        - name: tican-audit-services-persist
+          mountPath: /default/tican-audit-services-pvc
+  volumes:
+    - name: tican-audit-services-persist
+      persistentVolumeClaim:
+        claimName: tican-audit-services-pvc

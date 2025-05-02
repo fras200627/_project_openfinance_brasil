@@ -13,7 +13,7 @@
 	<groupId>com.tican</groupId>
 	<artifactId>tican-api-gateway</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-openapi</version>
+	<version>1.0.3-openapi</version>
 	<name>tican-api-gateway</name>
 	<description>Project Tican API Gateway</description>
 

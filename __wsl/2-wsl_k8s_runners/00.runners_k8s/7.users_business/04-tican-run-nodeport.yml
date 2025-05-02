@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tican-oauth2-users-business-nodeport
+  labels:
+    app: tican-oauth2-users-business-nodeport
+spec:
+  type: NodePort
+  clusterIP: 10.152.183.127
+  ports:
+    - port: 3071
+      nodePort: 30071
+  selector:
+    app: tican-oauth2-users-business-pod
+

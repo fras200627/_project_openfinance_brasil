@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tican-discovery-services-nodeport
+  labels:
+    app: tican-discovery-services-nodeport
+spec:
+  type: NodePort
+  clusterIP: 10.152.183.103
+  ports:
+    - port: 3000
+      nodePort: 30000
+  selector:
+    app: tican-discovery-services-pod

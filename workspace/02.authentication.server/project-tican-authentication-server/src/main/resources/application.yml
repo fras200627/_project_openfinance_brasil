@@ -28,8 +28,8 @@ server:
 app:
   listOfServers: #server item: id, description, url
     - 0, 'Tican Server at LOCAL execution', http://localhost/3000
-    - 1, 'Tican Server at DOCKER execution', http://localhost/5000
-    - 2, 'Tican Server at K8S execution', http://localhost/7000
+    - 1, 'Tican Server at DOCKER execution', http://localhost/3000
+    - 2, 'Tican Server at K8S execution', http://localhost/3000
 
 eureka:
   instance:
@@ -117,16 +117,16 @@ spring:
       on-profile: k8s
   security:
     auth:
-      provider-uri: http://10.0.1.2:3001/tican-authentication-server
+      provider-uri: http://10.152.183.107:3001/tican-authentication-server
   datasource:
-    url: jdbc:mysql://10.0.1.100:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://10.152.183.209:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_ROOT_PWD:tican}
+    password: ${MYSQL_ROOT_PWD:root}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://10.152.183.103:3000/eureka
 
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work

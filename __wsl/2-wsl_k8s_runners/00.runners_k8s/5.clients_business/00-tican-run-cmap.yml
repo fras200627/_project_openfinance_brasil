@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tican-oauth2-clients-business-cmap
+  labels:
+    app: tican-oauth2-clients-business-cmap
+data:
+  OAUTH2_CLIENTS_BUSINESS_REPLICAS : "1"
+  SPRING.PROFILES.ACTIVE: "k8s"
+  SERVICE_AUDIT_EXPOSE_PORT: "30051"
+  PROFILE_ACTIVE: "k8s"
+  API_LOGGING_LEVEL: "info"
+  API_SWAGGER_ENABLE: "false"
+  AUDIT_SERVICES_REPLICAS: "3"
+

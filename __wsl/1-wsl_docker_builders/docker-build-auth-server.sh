@@ -18,13 +18,13 @@ echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "build a springboot project"
 echo "-------------------------------------------------------------------------------------------------"
-docker build -t fras200627/tican-authentication-server:2.0.0 .
+docker build -t fras200627/tican-authentication-server:1.0.1-openapi .
 
 echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "push a image to docker platform"
 echo "-------------------------------------------------------------------------------------------------"
-docker push fras200627/tican-authentication-server:2.0.0
+docker push fras200627/tican-authentication-server:1.0.1-openapi
 
 echo
 echo "FINISH!"

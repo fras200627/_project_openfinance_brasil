@@ -41,7 +41,7 @@ resilience4j:
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
 
-# Swagger page: http://localhost:3053/swagger-ui
+# Swagger page: http://localhost:3051/swagger-ui
 springdoc:
   api-docs:
     enabled: true
@@ -84,7 +84,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3053 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -111,24 +111,31 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3053 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
     activate:
       on-profile: k8s
+  rabbitmq:
+    host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
+    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
+    username: ${RABBITMQ_DEFAULT_USER:tican}
+    password: ${RABBITMQ_DEFAULT_PASS:tican}
   security:
-    auth:
-      provider-uri: http://10.0.1.2:3001/tican-authentication-server
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://10.152.183.107:3001/tican-authentication-server
   datasource:
-    url: jdbc:mysql://10.0.1.100:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://10.152.183.209:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_ROOT_PWD:tican}
+    password: ${MYSQL_ROOT_PWD:root}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://10.152.183.103:3000/eureka
 amqp:
   audit_services:
     audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
@@ -138,4 +145,4 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3053 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3061 # set to "0" if you want eureka-server to determine a port dynamically
