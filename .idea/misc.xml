@@ -4,38 +4,34 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/02.authentication.server/project-tican-authentication-server/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-commons/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-amqp/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-security/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptor/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-handlers/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/99.codegen/java-client-generated/pom.xml" />
-        <option value="$PROJECT_DIR$/demo/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.registered.clients.oauth2/project-tican-oauth2-registered-clients-business/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.registered.clients.oauth2/project-tican-oauth2-registered-clients-domain/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/04.users.oauth2/project-tican-oauth2-users-business/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/04.users.oauth2/project-tican-oauth2-users-domain/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-amqp/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-handlers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-security/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/02.authentication.server/project-tican-authentication-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/__templates/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/__templates/openapiclientpetstore/pom.xml" />
+        <option value="$PROJECT_DIR$/__templates/openapiserverpetstore/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/__templates/demo/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/__templates/openapiclientpetstore/pom.xml" />
+        <option value="$PROJECT_DIR$/__templates/openapiserverpetstore/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="jdk-17.0.9" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jdk-17.0.9" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

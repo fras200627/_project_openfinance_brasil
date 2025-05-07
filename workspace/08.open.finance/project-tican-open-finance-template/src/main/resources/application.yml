@@ -1,0 +1,163 @@
+spring:
+  application:
+    name: ${AUDIT_HOST_NAME:tican-open-finance-template}
+#  session:
+#    store-type: jdbc
+  security:
+    filter:
+      dispatcher-types: request
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    serverTimezone: America/Sao_Paulo
+    useSSL: false
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connectionTimeout: 30000
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      maximumPoolSize: 20
+      minimumIdle: 5
+      poolName: SpringBootJPAHikariCP
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: ${API_JPA_SHOW_SQL:true}
+    hibernate:
+      ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enable: true
+          max-attempts: 2
+          initial-interval: 3000
+          max-interval: 10000
+          multiplier: 2
+server:
+  error:
+    include-stacktrace: never
+# Custom properties
+app:
+  listOfServers: #server item: id, description, url
+    - 0, 'Tican Server at LOCAL execution', http://localhost/3000
+    - 1, 'Tican Server at DOCKER execution', http://localhost/3000
+    - 2, 'Tican Server at K8S execution', http://localhost/3000
+eureka:
+  instance:
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
+    instance-id: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+resilience4j:
+  circuitBreaker:
+    instances:
+      auditServices:
+        waitDurationInOpenState: 50s
+        minimumNumberOfCalls: 2
+        slidingWindowSize: 3
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+# Swagger page: http://localhost:3041/swagger-ui
+springdoc:
+  api-docs:
+    enabled: true
+  packagesToScan: com.tican
+  pathsToMatch: /**
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+    disable-swagger-default-url: true
+    show-common-extensions: true
+    show-extensions: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:3001/tican-authentication-server
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: ${ORACLE_TICAN_USER:tican2_user}
+    password: ${ORACLE_TICAN_USER_PWD:tican}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
+# The port can be fixed to "0" so that eureka-server determines a port dynamically
+# but in this case access to Swagger-UI will not work
+server:
+  port: 3081 # set to "0" if you want eureka-server to determine a port dynamically
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://10.0.1.2:3001/tican-authentication-server
+  datasource:
+    url: jdbc:oracle:thin:@10.0.1.101:1521:XE
+    username: ${ORACLE_TICAN_USER:tican2_user}
+    password: ${ORACLE_TICAN_USER_PWD:tican}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.1.1:3000/eureka
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
+# The port can be fixed to "0" so that eureka-server determines a port dynamically
+# but in this case access to Swagger-UI will not work
+server:
+  port: 3081 # set to "0" if you want eureka-server to determine a port dynamically
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://10.152.183.107:3001/tican-authentication-server
+  datasource:
+    url: jdbc:oracle:thin:@10.152.183.213:1521:XE
+    username: ${ORACLE_TICAN_USER:tican2_user}
+    password: ${ORACLE_TICAN_USER_PWD:tican}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.152.183.103:3000/eureka
+amqp:
+  audit_services:
+    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
+    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
+    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
+    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
+# The port can be fixed to "0" so that eureka-server determines a port dynamically
+# but in this case access to Swagger-UI will not work
+server:
+  port: 3081 # set to "0" if you want eureka-server to determine a port dynamically

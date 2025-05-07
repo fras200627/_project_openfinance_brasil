@@ -2,30 +2,39 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/__templates/demo/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/__templates/demo/target/generated-sources/openapi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/__templates/openapiclientpetstore/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/__templates/openapiclientpetstore/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/__templates/openapiserverpetstore/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-amqp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-handlers/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/project-tican-authentication-server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/project-tican-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/target/generated-sources/oauth2/clients/api/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/target/generated-sources/oauth2/clients/api/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/03.registered.clients.oauth2/project-tican-oauth2-registered-clients-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/target/generated-sources/oauth2/users/api/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/target/generated-sources/oauth2/users/api/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.users.oauth2/project-tican-oauth2-users-business/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.users.oauth2/project-tican-oauth2-users-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/target/generated-sources/audit/api/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/server/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/server/acounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/server/consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/server/customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/server/resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/target/generated-sources/src/main/java" charset="UTF-8" />
   </component>
 </project>
