@@ -1,5 +1,5 @@
 ﻿prompt PL/SQL Developer Export User Objects for user OFB@XE
-prompt Created by fras200627 on terça-feira, 20 de maio de 2025
+prompt Created by fras200627 on quinta-feira, 22 de maio de 2025
 set define off
 spool ofb_schema_export.log
 
@@ -8,12 +8,15 @@ prompt Creating sequence SQ_OFB_SYSTEM
 prompt ===============================
 prompt
 create sequence OFB.SQ_OFB_SYSTEM
-minvalue 0
+minvalue 1
 maxvalue 999999999999
-start with 640
+start with 141
 increment by 1
 cache 20
 cycle;
+grant select, alter on OFB.SQ_OFB_SYSTEM to OFB_OWNER;
+grant select on OFB.SQ_OFB_SYSTEM to OFB_USER;
+
 
 prompt
 prompt Creating table PERSONAL_DATA
@@ -38,8 +41,8 @@ create table OFB.PERSONAL_DATA
   phoneareacode      VARCHAR2(3) not null,
   phonenumber        VARCHAR2(13) not null,
   email              VARCHAR2(320) not null,
-  create_at          TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at          TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at          TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at          TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code          VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -147,6 +150,8 @@ alter table OFB.PERSONAL_DATA
   add constraint PERSONAL_DATA_CHECK4
   check (UPPER(TRIM(phonetype)) IN (
   'FIXO', 'MOVEL', 'OUTRO'));
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.PERSONAL_DATA to OFB_OWNER;
+grant select, insert, update, delete on OFB.PERSONAL_DATA to OFB_USER;
 
 prompt
 prompt Creating table ACCOUNT_PERSONAL_DATA
@@ -166,15 +171,15 @@ create table OFB.ACCOUNT_PERSONAL_DATA
   branchcode                  CHAR(4) default '0001' not null,
   accountnumber               CHAR(8) not null,
   accountcheckdigit           CHAR(1) not null,
-  updateamountsdatetime       TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  updateamountsdatetime       TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   availableamount             NUMBER(18,4) default 0 not null,
   blockedamount               NUMBER(18,4) default 0 not null,
   automaticallyinvestedamount NUMBER(18,4) default 0 not null,
   overdraftcontractedlimit    NUMBER(18,4) default 0 not null,
   overdraftusedlimit          NUMBER(18,4) default 0 not null,
   unarrangedoverdraftamount   NUMBER(18,4) default 0 not null,
-  create_at                   TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at                   TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at                   TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at                   TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code                   VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -241,6 +246,8 @@ alter table OFB.ACCOUNT_PERSONAL_DATA
   add constraint ACCOUNT_CHECK3
   check (UPPER(TRIM(accountSubtype)) IN (
   'INDIVIDUAL', 'CONJUNTA_SIMPLES', 'CONJUNTA_SOLIDARIA'));
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.ACCOUNT_PERSONAL_DATA to OFB_OWNER;
+grant select, insert, update, delete on OFB.ACCOUNT_PERSONAL_DATA to OFB_USER;
 
 prompt
 prompt Creating table ACCOUNT_PERSONAL_DATA_STATEMENT
@@ -251,15 +258,15 @@ create table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
   transactionid                  CHAR(39) default 'acctx-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{32})', '\1') not null,
   accountid                      CHAR(39) not null,
   referencetransactionid         CHAR(39),
-  transactiondatetime            TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  transactiondatetime            TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   completedauthorisedpaymenttype VARCHAR2(50) not null,
   creditdebittype                VARCHAR2(10) not null,
   transactionname                VARCHAR2(200) not null,
   transactiontype                VARCHAR2(50) not null,
   transactionamount              NUMBER(18,4) not null,
   transactioncurrency            CHAR(3) default 'BRL' not null,
-  create_at                      TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at                      TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at                      TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at                      TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code                      VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -334,6 +341,8 @@ alter table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
  'SAQUE', 'CARTAO', 'ENCARGOS_JUROS_CHEQUE_ESPECIAL',
  'RENDIMENTO_APLIC_FINANCEIRA', 'PORTABILIDADE_SALARIO',
  'RESGATE_APLIC_FINANCEIRA', 'OPERACAO_CREDITO', 'OUTROS'));
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.ACCOUNT_PERSONAL_DATA_STATEMENT to OFB_OWNER;
+grant select, insert, update, delete on OFB.ACCOUNT_PERSONAL_DATA_STATEMENT to OFB_USER;
 
 prompt
 prompt Creating table CONSENTS_STATUS
@@ -341,14 +350,14 @@ prompt ==============================
 prompt
 create table OFB.CONSENTS_STATUS
 (
-  consentstatusid        NUMBER not null,
+  consentstatusid        NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   consentstatuscontrolid NUMBER not null,
   status                 VARCHAR2(200) not null,
   statusstep             NUMBER not null,
   statusreason           VARCHAR2(200) not null,
   statusdescription      VARCHAR2(3000) not null,
-  create_at              TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at              TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at              TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at              TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code              VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -408,6 +417,8 @@ alter table OFB.CONSENTS_STATUS
     minextents 1
     maxextents unlimited
   );
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.CONSENTS_STATUS to OFB_OWNER;
+grant select, insert, update, delete on OFB.CONSENTS_STATUS to OFB_USER;
 
 prompt
 prompt Creating table CONSENTS_PERSONAL_DATA
@@ -416,32 +427,32 @@ prompt
 create table OFB.CONSENTS_PERSONAL_DATA
 (
   consentid                    CHAR(45) default 'urn:bancotcn:' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{32})', '\1') not null,
-  creationdatetime             TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  creationdatetime             TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   consentstatusid              NUMBER not null,
   status                       VARCHAR2(100) not null,
-  statusupdatedatetime         TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  expirationdatetime           TIMESTAMP(6) WITH LOCAL TIME ZONE not null,
+  statusupdatedatetime         TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  expirationdatetime           TIMESTAMP(3) WITH TIME ZONE not null,
   personalid                   CHAR(40) not null,
   loggeduseridentification     VARCHAR2(30) not null,
   loggeduserdocumentrel        VARCHAR2(30) not null,
   businessentityidentification VARCHAR2(30) not null,
   businessentitydocumentrel    VARCHAR2(30) not null,
   awaitingauthby               VARCHAR2(30) not null,
-  awaitingauthstart            TIMESTAMP(6) WITH LOCAL TIME ZONE not null,
-  awaitingauthend              TIMESTAMP(6) WITH LOCAL TIME ZONE,
+  awaitingauthstart            TIMESTAMP(3) WITH TIME ZONE not null,
+  awaitingauthend              TIMESTAMP(3) WITH TIME ZONE,
   awaitingauthaddicionalinfo   VARCHAR2(200) not null,
   authorisedby                 VARCHAR2(30),
-  authorisedstart              TIMESTAMP(6) WITH LOCAL TIME ZONE,
-  authorisedend                TIMESTAMP(6) WITH LOCAL TIME ZONE,
+  authorisedstart              TIMESTAMP(3) WITH TIME ZONE,
+  authorisedend                TIMESTAMP(3) WITH TIME ZONE,
   authorisedaddicionalinfo     VARCHAR2(200),
   rejectedby                   VARCHAR2(30),
   rejectedcode                 VARCHAR2(100),
   rejectedreason               VARCHAR2(200),
   rejectedaddiconalinfo        VARCHAR2(200),
-  rejectedstartdatetime        TIMESTAMP(6) WITH LOCAL TIME ZONE,
-  rejectedenddatetime          TIMESTAMP(6) WITH LOCAL TIME ZONE,
-  create_at                    TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at                    TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  rejectedstartdatetime        TIMESTAMP(3) WITH TIME ZONE,
+  rejectedenddatetime          TIMESTAMP(3) WITH TIME ZONE,
+  create_at                    TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at                    TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code                    VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -531,6 +542,8 @@ alter table OFB.CONSENTS_PERSONAL_DATA
 alter table OFB.CONSENTS_PERSONAL_DATA
   add constraint CONSENTSPERSONALDATAFK3 foreign key (PERSONALID)
   references OFB.PERSONAL_DATA (PERSONALID);
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.CONSENTS_PERSONAL_DATA to OFB_OWNER;
+grant select, insert, update, delete on OFB.CONSENTS_PERSONAL_DATA to OFB_USER;
 
 prompt
 prompt Creating table RESOURCES_TYPES
@@ -538,13 +551,13 @@ prompt ==============================
 prompt
 create table OFB.RESOURCES_TYPES
 (
-  resourcetypeid NUMBER not null,
+  resourcetypeid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   type           VARCHAR2(100) not null,
   status         VARCHAR2(50) not null,
   summary        VARCHAR2(100) not null,
   description    VARCHAR2(300) not null,
-  create_at      TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at      TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at      TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at      TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code      VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -624,6 +637,8 @@ alter table OFB.RESOURCES_TYPES
                               'TREASURE_TITLE',
                               'FUND',
                               'EXCHANGE'));
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.RESOURCES_TYPES to OFB_OWNER;
+grant select, insert, update, delete on OFB.RESOURCES_TYPES to OFB_USER;
 
 prompt
 prompt Creating table RESOURCES_PERMISSIONS
@@ -631,7 +646,7 @@ prompt ====================================
 prompt
 create table OFB.RESOURCES_PERMISSIONS
 (
-  resourcepermissionid    NUMBER not null,
+  resourcepermissionid    NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   resourcetypeid          NUMBER not null,
   permissioncategoryid    NUMBER not null,
   permissioncategory      VARCHAR2(100) not null,
@@ -641,8 +656,8 @@ create table OFB.RESOURCES_PERMISSIONS
   permission              VARCHAR2(100) not null,
   ispermissionevent       VARCHAR2(5) default 'false' not null,
   permissiongrouping      VARCHAR2(100) default 'Por Recurso' not null,
-  create_at               TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at               TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at               TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at               TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code               VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -713,6 +728,8 @@ alter table OFB.RESOURCES_PERMISSIONS
 alter table OFB.RESOURCES_PERMISSIONS
   add constraint RESOURCEPERMISSIONFK1 foreign key (RESOURCETYPEID)
   references OFB.RESOURCES_TYPES (RESOURCETYPEID);
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.RESOURCES_PERMISSIONS to OFB_OWNER;
+grant select, insert, update, delete on OFB.RESOURCES_PERMISSIONS to OFB_USER;
 
 prompt
 prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
@@ -720,11 +737,11 @@ prompt ============================================================
 prompt
 create table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
 (
-  consentpermissionauthorisedid NUMBER not null,
+  consentpermissionauthorisedid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   consentid                     CHAR(45) not null,
   permissionid                  NUMBER not null,
-  create_at                     TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at                     TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at                     TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at                     TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code                     VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -778,6 +795,8 @@ alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
 alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
   add constraint CONSENTSPERMISSIONSAUTHORISEDFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED to OFB_OWNER;
+grant select, insert, update, delete on OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED to OFB_USER;
 
 prompt
 prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
@@ -785,11 +804,11 @@ prompt ===========================================================
 prompt
 create table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
 (
-  consentpermissionrequestedid NUMBER not null,
+  consentpermissionrequestedid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   consentid                    CHAR(45) not null,
   permissionid                 NUMBER not null,
-  create_at                    TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at                    TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at                    TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at                    TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code                    VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -849,6 +868,8 @@ alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
 alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
   add constraint CONSENTSPERMISSIONFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED to OFB_OWNER;
+grant select, insert, update, delete on OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED to OFB_USER;
 
 prompt
 prompt Creating table RESOURCES_STATUS
@@ -856,11 +877,11 @@ prompt ===============================
 prompt
 create table OFB.RESOURCES_STATUS
 (
-  resourcestatusid NUMBER not null,
+  resourcestatusid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   status           VARCHAR2(30) not null,
   summary          VARCHAR2(200) not null,
-  create_at        TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at        TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at        TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at        TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code        VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -914,6 +935,8 @@ alter table OFB.RESOURCES_STATUS
     minextents 1
     maxextents unlimited
   );
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.RESOURCES_STATUS to OFB_OWNER;
+grant select, insert, update, delete on OFB.RESOURCES_STATUS to OFB_USER;
 
 prompt
 prompt Creating table CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
@@ -921,14 +944,14 @@ prompt =========================================================
 prompt
 create table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
 (
-  consentresourceid NUMBER not null,
+  consentresourceid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   resourceid        VARCHAR2(100) not null,
   resourceidsummary VARCHAR2(50) not null,
   resourcetypeid    NUMBER not null,
   resourcestatus    NUMBER not null,
   consentid         CHAR(45) not null,
-  create_at         TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at         TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at         TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at         TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code         VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -998,6 +1021,8 @@ alter table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
   add constraint CONSENTSRESOURCESCHECK1
   check (TRIM(resourceidsummary) IN
 ('accountId', 'creditCardAccountId', 'contractId', 'investmentId', 'operationId'));
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED to OFB_OWNER;
+grant select, insert, update, delete on OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED to OFB_USER;
 
 prompt
 prompt Creating table CONSENTS_PERSONAL_DATA_RESOURSES_CONFIRMED_PERMISSIONS
@@ -1005,11 +1030,11 @@ prompt =====================================================================
 prompt
 create table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_CONFIRMED_PERMISSIONS
 (
-  consentresourcepermissionid NUMBER not null,
+  consentresourcepermissionid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
   consentresourceid           NUMBER not null,
   permissionid                NUMBER not null,
-  create_at                   TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
-  modify_at                   TIMESTAMP(6) WITH LOCAL TIME ZONE default CURRENT_TIMESTAMP not null,
+  create_at                   TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
+  modify_at                   TIMESTAMP(3) WITH TIME ZONE default SYSTIMESTAMP(3) AT TIME ZONE 'UTC' not null,
   user_code                   VARCHAR2(20) default 'USER_ADMIN' not null
 )
 tablespace USERS
@@ -1063,6 +1088,52 @@ alter table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_CONFIRMED_PERMISSIONS
 alter table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_CONFIRMED_PERMISSIONS
   add constraint CONSENTRESOURCECONFIRMEDPERMISSIONFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
+grant select, insert, update, delete, references, alter, index, debug, read on OFB.CONSENTS_PERSONAL_DATA_RESOURSES_CONFIRMED_PERMISSIONS to OFB_OWNER;
+grant select, insert, update, delete on OFB.CONSENTS_PERSONAL_DATA_RESOURSES_CONFIRMED_PERMISSIONS to OFB_USER;
+
+prompt
+prompt Creating view VW_ACCOUNT_PERSONAL_DATA
+prompt ======================================
+prompt
+CREATE OR REPLACE FORCE VIEW OFB.VW_ACCOUNT_PERSONAL_DATA AS
+SELECT
+  v.cpfnumber,
+  t.personalid,
+  v.civilname,
+  t.accountid,
+  t.accountstatus,
+  t.accounttype,
+  t.accountsubtype,
+  t.currency,
+  t.brandname,
+  t.companycnpj,
+  t.compecode,
+  t.branchcode,
+  t.accountnumber,
+  t.accountcheckdigit,
+  t.updateamountsdatetime,
+  t.availableamount,
+  t.blockedamount,
+  t.automaticallyinvestedamount,
+  t.overdraftcontractedlimit,
+  t.overdraftusedlimit,
+  t.unarrangedoverdraftamount
+from
+  OFB.ACCOUNT_PERSONAL_DATA t
+  INNER JOIN OFB.PERSONAL_DATA v
+  ON t.personalid = v.personalid
+ORDER BY
+  v.cpfnumber, t.compecode, t.branchcode, t.accountnumber;
+grant select, insert, update, delete, references, debug, read on OFB.VW_ACCOUNT_PERSONAL_DATA to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_ACCOUNT_PERSONAL_DATA to OFB_USER;
+
+
+prompt
+prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA
+prompt ==============================================
+prompt
+create or replace synonym OFB.LIST_OF_ACCOUNT_PERSONAL_DATA
+  for OFB.VW_ACCOUNT_PERSONAL_DATA;
 
 prompt
 prompt Creating view VW_ACCOUNT_PERSONAL_DATA_STATEMENT
@@ -1081,7 +1152,7 @@ SELECT
   v.personalid,
   x.civilname,
   t.referencetransactionid,
-  t.transactiondatetime,
+  to_char(t.transactiondatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS transactiondatetime,
   t.completedauthorisedpaymenttype,
   t.creditdebittype,
   t.transactionname,
@@ -1098,6 +1169,9 @@ ORDER BY
   x.cpfnumber, v.compecode,
   v.branchcode, v.accountnumber,
   t.transactiondatetime;
+grant select, insert, update, delete, references, debug, read on OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
@@ -1107,11 +1181,59 @@ create or replace synonym OFB.LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
   for OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT;
 
 prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA
+prompt =======================================
+prompt
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA AS
+SELECT
+  a.consentid,
+  to_char(a.creationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS creationdatetime,
+  a.consentstatusid,
+  a.status,
+  b.consentstatuscontrolid,
+  b.statusstep,
+  b.statusreason,
+  to_char(a.statusupdatedatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS statusupdatedatetime,
+  to_char(a.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS expirationdatetime,
+  a.personalid,
+  c.civilname,
+  c.cpfnumber,
+  a.loggeduseridentification,
+  a.loggeduserdocumentrel,
+  a.businessentityidentification,
+  a.businessentitydocumentrel,
+  a.awaitingauthby,
+  to_char(a.awaitingauthstart,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS awaitingauthstart,
+  to_char(a.awaitingauthend,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS awaitingauthend,
+  a.awaitingauthaddicionalinfo,
+  a.authorisedby,
+  to_char(a.authorisedstart,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS authorisedstart,
+  to_char(a.authorisedend,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS authorisedend,
+  a.authorisedaddicionalinfo,
+  a.rejectedby,
+  a.rejectedcode,
+  a.rejectedreason,
+  a.rejectedaddiconalinfo,
+  to_char(a.rejectedstartdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS rejectedstartdatetime,
+  to_char(a.rejectedenddatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS rejectedenddatetime
+from
+  OFB.CONSENTS_PERSONAL_DATA a
+  INNER JOIN OFB.CONSENTS_STATUS b
+  ON a.consentstatusid = b.consentstatusid
+  INNER JOIN OFB.PERSONAL_DATA c
+  ON a.personalid = c.personalid
+order by
+  c.cpfnumber, a.consentid;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA to OFB_USER;
+
+
+prompt
 prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA
 prompt ===============================================
 prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA
-  for OFB.CONSENTS_PERSONAL_DATA;
+  for OFB.VW_CONSENTS_PERSONAL_DATA;
 
 prompt
 prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
@@ -1123,7 +1245,7 @@ SELECT
   e.civilname          AS customer,
   a.consentid,
   b.status             AS consentstatus,
-  b.expirationdatetime AS consentexpiration,
+  to_char(b.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS expirationdatetime,
   d.type               AS resourcetype,
   c.permission,
   c.permissioncategory,
@@ -1145,6 +1267,9 @@ ORDER BY
   a.consentid,
   c.permissioncategorygroup,
   c.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
@@ -1168,9 +1293,9 @@ CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
 SELECT
   e.cpfnumber,
   e.civilname          AS customer,
-  a.consentid,
   b.status             AS consentstatus,
   b.expirationdatetime AS consentexpiration,
+  to_char(b.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS expirationdatetime,
   d.type               AS resourcetype,
   c.permission,
   c.permissioncategory,
@@ -1193,6 +1318,9 @@ ORDER BY
   c.permissioncategoryid,
   c.permissioncategorygroup,
   c.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
@@ -1200,6 +1328,102 @@ prompt =====================================================================
 prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
   for OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED;
+
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSION_SUMMARY
+prompt ==================================================================
+prompt
+create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSION_SUMMARY
+  for OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSION_SUMMARY;
+
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
+prompt ===========================================================
+prompt
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED AS
+SELECT
+  f.cpfnumber           AS PERSONALCPF,
+  a.CONSENTRESOURCEID,
+  a.resourceid,
+  b.type                AS RESOURCETYPE,
+  a.resourceidsummary  ,
+  c.status              AS RESOURCESTATUS,
+  a.CONSENTID,
+  to_char(d.creationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS CONSENTDATECREATION,
+  d.status              AS CONSENTSTATUS,
+  to_char(d.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"')  AS CONSENTEXPIRATION,
+  d.personalid,
+  f.civilname           AS PERSONALNAME
+FROM
+  OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED a
+  INNER JOIN OFB.RESOURCES_TYPES b
+  ON a.resourcetypeid = b.resourcetypeid
+  INNER JOIN OFB.RESOURCES_STATUS c
+  ON a.RESOURCESTATUS = c.resourcestatusid
+  INNER JOIN OFB.CONSENTS_PERSONAL_DATA d
+  ON a.consentid = d.consentid
+  INNER JOIN OFB.PERSONAL_DATA f
+  ON d.personalid = f.personalid
+ORDER BY
+  f.cpfnumber, d.creationdatetime DESC, a.resourceid;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED to OFB_USER;
+
+
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
+prompt ===================================================================
+prompt
+create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
+  for OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED;
+
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS
+prompt =======================================================================
+prompt
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS AS
+SELECT
+  f.cpfnumber           AS PERSONALCPF,
+  a.CONSENTRESOURCEID,
+  a.resourceid,
+  b.type                AS RESOURCETYPE,
+  a.resourceidsummary  ,
+  c.status              AS RESOURCESTATUS,
+  g.permissionid,
+  h.permission,
+  a.CONSENTID,
+  to_char(d.creationdatetime ,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS CONSENTDATECREATION,
+  d.status              AS CONSENTSTATUS,
+  to_char(d.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS CONSENTEXPIRATION,
+  d.personalid,
+  f.civilname           AS PERSONALNAME
+FROM
+  OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED a
+  INNER JOIN OFB.RESOURCES_TYPES b
+  ON a.resourcetypeid = b.resourcetypeid
+  INNER JOIN OFB.RESOURCES_STATUS c
+  ON a.RESOURCESTATUS = c.resourcestatusid
+  INNER JOIN OFB.CONSENTS_PERSONAL_DATA d
+  ON a.consentid = d.consentid
+  INNER JOIN OFB.PERSONAL_DATA f
+  ON d.personalid = f.personalid
+  INNER JOIN ofb.consents_personal_data_resourses_confirmed_permissions g
+  ON a.consentresourceid = g.consentresourceid
+  INNER JOIN ofb.resources_permissions h
+  ON g.permissionid = h.resourcepermissionid
+ORDER BY
+  f.cpfnumber, d.consentid, a.resourceid, h.permissioncategoryid,
+  h.permissioneventgroupid, h.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS to OFB_USER;
+
+
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS
+prompt ===============================================================================
+prompt
+create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS
+  for OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS;
 
 prompt
 prompt Creating view VW_CONSENTS_STATUS
@@ -1218,6 +1442,9 @@ FROM
 ORDER BY
   t.CONSENTSTATUSCONTROLID,
   t.STATUSSTEP;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_STATUS to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_STATUS to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_CONSENTS_STATUS
@@ -1267,6 +1494,9 @@ from
   OFB.PERSONAL_DATA t
 ORDER BY
   t.cpfnumber ASC;
+grant select, insert, update, delete, references, debug, read on OFB.VW_PERSONAL_DATA to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_PERSONAL_DATA to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_PERSONAL_DATA
@@ -1301,6 +1531,9 @@ from
 ORDER BY
   a.permissioncategoryid,
   a.permissioneventgroupid, a.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_RESOURCES_PERMISSIONS to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_RESOURCES_PERMISSIONS to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_RESOURCES_PERMISSIONS
@@ -1322,6 +1555,9 @@ from
   OFB.RESOURCES_STATUS t
 ORDER BY
   t.resourcestatusid;
+grant select, insert, update, delete, references, debug, read on OFB.VW_RESOURCES_STATUS to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_RESOURCES_STATUS to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_RESOURCES_STATUS
@@ -1345,6 +1581,9 @@ FROM
   OFB.RESOURCES_TYPES t
 ORDER BY
   t.type;
+grant select, insert, update, delete, references, debug, read on OFB.VW_RESOURCES_TYPES to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_RESOURCES_TYPES to OFB_USER;
+
 
 prompt
 prompt Creating synonym LIST_OF_RESOURCES_TYPES
@@ -1354,96 +1593,17 @@ create or replace synonym OFB.LIST_OF_RESOURCES_TYPES
   for OFB.VW_RESOURCES_TYPES;
 
 prompt
-prompt Creating view VW_ACCOUNT_PERSONAL_DATA
-prompt ======================================
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED_SUMMARY
+prompt ======================================================================
 prompt
-CREATE OR REPLACE FORCE VIEW OFB.VW_ACCOUNT_PERSONAL_DATA AS
-SELECT
-  v.cpfnumber,
-  t.personalid,
-  v.civilname,
-  t.accountid,
-  t.accountstatus,
-  t.accounttype,
-  t.accountsubtype,
-  t.currency,
-  t.brandname,
-  t.companycnpj,
-  t.compecode,
-  t.branchcode,
-  t.accountnumber,
-  t.accountcheckdigit,
-  t.updateamountsdatetime,
-  t.availableamount,
-  t.blockedamount,
-  t.automaticallyinvestedamount,
-  t.overdraftcontractedlimit,
-  t.overdraftusedlimit,
-  t.unarrangedoverdraftamount
-from
-  OFB.ACCOUNT_PERSONAL_DATA t
-  INNER JOIN OFB.PERSONAL_DATA v
-  ON t.personalid = v.personalid
-ORDER BY
-  v.cpfnumber, t.compecode, t.branchcode, t.accountnumber;
-
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA
-prompt =======================================
-prompt
-CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA AS
-SELECT
-  a.consentid,
-  a.creationdatetime,
-  a.consentstatusid,
-  a.status,
-  b.consentstatuscontrolid,
-  b.statusstep,
-  b.statusreason,
-  a.statusupdatedatetime,
-  a.expirationdatetime,
-  a.personalid,
-  c.civilname,
-  c.cpfnumber,
-  a.loggeduseridentification,
-  a.loggeduserdocumentrel,
-  a.businessentityidentification,
-  a.businessentitydocumentrel,
-  a.awaitingauthby,
-  a.awaitingauthstart,
-  a.awaitingauthend,
-  a.awaitingauthaddicionalinfo,
-  a.authorisedby,
-  a.authorisedstart,
-  a.authorisedend,
-  a.authorisedaddicionalinfo,
-  a.rejectedby,
-  a.rejectedcode,
-  a.rejectedreason,
-  a.rejectedaddiconalinfo,
-  a.rejectedstartdatetime,
-  a.rejectedenddatetime
-from
-  OFB.CONSENTS_PERSONAL_DATA a
-  INNER JOIN OFB.CONSENTS_STATUS b
-  ON a.consentstatusid = b.consentstatusid
-  INNER JOIN OFB.PERSONAL_DATA c
-  ON a.personalid = c.personalid
-order by
-  c.cpfnumber, a.consentid;
-
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSION_SUMMARY
-prompt ==========================================================
-prompt
-CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSION_SUMMARY AS
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED_SUMMARY AS
 SELECT
   d.cpfnumber,
   a.consentid,
   d.civilname,
   b.status,
-  b.creationdatetime,
-  b.expirationdatetime,
+  to_char(b.creationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS creationdatetime,
+  to_char( b.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS expirationdatetime,
   c.permissioncategorygroup,
   c.permission
 from
@@ -1460,56 +1620,59 @@ ORDER BY
   b.status,
   c.permissioncategorygroup,
   c.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED_SUMMARY to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED_SUMMARY to OFB_USER;
+
 
 prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED
-prompt ===========================================================
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED_SUMMARY
+prompt =====================================================================
 prompt
-CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED AS
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED_SUMMARY AS
 SELECT
-  f.cpfnumber           AS PERSONALCPF,
-  a.CONSENTRESOURCEID,
-  a.resourceid,
-  b.type                AS RESOURCETYPE,
-  a.resourceidsummary  ,
-  c.status              AS RESOURCESTATUS,
-  a.CONSENTID,
-  d.creationdatetime    AS CONSENTDATECREATION,
-  d.status              AS CONSENTSTATUS,
-  d.expirationdatetime  AS CONSENTEXPIRATION,
-  d.personalid,
-  f.civilname           AS PERSONALNAME
-FROM
-  OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED a
-  INNER JOIN OFB.RESOURCES_TYPES b
-  ON a.resourcetypeid = b.resourcetypeid
-  INNER JOIN OFB.RESOURCES_STATUS c
-  ON a.RESOURCESTATUS = c.resourcestatusid
-  INNER JOIN OFB.CONSENTS_PERSONAL_DATA d
-  ON a.consentid = d.consentid
-  INNER JOIN OFB.PERSONAL_DATA f
-  ON d.personalid = f.personalid
+  d.cpfnumber,
+  a.consentid,
+  d.civilname,
+  b.status,
+  to_char(b.creationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS creationdatetime,
+  to_char( b.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS expirationdatetime,
+  c.permissioncategorygroup,
+  c.permission
+from
+  OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED a
+  INNER JOIN OFB.CONSENTS_PERSONAL_DATA b
+  ON a.consentid = b.consentid
+  INNER JOIN OFB.RESOURCES_PERMISSIONS c
+  ON a.permissionid = c.resourcepermissionid
+  INNER JOIN OFB.PERSONAL_DATA d
+  ON b.personalid = d.personalid
 ORDER BY
-  f.cpfnumber, d.creationdatetime DESC, a.resourceid;
+  d.cpfnumber,
+  a.consentid,
+  b.status,
+  c.permissioncategorygroup,
+  c.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED_SUMMARY to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED_SUMMARY to OFB_USER;
+
 
 prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS
-prompt =======================================================================
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS_SUMMARY
+prompt ===============================================================================
 prompt
-CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS AS
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS_SUMMARY AS
 SELECT
   f.cpfnumber           AS PERSONALCPF,
-  a.CONSENTRESOURCEID,
+  a.CONSENTID,
   a.resourceid,
   b.type                AS RESOURCETYPE,
   a.resourceidsummary  ,
   c.status              AS RESOURCESTATUS,
-  g.permissionid,
   h.permission,
-  a.CONSENTID,
-  d.creationdatetime    AS CONSENTDATECREATION,
+
+  to_char(d.creationdatetime ,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS CONSENTDATECREATION,
   d.status              AS CONSENTSTATUS,
-  d.expirationdatetime  AS CONSENTEXPIRATION,
+  to_char(d.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS CONSENTEXPIRATION,
   d.personalid,
   f.civilname           AS PERSONALNAME
 FROM
@@ -1529,13 +1692,50 @@ FROM
 ORDER BY
   f.cpfnumber, d.consentid, a.resourceid, h.permissioncategoryid,
   h.permissioneventgroupid, h.permissioncategoryorder;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS_SUMMARY to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_PERMISSIONS_SUMMARY to OFB_USER;
+
+
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_SUMMARY
+prompt ===================================================================
+prompt
+CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_SUMMARY AS
+SELECT
+  f.cpfnumber           AS PERSONALCPF,
+  a.CONSENTID,
+  a.resourceid,
+  b.type                AS RESOURCETYPE,
+  a.resourceidsummary  ,
+  c.status              AS RESOURCESTATUS,
+
+  to_char(d.creationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"') AS CONSENTDATECREATION,
+  d.status              AS CONSENTSTATUS,
+  to_char(d.expirationdatetime,'YYYY-MM-DD"T"HH:MI:SS.FF3"Z"')  AS CONSENTEXPIRATION,
+  d.personalid,
+  f.civilname           AS PERSONALNAME
+FROM
+  OFB.CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED a
+  INNER JOIN OFB.RESOURCES_TYPES b
+  ON a.resourcetypeid = b.resourcetypeid
+  INNER JOIN OFB.RESOURCES_STATUS c
+  ON a.RESOURCESTATUS = c.resourcestatusid
+  INNER JOIN OFB.CONSENTS_PERSONAL_DATA d
+  ON a.consentid = d.consentid
+  INNER JOIN OFB.PERSONAL_DATA f
+  ON d.personalid = f.personalid
+ORDER BY
+  f.cpfnumber, d.creationdatetime DESC, a.resourceid;
+grant select, insert, update, delete, references, debug, read on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_SUMMARY to OFB_OWNER;
+grant select, insert, update, delete on OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED_SUMMARY to OFB_USER;
+
 
 prompt
 prompt Creating procedure PRC_CREATE_CONSENTS
 prompt ======================================
 prompt
 create or replace noneditionable procedure ofb.prc_create_consents
-(identification in out varchar2, consentid out CHAR) 
+(identification in out varchar2, consentid out CHAR)
 IS
 --
 doc                    VARCHAR2(18):= identification;
@@ -1552,7 +1752,7 @@ v_ConsentRsourcePermissionId NUMBER:= 0;
 v_ConsentsStatusId           NUMBER:= 0;
 --
 CURSOR cur_Accounts is
-  select * from 
+  select * from
     OFB.VW_ACCOUNT_PERSONAL_DATA t
   WHERE
     t.personalid = v_PersonalId;
@@ -1561,19 +1761,19 @@ CURSOR cur_Permissions IS
 SELECT * FROM
 (
 SELECT t.* FROM ofb.vw_resources_permissions t
-WHERE 
+WHERE
 (t.resourcetype = 'CUSTOMER'
 AND t.permissioncategoryid = 1
 AND t.permissioneventgroupid IN (1, 2))
 UNION ALL
 SELECT t.* FROM ofb.vw_resources_permissions t
-WHERE 
+WHERE
 (t.resourcetype = 'ACCOUNT'
 AND t.permissioncategoryid = 2
 AND t.permissioneventgroupid IN (1, 2, 3))
 )
 ORDER BY
-permissioncategoryid, permissioneventgroupid, permissioncategoryorder;    
+permissioncategoryid, permissioneventgroupid, permissioncategoryorder;
 --
 BEGIN
 
@@ -1582,37 +1782,37 @@ BEGIN
   v_PersonalId:= reg_customer.personalid;
 
   insert into ofb.consents_personal_data
-    (consentstatusid, 
-     status, 
-     expirationdatetime, 
-     personalid, 
-     loggeduseridentification, loggeduserdocumentrel, 
-     businessentityidentification, businessentitydocumentrel, 
-     awaitingauthby, awaitingauthstart, awaitingauthend, 
-     awaitingauthaddicionalinfo, 
-     authorisedby, authorisedstart, authorisedend, 
-     authorisedaddicionalinfo, 
-     rejectedby, rejectedcode, rejectedreason, 
-     rejectedaddiconalinfo, 
+    (consentstatusid,
+     status,
+     expirationdatetime,
+     personalid,
+     loggeduseridentification, loggeduserdocumentrel,
+     businessentityidentification, businessentitydocumentrel,
+     awaitingauthby, awaitingauthstart, awaitingauthend,
+     awaitingauthaddicionalinfo,
+     authorisedby, authorisedstart, authorisedend,
+     authorisedaddicionalinfo,
+     rejectedby, rejectedcode, rejectedreason,
+     rejectedaddiconalinfo,
      rejectedstartdatetime, rejectedenddatetime)
   values
-    ((select t.consentstatusid from OFB.CONSENTS_STATUS t WHERE t.status = 'AWAITING_AUTHORISATION'), 
-     'AWAITING_AUTHORISATION', 
-     CURRENT_TIMESTAMP, 
-     v_PersonalId, 
-     'USER', '00000000011', 
-     'BANK', '000000000000000', 
-     'USER', 
-     CURRENT_TIMESTAMP, NULL, 
-     'v_awaitingauthaddicionalinfo', 
-     NULL, NULL, NULL, 
-     NULL, 
-     NULL, NULL, NULL, 
-     NULL, 
+    ((select t.consentstatusid from OFB.CONSENTS_STATUS t WHERE t.status = 'AWAITING_AUTHORISATION'),
+     'AWAITING_AUTHORISATION',
+     CURRENT_TIMESTAMP,
+     v_PersonalId,
+     'USER', '00000000011',
+     'BANK', '000000000000000',
+     'USER',
+     CURRENT_TIMESTAMP, NULL,
+     'automatic consents create',
+     NULL, NULL, NULL,
+     NULL,
+     NULL, NULL, NULL,
+     NULL,
      NULL, NULL)
   RETURNING consentid INTO consents;
   COMMIT;
-  
+
   dbms_output.put_line ('personalId: ' || v_PersonalId || ' ConsentId: ' || consents);
   -- ---------------------------------------------------------------------------------
 
@@ -1621,31 +1821,31 @@ BEGIN
   LOOP FETCH cur_Permissions INTO reg_permissions;
   EXIT WHEN cur_Permissions%NOTFOUND;
     insert into ofb.consents_personal_data_permissions_requested
-      (consentpermissionrequestedid, consentid, permissionid)
+      (consentid, permissionid)
     values
-      (OFB.SQ_OFB_SYSTEM.NEXTVAL, consents, reg_permissions.resourcepermissionid)
+      (consents, reg_permissions.resourcepermissionid)
     RETURNING consentpermissionrequestedid INTO v_PermissionReg;
     COMMIT;
-    dbms_output.put_line ('personalId: ' || v_PersonalId || ' RequestedPermissionId: ' || reg_permissions.resourcepermissionid || 
+    dbms_output.put_line ('personalId: ' || v_PersonalId || ' RequestedPermissionId: ' || reg_permissions.resourcepermissionid ||
     ' id: ' || v_PermissionReg);
-        
+
     insert into ofb.consents_personal_data_permissions_authorised
-      (consentpermissionauthorisedid, consentid, permissionid)
+      (consentid, permissionid)
     values
-      (OFB.SQ_OFB_SYSTEM.NEXTVAL, consents, reg_permissions.resourcepermissionid)
+      (consents, reg_permissions.resourcepermissionid)
     RETURNING consentpermissionauthorisedid INTO v_PermissionReg;
     COMMIT;
-    
-    dbms_output.put_line ('personalId: ' || v_PersonalId || ' AutohorisedPermissionId: ' || reg_permissions.resourcepermissionid || 
+
+    dbms_output.put_line ('personalId: ' || v_PersonalId || ' AutohorisedPermissionId: ' || reg_permissions.resourcepermissionid ||
     ' id: ' || v_PermissionReg);
   END LOOP;
   CLOSE cur_Permissions;
   -- ---------------------------------------------------------------------------------
-  
+
   -- Step 03: Authorize Consents -----------------------------------------------------
   select t.consentstatusid INTO v_ConsentsStatusId from OFB.CONSENTS_STATUS t
   WHERE t.status = 'AUTHORISED';
-  
+
   update ofb.consents_personal_data
      set consentstatusid = v_ConsentsStatusId,
          status = 'AUTHORISED',
@@ -1658,54 +1858,54 @@ BEGIN
          user_code = 'USER_ADMIN'
   where consentid = consents;
   COMMIT;
-  -- ---------------------------------------------------------------------------------  
-  
+  -- ---------------------------------------------------------------------------------
+
   -- Step 04: Create a Resources Confirmed and Permissions ---------------------------
-  select t.resourcestatusid INTO v_ResourceStatusId 
+  select t.resourcestatusid INTO v_ResourceStatusId
   from OFB.RESOURCES_STATUS t
   WHERE t.STATUS = 'Available';
-  
+
   select t.resourcetypeid INTO v_ResourceTypeId
   from OFB.RESOURCES_TYPES t
   WHERE t.type = 'ACCOUNT';
-  
+
   OPEN cur_Accounts;
   LOOP FETCH cur_Accounts INTO reg_account;
   EXIT WHEN cur_Accounts%NOTFOUND;
     insert into ofb.consents_personal_data_resources_confirmed
-      (consentresourceid, resourceid, resourceidsummary, resourcetypeID, resourcestatus, consentid)
+      (resourceid, resourceidsummary, resourcetypeID, resourcestatus, consentid)
     values
-      (OFB.SQ_OFB_SYSTEM.NEXTVAL, reg_account.accountid, 'accountId', v_ResourceTypeId, v_ResourceStatusId, consents)
+      (reg_account.accountid, 'accountId', v_ResourceTypeId, v_ResourceStatusId, consents)
     RETURNING consentresourceid INTO v_ResourceConfirmedReg;
     COMMIT;
-  
-    dbms_output.put_line ('personalId: ' || reg_account.Personalid || ' accountId: ' || reg_account.accountid || 
+
+    dbms_output.put_line ('personalId: ' || reg_account.Personalid || ' accountId: ' || reg_account.accountid ||
     ' resourceConfirmed: ' || v_ResourceConfirmedReg);
-    
+
     OPEN cur_Permissions;
     LOOP FETCH cur_Permissions INTO reg_permissions;
     EXIT WHEN cur_Permissions%NOTFOUND;
       IF (reg_permissions.resourcetype = 'ACCOUNT') THEN
         insert into ofb.consents_personal_data_resourses_confirmed_permissions
-          (consentresourcepermissionid, consentresourceid, permissionid)
+          (consentresourceid, permissionid)
         values
-          (OFB.SQ_OFB_SYSTEM.NEXTVAL, v_ResourceConfirmedReg, reg_permissions.resourcepermissionid)
+          (v_ResourceConfirmedReg, reg_permissions.resourcepermissionid)
         RETURNING consentresourcepermissionid INTO v_ConsentRsourcePermissionId;
         COMMIT;
-        
-        dbms_output.put_line ('personalId: ' || reg_account.Personalid || ' accountId: ' || reg_account.accountid || 
+
+        dbms_output.put_line ('personalId: ' || reg_account.Personalid || ' accountId: ' || reg_account.accountid ||
         ' resourcePermissionConfirmed: ' || v_ConsentRsourcePermissionId);
       END IF;
     END LOOP;
     CLOSE cur_Permissions;
-    
+
   END LOOP;
   CLOSE cur_Accounts;
   -- ---------------------------------------------------------------------------------
 
-  
+
   consentid:=consents;
-  
+
 END;
 /
 
