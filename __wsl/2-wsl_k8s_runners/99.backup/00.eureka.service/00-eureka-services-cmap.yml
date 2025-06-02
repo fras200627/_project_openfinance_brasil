@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tican-discovery-services-cmap
-  labels:
-    app: tican-discovery-services-cmap
-data:
-  API_LOGGING_LEVEL: "info"
-

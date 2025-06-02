@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+config.com.ofb.lib.security.AppCorsFiltersConfig,\
+config.com.ofb.lib.security.AppSecurityConfig,\
+config.com.ofb.lib.security.FilterRegistrationBeanConfig
