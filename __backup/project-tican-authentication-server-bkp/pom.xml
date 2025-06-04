@@ -11,12 +11,12 @@
 		<relativePath/>
 	</parent>
 	
-	<groupId>com.ofb</groupId>
-	<artifactId>ofb-authentication-server</artifactId>
+	<groupId>com.tican</groupId>
+	<artifactId>tican-authentication-server</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
-	<name>ofb-authentication-server</name>
-	<description>Project OFB Authentication Server</description>
+	<version>1.0.1-openapi</version>
+	<name>tican-authentication-server</name>
+	<description>Project Tican Authentication Server</description>
 
 	<properties>
 		<!-- default builder infos -->
@@ -27,7 +27,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Necessary to avoid conflicts with OpenAPI -->
-<!--		<start-class>com.ofb.authentication.StartApplication</start-class>-->
+		<start-class>com.tican.authentication.StartApplication</start-class>
 
 		<!-- additional information used in <goal>build-info</goal> -->
 		<info.additional.project.module.name>AUTH.SERVER</info.additional.project.module.name>
@@ -76,13 +76,6 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.ofb</groupId>
-			<artifactId>ofb-lib-autoconfigure-amqp</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		
-		
 		<!-- App core dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -103,20 +96,20 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-<!--<dependency>-->
-<!--	<groupId>org.springframework.security</groupId>-->
-<!--	<artifactId>spring-security-oauth2-authorization-server</artifactId>-->
-<!--	<version>0.2.3</version>-->
-<!--</dependency>-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-authorization-server</artifactId>
+			<version>0.2.3</version>
 		</dependency>
 
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-jdbc</artifactId>
 		</dependency>
 
 		<!-- Spring Cloud Backend Circuit-Breaker Services -->
@@ -237,18 +230,18 @@
 			<version>2.2.21</version>
 			<scope>compile</scope>
 		</dependency>
-<!--<dependency>-->
-<!--	<groupId>com.nimbusds</groupId>-->
-<!--	<artifactId>nimbus-jose-jwt</artifactId>-->
-<!--	<version>9.22</version>-->
-<!--	<scope>compile</scope>-->
-<!--</dependency>-->
-<!--<dependency>-->
-<!--	<groupId>com.nimbusds</groupId>-->
-<!--	<artifactId>nimbus-jose-jwt</artifactId>-->
-<!--	<version>9.22</version>-->
-<!--	<scope>compile</scope>-->
-<!--</dependency>-->
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.22</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.22</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -318,8 +311,8 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${project.basedir}/src/main/resources/openapi/server/api-health-checks.yaml</inputSpec>
-							<apiPackage>com.ofb.authentication.server.handler</apiPackage>
-							<modelPackage>com.ofb.authentication.server.model</modelPackage>
+							<apiPackage>com.tican.authentication.server.handler</apiPackage>
+							<modelPackage>com.tican.authentication.server.model</modelPackage>
 							<output>target/generated-sources/server</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
@@ -339,50 +332,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-
-
-
-					<execution>
-						<id>generator-api-authentication-resource</id> <!-- It is not optional and must have a unique id -->
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-							 generatorName Types:
-							 OpenAPI Documentation for API Servers and API Clients in
-							 https://openapi-generator.tech/docs/generators/
-							 The 'spring' type generates a server package ++++++++++++++-->
-							<generatorName>spring</generatorName>
-							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${project.basedir}/src/main/resources/openapi/server/api-authentication-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.authentication.server.handler</apiPackage>
-							<modelPackage>com.ofb.authentication.server.model</modelPackage>
-							<output>target/generated-sources/server</output>
-							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-							<skipValidateSpec>true</skipValidateSpec>
-							<configOptions>
-								<delegatePattern>true</delegatePattern>
-								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
-								<dateLibrary>java8</dateLibrary>
-								<useBeanValidation>true</useBeanValidation>
-								<performBeanValidation>true</performBeanValidation>
-								<openApiNullable>true</openApiNullable>
-								<documentationProvider>springdoc</documentationProvider>
-								<library>spring-boot</library>
-								<useSpringBoot3>false</useSpringBoot3>
-								<generateBuilders>true</generateBuilders>
-								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
-								<generatedConstructorWithRequiredArgs>true</generatedConstructorWithRequiredArgs>
-							</configOptions>
-						</configuration>
-					</execution>
-					
-					
-					
-					
-					
 				</executions>
 			</plugin>
 			<plugin>

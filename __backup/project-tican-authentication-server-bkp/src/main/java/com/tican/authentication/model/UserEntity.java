@@ -1,4 +1,4 @@
-package com.ofb.authentication.model;
+package com.tican.authentication.model;
 
 import org.springframework.data.annotation.CreatedDate;
 

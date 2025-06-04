@@ -1,8 +1,8 @@
 spring:
   application:
-    name: ${AUTHENTICATION_SERVER_APP_NAME:ofb-authentication-server}
-#  session:
-#    store-type: jdbc
+    name: ${AUTHENTICATION_SERVER_APP_NAME:tican-authentication-server}
+  session:
+    store-type: jdbc
   security:
     filter:
       dispatcher-types: request
@@ -19,14 +19,7 @@ spring:
     show-sql: ${API_JPA_SHOW_SQL:true}
     hibernate:
       ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
-      
-jwt:
-  issuer: banco-tcn-openfinance-brasil
-  private:
-    key: classpath:keystore/app.private.key
-  public:
-    key: classpath:keystore/app.public.key
-    
+
 server:
   error:
     include-stacktrace: never
@@ -40,7 +33,7 @@ app:
 
 eureka:
   instance:
-    hostname: ${DISCOVERY_SERVICES_APP_NAME:ofb-discovery-services}
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:tican-discovery-services}
     instance-id: ${spring.application.name}:${random.int}
     prefer-ip-address: true
   client:
@@ -62,7 +55,7 @@ logging:
 springdoc:
   api-docs:
     enabled: true
-  packagesToScan: com.ofb
+  packagesToScan: com.tican
   pathsToMatch: /**
   swagger-ui:
     enabled: true
@@ -80,7 +73,7 @@ spring:
       on-profile: local
   security:
     auth:
-      provider-uri: http://localhost:3001/ofb-authentication-server
+      provider-uri: http://localhost:3001/tican-authentication-server
   datasource:
     url: jdbc:mysql://localhost:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -90,13 +83,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:3000/eureka
-amqp:
-  audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
-    
+
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -108,7 +95,7 @@ spring:
       on-profile: docker
   security:
     auth:
-      provider-uri: http://10.0.1.2:3001/ofb-authentication-server
+      provider-uri: http://10.0.1.2:3001/tican-authentication-server
   datasource:
     url: jdbc:mysql://10.0.1.100:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -118,13 +105,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://10.0.1.1:3000/eureka
-amqp:
-  audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
-    
+
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -136,7 +117,7 @@ spring:
       on-profile: k8s
   security:
     auth:
-      provider-uri: http://10.152.183.107:3001/ofb-authentication-server
+      provider-uri: http://10.152.183.107:3001/tican-authentication-server
   datasource:
     url: jdbc:mysql://10.152.183.209:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -146,13 +127,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://10.152.183.103:3000/eureka
-amqp:
-  audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:tican.audit.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:tican.audit.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:tican.audit.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:tican.audit.dlx}
-    
+
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:

@@ -1,6 +1,6 @@
-package com.ofb.authentication.service;
+package com.tican.authentication.service;
 
-import com.ofb.authentication.repository.UserRepository;
+import com.tican.authentication.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

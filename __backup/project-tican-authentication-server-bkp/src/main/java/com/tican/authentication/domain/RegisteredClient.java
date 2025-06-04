@@ -1,4 +1,4 @@
-package com.ofb.authentication.domain;
+package com.tican.authentication.domain;
 
 public record RegisteredClient(
     String      id,

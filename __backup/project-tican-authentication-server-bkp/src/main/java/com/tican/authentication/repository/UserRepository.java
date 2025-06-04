@@ -1,6 +1,6 @@
-package com.ofb.authentication.repository;
+package com.tican.authentication.repository;
 
-import com.ofb.authentication.model.UserEntity;
+import com.tican.authentication.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

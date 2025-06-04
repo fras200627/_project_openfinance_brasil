@@ -1,4 +1,4 @@
-package com.ofb.authentication.service;
+package com.tican.authentication.service;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
