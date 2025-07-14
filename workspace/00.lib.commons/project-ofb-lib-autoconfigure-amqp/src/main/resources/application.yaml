@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: ofb-lib-autoconfigure-amqp
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  rabbitmq:
+    host: ${RABBITMQ_HOST_NAME:localhost}
+    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
+    username: ${RABBITMQ_DEFAULT_USER:guest}
+    password: ${RABBITMQ_DEFAULT_PWD:guest}
+#amqp:
+#  audit_services:
+#    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
+#    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
+#    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
+#    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  rabbitmq:
+    host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
+    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
+    username: ${RABBITMQ_DEFAULT_USER:ofb}
+    password: ${RABBITMQ_DEFAULT_PASS:ofb}
+#amqp:
+#  audit_services:
+#    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
+#    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
+#    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
+#    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  rabbitmq:
+    host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
+    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
+    username: ${RABBITMQ_DEFAULT_USER:ofb}
+    password: ${RABBITMQ_DEFAULT_PASS:ofb}
+#amqp:
+#  audit_services:
+#    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
+#    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
+#    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
+#    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}

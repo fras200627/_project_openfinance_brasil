@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ofb-lib-commons-tools
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s

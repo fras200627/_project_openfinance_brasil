@@ -1,0 +1,27 @@
+package com.ofb.resources.controller;
+
+import com.ofb.lib.security.profiles.CanClientOFBRead;
+import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
+import com.ofb.resources.server.handler.ResourcesApiDelegate;
+import com.ofb.resources.server.model.ResponseResourceList;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
+
+@RestController
+@SecurityScheme(type = SecuritySchemeType.HTTP,
+        name = "bearerAuth",
+        scheme = "bearer",
+        bearerFormat = "JWT",
+        in = SecuritySchemeIn.HEADER)
+public class ResourcesApiControllerImpl implements ResourcesApiDelegate {
+
+    @Override @CanSystemOFBAdmin @CanClientOFBRead
+    public ResponseEntity<ResponseResourceList> resourcesGetResources(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize) {
+        return ResourcesApiDelegate.super.resourcesGetResources(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize);
+    }
+}

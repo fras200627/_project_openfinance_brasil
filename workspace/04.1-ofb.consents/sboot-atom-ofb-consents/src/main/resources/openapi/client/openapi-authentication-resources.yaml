@@ -1,0 +1,404 @@
+openapi: 3.0.3
+info:
+  title: 'OFB Authentication Server'
+  description: 'Authentication Server for OFB'
+  version: 1.0.0
+tags:
+  - name: app.authentication.resources
+    description: 'App Authentication Resources'
+paths:
+  /token/client:
+    post:
+      tags:
+        - app.authentication.resources
+      summary: 'Generate a Access Token for a Registered Client Authenticate'
+      description: 'Generate a Access Token for a Registered Client'
+      operationId: postTokenClient
+      security:
+        - basicAuth: []
+      parameters: []
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenResponseModel'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /token/access/consents:
+    post:
+      tags:
+        - app.authentication.resources
+      summary: 'Generate a Access Token for a get consent informations'
+      description: 'Generate a Access Token for a get consent informations'
+      operationId: postAccessTokenConsents
+      security:
+        - bearerAuth: []
+      parameters:
+        #        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/xFapiInteractionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessTokenRequest'
+        description: 'Payload para solicitação do Access Token.'
+        required: true
+      responses:
+        '201':
+          $ref: '#/components/responses/TokenResponseModel'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+components:
+  parameters:
+    ConsentId:
+      name: consentId
+      description: 'Consent Id in format OFB. Example: urn:banco-xxx:42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 20
+        maxLength: 256
+        nullable: false
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado'
+      required: true
+      schema:
+        type: string
+        pattern: '[\w\W\s]*'
+        minLength: 1
+        maxLength: 2048
+    xFapiInteractionId:
+      name: x-fapi-interaction-id
+      in: header
+      description: Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+      required: false
+      schema:
+        type: string
+        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        minLength: 1
+        maxLength: 36
+        format: uuid
+        example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
+  schemas:
+    AccessTokenRequest:
+      type: object
+      properties:
+        consentId:
+          type: string
+          maxLength: 256
+        creationDateTime:
+          type: string
+          maxLength: 20
+        expirationDateTime:
+          description: |
+            Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento.
+            Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+            
+            [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+            Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
+            Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
+          type: string
+          maxLength: 20
+        loggedUser:
+          $ref: '#/components/schemas/LoggedUser'
+        businessEntity:
+          $ref: '#/components/schemas/BusinessEntity'
+        scopes:
+          type: array
+          minItems: 1
+          description: 'Especifica os tipos de permissões de acesso às APIs no escopo do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de consentimento fornecidos pelo usuário e necessários ao acesso a cada endpoint das APIs. Esse array não deve ter duplicidade de itens.'
+          items:
+            type: string
+            enum:
+              - ACCOUNTS_READ
+              - ACCOUNTS_BALANCES_READ
+              - ACCOUNTS_TRANSACTIONS_READ
+              - ACCOUNTS_OVERDRAFT_LIMITS_READ
+              - CREDIT_CARDS_ACCOUNTS_READ
+              - CREDIT_CARDS_ACCOUNTS_BILLS_READ
+              - CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ
+              - CREDIT_CARDS_ACCOUNTS_LIMITS_READ
+              - CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ
+              - CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ
+              - CUSTOMERS_PERSONAL_ADITTIONALINFO_READ
+              - CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ
+              - CUSTOMERS_BUSINESS_ADITTIONALINFO_READ
+              - FINANCINGS_READ
+              - FINANCINGS_SCHEDULED_INSTALMENTS_READ
+              - FINANCINGS_PAYMENTS_READ
+              - FINANCINGS_WARRANTIES_READ
+              - INVOICE_FINANCINGS_READ
+              - INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ
+              - INVOICE_FINANCINGS_PAYMENTS_READ
+              - INVOICE_FINANCINGS_WARRANTIES_READ
+              - LOANS_READ
+              - LOANS_SCHEDULED_INSTALMENTS_READ
+              - LOANS_PAYMENTS_READ
+              - LOANS_WARRANTIES_READ
+              - UNARRANGED_ACCOUNTS_OVERDRAFT_READ
+              - UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ
+              - UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ
+              - UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ
+              - RESOURCES_READ
+              - BANK_FIXED_INCOMES_READ
+              - CREDIT_FIXED_INCOMES_READ
+              - FUNDS_READ
+              - VARIABLE_INCOMES_READ
+              - TREASURE_TITLES_READ
+              - EXCHANGES_READ
+          example:
+            - ACCOUNTS_READ
+            - ACCOUNTS_OVERDRAFT_LIMITS_READ
+            - RESOURCES_READ
+    BusinessEntity:
+      type: object
+      description: |
+        Titular, pessoa jurídica a quem se referem os dados que são objeto de compartilhamento.
+
+        É obrigatório que o número do CNPJ utilizado seja um número válido. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CNPJ.
+      required:
+        - document
+      properties:
+        document:
+          $ref: '#/components/schemas/BusinessEntityDocument'
+    BusinessEntityDocument:
+      type: object
+      required:
+        - entityBusinessName
+        - identification
+        - rel
+      x-regulatory-required:
+        - identification
+      properties:
+        entityBusinessName:
+          type: string
+          maxLength: 200
+        identification:
+          type: string
+          maxLength: 14
+          description: Número do documento de identificação oficial do titular pessoa jurídica.
+          example: '11222333000199'
+        rel:
+          type: string
+          maxLength: 4
+          description: Tipo do documento de identificação oficial do titular pessoa jurídica.
+          example: 'CNPJ'
+    LoggedUser:
+      type: object
+      description: |
+        Usuário (pessoa natural) que encontra-se logado na instituição receptora e que iniciará o processo de consentimento para compartilhamento de dados.
+        
+        É obrigatório que o número do documento utilizado seja um número válido e pertencente ao usuário logado. A transmissora pode utilizar algoritmos de validação de documento para garantir que se trata de um documento válido, como por exemplo: Cálculo de DV módulo 11 para o CPF.
+      required:
+        - document
+      properties:
+        document:
+          $ref: '#/components/schemas/LoggedUserDocument'
+    LoggedUserDocument:
+      type: object
+      required:
+        - loggedUserName
+        - identification
+        - rel
+      x-regulatory-required:
+        - identification
+      properties:
+        loggedUserName:
+          type: string
+          maxLength: 200
+        identification:
+          type: string
+          maxLength: 11
+          description: Número do documento de identificação oficial do usuário.
+          example: '01102203399'
+        rel:
+          type: string
+          maxLength: 3
+          description: Tipo do documento de identificação oficial do usuário.
+          example: 'CPF'
+    TokenResponseModelTemplate:
+      type: object
+      properties:
+        access_token:
+          type: string
+          default: 'access token value'
+        scope:
+          type: string
+          default: 'scope permissions list'
+        token_type:
+          type: string
+          default: 'token type value'
+        expires_in:
+          type: integer
+          default: 'expires token in... (seconds)'
+    Code200Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        message:
+          type: string
+          default: 'message description'
+    Code201Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 201
+        message:
+          type: string
+          default: 'message description'
+    Code202Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 202
+        message:
+          type: string
+          default: 'message description'
+    Code400Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 400
+        message:
+          type: string
+          default: 'message description'
+    Code401Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 401
+        message:
+          type: string
+          default: 'message description'
+    Code403Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 403
+        message:
+          type: string
+          default: 'message description'
+    Code404Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 404
+        message:
+          type: string
+          default: 'message description'
+    Code500Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 500
+        message:
+          type: string
+          default: 'message description'
+    CodeDefaultTemplate:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 501
+        message:
+          type: string
+          default: 'message description'
+  responses:
+    TokenResponseModel:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TokenResponseModelTemplate'
+    ResponseCode200Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code200Template'
+    ResponseCode201Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code201Template'
+    ResponseCode202Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code202Template'
+    ResponseCode400Template:
+      description: 'Bad request operation'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code400Template'
+    ResponseCode401Template:
+      description: 'Unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code401Template'
+    ResponseCode403Template:
+      description: 'Forbidden'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code403Template'
+    ResponseCode404Template:
+      description: 'Path or object not found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code404Template'
+    ResponseCode500Template:
+      description: 'Internal Server Error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code500Template'
+    ResponseCodeDefaultTemplate:
+      description: 'Not Implemented'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CodeDefaultTemplate'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+    basicAuth:
+      type: http
+      scheme: basic
