@@ -1,0 +1,6 @@
+DELETE ofb.consents_personal_data_permissions_requested;
+DELETE ofb.consents_personal_data_permissions_authorised;
+DELETE ofb.consents_personal_data_resourses_confirmed_permissions;
+DELETE ofb.consents_personal_data_resources_confirmed;
+DELETE ofb.consents_personal_data;
+COMMIT;
