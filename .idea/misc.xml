@@ -32,6 +32,10 @@
         <option value="$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/pom.xml" />
         <option value="$PROJECT_DIR$/__backup/project-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -43,8 +47,6 @@
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-security/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/01.cloud/project-ofb-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />

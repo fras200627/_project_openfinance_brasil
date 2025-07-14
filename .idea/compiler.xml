@@ -8,12 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aulao-spring-security-e-jwt" />
+        <module name="ofb-api-gateway" />
         <module name="ofb-lib-common-tools" />
+        <module name="ofb-discovery-services" />
         <module name="ofb-lib-autoconfigure-security" />
         <module name="ofb-lib-autoconfigure-handlers" />
         <module name="ofb-lib-autoconfigure-interceptors" />
       </profile>
-      <profile name="Annotation profile for tican-oauth2-registered-clients-business-api" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -23,6 +25,10 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
+        <module name="sboot-atom-ofb-consents" />
+        <module name="sboot-atom-ofb-accounts" />
+        <module name="sboot-atom-ofb-customers" />
+        <module name="sboot-atom-ofb-resources" />
         <module name="ofb-authentication-server" />
         <module name="tican-oauth2-registered-clients-business-api" />
         <module name="ofb-lib-autoconfigure-amqp" />
@@ -30,8 +36,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aulao-spring-security-e-jwt" target="17" />
-      <module name="ofb-api-gateway" target="17" />
-      <module name="ofb-discovery-services" target="17" />
       <module name="ofb-oauth2-registered-clients-business-api" target="17" />
       <module name="spring-security-template" target="17" />
       <module name="tican-audit-services-api" target="17" />
@@ -58,6 +62,10 @@
       <module name="ofb-lib-autoconfigure-security" options="-parameters" />
       <module name="ofb-lib-common-tools" options="-parameters" />
       <module name="ofb-oauth2-registered-clients-business-api" options="-parameters" />
+      <module name="sboot-atom-ofb-accounts" options="-parameters" />
+      <module name="sboot-atom-ofb-consents" options="-parameters" />
+      <module name="sboot-atom-ofb-customers" options="-parameters" />
+      <module name="sboot-atom-ofb-resources" options="-parameters" />
       <module name="spring-security-template" options="-parameters" />
       <module name="tican-audit-services-api" options="-parameters" />
       <module name="tican-discovery-services" options="-parameters" />
