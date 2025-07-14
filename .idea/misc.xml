@@ -43,6 +43,8 @@
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-security/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.cloud/project-ofb-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
