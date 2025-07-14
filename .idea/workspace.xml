@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Atualização com o novo ofb">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/2_Gateway.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/3_Auth.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Accounts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Consents.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Customers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Resources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OFB_Discovery_Services.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/1_Discovery.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fras200627&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fras200627/_project_tican_openapi&quot;,
+    &quot;accountId&quot;: &quot;d3f3e42d-a0c0-48a1-9169-0e65c59e5208&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\_development\_maven\repository" />
+        <option name="userSettingsFile" value="C:\_development\_maven\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2xSTzpsr0Y6mlOE4fs87bveemZH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.1-Discovery.executor": "Run",
+    "Application.2-Gateway.executor": "Run",
+    "Application.3-Auth.executor": "Run",
+    "Application.4-Clients-Business.executor": "Run",
+    "Application.OFB-API Gateway.executor": "Run",
+    "Application.OFB-Authentication Server.executor": "Debug",
+    "Application.OFB-Discovery-Services.executor": "Run",
+    "Application.OFB-Registered-Clients-Business.executor": "Debug",
+    "Application.SpringJWT_1.executor": "Debug",
+    "Application.SpringJWT_2.executor": "Run",
+    "Maven.aulao-spring-security-e-jwt [clean].executor": "Run",
+    "Maven.ofb-api-gateway [clean].executor": "Run",
+    "Maven.ofb-api-gateway [install].executor": "Run",
+    "Maven.ofb-authentication-server [clean].executor": "Run",
+    "Maven.ofb-authentication-server [install].executor": "Run",
+    "Maven.ofb-discovery-services [clean].executor": "Run",
+    "Maven.ofb-discovery-services [install].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-amqp [clean].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-amqp [install].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-handlers [clean].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-handlers [install].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-interceptors [clean].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-interceptors [install].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-security [clean].executor": "Run",
+    "Maven.ofb-lib-autoconfigure-security [install].executor": "Run",
+    "Maven.ofb-lib-common-tools [clean].executor": "Run",
+    "Maven.ofb-lib-common-tools [compile].executor": "Run",
+    "Maven.ofb-lib-common-tools [install].executor": "Run",
+    "Maven.ofb-oauth2-registered-clients-business-api [clean].executor": "Run",
+    "Maven.ofb-oauth2-registered-clients-business-api [install].executor": "Run",
+    "Maven.spring-security-jwt [clean].executor": "Run",
+    "Maven.spring-security-jwt [install].executor": "Run",
+    "Maven.spring-security-template [clean].executor": "Run",
+    "Maven.spring-security-template [install].executor": "Run",
+    "Maven.tican-authentication-server [clean].executor": "Run",
+    "Maven.tican-authentication-server [install].executor": "Run",
+    "Maven.tican-oauth2-registered-clients-business-api [clean].executor": "Run",
+    "Maven.tican-oauth2-registered-clients-business-api [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.291954",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.oauth2.registered.clients\project-tican-oauth2-registered-clients-business\src\main\resources" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.oauth2.registered.clients\project-tican-oauth2-registered-clients-business\src\main\java\com\tican\oauth2\clients\config" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.authentication.server\project-ofb-authentication-server\src\main\java\com\ofb\authentication\service" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.authentication.server\project-ofb-authentication-server\src\main\resources\keystore" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__oracle" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\99-giuliana\spring-security-template\src\main\resources\keystore" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ofb.authentication.controller" />
+      <recent name="com.ofb.authentication.service" />
+      <recent name="com.ofb.authentication.repository" />
+      <recent name="com.ofb.authentication.model" />
+      <recent name="com.spring.security.repository" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Consents">
+    <list>
+      <item itemvalue="Application.1-Discovery" />
+      <item itemvalue="Application.2-Gateway" />
+      <item itemvalue="Application.3-Auth" />
+      <item itemvalue="Application.4-Clients-Business" />
+      <item itemvalue="Application.Accounts" />
+      <item itemvalue="Application.Consents" />
+      <item itemvalue="Application.Customers" />
+      <item itemvalue="Application.Resources" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="" />
+      <created>1692099149595</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692099149595</updated>
+    </task>
+    <task id="LOCAL-00001" summary="AJustes OFB e ida para RegisteredClient Correto">
+      <option name="closed" value="true" />
+      <created>1748866358554</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748866358554</updated>
+    </task>
+    <task id="LOCAL-00002" summary="AJustes OFB e final Disocvery Services, API Gateway e Authorization Server">
+      <option name="closed" value="true" />
+      <created>1749050625447</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749050625447</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Backup antes de atualizar para o novo ofb">
+      <option name="closed" value="true" />
+      <created>1752524075413</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1752524075413</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Atualização com o novo ofb">
+      <option name="closed" value="true" />
+      <created>1752524692205</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1752524692205</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Atualização com o novo ofb">
+      <option name="closed" value="true" />
+      <created>1752524800062</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1752524800062</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Atualização com o novo ofb">
+      <option name="closed" value="true" />
+      <created>1752524873396</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1752524873396</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="AJustes OFB e ida para RegisteredClient Correto" />
+    <MESSAGE value="AJustes OFB e final Disocvery Services, API Gateway e Authorization Server" />
+    <MESSAGE value="Backup antes de atualizar para o novo ofb" />
+    <MESSAGE value="Atualização com o novo ofb" />
+    <option name="LAST_COMMIT_MESSAGE" value="Atualização com o novo ofb" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-interceptors/src/main/java/com/ofb/lib/interceptor/GenericInterceptorHandler.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/controller/AuthenticationController.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/service/AuthenticationService.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/service/JwtService.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/service/JwtService.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-security/src/main/java/com/ofb/lib/security/config/AppSecurityConfig.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-security/src/main/java/com/ofb/lib/security/config/AppServetFilterConfig.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/config/APIWebSecurityConfig.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/Oauth2ApiControllerImpl.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/Oauth2ApiControllerImpl.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/service/JwtService.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
