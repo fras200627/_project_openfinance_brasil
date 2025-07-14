@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.tican.lib.handlers.exception.GlobalControllerExceptionHandler,\
-com.tican.lib.handlers.exception.GlobalRestControllerExceptionHandler

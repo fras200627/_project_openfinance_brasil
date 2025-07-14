@@ -15,7 +15,7 @@
         <module name="ofb-lib-autoconfigure-handlers" />
         <module name="ofb-lib-autoconfigure-interceptors" />
       </profile>
-      <profile name="Annotation profile for ofb-authentication-server" enabled="true">
+      <profile name="Annotation profile for tican-oauth2-registered-clients-business-api" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -26,11 +26,13 @@
           <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="ofb-authentication-server" />
+        <module name="tican-oauth2-registered-clients-business-api" />
         <module name="ofb-lib-autoconfigure-amqp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aulao-spring-security-e-jwt" target="17" />
+      <module name="ofb-oauth2-registered-clients-business-api" target="17" />
       <module name="spring-security-template" target="17" />
       <module name="tican-audit-services-api" target="17" />
       <module name="tican-discovery-services" target="17" />
@@ -38,7 +40,6 @@
       <module name="tican-lib-autoconfigure-handlers" target="17" />
       <module name="tican-lib-autoconfigure-interceptors" target="17" />
       <module name="tican-lib-autoconfigure-security" target="17" />
-      <module name="tican-oauth2-registered-clients-business-api" target="17" />
       <module name="tican-oauth2-registered-clients-domain-api" target="17" />
       <module name="tican-oauth2-users-business-api" target="17" />
       <module name="tican-oauth2-users-domain-api" target="17" />
@@ -56,6 +57,7 @@
       <module name="ofb-lib-autoconfigure-interceptors" options="-parameters" />
       <module name="ofb-lib-autoconfigure-security" options="-parameters" />
       <module name="ofb-lib-common-tools" options="-parameters" />
+      <module name="ofb-oauth2-registered-clients-business-api" options="-parameters" />
       <module name="spring-security-template" options="-parameters" />
       <module name="tican-audit-services-api" options="-parameters" />
       <module name="tican-discovery-services" options="-parameters" />

@@ -31,6 +31,7 @@
         <option value="$PROJECT_DIR$/workspace/99-giuliana/project-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/pom.xml" />
         <option value="$PROJECT_DIR$/__backup/project-ofb-authentication-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -44,7 +45,7 @@
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/pom.xml" />
@@ -400,7 +401,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="JDK_17.0.9" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jdk_17.0.9" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
