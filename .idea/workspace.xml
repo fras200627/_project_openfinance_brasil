@@ -4,24 +4,35 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Ajustes na validação do consentimento">
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/model/AuditRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/client/openapi-authentication-resources.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/client/openapi-registered-clients-resources.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/server/openapi-consents-resources.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="inclusão de funções de mensagens MQ e componente Audit Services.">
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageAuthorizeConsentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageAuthorizeConsentModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageCancelConsentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageCancelConsentModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/config/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditServicesListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/application-local.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/client/openapi-authentication-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/client/openapi-registered-clients-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/server/openapi-consents-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/antrun/build-main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/META-INF/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/META-INF/build-info.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/application-local.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/config/OpenAPIConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditEntity$AuditEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditEntity$AuditEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/listener/AuditServicesListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/service/AuditService.class" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/service/AuditService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/openapi/client/openapi-authentication-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/openapi/client/openapi-registered-clients-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/openapi/server/openapi-consents-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/openapi/server/openapi-health-checks-resources.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/sboot-atom-audit-services-1.0.0-ofb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/sboot-atom-audit-services-1.0.0-ofb.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/sboot-atom-audit-services-1.0.0-ofb.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/sboot-atom-audit-services-1.0.0-ofb.jar.original" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,9 +87,9 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.1-Discovery.executor": "Run",
-    "Application.2-Gateway.executor": "Run",
-    "Application.3-Auth.executor": "Run",
-    "Application.4-Clients-Business.executor": "Run",
+    "Application.2-Gateway.executor": "Debug",
+    "Application.3-Auth.executor": "Debug",
+    "Application.4-Clients-Business.executor": "Debug",
     "Application.Audit.executor": "Debug",
     "Application.Consents.executor": "Debug",
     "Application.OFB-API Gateway.executor": "Run",
@@ -156,7 +167,7 @@
       <recent name="com.ofb.authentication.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.1-Discovery">
+  <component name="RunManager" selected="Application.Audit">
     <list>
       <item itemvalue="Application.1-Discovery" />
       <item itemvalue="Application.2-Gateway" />
@@ -258,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752668383137</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="inclusão de funções de mensagens MQ e componente Audit Services.">
+      <option name="closed" value="true" />
+      <created>1752692616432</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1752692616432</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,25 +298,21 @@
     <MESSAGE value="Backup antes de atualizar para o novo ofb" />
     <MESSAGE value="Atualização com o novo ofb" />
     <MESSAGE value="Ajustes na validação do consentimento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustes na validação do consentimento" />
+    <MESSAGE value="inclusão de funções de mensagens MQ e componente Audit Services." />
+    <option name="LAST_COMMIT_MESSAGE" value="inclusão de funções de mensagens MQ e componente Audit Services." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditServicesListener.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="43" />
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/service/MessageService.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditEntity.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="46" />
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/service/MessageService.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

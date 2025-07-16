@@ -1,0 +1,165 @@
+spring:
+  application:
+    name: ofb-audit-services
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: ${API_JPA_SHOW_SQL:true}
+    hibernate:
+      ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
+server:
+  error:
+    include-stacktrace: never
+jwt:
+  issuer: banco-tcn-openfinance-brasil
+  private:
+    key: classpath:keystore/app.private.key
+  public:
+    key: classpath:keystore/app.public.key
+app:
+  listOfServers: #server item: id, description, url
+    - 0, 'OFB Server at LOCAL execution', http://localhost/3000
+    - 1, 'OFB Server at DOCKER execution', http://localhost/5000
+    - 2, 'OFB Server at K8S execution', http://localhost/7000
+eureka:
+  instance:
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:ofb-discovery-services}
+    instance-id: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+resilience4j:
+  circuitBreaker:
+    instances:
+      authServerDomain:
+        waitDurationInOpenState: 50s
+        minimumNumberOfCalls: 2
+        slidingWindowSize: 3
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/ofb?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_ROOT_PWD:root}
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enable: true
+          max-attempts: 2
+#          initial-interval: 3000
+#          max-interval: 10000
+#          multiplier: 2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
+amqp:
+  audit_services:
+    queue: ofb.audit.queue
+    exchange: ofb.audit.ex
+    dlq: ofb.audit.dlq
+    dlx: ofb.audit.dlx
+  ofb_consents_cancel:
+    queue: ofb.consents.cancel.queue
+    exchange: ofb.consents.cancel.ex
+    dlq: ofb.consents.cancel.dlq
+    dlx: ofb.consents.cancel.dlx
+  ofb_consents_authorization:
+    queue: ofb.consents.auth.queue
+    exchange: ofb.consents.auth.ex
+    dlq: ofb.consents.authn.dlq
+    dlx: ofb.consents.auth.dlx
+server:
+  port: 3301 # set to "0" if you want eureka-server to determine a port dynamically
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:mysql://localhost:3306/ofb?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_ROOT_PWD:root}
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enable: true
+          max-attempts: 2
+          initial-interval: 3000
+          max-interval: 10000
+          multiplier: 2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.1.1:3000/eureka
+amqp:
+  audit_services:
+    queue: ofb.audit.queue
+    exchange: ofb.audit.ex
+    dlq: ofb.audit.dlq
+    dlx: ofb.audit.dlx
+  ofb_consents_cancel:
+    queue: ofb.consents.cancel.queue
+    exchange: ofb.consents.cancel.ex
+    dlq: ofb.consents.cancel.dlq
+    dlx: ofb.consents.cancel.dlx
+  ofb_consents_authorization:
+    queue: ofb.consents.auth.queue
+    exchange: ofb.consents.auth.ex
+    dlq: ofb.consents.authn.dlq
+    dlx: ofb.consents.auth.dlx
+server:
+  port: 3301 # set to "0" if you want eureka-server to determine a port dynamically
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    url: jdbc:mysql://localhost:3306/ofb?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_ROOT_PWD:root}
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enable: true
+          max-attempts: 2
+          initial-interval: 3000
+          max-interval: 10000
+          multiplier: 2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.0.1.1:3000/eureka
+amqp:
+  audit_services:
+    queue: ofb.audit.queue
+    exchange: ofb.audit.ex
+    dlq: ofb.audit.dlq
+    dlx: ofb.audit.dlx
+  ofb_consents_cancel:
+    queue: ofb.consents.cancel.queue
+    exchange: ofb.consents.cancel.ex
+    dlq: ofb.consents.cancel.dlq
+    dlx: ofb.consents.cancel.dlx
+  ofb_consents_authorization:
+    queue: ofb.consents.auth.queue
+    exchange: ofb.consents.auth.ex
+    dlq: ofb.consents.authn.dlq
+    dlx: ofb.consents.auth.dlx
+server:
+  port: 3301 # set to "0" if you want eureka-server to determine a port dynamically

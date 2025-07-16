@@ -1,6 +1,7 @@
 package com.ofb.audit.entity;
 
 import com.ofb.audit.model.AuditRecord;
+import com.ofb.lib.amqp.model.MessageAuditTemplate;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -32,19 +33,19 @@ public class AuditEntity {
     @Column(name= "XFAPIINTERACTIONID")
     private String xFapiInteractionId;
 
-    @Column(name="REQUESTTIME", nullable = true, columnDefinition="REQUEST DATE-TIME")
+    @Column(name="REQUESTTIME")
     private String requestTime;
 
-    @Column(name= "REQUESTURI", length = 400, nullable = false, columnDefinition="REQUEST URI")
+    @Column(name= "REQUESTURI")
     private String requestUri;
 
-    @Column(name= "REQUESTMETHOD", length = 100, nullable = false, columnDefinition="REQUEST METHOD")
+    @Column(name= "REQUESTMETHOD")
     private String requestMethod;
 
-    @Column(name= "REQUESTUSERNAME", length = 100, nullable = false, columnDefinition="REQUEST USER NAME")
+    @Column(name= "REQUESTUSERNAME")
     private String requestUserName;
 
-    @Column(name= "PAYLOAD", length = 4000, nullable = false, columnDefinition="PAYLOAD")
+    @Column(name= "PAYLOAD")
     private String payload;
 
     public AuditEntity(AuditRecord request) {
@@ -58,5 +59,18 @@ public class AuditEntity {
         this.requestUserName = request.request_user_name() == null ? "not informed" : request.request_user_name();
         this.payload         = request.payload() == null ? "not infomrmed" : request.payload();
     }
+
+    public AuditEntity(MessageAuditTemplate request) {
+        this.id              = (long) (Math.random() * 999999999 + 1);
+        this.createAt        = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+        this.xTicketId          = request.getTicket() == null ? "not informed" : request.getTicket();
+        this.xFapiInteractionId = request.getInteractionId() == null ? "not informed" : request.getInteractionId();
+        this.requestTime     = request.getRequestTime() == null ? "not informed" : request.getRequestTime();
+        this.requestUri      = request.getRequestUri() == null ? "not informed" : request.getRequestUri();
+        this.requestMethod   = request.getRequestMethod() == null ? "not informed" : request.getRequestMethod();
+        this.requestUserName = request.getRequestUserName() == null ? "not informed" : request.getRequestUserName();
+        this.payload         = request.getPayload() == null ? "not infomrmed" : request.getPayload();
+    }
+
 }
 

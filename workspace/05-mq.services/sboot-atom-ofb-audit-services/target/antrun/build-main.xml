@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="maven-antrun-" default="main">
-  <target name="main">
-    <delete dir="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services\sboot-atom-ofb-audit-services\target/generated-sources/oauth2/clients/api/server/src/test/java/org" />
-    <delete dir="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services\sboot-atom-ofb-audit-services\target/generated-sources/oauth2/clients/api/server/src/main/java/org" />
-  </target>
-</project>
