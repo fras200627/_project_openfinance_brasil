@@ -11,12 +11,9 @@ spring:
     port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
     username: ${RABBITMQ_DEFAULT_USER:guest}
     password: ${RABBITMQ_DEFAULT_PWD:guest}
-#amqp:
-#  audit_services:
-#    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
-#    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
-#    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
-#    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+
+# rabbitmq-plugins enable rabbitmq_management
+# http://localhost:15672 (guest/guest)
 ---
 spring:
   config:
@@ -27,12 +24,7 @@ spring:
     port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
     username: ${RABBITMQ_DEFAULT_USER:ofb}
     password: ${RABBITMQ_DEFAULT_PASS:ofb}
-#amqp:
-#  audit_services:
-#    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
-#    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
-#    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
-#    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+
 ---
 spring:
   config:
@@ -43,9 +35,3 @@ spring:
     port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
     username: ${RABBITMQ_DEFAULT_USER:ofb}
     password: ${RABBITMQ_DEFAULT_PASS:ofb}
-#amqp:
-#  audit_services:
-#    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
-#    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
-#    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
-#    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}

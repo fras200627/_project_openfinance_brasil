@@ -3,14 +3,15 @@ package com.ofb.consents.handler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.ofb.consents.exception.ConsentGlobalException;
-import com.ofb.consents.exception.ConsentResponseErrorException;
+import com.ofb.consents.enums.ConsentResponseEnum;
+import com.ofb.consents.exception.ConsentBadRequestException;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.server.consents.resources.model.MetaError;
 import com.ofb.consents.server.consents.resources.model.ResponseError;
 import com.ofb.consents.server.consents.resources.model.ResponseErrorErrorsInner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -37,7 +38,6 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ofb.consents.server.consents.resources.model.ResponseErrorUnprocessableEntityErrorsInner;
 import org.springframework.web.method.annotation.MethodArgumentConversionNotSupportedException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
@@ -72,6 +72,86 @@ public class RestControllerAdviceHandler {
         request.setAttribute("ERROR", true);
     }
 
+    private record buildBobyResponse(String field, String message) {
+        public buildBobyResponse(FieldError error) {
+            this(error.getField(), error.getDefaultMessage());
+        }
+    }
+
+    /* ------------------------------------------------------------------------ */
+    @ExceptionHandler(ConsentUnprocessedEntityException.class)
+    public ResponseEntity handleException(ConsentUnprocessedEntityException ex) {
+        String[] messageDetails = ex.getLocalizedMessage().split(":");
+        this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<ResponseErrorErrorsInner> errors = new ArrayList<>();
+        try {
+            errors = objectMapper.readValue(ex.getMessage(), new TypeReference<List<ResponseErrorErrorsInner>>(){});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+
+        response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));
+        response.addHeader("x-webhook-interaction-id", response.getHeader("x-fapi-interaction-id"));
+
+        return ResponseEntity.unprocessableEntity().body(new ResponseError().toBuilder()
+                .errors(errors)
+                .meta(meta)
+                .build());
+    }
+    /* ------------------------------------------------------------------------ */
+
+    /* ------------------------------------------------------------------------ */
+    @ExceptionHandler(ConsentBadRequestException.class)
+    public ResponseEntity handleException(ConsentBadRequestException ex) {
+        String[] messageDetails = ex.getLocalizedMessage().split(":");
+        this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
+
+        List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
+        errors.add(new ResponseErrorErrorsInner().toBuilder()
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .detail(ex.getMessage())
+                .build());
+
+        MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+        response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));
+        response.addHeader("x-webhook-interaction-id", response.getHeader("x-fapi-interaction-id"));
+
+        return ResponseEntity.badRequest().body(new ResponseError().toBuilder()
+                .errors(errors)
+                .meta(meta)
+                .build());
+    }
+    /* ------------------------------------------------------------------------ */
+
+    /* ------------------------------------------------------------------------ */
+    @ExceptionHandler(ConsentInternalErrorException.class)
+    public ResponseEntity handleException(ConsentInternalErrorException ex) {
+        String[] messageDetails = ex.getLocalizedMessage().split(":");
+        this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
+
+        List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
+        errors.add(new ResponseErrorErrorsInner().toBuilder()
+                .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                .title(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.toString())
+                .detail(ex.getMessage())
+                .build());
+
+        MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+        response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));
+        response.addHeader("x-webhook-interaction-id", response.getHeader("x-fapi-interaction-id"));
+
+        return ResponseEntity.internalServerError().body(new ResponseError().toBuilder()
+                .errors(errors)
+                .meta(meta)
+                .build());
+    }
+    /* ------------------------------------------------------------------------ */
+    
     /* ------------------------------------------------------------------------ */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity handleException(MethodArgumentTypeMismatchException ex){
@@ -81,8 +161,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -108,8 +188,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -135,8 +215,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -162,8 +242,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -189,8 +269,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -216,8 +296,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -244,8 +324,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -272,8 +352,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -288,13 +368,6 @@ public class RestControllerAdviceHandler {
                 .meta(meta)
                 .build());
     }
-
-
-    private record buildBobyResponse(String field, String message) {
-        public buildBobyResponse(FieldError error) {
-            this(error.getField(), error.getDefaultMessage());
-        }
-    }
     /* ------------------------------------------------------------------------ */
 
     /* ------------------------------------------------------------------------ */
@@ -306,8 +379,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -333,8 +406,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -360,8 +433,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -387,8 +460,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -414,61 +487,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
-                .detail(ex.getMessage())
-                .build());
-
-        MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
-
-//        response.addHeader("Content-Encoding", "gzip");
-        response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));
-        response.addHeader("x-webhook-interaction-id", response.getHeader("x-fapi-interaction-id"));
-
-        return ResponseEntity.internalServerError().body(new ResponseError().toBuilder()
-                .errors(errors)
-                .meta(meta)
-                .build());
-    }
-    /* ------------------------------------------------------------------------ */
-
-    /* ------------------------------------------------------------------------ */
-    @ExceptionHandler(ConsentResponseErrorException.class)
-    public ResponseEntity handleException(ConsentResponseErrorException ex) {
-        String[] messageDetails = ex.getLocalizedMessage().split(":");
-        this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<ResponseErrorErrorsInner> responseErrors = new ArrayList<>();
-        try {
-            responseErrors = objectMapper.readValue(ex.getMessage(), new TypeReference<List<ResponseErrorErrorsInner>>(){});
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
-        MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
-
-//        response.addHeader("Content-Encoding", "gzip");
-        response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));
-        response.addHeader("x-webhook-interaction-id", response.getHeader("x-fapi-interaction-id"));
-
-        return ResponseEntity.unprocessableEntity().body(new ResponseError().toBuilder()
-                .errors(responseErrors)
-                .meta(meta)
-                .build());
-    }
-    /* ------------------------------------------------------------------------ */
-
-    /* ------------------------------------------------------------------------ */
-    @ExceptionHandler(ConsentGlobalException.class)
-    public ResponseEntity handleException(ConsentGlobalException ex) {
-        String[] messageDetails = ex.getLocalizedMessage().split(":");
-        this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
-
-        List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
-        errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -493,8 +513,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 
@@ -519,8 +539,8 @@ public class RestControllerAdviceHandler {
 
         List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
         errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.toString())
+                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
                 .detail(ex.getMessage())
                 .build());
 

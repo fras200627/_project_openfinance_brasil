@@ -3,7 +3,8 @@ package com.ofb.consents.service.persistence;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentResponseErrorException;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.server.consents.resources.model.ResponseErrorErrorsInner;
@@ -44,7 +45,8 @@ public class ConsentAwaitingAuthorizationService {
      * <p><b>Note</b></p>
      * <p>In the 'objectData' field, returns the updated ConsentPersonalData object
      * <br>
-     * @throws ConsentResponseErrorException
+     * @throws ConsentUnprocessedEntityException
+     * @throws ConsentInternalErrorException
      * <p>If an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel updateConsentToAwatingAuthorization(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
@@ -59,11 +61,11 @@ public class ConsentAwaitingAuthorizationService {
             if (objectData == null) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                         .title("Consent create: Error in validate objectData.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the ConsentPersonalData.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -75,11 +77,11 @@ public class ConsentAwaitingAuthorizationService {
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                     .title("Consent update: Error in validation of objectData.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error occurred while checking the data object.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -99,11 +101,11 @@ public class ConsentAwaitingAuthorizationService {
         } catch (Exception ex) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                     .title("Consent: Error consent creation.")
-                    .code(ConsentResponseEnum.CodeEnum.ERROR_CREATION_CONSENT_REQUIRED.getValue())
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Internal Error creation consent required.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

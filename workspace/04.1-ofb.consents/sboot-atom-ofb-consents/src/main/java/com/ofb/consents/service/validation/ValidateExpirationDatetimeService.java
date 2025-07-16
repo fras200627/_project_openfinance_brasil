@@ -2,7 +2,8 @@ package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
 import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentResponseErrorException;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.model.RespponseExpirationDatetimeModel;
 import com.ofb.consents.server.consents.resources.model.CreateConsent;
@@ -54,7 +55,8 @@ public class ValidateExpirationDatetimeService {
      * <p><b>Note</b></p>
      * <p>in the 'objectData' field, returns a ResponseExpirationDatetimeModel object
      * <br>
-     * @throws ConsentResponseErrorException
+     * @throws ConsentUnprocessedEntityException
+     * @throws ConsentInternalErrorException
      * <p>if an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel validateExpirationDateInfo(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
@@ -77,12 +79,12 @@ public class ValidateExpirationDatetimeService {
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent validate: Error in validate ExpirationDatetime.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                    .detail("ExpirationDatetime verification error. ExpirationDatetime is mandatory and must inform the ExpirationDatetime value.")
+                    .title("Consent ExpirationDatetime validate")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("ExpirationDatetime is mandatory and must inform the ExpirationDatetime value.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -94,14 +96,14 @@ public class ValidateExpirationDatetimeService {
         try {
             if (expirationDateTimeParam == null) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: ExpirationDatetime invalid.")
+                        .title("Consent ExpirationDatetime validate")
                         .code(ConsentResponseEnum.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
                         .detail("The Payload without the 'expirationDatetime' tag. " +
                                 "The tag is mandatory and an empty date can be entered " +
                                 "indicating that the consent will have an indefinite expiration date.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -130,12 +132,12 @@ public class ValidateExpirationDatetimeService {
 
             if (pattern.matcher(zuluDateTime).matches() == false) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: Error in validate ExpirationDateTime.")
-                        .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
+                        .title("Consent ExpirationDatetime validate")
+                        .code(ConsentResponseEnum.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
                         .detail("Expiration Date Time '" + zuluDateTime + "' is invalid! Expiration date must follow the pattern 'yyyy-MM-ddTHH:mm:ssZ'.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -148,17 +150,16 @@ public class ValidateExpirationDatetimeService {
             OffsetDateTime actualDateTime = OffsetDateTime.now(ZoneId.of("UTC"));
             OffsetDateTime expirationDateTimeAdj = expirationDateTime.truncatedTo(ChronoUnit.DAYS).plusHours(23L).plusMinutes(59L).plusSeconds(59);
             expirationDateTimeAdjusted = Timestamp.valueOf(expirationDateTimeAdj.toString().replace("T", " ").replace("Z", ""));
-            ;
             expirationDateTimeStamp = Timestamp.valueOf(expirationDateTimeAdj.toString().replace("T", " ").replace("Z", ""));
 
             if (expirationDateTime.isBefore(actualDateTime) || expirationDateTime.isEqual(actualDateTime)) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: Error in validate ExpirationDateTime.")
-                        .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
+                        .title("Consent ExpirationDatetime validate")
+                        .code(ConsentResponseEnum.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
                         .detail("Expiration Date Time '" + zuluDateTime + "' is invalid! The expiration date cannot be less than or equal to the current date.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -175,14 +176,14 @@ public class ValidateExpirationDatetimeService {
                 expirationDateInfo = ExpirationOptions.ANUAL.name();
             } else {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: Error in validate ExpirationDateTime.")
-                        .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
+                        .title("Consent ExpirationDatetime validate")
+                        .code(ConsentResponseEnum.CodeEnum.DATA_EXPIRACAO_INVALIDA.getValue())
                         .detail("Expiration Date Time '" + zuluDateTime + "' is invalid! " +
                                 "The expiration date must follow the rule of the term: TRIMESTRAL, SEMESTRAL ou ANUAL. " +
                                 "(Day-month-year terms must be exact from the current date. Note: HH:mm:ss are not considered)")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -205,9 +206,9 @@ public class ValidateExpirationDatetimeService {
         } catch (Exception e) {
             log.error(e.getMessage());
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent validate: Error in validate ExpirationDateTime.")
-                    .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                    .detail("Consent validate: " + e.getMessage())
+                    .title("Consent ExpirationDatetime validate")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("Error in validate ExpirationDateTime")
                     .build());
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

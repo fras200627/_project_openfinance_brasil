@@ -14,18 +14,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration @Slf4j
-public class AMQPServicesConfig {
+public class AMQPAuditServicesConfig {
 
-    @Value("${amqp.audit_services.audit_queue}")
+    @Value("${amqp.audit_services.queue}")
     private String AMQP_AUDIT_QUEUE;
 
-    @Value("${amqp.audit_services.audit_exchange}")
+    @Value("${amqp.audit_services.exchange}")
     private String AMQP_AUDIT_EXCHANGE;
 
-    @Value("${amqp.audit_services.audit_dlq}")
+    @Value("${amqp.audit_services.dlq}")
     private String AMQP_AUDIT_DLQ;
 
-    @Value("${amqp.audit_services.audit_dlx}")
+    @Value("${amqp.audit_services.dlx}")
     private String AMQP_AUDIT_DLX;
 
     //-------------------------------------------------------------------------
@@ -41,12 +41,12 @@ public class AMQPServicesConfig {
         return event -> rabbitAdmin.initialize();
     }
 
-    //-------------------------------------------------------------------------
+    /// -------------------------------------------------------------------------
     @Bean
     public Queue deadLetterActivityTracking() {
         log.info("OFB Messaging Services -->>>  RabbitMQ setting Dead Letter Queue =[" + AMQP_AUDIT_DLQ + "].");
         return QueueBuilder
-                .nonDurable(AMQP_AUDIT_DLQ)
+                .durable(AMQP_AUDIT_DLQ)
                 .build();
     }
     
@@ -72,7 +72,7 @@ public class AMQPServicesConfig {
         log.info("OFB Messaging Services -->>>  RabbitMQ setting Dead Letter Queue in Dead Letter Exchange =[" +
                 AMQP_AUDIT_QUEUE + "/" + AMQP_AUDIT_DLX + "].");
         return QueueBuilder
-                .nonDurable(AMQP_AUDIT_QUEUE)
+                .durable(AMQP_AUDIT_QUEUE)
                 .deadLetterExchange(AMQP_AUDIT_DLX)
                 .build();
     }

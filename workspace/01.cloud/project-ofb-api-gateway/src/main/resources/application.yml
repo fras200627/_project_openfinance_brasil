@@ -52,10 +52,20 @@ eureka:
       defaultZone: http://localhost:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+    queue: ofb.audit.queue
+    exchange: ofb.audit.ex
+    dlq: ofb.audit.dlq
+    dlx: ofb.audit.dlx
+  ofb_consents_cancel:
+    queue: ofb.consents.cancel.queue
+    exchange: ofb.consents.cancel.ex
+    dlq: ofb.consents.cancel.dlq
+    dlx: ofb.consents.cancel.dlx
+  ofb_consents_authorization:
+    queue: ofb.consents.auth.queue
+    exchange: ofb.consents.auth.ex
+    dlq: ofb.consents.authn.dlq
+    dlx: ofb.consents.auth.dlx
 ---
 spring:
   config:
@@ -69,10 +79,20 @@ eureka:
       defaultZone: http://10.0.1.1:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+    queue: ofb.audit.queue
+    exchange: ofb.audit.ex
+    dlq: ofb.audit.dlq
+    dlx: ofb.audit.dlx
+  ofb_consents_cancel:
+    queue: ofb.consents.cancel.queue
+    exchange: ofb.consents.cancel.ex
+    dlq: ofb.consents.cancel.dlq
+    dlx: ofb.consents.cancel.dlx
+  ofb_consents_authorization:
+    queue: ofb.consents.auth.queue
+    exchange: ofb.consents.auth.ex
+    dlq: ofb.consents.authn.dlq
+    dlx: ofb.consents.auth.dlx
 ---
 spring:
   config:
@@ -86,7 +106,17 @@ eureka:
       defaultZone: http://10.152.183.103:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.dlx}
+    queue: ofb.audit.queue
+    exchange: ofb.audit.ex
+    dlq: ofb.audit.dlq
+    dlx: ofb.audit.dlx
+  ofb_consents_cancel:
+    queue: ofb.consents.cancel.queue
+    exchange: ofb.consents.cancel.ex
+    dlq: ofb.consents.cancel.dlq
+    dlx: ofb.consents.cancel.dlx
+  ofb_consents_authorization:
+    queue: ofb.consents.auth.queue
+    exchange: ofb.consents.auth.ex
+    dlq: ofb.consents.authn.dlq
+    dlx: ofb.consents.auth.dlx

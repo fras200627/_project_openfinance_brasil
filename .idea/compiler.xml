@@ -15,7 +15,7 @@
         <module name="ofb-lib-autoconfigure-handlers" />
         <module name="ofb-lib-autoconfigure-interceptors" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
+      <profile name="Annotation profile for tican-oauth2-registered-clients-business-api" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

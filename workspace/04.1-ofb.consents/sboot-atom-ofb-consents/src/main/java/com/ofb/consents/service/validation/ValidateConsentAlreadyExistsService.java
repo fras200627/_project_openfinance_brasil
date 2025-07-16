@@ -2,7 +2,8 @@ package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
 import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentResponseErrorException;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.*;
 import com.ofb.consents.repository.views.*;
 import com.ofb.consents.server.consents.resources.model.*;
@@ -42,7 +43,8 @@ public class ValidateConsentAlreadyExistsService {
      * @return ResponseValidateConsentModel
      * <p>Return ObjectResponse with results for validation
      * <br>
-     * @throws ConsentResponseErrorException
+     * @throws ConsentUnprocessedEntityException
+     * @throws ConsentInternalErrorException
      * <p>if an error occurs while attempting to invoke the method<p></p>
      */
     public ResponseValidateConsentModel validateConsentAlreadyExists(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
@@ -54,12 +56,12 @@ public class ValidateConsentAlreadyExistsService {
         try {
             if (objectData == null) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: Error in validate LoggedUser.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .title("Consent Already Exists validate")
+                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -78,12 +80,12 @@ public class ValidateConsentAlreadyExistsService {
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent validate: Error in validate LoggedUser.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                    .title("Consent Already Exists validate")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("LoggedUser verification error. Logged User is mandatory and must inform the LoggedUser document.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -97,8 +99,8 @@ public class ValidateConsentAlreadyExistsService {
                     .findAllConsentsEnabledByDocumentIdentification(personalIdentification);
             if (!listOfConsentsPersonalEnabled.isEmpty()) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: One consent already exists.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .title("Consent Already Exists validate")
+                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("The requested LoggedUser identified in 'document' already has consent registered " +
                                 "- in AWAITING_AUTHORISATION or AUTHORISED status - " +
                                 "and this request will not be accepted." +
@@ -106,7 +108,7 @@ public class ValidateConsentAlreadyExistsService {
                                 "to extend the expiration date or modify permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -116,12 +118,12 @@ public class ValidateConsentAlreadyExistsService {
         } catch (Exception e) {
             log.error(e.getMessage());
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent validate: An error occurred while checking the already consent exists.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                    .detail("Consent validate: An error occurred while checking the already consent exists.")
+                    .title("Consent Already Exists validate")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An error occurred while checking the already consent exists.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

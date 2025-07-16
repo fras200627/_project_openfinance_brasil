@@ -2,7 +2,8 @@ package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
 import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentResponseErrorException;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ResourcePermissionsModel;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.views.*;
@@ -43,7 +44,8 @@ public class ValidatePermissionsRequestedService {
      * <p><b>Note</b></p>
      * <p>in the 'objectData' field, returns a Validate List object of ResponseConsentData.PermissionsEnum
      * </br>
-     * @throws ConsentResponseErrorException
+     * @throws ConsentUnprocessedEntityException
+     * @throws ConsentInternalErrorException
      * <p>if an error occurs while trying to invoke the method
      */
     public ResponseValidateConsentModel validateRequestedPermissionsExists(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
@@ -57,12 +59,12 @@ public class ValidatePermissionsRequestedService {
         try {
             if (objectData == null) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: Error in validate LoggedUser.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .title("Consent Permissions Requested validate")
+                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -78,12 +80,12 @@ public class ValidatePermissionsRequestedService {
             }
             if (permissionsData == null || permissionsData.isEmpty()) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: Permissions invalid.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .title("Consent Permissions Requested validate")
+                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("payload without the permissions tag or tag without informed permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -92,12 +94,12 @@ public class ValidatePermissionsRequestedService {
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent validate: Permissions invalid.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                    .title("Consent Permissions Requested validate")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("payload without the permissions tag or tag without informed permissions.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -117,12 +119,12 @@ public class ValidatePermissionsRequestedService {
 
             if (permissionsRequested.isEmpty() || (permissionsRequested.size() == 1 && permissionsRequested.get(0).toString().equals("RESOURCES_READ"))) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent validate: No permissions available.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .title("Consent Permissions Requested validate")
+                        .code(ConsentResponseEnum.CodeEnum.COMBINACAO_PERMISSOES_INCORRETA.getValue())
                         .detail("No permissions were found as available from the requested permissions list.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -137,12 +139,12 @@ public class ValidatePermissionsRequestedService {
                 }
                 if (permissionsResponse.isEmpty() || (permissionsResponse.size() == 1 && permissionsResponse.get(0).toString().equals("RESOURCES_READ"))) {
                     listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                            .title("Consent validate: No permissions available.")
-                            .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                            .title("Consent Permissions Requested validate")
+                            .code(ConsentResponseEnum.CodeEnum.COMBINACAO_PERMISSOES_INCORRETA.getValue())
                             .detail("No permissions were found as available from the requested permissions list.")
                             .build());
                     if (executeThrowImmediately) {
-                        throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                        throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
                     }
                     return ResponseValidateConsentModel.builder()
                             .errorsListed(true)
@@ -153,12 +155,12 @@ public class ValidatePermissionsRequestedService {
         } catch (Exception e) {
             log.error(e.getMessage());
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent validate: Error in validate Consent Permissions.")
-                    .code(ResponseErrorUnprocessableEntityErrorsInner.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                    .detail("Consent validate: " + e.getMessage())
+                    .title("Consent Permissions Requested validate")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("Consent Permissions Requested validate: " + e.getMessage())
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

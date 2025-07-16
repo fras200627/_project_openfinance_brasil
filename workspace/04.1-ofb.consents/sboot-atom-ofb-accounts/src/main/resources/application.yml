@@ -85,10 +85,10 @@ eureka:
       defaultZone: http://localhost:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.admin.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.admin.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.admin.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.admin.dlx}
+    audit_queue: ofb.audit.queue
+    audit_exchange: ofb.audit.ex
+    audit_dlq: ofb.audit.dlq
+    audit_dlx: ofb.audit.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -120,10 +120,10 @@ eureka:
       defaultZone: http://10.0.1.1:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.admin.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.admin.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.admin.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.admin.dlx}
+    audit_queue: ofb.audit.queue
+    audit_exchange: ofb.audit.ex
+    audit_dlq: ofb.audit.dlq
+    audit_dlx: ofb.audit.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -160,10 +160,10 @@ eureka:
       defaultZone: http://10.152.183.103:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.admin.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.admin.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.admin.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.admin.dlx}
+    audit_queue: ofb.audit.queue
+    audit_exchange: ofb.audit.ex
+    audit_dlq: ofb.audit.dlq
+    audit_dlx: ofb.audit.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:

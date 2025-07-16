@@ -3,7 +3,9 @@ package com.ofb.consents.service.persistence;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPermissionsRequested;
 import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentResponseErrorException;
+import com.ofb.consents.exception.ConsentBadRequestException;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.ConsentPermissionsRequestedRepository;
 import com.ofb.consents.repository.views.ResourcePermissionsViewRepository;
@@ -16,9 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -63,7 +62,7 @@ public class ConsentCreatePermissionsService {
      * <p><b>Note</b></p>
      * <p>In the 'objectData' field, returns a Validate List object of ResponseConsentData.PermissionsEnum
      * <br>
-     * @throws ConsentResponseErrorException
+     * @throws ConsentUnprocessedEntityException
      * <p>If an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel insertConsentPermissions(Object objectData,
@@ -82,11 +81,11 @@ public class ConsentCreatePermissionsService {
             if (objectData == null) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                         .title("Consent validate: Error in validate LoggedUser.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -102,11 +101,11 @@ public class ConsentCreatePermissionsService {
             if (permissionsData == null || permissionsData.isEmpty()) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                         .title("Consent validate: Permissions invalid.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("payload without the permissions tag or tag without informed permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentBadRequestException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -116,11 +115,11 @@ public class ConsentCreatePermissionsService {
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                     .title("Consent validate: Permissions invalid.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("payload without the permissions tag or tag without informed permissions.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -134,11 +133,11 @@ public class ConsentCreatePermissionsService {
             if (referenceId == null) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                         .title("Consent validate: Error in validate referenceId.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -150,11 +149,11 @@ public class ConsentCreatePermissionsService {
             if (consentId.isEmpty() || consentId.isBlank()) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                         .title("Consent validate: Error in validate referenceId.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -164,11 +163,11 @@ public class ConsentCreatePermissionsService {
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                     .title("Consent validate: Error in validate referenceId.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -195,14 +194,14 @@ public class ConsentCreatePermissionsService {
             }
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            if (executeThrowImmediately) {
-                throw new ConsentResponseErrorException(new Gson().toJson(listResponseErrors));
-            }
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                     .title("Consent: Error consent permissions creation.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Internal Error creation consent permissions required. Consent cancelled")
                     .build());
+            if (executeThrowImmediately) {
+                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+            }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
                     .responseErrorsList(listResponseErrors)

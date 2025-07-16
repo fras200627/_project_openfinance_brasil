@@ -3,8 +3,10 @@ package com.ofb.consents.service.orchestration;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentResponseErrorException;
-import com.ofb.consents.model.ConsentPersonalModel;
+import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.consents.model.MQSendMessageAuthorizeConsentModel;
+import com.ofb.consents.model.MQSendMessageCancelConsentModel;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.*;
 import com.ofb.consents.repository.views.*;
@@ -14,22 +16,25 @@ import com.ofb.consents.service.persistence.ConsentCreateService;
 import com.ofb.consents.service.persistence.ConsentCreatePermissionsService;
 import com.ofb.consents.service.persistence.ConsentAwaitingAuthorizationService;
 import com.ofb.consents.service.validation.*;
-import com.ofb.lib.amqp.model.MessageAuditTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service @Slf4j
 public class ConsentOrchestrationService {
+
+    @Autowired private HttpServletRequest httpServletRequest;
 
     @Value("${app.consents.validate.check-if-consent-already-exists}")
     private boolean consentsValidateAlreadyExists;
@@ -40,19 +45,22 @@ public class ConsentOrchestrationService {
     @Value("${app.consents.consent-id-urn-use}")
     private String consentIdUrnUse;
 
-    @Value("${amqp.audit_services.audit_exchange}")
-    private String queueConsentAdmin;
+    @Value("${amqp.ofb_consents_cancel.exchange}")
+    private String queueConsentCancel;
 
-    @Autowired private ValidateBusinessEntityService validateBusinessEntityService;
-    @Autowired private ValidateLoggedUserService validateLoggedUserService;
-    @Autowired private ValidateConsentAlreadyExistsService validateConsentAlreadyExistsService;
-    @Autowired private ValidateExpirationDatetimeService validateExpirationDatetimeService;
-    @Autowired private ValidateGroupsAndPermissionsService validateGroupsAndPermissionsService;
-    @Autowired private ValidatePermissionsRequestedService validatePermissionsRequestedService;
-    @Autowired private ConsentCreateService consentCreateService;
-    @Autowired private ConsentCancelService consentCancelService;
-    @Autowired private ConsentCreatePermissionsService consentCreatePermissionsService;
-    @Autowired private ConsentAwaitingAuthorizationService consentAwaitingAuthorizationService;
+    @Value("${amqp.ofb_consents_authorization.exchange}")
+    private String queueConsentAuthorization;
+
+    @Autowired private ValidateBusinessEntityService        validateBusinessEntityService;
+    @Autowired private ValidateLoggedUserService            validateLoggedUserService;
+    @Autowired private ValidateConsentAlreadyExistsService  validateConsentAlreadyExistsService;
+    @Autowired private ValidateExpirationDatetimeService    validateExpirationDatetimeService;
+    @Autowired private ValidateGroupsAndPermissionsService  validateGroupsAndPermissionsService;
+    @Autowired private ValidatePermissionsRequestedService  validatePermissionsRequestedService;
+    @Autowired private ConsentCreateService                 consentCreateService;
+    @Autowired private ConsentCancelService                 consentCancelService;
+    @Autowired private ConsentCreatePermissionsService      consentCreatePermissionsService;
+    @Autowired private ConsentAwaitingAuthorizationService  consentAwaitingAuthorizationService;
     @Autowired private ConsentPersonalRepository            consentRepositoryData;
     @Autowired private ConsentPersonalViewRepository        consentRepositoryView;
 
@@ -63,8 +71,8 @@ public class ConsentOrchestrationService {
 
         String consentId = "urn:" + consentIdUrnUse + ":" + UUID.randomUUID().toString();
 
-        ConsentPersonalData          consentCreated;
-        ResponseValidateConsentModel responseValidate;
+        ConsentPersonalData                       consentCreated;
+        ResponseValidateConsentModel              responseValidate;
         List<ResponseConsentData.PermissionsEnum> permissionsResponse   = List.of();
         List<ResponseErrorErrorsInner>            overallResponseErrors = new ArrayList<ResponseErrorErrorsInner>();
 
@@ -92,99 +100,121 @@ public class ConsentOrchestrationService {
         }
 
         if (!overallResponseErrors.isEmpty()) {
-            throw new ConsentResponseErrorException(new Gson().toJson(overallResponseErrors));
+            throw new ConsentUnprocessedEntityException(new Gson().toJson(overallResponseErrors));
         }
-        /// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         ///  STEP 02 - Insert New Consent +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = consentCreateService.insertNewConsent(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
-            throw new ConsentResponseErrorException(new Gson().toJson(responseValidate.getResponseErrorsList()));
+            throw new ConsentUnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
         } else {
             consentCreated = (ConsentPersonalData) responseValidate.getObjectData();
         }
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        /// STEP 03.a - Insert Permissions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            /// (a) - Insert Permissions
-            responseValidate = consentCreatePermissionsService.insertConsentPermissions(createConsent, consentId, false);
-            if (responseValidate.isErrorsListed()) {
-                overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-            }
-            ///  (b) - Verify errors occurences in Insert Permissions and execute Consent Cancel if necessary
-            if (responseValidate.isErrorsListed()) {
-                responseValidate = consentCancelService.cancelConsent(consentCreated, consentId, executeThrowImmediately);
-                if (responseValidate.isErrorsListed()) {
-                    overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-                    throw new ConsentResponseErrorException(new Gson().toJson(overallResponseErrors));
-                }
-            } else {
-                permissionsResponse = (List<ResponseConsentData.PermissionsEnum>) responseValidate.getObjectData();
-            }
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-        /// STEP 04 - Update Status 'AWAITING_AUTHORISED' in Consent ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        responseValidate = consentAwaitingAuthorizationService.updateConsentToAwatingAuthorization(consentCreated, consentId, executeThrowImmediately);
+        /// STEP 03 - Insert Consent Permissions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        responseValidate = consentCreatePermissionsService.insertConsentPermissions(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
-            throw new ConsentResponseErrorException(new Gson().toJson(responseValidate.getResponseErrorsList()));
-        }
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            rabbitTemplate.convertAndSend(queueConsentCancel, "",
+                    MQSendMessageCancelConsentModel.builder()
+                    .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
+                    .consentId(consentId)
+                    .correlationId(consentId)
+                    .reason("Error in create consent permissions")
+                    .objectData(new Gson().toJson(consentCreated))
+                    .objectException(new Gson().toJson(responseValidate.getObjectException()))
+                    .build(),
+                    new CorrelationData(consentId));
 
-        // STEP 05 - Build ResponseConsentData ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            throw new ConsentUnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
+        } else {
+            permissionsResponse = (List<ResponseConsentData.PermissionsEnum>) responseValidate.getObjectData();
+        }
+
+        // STEP 04 - Build ResponseConsentData ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         ResponseConsentData responseConsentData;
         LinksConsents       links;
         Meta                meta;
-
         try {
-            ConsentPersonalModel consentAccept = consentRepositoryView.findById(consentId).get();
-
             responseConsentData = new ResponseConsentData(
-                    consentAccept.getConsentId(),
-                    consentAccept.getCreationDatetime(),
-                    ResponseConsentData.StatusEnum.fromValue(consentAccept.getStatus()),
-                    consentAccept.getStatusUpdateDatetime(),
+                    consentCreated.getConsentId(),
+                    consentCreated.getCreateAt().toString(),
+                    ResponseConsentData.StatusEnum.fromValue("AWAITING_AUTHORISATION"),
+                    consentCreated.getStatusUpdateDatetime().toString(),
                     permissionsResponse);
 
-            if (consentAccept.getExpirationDateInfo().equals("INDETERMINADO")) {
+            if (consentCreated.getExpirationDateInfo().equals("INDETERMINADO")) {
                 responseConsentData.expirationDateTime("PRAZO INDETERMINADO");
             } else {
-                responseConsentData.expirationDateTime(consentAccept.getExpirationDatetime());
+                responseConsentData.expirationDateTime(consentCreated.getExpirationDatetime().toString());
             }
 
-            links = LinksConsents.builder().self(URI.create("https://api.banco.com.br/open-banking/api/v1/consents/")).build();
-            meta  = Meta.builder().requestDateTime(
-                        consentAccept.getCreationDatetime())
-                    .build();
+            links = LinksConsents.builder().self(URI.create("https://api.banco.com.br/open-banking/api/v1/consents/" + consentId)).build();
+            meta  = Meta.builder().requestDateTime(consentCreated.getCreateAt().toString()).build();
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new ConsentResponseErrorException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent: Error in build ResponseConsentData.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                    .detail("Consent Id is: " + consentId)
+            rabbitTemplate.convertAndSend(queueConsentCancel, "",
+                    MQSendMessageCancelConsentModel.builder()
+                            .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
+                            .consentId(consentId)
+                            .correlationId(consentId)
+                            .reason("Error in build responseConsentData")
+                            .objectData(new Gson().toJson(consentCreated))
+                            .objectException(e.getMessage())
+                            .build(),
+                    new CorrelationData(consentId));
+            throw new ConsentInternalErrorException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
+                    .title("Consent error")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("Error builder ResponseConsentData")
                     .build()));
         }
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        // STEP 06 - Post a message consent to Authorization in RabbitMQ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // STEP 05 - Update Status Consent to 'AWAITING_AUTHORISED' and send message consent to Authorization in RabbitMQ +++++++++++
+        responseValidate = consentAwaitingAuthorizationService.updateConsentToAwatingAuthorization(consentCreated, consentId, executeThrowImmediately);
+        if (responseValidate.isErrorsListed()) {
+            rabbitTemplate.convertAndSend(queueConsentCancel, "",
+                    MQSendMessageCancelConsentModel.builder()
+                            .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
+                            .consentId(consentId)
+                            .correlationId(consentId)
+                            .reason("Error in update status consent")
+                            .objectData(new Gson().toJson(consentCreated))
+                            .objectException(new Gson().toJson(responseValidate.getObjectException()))
+                            .build(),
+                    new CorrelationData(consentId));
+            throw new ConsentUnprocessedEntityException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
+                    .title("Consent update error")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("Error updating consent status for AWAITING_AUTHORISATION")
+                    .build()));
+        }
+
         try {
-            rabbitTemplate.convertAndSend(queueConsentAdmin, "", responseConsentData, new CorrelationData(consentId));
-        } catch (AmqpException e) {
+            rabbitTemplate.convertAndSend(queueConsentAuthorization, "",
+                    MQSendMessageAuthorizeConsentModel.builder()
+                            .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
+                            .consentId(consentId)
+                            .correlationId(consentId)
+                            .objectData(new Gson().toJson(consentCreated))
+                            .build(),
+                    new CorrelationData(consentId));
+        } catch (Exception e) {
             log.error(e.getMessage());
-            overallResponseErrors = new ArrayList<>();
-            overallResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                    .title("Consent: Error in build ResponseConsentData.")
-                    .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                    .detail("An error ocurred in send a message fro start authorization process")
-                    .build());
-            responseValidate = consentCancelService.cancelConsent(consentCreated, consentId, executeThrowImmediately);
-            if (responseValidate.isErrorsListed()) {
-                overallResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                        .title("Consent: Error in build ResponseConsentData.")
-                        .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                        .detail("An error ocurred in cancel consent process")
-                        .build());
-            }
-            throw new ConsentResponseErrorException(new Gson().toJson(overallResponseErrors));
+            rabbitTemplate.convertAndSend(queueConsentCancel, "",
+                    MQSendMessageCancelConsentModel.builder()
+                            .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
+                            .consentId(consentId)
+                            .correlationId(consentId)
+                            .reason("Error sending authorization process execution message")
+                            .objectData(new Gson().toJson(consentCreated))
+                            .objectException(e.getMessage())
+                            .build(),
+                    new CorrelationData(consentId));
+            throw new ConsentInternalErrorException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
+                    .title("Consent Authorization")
+                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("Error sending authorization process execution message")
+                    .build()));
         }
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
