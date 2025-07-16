@@ -36,6 +36,9 @@
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05-mq.services/project-tican-audit-api/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05-mq.services/project-ofb-audit-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -53,6 +56,7 @@
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05-mq.services/project-tican-audit-api/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/99-giuliana/aulao-spring-security-jwt-main/pom.xml" />
@@ -405,7 +409,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jdk_17.0.9" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jdk-17.0.9" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

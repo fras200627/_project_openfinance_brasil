@@ -4,39 +4,24 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Atualização com o novo ofb">
-      <change afterPath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/config/AMQPConsentsAuthorizationServicesConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/config/AMQPConsentsCancelServicesConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/exception/ConsentBadRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageAuthorizeConsentModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageCancelConsentModel.java" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Ajustes na validação do consentimento">
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/model/AuditRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/client/openapi-authentication-resources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/client/openapi-registered-clients-resources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/server/openapi-consents-resources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/config/AMQPServicesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/config/AMQPAuditServicesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/resources/META-INF/spring.factories" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/enums/ConsentResponseEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/enums/ConsentResponseEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/exception/ConsentGlobalException.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/exception/ConsentInternalErrorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/exception/ConsentResponseErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/exception/ConsentUnprocessedEntityException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/handler/RestControllerAdviceHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/handler/RestControllerAdviceHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageAuthorizeConsentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageAuthorizeConsentModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageCancelConsentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/MQSendMessageCancelConsentModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentAwaitingAuthorizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentAwaitingAuthorizationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCancelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCancelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCreatePermissionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCreatePermissionsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCreateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCreateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateBusinessEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateBusinessEntityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateConsentAlreadyExistsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateConsentAlreadyExistsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateExpirationDatetimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateExpirationDatetimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateGroupsAndPermissionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateGroupsAndPermissionsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateLoggedUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateLoggedUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidatePermissionsRequestedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidatePermissionsRequestedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +79,7 @@
     "Application.2-Gateway.executor": "Run",
     "Application.3-Auth.executor": "Run",
     "Application.4-Clients-Business.executor": "Run",
+    "Application.Audit.executor": "Debug",
     "Application.Consents.executor": "Debug",
     "Application.OFB-API Gateway.executor": "Run",
     "Application.OFB-Authentication Server.executor": "Debug",
@@ -104,6 +90,7 @@
     "Maven.aulao-spring-security-e-jwt [clean].executor": "Run",
     "Maven.ofb-api-gateway [clean].executor": "Run",
     "Maven.ofb-api-gateway [install].executor": "Run",
+    "Maven.ofb-audit-services [clean].executor": "Run",
     "Maven.ofb-authentication-server [clean].executor": "Run",
     "Maven.ofb-authentication-server [install].executor": "Run",
     "Maven.ofb-discovery-services [clean].executor": "Run",
@@ -121,12 +108,16 @@
     "Maven.ofb-lib-common-tools [install].executor": "Run",
     "Maven.ofb-oauth2-registered-clients-business-api [clean].executor": "Run",
     "Maven.ofb-oauth2-registered-clients-business-api [install].executor": "Run",
+    "Maven.sboot-atom-audit-services [clean].executor": "Run",
+    "Maven.sboot-atom-audit-services [install].executor": "Run",
+    "Maven.sboot-atom-ofb-audit-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-consents [clean].executor": "Run",
     "Maven.sboot-atom-ofb-consents [install].executor": "Run",
     "Maven.spring-security-jwt [clean].executor": "Run",
     "Maven.spring-security-jwt [install].executor": "Run",
     "Maven.spring-security-template [clean].executor": "Run",
     "Maven.spring-security-template [install].executor": "Run",
+    "Maven.tican-audit-services-api [clean].executor": "Run",
     "Maven.tican-authentication-server [clean].executor": "Run",
     "Maven.tican-authentication-server [install].executor": "Run",
     "Maven.tican-oauth2-registered-clients-business-api [clean].executor": "Run",
@@ -136,8 +127,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/model",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
     "settings.build.tools.auto.reload": "ALL",
@@ -146,11 +137,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services\sboot-atom-ofb-audit-services\src\main\java\com\ofb\audit\model" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services\sboot-atom-ofb-audit-services\src\main\resources" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.oauth2.registered.clients\project-tican-oauth2-registered-clients-business\src\main\resources" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.oauth2.registered.clients\project-tican-oauth2-registered-clients-business\src\main\java\com\tican\oauth2\clients\config" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.authentication.server\project-ofb-authentication-server\src\main\java\com\ofb\authentication\service" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.authentication.server\project-ofb-authentication-server\src\main\resources\keystore" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__oracle" />
@@ -158,14 +149,14 @@
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ofb.audit.config" />
       <recent name="com.ofb.consents.exception" />
       <recent name="com.ofb.consents.model" />
       <recent name="com.ofb.lib.amqp.config" />
       <recent name="com.ofb.authentication.controller" />
-      <recent name="com.ofb.authentication.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Consents">
+  <component name="RunManager" selected="Application.1-Discovery">
     <list>
       <item itemvalue="Application.1-Discovery" />
       <item itemvalue="Application.2-Gateway" />
@@ -175,6 +166,7 @@
       <item itemvalue="Application.Consents" />
       <item itemvalue="Application.Customers" />
       <item itemvalue="Application.Resources" />
+      <item itemvalue="Application.Audit" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -258,7 +250,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752526127192</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ajustes na validação do consentimento">
+      <option name="closed" value="true" />
+      <created>1752668383137</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1752668383137</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,70 +278,26 @@
     <MESSAGE value="AJustes OFB e final Disocvery Services, API Gateway e Authorization Server" />
     <MESSAGE value="Backup antes de atualizar para o novo ofb" />
     <MESSAGE value="Atualização com o novo ofb" />
-    <option name="LAST_COMMIT_MESSAGE" value="Atualização com o novo ofb" />
+    <MESSAGE value="Ajustes na validação do consentimento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes na validação do consentimento" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-interceptors/src/main/java/com/ofb/lib/interceptor/GenericInterceptorHandler.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/controller/AuthenticationController.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/service/AuthenticationService.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/service/JwtService.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/99-giuliana/spring-security-template/src/main/java/com/spring/security/service/JwtService.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="29" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditServicesListener.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-security/src/main/java/com/ofb/lib/security/config/AppSecurityConfig.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/config/APIWebSecurityConfig.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/Oauth2ApiControllerImpl.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/Oauth2ApiControllerImpl.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/service/JwtService.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java</url>
-          <line>192</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/persistence/ConsentCreatePermissionsService.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="39" />
+          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditEntity.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

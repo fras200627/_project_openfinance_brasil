@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -14,6 +13,8 @@ import java.sql.Timestamp;
 public class MQSendMessageCancelConsentModel  implements Serializable {
     private String sendMessageDatetime;
     private String    correlationId;
+    private String    xFapiInteraction;
+    private String    ticket;
     private String    consentId;
     private String    reason;
     private String    objectRequest;

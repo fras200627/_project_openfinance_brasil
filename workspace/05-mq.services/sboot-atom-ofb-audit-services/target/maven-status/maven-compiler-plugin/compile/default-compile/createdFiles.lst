@@ -1,0 +1,8 @@
+com\ofb\audit\AuditApplication.class
+com\ofb\audit\listener\AuditServicesListener.class
+com\ofb\audit\repository\AuditRepository.class
+com\ofb\audit\entity\AuditEntity$AuditEntityBuilder.class
+com\ofb\audit\entity\AuditEntity.class
+com\ofb\audit\config\OpenAPIConfig.class
+com\ofb\audit\service\AuditService.class
+com\ofb\audit\model\AuditRecord.class
