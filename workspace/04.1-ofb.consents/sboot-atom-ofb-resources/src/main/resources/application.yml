@@ -86,20 +86,33 @@ eureka:
       defaultZone: http://localhost:3000/eureka
 amqp:
   audit_services:
-    queue: ofb.audit.queue
-    exchange: ofb.audit.ex
-    dlq: ofb.audit.dlq
-    dlx: ofb.audit.dlx
-  ofb_consents_cancel:
-    queue: ofb.consents.cancel.queue
-    exchange: ofb.consents.cancel.ex
-    dlq: ofb.consents.cancel.dlq
-    dlx: ofb.consents.cancel.dlx
-  ofb_consents_authorization:
-    queue: ofb.consents.auth.queue
-    exchange: ofb.consents.auth.ex
-    dlq: ofb.consents.authn.dlq
-    dlx: ofb.consents.auth.dlx
+    consents:
+      authorization:
+        queue: ofb.audit.consents.authorization.queue
+        exchange: ofb.audit.consents.authorization.exchange
+        dlq: ofb.audit.consents.authorization.dlq
+        dlx: ofb.audit.consents.authorization.dlx
+      cancellation:
+        queue: ofb.audit.consents.cancellation.queue
+        exchange: ofb.audit.consents.cancellation.exchange
+        dlq: ofb.audit.consents.cancellation.dlq
+        dlx: ofb.audit.consents.cancellation.dlx
+    http-requests:
+      queue: ofb.audit.queue
+      exchange: ofb.audit.exchange
+      dlq: ofb.audit.dlq
+      dlx: ofb.audit.dlx
+  ofb_consents:
+    cancel:
+      queue: ofb.consents.cancel.queue
+      exchange: ofb.consents.cancel.exchange
+      dlq: ofb.consents.cancel.dlq
+      dlx: ofb.consents.cancel.dlx
+    authorization:
+      queue: ofb.consents.auth.queue
+      exchange: ofb.consents.auth.exchange
+      dlq: ofb.consents.authn.dlq
+      dlx: ofb.consents.auth.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -131,20 +144,33 @@ eureka:
       defaultZone: http://10.0.1.1:3000/eureka
 amqp:
   audit_services:
-    queue: ofb.audit.queue
-    exchange: ofb.audit.ex
-    dlq: ofb.audit.dlq
-    dlx: ofb.audit.dlx
-  ofb_consents_cancel:
-    queue: ofb.consents.cancel.queue
-    exchange: ofb.consents.cancel.ex
-    dlq: ofb.consents.cancel.dlq
-    dlx: ofb.consents.cancel.dlx
-  ofb_consents_authorization:
-    queue: ofb.consents.auth.queue
-    exchange: ofb.consents.auth.ex
-    dlq: ofb.consents.authn.dlq
-    dlx: ofb.consents.auth.dlx
+    consents:
+      authorization:
+        queue: ofb.audit.consents.authorization.queue
+        exchange: ofb.audit.consents.authorization.exchange
+        dlq: ofb.audit.consents.authorization.dlq
+        dlx: ofb.audit.consents.authorization.dlx
+      cancellation:
+        queue: ofb.audit.consents.cancellation.queue
+        exchange: ofb.audit.consents.cancellation.exchange
+        dlq: ofb.audit.consents.cancellation.dlq
+        dlx: ofb.audit.consents.cancellation.dlx
+    http-requests:
+      queue: ofb.audit.queue
+      exchange: ofb.audit.exchange
+      dlq: ofb.audit.dlq
+      dlx: ofb.audit.dlx
+  ofb_consents:
+    cancel:
+      queue: ofb.consents.cancel.queue
+      exchange: ofb.consents.cancel.exchange
+      dlq: ofb.consents.cancel.dlq
+      dlx: ofb.consents.cancel.dlx
+    authorization:
+      queue: ofb.consents.auth.queue
+      exchange: ofb.consents.auth.exchange
+      dlq: ofb.consents.authn.dlq
+      dlx: ofb.consents.auth.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -181,20 +207,33 @@ eureka:
       defaultZone: http://10.152.183.103:3000/eureka
 amqp:
   audit_services:
-    queue: ofb.audit.queue
-    exchange: ofb.audit.ex
-    dlq: ofb.audit.dlq
-    dlx: ofb.audit.dlx
-  ofb_consents_cancel:
-    queue: ofb.consents.cancel.queue
-    exchange: ofb.consents.cancel.ex
-    dlq: ofb.consents.cancel.dlq
-    dlx: ofb.consents.cancel.dlx
-  ofb_consents_authorization:
-    queue: ofb.consents.auth.queue
-    exchange: ofb.consents.auth.ex
-    dlq: ofb.consents.authn.dlq
-    dlx: ofb.consents.auth.dlx
+    consents:
+      authorization:
+        queue: ofb.audit.consents.authorization.queue
+        exchange: ofb.audit.consents.authorization.exchange
+        dlq: ofb.audit.consents.authorization.dlq
+        dlx: ofb.audit.consents.authorization.dlx
+      cancellation:
+        queue: ofb.audit.consents.cancellation.queue
+        exchange: ofb.audit.consents.cancellation.exchange
+        dlq: ofb.audit.consents.cancellation.dlq
+        dlx: ofb.audit.consents.cancellation.dlx
+    http-requests:
+      queue: ofb.audit.queue
+      exchange: ofb.audit.exchange
+      dlq: ofb.audit.dlq
+      dlx: ofb.audit.dlx
+  ofb_consents:
+    cancel:
+      queue: ofb.consents.cancel.queue
+      exchange: ofb.consents.cancel.exchange
+      dlq: ofb.consents.cancel.dlq
+      dlx: ofb.consents.cancel.dlx
+    authorization:
+      queue: ofb.consents.auth.queue
+      exchange: ofb.consents.auth.exchange
+      dlq: ofb.consents.authn.dlq
+      dlx: ofb.consents.auth.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:

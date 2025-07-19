@@ -1,4 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.ofb.lib.amqp.config.AMQPAuditServicesConfig,\
-com.ofb.lib.amqp.config.AMQPConsentsCancelServicesConfig,\
-com.ofb.lib.amqp.config.AMQPConsentsAuthorizationServicesConfig
+com.ofb.lib.amqp.config.AMQPDefaultConfig,\
+com.ofb.lib.amqp.config.AMQPQueuesConfig

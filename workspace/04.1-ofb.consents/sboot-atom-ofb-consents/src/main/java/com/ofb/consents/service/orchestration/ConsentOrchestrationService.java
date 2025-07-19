@@ -5,8 +5,6 @@ import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.enums.ConsentResponseEnum;
 import com.ofb.consents.exception.ConsentInternalErrorException;
 import com.ofb.consents.exception.ConsentUnprocessedEntityException;
-import com.ofb.consents.model.MQSendMessageAuthorizeConsentModel;
-import com.ofb.consents.model.MQSendMessageCancelConsentModel;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.*;
 import com.ofb.consents.repository.views.*;
@@ -16,6 +14,8 @@ import com.ofb.consents.service.persistence.ConsentCreateService;
 import com.ofb.consents.service.persistence.ConsentCreatePermissionsService;
 import com.ofb.consents.service.persistence.ConsentAwaitingAuthorizationService;
 import com.ofb.consents.service.validation.*;
+import com.ofb.lib.amqp.model.MessageAuthorizeConsentModel;
+import com.ofb.lib.amqp.model.MessageCancellationConsentModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -45,11 +45,14 @@ public class ConsentOrchestrationService {
     @Value("${app.consents.consent-id-urn-use}")
     private String consentIdUrnUse;
 
-    @Value("${amqp.ofb_consents_cancel.exchange}")
-    private String queueConsentCancel;
+    @Value("${amqp.ofb.exchange-direct}")
+    private String OFB_EXCHANGE_DIRECT;
 
-    @Value("${amqp.ofb_consents_authorization.exchange}")
-    private String queueConsentAuthorization;
+    @Value("${amqp.ofb.consents.authorization.routing-key}")
+    private String CONSENTS_AUTHORIZATION_ROUTING_KEY;
+
+    @Value("${amqp.ofb.consents.cancellation.routing-key}")
+    private String CONSENTS_CANCELLATION_ROUTING_KEY;
 
     @Autowired private ValidateBusinessEntityService        validateBusinessEntityService;
     @Autowired private ValidateLoggedUserService            validateLoggedUserService;
@@ -114,8 +117,8 @@ public class ConsentOrchestrationService {
         /// STEP 03 - Insert Consent Permissions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = consentCreatePermissionsService.insertConsentPermissions(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
-            rabbitTemplate.convertAndSend(queueConsentCancel, "",
-                    MQSendMessageCancelConsentModel.builder()
+            rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
+                    MessageCancellationConsentModel.builder()
                     .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
                     .consentId(consentId)
                     .correlationId(consentId)
@@ -154,8 +157,8 @@ public class ConsentOrchestrationService {
             meta  = Meta.builder().requestDateTime(consentCreated.getCreateAt().toString()).build();
         } catch (Exception e) {
             log.error(e.getMessage());
-            rabbitTemplate.convertAndSend(queueConsentCancel, "",
-                    MQSendMessageCancelConsentModel.builder()
+            rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
+                    MessageCancellationConsentModel.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -176,8 +179,8 @@ public class ConsentOrchestrationService {
         // STEP 05 - Update Status Consent to 'AWAITING_AUTHORISED' and send message consent to Authorization in RabbitMQ +++++++++++
         responseValidate = consentAwaitingAuthorizationService.updateConsentToAwatingAuthorization(consentCreated, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
-            rabbitTemplate.convertAndSend(queueConsentCancel, "",
-                    MQSendMessageCancelConsentModel.builder()
+            rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
+                    MessageCancellationConsentModel.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -196,8 +199,8 @@ public class ConsentOrchestrationService {
         }
 
         try {
-            rabbitTemplate.convertAndSend(queueConsentAuthorization, "",
-                    MQSendMessageAuthorizeConsentModel.builder()
+            rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_AUTHORIZATION_ROUTING_KEY,
+                    MessageAuthorizeConsentModel.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -208,8 +211,8 @@ public class ConsentOrchestrationService {
                     new CorrelationData(consentId));
         } catch (Exception e) {
             log.error(e.getMessage());
-            rabbitTemplate.convertAndSend(queueConsentCancel, "",
-                    MQSendMessageCancelConsentModel.builder()
+            rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
+                    MessageCancellationConsentModel.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)

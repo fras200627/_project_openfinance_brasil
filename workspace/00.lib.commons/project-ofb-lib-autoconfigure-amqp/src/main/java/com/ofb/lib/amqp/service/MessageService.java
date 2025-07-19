@@ -4,20 +4,32 @@ import com.ofb.lib.amqp.model.MessageAuditTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.stereotype.Service;
 //import org.springframework.http.server.reactive.ServerHttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Service
 @Slf4j
 public class MessageService {
 
-    @Autowired private
-    RabbitTemplate rabbitTemplate;
+    @Value("${amqp.ofb.audit.http-requests.queue}")
+    private String AUDIT_HTTP_REQUESTS_QUEUE;
+
+    @Value("${amqp.ofb.exchange-direct}")
+    private String OFB_EXCHANGE_DIRECT;
+
+    @Value("${amqp.ofb.audit.http-requests.routing-key}")
+    private String AUDIT_HTTP_REQUESTS_ROUTING_KEY;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public void sendMessageAuditTemplate(HttpServletRequest request) {
         //Post a message Audit in RabbitMQ
-        rabbitTemplate.convertAndSend("ofb.audit.ex","",
+        rabbitTemplate.convertAndSend(AUDIT_HTTP_REQUESTS_QUEUE, AUDIT_HTTP_REQUESTS_ROUTING_KEY,
                 new MessageAuditTemplate(
                         request.getAttribute("x-ticket-id").toString(),
                         request.getAttribute("x-fapi-interaction-id").toString(),
@@ -54,7 +66,7 @@ public class MessageService {
         }
 
         //Post a message Audit in RabbitMQ
-        rabbitTemplate.convertAndSend("ofb.audit.ex","",
+        rabbitTemplate.convertAndSend(AUDIT_HTTP_REQUESTS_QUEUE, AUDIT_HTTP_REQUESTS_ROUTING_KEY,
                 new MessageAuditTemplate(
                         ticket,
                         fapi,
@@ -69,7 +81,7 @@ public class MessageService {
 
     public void sendMessageAuditTemplate(ServerHttpRequest serverHttpRequest) {
         //Post a message Audit in RabbitMQ
-        rabbitTemplate.convertAndSend("ofb.audit.ex","",
+        rabbitTemplate.convertAndSend(AUDIT_HTTP_REQUESTS_QUEUE, AUDIT_HTTP_REQUESTS_ROUTING_KEY,
                 new MessageAuditTemplate(
                         serverHttpRequest.getHeaders().get("x-ticket-id").toString(),
                         serverHttpRequest.getHeaders().get("x-fapi-interaction-id").toString(),
@@ -85,7 +97,7 @@ public class MessageService {
     public void sendMessageAuditTemplate(MessageAuditTemplate messageAuditTemplate) {
 
         //Post a message Audit in RabbitMQ
-        rabbitTemplate.convertAndSend("ofb.audit.ex", "", messageAuditTemplate);
+        rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_HTTP_REQUESTS_ROUTING_KEY, messageAuditTemplate);
     }
 
 

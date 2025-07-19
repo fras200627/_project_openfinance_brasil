@@ -5,10 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.io.Serializable;
+
 @Data @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class MessageAuditTemplate {
+public class MessageAuditTemplate implements Serializable {
     private String ticket;
     private String interactionId;
     private String requestTime;

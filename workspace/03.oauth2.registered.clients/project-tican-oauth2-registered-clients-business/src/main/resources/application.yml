@@ -84,21 +84,25 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:3000/eureka
 amqp:
-  audit_services:
-    queue: ofb.audit.queue
-    exchange: ofb.audit.ex
-    dlq: ofb.audit.dlq
-    dlx: ofb.audit.dlx
-  ofb_consents_cancel:
-    queue: ofb.consents.cancel.queue
-    exchange: ofb.consents.cancel.ex
-    dlq: ofb.consents.cancel.dlq
-    dlx: ofb.consents.cancel.dlx
-  ofb_consents_authorization:
-    queue: ofb.consents.auth.queue
-    exchange: ofb.consents.auth.ex
-    dlq: ofb.consents.authn.dlq
-    dlx: ofb.consents.auth.dlx
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -121,21 +125,25 @@ eureka:
     serviceUrl:
       defaultZone: http://10.0.1.1:3000/eureka
 amqp:
-  audit_services:
-    queue: ofb.audit.queue
-    exchange: ofb.audit.ex
-    dlq: ofb.audit.dlq
-    dlx: ofb.audit.dlx
-  ofb_consents_cancel:
-    queue: ofb.consents.cancel.queue
-    exchange: ofb.consents.cancel.ex
-    dlq: ofb.consents.cancel.dlq
-    dlx: ofb.consents.cancel.dlx
-  ofb_consents_authorization:
-    queue: ofb.consents.auth.queue
-    exchange: ofb.consents.auth.ex
-    dlq: ofb.consents.authn.dlq
-    dlx: ofb.consents.auth.dlx
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -165,21 +173,25 @@ eureka:
     serviceUrl:
       defaultZone: http://10.152.183.103:3000/eureka
 amqp:
-  audit_services:
-    queue: ofb.audit.queue
-    exchange: ofb.audit.ex
-    dlq: ofb.audit.dlq
-    dlx: ofb.audit.dlx
-  ofb_consents_cancel:
-    queue: ofb.consents.cancel.queue
-    exchange: ofb.consents.cancel.ex
-    dlq: ofb.consents.cancel.dlq
-    dlx: ofb.consents.cancel.dlx
-  ofb_consents_authorization:
-    queue: ofb.consents.auth.queue
-    exchange: ofb.consents.auth.ex
-    dlq: ofb.consents.authn.dlq
-    dlx: ofb.consents.auth.dlx
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:

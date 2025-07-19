@@ -84,10 +84,33 @@ eureka:
       defaultZone: http://localhost:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.admin.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.admin.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.admin.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.admin.dlx}
+    consents:
+      authorization:
+        queue: ofb.audit.consents.authorization.queue
+        exchange: ofb.audit.consents.authorization.exchange
+        dlq: ofb.audit.consents.authorization.dlq
+        dlx: ofb.audit.consents.authorization.dlx
+      cancellation:
+        queue: ofb.audit.consents.cancellation.queue
+        exchange: ofb.audit.consents.cancellation.exchange
+        dlq: ofb.audit.consents.cancellation.dlq
+        dlx: ofb.audit.consents.cancellation.dlx
+    http-requests:
+      queue: ofb.audit.queue
+      exchange: ofb.audit.exchange
+      dlq: ofb.audit.dlq
+      dlx: ofb.audit.dlx
+  ofb_consents:
+    cancel:
+      queue: ofb.consents.cancel.queue
+      exchange: ofb.consents.cancel.exchange
+      dlq: ofb.consents.cancel.dlq
+      dlx: ofb.consents.cancel.dlx
+    authorization:
+      queue: ofb.consents.auth.queue
+      exchange: ofb.consents.auth.exchange
+      dlq: ofb.consents.authn.dlq
+      dlx: ofb.consents.auth.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -111,10 +134,33 @@ eureka:
       defaultZone: http://10.0.1.1:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.admin.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.admin.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.admin.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.admin.dlx}
+    consents:
+      authorization:
+        queue: ofb.audit.consents.authorization.queue
+        exchange: ofb.audit.consents.authorization.exchange
+        dlq: ofb.audit.consents.authorization.dlq
+        dlx: ofb.audit.consents.authorization.dlx
+      cancellation:
+        queue: ofb.audit.consents.cancellation.queue
+        exchange: ofb.audit.consents.cancellation.exchange
+        dlq: ofb.audit.consents.cancellation.dlq
+        dlx: ofb.audit.consents.cancellation.dlx
+    http-requests:
+      queue: ofb.audit.queue
+      exchange: ofb.audit.exchange
+      dlq: ofb.audit.dlq
+      dlx: ofb.audit.dlx
+  ofb_consents:
+    cancel:
+      queue: ofb.consents.cancel.queue
+      exchange: ofb.consents.cancel.exchange
+      dlq: ofb.consents.cancel.dlq
+      dlx: ofb.consents.cancel.dlx
+    authorization:
+      queue: ofb.consents.auth.queue
+      exchange: ofb.consents.auth.exchange
+      dlq: ofb.consents.authn.dlq
+      dlx: ofb.consents.auth.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -145,10 +191,33 @@ eureka:
       defaultZone: http://10.152.183.103:3000/eureka
 amqp:
   audit_services:
-    audit_queue: ${API_AMQP_AUDIT_QUEUE:ofb.audit.admin.queue}
-    audit_exchange: ${API_AMQP_AUDIT_EX:ofb.audit.admin.ex}
-    audit_dlq: ${API_AMQP_AUDIT_DLQ:ofb.audit.admin.dlq}
-    audit_dlx: ${API_AMQP_AUDIT_DLX:ofb.audit.admin.dlx}
+    consents:
+      authorization:
+        queue: ofb.audit.consents.authorization.queue
+        exchange: ofb.audit.consents.authorization.exchange
+        dlq: ofb.audit.consents.authorization.dlq
+        dlx: ofb.audit.consents.authorization.dlx
+      cancellation:
+        queue: ofb.audit.consents.cancellation.queue
+        exchange: ofb.audit.consents.cancellation.exchange
+        dlq: ofb.audit.consents.cancellation.dlq
+        dlx: ofb.audit.consents.cancellation.dlx
+    http-requests:
+      queue: ofb.audit.queue
+      exchange: ofb.audit.exchange
+      dlq: ofb.audit.dlq
+      dlx: ofb.audit.dlx
+  ofb_consents:
+    cancel:
+      queue: ofb.consents.cancel.queue
+      exchange: ofb.consents.cancel.exchange
+      dlq: ofb.consents.cancel.dlq
+      dlx: ofb.consents.cancel.dlx
+    authorization:
+      queue: ofb.consents.auth.queue
+      exchange: ofb.consents.auth.exchange
+      dlq: ofb.consents.authn.dlq
+      dlx: ofb.consents.auth.dlx
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:

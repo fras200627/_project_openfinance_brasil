@@ -39,6 +39,7 @@
         <option value="$PROJECT_DIR$/workspace/05-mq.services/project-tican-audit-api/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05-mq.services/project-ofb-audit-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
