@@ -1,6 +1,0 @@
-com\ofb\cancellation\service\CancellationConsentsService.class
-com\ofb\cancellation\entity\ConsentPersonalData$ConsentPersonalDataBuilder.class
-com\ofb\cancellation\entity\ConsentPersonalData.class
-com\ofb\cancellation\StartApplication.class
-com\ofb\cancellation\repository\ConsentPersonalRepository.class
-com\ofb\cancellation\listener\CancellationConsentsListener.class
