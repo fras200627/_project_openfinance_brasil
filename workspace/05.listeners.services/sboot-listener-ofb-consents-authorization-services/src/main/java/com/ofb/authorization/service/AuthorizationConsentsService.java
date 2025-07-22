@@ -175,6 +175,8 @@ public class AuthorizationConsentsService {
 
     private void getAcessToken(ConsentPersonalModel consentsPersonalAccepted, String bearerToken) {
 
+        /// Verificação dos 60 minutos: deve ser alterado de AWAITING_AUTHORISATION para REJECTED após 60 minutos.
+
         /// CREATE AND REGISTER A ACCESS TOKEN FOR CONSENT
         /// Step 01 -
 

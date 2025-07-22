@@ -110,12 +110,13 @@ public class RestControllerAdviceHandler {
         String[] messageDetails = ex.getLocalizedMessage().split(":");
         this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
 
-        List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
-        errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ConsentResponseEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
-                .detail(ex.getMessage())
-                .build());
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<ResponseErrorErrorsInner> errors = new ArrayList<>();
+        try {
+            errors = objectMapper.readValue(ex.getMessage(), new TypeReference<List<ResponseErrorErrorsInner>>(){});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
         response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));
@@ -134,12 +135,13 @@ public class RestControllerAdviceHandler {
         String[] messageDetails = ex.getLocalizedMessage().split(":");
         this.writeError(ex.getClass().toString(), ex.getMessage(), messageDetails);
 
-        List<ResponseErrorErrorsInner> errors = new ArrayList<ResponseErrorErrorsInner>();
-        errors.add(new ResponseErrorErrorsInner().toBuilder()
-                .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                .title(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.toString())
-                .detail(ex.getMessage())
-                .build());
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<ResponseErrorErrorsInner> errors = new ArrayList<>();
+        try {
+            errors = objectMapper.readValue(ex.getMessage(), new TypeReference<List<ResponseErrorErrorsInner>>(){});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         MetaError meta = new MetaError().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
         response.addHeader("x-v", "x-v: " + System.getProperty("App.Build.Version"));

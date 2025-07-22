@@ -22,6 +22,7 @@ public class ValidateConsentAlreadyExistsService {
 
     /**
      * Validates whether there is already a consent in progress
+     * https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/219480491/Orienta+es+-+DC+Consentimento
      * <br>
      * @param objectData "Required (values described below)"
      * </p>The objectData parameter used in the Validates whether there is already a consent in progress.

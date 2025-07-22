@@ -24,6 +24,9 @@ public class ConsentPersonalData {
     @Column(name = "STATUS")
     private String status;
 
+    @Column(name = "ACCESSTOKENAUTHORISED")
+    private String accessTokenAuthorised;
+
     @Column(name = "STATUSUPDATEDATETIME")
     private Timestamp statusUpdateDatetime;
 

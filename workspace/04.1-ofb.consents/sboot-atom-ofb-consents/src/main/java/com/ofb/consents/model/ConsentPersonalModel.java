@@ -26,6 +26,9 @@ public class ConsentPersonalModel {
     @Column(name = "STATUS")
     private String status;
 
+    @Column(name = "ACCESSTOKENAUTHORISED")
+    private String accessTokenAuthorised;
+
     @Column(name = "STATUSUPDATEDATETIME")
     private String statusUpdateDatetime;
 
@@ -100,5 +103,14 @@ public class ConsentPersonalModel {
 
     @Column(name = "REJECTEDENDDATETIME")
     private String rejectedEndDatetime;
+
+    @Column(name = "CANCELLEDBY")
+    private String cancelledBy;
+
+    @Column(name = "CANCELLEDREASON")
+    private String cancelledReason;
+
+    @Column(name = "CANCELLEDADDITIONALINFO")
+    private String cancelledAdditionalInfo;
 
 }

@@ -3,6 +3,7 @@ package com.ofb.consents.service.orchestration;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.enums.ConsentResponseEnum;
+import com.ofb.consents.exception.ConsentBadRequestException;
 import com.ofb.consents.exception.ConsentInternalErrorException;
 import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
@@ -32,7 +33,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service @Slf4j
-public class ConsentOrchestrationService {
+public class ConsentBuilderService {
 
     @Autowired private HttpServletRequest httpServletRequest;
 
@@ -69,8 +70,14 @@ public class ConsentOrchestrationService {
 
     @Autowired private RabbitTemplate rabbitTemplate;
 
-    @SuppressWarnings("unchecked")
-    public ResponseConsent buildNewConsent(CreateConsent createConsent) {
+    /**
+     *
+     * @param createConsent
+     * @return
+     *
+     * https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/219480491/Orienta+es+-+DC+Consentimento
+     */
+    public ResponseConsent consentsPostConsents(CreateConsent createConsent) {
 
         String consentId = "urn:" + consentIdUrnUse + ":" + UUID.randomUUID().toString();
 
@@ -86,6 +93,8 @@ public class ConsentOrchestrationService {
         responseValidate = validateLoggedUserService.validateLoggedUserInformation(createConsent, consentId, executeThrowImmediately);
         overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
+        // No caso de criação ou renovação de consentimentos com prazo indeterminado, a receptora não deve
+        // enviar o atributo expirationDateTime. Para prazos determinados o campo deve ser enviado.
         responseValidate = validateExpirationDatetimeService.validateExpirationDateInfo(createConsent, consentId, executeThrowImmediately);
         overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
@@ -97,7 +106,11 @@ public class ConsentOrchestrationService {
         responseValidate = validateGroupsAndPermissionsService.validateGroupsAndPermissionsRequested(createConsent, consentId, executeThrowImmediately);
         overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
-        if (responseValidate.isErrorsListed() == false) {
+        if (responseValidate.isErrorsListed() == true) {
+            // Caso a instiuição receptora envie permissões não existentes nos agrupamentos especificados na tabela,
+            // a transmissora deve rejeitar o pedido da receptora dando retorno HTTP Status Code 400.
+            throw new ConsentBadRequestException(new Gson().toJson(overallResponseErrors));
+        } else {
             responseValidate = validatePermissionsRequestedService.validateRequestedPermissionsExists(createConsent, consentId, executeThrowImmediately);
             overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
         }

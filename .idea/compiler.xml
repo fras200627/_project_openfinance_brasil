@@ -16,7 +16,7 @@
         <module name="ofb-lib-autoconfigure-handlers" />
         <module name="ofb-lib-autoconfigure-interceptors" />
       </profile>
-      <profile name="Annotation profile for sboot-listener-ofb-consents-authorization-services" enabled="true">
+      <profile name="Annotation profile for sboot-listener-ofb-consents-cancellation-services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

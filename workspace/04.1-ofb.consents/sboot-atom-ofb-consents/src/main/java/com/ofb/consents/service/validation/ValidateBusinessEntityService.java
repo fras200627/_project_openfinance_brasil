@@ -34,6 +34,7 @@ public class ValidateBusinessEntityService {
 
     /**
      * Validates a BusinessEntity for consent information
+     * https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/219480491/Orienta+es+-+DC+Consentimento
      * <br>
      * @param objectData "Required (values described below)"
      * </p>The objectData parameter used in the validate function must contain valid 'Document' information for the BusinessEntity requesting consent creation.
