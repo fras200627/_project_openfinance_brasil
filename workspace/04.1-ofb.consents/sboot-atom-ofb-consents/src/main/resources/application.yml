@@ -27,9 +27,6 @@ app:
     validate:
       check-if-consent-already-exists: false
       execute-throw-immediately: false
-  paths:
-    clients:
-      registered-clients: 'http://localhost:3001/ofb-clients-business-api/registered/clients'
 
   listOfServers: #server item: id, description, url
     - 0, 'OFB Server at LOCAL execution', http://localhost/3000
@@ -89,6 +86,10 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+app:
+  paths:
+    clients:
+      registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
 eureka:
   client:
     serviceUrl:
@@ -139,6 +140,10 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+app:
+  paths:
+    clients:
+      registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
 eureka:
   client:
     serviceUrl:
@@ -193,6 +198,10 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+app:
+  paths:
+    clients:
+      registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
 eureka:
   client:
     serviceUrl:

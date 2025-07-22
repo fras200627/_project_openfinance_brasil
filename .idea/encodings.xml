@@ -14,10 +14,12 @@
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/target/generated-sources/oauth2/clients/api/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/project-ofb-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/project-tican-oauth2-registered-clients-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/target/generated-sources/oauth2/clients/api/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/target/generated-sources/ofb/clients/business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java" charset="UTF-8" />
@@ -28,8 +30,10 @@
     <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/99-giuliana/aulao-spring-security-jwt-main/src/main/java" charset="UTF-8" />

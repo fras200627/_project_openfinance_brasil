@@ -4,15 +4,267 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Refactor RabbitMQ total. Lib AMQP, Discover, API Gateway, Auth Server, Registered Clients, OFB-Consents e Listeners Audit e Consents Cancel.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Listener AuthorizationConsents concluído e revisão dos outros listeners. Revisão do Registered Clients.">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Listener_Authorization.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/entity/ConsentPersonalData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/listener/CancellationConsentsListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/repository/ConsentPersonalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/service/CancellationConsentsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/BusinessApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/ClientsBusinessPaginationSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/ClientsBusinessRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/ClientsBusinessRecordFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/entity/ClientsBusinessEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/mapper/ClientsBusinessMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/repository/ClientsBusinessRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/service/ClientsBusinessService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/service/PageableService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/keystore/app.private.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/keystore/app.public.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditAuthorizationConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditCancellationConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/model/AuditRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/repository/AuditAuthorizationConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/repository/AuditCancellationConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/repository/AuditRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/entity/ConsentPermissionsAuthorised.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/entity/ConsentPersonalData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/entity/ConsentResourcesConfirmed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/entity/ConsentResourcesPermissionsConfirmed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/listener/AuthorizationConsentsListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/model/ConsentPermissionAuthorisedModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/model/ConsentPermissionRequestedModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/model/ConsentPersonalModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/model/ConsentsResourcesAuthorisedAccountsModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/model/ConsentsResourcesAuthorisedCustomersModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/data/ConsentPermissionsAuthorisedRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/data/ConsentPersonalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/data/ConsentResourcesConfirmedRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/data/ConsentResourcesPermissionsConfirmedRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/views/ConsentPermissionsAuthorisedlViewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/views/ConsentPermissionsRequestedlViewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/views/ConsentPersonalViewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/views/ConsentResourcesAuthorisedlAccountsViewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/repository/views/ConsentResourcesAuthorisedlCustomersViewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/service/AuthorizationConsentsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/openapi/client/openapi-authentication-resources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/entity/ConsentPersonalData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/listener/CancellationConsentsListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/repository/ConsentPersonalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/service/CancellationConsentsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/4_Clients_Business.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Audit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Listener_Audit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Cancellation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Listener_Cancellation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/META-INF/build-info.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/sboot-atom-ofb-cancellation-consents-services-1.0.0-ofb.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/sboot-atom-ofb-cancellation-consents-services-1.0.0-ofb.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/model/MessageAuthorizeConsentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/model/MessageAuthorizeConsentModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/OAuth2ClientApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/OAuth2ClientApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsPaginationSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsPaginationSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsRecordFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsRecordFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/entity/OAuth2RegisteredClientsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/entity/OAuth2RegisteredClientsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/mapper/OAuth2RegisteredClientMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/mapper/OAuth2RegisteredClientMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/repository/OAuth2RegisteredClientsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/repository/OAuth2RegisteredClientsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/service/OAuth2RegisteredClientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/service/OAuth2RegisteredClientsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/java/com/ofb/clients/business/service/PageableService.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/service/PageableService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/openapi/server/api-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-business/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/DomainApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/DomainApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/entity/OAuth2RegisteredClientsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/entity/OAuth2RegisteredClientsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/mapper/OAuth2RegisteredClientMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/mapper/OAuth2RegisteredClientMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/repository/OAuth2RegisteredClientsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/repository/OAuth2RegisteredClientsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/service/OAuth2RegisteredClientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/service/OAuth2RegisteredClientsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/openapi/server/api-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-clients-domain/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/OAuth2ClientApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/OAuth2ClientApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsPaginationSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsPaginationSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsRecordFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsRecordFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/entity/OAuth2RegisteredClientsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/entity/OAuth2RegisteredClientsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/mapper/OAuth2RegisteredClientMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/mapper/OAuth2RegisteredClientMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/repository/OAuth2RegisteredClientsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/repository/OAuth2RegisteredClientsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/service/OAuth2RegisteredClientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/service/OAuth2RegisteredClientsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java/com/tican/oauth2/clients/service/PageableService.java" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/service/PageableService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/keystore/app.private.key" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/keystore/app.private.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/keystore/app.public.key" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/keystore/app.public.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/openapi/server/api-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateBusinessEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/validation/ValidateBusinessEntityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/resources/openapi/client/openapi-registered-clients-resources.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/resources/openapi/server/openapi-clients-business-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/StartApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditAuthorizationConsentEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditCancellationConsentEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/model/AuditRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/repository/AuditAuthorizationConsentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/repository/AuditCancellationConsentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/repository/AuditRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/resources/logback/logback-local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/StartApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditAuthorizationConsentEntity$AuditAuthorizationConsentEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditAuthorizationConsentEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditCancellationConsentEntity$AuditCancellationConsentEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditCancellationConsentEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditEntity$AuditEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/entity/AuditEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/listener/AuditListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/model/AuditRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/repository/AuditAuthorizationConsentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/repository/AuditCancellationConsentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/repository/AuditRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/com/ofb/audit/service/AuditService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/logback/logback-docker.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/logback/logback-k8s.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/target/classes/logback/logback-local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/StartApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/entity/ConsentPersonalData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/listener/CancellationConsentsListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/repository/ConsentPersonalRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/service/CancellationConsentsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/resources/logback/logback-local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/com/ofb/cancellation/StartApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/com/ofb/cancellation/entity/ConsentPersonalData$ConsentPersonalDataBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/com/ofb/cancellation/entity/ConsentPersonalData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/com/ofb/cancellation/listener/CancellationConsentsListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/com/ofb/cancellation/repository/ConsentPersonalRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/com/ofb/cancellation/service/CancellationConsentsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/logback/logback-docker.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/logback/logback-k8s.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/target/classes/logback/logback-local.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +325,9 @@
     "Application.Audit.executor": "Debug",
     "Application.Cancellation.executor": "Debug",
     "Application.Consents.executor": "Debug",
+    "Application.Listener Audit.executor": "Debug",
+    "Application.Listener Authorization.executor": "Debug",
+    "Application.Listener Cancellation.executor": "Debug",
     "Application.OFB-API Gateway.executor": "Run",
     "Application.OFB-Authentication Server.executor": "Debug",
     "Application.OFB-Discovery-Services.executor": "Run",
@@ -109,8 +364,16 @@
     "Maven.sboot-atom-ofb-audit-services [verify].executor": "Run",
     "Maven.sboot-atom-ofb-cancellation-consents-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-cancellation-consents-services [install].executor": "Run",
+    "Maven.sboot-atom-ofb-clients-business [clean].executor": "Run",
+    "Maven.sboot-atom-ofb-clients-business [install].executor": "Run",
     "Maven.sboot-atom-ofb-consents [clean].executor": "Run",
     "Maven.sboot-atom-ofb-consents [install].executor": "Run",
+    "Maven.sboot-listener-ofb-audit-services [clean].executor": "Run",
+    "Maven.sboot-listener-ofb-audit-services [install].executor": "Run",
+    "Maven.sboot-listener-ofb-consents-authorization-services [clean].executor": "Run",
+    "Maven.sboot-listener-ofb-consents-authorization-services [install].executor": "Run",
+    "Maven.sboot-listener-ofb-consents-cancellation-services [clean].executor": "Run",
+    "Maven.sboot-listener-ofb-consents-cancellation-services [install].executor": "Run",
     "Maven.spring-security-jwt [clean].executor": "Run",
     "Maven.spring-security-jwt [install].executor": "Run",
     "Maven.spring-security-template [clean].executor": "Run",
@@ -125,8 +388,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/config",
-    "project.structure.last.edited": "SDKs",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
     "settings.build.tools.auto.reload": "ALL",
@@ -135,26 +398,26 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\00.lib.commons\project-ofb-lib-autoconfigure-amqp\src\main\java\com\ofb\lib\amqp\config" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services\sboot-atom-ofb-audit-services\src\main\java\com\ofb\audit\model" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05-mq.services\sboot-atom-ofb-audit-services\src\main\resources" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.oauth2.registered.clients\project-tican-oauth2-registered-clients-business\src\main\resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__oracle" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\99-giuliana\spring-security-template\src\main\resources\keystore" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.listeners.services\sboot-listener-ofb-consents-authorization-services\src\main\resources" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.listeners.services\sboot-listener-ofb-consents-authorization-services\src\main\java\com\ofb\authorization\model" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.listeners.services\sboot-listener-ofb-consents-authorization-services\src\main\java\com\ofb\authorization\repository" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.listeners.services\sboot-listener-ofb-consents-authorization-services\src\main\java\com\ofb\authorization\service" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__oracle" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\99-giuliana\spring-security-template\src\main\resources\keystore" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ofb.authorization.config" />
+      <recent name="com.ofb.authorization.repository.views" />
+      <recent name="com.ofb.authorization.model" />
+      <recent name="com.ofb.authorization.entity" />
       <recent name="com.ofb.lib.amqp.config" />
-      <recent name="com.ofb.audit.repository" />
-      <recent name="com.ofb.audit.entity" />
-      <recent name="com.ofb.cancellation.repository" />
-      <recent name="com.ofb.cancellation.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Cancellation">
+  <component name="RunManager" selected="Application.Consents">
     <list>
       <item itemvalue="Application.1-Discovery" />
       <item itemvalue="Application.2-Gateway" />
@@ -164,8 +427,9 @@
       <item itemvalue="Application.Consents" />
       <item itemvalue="Application.Customers" />
       <item itemvalue="Application.Resources" />
-      <item itemvalue="Application.Audit" />
-      <item itemvalue="Application.Cancellation" />
+      <item itemvalue="Application.Listener Audit" />
+      <item itemvalue="Application.Listener Cancellation" />
+      <item itemvalue="Application.Listener Authorization" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -281,7 +545,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752947157572</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Ajutes no gitignore e gitexclude">
+      <option name="closed" value="true" />
+      <created>1753092892112</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1753092892112</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Postman">
+      <option name="closed" value="true" />
+      <created>1753093076241</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1753093076241</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,45 +584,63 @@
     <MESSAGE value="Ajustes na validação do consentimento" />
     <MESSAGE value="inclusão de funções de mensagens MQ e componente Audit Services." />
     <MESSAGE value="Refactor RabbitMQ total. Lib AMQP, Discover, API Gateway, Auth Server, Registered Clients, OFB-Consents e Listeners Audit e Consents Cancel." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor RabbitMQ total. Lib AMQP, Discover, API Gateway, Auth Server, Registered Clients, OFB-Consents e Listeners Audit e Consents Cancel." />
+    <MESSAGE value="Ajutes no gitignore e gitexclude" />
+    <MESSAGE value="Postman" />
+    <MESSAGE value="Listener AuthorizationConsents concluído e revisão dos outros listeners. Revisão do Registered Clients." />
+    <option name="LAST_COMMIT_MESSAGE" value="Listener AuthorizationConsents concluído e revisão dos outros listeners. Revisão do Registered Clients." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentOrchestrationService.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/service/CancellationConsentsService.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/src/main/java/com/ofb/api/gateway/config/GlobalGatewayFilterConfig.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java/com/ofb/lib/amqp/service/MessageService.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/src/main/java/com/ofb/cancellation/listener/CancellationConsentsListener.java</url>
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditListener.java</url>
           <line>20</line>
-          <option name="timeStamp" value="67" />
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/listener/CancellationConsentsListener.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditListener.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/listener/AuditListener.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/service/AuditService.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/service/CancellationConsentsService.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java/com/ofb/audit/entity/AuditCancellationConsentEntity.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/listener/AuthorizationConsentsListener.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/service/AuthorizationConsentsService.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="90" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

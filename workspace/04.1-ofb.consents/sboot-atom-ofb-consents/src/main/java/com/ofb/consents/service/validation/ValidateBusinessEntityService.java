@@ -1,8 +1,8 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.client.registered.clients.resources.handler.RegisteredClientsResourcesApi;
-import com.ofb.consents.client.registered.clients.resources.model.OAuth2ClientResponse;
+import com.ofb.consents.client.clients.business.resources.handler.ClientsBusinessResourcesApi;
+import com.ofb.consents.client.clients.business.resources.model.OAuth2ClientResponse;
 import com.ofb.consents.enums.ConsentResponseEnum;
 import com.ofb.consents.exception.ConsentInternalErrorException;
 import com.ofb.consents.exception.ConsentUnprocessedEntityException;
@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+
+
 @Service @Slf4j
 public class ValidateBusinessEntityService {
 
@@ -28,7 +30,7 @@ public class ValidateBusinessEntityService {
     HttpServletRequest request;
 
     @Autowired
-    private RegisteredClientsResourcesApi registeredClientsResourcesApi;
+    private ClientsBusinessResourcesApi registeredClientsResourcesApi;
 
     /**
      * Validates a BusinessEntity for consent information

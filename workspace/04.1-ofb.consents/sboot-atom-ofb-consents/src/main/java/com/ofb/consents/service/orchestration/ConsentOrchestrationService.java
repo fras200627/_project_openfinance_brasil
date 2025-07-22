@@ -206,6 +206,7 @@ public class ConsentOrchestrationService {
                             .correlationId(consentId)
                             .xFapiInteraction(httpServletRequest.getHeader("x-fapi-interaction-id"))
                             .ticket(httpServletRequest.getHeader("x-ticket-id"))
+                            .bearerToken(httpServletRequest.getHeader("Authorization").replace("Bearer ", ""))
                             .objectData(new Gson().toJson(consentCreated))
                             .build(),
                     new CorrelationData(consentId));

@@ -40,6 +40,11 @@
         <option value="$PROJECT_DIR$/workspace/05-mq.services/project-ofb-audit-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-audit-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05-mq.services/sboot-atom-ofb-cancellation-consents-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.registered.clients/project-ofb-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

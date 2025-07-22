@@ -1,0 +1,588 @@
+openapi: 3.0.3
+info:
+  title: 'Project OFB - OpenAPI 3.0.3'
+  description: 'Project OFB using Open API'
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: fras200627@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+security:
+  - bearerAuth: []
+tags:
+  - name: clients.business.resources
+    description: 'registered.clients.business'
+paths:
+  /business/findAll:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get all oauth2 registered clients'
+      description: 'Get all oauth2 registered clients'
+      operationId: getFindAll
+      parameters: []
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientResponseList'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /business/findById:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get a registered client in oauth2 by ID (ID is the UUID of a client)'
+      description: 'Get a registered client in oauth2 by ID (ID is the UUID of a client)'
+      operationId: getFindById
+      parameters:
+        - name: registeredId
+          $ref: '#/components/parameters/OAuth2RegisteredId'
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /business/findByClientId:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get a registered client in oauth2 by ID (client ID is an alias/nickname of a client)'
+      description: 'Get a registered client in oauth2 by ID (client ID is an alias/nickname of a client)'
+      operationId: getFindByClientId
+      parameters:
+        - name: clientId
+          $ref: '#/components/parameters/OAuth2ClientId'
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /business/findByClientName:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get one oauth2 registered client by Description Name'
+      description: 'Get one oauth2 registered client by Description Name'
+      operationId: getFindByClientName
+      parameters:
+        - name: clientName
+          $ref: '#/components/parameters/OAuth2ClientName'
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /business/findByPageable:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get oauth2 registered clients by Pageable'
+      description: 'Get oauth2 registered clients by Pageable'
+      operationId: getFindByPageable
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortField'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientsResponsePageable'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /business/findByFilters:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get oauth2 registered clients by Pageable and F\ilters'
+      description: 'Get oauth2 registered clients by Pageable and Filters'
+      operationId: getFindByFilters
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortField'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrder'
+        - name: registeredId
+          $ref: '#/components/parameters/OAuth2RegisteredIdOptional'
+        - name: clientId
+          $ref: '#/components/parameters/OAuth2ClientIdOptional'
+        - name: clientName
+          $ref: '#/components/parameters/OAuth2ClientNameOptional'
+        - name: securityScope
+          $ref: '#/components/parameters/OAuth2SecurityScopesOptional'
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientsResponsePageable'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+components:
+  parameters:
+    OAuth2RegisteredId:
+      name: registeredId
+      description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 36
+        nullable: false
+    OAuth2RegisteredIdOptional:
+      name: registeredId
+      description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 36
+        nullable: true
+    OAuth2ClientId:
+      name: clientId
+      description: 'OAuth2 Client Id is a identified Id. Example: tican-client-1'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: false
+    OAuth2ClientIdOptional:
+      name: clientId
+      description: 'OAuth2 Client Id is a identified Id. Example: tican-client-1'
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: true
+    OAuth2ClientName:
+      name: clientName
+      description: 'OAuth2 Client Name. Example: Tican Client 1'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: false
+    OAuth2ClientNameOptional:
+      name: clientName
+      description: 'OAuth2 Client Name. Example: Tican Client 1'
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: true
+    OAuth2SecurityScopes:
+      name: securityScope
+      description: 'Required is: client.admin or client.read or client.write'
+      in: query
+      required: true
+      schema:
+        type: string
+        pattern: '(client.admin|client.root|client.read|client.write)'
+        nullable: false
+    OAuth2SecurityScopesOptional:
+      name: securityScope
+      description: 'Required is: client.admin or client.read or client.write or Empty Value'
+      in: query
+      required: false
+      schema:
+        type: string
+        pattern: '(client.admin|client.root|client.read|client.write)'
+        nullable: true
+    PageNumber:
+      name: pageNumber
+      in: query
+      description: 'Page Number'
+      required: false
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 999999
+        default: 1
+        nullable: true
+    PageSize:
+      name: pageSize
+      in: query
+      description: 'Page Size'
+      required: false
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 1000
+        default: 20
+        nullable: true
+    PageSortField:
+      name: pageSortField
+      in: query
+      description: 'Field used for sorting on pages (regex)'
+      required: false
+      schema:
+        type: string
+        pattern: '(id|clientId|clientName|scopes)'
+        default: 'id'
+        nullable: true
+    PageSortOrder:
+      name: pageSortOrder
+      in: query
+      description: "Required is: 'ASC or DESC'"
+      required: false
+      schema:
+        type: string
+        pattern: '(ASC|DESC)'
+        default: 'ASC'
+        nullable: true
+  schemas:
+    OAuth2ClientResponse:
+      type: object
+      description: 'OAuth2 Client Response'
+      properties:
+        registeredId:
+          type: string
+          description: 'Registered Client Id in format UUID'
+        clientId:
+          type: string
+          description: 'Client id alias'
+        clientIdIssuedAt:
+          type: string
+          description: 'Create Date'
+          example: "2025-04-07T19:59:33.127Z"
+        clientSecretExpiresAt:
+          type: string
+          description: 'Expired Date'
+          example: "2025-04-07T19:59:33.127Z"
+        clientName:
+          type: string
+          description: 'Client name'
+          example: "string"
+        clientAuthenticationMethods:
+          type: string
+          description: 'Authentication Methods'
+          example: "string"
+        authorizationGrantTypes:
+          type: string
+          description: 'Grants Types'
+          example: "string"
+        redirectUris:
+          type: string
+          description: 'Redirect URI (if used)'
+          example: "string"
+        securityScope:
+          type: string
+          description: 'Authorization scopes'
+          example: "string"
+        clientSettings:
+          type: string
+          description: 'Client Settings'
+          example: "string"
+        tokenSettings:
+          type: string
+          description: 'Token Settings'
+          example: "string"
+        status:
+          type: string
+          description: 'Acces Status'
+          example: "string"
+        isAccountExpired:
+          type: string
+          description: 'Status of Account'
+          example: 'true'
+        isAccountLocked:
+          type: string
+          description: 'Status of Account'
+          example: 'true'
+        isCredentialsExpired:
+          type: string
+          description: 'Status of Credentials'
+          example: 'true'
+        isEnabled:
+          type: string
+          description: 'Access Status'
+          example: 'true'
+    OAuth2ClientResponseList:
+      description: 'OAuth2 Client Response LIst'
+      type: array
+      items:
+        $ref: '#/components/schemas/OAuth2ClientResponse'
+    OAuth2ClientsPageable:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/OAuth2ClientResponseList'
+        pageable:
+          $ref: '#/components/schemas/PageableDetailsTemplate'
+    PageableDetailsTemplate:
+      type: object
+      description: 'Informations of pageable'
+      properties:
+        isEmptyResult:
+          type: boolean
+          example: false
+        pageNumberRequested:
+          type: integer
+          example: 1
+        pageSizeRequested:
+          type: integer
+          example: 10
+        sortFieldRequested:
+          type: string
+          example: field-a
+        pageNumberResulting:
+          type: integer
+          example: 1
+        pageSizeResulting:
+          type: integer
+          example: 20
+        isFirstPage:
+          type: boolean
+          example: true
+        isLastPage:
+          type: boolean
+          example: false
+        previousPageNumber:
+          type: integer
+          example: 1
+        nextPageNumber:
+          type: integer
+          example: 2
+        totalPagesExisting:
+          type: integer
+          example: 890
+        totalElementsExisting:
+          type: integer
+          example: 8899
+    Code200Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        message:
+          type: string
+          default: 'message description'
+    Code201Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 201
+        message:
+          type: string
+          default: 'message description'
+    Code202Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 202
+        message:
+          type: string
+          default: 'message description'
+    Code400Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 400
+        message:
+          type: string
+          default: 'message description'
+    Code401Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 401
+        message:
+          type: string
+          default: 'message description'
+    Code403Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 403
+        message:
+          type: string
+          default: 'message description'
+    Code404Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 404
+        message:
+          type: string
+          default: 'message description'
+    Code500Template:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 500
+        message:
+          type: string
+          default: 'message description'
+    CodeDefaultTemplate:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 501
+        message:
+          type: string
+          default: 'message description'
+  responses:
+    OAuth2ClientResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuth2ClientResponse'
+    OAuth2ClientResponseList:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuth2ClientResponseList'
+    OAuth2ClientsResponsePageable:
+      description: 'List of Ticket Records in Pageable options.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuth2ClientsPageable'
+    # Global responses #
+    ResponseCode200Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code200Template'
+    ResponseCode201Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code201Template'
+    ResponseCode202Template:
+      description: 'Execution completed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code202Template'
+    ResponseCode400Template:
+      description: 'Bad request operation'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code400Template'
+    ResponseCode401Template:
+      description: 'Unauthorized'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code401Template'
+    ResponseCode403Template:
+      description: 'Forbidden'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code403Template'
+    ResponseCode404Template:
+      description: 'Path or object not found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code404Template'
+    ResponseCode500Template:
+      description: 'Internal Server Error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Code500Template'
+    ResponseCodeDefaultTemplate:
+      description: 'Not Implemented'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CodeDefaultTemplate'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer

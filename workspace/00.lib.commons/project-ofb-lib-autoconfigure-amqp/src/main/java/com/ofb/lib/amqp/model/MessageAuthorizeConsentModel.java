@@ -16,6 +16,7 @@ public class MessageAuthorizeConsentModel implements Serializable {
     private String    xFapiInteraction;
     private String    ticket;
     private String    consentId;
+    private String    bearerToken;
     private String    objectRequest;
     private String    objectData;
 }

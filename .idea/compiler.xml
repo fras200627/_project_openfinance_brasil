@@ -16,23 +16,7 @@
         <module name="ofb-lib-autoconfigure-handlers" />
         <module name="ofb-lib-autoconfigure-interceptors" />
       </profile>
-      <profile name="Annotation profile for ofb-lib-autoconfigure-amqp" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
-        </processorPath>
-        <module name="ofb-lib-autoconfigure-amqp" />
-      </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-consents" enabled="true">
+      <profile name="Annotation profile for sboot-listener-ofb-consents-authorization-services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -42,19 +26,23 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
+        <module name="sboot-listener-ofb-consents-cancellation-services" />
         <module name="sboot-atom-ofb-consents" />
         <module name="sboot-atom-ofb-accounts" />
+        <module name="sboot-atom-ofb-clients-business" />
         <module name="sboot-atom-ofb-customers" />
         <module name="sboot-atom-ofb-resources" />
         <module name="ofb-authentication-server" />
-        <module name="tican-oauth2-registered-clients-business-api" />
-        <module name="sboot-atom-ofb-audit-services" />
-        <module name="sboot-atom-ofb-cancellation-consents-services" />
+        <module name="ofb-lib-autoconfigure-amqp" />
+        <module name="sboot-listener-ofb-consents-authorization-services" />
+        <module name="sboot-listener-ofb-audit-services" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aulao-spring-security-e-jwt" target="17" />
       <module name="ofb-oauth2-registered-clients-business-api" target="17" />
+      <module name="sboot-atom-ofb-audit-services" target="17" />
+      <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
       <module name="spring-security-template" target="17" />
       <module name="tican-audit-services-api" target="17" />
       <module name="tican-discovery-services" target="17" />
@@ -83,9 +71,13 @@
       <module name="sboot-atom-ofb-accounts" options="-parameters" />
       <module name="sboot-atom-ofb-audit-services" options="-parameters" />
       <module name="sboot-atom-ofb-cancellation-consents-services" options="-parameters" />
+      <module name="sboot-atom-ofb-clients-business" options="-parameters" />
       <module name="sboot-atom-ofb-consents" options="-parameters" />
       <module name="sboot-atom-ofb-customers" options="-parameters" />
       <module name="sboot-atom-ofb-resources" options="-parameters" />
+      <module name="sboot-listener-ofb-audit-services" options="-parameters" />
+      <module name="sboot-listener-ofb-consents-authorization-services" options="-parameters" />
+      <module name="sboot-listener-ofb-consents-cancellation-services" options="-parameters" />
       <module name="spring-security-template" options="-parameters" />
       <module name="tican-audit-services-api" options="-parameters --enable-preview" />
       <module name="tican-discovery-services" options="-parameters" />
@@ -93,7 +85,6 @@
       <module name="tican-lib-autoconfigure-handlers" options="-parameters" />
       <module name="tican-lib-autoconfigure-interceptors" options="-parameters" />
       <module name="tican-lib-autoconfigure-security" options="-parameters" />
-      <module name="tican-oauth2-registered-clients-business-api" options="-parameters" />
       <module name="tican-oauth2-registered-clients-domain-api" options="-parameters" />
       <module name="tican-oauth2-users-business-api" options="-parameters" />
       <module name="tican-oauth2-users-domain-api" options="-parameters" />
