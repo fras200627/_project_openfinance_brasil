@@ -1,7 +1,7 @@
 package com.ofb.authorization.listener;
 
 import com.ofb.authorization.service.AuthorizationConsentsService;
-import com.ofb.lib.amqp.model.MessageAuthorizeConsentModel;
+import com.ofb.lib.amqp.model.MessageAuthorisedConsentModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class AuthorizationConsentsListener {
     private AuthorizationConsentsService service;
 
     @RabbitListener(queues = "#{ofbConsentsAuthorization.name}")
-    public void receiveMessage(@Payload MessageAuthorizeConsentModel message) {
+    public void receiveMessage(@Payload MessageAuthorisedConsentModel message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.save(message);
         log.info("Message recorded successfully: " + message.getTicket());

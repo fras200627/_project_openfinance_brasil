@@ -1,4 +1,4 @@
-package com.ofb.lib.security.config;
+package com.ofb.consents.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

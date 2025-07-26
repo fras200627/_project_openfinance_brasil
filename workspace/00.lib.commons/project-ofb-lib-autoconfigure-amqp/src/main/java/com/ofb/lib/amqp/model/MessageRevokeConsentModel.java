@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @Builder
 @AllArgsConstructor @RequiredArgsConstructor
-public class MessageCancellationConsentModel implements Serializable {
+public class MessageRevokeConsentModel implements Serializable {
     private String    sendMessageDatetime;
     private String    correlationId;
     private String    xFapiInteraction;

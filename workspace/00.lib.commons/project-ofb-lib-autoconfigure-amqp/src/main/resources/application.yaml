@@ -12,26 +12,29 @@ spring:
     username: ${RABBITMQ_DEFAULT_USER:guest}
     password: ${RABBITMQ_DEFAULT_PWD:guest}
 
-#amqp:
-#  ofb:
-#    exchange-direct: "ofb.exchange.direct"
-#    audit:
-#      http-requests:
-#        queue: "ofb.audit.http.requests"
-#        routing-key: "audit.http.requests"
-#      consents-authorization:
-#        queue: "ofb.audit.consents.authorization"
-#        routing-key: "audit.consents.auth"
-#      consents-cancellation:
-#        queue: "ofb.audit.consents.cancellation"
-#        routing-key: "audit.consents.cancel"
-#    consents:
-#      authorization:
-#        queue: "ofb.consents.authorization"
-#        routing-key: "exec.consents.auth"
-#      cancellation:
-#        queue: "ofb.consents.cancellation"
-#        routing-key: "exec.consents.cancel"
+amqp:
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
 
 
 # rabbitmq-plugins enable rabbitmq_management

@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.ofb.lib.amqp.model.MessageCancellationConsentModel;
+import com.ofb.lib.amqp.model.MessageCancelConsentModel;
 
 import java.sql.Timestamp;
 import java.time.OffsetDateTime;
@@ -28,7 +28,7 @@ public class CancellationConsentsService {
     @Value("${amqp.ofb.audit.consents-cancellation.routing-key}")
     private String AUDIT_CONSENTS_CANCELLATION_ROUTING_KEY;
 
-    public void save(MessageCancellationConsentModel cancellationConsent) {
+    public void save(MessageCancelConsentModel cancellationConsent) {
         Timestamp timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
 
         ///

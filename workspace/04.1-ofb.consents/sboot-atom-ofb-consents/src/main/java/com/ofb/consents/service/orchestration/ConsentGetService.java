@@ -34,7 +34,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service @Slf4j
-public class ConsentConsultationService {
+public class ConsentGetService {
 
     @Autowired
     private HttpServletRequest httpServletRequest;

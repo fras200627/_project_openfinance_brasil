@@ -1,6 +1,6 @@
 package com.ofb.audit.entity;
 
-import com.ofb.lib.amqp.model.MessageCancellationConsentModel;
+import com.ofb.lib.amqp.model.MessageCancelConsentModel;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class AuditCancellationConsentEntity {
     @Column(name= "PAYLOAD")
     private String payload;
 
-    public AuditCancellationConsentEntity(MessageCancellationConsentModel request) {
+    public AuditCancellationConsentEntity(MessageCancelConsentModel request) {
         this.id                 = (long) (Math.random() * 999999999 + 1);
         this.createAt            = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
         this.xTicketId          = request.getTicket() == null ? "not informed" : request.getTicket();

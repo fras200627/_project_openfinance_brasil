@@ -4,14 +4,13 @@ spring:
   jpa:
     properties:
       hibernate:
-        format_sql: true    
+        format_sql: true
     show-sql: ${API_JPA_SHOW_SQL:true}
     hibernate:
       ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
 server:
   error:
     include-stacktrace: never
-
 jwt:
   issuer: banco-tcn-openfinance-brasil
   private:
@@ -108,6 +107,9 @@ amqp:
       consents-cancellation:
         queue: "ofb.audit.consents.cancellation"
         routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
     consents:
       authorization:
         queue: "ofb.consents.authorization"
@@ -163,6 +165,9 @@ amqp:
       consents-cancellation:
         queue: "ofb.audit.consents.cancellation"
         routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
     consents:
       authorization:
         queue: "ofb.consents.authorization"
@@ -222,6 +227,9 @@ amqp:
       consents-cancellation:
         queue: "ofb.audit.consents.cancellation"
         routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
     consents:
       authorization:
         queue: "ofb.consents.authorization"

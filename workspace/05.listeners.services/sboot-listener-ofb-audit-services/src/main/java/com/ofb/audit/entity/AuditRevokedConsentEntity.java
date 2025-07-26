@@ -1,6 +1,6 @@
 package com.ofb.audit.entity;
 
-import com.ofb.lib.amqp.model.MessageAuthorisedConsentModel;
+import com.ofb.lib.amqp.model.MessageRevokeConsentModel;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -11,13 +11,13 @@ import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
-@Entity(name= "AuditAuthorizationConsent")
-@Table(schema= "OFB", name= "OFB_AUDIT_AUTHORIZATION_CONSENTS")
+@Entity(name= "AuditRevokedConsent")
+@Table(schema= "OFB", name= "OFB_AUDIT_REVOKED_CONSENTS")
 //---------------------------------------------------
 @Data @Builder @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(of= "id")
-public class AuditAuthorizationConsentEntity {
+public class AuditRevokedConsentEntity {
 
     @Id
     @Column(name= "ID")
@@ -38,20 +38,20 @@ public class AuditAuthorizationConsentEntity {
     @Column(name= "CONSENTREQUESTDATE")
     private Timestamp consentRequestDate;
 
-    @Column(name= "CONSENTAPPROVEDDATE")
-    private Timestamp consentApprovedDate;
+    @Column(name= "CONSENTREVOKEDDATE")
+    private Timestamp consentRevokedDate;
 
     @Column(name= "PAYLOAD")
     private String payload;
 
-    public AuditAuthorizationConsentEntity(MessageAuthorisedConsentModel request) {
+    public AuditRevokedConsentEntity(MessageRevokeConsentModel request) {
         this.id                 = (long) (Math.random() * 999999999 + 1);
         this.createAt            = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
         this.xTicketId          = request.getTicket() == null ? "not informed" : request.getTicket();
         this.xFapiInteractionId = request.getXFapiInteraction() == null ? "not informed" : request.getXFapiInteraction();
         this.consentId          = request.getConsentId() == null ? "not informed" : request.getConsentId();
         this.consentRequestDate = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
-        this.consentApprovedDate  = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+        this.consentRevokedDate  = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
         this.payload            = request.getObjectData() == null ? "not infomrmed" : request.getObjectData();
     }
 

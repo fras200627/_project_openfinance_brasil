@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service @Slf4j
-public class ConsentAwaitingAuthorizationService {
+public class ConsentUpdateService {
 
     @Autowired
     private ConsentPersonalRepository consentRepositoryData;
@@ -49,7 +49,7 @@ public class ConsentAwaitingAuthorizationService {
      * @throws ConsentInternalErrorException
      * <p>If an error occurs while trying to invoke the method<p></p>
      */
-    public ResponseValidateConsentModel updateConsentToAwatingAuthorization(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
+    public ResponseValidateConsentModel updateConsentToAwaitingAuthorization(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
         Timestamp timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
         List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();

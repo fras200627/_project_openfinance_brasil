@@ -13,4 +13,5 @@ public interface ConsentPersonalViewRepository extends JpaRepository<ConsentPers
 
     @Query("SELECT a FROM ConsentPersonalView a WHERE a.cpfNumber = :document and a.status in ('AWAITING_AUTHORISATION', 'AUTHORISED')")
     public List<ConsentPersonalModel> findAllConsentsEnabledByDocumentIdentification(@Param("document")  String document);
+
 }

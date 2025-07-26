@@ -33,6 +33,9 @@ public interface ResourcePermissionsViewRepository extends JpaRepository<Resourc
     @Query("SELECT a FROM ResourcePermissionsView a WHERE a.permission = :permission")
     ResourcePermissionsModel findPermissionByPermissionName(@Param("permission")  String permission);
 
+    @Query("SELECT a.control FROM ResourcePermissionsView a WHERE a.permission = :permission GROUP BY a.permission, a.control")
+    String findPermissionGroupByByPermissionName(@Param("permission")  String permission);
+
     @Query("SELECT a.permission FROM ResourcePermissionsView a WHERE a.control = 'MANDATORY'")
     List<String> findAllPermissionsNameByMandatory();
 

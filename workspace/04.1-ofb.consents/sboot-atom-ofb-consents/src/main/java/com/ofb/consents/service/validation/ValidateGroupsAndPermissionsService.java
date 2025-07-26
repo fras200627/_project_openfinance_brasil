@@ -183,8 +183,8 @@ public class ValidateGroupsAndPermissionsService {
 
             /// Verificação das permissões GroupControl
             for (String permission : listPermissionsRequested) {
-                ResourcePermissionsModel resourcePermission = resourcesPermissionsView.findPermissionByPermissionName(permission);
-                if (resourcePermission.getControl().equals("GROUP-ITEM")) {
+                String resourcePermissionGroup = resourcesPermissionsView.findPermissionGroupByByPermissionName(permission);
+                if (resourcePermissionGroup.equals("GROUP-ITEM")) {
                     String[] permissionFlag = permission.split("_");
                     List<String> listGroupControl = resourcesPermissionsView.findAllPermissionsNameByPermissionFlagGroupControl(permissionFlag[0].toString());
                     if (listGroupControl.size() != 1) {

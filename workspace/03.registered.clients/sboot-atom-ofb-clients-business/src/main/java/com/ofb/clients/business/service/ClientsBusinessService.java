@@ -74,6 +74,7 @@ public class ClientsBusinessService {
                                                                 pageSize,
                                                                 pageSortField,
                                                                 pageSortOrder);
+
         Page<ClientsBusinessEntity> pageResult = repository.findAll(pageableOptions);
         OAuth2ClientsPageable result = pageableService.buildOAuth2ClientsPageable(pageableOptions, pageResult);
         messageService.sendMessageAuditTemplate(request);

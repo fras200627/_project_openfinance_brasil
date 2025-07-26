@@ -1,5 +1,6 @@
 package com.ofb.lib.amqp.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -7,6 +8,7 @@ import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +18,7 @@ public class AMQPQueuesConfig {
 	@Value("${amqp.ofb.exchange-direct}")
 	private String OFB_EXCHANGE_DIRECT;
 
+	/// -----------------------------------------------------------------------------------
 	@Value("${amqp.ofb.audit.http-requests.queue}")
 	private String AUDIT_HTTP_REQUESTS_QUEUE;
 
@@ -34,6 +37,13 @@ public class AMQPQueuesConfig {
 	@Value("${amqp.ofb.audit.consents-cancellation.routing-key}")
 	private String AUDIT_CONSENTS_CANCELLATION_ROUTING_KEY;
 
+	@Value("${amqp.ofb.audit.consents-revoke.queue}")
+	private String AUDIT_CONSENTS_REVOKED_QUEUE;
+
+	@Value("${amqp.ofb.audit.consents-revoke.routing-key}")
+	private String AUDIT_CONSENTS_REVOKED_ROUTING_KEY;
+	
+	/// -----------------------------------------------------------------------------------
 	@Value("${amqp.ofb.consents.authorization.queue}")
 	private String CONSENTS_AUTHORIZATION_QUEUE;
 
@@ -45,7 +55,6 @@ public class AMQPQueuesConfig {
 
 	@Value("${amqp.ofb.consents.cancellation.routing-key}")
 	private String CONSENTS_CANCELLATION_ROUTING_KEY;
-
 
     @Bean @Qualifier("direct")
 	public DirectExchange direct() {
@@ -100,6 +109,16 @@ public class AMQPQueuesConfig {
 	@Bean
 	public Binding binding4(DirectExchange direct, Queue ofbConsentsCancellation) {
 		return BindingBuilder.bind(ofbConsentsCancellation).to(direct).with(CONSENTS_CANCELLATION_ROUTING_KEY);
+	}
+
+	/// ----------------------------------------------------------------------------------
+	@Bean
+	public Queue ofbAuditConsentsRevoked() {
+		return new Queue(AUDIT_CONSENTS_REVOKED_QUEUE);
+	}
+	@Bean
+	public Binding binding6(DirectExchange direct, Queue ofbAuditConsentsRevoked) {
+		return BindingBuilder.bind(ofbAuditConsentsRevoked).to(direct).with(CONSENTS_CANCELLATION_ROUTING_KEY);
 	}
 	/// ----------------------------------------------------------------------------------
 
