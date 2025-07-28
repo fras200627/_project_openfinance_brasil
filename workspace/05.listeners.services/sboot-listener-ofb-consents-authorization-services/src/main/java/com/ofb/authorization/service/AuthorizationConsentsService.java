@@ -193,8 +193,8 @@ public class AuthorizationConsentsService {
         /// Step 03 -
         LoggedUserDocument loggedUserDocument = new LoggedUserDocument();
         loggedUserDocument.setLoggedUserName(consentsPersonalAccepted.getCivilName());
-        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
-        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
+//        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
+//        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
 
         /// Step 04 -
         LoggedUser loggedUser = new LoggedUser();
@@ -204,8 +204,8 @@ public class AuthorizationConsentsService {
         /// Step 05 -
         BusinessEntityDocument businessEntityDocument = new BusinessEntityDocument();
         businessEntityDocument.setEntityBusinessName(httpServletRequest.getUserPrincipal().getName());
-        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
-        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
+//        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
+//        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
 
         /// Step 06 -
         BusinessEntity businessEntity = new BusinessEntity();

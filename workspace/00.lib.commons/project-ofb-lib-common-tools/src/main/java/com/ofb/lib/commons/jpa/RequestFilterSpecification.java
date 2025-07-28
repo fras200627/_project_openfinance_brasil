@@ -1,6 +1,8 @@
 package com.ofb.lib.commons.jpa;
 
 import com.ofb.lib.commons.utils.ValidateFields;
+import com.ofb.lib.commons.jpa.RequestFilterParams;
+import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;

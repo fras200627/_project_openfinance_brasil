@@ -1,35 +1,30 @@
 package com.ofb.consents.service.orchestration;
 
 import com.google.gson.Gson;
-import com.ofb.consents.client.authentication.resources.handler.AppAuthenticationResourcesApi;
-import com.ofb.consents.client.authentication.resources.model.*;
-import com.ofb.consents.client.authentication.resources.model.BusinessEntity;
-import com.ofb.consents.client.authentication.resources.model.BusinessEntityDocument;
-import com.ofb.consents.client.authentication.resources.model.LoggedUser;
-import com.ofb.consents.client.authentication.resources.model.LoggedUserDocument;
-import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.enums.ConsentResponseEnum;
 import com.ofb.consents.exception.ConsentBadRequestException;
 import com.ofb.consents.exception.ConsentInternalErrorException;
 import com.ofb.consents.exception.ConsentUnprocessedEntityException;
-import com.ofb.consents.model.ConsentPermissionAuthorisedModel;
+import com.ofb.consents.model.ConsentPersonalExpirationControlModel;
 import com.ofb.consents.model.ConsentPersonalModel;
-import com.ofb.consents.repository.data.ConsentPersonalRepository;
-import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
+import com.ofb.consents.repository.jpa.ConsentsExpirationControlPaginationSettings;
+import com.ofb.consents.repository.jpa.ConsentsExpirationControlRecordFilter;
+import com.ofb.consents.repository.views.ConsentPersonalExpirationControlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
 import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.lib.commons.jpa.RequestFilterParams;
+import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
+import com.ofb.lib.commons.jpa.RequestFilterSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
-import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -50,20 +45,12 @@ public class ConsentGetExtensionsService {
     private ConsentPersonalViewRepository consentsRepositoryView;
 
     @Autowired
-    private ConsentPersonalRepository consentPersonalRepository;
-
-    @Autowired
-    private ConsentPermissionsAuthorisedlViewRepository permissionsAuthorised;
-
-    @Value("${app.paths.clients.authentication-server}")
-    private String PATH_AUTHENTICATION_SERVER;
-
-    @Autowired private AppAuthenticationResourcesApi authenticationResourcesApi;
+    private ConsentPersonalExpirationControlViewRepository consentsExpirationControlRepositoryView;
 
     public ResponseConsentReadExtensions consentsGetConsentsConsentIdExtensions(String consentId, String authorization, UUID xFapiInteractionId, Integer page, Integer pageSize) {
 
-        List<ResponseConsentReadExtensionsDataInner> listResponseExtentions = new ArrayList<>();
-        Page<ConsentPersonalModel> consentRequestList;
+        List<ResponseConsentReadExtensionsDataInner> listResponseExtensions = new ArrayList<>();
+        Page<ConsentPersonalExpirationControlModel> consentRequestList;
         List<ResponseErrorErrorsInner> listError = new ArrayList<>();
 
         ConsentPersonalModel consentRequested;
@@ -96,21 +83,27 @@ public class ConsentGetExtensionsService {
         }
 
         try {
-            Pageable pageable =  PageRequest.of(Long.valueOf(page - 1).intValue(), Long.valueOf(pageSize).intValue());
-            consentRequestList = consentsRepositoryView.findAll(pageable);
-            for (ConsentPersonalModel reg : consentRequestList.getContent()) {
+            ConsentsExpirationControlPaginationSettings page_settings = new ConsentsExpirationControlPaginationSettings(page, pageSize, "id", "DESC");
+            ConsentsExpirationControlRecordFilter filter = new ConsentsExpirationControlRecordFilter(page_settings, null, consentId);
+            Specification<ConsentPersonalExpirationControlModel> filterSpecs = this.buildFilter(filter);
+            Pageable pageParams = ConsentsExpirationControlPaginationSettings
+                    .PaginationSettingsTemplate(filter.page_settings(), "consentId");
+
+            consentRequestList = consentsExpirationControlRepositoryView.findAll(filterSpecs, pageParams);
+
+            for (ConsentPersonalExpirationControlModel reg : consentRequestList.getContent()) {
                 LoggedUserExtensions loggedUser = LoggedUserExtensions.builder()
                                 .document(LoggedUserDocumentExtensions.builder()
                                         .identification(reg.getLoggedUserIdentification())
                                         .rel(reg.getLoggedUserDocumentRel()).build())
                                         .build();
-                listResponseExtentions.add(ResponseConsentReadExtensionsDataInner.builder()
+                listResponseExtensions.add(ResponseConsentReadExtensionsDataInner.builder()
                         .expirationDateTime(reg.getExpirationDatetime())
                         .loggedUser(loggedUser)
-                        .previousExpirationDateTime(reg.getExpirationDatetime())
+                        .previousExpirationDateTime(reg.getPreviusExpirationDatetime())
                         .requestDateTime(reg.getCreationDatetime())
-                        .xCustomerUserAgent(reg.getLoggedUserIdentification())
-                        .xFapiCustomerIpAddress(null)
+                        .xCustomerUserAgent(reg.getXCustomerUserAgent())
+                        .xFapiCustomerIpAddress(reg.getXFapiCustomerIdAddress())
                         .build());
 
             }
@@ -145,12 +138,42 @@ public class ConsentGetExtensionsService {
                                 .build();
 
         ResponseConsentReadExtensions responseConsentReadData = ResponseConsentReadExtensions.builder()
-                .data(listResponseExtentions)
+                .data(listResponseExtensions)
                 .meta(meta)
                 .links(links)
                 .build();
 
         return responseConsentReadData;
+    }
+
+    public Specification<ConsentPersonalExpirationControlModel> buildFilter(ConsentsExpirationControlRecordFilter filter) {
+
+        Specification<ConsentPersonalExpirationControlModel> specs = null;
+        RequestFilterParams requestFilterParams = null;
+
+        if (filter.id() != null
+                && filter.id().trim().length() != 0) {
+
+            requestFilterParams = new RequestFilterParams("id",
+                    RequestFilterPredicatesEnum.EQUAL_NUMBER,
+                    filter.id().trim().toUpperCase(),
+                    null);
+
+            specs = Specification.where(specs).and(new RequestFilterSpecification<>(requestFilterParams));
+        }
+
+        if (filter.consentId() != null
+                && filter.consentId().trim().length() != 0) {
+
+            requestFilterParams = new RequestFilterParams("consentId",
+                    RequestFilterPredicatesEnum.EQUAL_STRING,
+                    filter.consentId().trim().toUpperCase(),
+                    null);
+
+            specs = Specification.where(specs).and(new RequestFilterSpecification<>(requestFilterParams));
+        }
+
+        return specs;
     }
 
 }

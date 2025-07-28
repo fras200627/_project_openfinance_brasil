@@ -2,6 +2,7 @@ package com.ofb.consents.service.persistence;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
+import com.ofb.consents.entity.ConsentPersonalDataExpirationControl;
 import com.ofb.consents.enums.ConsentResponseEnum;
 import com.ofb.consents.exception.ConsentBadRequestException;
 import com.ofb.consents.exception.ConsentInternalErrorException;
@@ -35,6 +36,9 @@ public class ConsentCreateService {
     @Autowired
     private ConsentPersonalRepository consentsRepository;
 
+    @Autowired
+    private ConsentPersonalExpiirationControlRepository consentsExpirationControlRepository;
+
     /**
      * Creates a new Consent
      * <br>
@@ -64,7 +68,7 @@ public class ConsentCreateService {
         CreateConsent createConsent = null;
         String consentId            = null;
         List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
-        Timestamp timestampThisOperation                  = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+        Timestamp timestampThisOperation;
 
         ///  ObjectData parameter validate
         try {
@@ -155,6 +159,7 @@ public class ConsentCreateService {
                     .getObjectData();
 
             PersonalDataModel personalDataView = personalDataViewRepository.findById(createConsent.getData().getLoggedUser().getDocument().getIdentification()).get();
+            timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
 
             ConsentPersonalData consentAccept = consentsRepository.saveAndFlush(ConsentPersonalData.builder()
                     .consentId(consentId)
@@ -163,15 +168,15 @@ public class ConsentCreateService {
                     .creationDatetime(timestampThisOperation)
                     .statusUpdateDatetime(timestampThisOperation)
                     .expirationDatetime(respponseExpirationDatetimeModel.getExpirationDateTimeStamp())
-                    .expirationDatetimeRequested(respponseExpirationDatetimeModel.getExpirationDateTimeRequested())
-                    .expirationDatetimeAdjusted(respponseExpirationDatetimeModel.getExpirationDateTimeAdjusted())
-                    .expirationInMonths(respponseExpirationDatetimeModel.getExpirationInMonths())
+//                    .expirationDatetimeRequested(respponseExpirationDatetimeModel.getExpirationDateTimeRequested())
+//                    .expirationDatetimeAdjusted(respponseExpirationDatetimeModel.getExpirationDateTimeAdjusted())
+//                    .expirationInMonths(respponseExpirationDatetimeModel.getExpirationInMonths())
                     .expirationDateInfo(respponseExpirationDatetimeModel.getExpirationDateInfo())
                     .personalId(personalDataView.getPersonalid())
-                    .loggedUserIdentification(createConsent.getData().getLoggedUser().getDocument().getIdentification())
-                    .loggedUserDocumentRel(createConsent.getData().getLoggedUser().getDocument().getRel())
-                    .businessEntityIdentification(createConsent.getData().getBusinessEntity().getDocument().getIdentification())
-                    .businessEntityDocumentRel(createConsent.getData().getBusinessEntity().getDocument().getRel())
+//                    .loggedUserIdentification(createConsent.getData().getLoggedUser().getDocument().getIdentification())
+//                    .loggedUserDocumentRel(createConsent.getData().getLoggedUser().getDocument().getRel())
+//                    .businessEntityIdentification(createConsent.getData().getBusinessEntity().getDocument().getIdentification())
+//                    .businessEntityDocumentRel(createConsent.getData().getBusinessEntity().getDocument().getRel())
                     .awaitingAuthStart(timestampThisOperation)
                     .awaitingAuthBy(createConsent.getData().getLoggedUser().getDocument().getIdentification())
                     .awaitingAuthAdditionalInfo(null)
@@ -179,6 +184,28 @@ public class ConsentCreateService {
                     .modifyAt(timestampThisOperation)
                     .userCode("ConsentsServiceAPI")
                     .build());
+
+            timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+            consentsExpirationControlRepository.saveAndFlush(ConsentPersonalDataExpirationControl.builder()
+                    .consentId(consentId)
+                    .requestDatetime(timestampThisOperation)
+                    .previusExpirationDatetime(null)
+                    .xFapiCustomerIpAddress("not informed")
+                    .xCustomerAgent("not informed")
+                    .loggedUserIdentification(createConsent.getData().getLoggedUser().getDocument().getIdentification())
+                    .loggedUserDocumentRel(createConsent.getData().getLoggedUser().getDocument().getRel())
+                    .businessEntityIdentification(createConsent.getData().getBusinessEntity().getDocument().getIdentification())
+                    .businessEntityDocumentRel(createConsent.getData().getBusinessEntity().getDocument().getRel())
+                    .expirationDatetime(respponseExpirationDatetimeModel.getExpirationDateTimeStamp())
+                    .expirationDatetimeRequested(respponseExpirationDatetimeModel.getExpirationDateTimeRequested())
+                    .expirationDatetimeAdjusted(respponseExpirationDatetimeModel.getExpirationDateTimeAdjusted())
+                    .expirationInMonths(respponseExpirationDatetimeModel.getExpirationInMonths())
+                    .expirationDateInfo(respponseExpirationDatetimeModel.getExpirationDateInfo())
+                    .createAt(timestampThisOperation)
+                    .modifyAt(timestampThisOperation)
+                    .userCode("ConsentsServiceAPI")
+                    .build());
+
             return ResponseValidateConsentModel.builder()
                     .errorsListed(false)
                     .responseErrorsList(listResponseErrors)

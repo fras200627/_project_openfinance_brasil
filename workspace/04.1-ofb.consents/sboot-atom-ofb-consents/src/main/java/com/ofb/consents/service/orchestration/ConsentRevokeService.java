@@ -133,7 +133,6 @@ public class ConsentRevokeService {
             throw new RuntimeException(e);
         }
 
-
     }
 
 }

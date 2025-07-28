@@ -11,6 +11,7 @@ import com.ofb.consents.server.consents.resources.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,8 +95,10 @@ public class ValidateBusinessEntityService {
                 registeredClientName = ((CreateConsentData) objectData).getBusinessEntity().getDocument().getIdentification();
             } else if (objectData instanceof BusinessEntity) {
                 registeredClientName = ((BusinessEntity) objectData).getDocument().getIdentification();
-            }else if (objectData instanceof BusinessEntityDocument) {
+            } else if (objectData instanceof BusinessEntityDocument) {
                 registeredClientName = ((BusinessEntityDocument) objectData).getIdentification();
+            } else if (objectData instanceof BusinessEntityExtensions) {
+                registeredClientName = ((BusinessEntityExtensions) objectData).getDocument().getIdentification();
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()

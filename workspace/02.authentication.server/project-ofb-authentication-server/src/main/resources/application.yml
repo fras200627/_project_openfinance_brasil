@@ -106,6 +106,9 @@ amqp:
       consents-revoke:
         queue: "ofb.audit.consents.revoke"
         routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
     consents:
       authorization:
         queue: "ofb.consents.authorization"
@@ -151,6 +154,9 @@ amqp:
       consents-revoke:
         queue: "ofb.audit.consents.revoke"
         routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
     consents:
       authorization:
         queue: "ofb.consents.authorization"
@@ -158,7 +164,6 @@ amqp:
       cancellation:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
-    
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -196,6 +201,9 @@ amqp:
       consents-revoke:
         queue: "ofb.audit.consents.revoke"
         routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
     consents:
       authorization:
         queue: "ofb.consents.authorization"

@@ -1,8 +1,8 @@
 package com.ofb.lib.commons.utils;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Configuration;
 
-@Slf4j
+@Configuration
 public class ValidateFields {
 	public static final String p_format_date_short_PTBR	= "dd-MM-yyyy";
 	public static final String p_format_date_time_PTBR	= "dd-MM-yyyy HH:mm";

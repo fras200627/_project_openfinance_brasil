@@ -479,7 +479,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/registered/clients/business/findById?registeredId=99999",
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findById?registeredId=99999",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -487,8 +487,6 @@
 											"port": "3001",
 											"path": [
 												"ofb-clients-business-api",
-												"registered",
-												"clients",
 												"business",
 												"findById"
 											],
@@ -524,7 +522,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/registered/clients/business/findByClientId?clientId=ofb-santander",
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientId?clientId=ofb-santander",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -532,8 +530,6 @@
 											"port": "3001",
 											"path": [
 												"ofb-clients-business-api",
-												"registered",
-												"clients",
 												"business",
 												"findByClientId"
 											],
@@ -569,7 +565,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/registered/clients/business/findByClientName?clientName=Client Tican Admin Master",
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientName?clientName=Client Tican Admin Master",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -577,8 +573,6 @@
 											"port": "3001",
 											"path": [
 												"ofb-clients-business-api",
-												"registered",
-												"clients",
 												"business",
 												"findByClientName"
 											],
@@ -608,7 +602,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/registered/clients/business/findAll",
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findAll",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -616,8 +610,6 @@
 											"port": "3001",
 											"path": [
 												"ofb-clients-business-api",
-												"registered",
-												"clients",
 												"business",
 												"findAll"
 											]
@@ -654,7 +646,7 @@
 											"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/oauth2/registered/clients/business/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -662,9 +654,6 @@
 											"port": "3001",
 											"path": [
 												"ofb-clients-business-api",
-												"oauth2",
-												"registered",
-												"clients",
 												"business",
 												"findByPageable"
 											],
@@ -719,7 +708,7 @@
 											"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/oauth2/registered/clients/business/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -727,9 +716,6 @@
 											"port": "3001",
 											"path": [
 												"ofb-clients-business-api",
-												"oauth2",
-												"registered",
-												"clients",
 												"business",
 												"findByFilters"
 											],
@@ -1298,7 +1284,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2026-07-16T06:33:23Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-07-28T06:33:23Z\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2501,7 +2487,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:oekoke.okeoke.okeokeok.oekeok"
+									"value": "urn:bancotcn:9725b9f0-2739-4c3f-8afa-25fb99955e8e"
 								}
 							]
 						}
@@ -2550,7 +2536,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents/consents/:consentId/extensions?page&page-size",
+							"raw": "http://localhost:3001/ofb-consents/consents/:consentId/extensions?page=1&page-size=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2565,17 +2551,17 @@
 							"query": [
 								{
 									"key": "page",
-									"value": null
+									"value": "1"
 								},
 								{
 									"key": "page-size",
-									"value": null
+									"value": "5"
 								}
 							],
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:oekoke.okeoke.okeokeok.oekeok"
+									"value": "urn:bancotcn:9725b9f0-2739-4c3f-8afa-25fb99955e8e"
 								}
 							]
 						}
@@ -2625,7 +2611,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2021-05-21 08:30:00\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2025-10-28T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2648,7 +2634,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:oekoke.okeoke.okeokeok.oekeok"
+									"value": "urn:bancotcn:9725b9f0-2739-4c3f-8afa-25fb99955e8e"
 								}
 							]
 						}
@@ -2656,7 +2642,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Consents",
+					"name": "Step 5 - Delete Consents",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2711,7 +2697,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:9060b81a-23a0-4563-b166-98c372f7b77f"
+									"value": "urn:bancotcn:d892636f-d01a-468b-bf03-b91c9807ac63"
 								}
 							]
 						}

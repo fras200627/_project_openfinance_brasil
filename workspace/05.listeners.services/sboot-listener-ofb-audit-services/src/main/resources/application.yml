@@ -79,6 +79,9 @@ amqp:
       consents-revoke:
         queue: "ofb.audit.consents.revoke"
         routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
     consents:
       authorization:
         queue: "ofb.consents.authorization"
@@ -127,6 +130,9 @@ amqp:
       consents-revoke:
         queue: "ofb.audit.consents.revoke"
         routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
     consents:
       authorization:
         queue: "ofb.consents.authorization"
@@ -175,6 +181,9 @@ amqp:
       consents-revoke:
         queue: "ofb.audit.consents.revoke"
         routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
     consents:
       authorization:
         queue: "ofb.consents.authorization"

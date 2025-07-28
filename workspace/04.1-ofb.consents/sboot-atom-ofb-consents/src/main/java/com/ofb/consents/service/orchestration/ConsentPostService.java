@@ -64,7 +64,7 @@ public class ConsentPostService {
     @Autowired private ConsentCreateService                 consentCreateService;
     @Autowired private ConsentCancelService                 consentCancelService;
     @Autowired private ConsentCreatePermissionsService      consentCreatePermissionsService;
-    @Autowired private ConsentUpdateService consentUpdateService;
+    @Autowired private ConsentUpdateService                 consentUpdateService;
     @Autowired private ConsentPersonalRepository            consentRepositoryData;
     @Autowired private ConsentPersonalViewRepository        consentRepositoryView;
 
@@ -249,7 +249,6 @@ public class ConsentPostService {
                 .links(links)
                 .meta(meta)
                 .build();
-
     }
 
 }

@@ -31,32 +31,11 @@ public class ConsentPersonalData {
     @Column(name = "EXPIRATIONDATETIME")
     private Timestamp expirationDatetime;
 
-    @Column(name = "EXPIRATIONDATETIMEREQUESTED")
-    private Timestamp expirationDatetimeRequested;
-
-    @Column(name = "EXPIRATIONDATETIMEADJUSTED")
-    private Timestamp expirationDatetimeAdjusted;
-
-    @Column(name = "EXPIRATIONINMONTHS")
-    private Long expirationInMonths;
-
     @Column(name = "EXPIRATIONDATEINFO")
     private String expirationDateInfo;
 
     @Column(name = "PERSONALID")
     private String personalId;
-
-    @Column(name = "LOGGEDUSERIDENTIFICATION")
-    private String loggedUserIdentification;
-
-    @Column(name = "LOGGEDUSERDOCUMENTREL")
-    private String loggedUserDocumentRel;
-
-    @Column(name = "BUSINESSENTITYIDENTIFICATION")
-    private String businessEntityIdentification;
-
-    @Column(name = "BUSINESSENTITYDOCUMENTREL")
-    private String businessEntityDocumentRel;
 
     @Column(name = "AWAITINGAUTHBY")
     private String awaitingAuthBy;

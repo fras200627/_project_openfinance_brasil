@@ -35,9 +35,6 @@ public class ConsentPersonalModel {
     @Column(name = "EXPIRATIONDATETIME")
     private String expirationDatetime;
 
-    @Column(name = "EXPIRATIONINMONTHS")
-    private Long expirationInMonths;
-
     @Column(name = "EXPIRATIONDATEINFO")
     private String expirationDateInfo;
 
@@ -49,18 +46,6 @@ public class ConsentPersonalModel {
 
     @Column(name = "CPFNUMBER")
     private String cpfNumber;
-
-    @Column(name = "LOGGEDUSERIDENTIFICATION")
-    private String loggedUserIdentification;
-
-    @Column(name = "LOGGEDUSERDOCUMENTREL")
-    private String loggedUserDocumentRel;
-
-    @Column(name = "BUSINESSENTITYIDENTIFICATION")
-    private String businessEntityIdentification;
-
-    @Column(name = "BUSINESSENTITYDOCUMENTREL")
-    private String businessEntityDocumentRel;
 
     @Column(name = "AWAITINGAUTHBY")
     private String awaitingAuthBy;

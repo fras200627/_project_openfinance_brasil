@@ -20,8 +20,17 @@ public class ConsentPersonalDataExpirationControl {
     @Column(name = "CONSENTID")
     private String consentId;
 
-    @Column(name = "CREATIONDATETIME")
-    private Timestamp creationDatetime;
+    @Column(name = "REQUESTDATETIME")
+    private Timestamp requestDatetime;
+
+    @Column(name = "PREVIUSEXPIRATIONDATETIME")
+    private Timestamp previusExpirationDatetime;
+
+    @Column(name = "XFAPICUSTOMERIPADDRESS")
+    private String xFapiCustomerIpAddress;
+
+    @Column(name = "XCUSTOMERUSERAGENT")
+    private String xCustomerAgent;
 
     @Column(name = "EXPIRATIONDATETIME")
     private Timestamp expirationDatetime;

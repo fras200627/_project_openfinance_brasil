@@ -1,5 +1,6 @@
 package com.ofb.lib.commons.jpa;
 
+
 public class RequestFilterParams {
 
 	private String key;

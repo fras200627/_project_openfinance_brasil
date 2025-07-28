@@ -12,9 +12,11 @@ import com.ofb.consents.enums.ConsentResponseEnum;
 import com.ofb.consents.exception.ConsentBadRequestException;
 import com.ofb.consents.exception.ConsentInternalErrorException;
 import com.ofb.consents.model.ConsentPermissionAuthorisedModel;
+import com.ofb.consents.model.ConsentPermissionRequestedModel;
 import com.ofb.consents.model.ConsentPersonalModel;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
+import com.ofb.consents.repository.views.ConsentPermissionsRequestedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
 import com.ofb.consents.server.consents.resources.model.*;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +53,9 @@ public class ConsentGetService {
     @Autowired
     private ConsentPermissionsAuthorisedlViewRepository permissionsAuthorised;
 
+    @Autowired
+    private ConsentPermissionsRequestedlViewRepository permissionsRequested;
+
     @Value("${app.paths.clients.authentication-server}")
     private String PATH_AUTHENTICATION_SERVER;
 
@@ -79,10 +84,17 @@ public class ConsentGetService {
             throw new ConsentInternalErrorException(new Gson().toJson(listError));
         }
 
-        List<ConsentPermissionAuthorisedModel> permissionsList = permissionsAuthorised.findAllConsentsPermissionsAuthorisedByConsentId(consentId);
         List<ResponseConsentReadData.PermissionsEnum> permissions = new ArrayList<>();
-        for (ConsentPermissionAuthorisedModel reg : permissionsList ) {
-            permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg.getPermission()));
+        List<ConsentPermissionAuthorisedModel> permissionsAuthorisedList = permissionsAuthorised.findAllConsentsPermissionsAuthorisedByConsentId(consentId);
+        if (!permissionsAuthorisedList.isEmpty()) {
+            for (ConsentPermissionAuthorisedModel reg : permissionsAuthorisedList) {
+                permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg.getPermission()));
+            }
+        } else {
+            List<ConsentPermissionRequestedModel> permissionRequestedList = permissionsRequested.findAllConsentsPermissionsRequestedByConsentId(consentId);
+            for (ConsentPermissionRequestedModel reg : permissionRequestedList) {
+                permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg.getPermission()));
+            }
         }
 
         ResponseConsentReadData responseConsentReadData = ResponseConsentReadData.builder()
@@ -93,7 +105,7 @@ public class ConsentGetService {
                 .permissions(permissions)
                 .build();
 
-        if (consentRequested.getExpirationDatetime() != null || !consentRequested.getExpirationDatetime().isEmpty()) {
+        if (consentRequested.getExpirationDatetime() != null) {
             responseConsentReadData.setExpirationDateTime(consentRequested.getExpirationDatetime());
         }
 
@@ -108,9 +120,8 @@ public class ConsentGetService {
             responseConsentReadData.setRejection(responseRejection);
         }
 
-//        if (consentRequested.getStatus().equals("AUTHORISED") &&
-//            (consentRequested.getAccessTokenAuthorised() == null || consentRequested.getAccessTokenAuthorised().isEmpty())) {
-        if (consentRequested.getStatus().equals("AUTHORISED")) {
+        if (consentRequested.getStatus().equals("AUTHORISED") &&
+            (consentRequested.getAccessTokenAuthorised() == null || consentRequested.getAccessTokenAuthorised().isEmpty())) {
             String accessToken = this.getAcessToken(consentRequested, authorization, xFapiInteractionId);
             httpServletResponse.addHeader("AccessToken", accessToken);
             ConsentPersonalData consentCreated = consentPersonalRepository.findById(consentRequested.getConsentId()).get();
@@ -151,8 +162,10 @@ public class ConsentGetService {
         /// Step 03 -
         LoggedUserDocument loggedUserDocument = new LoggedUserDocument();
         loggedUserDocument.setLoggedUserName(consentsPersonalAccepted.getCivilName());
-        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
-        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
+//        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
+//        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
+        loggedUserDocument.setIdentification("73991016982");
+        loggedUserDocument.setRel("CPF");
 
         /// Step 04 -
         LoggedUser loggedUser = new LoggedUser();
@@ -162,9 +175,10 @@ public class ConsentGetService {
         /// Step 05 -
         BusinessEntityDocument businessEntityDocument = new BusinessEntityDocument();
         businessEntityDocument.setEntityBusinessName(httpServletRequest.getUserPrincipal().getName());
-        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
-        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
-
+//        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
+//        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
+        businessEntityDocument.setIdentification("11111111111111");
+        businessEntityDocument.setRel("CNPJ");
         /// Step 06 -
         BusinessEntity businessEntity = new BusinessEntity();
         businessEntity.setDocument(businessEntityDocument);

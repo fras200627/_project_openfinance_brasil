@@ -9,6 +9,7 @@ import com.ofb.consents.repository.views.*;
 import com.ofb.consents.server.consents.resources.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -81,6 +82,8 @@ public class ValidateLoggedUserService {
                 loggedUserDocument = ((LoggedUser) objectData).getDocument().getIdentification();
             }else if (objectData instanceof LoggedUserDocument) {
                 loggedUserDocument = ((LoggedUserDocument) objectData).getIdentification();
+            } else if (objectData instanceof LoggedUserExtensions) {
+                loggedUserDocument = ((LoggedUserExtensions) objectData).getDocument().getIdentification();
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()

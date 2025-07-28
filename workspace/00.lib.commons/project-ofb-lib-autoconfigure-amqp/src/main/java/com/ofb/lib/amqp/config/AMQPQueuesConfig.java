@@ -42,7 +42,14 @@ public class AMQPQueuesConfig {
 
 	@Value("${amqp.ofb.audit.consents-revoke.routing-key}")
 	private String AUDIT_CONSENTS_REVOKED_ROUTING_KEY;
-	
+
+
+	@Value("${amqp.ofb.audit.consents-extends.queue}")
+	private String AUDIT_CONSENTS_EXTENDS_QUEUE;
+
+	@Value("${amqp.ofb.audit.consents-extends.routing-key}")
+	private String AUDIT_CONSENTS_EXTENDS_ROUTING_KEY;
+
 	/// -----------------------------------------------------------------------------------
 	@Value("${amqp.ofb.consents.authorization.queue}")
 	private String CONSENTS_AUTHORIZATION_QUEUE;
@@ -80,7 +87,6 @@ public class AMQPQueuesConfig {
 	public Binding binding2(DirectExchange direct, Queue ofbAuditConsentsAuthorization) {
 		return BindingBuilder.bind(ofbAuditConsentsAuthorization).to(direct).with(AUDIT_CONSENTS_AUTHORIZATION_ROUTING_KEY);
 	}
-
 	/// ----------------------------------------------------------------------------------
 	@Bean
 	public Queue ofbAuditConsentsCancellation() {
@@ -90,8 +96,24 @@ public class AMQPQueuesConfig {
 	public Binding binding3(DirectExchange direct, Queue ofbAuditConsentsCancellation) {
 		return BindingBuilder.bind(ofbAuditConsentsCancellation).to(direct).with(AUDIT_CONSENTS_CANCELLATION_ROUTING_KEY);
 	}
-
 	/// ----------------------------------------------------------------------------------
+	@Bean
+	public Queue ofbAuditConsentsRevoked() {
+		return new Queue(AUDIT_CONSENTS_REVOKED_QUEUE);
+	}
+	@Bean
+	public Binding binding6(DirectExchange direct, Queue ofbAuditConsentsRevoked) {
+		return BindingBuilder.bind(ofbAuditConsentsRevoked).to(direct).with(AUDIT_CONSENTS_REVOKED_ROUTING_KEY);
+	}
+	/// ----------------------------------------------------------------------------------
+	@Bean
+	public Queue ofbAuditConsentsExtends() {return new Queue(AUDIT_CONSENTS_EXTENDS_QUEUE);}
+	@Bean
+	public Binding binding7(DirectExchange direct, Queue ofbAuditConsentsExtends) {
+		return BindingBuilder.bind(ofbAuditConsentsExtends).to(direct).with(AUDIT_CONSENTS_EXTENDS_ROUTING_KEY);
+	}
+
+	/// ==================================================================================================================
 	@Bean
 	public Queue ofbConsentsAuthorization() {
 		return new Queue(CONSENTS_AUTHORIZATION_QUEUE);
@@ -110,16 +132,5 @@ public class AMQPQueuesConfig {
 	public Binding binding4(DirectExchange direct, Queue ofbConsentsCancellation) {
 		return BindingBuilder.bind(ofbConsentsCancellation).to(direct).with(CONSENTS_CANCELLATION_ROUTING_KEY);
 	}
-
-	/// ----------------------------------------------------------------------------------
-	@Bean
-	public Queue ofbAuditConsentsRevoked() {
-		return new Queue(AUDIT_CONSENTS_REVOKED_QUEUE);
-	}
-	@Bean
-	public Binding binding6(DirectExchange direct, Queue ofbAuditConsentsRevoked) {
-		return BindingBuilder.bind(ofbAuditConsentsRevoked).to(direct).with(CONSENTS_CANCELLATION_ROUTING_KEY);
-	}
-	/// ----------------------------------------------------------------------------------
 
 }

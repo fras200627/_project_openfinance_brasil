@@ -1,10 +1,7 @@
 package com.ofb.audit.listener;
 
 import com.ofb.audit.service.AuditService;
-import com.ofb.lib.amqp.model.MessageAuditTemplate;
-import com.ofb.lib.amqp.model.MessageAuthorisedConsentModel;
-import com.ofb.lib.amqp.model.MessageCancelConsentModel;
-import com.ofb.lib.amqp.model.MessageRevokeConsentModel;
+import com.ofb.lib.amqp.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +39,13 @@ public class AuditListener {
     public void receiveMessageAuditRevokeConsentsTemplate(@Payload MessageRevokeConsentModel message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.saveMessageAuditRevokedConsent(message);
+        log.info("Message recorded successfully: " + message.getTicket());
+    }
+
+    @RabbitListener(queues = "#{ofbAuditConsentsExtends.name}")
+    public void receiveMessageAuditExtendsConsentsTemplate(@Payload MessageExtendsConsentModel message) {
+        log.info("Message read in queue. processing.: " + message.getTicket());
+        service.saveMessageAuditExtendsConsent(message);
         log.info("Message recorded successfully: " + message.getTicket());
     }
 

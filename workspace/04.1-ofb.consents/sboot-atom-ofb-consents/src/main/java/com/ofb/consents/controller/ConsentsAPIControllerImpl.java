@@ -55,13 +55,13 @@ public class ConsentsAPIControllerImpl implements ConsentsApiDelegate {
                 HttpStatus.OK);
     }
 
-
-
-
-
     @Override @CanSystemOFBAdmin @CanClientOFBRead @CanClientOFBWrite
     public ResponseEntity<ResponseConsentExtensions> consentsPostConsentsConsentIdExtends(String consentId, String authorization, String xFapiCustomerIpAddress, UUID xFapiInteractionId, String xCustomerUserAgent, CreateConsentExtensions createConsentExtensions, String xFapiAuthDate) {
-        consentPostExtendsService.consentsPostConsentsConsentIdExtends(consentId);
-        return ConsentsApiDelegate.super.consentsPostConsentsConsentIdExtends(consentId, authorization, xFapiCustomerIpAddress, xFapiInteractionId, xCustomerUserAgent, createConsentExtensions, xFapiAuthDate);
+        return new ResponseEntity<>(consentPostExtendsService.consentsPostConsentsConsentIdExtends(consentId,
+                                                            authorization,
+                                                            xFapiInteractionId,
+                                                            xFapiCustomerIpAddress,
+                                                            xCustomerUserAgent,
+                                                            createConsentExtensions), HttpStatus.CREATED);
     }
 }

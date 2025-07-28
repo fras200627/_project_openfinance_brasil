@@ -1,17 +1,8 @@
 package com.ofb.audit.service;
 
-import com.ofb.audit.entity.AuditAuthorizationConsentEntity;
-import com.ofb.audit.entity.AuditCancellationConsentEntity;
-import com.ofb.audit.entity.AuditEntity;
-import com.ofb.audit.entity.AuditRevokedConsentEntity;
-import com.ofb.audit.repository.AuditAuthorizationConsentRepository;
-import com.ofb.audit.repository.AuditCancellationConsentRepository;
-import com.ofb.audit.repository.AuditRepository;
-import com.ofb.audit.repository.AuditRevokedConsentRepository;
-import com.ofb.lib.amqp.model.MessageAuditTemplate;
-import com.ofb.lib.amqp.model.MessageAuthorisedConsentModel;
-import com.ofb.lib.amqp.model.MessageCancelConsentModel;
-import com.ofb.lib.amqp.model.MessageRevokeConsentModel;
+import com.ofb.audit.entity.*;
+import com.ofb.audit.repository.*;
+import com.ofb.lib.amqp.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +22,9 @@ public class AuditService {
     @Autowired
     private AuditRevokedConsentRepository revokedConsentRepository;
 
+    @Autowired
+    private AuditExtendsConsentRepository auditConsentsExtends;
+
     public void saveMessageAudit(MessageAuditTemplate message) {
         repositoryAudit.saveAndFlush(new AuditEntity(message));
     }
@@ -44,7 +38,11 @@ public class AuditService {
     }
 
     public void saveMessageAuditRevokedConsent(MessageRevokeConsentModel message) {
-        revokedConsentRepository.saveAndFlush(new AuditRevokedConsentEntity(message));
+        revokedConsentRepository.saveAndFlush(new AuditRevokeConsentEntity(message));
+    }
+
+    public void saveMessageAuditExtendsConsent(MessageExtendsConsentModel message) {
+        auditConsentsExtends.saveAndFlush(new AuditExtendsConsentEntity(message));
     }
 
 }
