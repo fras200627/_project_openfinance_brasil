@@ -15,6 +15,9 @@ public interface ResourcePermissionsViewRepository extends JpaRepository<Resourc
     @Query("SELECT a.permission FROM ResourcePermissionsView a")
     List<String> findAllPermissionNames();
 
+    @Query("SELECT a.permission FROM ResourcePermissionsView a WHERE a.qualifiedforpf = 'Y'")
+    List<String> findAllPermissionNamesByQualifiedPF();
+
     @Query("SELECT a.permission FROM ResourcePermissionsView a WHERE a.resourcestatus = 'AVAILABLE'")
     List<String> findAllPermissionsNameEnabled();
 
@@ -32,6 +35,9 @@ public interface ResourcePermissionsViewRepository extends JpaRepository<Resourc
 
     @Query("SELECT a FROM ResourcePermissionsView a WHERE a.permission = :permission")
     ResourcePermissionsModel findPermissionByPermissionName(@Param("permission")  String permission);
+
+    @Query("SELECT a.permissionid FROM ResourcePermissionsView a WHERE a.permission = :permission GROUP BY a.permission, a.permissionid")
+    List<String> findPermissionsIdByPermissionName(@Param("permission")  String permission);
 
     @Query("SELECT a.control FROM ResourcePermissionsView a WHERE a.permission = :permission GROUP BY a.permission, a.control")
     String findPermissionGroupByByPermissionName(@Param("permission")  String permission);

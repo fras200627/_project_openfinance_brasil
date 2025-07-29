@@ -14,4 +14,6 @@ public interface ConsentPermissionsAuthorisedlViewRepository extends JpaReposito
     @Query("SELECT a FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId")
     public List<ConsentPermissionAuthorisedModel> findAllConsentsPermissionsAuthorisedByConsentId(@Param("consentId")  String consentId);
 
+    @Query("SELECT a.permission FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId")
+    public List<String> findAllConsentsPermissionsNamesAuthorisedByConsentId(@Param("consentId")  String consentId);
 }

@@ -83,11 +83,11 @@ public class ConsentGetExtensionsService {
         }
 
         try {
-            ConsentsExpirationControlPaginationSettings page_settings = new ConsentsExpirationControlPaginationSettings(page, pageSize, "id", "DESC");
+            ConsentsExpirationControlPaginationSettings page_settings = new ConsentsExpirationControlPaginationSettings(page, pageSize, "createAt", "DESC");
             ConsentsExpirationControlRecordFilter filter = new ConsentsExpirationControlRecordFilter(page_settings, null, consentId);
             Specification<ConsentPersonalExpirationControlModel> filterSpecs = this.buildFilter(filter);
             Pageable pageParams = ConsentsExpirationControlPaginationSettings
-                    .PaginationSettingsTemplate(filter.page_settings(), "consentId");
+                    .PaginationSettingsTemplate(filter.page_settings(), "createAt");
 
             consentRequestList = consentsExpirationControlRepositoryView.findAll(filterSpecs, pageParams);
 
@@ -101,7 +101,7 @@ public class ConsentGetExtensionsService {
                         .expirationDateTime(reg.getExpirationDatetime())
                         .loggedUser(loggedUser)
                         .previousExpirationDateTime(reg.getPreviusExpirationDatetime())
-                        .requestDateTime(reg.getCreationDatetime())
+                        .requestDateTime(reg.getRequestDatetime())
                         .xCustomerUserAgent(reg.getXCustomerUserAgent())
                         .xFapiCustomerIpAddress(reg.getXFapiCustomerIdAddress())
                         .build());

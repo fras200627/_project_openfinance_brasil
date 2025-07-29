@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity(name = "ConsentPersonalExpirationControlView")
 @Table(schema = "OFB", name = "VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL") //Materialized View
@@ -61,5 +62,8 @@ public class ConsentPersonalExpirationControlModel {
 
     @Column(name = "BUSINESSENTITYDOCUMENTREL")
     private String businessEntityDocumentRel;
+
+    @Column(name = "CREATEAT")
+    private Timestamp createAt;
 
 }

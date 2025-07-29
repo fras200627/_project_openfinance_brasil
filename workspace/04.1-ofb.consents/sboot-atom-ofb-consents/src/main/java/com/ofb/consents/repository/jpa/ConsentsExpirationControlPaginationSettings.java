@@ -20,7 +20,7 @@ public record ConsentsExpirationControlPaginationSettings(
         int page_size,
 
         @Nullable
-        @Pattern(regexp = "id|consentId|requestDateTime")
+        @Pattern(regexp = "id|consentId|requestDateTime|createAt")
         String page_sort_field,
 
         @Nullable

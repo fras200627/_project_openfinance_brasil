@@ -182,15 +182,18 @@ public class ConsentCreatePermissionsService {
                                     .getObjectData();
 
             for (ResponseConsentData.PermissionsEnum permission : permissionsResponse) {
-                timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
-                permissionsRequestedRepository.saveAndFlush(ConsentPermissionsRequested
-                        .builder()
-                        .consentId(consentId)
-                        .permissionId(Long.valueOf(resourcesPermissionsView.findPermissionByPermissionName(permission.getValue()).getPermissionid()))
-                        .createAt(timestampThisOperation)
-                        .modifyAt(timestampThisOperation)
-                        .userCode("ConsentsServiceAPI")
-                        .build());
+                List<String> listOfPermissionsId = resourcesPermissionsView.findPermissionsIdByPermissionName(permission.getValue());
+                for (String reg : listOfPermissionsId) {
+                    timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+                    permissionsRequestedRepository.saveAndFlush(ConsentPermissionsRequested
+                            .builder()
+                            .consentId(consentId)
+                            .permissionId(Long.valueOf(reg))
+                            .createAt(timestampThisOperation)
+                            .modifyAt(timestampThisOperation)
+                            .userCode("ConsentsServiceAPI")
+                            .build());
+                }
             }
         } catch (Exception ex) {
             log.error(ex.getMessage());

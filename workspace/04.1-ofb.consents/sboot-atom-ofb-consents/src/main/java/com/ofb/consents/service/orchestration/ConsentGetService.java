@@ -85,15 +85,15 @@ public class ConsentGetService {
         }
 
         List<ResponseConsentReadData.PermissionsEnum> permissions = new ArrayList<>();
-        List<ConsentPermissionAuthorisedModel> permissionsAuthorisedList = permissionsAuthorised.findAllConsentsPermissionsAuthorisedByConsentId(consentId);
+        List<String> permissionsAuthorisedList = permissionsAuthorised.findAllConsentsPermissionsNamesAuthorisedByConsentId(consentId);
         if (!permissionsAuthorisedList.isEmpty()) {
-            for (ConsentPermissionAuthorisedModel reg : permissionsAuthorisedList) {
-                permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg.getPermission()));
+            for (String reg : permissionsAuthorisedList.stream().distinct().toList()) {
+                permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg));
             }
         } else {
-            List<ConsentPermissionRequestedModel> permissionRequestedList = permissionsRequested.findAllConsentsPermissionsRequestedByConsentId(consentId);
-            for (ConsentPermissionRequestedModel reg : permissionRequestedList) {
-                permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg.getPermission()));
+            List<String> permissionRequestedList = permissionsRequested.findAllConsentsPermissionsNamesRequestedByConsentId(consentId);
+            for (String reg : permissionRequestedList.stream().distinct().toList()) {
+                permissions.add(ResponseConsentReadData.PermissionsEnum.fromValue(reg));
             }
         }
 

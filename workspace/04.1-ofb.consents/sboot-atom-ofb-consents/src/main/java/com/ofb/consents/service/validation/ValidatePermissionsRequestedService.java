@@ -53,7 +53,7 @@ public class ValidatePermissionsRequestedService {
 
         List<CreateConsentData.PermissionsEnum> permissionsData = new ArrayList<>();
         List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
-        List<ResponseConsentData.PermissionsEnum> permissionsRequested = new ArrayList<>();
+//        List<ResponseConsentData.PermissionsEnum> permissionsRequested = new ArrayList<>();
         List<ResponseConsentData.PermissionsEnum> permissionsResponse = new ArrayList<>();
 
         ///  ObjectData parameter validate
@@ -110,15 +110,15 @@ public class ValidatePermissionsRequestedService {
         }
 
         try {
-            List<String> listResourcesPermissionsAvailable = resourcesPermissionsView.findAllPermissionsNameEnabled();
+            List<String> listResourcesPermissionsAvailable = resourcesPermissionsView.findAllPermissionNamesByQualifiedPF();
 
-            for (CreateConsentData.PermissionsEnum permission :permissionsData) {
+            for (CreateConsentData.PermissionsEnum permission : permissionsData) {
                 if (listResourcesPermissionsAvailable.contains(permission.getValue())) {
-                    permissionsRequested.add(ResponseConsentData.PermissionsEnum.fromValue(permission.getValue()));
+                    permissionsResponse.add(ResponseConsentData.PermissionsEnum.fromValue(permission.getValue()));
                 }
             }
 
-            if (permissionsRequested.isEmpty() || (permissionsRequested.size() == 1 && permissionsRequested.get(0).toString().equals("RESOURCES_READ"))) {
+            if (permissionsResponse.isEmpty() || (permissionsResponse.size() == 1 && permissionsResponse.get(0).toString().equals("RESOURCES_READ"))) {
                 listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
                         .title("Consent Permissions Requested validate")
                         .code(ConsentResponseEnum.CodeEnum.COMBINACAO_PERMISSOES_INCORRETA.getValue())
@@ -131,27 +131,6 @@ public class ValidatePermissionsRequestedService {
                         .errorsListed(true)
                         .responseErrorsList(listResponseErrors)
                         .build();
-            } else {
-                for (ResponseConsentData.PermissionsEnum permission : permissionsRequested) {
-                    ResourcePermissionsModel permissionView = resourcesPermissionsView.findPermissionByPermissionName(permission.getValue());
-                    if ((permissionView.getQualifiedforpf().equals("Y"))) {
-                        permissionsResponse.add(permission);
-                    }
-                }
-                if (permissionsResponse.isEmpty() || (permissionsResponse.size() == 1 && permissionsResponse.get(0).toString().equals("RESOURCES_READ"))) {
-                    listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
-                            .title("Consent Permissions Requested validate")
-                            .code(ConsentResponseEnum.CodeEnum.COMBINACAO_PERMISSOES_INCORRETA.getValue())
-                            .detail("No permissions were found as available from the requested permissions list.")
-                            .build());
-                    if (executeThrowImmediately) {
-                        throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
-                    }
-                    return ResponseValidateConsentModel.builder()
-                            .errorsListed(true)
-                            .responseErrorsList(listResponseErrors)
-                            .build();
-                }
             }
         } catch (Exception e) {
             log.error(e.getMessage());
