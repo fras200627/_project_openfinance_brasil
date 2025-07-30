@@ -26,6 +26,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
@@ -61,45 +62,92 @@ public class ResourcesService {
         Gson gson = new Gson();
         Base64.Decoder decoder = Base64.getUrlDecoder();
         List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+        String subMember;
+        String consentId;
+        JsonObject subObject;
+        ResponseConsentRead response = null;
 
         /// Extract AccessToken values
-        String      subMember = authorization.replace("Bearer ", "").split("\\.")[1];
-        JsonObject  subObject = gson.fromJson(new String(decoder.decode(subMember)), JsonObject.class);
-        String      consentId = subObject.get("ofb.consent.id").getAsString();
+        try {
+            subMember = authorization.replace("Bearer ", "").split("\\.")[1];
+            subObject = gson.fromJson(new String(decoder.decode(subMember)), JsonObject.class);
+            consentId = subObject.get("ofb.consent.id").getAsString();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
+        }
 
         ///  Consents Resources API parameters
-        consentsApi.getApiClient().setBasePath(pathConsentResources);
-        consentsApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
-        ResponseConsentRead response =  consentsApi.consentsGetConsentsConsentId(consentId,
-                                                                                authorization,
-                                                                                xFapiInteractionId,
-                                                                                xFapiAuthDate,
-                                                                                xFapiCustomerIpAddress,
-                                                                                xCustomerUserAgent);
+        try {
+            consentsApi.getApiClient().setBasePath(pathConsentResources);
+            consentsApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
+            response = consentsApi.consentsGetConsentsConsentId(consentId,
+                    authorization,
+                    xFapiInteractionId,
+                    xFapiAuthDate,
+                    xFapiCustomerIpAddress,
+                    xCustomerUserAgent);
+        } catch (HttpClientErrorException ex) {
+            if (ex.getRawStatusCode() == 400) {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .detail("AccessToken: " + ex.getMessage().substring(ex.getMessage().indexOf("detail") + 9, ex.getMessage().indexOf("meta") - 5))
+                        .build());
+                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+            } else {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .detail(ex.getMessage())
+                        .build());
+                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+            }
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail(e.getMessage())
+                    .build());
+            throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+        }
 
         /// Validations
-        if (!response.getData().getStatus().getValue().equals("AUTHORISED")) {
+        try {
+            if (!response.getData().getStatus().getValue().equals("AUTHORISED")) {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title("Get Resources request error")
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in the " +
+                                "AccessToken has a current status of [" + response.getData().getStatus().getValue() + "].")
+                        .build());
+                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+            }
+
+            if (!OffsetDateTime.parse(response.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title("Get Resources request error")
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in " +
+                                "the AccessToken has an ExpirationDateTime " +
+                                "(" + subObject.get("ofb.consent.expiration.datetime").getAsString() + ") of 'expired'. ")
+                        .build());
+                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+            }
+        } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Get Resources request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in the " +
-                            "AccessToken has a current status of [" + response.getData().getStatus().getValue() + "].")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
         }
 
-        if (!OffsetDateTime.parse(response.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in " +
-                            "the AccessToken has an ExpirationDateTime " +
-                            "(" + subObject.get("ofb.consent.expiration.datetime").getAsString() + ") of 'expired'. ")
-                    .build());
-            throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
-        }
-
-        /// Search Reasources
+        /// Search Resources
         Page<ResourcesConfirmedModel> resourcesConfirmedList;
         List<ResponseResourceListDataInner> responseData = new ArrayList<>();
         int recordsNotInclude = 0;
@@ -126,7 +174,7 @@ public class ResourcesService {
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent GET request error")
+                    .title("Get Resources request error (in FindAll Resources registry)")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
@@ -134,32 +182,43 @@ public class ResourcesService {
         }
 
         /// Build response objects
+        ResponseResourceList responseResourceList;
         Links links = null;
-        if (resourcesConfirmedList.getContent().size() != 0) {
-            int pageFirst   = 1;
-            int pageNext    = resourcesConfirmedList.getTotalPages() - page == 0 ? resourcesConfirmedList.getTotalPages() : page + 1 ;
-            int pagePrevius = resourcesConfirmedList.getTotalPages() - page == 0 ? resourcesConfirmedList.getTotalPages() : page - 1;
-            int pageLast    = resourcesConfirmedList.getTotalPages();
+        MetaResponse meta;
+        try {
+            if (resourcesConfirmedList.getContent().size() != 0) {
+                int pageFirst = 1;
+                int pageNext = resourcesConfirmedList.getTotalPages() - page == 0 ? resourcesConfirmedList.getTotalPages() : page + 1;
+                int pagePrevius = resourcesConfirmedList.getTotalPages() - page == 0 ? resourcesConfirmedList.getTotalPages() : page - 1;
+                int pageLast = resourcesConfirmedList.getTotalPages();
 
-            links = links.builder().self(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources"))
-                    .first(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page="  + pageFirst   + "&page-size=" + pageSize))
-                    .last(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page="   + pageLast    + "&page-size=" + pageSize))
-                    .next(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page="   + pageNext    + "&page-size=" + pageSize))
-                    .prev(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page="   + pagePrevius + "&page-size=" + pageSize))
+                links = links.builder().self(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources"))
+                        .first(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pageFirst + "&page-size=" + pageSize))
+                        .last(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pageLast + "&page-size=" + pageSize))
+                        .next(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pageNext + "&page-size=" + pageSize))
+                        .prev(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pagePrevius + "&page-size=" + pageSize))
+                        .build();
+            }
+
+            meta = MetaResponse.builder()
+                    .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
+                    .totalPages(resourcesConfirmedList.getTotalPages())
+                    .totalRecords((int) resourcesConfirmedList.getTotalElements() - recordsNotInclude)
                     .build();
+
+            responseResourceList = ResponseResourceList.builder()
+                    .data(responseData)
+                    .links(links)
+                    .meta(meta)
+                    .build();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources request error (in build ResponseResourceList)")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
         }
-
-        MetaResponse meta  = MetaResponse.builder()
-                .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
-                .totalPages(resourcesConfirmedList.getTotalPages())
-                .totalRecords((int) resourcesConfirmedList.getTotalElements() - recordsNotInclude)
-                .build();
-
-        ResponseResourceList responseResourceList = ResponseResourceList.builder()
-                .data(responseData)
-                .links(links)
-                .meta(meta)
-                .build();
 
         return responseResourceList;
     }
