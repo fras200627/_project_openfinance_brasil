@@ -146,7 +146,7 @@ public class ConsentGetExtensionsService {
         return responseConsentReadData;
     }
 
-    public Specification<ConsentPersonalExpirationControlModel> buildFilter(ConsentsExpirationControlRecordFilter filter) {
+    private Specification<ConsentPersonalExpirationControlModel> buildFilter(ConsentsExpirationControlRecordFilter filter) {
 
         Specification<ConsentPersonalExpirationControlModel> specs = null;
         RequestFilterParams requestFilterParams = null;

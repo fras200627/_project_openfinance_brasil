@@ -80,6 +80,11 @@ spring:
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
 
+app:
+  paths:
+    clients:
+      consent-resources: 'http://localhost:3001/ofb-consents/'
+
 eureka:
   client:
     serviceUrl:
@@ -135,6 +140,12 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+
+app:
+  paths:
+    clients:
+      consent-resources: 'http://localhost:3001/ofb-consents/'
+
 eureka:
   client:
     serviceUrl:
@@ -195,6 +206,12 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+
+app:
+  paths:
+    clients:
+      consent-resources: 'http://localhost:3001/ofb-consents/'
+
 eureka:
   client:
     serviceUrl:

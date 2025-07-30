@@ -42,29 +42,4 @@ public class OpenAPIConfig {
                 );
     }
 
-//    @Bean
-//    public AppAuthenticationResourcesApi authenticationResourcesApi() {
-//        return new AppAuthenticationResourcesApi();
-//    }
-//
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-//
-//    @Bean
-//    public ServerConfiguration serverConfiguration() {
-//        String URL = "http://localhost:3001/ofb-auth-server";
-//        String description = "description";
-//        Map<String, ServerVariable > variables = Map.of();
-//        ServerConfiguration serverConfiguration = new ServerConfiguration(URL, description, variables);
-//        return serverConfiguration;
-//    }
-//
-//    @Bean
-//    public ApiClient apiClient(ServerConfiguration serverConfiguration) {
-//        ApiClient apiClient = new ApiClient();
-//        apiClient.setBasePath("http://localhost:3001/ofb-auth-server");
-//        return apiClient;
-//    }
 }

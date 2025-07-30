@@ -373,6 +373,47 @@
 							</configOptions>
 						</configuration>
 					</execution>
+
+
+
+					<execution>
+						<id>generator-client-consent-resources</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-consents-resources.yaml</inputSpec>
+							<apiPackage>com.ofb.resources.client.consent.resources.handler</apiPackage>
+							<modelPackage>com.ofb.resources.client.consent.resources.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.resources.client.consent,resources.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
+
+
+
+
+
+
 				</executions>
 			</plugin>
 			<plugin>

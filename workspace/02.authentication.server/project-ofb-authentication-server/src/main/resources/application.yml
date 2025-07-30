@@ -21,7 +21,7 @@ spring:
       ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
       
 jwt:
-  issuer: banco-tcn-openfinance-brasil
+  issuer: banco-tcn
   private:
     key: classpath:keystore/app.private.key
   public:

@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.ofb.lib.handlers.exception.GlobalControllerExceptionHandler,\
-com.ofb.lib.handlers.exception.GlobalRestControllerExceptionHandler
+com.ofb.lib.handlers.handler.RestControllerAdviceHandler

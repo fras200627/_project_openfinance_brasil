@@ -11,7 +11,7 @@ import com.ofb.lib.commons.jpa.RequestFilterSpecification;
 import com.ofb.clients.business.domain.ClientsBusinessPaginationSettings;
 import com.ofb.clients.business.domain.ClientsBusinessRecordFilter;
 import com.ofb.clients.business.repository.ClientsBusinessRepository;
-import com.ofb.lib.handlers.exception.BadRequestExceptionHandler;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,7 +37,7 @@ public class ClientsBusinessService {
             //messageService.sendMessageAuditTemplate(request);
             return result;
         } catch (Exception ex) {
-            throw new BadRequestExceptionHandler("Registered id= [" + id + "] not found! Check and Try Again.");
+            throw new InternalErrorException("Registered id= [" + id + "] not found! Check and Try Again.");
         }
     }
 
@@ -47,7 +47,7 @@ public class ClientsBusinessService {
             messageService.sendMessageAuditTemplate(request);
             return result;
         } catch (Exception ex) {
-            throw new BadRequestExceptionHandler("Client Id= [" + client_id + "] not found! Check and Try Again.");
+            throw new InternalErrorException("Client Id= [" + client_id + "] not found! Check and Try Again.");
         }
     }
 
@@ -57,7 +57,7 @@ public class ClientsBusinessService {
             //messageService.sendMessageAuditTemplate(request);
             return result;
         } catch (Exception ex) {
-            throw new BadRequestExceptionHandler("Client Name= [" + client_name + "] not found! Check and Try Again.");
+            throw new InternalErrorException("Client Name= [" + client_name + "] not found! Check and Try Again.");
         }
     }
     
@@ -108,7 +108,7 @@ public class ClientsBusinessService {
         Specification<ClientsBusinessEntity> filterSpecs = this.buildFilter(filter);
 
         if (filterSpecs == null) {
-            throw new BadRequestExceptionHandler("No parameters have been defined for the filters. check and adjust!");
+            throw new InternalErrorException("No parameters have been defined for the filters. check and adjust!");
         }
 
         Page<ClientsBusinessEntity> pageResult = repository.findAll(filterSpecs, pageableOptions);

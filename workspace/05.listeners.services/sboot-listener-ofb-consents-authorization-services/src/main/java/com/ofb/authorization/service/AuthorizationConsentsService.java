@@ -1,8 +1,5 @@
 package com.ofb.authorization.service;
 
-import com.ofb.authorization.client.authentication.resources.handler.AppAuthenticationResourcesApi;
-import com.ofb.authorization.client.authentication.resources.model.*;
-import com.ofb.authorization.client.clients.business.resources.handler.ClientsBusinessResourcesApi;
 import com.ofb.authorization.entity.ConsentPermissionsAuthorised;
 import com.ofb.authorization.entity.ConsentPersonalData;
 import com.ofb.authorization.entity.ConsentResourcesConfirmed;
@@ -25,9 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service @Slf4j
 public class AuthorizationConsentsService {
@@ -46,9 +41,6 @@ public class AuthorizationConsentsService {
 
     @Value("${app.paths.clients.authentication-server}")
     private String PATH_AUTHENTICATION_SERVER;
-
-    @Autowired private AppAuthenticationResourcesApi authenticationResourcesApi;
-    @Autowired private ClientsBusinessResourcesApi   registeredClientsResourcesApi;
 
     @Autowired private ConsentPersonalRepository                    consentPersonalRepository;
     @Autowired private ConsentPersonalViewRepository                consentsRepositoryView;
@@ -171,59 +163,6 @@ public class AuthorizationConsentsService {
         rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_CONSENTS_AUTHORIZATION_ROUTING_KEY,
                 authorizationConsent,
                 new CorrelationData(authorizationConsent.getConsentId()));
-    }
-
-    private void getAcessToken(ConsentPersonalModel consentsPersonalAccepted, String bearerToken) {
-
-        /// Verificação dos 60 minutos: deve ser alterado de AWAITING_AUTHORISATION para REJECTED após 60 minutos.
-
-        /// CREATE AND REGISTER A ACCESS TOKEN FOR CONSENT
-        /// Step 01 -
-
-        ///  RegisteredClients API parameters
-        authenticationResourcesApi.getApiClient().setBasePath(PATH_AUTHENTICATION_SERVER);
-        authenticationResourcesApi.getApiClient().setBearerToken(bearerToken);
-
-        /// Step 02 -
-        AccessTokenRequest accessTokenRequest = new AccessTokenRequest();
-        accessTokenRequest.setConsentId(consentsPersonalAccepted.getConsentId());
-        accessTokenRequest.setCreationDateTime(consentsPersonalAccepted.getCreationDatetime().substring(0, 19) + "Z");
-        accessTokenRequest.setExpirationDateTime(consentsPersonalAccepted.getExpirationDatetime().substring(0, 19) + "Z");
-
-        /// Step 03 -
-        LoggedUserDocument loggedUserDocument = new LoggedUserDocument();
-        loggedUserDocument.setLoggedUserName(consentsPersonalAccepted.getCivilName());
-//        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
-//        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
-
-        /// Step 04 -
-        LoggedUser loggedUser = new LoggedUser();
-        loggedUser.setDocument(loggedUserDocument);
-        accessTokenRequest.setLoggedUser(loggedUser);
-
-        /// Step 05 -
-        BusinessEntityDocument businessEntityDocument = new BusinessEntityDocument();
-        businessEntityDocument.setEntityBusinessName(httpServletRequest.getUserPrincipal().getName());
-//        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
-//        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
-
-        /// Step 06 -
-        BusinessEntity businessEntity = new BusinessEntity();
-        businessEntity.setDocument(businessEntityDocument);
-        accessTokenRequest.setBusinessEntity(businessEntity);
-
-        /// Step 07 -
-        List<ConsentPermissionAuthorisedModel> listPermissionAuthorised = permissionsAuthorisedView.findAllConsentsPermissionsAuthorisedByConsentId(
-                consentsPersonalAccepted.getConsentId());
-        List<AccessTokenRequest.ScopesEnum> scopes = new ArrayList<>();
-        for (ConsentPermissionAuthorisedModel reg : listPermissionAuthorised) {
-            scopes.add(AccessTokenRequest.ScopesEnum.fromValue(reg.getPermission()));
-        }
-        accessTokenRequest.setScopes(scopes);
-
-        /// Step 08 -
-        TokenResponseModelTemplate tokenResponseModelTemplate = authenticationResourcesApi.postAccessTokenConsents(accessTokenRequest, UUID.randomUUID());
-        log.info("ConsentId [" + consentsPersonalAccepted.getConsentId() + "]  tokenAccess [" + tokenResponseModelTemplate.getAccessToken() + "]");
     }
 
 }

@@ -16,7 +16,6 @@ import com.ofb.consents.service.validation.ValidateBusinessEntityService;
 import com.ofb.consents.service.validation.ValidateExpirationDatetimeService;
 import com.ofb.consents.service.validation.ValidateLoggedUserService;
 import com.ofb.lib.amqp.model.MessageExtendsConsentModel;
-import com.ofb.lib.amqp.model.MessageRevokeConsentModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

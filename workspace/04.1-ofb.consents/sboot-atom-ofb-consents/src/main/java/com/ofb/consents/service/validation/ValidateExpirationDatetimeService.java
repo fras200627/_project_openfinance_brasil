@@ -112,8 +112,6 @@ public class ValidateExpirationDatetimeService {
                         .build();
             }
 
-
-
             RespponseExpirationDatetimeModel respponseExpirationDatetimeModel = new RespponseExpirationDatetimeModel();
             String zuluDateTime = expirationDateTimeParam;
 
