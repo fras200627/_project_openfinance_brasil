@@ -1,7 +1,6 @@
 spring:
   application:
     name: ofb-lib-autoconfigure-security
-
 jwt:
   issuer: banco-tcn-openfinance-brasil
   private:
@@ -14,12 +13,6 @@ spring:
   config:
     activate:
       on-profile: local
-jwt:
-  issuer: banco-tcn-openfinance-brasil
-  private:
-    key: classpath:keystore/app.private.key
-  public:
-    key: classpath:keystore/app.public.key
 ---
 spring:
   config:

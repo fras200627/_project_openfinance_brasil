@@ -190,11 +190,6 @@ spring:
   config:
     activate:
       on-profile: k8s
-  rabbitmq:
-    host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
-    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
-    username: ${RABBITMQ_DEFAULT_USER:ofb}
-    password: ${RABBITMQ_DEFAULT_PASS:ofb}
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:XE
     username: OFB_USER

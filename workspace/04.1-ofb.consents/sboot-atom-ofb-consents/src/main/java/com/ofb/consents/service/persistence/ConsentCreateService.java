@@ -3,17 +3,18 @@ package com.ofb.consents.service.persistence;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.entity.ConsentPersonalDataExpirationControl;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentBadRequestException;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.PersonalDataModel;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.model.RespponseExpirationDatetimeModel;
 import com.ofb.consents.repository.data.*;
 import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
 import com.ofb.consents.service.validation.ValidateExpirationDatetimeService;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,26 +61,26 @@ public class ConsentCreateService {
      * <p><b>Note</b></p>
      * <p>In the 'objectData' field, returns the created CreateConsent object
      * <br>
-     * @throws ConsentUnprocessedEntityException
+     * @throws UnprocessedEntityException
      * <p>If an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel insertNewConsent(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
         CreateConsent createConsent = null;
         String consentId            = null;
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         Timestamp timestampThisOperation;
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent create: Error in validate objectData.")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the CreateConsent.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentBadRequestException(new Gson().toJson(listResponseErrors));
+                    throw new BadRequestException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -89,13 +90,13 @@ public class ConsentCreateService {
                 createConsent = (CreateConsent) objectData;
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent create: Error in validation of objectData.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error occurred while checking the data object.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -107,13 +108,13 @@ public class ConsentCreateService {
         ///  referenceId parameter validate
         try {
             if (referenceId == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent validate: Error in validate referenceId.")
-                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                    throw new InternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -123,13 +124,13 @@ public class ConsentCreateService {
                 consentId = (String) referenceId;
             }
             if (consentId.isEmpty() || consentId.isBlank()) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent validate: Error in validate referenceId.")
-                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                    throw new InternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -137,13 +138,13 @@ public class ConsentCreateService {
                         .build();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent validate: Error in validate referenceId.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -213,13 +214,13 @@ public class ConsentCreateService {
                     .build();
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent: Error consent creation.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Internal Error creation consent required.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

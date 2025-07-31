@@ -1,9 +1,9 @@
 package com.ofb.customers.controller;
 
-import com.ofb.customers.server.handler.BusinessApiDelegate;
-import com.ofb.customers.server.model.ResponseBusinessCustomersFinancialRelation;
-import com.ofb.customers.server.model.ResponseBusinessCustomersIdentification;
-import com.ofb.customers.server.model.ResponseBusinessCustomersQualification;
+import com.ofb.customers.server.customers.resources.handler.BusinessApiDelegate;
+import com.ofb.customers.server.customers.resources.model.ResponseBusinessCustomersFinancialRelation;
+import com.ofb.customers.server.customers.resources.model.ResponseBusinessCustomersIdentification;
+import com.ofb.customers.server.customers.resources.model.ResponseBusinessCustomersQualification;
 import com.ofb.lib.security.profiles.CanClientOFBRead;
 import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;

@@ -10,7 +10,7 @@ import com.ofb.authorization.repository.data.ConsentPersonalRepository;
 import com.ofb.authorization.repository.data.ConsentResourcesConfirmedRepository;
 import com.ofb.authorization.repository.data.ConsentResourcesPermissionsConfirmedRepository;
 import com.ofb.authorization.repository.views.*;
-import com.ofb.lib.amqp.model.MessageAuthorisedConsentModel;
+import com.ofb.lib.amqp.model.MessageAuthorisedConsentTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -52,7 +52,7 @@ public class AuthorizationConsentsService {
     @Autowired private ConsentResourcesAuthorisedlAccountsViewRepository  resourcesAuthorisedAccountsView;
     @Autowired private ConsentPermissionsAuthorisedlViewRepository        permissionsAuthorisedView;
 
-    public void save(MessageAuthorisedConsentModel authorizationConsent) {
+    public void save(MessageAuthorisedConsentTemplate authorizationConsent) {
 
         Timestamp timestampThisOperation = null;
         ConsentPersonalData consentCreated = consentPersonalRepository.findById(authorizationConsent.getConsentId()).get();

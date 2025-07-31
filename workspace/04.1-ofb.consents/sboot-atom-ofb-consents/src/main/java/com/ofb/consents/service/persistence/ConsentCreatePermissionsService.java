@@ -2,18 +2,17 @@ package com.ofb.consents.service.persistence;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPermissionsRequested;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentBadRequestException;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.ConsentPermissionsRequestedRepository;
 import com.ofb.consents.repository.views.ResourcePermissionsViewRepository;
-import com.ofb.consents.server.consents.resources.model.CreateConsent;
-import com.ofb.consents.server.consents.resources.model.CreateConsentData;
-import com.ofb.consents.server.consents.resources.model.ResponseConsentData;
-import com.ofb.consents.server.consents.resources.model.ResponseErrorErrorsInner;
+import com.ofb.consents.server.consents.model.CreateConsent;
+import com.ofb.consents.server.consents.model.CreateConsentData;
+import com.ofb.consents.server.consents.model.ResponseConsentData;
 import com.ofb.consents.service.validation.ValidatePermissionsRequestedService;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,15 +61,13 @@ public class ConsentCreatePermissionsService {
      * <p><b>Note</b></p>
      * <p>In the 'objectData' field, returns a Validate List object of ResponseConsentData.PermissionsEnum
      * <br>
-     * @throws ConsentUnprocessedEntityException
-     * <p>If an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel insertConsentPermissions(Object objectData,
                                                                  Object referenceId,
                                                                  Boolean executeThrowImmediately) {
 
         String consentId = "";
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         Timestamp timestampThisOperation;
 
         List<CreateConsentData.PermissionsEnum> permissionsData = new ArrayList<>();
@@ -79,13 +76,13 @@ public class ConsentCreatePermissionsService {
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent validate: Error in validate LoggedUser.")
-                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                    throw new InternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -99,13 +96,13 @@ public class ConsentCreatePermissionsService {
                 permissionsData = (List<CreateConsentData.PermissionsEnum>) objectData;
             }
             if (permissionsData == null || permissionsData.isEmpty()) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent validate: Permissions invalid.")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("payload without the permissions tag or tag without informed permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentBadRequestException(new Gson().toJson(listResponseErrors));
+                    throw new BadRequestException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -113,13 +110,13 @@ public class ConsentCreatePermissionsService {
                         .build();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent validate: Permissions invalid.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("payload without the permissions tag or tag without informed permissions.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -131,13 +128,13 @@ public class ConsentCreatePermissionsService {
         ///  referenceId parameter validate
         try {
             if (referenceId == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent validate: Error in validate referenceId.")
-                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                    throw new InternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -147,13 +144,13 @@ public class ConsentCreatePermissionsService {
                 consentId = (String) referenceId;
             }
             if (consentId.isEmpty() || consentId.isBlank()) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent validate: Error in validate referenceId.")
-                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                    throw new InternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -161,13 +158,13 @@ public class ConsentCreatePermissionsService {
                         .build();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent validate: Error in validate referenceId.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("referenceId is null. Reference Id is mandatory and must inform the Consent Id.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -197,13 +194,13 @@ public class ConsentCreatePermissionsService {
             }
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent: Error consent permissions creation.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Internal Error creation consent permissions required. Consent cancelled")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

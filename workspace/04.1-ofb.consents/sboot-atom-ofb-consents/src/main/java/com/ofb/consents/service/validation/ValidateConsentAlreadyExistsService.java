@@ -1,12 +1,13 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.*;
 import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,25 +45,25 @@ public class ValidateConsentAlreadyExistsService {
      * @return ResponseValidateConsentModel
      * <p>Return ObjectResponse with results for validation
      * <br>
-     * @throws ConsentUnprocessedEntityException
-     * @throws ConsentInternalErrorException
+     * @throws UnprocessedEntityException
+     * @throws InternalErrorException
      * <p>if an error occurs while attempting to invoke the method<p></p>
      */
     public ResponseValidateConsentModel validateConsentAlreadyExists(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         String personalIdentification = "";
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Already Exists validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -80,13 +81,13 @@ public class ValidateConsentAlreadyExistsService {
                 personalIdentification = ((LoggedUserDocument) objectData).getIdentification();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Already Exists validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("LoggedUser verification error. Logged User is mandatory and must inform the LoggedUser document.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -99,9 +100,9 @@ public class ValidateConsentAlreadyExistsService {
             List<ConsentPersonalModel> listOfConsentsPersonalEnabled = consentsRepositoryView
                     .findAllConsentsEnabledByDocumentIdentification(personalIdentification);
             if (!listOfConsentsPersonalEnabled.isEmpty()) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Already Exists validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("The requested LoggedUser identified in 'document' already has consent registered " +
                                 "- in AWAITING_AUTHORISATION or AUTHORISED status - " +
                                 "and this request will not be accepted." +
@@ -109,7 +110,7 @@ public class ValidateConsentAlreadyExistsService {
                                 "to extend the expiration date or modify permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -118,13 +119,13 @@ public class ValidateConsentAlreadyExistsService {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Already Exists validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error occurred while checking the already consent exists.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

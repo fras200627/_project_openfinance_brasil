@@ -2,12 +2,12 @@ package com.ofb.consents.service.persistence;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
-import com.ofb.consents.server.consents.resources.model.ResponseErrorErrorsInner;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,27 +45,27 @@ public class ConsentUpdateService {
      * <p><b>Note</b></p>
      * <p>In the 'objectData' field, returns the updated ConsentPersonalData object
      * <br>
-     * @throws ConsentUnprocessedEntityException
-     * @throws ConsentInternalErrorException
+     * @throws UnprocessedEntityException
+     * @throws InternalErrorException
      * <p>If an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel updateConsentToAwaitingAuthorization(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
         Timestamp timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         ConsentPersonalData consentCreated = null;
         ConsentPersonalData consentUpdated;
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent create: Error in validate objectData.")
-                        .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the ConsentPersonalData.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                    throw new InternalErrorException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -75,13 +75,13 @@ public class ConsentUpdateService {
                 consentCreated = (ConsentPersonalData) objectData;
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent update: Error in validation of objectData.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error occurred while checking the data object.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -99,13 +99,13 @@ public class ConsentUpdateService {
             consentCreated.setUserCode("ConsentsServiceAPI");
             consentUpdated = consentRepositoryData.saveAndFlush(consentCreated);
         } catch (Exception ex) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent: Error consent creation.")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Internal Error creation consent required.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

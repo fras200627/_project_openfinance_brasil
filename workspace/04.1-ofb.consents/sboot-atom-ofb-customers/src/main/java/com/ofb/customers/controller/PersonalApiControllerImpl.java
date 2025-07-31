@@ -1,12 +1,10 @@
 package com.ofb.customers.controller;
 
-
-import com.ofb.customers.server.handler.PersonalApiDelegate;
-import com.ofb.customers.server.model.ResponsePersonalCustomersFinancialRelation;
-import com.ofb.customers.server.model.ResponsePersonalCustomersIdentification;
-import com.ofb.customers.server.model.ResponsePersonalCustomersQualification;
+import com.ofb.customers.server.customers.resources.handler.PersonalApiDelegate;
+import com.ofb.customers.server.customers.resources.model.ResponsePersonalCustomersFinancialRelation;
+import com.ofb.customers.server.customers.resources.model.ResponsePersonalCustomersIdentification;
+import com.ofb.customers.server.customers.resources.model.ResponsePersonalCustomersQualification;
 import com.ofb.lib.security.profiles.CanClientOFBRead;
-import com.ofb.lib.security.profiles.CanClientOFBWrite;
 import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;

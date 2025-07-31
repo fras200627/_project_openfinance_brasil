@@ -75,7 +75,12 @@ public class AuthenticationService {
 
   public TokenResponseModelTemplate generateAccessToken(AccessTokenRequest accessTokenRequest) {
     var clientId = httpServletRequest.getUserPrincipal().getName();
-    OffsetDateTime expiresConsentAt = Timestamp.valueOf(accessTokenRequest.getExpirationDateTime().replace("T", " ").replace("Z", "")).toLocalDateTime().atOffset(ZoneOffset.UTC);
+    OffsetDateTime expiresConsentAt = null;
+    if (accessTokenRequest.getExpirationDateTime() != null && !accessTokenRequest.getExpirationDateTime().isEmpty()) {
+      expiresConsentAt = Timestamp.valueOf(accessTokenRequest.getExpirationDateTime().replace("T", " ").replace("Z", "")).toLocalDateTime().atOffset(ZoneOffset.UTC);
+    } else {
+      expiresConsentAt = OffsetDateTime.of(2099, 12, 31, 23, 59, 59, 0, ZoneOffset.UTC);
+    }
     String consentPermissions = Arrays.toString(accessTokenRequest.getScopes().toArray()).replace("[", "").replace("]", "");
 
     JwtClaimsSet claims = JwtClaimsSet.builder()

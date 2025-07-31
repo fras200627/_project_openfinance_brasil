@@ -53,7 +53,7 @@ logging:
 springdoc:
   api-docs:
     enabled: true
-  packagesToScan: com.tican
+  packagesToScan: com.ofb
   pathsToMatch: /**
   swagger-ui:
     enabled: true
@@ -69,11 +69,6 @@ spring:
   config:
     activate:
       on-profile: local
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:3001/ofb-authentication-server
   datasource:
     url: jdbc:mysql://localhost:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver

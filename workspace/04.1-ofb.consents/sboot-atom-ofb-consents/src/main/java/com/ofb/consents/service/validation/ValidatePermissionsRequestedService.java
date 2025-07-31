@@ -1,13 +1,13 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
-import com.ofb.consents.model.ResourcePermissionsModel;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,27 +45,27 @@ public class ValidatePermissionsRequestedService {
      * <p><b>Note</b></p>
      * <p>in the 'objectData' field, returns a Validate List object of ResponseConsentData.PermissionsEnum
      * </br>
-     * @throws ConsentUnprocessedEntityException
-     * @throws ConsentInternalErrorException
+     * @throws UnprocessedEntityException
+     * @throws InternalErrorException
      * <p>if an error occurs while trying to invoke the method
      */
     public ResponseValidateConsentModel validateRequestedPermissionsExists(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
         List<CreateConsentData.PermissionsEnum> permissionsData = new ArrayList<>();
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
 //        List<ResponseConsentData.PermissionsEnum> permissionsRequested = new ArrayList<>();
         List<ResponseConsentData.PermissionsEnum> permissionsResponse = new ArrayList<>();
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Permissions Requested validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -80,13 +80,13 @@ public class ValidatePermissionsRequestedService {
                 permissionsData = (List<CreateConsentData.PermissionsEnum>) objectData;
             }
             if (permissionsData == null || permissionsData.isEmpty()) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Permissions Requested validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("payload without the permissions tag or tag without informed permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -94,13 +94,13 @@ public class ValidatePermissionsRequestedService {
                         .build();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Permissions Requested validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("payload without the permissions tag or tag without informed permissions.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -119,13 +119,13 @@ public class ValidatePermissionsRequestedService {
             }
 
             if (permissionsResponse.isEmpty() || (permissionsResponse.size() == 1 && permissionsResponse.get(0).toString().equals("RESOURCES_READ"))) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Permissions Requested validate")
-                        .code(ConsentResponseEnum.CodeEnum.COMBINACAO_PERMISSOES_INCORRETA.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.COMBINACAO_PERMISSOES_INCORRETA.getValue())
                         .detail("No permissions were found as available from the requested permissions list.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -134,13 +134,13 @@ public class ValidatePermissionsRequestedService {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Permissions Requested validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Consent Permissions Requested validate: " + e.getMessage())
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

@@ -1,7 +1,7 @@
 package com.ofb.consents.controller;
 
-import com.ofb.consents.server.health.resources.handler.ActuatorApiDelegate;
-import com.ofb.consents.server.health.resources.model.Code200Template;
+import com.ofb.consents.server.healthchecks.handler.ActuatorApiDelegate;
+import com.ofb.consents.server.healthchecks.model.Code200Template;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

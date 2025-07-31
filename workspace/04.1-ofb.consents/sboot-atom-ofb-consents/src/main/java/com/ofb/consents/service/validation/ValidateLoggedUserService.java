@@ -1,12 +1,13 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.*;
 import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
@@ -47,26 +48,26 @@ public class ValidateLoggedUserService {
      * <p><b>Note</b></p>
      * <p>in the 'objectData' field, returns a PersonalDataModel object
      * <br>
-     * @throws ConsentUnprocessedEntityException
-     * @throws ConsentInternalErrorException
+     * @throws UnprocessedEntityException
+     * @throws InternalErrorException
      * <p>if an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel validateLoggedUserInformation(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         String loggedUserDocument = "";
         PersonalDataModel personalDataView;
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent LoggerUser validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -86,13 +87,13 @@ public class ValidateLoggedUserService {
                 loggedUserDocument = ((LoggedUserExtensions) objectData).getDocument().getIdentification();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent LoggerUser validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("LoggedUser verification error. LoggerUser is mandatory and must inform the LoggedUser document.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -105,13 +106,13 @@ public class ValidateLoggedUserService {
         try {
             personalDataView = personalsRepositoryView.findById(loggedUserDocument.trim()).get();
         } catch (NoSuchElementException e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent LoggerUser validate")
-                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("The requested LoggedUser does not exist as a client of the Transmitting Unit.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -119,13 +120,13 @@ public class ValidateLoggedUserService {
                     .build();
         } catch (Exception e) {
             log.error(e.getMessage());
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent LoggerUser validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error occurred while checking the requested LoggerUser. Error: "  + e.getMessage())
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -136,13 +137,13 @@ public class ValidateLoggedUserService {
 
         ///
         if (personalDataView == null) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent LoggerUser validate")
-                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("The requested LoggedUser does not exist as a client of the Transmitting Unit.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

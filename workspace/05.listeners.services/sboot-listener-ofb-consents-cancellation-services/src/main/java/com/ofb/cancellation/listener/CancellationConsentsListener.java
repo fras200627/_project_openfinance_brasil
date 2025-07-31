@@ -1,7 +1,7 @@
 package com.ofb.cancellation.listener;
 
 import com.ofb.cancellation.service.CancellationConsentsService;
-import com.ofb.lib.amqp.model.MessageCancelConsentModel;
+import com.ofb.lib.amqp.model.MessageCancelConsentTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class CancellationConsentsListener {
     private CancellationConsentsService service;
 
     @RabbitListener(queues = "#{ofbConsentsCancellation.name}")
-    public void receiveMessage(@Payload MessageCancelConsentModel message) {
+    public void receiveMessage(@Payload MessageCancelConsentTemplate message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.save(message);
         log.info("Message recorded successfully: " + message.getTicket());

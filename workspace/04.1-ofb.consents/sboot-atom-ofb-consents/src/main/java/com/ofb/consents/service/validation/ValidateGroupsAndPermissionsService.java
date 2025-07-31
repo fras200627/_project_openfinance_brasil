@@ -1,13 +1,14 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResourcePermissionsModel;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.views.ResourcePermissionsViewRepository;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,26 +44,26 @@ public class ValidateGroupsAndPermissionsService {
      * @return ResponseValidateConsentModel
      * <p>Returns ObjectResponse with results for validation
      * <br>
-     * @throws ConsentUnprocessedEntityException
-     * @throws ConsentInternalErrorException
+     * @throws UnprocessedEntityException
+     * @throws InternalErrorException
      * <p>if an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel validateGroupsAndPermissionsRequested(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
 
         List<CreateConsentData.PermissionsEnum> permissionsData = new ArrayList<>();
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         List<String> listPermissionsRequested = new ArrayList<>();
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Permissions validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the LoggedUser document.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -77,13 +78,13 @@ public class ValidateGroupsAndPermissionsService {
                 permissionsData = (List<CreateConsentData.PermissionsEnum>) objectData;
             }
             if (permissionsData == null || permissionsData.isEmpty()) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Permissions validate")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("payload without the permissions tag or tag without informed permissions.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -91,13 +92,13 @@ public class ValidateGroupsAndPermissionsService {
                         .build();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Permissions validate")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("payload without the permissions tag or tag without informed permissions.")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -112,9 +113,9 @@ public class ValidateGroupsAndPermissionsService {
             for (CreateConsentData.PermissionsEnum permission : permissionsData) {
                 listPermissionsRequested.add(permission.getValue());
                 if (!listResourcesPermissions.contains(permission.getValue())) {
-                    listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                    listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                             .title("Consent Permissions validate")
-                            .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                            .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                             .detail("Permission = '" + permission.getValue().toString() + "' invalid.")
                             .build());
                 }
@@ -130,9 +131,9 @@ public class ValidateGroupsAndPermissionsService {
                         }
                     }
                     if (itemFounds > 1) {
-                        listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                        listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                                 .title("Consent Permissions")
-                                .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                                 .detail("Permission Item = '" + permission + "' it is declared '" + itemFounds + "' times.")
                                 .build());
                     }
@@ -143,9 +144,9 @@ public class ValidateGroupsAndPermissionsService {
             List<String> listPermissionsMandatory = resourcesPermissionsView.findAllPermissionsNameByMandatoryQualifiedPF();
             for (String permissionMandatory : listPermissionsMandatory) {
                 if (!listPermissionsRequested.contains(permissionMandatory)) {
-                    listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                    listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                             .title("Consent Permissions validate")
-                            .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                            .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                             .detail("Permission = '" + permissionMandatory + "' is mandatory and was not informed.")
                             .build());
                 }
@@ -158,9 +159,9 @@ public class ValidateGroupsAndPermissionsService {
                     String[] permissionFlag = groupControl.split("_");
                     List<String> listPermissionsGroupItems = resourcesPermissionsView.findAllPermissionsNameByPermissionFlagGroupItem(permissionFlag[0].toString());
                     if (listPermissionsGroupItems.size() == 0) {
-                        listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                        listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                                 .title("Consent Permissions validate")
-                                .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                                 .detail("Permission Group = '" + groupControl + "' not found.")
                                 .build());
                     } else {
@@ -171,9 +172,9 @@ public class ValidateGroupsAndPermissionsService {
                             }
                         }
                         if (foundItems == 0) {
-                            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                                     .title("Consent Permissions validate")
-                                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                                     .detail("Permission Group = '" + groupControl + "' has no items reported.")
                                     .build());
                         }
@@ -188,9 +189,9 @@ public class ValidateGroupsAndPermissionsService {
                     String[] permissionFlag = permission.split("_");
                     List<String> listGroupControl = resourcesPermissionsView.findAllPermissionsNameByPermissionFlagGroupControl(permissionFlag[0].toString());
                     if (listGroupControl.size() != 1) {
-                        listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                        listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                                 .title("Consent Permissions validate")
-                                .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                                 .detail("Permission Item = '" + permission + "' has no Group reported.")
                                 .build());
                     } else {
@@ -201,9 +202,9 @@ public class ValidateGroupsAndPermissionsService {
                             }
                         }
                         if (foundItems == 0) {
-                            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                                     .title("Consent Permissions validate")
-                                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                                     .detail("Permission Item = '" + permission + "' has no Group '" + listGroupControl.get(0) + "' reported.")
                                     .build());
                         }
@@ -224,7 +225,7 @@ public class ValidateGroupsAndPermissionsService {
         } catch (Exception e) {
             log.error(e.getMessage());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)

@@ -29,19 +29,19 @@ public class AuditService {
         repositoryAudit.saveAndFlush(new AuditEntity(message));
     }
 
-    public void saveMessageAuditCancellationConsent(MessageCancelConsentModel message) {
+    public void saveMessageAuditCancellationConsent(MessageCancelConsentTemplate message) {
         repositoryCancellation.saveAndFlush(new AuditCancellationConsentEntity(message));
     }
 
-    public void saveMessageAuditAuthorizationConsent(MessageAuthorisedConsentModel message) {
+    public void saveMessageAuditAuthorizationConsent(MessageAuthorisedConsentTemplate message) {
         repositoryAuthorization.saveAndFlush(new AuditAuthorizationConsentEntity(message));
     }
 
-    public void saveMessageAuditRevokedConsent(MessageRevokeConsentModel message) {
+    public void saveMessageAuditRevokedConsent(MessageRevokeConsentTemplate message) {
         revokedConsentRepository.saveAndFlush(new AuditRevokeConsentEntity(message));
     }
 
-    public void saveMessageAuditExtendsConsent(MessageExtendsConsentModel message) {
+    public void saveMessageAuditExtendsConsent(MessageExtendsConsentTemplate message) {
         auditConsentsExtends.saveAndFlush(new AuditExtendsConsentEntity(message));
     }
 

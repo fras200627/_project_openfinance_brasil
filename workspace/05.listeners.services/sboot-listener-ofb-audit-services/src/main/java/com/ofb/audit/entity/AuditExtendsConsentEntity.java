@@ -1,7 +1,6 @@
 package com.ofb.audit.entity;
 
-import com.ofb.lib.amqp.model.MessageExtendsConsentModel;
-import com.ofb.lib.amqp.model.MessageRevokeConsentModel;
+import com.ofb.lib.amqp.model.MessageExtendsConsentTemplate;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -45,7 +44,7 @@ public class AuditExtendsConsentEntity {
     @Column(name= "PAYLOAD")
     private String payload;
 
-    public AuditExtendsConsentEntity(MessageExtendsConsentModel request) {
+    public AuditExtendsConsentEntity(MessageExtendsConsentTemplate request) {
         this.id                 = (long) (Math.random() * 999999999 + 1);
         this.createAt            = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
         this.xTicketId          = request.getTicket() == null ? "not informed" : request.getTicket();

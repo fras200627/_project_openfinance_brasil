@@ -3,19 +3,20 @@ package com.ofb.consents.service.orchestration;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.entity.ConsentPersonalDataExpirationControl;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentBadRequestException;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.model.RespponseExpirationDatetimeModel;
 import com.ofb.consents.repository.data.ConsentPersonalExpiirationControlRepository;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
 import com.ofb.consents.service.validation.ValidateBusinessEntityService;
 import com.ofb.consents.service.validation.ValidateExpirationDatetimeService;
 import com.ofb.consents.service.validation.ValidateLoggedUserService;
-import com.ofb.lib.amqp.model.MessageExtendsConsentModel;
+import com.ofb.lib.amqp.model.MessageExtendsConsentTemplate;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -66,37 +67,37 @@ public class ConsentPostExtendsService {
                                                                               CreateConsentExtensions createConsentExtensions) {
 
         ConsentPersonalData consentRequested;
-        List<ResponseErrorErrorsInner> listError = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listError = new ArrayList<>();
 
         try {
             consentRequested = consentsRepository.findById(consentId).get();
         } catch (NoSuchElementException e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent POST EXTENDS request error")
-                    .code(ConsentResponseEnum.CodeEnum.CONSENT_NOT_FOUND.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.CONSENT_NOT_FOUND.getValue())
                     .detail("The informed consentId does not exist")
                     .build());
-            throw new ConsentBadRequestException(new Gson().toJson(listError));
+            throw new BadRequestException(new Gson().toJson(listError));
         } catch (Exception e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent POST EXTENDS request error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new ConsentInternalErrorException(new Gson().toJson(listError));
+            throw new InternalErrorException(new Gson().toJson(listError));
         }
 
         if (!consentRequested.getStatus().equals("AUTHORISED")) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent POST EXTENDS request error")
-                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Consent cannot be extensions for ExpirationDateTime. Actual Status is [" + consentRequested.getStatus() + "].")
                     .build());
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(listError));
+            throw new UnprocessedEntityException(new Gson().toJson(listError));
         }
 
         ResponseValidateConsentModel responseValidate;
-        List<ResponseErrorErrorsInner> overallResponseErrors = new ArrayList<ResponseErrorErrorsInner>();
+        List<ResponseErrorsInnerTemplate> overallResponseErrors = new ArrayList<ResponseErrorsInnerTemplate>();
 
 
         /// Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -112,7 +113,7 @@ public class ConsentPostExtendsService {
         overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
         if (!overallResponseErrors.isEmpty()) {
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(overallResponseErrors));
+            throw new UnprocessedEntityException(new Gson().toJson(overallResponseErrors));
         }
 
         RespponseExpirationDatetimeModel respponseExpirationDatetimeModel = (RespponseExpirationDatetimeModel)
@@ -150,7 +151,7 @@ public class ConsentPostExtendsService {
 
         try {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_CONSENTS_EXTENDS_ROUTING_KEY,
-                    MessageExtendsConsentModel.builder()
+                    MessageExtendsConsentTemplate.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
                             .consentId(consentId)
                             .correlationId(consentId)

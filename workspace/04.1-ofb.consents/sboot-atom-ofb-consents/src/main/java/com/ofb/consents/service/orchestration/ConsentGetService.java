@@ -1,16 +1,16 @@
 package com.ofb.consents.service.orchestration;
 
 import com.google.gson.Gson;
-import com.ofb.consents.client.authentication.resources.handler.AppAuthenticationResourcesApi;
-import com.ofb.consents.client.authentication.resources.model.*;
-import com.ofb.consents.client.authentication.resources.model.BusinessEntity;
-import com.ofb.consents.client.authentication.resources.model.BusinessEntityDocument;
-import com.ofb.consents.client.authentication.resources.model.LoggedUser;
-import com.ofb.consents.client.authentication.resources.model.LoggedUserDocument;
+import com.ofb.consents.client.authentication.handler.AppAuthenticationResourcesApi;
+import com.ofb.consents.client.authentication.model.*;
+import com.ofb.consents.client.authentication.model.BusinessEntity;
+import com.ofb.consents.client.authentication.model.BusinessEntityDocument;
+import com.ofb.consents.client.authentication.model.LoggedUser;
+import com.ofb.consents.client.authentication.model.LoggedUserDocument;
 import com.ofb.consents.entity.ConsentPersonalData;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentBadRequestException;
-import com.ofb.consents.exception.ConsentInternalErrorException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.consents.model.ConsentPermissionAuthorisedModel;
 import com.ofb.consents.model.ConsentPermissionRequestedModel;
 import com.ofb.consents.model.ConsentPersonalModel;
@@ -18,7 +18,8 @@ import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsRequestedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -63,25 +64,25 @@ public class ConsentGetService {
 
     public ResponseConsentRead consentsGetConsentsConsentId(String consentId, String authorization, UUID xFapiInteractionId) {
 
-        List<ResponseErrorErrorsInner> listError = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listError = new ArrayList<>();
         ConsentPersonalModel consentRequested;
 
         try {
             consentRequested = consentsRepositoryView.findById(consentId).get();
         } catch (NoSuchElementException e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent GET request error")
-                    .code(ConsentResponseEnum.CodeEnum.CONSENT_NOT_FOUND.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.CONSENT_NOT_FOUND.getValue())
                     .detail("The informed consentId does not exist")
                     .build());
-            throw new ConsentBadRequestException(new Gson().toJson(listError));
+            throw new BadRequestException(new Gson().toJson(listError));
         } catch (Exception e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent GET request error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new ConsentInternalErrorException(new Gson().toJson(listError));
+            throw new InternalErrorException(new Gson().toJson(listError));
         }
 
         List<ResponseConsentReadData.PermissionsEnum> permissions = new ArrayList<>();
@@ -120,8 +121,7 @@ public class ConsentGetService {
             responseConsentReadData.setRejection(responseRejection);
         }
 
-        if (consentRequested.getStatus().equals("AUTHORISED") &&
-            (consentRequested.getAccessTokenAuthorised() == null || consentRequested.getAccessTokenAuthorised().isEmpty())) {
+        if (consentRequested.getStatus().equals("AUTHORISED") && consentRequested.getAccessTokenAuthorised() == null) {
             String accessToken = this.getAcessToken(consentRequested, authorization, xFapiInteractionId);
             httpServletResponse.addHeader("AccessToken", accessToken);
             ConsentPersonalData consentCreated = consentPersonalRepository.findById(consentRequested.getConsentId()).get();
@@ -157,32 +157,33 @@ public class ConsentGetService {
         AccessTokenRequest accessTokenRequest = new AccessTokenRequest();
         accessTokenRequest.setConsentId(consentsPersonalAccepted.getConsentId());
         accessTokenRequest.setCreationDateTime(consentsPersonalAccepted.getCreationDatetime().substring(0, 19) + "Z");
-        accessTokenRequest.setExpirationDateTime(consentsPersonalAccepted.getExpirationDatetime().substring(0, 19) + "Z");
+        if (consentsPersonalAccepted.getExpirationDatetime() != null) {
+            accessTokenRequest.setExpirationDateTime(consentsPersonalAccepted.getExpirationDatetime().substring(0, 19) + "Z");
+        } else {
+            accessTokenRequest.setExpirationDateTime("");
+        }
 
         /// Step 03 -
-        LoggedUserDocument loggedUserDocument = new LoggedUserDocument();
-        loggedUserDocument.setLoggedUserName(consentsPersonalAccepted.getCivilName());
+//        LoggedUserDocument loggedUserDocument = new LoggedUserDocument();
+//        loggedUserDocument.setLoggedUserName(consentsPersonalAccepted.getCivilName());
 //        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
 //        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
-        loggedUserDocument.setIdentification("73991016982");
-        loggedUserDocument.setRel("CPF");
 
         /// Step 04 -
-        LoggedUser loggedUser = new LoggedUser();
-        loggedUser.setDocument(loggedUserDocument);
-        accessTokenRequest.setLoggedUser(loggedUser);
+//        LoggedUser loggedUser = new LoggedUser();
+//        loggedUser.setDocument(loggedUserDocument);
+//        accessTokenRequest.setLoggedUser(loggedUser);
 
         /// Step 05 -
-        BusinessEntityDocument businessEntityDocument = new BusinessEntityDocument();
-        businessEntityDocument.setEntityBusinessName(httpServletRequest.getUserPrincipal().getName());
+//        BusinessEntityDocument businessEntityDocument = new BusinessEntityDocument();
+//        businessEntityDocument.setEntityBusinessName(httpServletRequest.getUserPrincipal().getName());
 //        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
 //        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
-        businessEntityDocument.setIdentification("11111111111111");
-        businessEntityDocument.setRel("CNPJ");
+
         /// Step 06 -
-        BusinessEntity businessEntity = new BusinessEntity();
-        businessEntity.setDocument(businessEntityDocument);
-        accessTokenRequest.setBusinessEntity(businessEntity);
+//        BusinessEntity businessEntity = new BusinessEntity();
+//        businessEntity.setDocument(businessEntityDocument);
+//        accessTokenRequest.setBusinessEntity(businessEntity);
 
         /// Step 07 -
         List<ConsentPermissionAuthorisedModel> listPermissionAuthorised = permissionsAuthorised.findAllConsentsPermissionsAuthorisedByConsentId(

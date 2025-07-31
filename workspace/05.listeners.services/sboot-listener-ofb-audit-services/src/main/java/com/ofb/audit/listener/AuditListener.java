@@ -22,28 +22,28 @@ public class AuditListener {
     }
 
     @RabbitListener(queues = "#{ofbAuditConsentsCancellation.name}")
-    public void receiveMessageAuditCancellationConsentsTemplate(@Payload MessageCancelConsentModel message) {
+    public void receiveMessageAuditCancellationConsentsTemplate(@Payload MessageCancelConsentTemplate message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.saveMessageAuditCancellationConsent(message);
         log.info("Message recorded successfully: " + message.getTicket());
     }
 
     @RabbitListener(queues = "#{ofbAuditConsentsAuthorization.name}")
-    public void receiveMessageAuditAuthorizationConsentsTemplate(@Payload MessageAuthorisedConsentModel message) {
+    public void receiveMessageAuditAuthorizationConsentsTemplate(@Payload MessageAuthorisedConsentTemplate message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.saveMessageAuditAuthorizationConsent(message);
         log.info("Message recorded successfully: " + message.getTicket());
     }
 
     @RabbitListener(queues = "#{ofbAuditConsentsRevoked.name}")
-    public void receiveMessageAuditRevokeConsentsTemplate(@Payload MessageRevokeConsentModel message) {
+    public void receiveMessageAuditRevokeConsentsTemplate(@Payload MessageRevokeConsentTemplate message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.saveMessageAuditRevokedConsent(message);
         log.info("Message recorded successfully: " + message.getTicket());
     }
 
     @RabbitListener(queues = "#{ofbAuditConsentsExtends.name}")
-    public void receiveMessageAuditExtendsConsentsTemplate(@Payload MessageExtendsConsentModel message) {
+    public void receiveMessageAuditExtendsConsentsTemplate(@Payload MessageExtendsConsentTemplate message) {
         log.info("Message read in queue. processing.: " + message.getTicket());
         service.saveMessageAuditExtendsConsent(message);
         log.info("Message recorded successfully: " + message.getTicket());

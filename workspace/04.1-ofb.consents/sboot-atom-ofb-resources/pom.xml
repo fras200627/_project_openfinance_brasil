@@ -41,7 +41,7 @@
 		<ofb-lib-autoconfigure-security-version>1.0.0</ofb-lib-autoconfigure-security-version>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>API.CONSENTS.RESOURCES</info.additional.project.module.name>
+		<info.additional.project.module.name>API.RESOURCES</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -373,9 +373,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-
-
 					<execution>
 						<id>generator-client-consent-resources</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -407,13 +404,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-
-
-
-
-
-
 				</executions>
 			</plugin>
 			<plugin>

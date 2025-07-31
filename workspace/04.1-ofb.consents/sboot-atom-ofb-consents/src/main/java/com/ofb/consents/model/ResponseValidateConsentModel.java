@@ -1,7 +1,6 @@
 package com.ofb.consents.model;
 
-import com.ofb.consents.server.consents.resources.model.ResponseConsentData;
-import com.ofb.consents.server.consents.resources.model.ResponseErrorErrorsInner;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +17,7 @@ import java.util.List;
  */
 public final class ResponseValidateConsentModel {
     private boolean                        errorsListed            = false;
-    private List<ResponseErrorErrorsInner> responseErrorsList      = new ArrayList<>();
+    private List<ResponseErrorsInnerTemplate> responseErrorsList      = new ArrayList<>();
     private Object                         objectData              = null;
     private Exception                      objectException         = null;
 }

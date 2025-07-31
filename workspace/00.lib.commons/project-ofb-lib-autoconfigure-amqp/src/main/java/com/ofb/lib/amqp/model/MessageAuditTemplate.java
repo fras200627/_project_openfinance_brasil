@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
-@Data @Builder
-@RequiredArgsConstructor
-@AllArgsConstructor
+@Data @Builder @RequiredArgsConstructor @AllArgsConstructor
 public class MessageAuditTemplate implements Serializable {
     private String ticket;
     private String interactionId;

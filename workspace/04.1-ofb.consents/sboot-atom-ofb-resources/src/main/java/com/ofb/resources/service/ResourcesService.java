@@ -1,7 +1,6 @@
 package com.ofb.resources.service;
 
 import com.nimbusds.jose.shaded.gson.Gson;
-import com.nimbusds.jose.shaded.gson.JsonObject;
 import com.ofb.lib.commons.jpa.RequestFilterParams;
 import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
 import com.ofb.lib.commons.jpa.RequestFilterSpecification;
@@ -9,11 +8,8 @@ import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
-import com.ofb.lib.handlers.exception.template.MetaErrorResponseTemplate;
-import com.ofb.lib.handlers.exception.template.ResponseErrorTemplate;
 import com.ofb.resources.client.consent.resources.handler.ConsentsApi;
 import com.ofb.resources.client.consent.resources.model.ResponseConsentRead;
-import com.ofb.resources.client.consent.resources.model.ResponseErrorErrorsInner;
 import com.ofb.resources.model.ResourcesConfirmedModel;
 import com.ofb.resources.repository.ResourcesConfirmedRecordFilter;
 import com.ofb.resources.repository.ResourcesConfirmedRepository;
@@ -25,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -33,15 +30,14 @@ import java.net.URI;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
 @Service @Slf4j
 public class ResourcesService {
 
-    @Value("${app.paths.clients.consent-resources}")
-    private String pathConsentResources;
+    @Value("${app.paths.clients.ofb-consents}")
+    private String OFB_PATH_CONSENTS;
 
     @Autowired
     HttpServletRequest request;
@@ -52,6 +48,9 @@ public class ResourcesService {
     @Autowired
     private ResourcesConfirmedRepository resourcesRepository;
 
+    @Autowired
+    private JwtDecoder jwtDecoder;
+
     public ResponseResourceList resourcesGetResources(String authorization,
                                                       UUID xFapiInteractionId,
                                                       String xFapiAuthDate,
@@ -60,32 +59,27 @@ public class ResourcesService {
                                                       Integer page, Integer pageSize) {
 
         Gson gson = new Gson();
-        Base64.Decoder decoder = Base64.getUrlDecoder();
+        String      consentId;
         List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
-        String subMember;
-        String consentId;
-        JsonObject subObject;
-        ResponseConsentRead response = null;
+        ResponseConsentRead               responseConsentRead = null;
 
-        /// Extract AccessToken values
+        /// Extract AccessToken claims values
         try {
-            subMember = authorization.replace("Bearer ", "").split("\\.")[1];
-            subObject = gson.fromJson(new String(decoder.decode(subMember)), JsonObject.class);
-            consentId = subObject.get("ofb.consent.id").getAsString();
+            consentId = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("ofb.consent.id").toString();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error")
+                    .title("Get Resources request error (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
         ///  Consents Resources API parameters
         try {
-            consentsApi.getApiClient().setBasePath(pathConsentResources);
+            consentsApi.getApiClient().setBasePath(OFB_PATH_CONSENTS);
             consentsApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
-            response = consentsApi.consentsGetConsentsConsentId(consentId,
+            responseConsentRead = consentsApi.consentsGetConsentsConsentId(consentId,
                     authorization,
                     xFapiInteractionId,
                     xFapiAuthDate,
@@ -98,14 +92,14 @@ public class ResourcesService {
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("AccessToken: " + ex.getMessage().substring(ex.getMessage().indexOf("detail") + 9, ex.getMessage().indexOf("meta") - 5))
                         .build());
-                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+                throw new BadRequestException(gson.toJson(listResponseErrors));
             } else {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail(ex.getMessage())
                         .build());
-                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+                throw new BadRequestException(gson.toJson(listResponseErrors));
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -113,30 +107,32 @@ public class ResourcesService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
-            throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
 
         /// Validations
         try {
-            if (!response.getData().getStatus().getValue().equals("AUTHORISED")) {
+            if (!responseConsentRead.getData().getStatus().getValue().equals("AUTHORISED")) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Get Resources request error")
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in the " +
-                                "AccessToken has a current status of [" + response.getData().getStatus().getValue() + "].")
+                                "AccessToken has a current status of [" + responseConsentRead.getData().getStatus().getValue() + "].")
                         .build());
-                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+                throw new BadRequestException(gson.toJson(listResponseErrors));
             }
 
-            if (!OffsetDateTime.parse(response.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
+            if (!OffsetDateTime.parse(responseConsentRead.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Get Resources request error")
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in " +
                                 "the AccessToken has an ExpirationDateTime " +
-                                "(" + subObject.get("ofb.consent.expiration.datetime").getAsString() + ") of 'expired'. ")
+                                "(" +
+                                responseConsentRead.getData().getExpirationDateTime()
+                                + ") of 'expired'. ")
                         .build());
-                throw new BadRequestException(new com.google.gson.Gson().toJson(listResponseErrors));
+                throw new BadRequestException(gson.toJson(listResponseErrors));
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -144,10 +140,10 @@ public class ResourcesService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
-        /// Search Resources
+        /// Search Consent Resources
         Page<ResourcesConfirmedModel> resourcesConfirmedList;
         List<ResponseResourceListDataInner> responseData = new ArrayList<>();
         int recordsNotInclude = 0;
@@ -178,7 +174,7 @@ public class ResourcesService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
         /// Build response objects
@@ -217,14 +213,13 @@ public class ResourcesService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new InternalErrorException(new com.google.gson.Gson().toJson(listResponseErrors));
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
         return responseResourceList;
     }
 
     private Specification<ResourcesConfirmedModel> buildFilter(ResourcesConfirmedRecordFilter filter) {
-
         Specification<ResourcesConfirmedModel> specs = null;
         RequestFilterParams requestFilterParams = null;
 

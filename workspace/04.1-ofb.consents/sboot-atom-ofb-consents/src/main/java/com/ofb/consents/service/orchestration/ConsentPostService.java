@@ -2,21 +2,22 @@ package com.ofb.consents.service.orchestration;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentBadRequestException;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.data.*;
 import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
 import com.ofb.consents.service.persistence.ConsentCancelService;
 import com.ofb.consents.service.persistence.ConsentCreateService;
 import com.ofb.consents.service.persistence.ConsentCreatePermissionsService;
 import com.ofb.consents.service.persistence.ConsentUpdateService;
 import com.ofb.consents.service.validation.*;
-import com.ofb.lib.amqp.model.MessageAuthorisedConsentModel;
-import com.ofb.lib.amqp.model.MessageCancelConsentModel;
+import com.ofb.lib.amqp.model.MessageAuthorisedConsentTemplate;
+import com.ofb.lib.amqp.model.MessageCancelConsentTemplate;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -84,7 +85,7 @@ public class ConsentPostService {
         ConsentPersonalData                       consentCreated;
         ResponseValidateConsentModel              responseValidate;
         List<ResponseConsentData.PermissionsEnum> permissionsResponse   = List.of();
-        List<ResponseErrorErrorsInner>            overallResponseErrors = new ArrayList<ResponseErrorErrorsInner>();
+        List<ResponseErrorsInnerTemplate>            overallResponseErrors = new ArrayList<ResponseErrorsInnerTemplate>();
 
         /// STEP 01 - Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = validateBusinessEntityService.validateBusinessEntityInformation(createConsent, consentId, executeThrowImmediately);
@@ -109,20 +110,20 @@ public class ConsentPostService {
         if (responseValidate.isErrorsListed() == true) {
             // Caso a instiuição receptora envie permissões não existentes nos agrupamentos especificados na tabela,
             // a transmissora deve rejeitar o pedido da receptora dando retorno HTTP Status Code 400.
-            throw new ConsentBadRequestException(new Gson().toJson(overallResponseErrors));
+            throw new BadRequestException(new Gson().toJson(overallResponseErrors));
         } else {
             responseValidate = validatePermissionsRequestedService.validateRequestedPermissionsExists(createConsent, consentId, executeThrowImmediately);
             overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
         }
 
         if (!overallResponseErrors.isEmpty()) {
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(overallResponseErrors));
+            throw new UnprocessedEntityException(new Gson().toJson(overallResponseErrors));
         }
 
         ///  STEP 02 - Insert New Consent +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = consentCreateService.insertNewConsent(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
+            throw new UnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
         } else {
             consentCreated = (ConsentPersonalData) responseValidate.getObjectData();
         }
@@ -131,7 +132,7 @@ public class ConsentPostService {
         responseValidate = consentCreatePermissionsService.insertConsentPermissions(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
-                    MessageCancelConsentModel.builder()
+                    MessageCancelConsentTemplate.builder()
                     .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
                     .consentId(consentId)
                     .correlationId(consentId)
@@ -143,14 +144,14 @@ public class ConsentPostService {
                     .build(),
                     new CorrelationData(consentId));
 
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
+            throw new UnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
         } else {
             permissionsResponse = (List<ResponseConsentData.PermissionsEnum>) responseValidate.getObjectData();
         }
 
         // STEP 04 - Build ResponseConsentData ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         ResponseConsentData responseConsentData;
-        LinksConsents       links;
+        LinksConsents links;
         Meta                meta;
         try {
             responseConsentData = new ResponseConsentData(
@@ -171,7 +172,7 @@ public class ConsentPostService {
         } catch (Exception e) {
             log.error(e.getMessage());
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
-                    MessageCancelConsentModel.builder()
+                    MessageCancelConsentTemplate.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -182,9 +183,9 @@ public class ConsentPostService {
                             .objectException(e.getMessage())
                             .build(),
                     new CorrelationData(consentId));
-            throw new ConsentInternalErrorException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
+            throw new InternalErrorException(new Gson().toJson(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Error builder ResponseConsentData")
                     .build()));
         }
@@ -193,7 +194,7 @@ public class ConsentPostService {
         responseValidate = consentUpdateService.updateConsentToAwaitingAuthorization(consentCreated, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
-                    MessageCancelConsentModel.builder()
+                    MessageCancelConsentTemplate.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -204,16 +205,16 @@ public class ConsentPostService {
                             .objectException(new Gson().toJson(responseValidate.getObjectException()))
                             .build(),
                     new CorrelationData(consentId));
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
+            throw new UnprocessedEntityException(new Gson().toJson(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent update error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Error updating consent status for AWAITING_AUTHORISATION")
                     .build()));
         }
 
         try {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_AUTHORIZATION_ROUTING_KEY,
-                    MessageAuthorisedConsentModel.builder()
+                    MessageAuthorisedConsentTemplate.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -226,7 +227,7 @@ public class ConsentPostService {
         } catch (Exception e) {
             log.error(e.getMessage());
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
-                    MessageCancelConsentModel.builder()
+                    MessageCancelConsentTemplate.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z")
                             .consentId(consentId)
                             .correlationId(consentId)
@@ -237,9 +238,9 @@ public class ConsentPostService {
                             .objectException(e.getMessage())
                             .build(),
                     new CorrelationData(consentId));
-            throw new ConsentInternalErrorException(new Gson().toJson(new ResponseErrorErrorsInner().toBuilder()
+            throw new InternalErrorException(new Gson().toJson(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Authorization")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("Error sending authorization process execution message")
                     .build()));
         }

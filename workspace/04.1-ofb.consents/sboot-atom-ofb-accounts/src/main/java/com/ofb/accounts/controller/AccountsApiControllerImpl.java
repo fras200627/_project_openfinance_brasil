@@ -1,7 +1,7 @@
 package com.ofb.accounts.controller;
 
-import com.ofb.accounts.server.handler.AccountsApiDelegate;
-import com.ofb.accounts.server.model.*;
+import com.ofb.accounts.server.accounts.resources.handler.AccountsApiDelegate;
+import com.ofb.accounts.server.accounts.resources.model.*;
 import com.ofb.lib.security.profiles.CanClientOFBRead;
 import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
@@ -20,7 +20,6 @@ import java.util.UUID;
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER)
 public class AccountsApiControllerImpl implements AccountsApiDelegate {
-
     @Override @CanSystemOFBAdmin @CanClientOFBRead
     public ResponseEntity<ResponseAccountList> accountsGetAccounts(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize, EnumAccountType accountType, String paginationKey) {
         return AccountsApiDelegate.super.accountsGetAccounts(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize, accountType, paginationKey);

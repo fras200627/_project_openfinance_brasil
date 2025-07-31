@@ -1,13 +1,14 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.client.clients.business.resources.handler.ClientsBusinessResourcesApi;
-import com.ofb.consents.client.clients.business.resources.model.OAuth2ClientResponse;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
+import com.ofb.consents.client.clientsbusiness.handler.ClientsBusinessResourcesApi;
+import com.ofb.consents.client.clientsbusiness.model.OAuth2ClientResponse;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,7 +59,7 @@ public class ValidateBusinessEntityService {
      * <p><b>Note</b></p>
      * <p>in the 'objectData' field, returns an OAuth2ClientResponse object
      * <br>
-     * @throws ConsentUnprocessedEntityException
+     * @throws UnprocessedEntityException
      * <p>if an error occurs while trying to invoke the method<p></p>
      */
     public ResponseValidateConsentModel validateBusinessEntityInformation(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
@@ -70,18 +71,18 @@ public class ValidateBusinessEntityService {
         /// Registered Client validate steps
         String registeredClientName                       = "";
         OAuth2ClientResponse registeredClient             = new OAuth2ClientResponse();
-        List<ResponseErrorErrorsInner> listResponseErrors = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
 
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Business Entity")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the BusinessEntity document")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
                 return ResponseValidateConsentModel.builder()
                         .errorsListed(true)
@@ -101,13 +102,13 @@ public class ValidateBusinessEntityService {
                 registeredClientName = ((BusinessEntityExtensions) objectData).getDocument().getIdentification();
             }
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("BusinessEntity verification error. Business Entity is mandatory and must inform the BusinessEntity document")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -121,13 +122,13 @@ public class ValidateBusinessEntityService {
             registeredClientName = request.getUserPrincipal().getName();
             registeredClient = registeredClientsResourcesApi.getFindByClientId(registeredClientName);
         } catch (NoSuchElementException e) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity")
-                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -135,13 +136,13 @@ public class ValidateBusinessEntityService {
                     .build();
         } catch (Exception e) {
             log.error(e.getMessage());
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error (API not active) occurred while checking the requested Registered Client: '" + registeredClientName + "'")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentInternalErrorException(new Gson().toJson(listResponseErrors));
+                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -152,13 +153,13 @@ public class ValidateBusinessEntityService {
 
         ///  Registered Client return validate
         if (registeredClient == null) {
-            listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity")
-                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
                     .build());
             if (executeThrowImmediately) {
-                throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
             }
             return ResponseValidateConsentModel.builder()
                     .errorsListed(true)
@@ -166,39 +167,39 @@ public class ValidateBusinessEntityService {
                     .build();
         } else {
             if (registeredClient.getStatus() != null && !registeredClient.getStatus().equals("ACTIVE")) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Business Entity")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("Registered Client '" + registeredClientName +
                                 "' (" + registeredClient.getClientName() + ") is not authorized. Current status is '" +
                                 registeredClient.getStatus() + "' and is not valid at this time")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
             }
             if (registeredClient.getSecurityScope() != null && !registeredClient.getSecurityScope().contains("client.ofb.read")) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Business Entity")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("Registered Client '" + registeredClientName +
                                 "' (" + registeredClient.getClientName() +
                                 ") does not have scope/grant 'ofb.client.read'.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
             }
             if (registeredClient.getSecurityScope() != null && !registeredClient.getSecurityScope().contains("client.ofb.write")) {
-                listResponseErrors.add(new ResponseErrorErrorsInner().toBuilder()
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                         .title("Consent Business Entity")
-                        .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("Registered Client '" + registeredClientName +
                                 "' (" + registeredClient.getClientName() +
                                 ") does not have scope/grant 'ofb.client.write'.")
                         .build());
                 if (executeThrowImmediately) {
-                    throw new ConsentUnprocessedEntityException(new Gson().toJson(listResponseErrors));
+                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
             }
         }

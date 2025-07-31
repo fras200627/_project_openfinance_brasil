@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.stereotype.Service;
-//import org.springframework.http.server.reactive.ServerHttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Service
-@Slf4j
+@Service @Slf4j
 public class MessageService {
 
     @Value("${amqp.ofb.audit.http-requests.queue}")
@@ -95,7 +93,6 @@ public class MessageService {
     }
 
     public void sendMessageAuditTemplate(MessageAuditTemplate messageAuditTemplate) {
-
         //Post a message Audit in RabbitMQ
         rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_HTTP_REQUESTS_ROUTING_KEY, messageAuditTemplate);
     }

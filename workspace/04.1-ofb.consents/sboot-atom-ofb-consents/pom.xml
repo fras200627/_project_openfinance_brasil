@@ -88,12 +88,6 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>9.0.1.Final</version>
-		</dependency>
-
 		<!-- Lib dependencies-->
 		<dependency>
 			<groupId>com.ofb</groupId>
@@ -105,11 +99,11 @@
 			<artifactId>ofb-lib-autoconfigure-amqp</artifactId>
 			<version>${ofb-lib-autoconfigure-amqp-version}</version>
 		</dependency>
-										<!--		<dependency>-->
-										<!--			<groupId>com.ofb</groupId>-->
-										<!--			<artifactId>ofb-lib-autoconfigure-handlers</artifactId>-->
-										<!--			<version>${ofb-lib-autoconfigure-handlers-version}</version>-->
-										<!--		</dependency>-->
+		<dependency>
+			<groupId>com.ofb</groupId>
+			<artifactId>ofb-lib-autoconfigure-handlers</artifactId>
+			<version>${ofb-lib-autoconfigure-handlers-version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.ofb</groupId>
 			<artifactId>ofb-lib-autoconfigure-interceptors</artifactId>
@@ -254,7 +248,11 @@
 			<artifactId>assertj-core</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>9.0.1.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -324,13 +322,13 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/server/openapi-health-checks-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.consents.server.health.resources.handler</apiPackage>
-							<modelPackage>com.ofb.consents.server.health.resources.model</modelPackage>
+							<apiPackage>com.ofb.consents.server.healthchecks.handler</apiPackage>
+							<modelPackage>com.ofb.consents.server.healthchecks.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.consents.server.health.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.consents.server.healthchecks.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -360,13 +358,13 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/server/openapi-consents-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.consents.server.consents.resources.handler</apiPackage>
-							<modelPackage>com.ofb.consents.server.consents.resources.model</modelPackage>
+							<apiPackage>com.ofb.consents.server.consents.handler</apiPackage>
+							<modelPackage>com.ofb.consents.server.consents.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.consents.server.consents.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.consents.server.consents.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -396,12 +394,12 @@
 							<generatorName>java</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/client/openapi-clients-business-server.yaml</inputSpec>
-							<apiPackage>com.ofb.consents.client.clients.business.resources.handler</apiPackage>
-							<modelPackage>com.ofb.consents.client.clients.business.resources.model</modelPackage>
+							<apiPackage>com.ofb.consents.client.clientsbusiness.handler</apiPackage>
+							<modelPackage>com.ofb.consents.client.clientsbusiness.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<configOptions>
-								<invokerpackage>com.ofb.consents.client.clients.business,resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.consents.client.clientsbusiness.handler</invokerpackage>
 								<library>resttemplate</library>
 								<documentationProvider>source</documentationProvider>
 								<generateBuilders>true</generateBuilders>
@@ -427,12 +425,12 @@
 							<generatorName>java</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/client/openapi-authentication-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.consents.client.authentication.resources.handler</apiPackage>
-							<modelPackage>com.ofb.consents.client.authentication.resources.model</modelPackage>
+							<apiPackage>com.ofb.consents.client.authentication.handler</apiPackage>
+							<modelPackage>com.ofb.consents.client.authentication.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<configOptions>
-								<invokerpackage>com.ofb.consents.client.authentication.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.consents.client.authentication.handler</invokerpackage>
 								<library>resttemplate</library>
 								<documentationProvider>source</documentationProvider>
 								<generateBuilders>true</generateBuilders>

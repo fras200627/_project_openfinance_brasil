@@ -1,8 +1,8 @@
 package com.ofb.consents.controller;
 
-import com.ofb.consents.server.consents.resources.handler.ConsentsApiDelegate;
-
-import com.ofb.consents.server.consents.resources.model.*;
+import com.ofb.consents.server.consents.handler.ConsentsApiDelegate;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.consents.server.consents.model.ResponseConsentRead;
 import com.ofb.consents.service.orchestration.*;
 import com.ofb.lib.security.profiles.CanClientOFBRead;
 import com.ofb.lib.security.profiles.CanClientOFBWrite;

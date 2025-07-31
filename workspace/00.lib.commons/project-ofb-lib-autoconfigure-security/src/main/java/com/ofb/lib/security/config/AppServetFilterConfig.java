@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-@Order(2) //see note above
-@Slf4j
+@Order(2) @Slf4j
 public class AppServetFilterConfig implements Filter {
 
     /* **********************************************************************************

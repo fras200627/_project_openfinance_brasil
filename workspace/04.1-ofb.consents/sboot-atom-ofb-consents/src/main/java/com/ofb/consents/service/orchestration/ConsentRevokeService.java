@@ -2,16 +2,17 @@ package com.ofb.consents.service.orchestration;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
-import com.ofb.consents.enums.ConsentResponseEnum;
-import com.ofb.consents.exception.ConsentBadRequestException;
-import com.ofb.consents.exception.ConsentInternalErrorException;
-import com.ofb.consents.exception.ConsentUnprocessedEntityException;
 import com.ofb.consents.model.ConsentPersonalModel;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
-import com.ofb.consents.server.consents.resources.model.*;
-import com.ofb.lib.amqp.model.MessageRevokeConsentModel;
+import com.ofb.consents.server.consents.model.*;
+import com.ofb.lib.amqp.model.MessageRevokeConsentTemplate;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -57,34 +58,34 @@ public class ConsentRevokeService {
 
     public void consentsDeleteConsentsConsentId(String consentId) {
 
-        List<ResponseErrorErrorsInner> listError = new ArrayList<>();
+        List<ResponseErrorsInnerTemplate> listError = new ArrayList<>();
         ConsentPersonalModel consentRequested;
 
         try {
             consentRequested = consentsRepositoryView.findById(consentId).get();
         } catch (NoSuchElementException e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent DELETE request error")
-                    .code(ConsentResponseEnum.CodeEnum.CONSENT_NOT_FOUND.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.CONSENT_NOT_FOUND.getValue())
                     .detail("The informed consentId does not exist")
                     .build());
-            throw new ConsentBadRequestException(new Gson().toJson(listError));
+            throw new BadRequestException(new Gson().toJson(listError));
         } catch (Exception e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent DELETE request error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new ConsentInternalErrorException(new Gson().toJson(listError));
+            throw new InternalErrorException(new Gson().toJson(listError));
         }
 
         if (!consentRequested.getStatus().equals("AUTHORISED")) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent DELETE request error")
-                    .code(ConsentResponseEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Consent cannot be REJECTED/REVOKED. Actual Status is [" + consentRequested.getStatus() + "].")
                     .build());
-            throw new ConsentUnprocessedEntityException(new Gson().toJson(listError));
+            throw new UnprocessedEntityException(new Gson().toJson(listError));
         }
 
         ConsentPersonalData consentCreated;
@@ -105,17 +106,17 @@ public class ConsentRevokeService {
             consentCreated.setAccessTokenAuthorised("");
             consentPersonalRepository.saveAndFlush(consentCreated);
         } catch (Exception e) {
-            listError.add(new ResponseErrorErrorsInner().toBuilder()
+            listError.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent DELETE request error")
-                    .code(ConsentResponseEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-            throw new ConsentInternalErrorException(new Gson().toJson(listError));
+            throw new InternalErrorException(new Gson().toJson(listError));
         }
 
         try {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_CONSENTS_REVOKED_ROUTING_KEY,
-                    MessageRevokeConsentModel.builder()
+                    MessageRevokeConsentTemplate.builder()
                             .sendMessageDatetime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
                             .consentId(consentId)
                             .correlationId(consentId)

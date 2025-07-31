@@ -15,7 +15,7 @@
 	<version>1.0.0-ofb</version>
 	<packaging>jar</packaging>
 	<name>sboot-atom-ofb-customers</name>
-	<description>Project OFB - customers</description>
+	<description>Project OFB - Customers Resources</description>
 
 	<properties>
 		<!-- Project default infos -->
@@ -41,7 +41,7 @@
 		<ofb-lib-autoconfigure-security-version>1.0.0</ofb-lib-autoconfigure-security-version>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>API.CONSENTS.CUSTOMERS</info.additional.project.module.name>
+		<info.additional.project.module.name>API.CUSTOMERS</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -304,7 +304,7 @@
 				<version>${openapi-code-generator-version}</version>
 				<executions>
 					<execution>
-						<id>generator-health-resources</id> <!-- It is not optional and must have a unique id -->
+						<id>generator-server-health-checks-resources</id> <!-- It is not optional and must have a unique id -->
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -316,13 +316,14 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/api-health-checks.yaml</inputSpec>
-							<apiPackage>${openapi.api.package.structure}</apiPackage>
-							<modelPackage>${openapi.model.package.structure}</modelPackage>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-health-checks-resources.yaml</inputSpec>
+							<apiPackage>com.ofb.customers.server.health.resources.handler</apiPackage>
+							<modelPackage>com.ofb.customers.server.health.resources.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
+								<invokerpackage>com.ofb.customers.server.health.resources.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -339,7 +340,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>generator-consents-customers</id> <!-- It is not optional and must have a unique id -->
+						<id>generator-server-customers-resources</id> <!-- It is not optional and must have a unique id -->
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -351,13 +352,14 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-customers-server.yaml</inputSpec>
-							<apiPackage>${openapi.api.package.structure}</apiPackage>
-							<modelPackage>${openapi.model.package.structure}</modelPackage>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-customers-resources.yaml</inputSpec>
+							<apiPackage>com.ofb.customers.server.customers.resources.handler</apiPackage>
+							<modelPackage>com.ofb.customers.server.customers.resources.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
+								<invokerpackage>com.ofb.customers.server.customers.resources.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>

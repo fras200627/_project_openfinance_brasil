@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ofb-consents-customers
+    name: ofb-customers
   jpa:
     properties:
       hibernate:
@@ -11,7 +11,6 @@ spring:
 server:
   error:
     include-stacktrace: never
-
 jwt:
   issuer: banco-tcn-openfinance-brasil
   private:
@@ -21,6 +20,12 @@ jwt:
 
 # Custom properties
 app:
+  consents:
+    organization: 'Banco TCN - OpenFinance Brasil'
+    consent-id-urn-use: 'bancotcn'
+    validate:
+      check-if-consent-already-exists: false
+      execute-throw-immediately: false
   listOfServers: #server item: id, description, url
     - 0, 'OFB Server at LOCAL execution', http://localhost/3000
     - 1, 'OFB Server at DOCKER execution', http://localhost/5000
@@ -109,6 +114,7 @@ amqp:
       cancellation:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
+
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -164,6 +170,7 @@ amqp:
       cancellation:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
+
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
@@ -173,11 +180,6 @@ spring:
   config:
     activate:
       on-profile: k8s
-  rabbitmq:
-    host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
-    port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
-    username: ${RABBITMQ_DEFAULT_USER:ofb}
-    password: ${RABBITMQ_DEFAULT_PASS:ofb}
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:XE
     username: OFB_USER
@@ -224,6 +226,7 @@ amqp:
       cancellation:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
+
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
