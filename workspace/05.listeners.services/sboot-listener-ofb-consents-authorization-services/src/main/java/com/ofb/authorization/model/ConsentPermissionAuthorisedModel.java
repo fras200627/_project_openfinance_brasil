@@ -18,9 +18,10 @@ import javax.persistence.Table;
 public class ConsentPermissionAuthorisedModel {
 
     @Id
-    private Long   consentpermissionauthorisedid;
-    private String cpfnumber;
-    private String customer;
+    private Long   id;
+    private String customercpfnumber;
+    private String customername;
+    private String personalid;
     private String consentid;
     private String consentstatus;
     private String expirationdatetime;

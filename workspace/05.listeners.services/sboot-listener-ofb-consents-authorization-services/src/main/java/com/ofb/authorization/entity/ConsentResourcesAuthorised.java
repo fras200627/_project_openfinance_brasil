@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity(name = "ConsentResourcesConfirmed")
-@Table(schema = "OFB", name = "CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED")
+@Table(schema = "OFB", name = "CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED")
 @Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(of= "id")
-public class ConsentResourcesConfirmed {
+public class ConsentResourcesAuthorised {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "SQ_OFB_SYSTEM")

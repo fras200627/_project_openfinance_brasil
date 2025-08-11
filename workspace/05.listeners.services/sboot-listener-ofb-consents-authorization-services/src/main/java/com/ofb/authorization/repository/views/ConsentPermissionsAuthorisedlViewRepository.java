@@ -14,4 +14,16 @@ public interface ConsentPermissionsAuthorisedlViewRepository extends JpaReposito
     @Query("SELECT a FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId")
     public List<ConsentPermissionAuthorisedModel> findAllConsentsPermissionsAuthorisedByConsentId(@Param("consentId")  String consentId);
 
+    @Query("SELECT a FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId AND a.resourcetype = 'CUSTOMER'")
+    public List<ConsentPermissionAuthorisedModel> findAllConsentsCustomersPermissionsAuthorisedByConsentId(@Param("consentId")  String consentId);
+
+    @Query("SELECT a FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId AND a.resourcetype = 'ACCOUNT'")
+    public List<ConsentPermissionAuthorisedModel> findAllConsentsAccountsPermissionsAuthorisedByConsentId(@Param("consentId")  String consentId);
+
+    @Query("SELECT a.personalid FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId AND a.resourcetype = 'CUSTOMER' GROUP BY a.personalid")
+    public List<String> findPersonalIdCustomerPermissionsAuthorisedByConsentId(@Param("consentId")  String consentId);
+
+    @Query("SELECT a.personalid FROM ConsentPermissionAuthorisedView a WHERE a.consentid = :consentId AND a.resourcetype = 'ACCOUNT' GROUP BY a.personalid")
+    public List<String> findPersonalIdByAccountPermissionsAuthorisedByConsentId(@Param("consentId")  String consentId);
+
 }
