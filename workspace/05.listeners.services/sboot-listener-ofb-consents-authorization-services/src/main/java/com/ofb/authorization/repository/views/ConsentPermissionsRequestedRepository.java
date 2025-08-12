@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ConsentPermissionsRequestedlViewRepository extends JpaRepository<ConsentPermissionRequestedModel, Long>,
+public interface ConsentPermissionsRequestedRepository extends JpaRepository<ConsentPermissionRequestedModel, Long>,
                                                         JpaSpecificationExecutor<ConsentPermissionRequestedModel> {
 
     @Query("SELECT a FROM ConsentPermissionRequestedView a WHERE a.consentid = :consentId")

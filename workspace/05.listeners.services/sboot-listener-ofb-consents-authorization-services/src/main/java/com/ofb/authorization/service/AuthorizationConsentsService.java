@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -26,9 +25,6 @@ import java.util.List;
 
 @Service @Slf4j
 public class AuthorizationConsentsService {
-
-    @Autowired
-    private HttpServletRequest httpServletRequest;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -39,28 +35,18 @@ public class AuthorizationConsentsService {
     @Value("${amqp.ofb.audit.consents-authorization.routing-key}")
     private String AUDIT_CONSENTS_AUTHORIZATION_ROUTING_KEY;
 
-    @Value("${app.paths.clients.authentication-server}")
-    private String PATH_AUTHENTICATION_SERVER;
-
     @Autowired private ConsentPersonalRepository                    consentPersonalRepository;
-    @Autowired private ConsentPersonalViewRepository                consentsRepositoryView;
-    @Autowired private ConsentPermissionsRequestedlViewRepository   permissionsRequestedView;
+    @Autowired private ConsentPermissionsRequestedRepository permissionsRequestedView;
     @Autowired private ConsentPermissionsAuthorisedRepository       permissionsAuthorisedRepository;
-//    @Autowired private ConsentResourcesAuthorisedlCustomersViewRepository resourcesAuthorisedCustomersView;
-
-//    @Autowired private ConsentResourcesAuthorisedlAccountsViewRepository  resourcesAuthorisedAccountsView;
-    @Autowired private ConsentPermissionsAuthorisedlViewRepository        permissionsAuthorisedView;
-
-
-    @Autowired private PersonalAccountsViewRepository personalAccounts;
-    @Autowired private ConsentResourcesConfirmedRepository resourcesAuthorisedRepository;
+    @Autowired private ConsentPermissionsAuthorisedlRepository permissionsAuthorisedView;
+    @Autowired private PersonalAccountsRepository personalAccounts;
+    @Autowired private ConsentResourcesConfirmedRepository          resourcesAuthorisedRepository;
     @Autowired private ConsentResourcesPermissionsConfirmedRepository resourcesPermissionsAuthorisedRepository;
 
     public void save(MessageAuthorisedConsentTemplate authorizationConsent) {
 
-        Timestamp timestampThisOperation = null;
         ConsentPersonalData consentCreated = consentPersonalRepository.findById(authorizationConsent.getConsentId()).get();
-//        ConsentPersonalModel consentsPersonalAccepted = consentsRepositoryView.findById(authorizationConsent.getConsentId()).get();
+        Timestamp timestampThisOperation = null;
         ConsentResourcesAuthorised resourcesCustomerConfirmed = null;
 
         /// Step 01: Insert consent permissions authorised

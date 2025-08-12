@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface PersonalAccountsViewRepository extends JpaRepository<PersonalAccountsModel, String>,
+public interface PersonalAccountsRepository extends JpaRepository<PersonalAccountsModel, String>,
                                                         JpaSpecificationExecutor<PersonalAccountsModel> {
 
     @Query("SELECT a FROM PersonalAccountView a WHERE a.personalid = :personalid")

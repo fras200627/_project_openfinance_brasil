@@ -10,7 +10,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public record ResourcesConfirmedlPaginationSettings(
+public record ResourcesAuthorisedlPaginationSettings(
         @NotNull @Digits(integer = 5, fraction = 0)
         @Range(min = 1, max = 99999)
         int page_number,
@@ -27,7 +27,7 @@ public record ResourcesConfirmedlPaginationSettings(
         @Pattern(regexp = "ASC|DESC")
         String page_sort_order
 ) {
-    public static Pageable PaginationSettingsTemplate(ResourcesConfirmedlPaginationSettings pageSettings, String fixField) {
+    public static Pageable PaginationSettingsTemplate(ResourcesAuthorisedlPaginationSettings pageSettings, String fixField) {
         return PageRequest
                 .of(pageSettings.page_number()-1, pageSettings.page_size())
                 .withSort(

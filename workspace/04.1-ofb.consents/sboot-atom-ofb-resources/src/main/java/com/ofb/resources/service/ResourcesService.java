@@ -10,10 +10,10 @@ import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import com.ofb.resources.client.consent.resources.handler.ConsentsApi;
 import com.ofb.resources.client.consent.resources.model.ResponseConsentRead;
-import com.ofb.resources.model.ResourcesConfirmedModel;
-import com.ofb.resources.repository.ResourcesConfirmedRecordFilter;
-import com.ofb.resources.repository.ResourcesConfirmedRepository;
-import com.ofb.resources.repository.ResourcesConfirmedlPaginationSettings;
+import com.ofb.resources.model.ResourcesAuthorisedModel;
+import com.ofb.resources.repository.ResourcesAuthorisedRecordFilter;
+import com.ofb.resources.repository.ResourcesAuthorisedRepository;
+import com.ofb.resources.repository.ResourcesAuthorisedlPaginationSettings;
 import com.ofb.resources.server.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class ResourcesService {
     private ConsentsApi consentsApi;
 
     @Autowired
-    private ResourcesConfirmedRepository resourcesRepository;
+    private ResourcesAuthorisedRepository resourcesRepository;
 
     @Autowired
     private JwtDecoder jwtDecoder;
@@ -144,20 +144,20 @@ public class ResourcesService {
         }
 
         /// Search Consent Resources
-        Page<ResourcesConfirmedModel> resourcesConfirmedList;
+        Page<ResourcesAuthorisedModel> resourcesConfirmedList;
         List<ResponseResourceListDataInner> responseData = new ArrayList<>();
         int recordsNotInclude = 0;
 
         try {
-            ResourcesConfirmedlPaginationSettings page_settings = new ResourcesConfirmedlPaginationSettings(page, pageSize, "consentResourceId", "DESC");
-            ResourcesConfirmedRecordFilter filter = new ResourcesConfirmedRecordFilter(page_settings, null, consentId);
-            Specification<ResourcesConfirmedModel> filterSpecs = this.buildFilter(filter);
-            Pageable pageParams = ResourcesConfirmedlPaginationSettings
+            ResourcesAuthorisedlPaginationSettings page_settings = new ResourcesAuthorisedlPaginationSettings(page, pageSize, "consentResourceId", "DESC");
+            ResourcesAuthorisedRecordFilter filter = new ResourcesAuthorisedRecordFilter(page_settings, null, consentId);
+            Specification<ResourcesAuthorisedModel> filterSpecs = this.buildFilter(filter);
+            Pageable pageParams = ResourcesAuthorisedlPaginationSettings
                     .PaginationSettingsTemplate(filter.page_settings(), "consentResourceId");
 
             resourcesConfirmedList = resourcesRepository.findAll(filterSpecs, pageParams);
 
-            for (ResourcesConfirmedModel reg : resourcesConfirmedList.getContent()) {
+            for (ResourcesAuthorisedModel reg : resourcesConfirmedList.getContent()) {
                 if (!reg.getResourceType().trim().toUpperCase().equals("CUSTOMER")) {
                     responseData.add(ResponseResourceListDataInner.builder()
                             .resourceId(reg.getResourceId())
@@ -219,8 +219,8 @@ public class ResourcesService {
         return responseResourceList;
     }
 
-    private Specification<ResourcesConfirmedModel> buildFilter(ResourcesConfirmedRecordFilter filter) {
-        Specification<ResourcesConfirmedModel> specs = null;
+    private Specification<ResourcesAuthorisedModel> buildFilter(ResourcesAuthorisedRecordFilter filter) {
+        Specification<ResourcesAuthorisedModel> specs = null;
         RequestFilterParams requestFilterParams = null;
 
         if (filter.consentResourceId() != null

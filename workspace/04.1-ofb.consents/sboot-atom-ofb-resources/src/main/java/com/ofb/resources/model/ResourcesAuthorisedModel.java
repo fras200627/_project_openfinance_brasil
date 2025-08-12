@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "ConsentPersonalDataResourcesConfirmed")
-@Table(schema = "OFB", name = "VW_CONSENTS_PERSONAL_DATA_RESOURCES_CONFIRMED")
+@Entity(name = "ConsentPersonalDataResourcesAuthorised")
+@Table(schema = "OFB", name = "VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED")
 @Data @Builder @ToString @AllArgsConstructor @RequiredArgsConstructor
-public class ResourcesConfirmedModel {
+public class ResourcesAuthorisedModel {
 
     @Id @Column(name = "CONSENTRESOURCEID")
     private String consentResourceId;

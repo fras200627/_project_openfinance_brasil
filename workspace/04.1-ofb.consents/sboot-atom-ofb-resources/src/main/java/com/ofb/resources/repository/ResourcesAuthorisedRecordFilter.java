@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Valid
-public record ResourcesConfirmedRecordFilter(
+public record ResourcesAuthorisedRecordFilter(
         @Valid @NotNull
-        ResourcesConfirmedlPaginationSettings page_settings,
+        ResourcesAuthorisedlPaginationSettings page_settings,
 
         @Nullable @Size(min= 1, max= 9999)
         String consentResourceId,
