@@ -352,13 +352,13 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/server/openapi-accounts-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.accounts.server.accounts.resources.handler</apiPackage>
-							<modelPackage>com.ofb.accounts.server.accounts.resources.model</modelPackage>
+							<apiPackage>com.ofb.accounts.server.accounts.handler</apiPackage>
+							<modelPackage>com.ofb.accounts.server.accounts.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.accounts.server.accounts.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.accounts.server.accounts.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -374,6 +374,40 @@
 							</configOptions>
 						</configuration>
 					</execution>
+
+
+					<execution>
+						<id>generator-client-consent-resources</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-consents-resources.yaml</inputSpec>
+							<apiPackage>com.ofb.accounts.client.consents.handler</apiPackage>
+							<modelPackage>com.ofb.accounts.client.consents.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.accounts.client.consents.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
 				</executions>
 			</plugin>
 			<plugin>

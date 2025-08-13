@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "ResourcesAuthorised")
-@Table(schema = "OFB", name = "VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED")
+@Entity(name = "ResourcesPermissionsAuthorised")
+@Table(schema = "OFB", name = "VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS")
 @Data @Builder @ToString @AllArgsConstructor @RequiredArgsConstructor
-public class ResourcesAuthorisedModel {
+public class ResourcesPermissionsAuthorisedModel {
 
-    @Id @Column(name = "CONSENTRESOURCEID")
-    private String consentResourceId;
+    @Id @Column(name = "CONSENTRESOURCEPERMISSIONID")
+    private String id;
 
     @Column(name = "PERSONALCPF")
     private String personalCPF;
@@ -47,5 +47,11 @@ public class ResourcesAuthorisedModel {
 
     @Column(name = "PERSONALNAME")
     private String personalName;
+
+    @Column(name = "PERMISSIONID")
+    private String permissionId;
+
+    @Column(name = "PERMISSION")
+    private String permission;
 
 }

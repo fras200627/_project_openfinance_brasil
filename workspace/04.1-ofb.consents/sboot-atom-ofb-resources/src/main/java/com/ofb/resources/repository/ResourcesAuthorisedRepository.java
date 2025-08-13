@@ -11,7 +11,7 @@ import java.util.List;
 public interface ResourcesAuthorisedRepository extends JpaRepository<ResourcesAuthorisedModel, String>,
                                                         JpaSpecificationExecutor<ResourcesAuthorisedModel> {
 
-    @Query("SELECT a FROM ConsentPersonalDataResourcesAuthorised a WHERE a.consentId = :consentId AND a.resourceType = 'ACCOUNT'")
+    @Query("SELECT a FROM ResourcesAuthorised a WHERE a.consentId = :consentId AND a.resourceType = 'ACCOUNT'")
     public List<ResourcesAuthorisedModel> findAllResourcesAccountsByConsentId(@Param("consentId")  String consentId);
 
 }

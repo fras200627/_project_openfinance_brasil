@@ -11,9 +11,11 @@ import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import com.ofb.resources.client.consent.resources.handler.ConsentsApi;
 import com.ofb.resources.client.consent.resources.model.ResponseConsentRead;
 import com.ofb.resources.model.ResourcesAuthorisedModel;
+import com.ofb.resources.model.ResourcesPermissionsAuthorisedModel;
 import com.ofb.resources.repository.ResourcesAuthorisedRecordFilter;
 import com.ofb.resources.repository.ResourcesAuthorisedRepository;
 import com.ofb.resources.repository.ResourcesAuthorisedlPaginationSettings;
+import com.ofb.resources.repository.ResourcesPermissionsAuthorisedRepository;
 import com.ofb.resources.server.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class ResourcesService {
 
     @Autowired
     private ResourcesAuthorisedRepository resourcesRepository;
+
+    @Autowired
+    private ResourcesPermissionsAuthorisedRepository resourcesPermissionsRepository;
 
     @Autowired
     private JwtDecoder jwtDecoder;
@@ -111,36 +116,27 @@ public class ResourcesService {
         }
 
         /// Validations
-        try {
-            if (!responseConsentRead.getData().getStatus().getValue().equals("AUTHORISED")) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Get Resources request error")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in the " +
-                                "AccessToken has a current status of [" + responseConsentRead.getData().getStatus().getValue() + "].")
-                        .build());
-                throw new BadRequestException(gson.toJson(listResponseErrors));
-            }
-
-            if (!OffsetDateTime.parse(responseConsentRead.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Get Resources request error")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in " +
-                                "the AccessToken has an ExpirationDateTime " +
-                                "(" +
-                                responseConsentRead.getData().getExpirationDateTime()
-                                + ") of 'expired'. ")
-                        .build());
-                throw new BadRequestException(gson.toJson(listResponseErrors));
-            }
-        } catch (Exception e) {
+        if (!responseConsentRead.getData().getStatus().getValue().equals("AUTHORISED")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Get Resources request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in the " +
+                            "AccessToken has a current status of [" + responseConsentRead.getData().getStatus().getValue() + "].")
                     .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (!OffsetDateTime.parse(responseConsentRead.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in " +
+                            "the AccessToken has an ExpirationDateTime " +
+                            "(" +
+                            responseConsentRead.getData().getExpirationDateTime()
+                            + ") of 'expired'. ")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
 
         /// Search Consent Resources
@@ -217,6 +213,113 @@ public class ResourcesService {
         }
 
         return responseResourceList;
+    }
+
+    public ResponseResourcePermissionsList resourcesGetResourcesPermissions(String authorization, String consentId) {
+
+        Gson gson = new Gson();
+        ConsentIdentification consentIdentification = null;
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+        List<ResourcesPermissionsAuthorisedModel> listResourcesPermissions = new ArrayList<>();
+        List<ResourcesAuthorisedInner> listResourcesAuthorised = new ArrayList<>();
+        List<PermissionsInner> listPermissions = new ArrayList<>();
+
+        /// Validations
+        try {
+            listResourcesPermissions = resourcesPermissionsRepository.findAllResourcesAccountsPermissionsByConsentId(consentId);
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
+
+        if (listResourcesPermissions.size() == 0) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES PERMISSIONS information. The consentId (" + consentId + ") provided in the " +
+                            "request has not found in authorized resources.")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        for (ResourcesPermissionsAuthorisedModel reg : listResourcesPermissions) {
+            consentIdentification = ConsentIdentification.builder()
+                    .consentId(reg.getConsentId())
+                    .consentStatus(reg.getConsentStatus())
+                    .consentDateCreation(reg.getConsentDateCreation())
+                    .consentExpiration(reg.getConsentExpiration())
+                    .personalCPF(reg.getPersonalCPF())
+                    .personalId(reg.getPersonalId())
+                    .personalName(reg.getPersonalName())
+                    .build();
+            break;
+        }
+
+        if (!consentIdentification.getConsentStatus().equals("AUTHORISED")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES PERMISSIONS information. The consentId (" + consentId + ") provided in the " +
+                            "request has a current status of [" + consentIdentification.getConsentStatus() + "].")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (!OffsetDateTime.parse(consentIdentification.getConsentExpiration()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES PERMISSIONS information. The consentId (" + consentId + ") provided in " +
+                            "the request has an ExpirationDateTime " +
+                            "(" +
+                            consentIdentification.getConsentExpiration()
+                            + ") of 'expired'. ")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        String resourceId = listResourcesPermissions.get(0).getResourceId();
+        ResourcesAuthorisedInner resourcesAuthorisedInner = null;
+        for (ResourcesPermissionsAuthorisedModel reg : listResourcesPermissions) {
+
+            if (!reg.getResourceId().equals(resourceId)) {
+                listResourcesAuthorised.add(resourcesAuthorisedInner);
+                resourceId = reg.getResourceId();
+                listPermissions = new ArrayList<>();
+                resourcesAuthorisedInner = new ResourcesAuthorisedInner();
+            }
+
+            listPermissions.add(PermissionsInner.builder()
+                    .permission(reg.getPermission())
+                    .build());
+
+            resourcesAuthorisedInner = ResourcesAuthorisedInner.builder()
+                    .resourceId(reg.getResourceId())
+                    .resourceStatus(reg.getResourceStatus())
+                    .resourceSummary(reg.getResourceIdSummary())
+                    .resourceType(reg.getResourceType())
+                    .permissions(listPermissions)
+                    .build();
+
+        }
+        // add last resource after loop
+        listResourcesAuthorised.add(resourcesAuthorisedInner);
+
+        ResponseResourcePermissionsList responseResourcePermissionsList = ResponseResourcePermissionsList.builder()
+                .data(ResourcesPermissionsData.builder()
+                        .consentIdentification(consentIdentification)
+                        .resourcesAuthorised(listResourcesAuthorised)
+                        .build())
+                .meta(Meta.builder()
+                        .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
+                        .build())
+                .build();
+
+        return responseResourcePermissionsList;
     }
 
     private Specification<ResourcesAuthorisedModel> buildFilter(ResourcesAuthorisedRecordFilter filter) {

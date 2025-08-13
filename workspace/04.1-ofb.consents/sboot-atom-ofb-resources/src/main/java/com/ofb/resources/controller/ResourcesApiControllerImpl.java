@@ -26,7 +26,6 @@ public class ResourcesApiControllerImpl implements ResourcesApiDelegate {
     @Autowired
     private ResourcesService resourcesService;
 
-
     @Override @CanSystemOFBAdmin @CanClientOFBRead
     public ResponseEntity<ResponseResourceList> resourcesGetResources(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize) {
         return new ResponseEntity<>(resourcesService.resourcesGetResources(
@@ -38,5 +37,13 @@ public class ResourcesApiControllerImpl implements ResourcesApiDelegate {
                                     page, pageSize),
                                     HttpStatus.OK);
   }
+
+    @Override
+    public ResponseEntity<ResponseResourcePermissionsList> resourcesGetResourcesPermissions(String authorization, String consentId) {
+        return new ResponseEntity<>(resourcesService.resourcesGetResourcesPermissions(
+                                    authorization,
+                                    consentId),
+                                    HttpStatus.OK);
+    }
 
 }
