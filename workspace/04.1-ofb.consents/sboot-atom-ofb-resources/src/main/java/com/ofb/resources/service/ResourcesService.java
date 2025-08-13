@@ -215,7 +215,7 @@ public class ResourcesService {
         return responseResourceList;
     }
 
-    public ResponseResourcePermissionsList resourcesGetResourcesPermissions(String authorization, String consentId) {
+    public ResponseResourceAccountPermissionsList resourcesGetResourcesAccountPermissions(String authorization, String consentId) {
 
         Gson gson = new Gson();
         ConsentIdentification consentIdentification = null;
@@ -309,8 +309,8 @@ public class ResourcesService {
         // add last resource after loop
         listResourcesAuthorised.add(resourcesAuthorisedInner);
 
-        ResponseResourcePermissionsList responseResourcePermissionsList = ResponseResourcePermissionsList.builder()
-                .data(ResourcesPermissionsData.builder()
+        ResponseResourceAccountPermissionsList responseResourceAccountPermissionsList = ResponseResourceAccountPermissionsList.builder()
+                .data(ResourcesAccountPermissionsData.builder()
                         .consentIdentification(consentIdentification)
                         .resourcesAuthorised(listResourcesAuthorised)
                         .build())
@@ -319,7 +319,126 @@ public class ResourcesService {
                         .build())
                 .build();
 
-        return responseResourcePermissionsList;
+        return responseResourceAccountPermissionsList;
+    }
+
+    public ResponseResourceCustomerPermissionsList resourcesGetResourcesCustomerPermissions(String authorization, String consentId) {
+
+        Gson gson = new Gson();
+        ConsentCompleteIdentification consentCompleteIdentification = null;
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+        List<ResourcesPermissionsAuthorisedModel> listResourcesPermissions = new ArrayList<>();
+        List<ResourcesAuthorisedInner> listResourcesAuthorised = new ArrayList<>();
+        List<PermissionsInner> listPermissions = new ArrayList<>();
+
+        /// Validations
+        try {
+            listResourcesPermissions = resourcesPermissionsRepository.findAllResourcesCustomerPermissionsByConsentId(consentId);
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
+
+        if (listResourcesPermissions.size() == 0) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES PERMISSIONS information. The consentId (" + consentId + ") provided in the " +
+                            "request has not found in authorized resources.")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        for (ResourcesPermissionsAuthorisedModel reg : listResourcesPermissions) {
+            consentCompleteIdentification = ConsentCompleteIdentification.builder()
+                    .consentId(reg.getConsentId())
+                    .consentStatus(reg.getConsentStatus())
+                    .consentDateCreation(reg.getConsentDateCreation())
+                    .consentExpiration(reg.getConsentExpiration())
+                    .personalId(reg.getPersonalId())
+                    .personalName(reg.getPersonalName())
+                    .personalAddress(reg.getPersonalAddress())
+                    .personalBirthDate(reg.getPersonalBirthDate())
+                    .personalCountry(reg.getPersonalCountry())
+                    .personalCountrySubDivision(reg.getPersonalCountrySubDivision())
+                    .personalCpfNumber(reg.getPersonalCpfNumber())
+                    .personalDistrictName(reg.getPersonalDistrictName())
+                    .personalEmail(reg.getPersonalEmail())
+                    .personalPhoneAreaCode(reg.getPersonalPhoneAreaCode())
+                    .personalPhoneNumber(reg.getPersonalPhoneNumber())
+                    .personalPhoneType(reg.getPersonalPhoneType())
+                    .personalPostCode(reg.getPersonalPostCode())
+                    .personalSex(reg.getPersonalSex())
+                    .personalTownName(reg.getPersonalTownName())
+                    .build();
+            break;
+        }
+
+        if (!consentCompleteIdentification.getConsentStatus().equals("AUTHORISED")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES PERMISSIONS information. The consentId (" + consentId + ") provided in the " +
+                            "request has a current status of [" + consentCompleteIdentification.getConsentStatus() + "].")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (!OffsetDateTime.parse(consentCompleteIdentification.getConsentExpiration()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Resources Permissions request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Unable to request RESOURCES PERMISSIONS information. The consentId (" + consentId + ") provided in " +
+                            "the request has an ExpirationDateTime " +
+                            "(" +
+                            consentCompleteIdentification.getConsentExpiration()
+                            + ") of 'expired'. ")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        String resourceId = listResourcesPermissions.get(0).getResourceId();
+        ResourcesAuthorisedInner resourcesAuthorisedInner = null;
+        for (ResourcesPermissionsAuthorisedModel reg : listResourcesPermissions) {
+
+            if (!reg.getResourceId().equals(resourceId)) {
+                listResourcesAuthorised.add(resourcesAuthorisedInner);
+                resourceId = reg.getResourceId();
+                listPermissions = new ArrayList<>();
+                resourcesAuthorisedInner = new ResourcesAuthorisedInner();
+            }
+
+            listPermissions.add(PermissionsInner.builder()
+                    .permission(reg.getPermission())
+                    .build());
+
+            resourcesAuthorisedInner = ResourcesAuthorisedInner.builder()
+                    .resourceId(reg.getResourceId())
+                    .resourceStatus(reg.getResourceStatus())
+                    .resourceSummary(reg.getResourceIdSummary())
+                    .resourceType(reg.getResourceType())
+                    .permissions(listPermissions)
+                    .build();
+
+        }
+        // add last resource after loop
+        listResourcesAuthorised.add(resourcesAuthorisedInner);
+
+        ResponseResourceCustomerPermissionsList responseResourceCustomerPermissionsList = ResponseResourceCustomerPermissionsList.builder()
+                .data(ResourcesCustomerPermissionsData.builder()
+                        .consentCompleteIdentification(consentCompleteIdentification)
+                        .resourcesAuthorised(listResourcesAuthorised)
+                        .build())
+                .meta(Meta.builder()
+                        .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
+                        .build())
+                .build();
+
+        return responseResourceCustomerPermissionsList;
     }
 
     private Specification<ResourcesAuthorisedModel> buildFilter(ResourcesAuthorisedRecordFilter filter) {

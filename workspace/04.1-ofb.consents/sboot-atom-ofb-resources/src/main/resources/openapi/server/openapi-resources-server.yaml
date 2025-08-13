@@ -84,19 +84,50 @@ paths:
           $ref: '#/components/responses/SiteIsOverloaded'
         default:
           $ref: '#/components/responses/Default'
-  /resources/permissions:
+  /resources/account/permissions:
     get:
       tags:
         - Resources
       summary: Obtém a lista permissões dos recursos consentidos pelo cliente.
-      operationId: resourcesGetResourcesPermissions
+      operationId: resourcesGetResourcesAccountPermissions
       description: Método para obter a lista de permissões dos recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/ConsentId'
       responses:
         '200':
-          $ref: '#/components/responses/OKResponseResourcePermissionsList'
+          $ref: '#/components/responses/OKResponseResourceAccountPermissionsList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+        default:
+          $ref: '#/components/responses/Default'
+  /resources/customer/permissions:
+    get:
+      tags:
+        - Resources
+      summary: Obtém a lista permissões dos recursos consentidos pelo cliente.
+      operationId: resourcesGetResourcesCustomerPermissions
+      description: Método para obter a lista de permissões dos recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseResourceCustomerPermissionsList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -212,26 +243,28 @@ components:
         meta:
           $ref: '#/components/schemas/MetaResponse'
 
-    ResponseResourcePermissionsList:
+    ResponseResourceAccountPermissionsList:
       type: object
       required:
         - data
         - meta
       properties:
         data:
-          $ref: '#/components/schemas/ResourcesPermissionsData'
+          $ref: '#/components/schemas/ResourcesAccountPermissionsData'
         meta:
           $ref: '#/components/schemas/Meta'
-    ResourcesPermissionsData:
+
+    ResourcesAccountPermissionsData:
       type: object
       required:
-        - resourcesConsentIdentification
+        - consentIdentification
         - resourcesAuthorised
       properties:
         consentIdentification:
           $ref: '#/components/schemas/ConsentIdentification'
         resourcesAuthorised:
           $ref: '#/components/schemas/ResourcesAuthorised'
+
     ConsentIdentification:
       type: object
       required:
@@ -279,6 +312,147 @@ components:
           maxLength: 200
           example: "Jose da Silva"
 
+    ResponseResourceCustomerPermissionsList:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourcesCustomerPermissionsData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+
+    ResourcesCustomerPermissionsData:
+      type: object
+      required:
+        - consentComleteIdentification
+        - resourcesAuthorised
+      properties:
+        consentCompleteIdentification:
+          $ref: '#/components/schemas/ConsentCompleteIdentification'
+        resourcesAuthorised:
+          $ref: '#/components/schemas/ResourcesAuthorised'
+
+    ConsentCompleteIdentification:
+      type: object
+      required:
+        - consentId
+        - consentStatus
+        - consentDateCreation
+        - consentExpiration
+        - personalCPF
+        - personalId
+        - personalName
+        - personalCpfNumber
+        - personalBirthDate
+        - personalSex
+        - personalAddress
+        - personalDistrictName
+        - personalTownName
+        - personalCountrySubDivision
+        - personalPostCode
+        - personalCountry
+        - personalPhoneType
+        - personalPhoneAreaCode
+        - personalPhoneNumber
+        - personalEmail
+      properties:
+        consentId:
+          type: string
+          minLength: 11
+          maxLength: 256
+          example: "25cac914-d8ae-6789-b215-650a6215820d"
+        consentStatus:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "AUTHORISED"
+        consentDateCreation:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        consentExpiration:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        personalId:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "accpf123456"
+        personalName:
+          type: string
+          minLength: 1
+          maxLength: 200
+          example: "Jose da Silva"
+        personalCpfNumber:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "01102203399"
+        personalBirthDate:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2024/08/01"
+        personalSex:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "MASCULINO"
+        personalAddress:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Rua X, 00"
+        personalDistrictName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Jd XX"
+        personalTownName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "São Paulo"
+        personalCountrySubDivision:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "SP"
+        personalPostCode:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "00000-000"
+        personalCountry:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Brazil"
+        personalPhoneType:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "MOVEL"
+        personalPhoneAreaCode:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "011"
+        personalPhoneNumber:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "99999-9999"
+        personalEmail:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "personal@email.com"
     ResourcesAuthorised:
       type: array
       minItems: 0
@@ -313,6 +487,7 @@ components:
             example: "Available"
           permissions:
             $ref: "#/components/schemas/Permissions"
+
     Permissions:
       type: array
       minItems: 1
@@ -568,7 +743,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ResponseResourceList'
-    OKResponseResourcePermissionsList:
+    OKResponseResourceAccountPermissionsList:
       description: Dados das permissões dos recursos obtidos com sucesso.
       headers:
         x-fapi-interaction-id:
@@ -576,7 +751,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseResourcePermissionsList'
+            $ref: '#/components/schemas/ResponseResourceAccountPermissionsList'
+    OKResponseResourceCustomerPermissionsList:
+      description: Dados das permissões dos recursos obtidos com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          $ref: '#/components/headers/xFapiInteractionId'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseResourceCustomerPermissionsList'
     202ResponseResource:
       description: Requisição foi recebida.
       headers:

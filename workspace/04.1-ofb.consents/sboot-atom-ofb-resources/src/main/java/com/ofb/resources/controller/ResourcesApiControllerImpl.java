@@ -39,11 +39,19 @@ public class ResourcesApiControllerImpl implements ResourcesApiDelegate {
   }
 
     @Override
-    public ResponseEntity<ResponseResourcePermissionsList> resourcesGetResourcesPermissions(String authorization, String consentId) {
-        return new ResponseEntity<>(resourcesService.resourcesGetResourcesPermissions(
-                                    authorization,
-                                    consentId),
-                                    HttpStatus.OK);
+    public ResponseEntity<ResponseResourceAccountPermissionsList> resourcesGetResourcesAccountPermissions(String authorization, String consentId) {
+        return new ResponseEntity<>(resourcesService.resourcesGetResourcesAccountPermissions(
+                            authorization,
+                            consentId),
+                            HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ResponseResourceCustomerPermissionsList> resourcesGetResourcesCustomerPermissions(String authorization, String consentId) {
+        return new ResponseEntity<>(resourcesService.resourcesGetResourcesCustomerPermissions(
+                authorization,
+                consentId),
+                HttpStatus.OK);
     }
 
 }

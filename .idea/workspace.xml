@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Revisão e ajustes em permissions authorised">
-      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/resources/openapi/client/openapi-consents-resources.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesPermissionsAuthorisedModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesPermissionsAuthorisedRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Implementação de GetPermissionsResources na API Resources.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/controller/AccountsApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/controller/AccountsApiControllerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesApiControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesAuthorisedModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesAuthorisedModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesAuthorisedRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesAuthorisedRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesPermissionsAuthorisedModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesPermissionsAuthorisedModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/resources/openapi/server/openapi-resources-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/resources/openapi/server/openapi-resources-server.yaml" afterDir="false" />
     </list>
@@ -413,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755003368735</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Implementação de GetPermissionsResources na API Resources.">
+      <option name="closed" value="true" />
+      <created>1755100866271</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1755100866271</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -447,7 +448,8 @@
     <MESSAGE value="Revisão e ajustes em responses" />
     <MESSAGE value="Revisão e ajustes em requests authorised" />
     <MESSAGE value="Revisão e ajustes em permissions authorised" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revisão e ajustes em permissions authorised" />
+    <MESSAGE value="Implementação de GetPermissionsResources na API Resources." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementação de GetPermissionsResources na API Resources." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -456,11 +458,6 @@
           <url>file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
           <line>199</line>
           <option name="timeStamp" value="194" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java</url>
-          <line>311</line>
-          <option name="timeStamp" value="223" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
