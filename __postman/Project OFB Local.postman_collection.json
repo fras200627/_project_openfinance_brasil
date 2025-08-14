@@ -1284,7 +1284,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-07-31T06:33:23Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-08-13T06:33:23Z\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1409,7 +1409,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\"],\r\n    \"expirationDateTime\": \"2026-07-29T06:33:23Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\"],\r\n    \"expirationDateTime\": \"\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2487,7 +2487,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:4336084a-1c79-491f-9495-3c1dccf034da"
+									"value": "urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e"
 								}
 							]
 						}
@@ -2561,7 +2561,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:e4225c57-849f-4581-9485-c8dc96967dab"
+									"value": "urn:bancotcn:1971b182-173e-49c9-ab71-147e91078193"
 								}
 							]
 						}
@@ -2611,7 +2611,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-07-29T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-08-12T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2634,7 +2634,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:5aab2e0d-eb7c-4c0e-aa5f-8291d23a329a"
+									"value": "urn:bancotcn:1971b182-173e-49c9-ab71-147e91078193"
 								}
 							]
 						}
@@ -2758,7 +2758,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246NDMzNjA4NGEtMWM3OS00OTFmLTk0OTUtM2MxZGNjZjAzNGRhIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg1NDU1OTk5LCJpYXQiOjE3NTM4OTE3MzAsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQ1JFRElUX0NBUkRTX0FDQ09VTlRTX1JFQUQsIENSRURJVF9DQVJEU19BQ0NPVU5UU19CSUxMU19SRUFELCBDUkVESVRfQ0FSRFNfQUNDT1VOVFNfQklMTFNfVFJBTlNBQ1RJT05TX1JFQUQsIENSRURJVF9DQVJEU19BQ0NPVU5UU19MSU1JVFNfUkVBRCwgQ1JFRElUX0NBUkRTX0FDQ09VTlRTX1RSQU5TQUNUSU9OU19SRUFELCBVTkFSUkFOR0VEX0FDQ09VTlRTX09WRVJEUkFGVF9SRUFELCBVTkFSUkFOR0VEX0FDQ09VTlRTX09WRVJEUkFGVF9TQ0hFRFVMRURfSU5TVEFMTUVOVFNfUkVBRCwgVU5BUlJBTkdFRF9BQ0NPVU5UU19PVkVSRFJBRlRfV0FSUkFOVElFU19SRUFELCBVTkFSUkFOR0VEX0FDQ09VTlRTX09WRVJEUkFGVF9QQVlNRU5UU19SRUFELCBBQ0NPVU5UU19SRUFELCBBQ0NPVU5UU19UUkFOU0FDVElPTlNfUkVBRCwgQUNDT1VOVFNfT1ZFUkRSQUZUX0xJTUlUU19SRUFELCBBQ0NPVU5UU19CQUxBTkNFU19SRUFELCBMT0FOU19SRUFELCBMT0FOU19XQVJSQU5USUVTX1JFQUQsIExPQU5TX1NDSEVEVUxFRF9JTlNUQUxNRU5UU19SRUFELCBMT0FOU19QQVlNRU5UU19SRUFELCBGSU5BTkNJTkdTX1JFQUQsIElOVk9JQ0VfRklOQU5DSU5HU19SRUFELCBJTlZPSUNFX0ZJTkFOQ0lOR1NfV0FSUkFOVElFU19SRUFELCBJTlZPSUNFX0ZJTkFOQ0lOR1NfU0NIRURVTEVEX0lOU1RBTE1FTlRTX1JFQUQsIElOVk9JQ0VfRklOQU5DSU5HU19QQVlNRU5UU19SRUFELCBGSU5BTkNJTkdTX1dBUlJBTlRJRVNfUkVBRCwgRklOQU5DSU5HU19QQVlNRU5UU19SRUFELCBGSU5BTkNJTkdTX1NDSEVEVUxFRF9JTlNUQUxNRU5UU19SRUFELCBSRVNPVVJDRVNfUkVBRCwgQkFOS19GSVhFRF9JTkNPTUVTX1JFQUQsIENSRURJVF9GSVhFRF9JTkNPTUVTX1JFQUQsIFZBUklBQkxFX0lOQ09NRVNfUkVBRCwgRlVORFNfUkVBRCwgVFJFQVNVUkVfVElUTEVTX1JFQUQsIEVYQ0hBTkdFU19SRUFELCBFWENIQU5HRVNfUkVBRCwgRVhDSEFOR0VTX1JFQUQifQ.BfTyWZ1_FRaGihmXdmkB_fs9Mn1mm9XC0z9FOAyHg2K6UINOXNhTr18w1J1KP9lpPavN8SMz2JiD3ZUuKkPKPvQch_tlopXAMIrA1RkwE_hYxr01IqTeDwkLzjJr3wviO2lmCcntGdU_AdATFFTjl3t_V8zszx2RBQR97MGu-_bmPxjDUnJ-5WNoaeedc93zVjzWPfulAQQV4xxs6dg47bKdV2RPN5m1CupInoBJkPhBo7PD6mOyIjjrex8IXHMsFVk1MwwvTRnjqeRVyNuMgeTyS73D74j9ukzXOBk6omYggoPyNN_17KXYGUcdnDcONyav0P0NzLhu8cBLc8AT4A",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246MTk3MWIxODItMTczZS00OWM5LWFiNzEtMTQ3ZTkxMDc4MTkzIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NDkyNzk5LCJpYXQiOjE3NTUwMDMwNjIsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.lECJJZINr3YXI_pW_sVdBOCGJduIAfhg9YbSyC6fAVyY8xvhdeggzcz26tqW4r_a2M87SMrvDWQgNfhwW7HgjYPernUlWF59ukVfs9_pRmpSAfi2xajZRKFOtUw9MLjF1aMTLdrQoVQrwRbTohh6JnZOYBMJ_LqFgTiq3frzDELtCz3DN4WAn6JhWTKvel3C6VEkZ_E50J3Tf2gWhZhw8CTKoDQi9PaUBBaDIDOoq4WJMrv78sOFyXzoWzXdWUCbzrYk8RXuP04zvdKqBGmMLT7HO_DlDINYgEbmf728Mw1fziNmaGbD6vhemIjZW7jdlSn_qNibrA1o9Zuo0FlK4A",
 									"type": "string"
 								}
 							]
@@ -2810,6 +2810,134 @@
 								{
 									"key": "page-size",
 									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Resources Account Permissions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-resources/resources/account/permissions?consentId=urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-resources",
+								"resources",
+								"account",
+								"permissions"
+							],
+							"query": [
+								{
+									"key": "consentId",
+									"value": "urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Resources Account Permissions Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-resources/resources/account/permissions?consentId=urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-resources",
+								"resources",
+								"account",
+								"permissions"
+							],
+							"query": [
+								{
+									"key": "consentId",
+									"value": "urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e"
 								}
 							]
 						}

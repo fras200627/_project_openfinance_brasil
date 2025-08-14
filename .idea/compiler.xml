@@ -12,7 +12,7 @@
         <module name="ofb-api-gateway" />
         <module name="ofb-discovery-services" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-accounts" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

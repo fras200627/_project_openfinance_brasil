@@ -2,8 +2,8 @@ package com.ofb.resources.controller;
 
 import com.ofb.lib.security.profiles.CanClientOFBRead;
 import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
-import com.ofb.resources.server.handler.ResourcesApiDelegate;
-import com.ofb.resources.server.model.*;
+import com.ofb.resources.server.api.handler.ResourcesApiDelegate;
+import com.ofb.resources.server.api.model.ResponseResourceList;
 import com.ofb.resources.service.ResourcesService;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -37,21 +37,5 @@ public class ResourcesApiControllerImpl implements ResourcesApiDelegate {
                                     page, pageSize),
                                     HttpStatus.OK);
   }
-
-    @Override
-    public ResponseEntity<ResponseResourceAccountPermissionsList> resourcesGetResourcesAccountPermissions(String authorization, String consentId) {
-        return new ResponseEntity<>(resourcesService.resourcesGetResourcesAccountPermissions(
-                            authorization,
-                            consentId),
-                            HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity<ResponseResourceCustomerPermissionsList> resourcesGetResourcesCustomerPermissions(String authorization, String consentId) {
-        return new ResponseEntity<>(resourcesService.resourcesGetResourcesCustomerPermissions(
-                authorization,
-                consentId),
-                HttpStatus.OK);
-    }
 
 }

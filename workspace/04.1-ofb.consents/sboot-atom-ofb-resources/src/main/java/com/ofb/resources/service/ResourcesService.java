@@ -16,7 +16,9 @@ import com.ofb.resources.repository.ResourcesAuthorisedRecordFilter;
 import com.ofb.resources.repository.ResourcesAuthorisedRepository;
 import com.ofb.resources.repository.ResourcesAuthorisedlPaginationSettings;
 import com.ofb.resources.repository.ResourcesPermissionsAuthorisedRepository;
-import com.ofb.resources.server.model.*;
+import com.ofb.resources.server.api.model.*;
+import com.ofb.resources.server.corporate.model.*;
+import com.ofb.resources.server.corporate.model.Meta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -215,13 +217,13 @@ public class ResourcesService {
         return responseResourceList;
     }
 
-    public ResponseResourceAccountPermissionsList resourcesGetResourcesAccountPermissions(String authorization, String consentId) {
+    public ResourcesAccountPermissions resourcesGetAccountPermissions(String authorization, String consentId) {
 
         Gson gson = new Gson();
         ConsentIdentification consentIdentification = null;
         List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         List<ResourcesPermissionsAuthorisedModel> listResourcesPermissions = new ArrayList<>();
-        List<ResourcesAuthorisedInner> listResourcesAuthorised = new ArrayList<>();
+        List<ResourcesAccountAuthorisedInner> resourcesAccountAuthorisedInnerList = new ArrayList<>();
         List<PermissionsInner> listPermissions = new ArrayList<>();
 
         /// Validations
@@ -283,52 +285,61 @@ public class ResourcesService {
         }
 
         String resourceId = listResourcesPermissions.get(0).getResourceId();
-        ResourcesAuthorisedInner resourcesAuthorisedInner = null;
+        ResourcesAccountAuthorisedInner resourcesAuthorisedInner = null;
         for (ResourcesPermissionsAuthorisedModel reg : listResourcesPermissions) {
 
             if (!reg.getResourceId().equals(resourceId)) {
-                listResourcesAuthorised.add(resourcesAuthorisedInner);
+                resourcesAccountAuthorisedInnerList.add(resourcesAuthorisedInner);
                 resourceId = reg.getResourceId();
                 listPermissions = new ArrayList<>();
-                resourcesAuthorisedInner = new ResourcesAuthorisedInner();
+                resourcesAuthorisedInner = new ResourcesAccountAuthorisedInner();
             }
 
             listPermissions.add(PermissionsInner.builder()
                     .permission(reg.getPermission())
                     .build());
 
-            resourcesAuthorisedInner = ResourcesAuthorisedInner.builder()
+            resourcesAuthorisedInner = ResourcesAccountAuthorisedInner.builder()
                     .resourceId(reg.getResourceId())
                     .resourceStatus(reg.getResourceStatus())
                     .resourceSummary(reg.getResourceIdSummary())
                     .resourceType(reg.getResourceType())
+                    .accountBranchCode(reg.getAccountBranchCode())
+                    .accountBrandName(reg.getAccountBrandName())
+                    .accountCheckDigit(reg.getAccountCheckDigit())
+                    .accountCompanyCNPJ(reg.getAccountCompanyCNPJ())
+                    .accountCompeCode(reg.getAccountCompeCode())
+                    .accountNumber(reg.getAccountNumber())
+                    .accountStatus(reg.getAccountStatus())
+                    .accountSubType(reg.getAccountSubType())
+                    .accountType(reg.getAccountType())
                     .permissions(listPermissions)
                     .build();
 
         }
         // add last resource after loop
-        listResourcesAuthorised.add(resourcesAuthorisedInner);
+        resourcesAccountAuthorisedInnerList.add(resourcesAuthorisedInner);
 
-        ResponseResourceAccountPermissionsList responseResourceAccountPermissionsList = ResponseResourceAccountPermissionsList.builder()
+        ResourcesAccountPermissions resourcesAccountPermissions = ResourcesAccountPermissions.builder()
                 .data(ResourcesAccountPermissionsData.builder()
                         .consentIdentification(consentIdentification)
-                        .resourcesAuthorised(listResourcesAuthorised)
+                        .resourcesAuthorised(resourcesAccountAuthorisedInnerList)
                         .build())
                 .meta(Meta.builder()
                         .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
                         .build())
                 .build();
 
-        return responseResourceAccountPermissionsList;
+        return resourcesAccountPermissions;
     }
 
-    public ResponseResourceCustomerPermissionsList resourcesGetResourcesCustomerPermissions(String authorization, String consentId) {
+    public ResourcesCustomerPermissions resourcesGetCustomerPermissions(String authorization, String consentId) {
 
         Gson gson = new Gson();
         ConsentCompleteIdentification consentCompleteIdentification = null;
         List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
         List<ResourcesPermissionsAuthorisedModel> listResourcesPermissions = new ArrayList<>();
-        List<ResourcesAuthorisedInner> listResourcesAuthorised = new ArrayList<>();
+        List<ResourcesCustomerAuthorisedInner> listResourcesAuthorised = new ArrayList<>();
         List<PermissionsInner> listPermissions = new ArrayList<>();
 
         /// Validations
@@ -402,21 +413,21 @@ public class ResourcesService {
         }
 
         String resourceId = listResourcesPermissions.get(0).getResourceId();
-        ResourcesAuthorisedInner resourcesAuthorisedInner = null;
+        ResourcesCustomerAuthorisedInner resourcesAuthorisedInner = null;
         for (ResourcesPermissionsAuthorisedModel reg : listResourcesPermissions) {
 
             if (!reg.getResourceId().equals(resourceId)) {
                 listResourcesAuthorised.add(resourcesAuthorisedInner);
                 resourceId = reg.getResourceId();
                 listPermissions = new ArrayList<>();
-                resourcesAuthorisedInner = new ResourcesAuthorisedInner();
+                resourcesAuthorisedInner = new ResourcesCustomerAuthorisedInner();
             }
 
             listPermissions.add(PermissionsInner.builder()
                     .permission(reg.getPermission())
                     .build());
 
-            resourcesAuthorisedInner = ResourcesAuthorisedInner.builder()
+            resourcesAuthorisedInner = ResourcesCustomerAuthorisedInner.builder()
                     .resourceId(reg.getResourceId())
                     .resourceStatus(reg.getResourceStatus())
                     .resourceSummary(reg.getResourceIdSummary())
@@ -428,7 +439,7 @@ public class ResourcesService {
         // add last resource after loop
         listResourcesAuthorised.add(resourcesAuthorisedInner);
 
-        ResponseResourceCustomerPermissionsList responseResourceCustomerPermissionsList = ResponseResourceCustomerPermissionsList.builder()
+        ResourcesCustomerPermissions resourcesCustomerPermissions = ResourcesCustomerPermissions.builder()
                 .data(ResourcesCustomerPermissionsData.builder()
                         .consentCompleteIdentification(consentCompleteIdentification)
                         .resourcesAuthorised(listResourcesAuthorised)
@@ -438,7 +449,7 @@ public class ResourcesService {
                         .build())
                 .build();
 
-        return responseResourceCustomerPermissionsList;
+        return resourcesCustomerPermissions;
     }
 
     private Specification<ResourcesAuthorisedModel> buildFilter(ResourcesAuthorisedRecordFilter filter) {

@@ -83,6 +83,11 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:3000/eureka
+app:
+  paths:
+    clients:
+      ofb-consents: 'http://localhost:3001/ofb-consents/'
+      ofb-resources: 'http://localhost:3001/ofb-resources/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"

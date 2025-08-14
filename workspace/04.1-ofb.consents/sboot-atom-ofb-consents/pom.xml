@@ -357,7 +357,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-consents-resources.yaml</inputSpec>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-consents-resources.3.2.0.yaml</inputSpec>
 							<apiPackage>com.ofb.consents.server.consents.handler</apiPackage>
 							<modelPackage>com.ofb.consents.server.consents.model</modelPackage>
 							<output>${openapi.output.path}</output>
