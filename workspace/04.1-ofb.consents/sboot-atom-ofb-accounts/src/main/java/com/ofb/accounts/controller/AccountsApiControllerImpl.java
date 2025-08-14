@@ -135,19 +135,50 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         }
 
         List<AccountData> accountDataList = new ArrayList<>();
+        int accountsNoPermissions = 0;
+        int accountsDiffType = 0;
         for (ResourcesAccountAuthorisedInner reg : resourcesAuthorisedList) {
-            if (reg.getAccountType().equals(accountType.getValue())) {
-                accountDataList.add(AccountData.builder()
-                        .accountId(reg.getResourceId())
-                        .type(EnumAccountType.fromValue(reg.getAccountType()))
-                        .branchCode(reg.getAccountBranchCode())
-                        .checkDigit(reg.getAccountCheckDigit())
-                        .brandName(reg.getAccountBrandName())
-                        .companyCnpj(reg.getAccountCompanyCNPJ())
-                        .compeCode(reg.getAccountCompeCode())
-                        .number(reg.getAccountNumber())
-                        .build());
+            if (reg.getPermissions().toString().contains("ACCOUNTS_READ")) {
+                if (accountType == null || reg.getAccountType().equals(accountType.getValue())) {
+                    accountDataList.add(AccountData.builder()
+                            .accountId(reg.getResourceId())
+                            .type(EnumAccountType.fromValue(reg.getAccountType()))
+                            .branchCode(reg.getAccountBranchCode())
+                            .checkDigit(reg.getAccountCheckDigit())
+                            .brandName(reg.getAccountBrandName())
+                            .companyCnpj(reg.getAccountCompanyCNPJ())
+                            .compeCode(reg.getAccountCompeCode())
+                            .number(reg.getAccountNumber())
+                            .build());
+                } else {
+                    accountsDiffType++;
+                }
+            } else {
+                accountsNoPermissions++;
             }
+        }
+
+        if (accountsDiffType == resourcesAuthorisedList.size()) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Accounts request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("The account(s) information request for the consentId (" + consentId + ") " +
+                            "reported in the AccessToken has [" +  resourcesAuthorisedList.size() + "] " +
+                            "Authorised ResourceAccount(s) but none match the accountType = [" + accountType.getValue() + "] " +
+                            "reported in the request.")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (accountsNoPermissions == resourcesAuthorisedList.size()) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Accounts request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("The account(s) information request for the consentId (" + consentId + ") " +
+                            "reported in the AccessToken has [" +  resourcesAuthorisedList.size() + "] " +
+                            "Authorised ResourceAccount(s), but none have the permission = [ACCOUNTS_READ].")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
 
         Links links = null;
