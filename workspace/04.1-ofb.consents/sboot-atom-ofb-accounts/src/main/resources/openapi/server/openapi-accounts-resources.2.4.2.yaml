@@ -425,8 +425,8 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^-?\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
           minLength: 4
           example: '1000.0400'
@@ -446,8 +446,8 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern:'^\d{1,15}\.\d{2,4}$'
           maxLength: 20
           minLength: 4
           example: '1000.0400'
@@ -467,8 +467,8 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern:'^\d{1,15}\.\d{2,4}$'
           maxLength: 20
           minLength: 4
           example: '1000.0400'
@@ -488,8 +488,8 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern:'^\d{1,15}\.\d{2,4}$'
           maxLength: 20
           minLength: 4
           example: '1000.0400'
@@ -509,8 +509,8 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern:'^\d{1,15}\.\d{2,4}$'
           maxLength: 20
           minLength: 4
           example: '1000.0400'
@@ -530,8 +530,8 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^-?\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern: '^-?\d{1,15}\.\d{2,4}$'
           maxLength: 21
           minLength: 4
           example: '1000.0400'
@@ -560,7 +560,7 @@ components:
           $ref: '#/components/schemas/AccountBalancesDataAutomaticallyInvestedAmount'
         updateDateTime:
           type: string
-          format: date-time
+#          format: date-time
           maxLength: 20
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2021-05-21T08:30:00Z'
@@ -785,15 +785,15 @@ components:
       properties:
         amount:
           type: string
-          format: double
-          pattern: '^\d{1,15}\.\d{2,4}$'
+          #format: double
+          #pattern:'^\d{1,15}\.\d{2,4}$'
           maxLength: 20
           minLength: 4
           example: '1000.0400'
           description: Valor relacionado ao objeto.
         currency:
           type: string
-          pattern: '^[A-Z]{3}$'
+          #pattern:'^[A-Z]{3}$'
           maxLength: 3
           description: 'Moeda referente ao valor monetário, seguindo o modelo ISO-4217.'
           example: BRL
@@ -1004,7 +1004,7 @@ components:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
           maxLength: 20
-          format: date-time
+#          format: date-time
           example: '2021-05-21T08:30:00Z'
     MetaOnlyRequestDateTime:
       type: object
@@ -1016,7 +1016,7 @@ components:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
           maxLength: 20
-          format: date-time
+#          format: date-time
           example: '2021-05-21T08:30:00Z'
     ResponseAccountList:
       type: object
@@ -1206,7 +1206,7 @@ components:
       schema:
         type: string
         maxLength: 10
-        format: date
+#        format: date
         example: '2021-05-21'
     fromBookingDateMaxLimited:
       in: query
@@ -1219,7 +1219,7 @@ components:
       schema:
         type: string
         maxLength: 10
-        format: date
+#        format: date
         example: '2021-05-21'
     toBookingDateMaxLimited:
       in: query
@@ -1232,7 +1232,7 @@ components:
       schema:
         type: string
         maxLength: 10
-        format: date
+#        format: date
         example: '2021-05-21'
     pagination-key:
       name: pagination-key
@@ -1270,7 +1270,7 @@ components:
       schema:
         type: string
         maxLength: 10
-        format: date
+#        format: date
         example: '2021-05-21'
     xCustomerUserAgent:
       name: x-customer-user-agent

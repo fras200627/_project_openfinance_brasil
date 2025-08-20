@@ -313,6 +313,7 @@ public class ResourcesService {
                     .accountStatus(reg.getAccountStatus())
                     .accountSubType(reg.getAccountSubType())
                     .accountType(reg.getAccountType())
+                    .accountCurrency(reg.getAccountCurrency())
                     .permissions(listPermissions)
                     .build();
 

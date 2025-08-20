@@ -114,6 +114,9 @@ public class ResourcesPermissionsAuthorisedModel {
     @Column(name = "ACCOUNTCHECKDIGIT")
     private String accountCheckDigit;
 
+    @Column(name = "CURRENCY")
+    private String accountCurrency;
+
     @Column(name = "PERMISSIONID")
     private String permissionId;
 
