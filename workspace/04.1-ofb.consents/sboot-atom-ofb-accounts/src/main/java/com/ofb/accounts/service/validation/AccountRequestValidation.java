@@ -119,7 +119,7 @@ public class AccountRequestValidation {
         boolean accountExists = false;
         boolean permissionExists = false;
         for (ResourcesAccountAuthorisedInner reg : resourcesAuthorisedList) {
-            if (reg.getResourceId().equals(accountId)) {
+            if (reg.getResourceId().equals(accountId) || accountId.isEmpty()) {
                 accountExists = true;
                 if (reg.getPermissions().toString().contains(permission)) {
                     permissionExists = true;

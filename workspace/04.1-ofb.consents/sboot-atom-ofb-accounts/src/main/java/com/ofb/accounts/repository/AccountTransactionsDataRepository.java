@@ -12,6 +12,6 @@ public interface AccountTransactionsDataRepository extends JpaRepository<Account
                                                        JpaSpecificationExecutor<AccountTransactionDataModel> {
 
     @Query("SELECT a FROM AccountTransactionDataView a WHERE a.accountId = :accountId")
-    List<AccountTransactionDataModel> findAccountByAccountId(@Param("accountId") String accountId);
+    List<AccountTransactionDataModel> findTransactionsByAccountId(@Param("accountId") String accountId);
 
 }

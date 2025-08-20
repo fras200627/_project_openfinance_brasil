@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity(name = "AccountTransactionDataView")
 @Table(schema = "ofb", name = "VW_ACCOUNT_PERSONAL_DATA_STATEMENT")
@@ -51,6 +53,9 @@ public class AccountTransactionDataModel {
 
     @Column(name = "TRANSACTIONDATETIME")
     private String transactionDateTime;
+
+    @Column(name = "TXDATETIME")
+    private Date txDateTime;
 
     @Column(name = "COMPLETEDAUTHORISEDPAYMENTTYPE")
     private String completeAuthorisedPaymentType;

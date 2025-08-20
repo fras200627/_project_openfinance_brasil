@@ -22,7 +22,7 @@ public class AccountsGetAccountsService {
     public ResponseAccountList accountsGetAccounts(String authorization, EnumAccountType accountType) {
 
         ///
-        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = accountRequestValidation.validateRequest(authorization, accountId, "ACCOUNTS_READ");
+        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = accountRequestValidation.validateRequest(authorization, "", "ACCOUNTS_READ");
 
         ///
         List<AccountData> accountDataList = new ArrayList<>();
