@@ -2957,14 +2957,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/health",
+							"raw": "http://localhost:3001/ofb-customers/health",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"health"
 							]
 						}
@@ -2977,14 +2977,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/actuator/info",
+							"raw": "http://localhost:3001/ofb-customers/actuator/info",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"actuator",
 								"info"
 							]
@@ -3000,7 +3000,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3025,7 +3025,8 @@
 							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "x-customer-user-agent",
@@ -3034,14 +3035,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/personal/identifications?page&page-size&pagination-key",
+							"raw": "http://localhost:3001/ofb-customers/personal/identifications?page&page-size&pagination-key",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"personal",
 								"identifications"
 							],
@@ -3071,7 +3072,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3105,14 +3106,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/personal/qualifications",
+							"raw": "http://localhost:3001/ofb-customers/personal/qualifications",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"personal",
 								"qualifications"
 							]
@@ -3128,7 +3129,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3162,14 +3163,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/personal/financial-relations",
+							"raw": "http://localhost:3001/ofb-customers/personal/financial-relations",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"personal",
 								"financial-relations"
 							]
@@ -3185,7 +3186,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3219,14 +3220,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/business/identifications?page&page-size&pagination-key",
+							"raw": "http://localhost:3001/ofb-customers/business/identifications?page&page-size&pagination-key",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"business",
 								"identifications"
 							],
@@ -3256,7 +3257,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3290,14 +3291,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/business/qualifications",
+							"raw": "http://localhost:3001/ofb-customers/business/qualifications",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"business",
 								"qualifications"
 							]
@@ -3313,7 +3314,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3347,14 +3348,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-customers/business/financial-relations",
+							"raw": "http://localhost:3001/ofb-customers/business/financial-relations",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-customers",
+								"ofb-customers",
 								"business",
 								"financial-relations"
 							]
@@ -3450,7 +3451,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts?page&page-size&accountType=CONTA_POUPANCA&pagination-key",
+							"raw": "http://localhost:3001/ofb-accounts/accounts?page&page-size&accountType=CONTA_DEPOSITO_A_VISTA&pagination-key",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3471,12 +3472,12 @@
 								},
 								{
 									"key": "accountType",
-									"value": "CONTA_POUPANCA"
+									"value": "CONTA_POUPANCA",
+									"disabled": true
 								},
 								{
 									"key": "accountType",
-									"value": "CONTA_DEPOSITO_A_VISTA",
-									"disabled": true
+									"value": "CONTA_DEPOSITO_A_VISTA"
 								},
 								{
 									"key": "accountType",
@@ -3500,7 +3501,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3525,7 +3526,8 @@
 							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "x-customer-user-agent",
@@ -3534,21 +3536,21 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-accounts/accounts/:accountId",
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-accounts",
+								"ofb-accounts",
 								"accounts",
 								":accountId"
 							],
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "123456"
+									"value": "accpf-4D8-86BA0C9AB424C965C8B52CDB7AF97"
 								}
 							]
 						}
@@ -3563,7 +3565,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3588,7 +3590,8 @@
 							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "x-customer-user-agent",
@@ -3597,14 +3600,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-accounts/accounts/:accountId/balances",
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/balances",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-accounts",
+								"ofb-accounts",
 								"accounts",
 								":accountId",
 								"balances"
@@ -3612,7 +3615,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "123456"
+									"value": "accpf-4D8-86BA0C9AB424C965C8B52CDB7AF97"
 								}
 							]
 						}
@@ -3627,7 +3630,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3652,7 +3655,8 @@
 							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "x-customer-user-agent",
@@ -3661,14 +3665,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-accounts/accounts/:accountId/transactions?page&page-size&fromBookingDate&toBookingDate&creditDebitIndicator&pagination-key",
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions?fromBookingDate=2025-01-01&toBookingDate=2025-08-31&pagination-key",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-accounts",
+								"ofb-accounts",
 								"accounts",
 								":accountId",
 								"transactions"
@@ -3676,23 +3680,36 @@
 							"query": [
 								{
 									"key": "page",
-									"value": null
+									"value": "1",
+									"disabled": true
 								},
 								{
 									"key": "page-size",
-									"value": null
+									"value": "25",
+									"disabled": true
 								},
 								{
 									"key": "fromBookingDate",
-									"value": null
+									"value": "2025-01-01"
 								},
 								{
 									"key": "toBookingDate",
-									"value": null
+									"value": "2025-08-31"
 								},
 								{
 									"key": "creditDebitIndicator",
-									"value": null
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "creditDebitIndicator",
+									"value": "CREDITO",
+									"disabled": true
+								},
+								{
+									"key": "creditDebitIndicator",
+									"value": "DEBITO",
+									"disabled": true
 								},
 								{
 									"key": "pagination-key",
@@ -3717,7 +3734,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3751,14 +3768,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-accounts/accounts/:accountId/transactions-current?page&page-size&fromBookingDate&toBookingDate&creditDebitIndicator&pagination-key",
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions-current?page&page-size&creditDebitIndicator&pagination-key",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-accounts",
+								"ofb-accounts",
 								"accounts",
 								":accountId",
 								"transactions-current"
@@ -3774,11 +3791,13 @@
 								},
 								{
 									"key": "fromBookingDate",
-									"value": null
+									"value": "2025-01-01",
+									"disabled": true
 								},
 								{
 									"key": "toBookingDate",
-									"value": null
+									"value": "2025-08-31",
+									"disabled": true
 								},
 								{
 									"key": "creditDebitIndicator",
@@ -3807,7 +3826,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
 									"type": "string"
 								}
 							]
@@ -3832,7 +3851,8 @@
 							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "x-customer-user-agent",
@@ -3841,14 +3861,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-accounts/accounts/:accountId/overdraft-limits",
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/overdraft-limits",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-accounts",
+								"ofb-accounts",
 								"accounts",
 								":accountId",
 								"overdraft-limits"
@@ -3856,7 +3876,7 @@
 							"variable": [
 								{
 									"key": "accountId",
-									"value": "123456"
+									"value": "accpf-4D8-86BA0C9AB424C965C8B52CDB7AF97"
 								}
 							]
 						}

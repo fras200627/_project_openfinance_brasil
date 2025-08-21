@@ -374,8 +374,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-
 					<execution>
 						<id>generator-consent-client</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -407,7 +405,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
 					<execution>
 						<id>generator-resources-client</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -439,7 +436,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
 				</executions>
 			</plugin>
 			<plugin>

@@ -357,7 +357,7 @@ components:
       properties:
         updateDateTime:
           type: string
-          format: date-time
+          # format: date-time
           maxLength: 20
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2020-07-21T08:30:00Z'
@@ -365,7 +365,7 @@ components:
             Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
         startDate:
           type: string
-          format: date-time
+          # # format: date-time
           maxLength: 20
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2020-07-21T08:30:00Z'
@@ -406,7 +406,7 @@ components:
         updateDateTime:
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           example: '2021-05-21T08:30:00Z'
           description: |
             Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
@@ -439,7 +439,7 @@ components:
         incorporationDate:
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           example: '2021-05-21T08:30:00Z'
           description: 'Data de constituição da empresa, conforme especificação RFC-3339.'
         cnpjNumber:
@@ -523,7 +523,7 @@ components:
         updateDateTime:
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           example: '2021-05-21T08:30:00Z'
           description: |
             Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
@@ -564,7 +564,7 @@ components:
           description: Pais de emissão do tipo de documento informado. Código do pais de acordo com o código alpha3 do ISO-3166
         expirationDate:
           type: string
-          format: date
+          # format: date
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
@@ -631,7 +631,7 @@ components:
           $ref: '#/components/schemas/InformedPatrimonyAmount'
         date:
           type: string
-          format: date
+          # format: date
           maxLength: 20
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
@@ -973,7 +973,7 @@ components:
             Número do ISPB do Banco Folha (instituição financeira detentora da conta salário) conforme recebido pela comunicação de portabilidade.
         portabilityApprovalDate:
           type: string
-          format: date
+          # format: date
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           maxLength: 10
           description: |
@@ -1015,7 +1015,7 @@ components:
             Número ISPB (Identificador do Sistema de Pagamentos Brasileiros) do instituição financeira contratada para prestar serviço de pagamento de salário (banco-folha).
         accountOpeningDate:
           type: string
-          format: date
+          # format: date
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           maxLength: 10
           description: |
@@ -1293,7 +1293,7 @@ components:
           $ref: '#/components/schemas/InformedIncomeAmount'
         date:
           type: string
-          format: date
+          # format: date
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
@@ -1390,7 +1390,7 @@ components:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           example: '2021-05-21T08:30:00Z'
     Nationality:
       type: object
@@ -1433,14 +1433,14 @@ components:
           description: 'Data de validade do documento informado, conforme especificação RFC-3339.'
           type: string
           maxLength: 10
-          format: date
+          # format: date
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
         issueDate:
           description: 'Data de emissão do documento, conforme especificação RFC-3339.'
           type: string
           maxLength: 10
-          format: date
+          # format: date
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
         country:
@@ -1515,7 +1515,7 @@ components:
         startDate:
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2021-05-21T08:30:00Z'
           description: 'Data de início da participação, conforme especificação RFC-3339.'
@@ -1553,7 +1553,7 @@ components:
             País de emissão do documento. Código do pais de acordo com o código alpha3 do ISO-3166.
         documentExpirationDate:
           type: string
-          format: date
+          # format: date
           maxLength: 10
           example: '2021-05-21'
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
@@ -1561,7 +1561,7 @@ components:
         documentIssueDate:
           type: string
           maxLength: 10
-          format: date
+          # format: date
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
           description: 'Data de emissão do documento, conforme especificação RFC-3339.'
@@ -1594,7 +1594,7 @@ components:
       properties:
         updateDateTime:
           type: string
-          format: date-time
+          # format: date-time
           maxLength: 20
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2021-05-21T08:30:00Z'
@@ -1602,7 +1602,7 @@ components:
             Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
         startDate:
           type: string
-          format: date-time
+          # format: date-time
           maxLength: 20
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2021-05-21T08:30:00Z'
@@ -1671,7 +1671,7 @@ components:
         updateDateTime:
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
           example: '2021-05-21T08:30:00Z'
           description: |
@@ -1704,7 +1704,7 @@ components:
         birthDate:
           type: string
           maxLength: 10
-          format: date
+          # format: date
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '1989-03-23'
           description: 'Data de nascimento, conforme especificação RFC-3339'
@@ -1817,7 +1817,7 @@ components:
             [Restrição] Obrigatório quando o Local de Emissão do Documento for relevante.
         expirationDate:
           type: string
-          format: date
+          # format: date
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
@@ -1877,7 +1877,7 @@ components:
             Pais de emissão do passaporte. Código do pais de acordo com o código 'alpha3' do ISO-3166.
         expirationDate:
           type: string
-          format: date
+          # format: date
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
@@ -1885,7 +1885,7 @@ components:
             Data vigência do Passaporte, conforme especificação RFC-3339.
         issueDate:
           type: string
-          format: date
+          # format: date
           maxLength: 10
           pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
           example: '2021-05-21'
@@ -1901,7 +1901,7 @@ components:
         updateDateTime:
           type: string
           maxLength: 20
-          format: date-time
+          # format: date-time
           example: '2021-05-21T08:30:00Z'
           description: |
             Data e hora da atualização dos campos \<_endpoint_\>, conforme especificação RFC-3339, formato UTC. Quando não existente uma data vinculada especificamente ao bloco, assumir a data e hora de atualização do cadastro como um todo.
