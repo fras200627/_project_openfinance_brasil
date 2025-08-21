@@ -317,13 +317,13 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/server/openapi-health-checks-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.customers.server.health.resources.handler</apiPackage>
-							<modelPackage>com.ofb.customers.server.health.resources.model</modelPackage>
+							<apiPackage>com.ofb.customers.server.health.handler</apiPackage>
+							<modelPackage>com.ofb.customers.server.health.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.customers.server.health.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.customers.server.health.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -352,14 +352,14 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-customers-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.customers.server.customers.resources.handler</apiPackage>
-							<modelPackage>com.ofb.customers.server.customers.resources.model</modelPackage>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-customers-resources.2.2.1.yaml</inputSpec>
+							<apiPackage>com.ofb.customers.server.customers.handler</apiPackage>
+							<modelPackage>com.ofb.customers.server.customers.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.customers.server.customers.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.customers.server.customers.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>

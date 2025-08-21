@@ -1,7 +1,7 @@
 package com.ofb.customers.controller;
 
-import com.ofb.customers.server.health.resources.handler.ActuatorApiDelegate;
-import com.ofb.customers.server.health.resources.model.Code200Template;
+import com.ofb.customers.server.health.handler.ActuatorApiDelegate;
+import com.ofb.customers.server.health.model.Code200Template;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
