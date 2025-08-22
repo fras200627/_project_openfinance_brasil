@@ -67,5 +67,7 @@ public class PersonalDataModel {
 
     @Column(name = "EMAIL")
     private String eMail;
-    
+
+    @Column(name = "LASTUPDATE")
+    private String lastUpdate;
 }

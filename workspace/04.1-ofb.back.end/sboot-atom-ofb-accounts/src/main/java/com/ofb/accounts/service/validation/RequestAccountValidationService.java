@@ -1,11 +1,10 @@
-package com.ofb.customers.service.validation;
+package com.ofb.accounts.service.validation;
 
 import com.nimbusds.jose.shaded.gson.Gson;
-import com.ofb.customers.client.resources.handler.ResourcesCorporateApi;
-import com.ofb.customers.client.resources.model.ConsentCompleteIdentification;
-import com.ofb.customers.client.resources.model.ResourcesCustomerAuthorisedInner;
-import com.ofb.customers.client.resources.model.ResourcesCustomerPermissions;
-import com.ofb.customers.service.CustomerGetPersonalIdentificationsService;
+import com.ofb.accounts.client.resources.handler.ResourcesCorporateApi;
+import com.ofb.accounts.client.resources.model.ConsentIdentification;
+import com.ofb.accounts.client.resources.model.ResourcesAccountAuthorisedInner;
+import com.ofb.accounts.client.resources.model.ResourcesAccountPermissions;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service @Slf4j
-public class CustomerRequestValidation {
+public class RequestAccountValidationService {
 
     @Value("${app.paths.clients.ofb-resources}")
     private String OFB_PATH_RESOURCES;
@@ -38,22 +37,22 @@ public class CustomerRequestValidation {
     @Autowired
     private JwtDecoder jwtDecoder;
 
-    public List<ResourcesCustomerAuthorisedInner> validateRequest(String authorization, String personalId, String permission) {
+    public List<ResourcesAccountAuthorisedInner> validateRequest(String authorization, String resourceId, String permission) {
 
         Gson gson = new Gson();
         String      consentId;
         List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
 
-        ResourcesCustomerPermissions responseCustomerPermissions = null;
-        ConsentCompleteIdentification consentIdentification = null;
-        List<ResourcesCustomerAuthorisedInner> resourcesAuthorisedList = new ArrayList<>();
+        ResourcesAccountPermissions responseAccountPermissions = null;
+        ConsentIdentification consentIdentification = null;
+        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = new ArrayList<>();
 
         /// Extract AccessToken claims values
         try {
             consentId = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("ofb.consent.id").toString();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error (in getClaim AccessToken")
+                    .title("Get Account request error (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
@@ -64,21 +63,21 @@ public class CustomerRequestValidation {
         try {
             resourcesCorporateApi.getApiClient().setBasePath(OFB_PATH_RESOURCES);
             resourcesCorporateApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
-            responseCustomerPermissions = resourcesCorporateApi.resourcesGetCustomerPermissions(authorization, consentId);
+            responseAccountPermissions = resourcesCorporateApi.resourcesGetAccountPermissions(authorization, consentId);
 
-            consentIdentification = responseCustomerPermissions.getData().getConsentCompleteIdentification();
-            resourcesAuthorisedList = responseCustomerPermissions.getData().getResourcesAuthorised();
+            consentIdentification = responseAccountPermissions.getData().getConsentIdentification();
+            resourcesAuthorisedList = responseAccountPermissions.getData().getResourcesAuthorised();
         } catch (HttpClientErrorException ex) {
             if (ex.getRawStatusCode() == 400) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Get Customer request error (in ResourcesAPI")
+                        .title("Get Account request error (in ResourcesAPI")
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("AccessToken: " + ex.getMessage().substring(ex.getMessage().indexOf("detail") + 9, ex.getMessage().indexOf("meta") - 5))
                         .build());
                 throw new BadRequestException(gson.toJson(listResponseErrors));
             } else {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Get Customer request error (in ResourcesAPI")
+                        .title("Get Account request error (in ResourcesAPI")
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail(ex.getMessage())
                         .build());
@@ -86,7 +85,7 @@ public class CustomerRequestValidation {
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error (in ResourcesAPI")
+                    .title("Get Account request error (in ResourcesAPI")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
@@ -96,9 +95,9 @@ public class CustomerRequestValidation {
         /// Validations
         if (!consentIdentification.getConsentStatus().equals("AUTHORISED")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error")
+                    .title("Get Account request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Unable to request Customer information. The consentId (" + consentId + ") provided in the " +
+                    .detail("Unable to request Account information. The consentId (" + consentId + ") provided in the " +
                             "AccessToken has a current status of [" + consentIdentification.getConsentStatus() + "].")
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
@@ -106,7 +105,7 @@ public class CustomerRequestValidation {
 
         if (!OffsetDateTime.parse(consentIdentification.getConsentExpiration()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error")
+                    .title("Get Account request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Unable to request information(s). The consentId (" + consentId + ") provided in " +
                             "the AccessToken has an ExpirationDateTime " +
@@ -117,11 +116,11 @@ public class CustomerRequestValidation {
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
 
-        boolean customerExists = false;
+        boolean accountExists = false;
         boolean permissionExists = false;
-        for (ResourcesCustomerAuthorisedInner reg : resourcesAuthorisedList) {
-            if (reg.getResourceId().equals(personalId) || personalId.isEmpty()) {
-                customerExists = true;
+        for (ResourcesAccountAuthorisedInner reg : resourcesAuthorisedList) {
+            if (reg.getResourceId().equals(resourceId) || resourceId.isEmpty()) {
+                accountExists = true;
                 if (reg.getPermissions().toString().contains(permission)) {
                     permissionExists = true;
                     break;
@@ -129,9 +128,9 @@ public class CustomerRequestValidation {
             }
         }
 
-        if (!customerExists) {
+        if (!accountExists) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error")
+                    .title("Get Account request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("The request information(s) for " +
                             "the consentId [" + consentId + "] reported in the AccessToken " +
@@ -142,9 +141,9 @@ public class CustomerRequestValidation {
 
         if (!permissionExists) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error")
+                    .title("Get Account request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("The customer information(s) request for the consentId (" + consentId + ") " +
+                    .detail("The account information(s) request for the consentId (" + consentId + ") " +
                             "reported in the AccessToken has [" +  resourcesAuthorisedList.size() + "] " +
                             "Authorised ResourceAccount, but none have the permission = [" + permission + "].")
                     .build());

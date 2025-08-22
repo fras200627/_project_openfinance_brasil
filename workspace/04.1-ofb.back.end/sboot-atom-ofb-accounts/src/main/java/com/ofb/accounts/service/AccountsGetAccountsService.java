@@ -2,7 +2,7 @@ package com.ofb.accounts.service;
 
 import com.ofb.accounts.client.resources.model.ResourcesAccountAuthorisedInner;
 import com.ofb.accounts.server.accounts.model.*;
-import com.ofb.accounts.service.validation.AccountRequestValidation;
+import com.ofb.accounts.service.validation.RequestAccountValidationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,12 @@ import java.util.List;
 public class AccountsGetAccountsService {
 
     @Autowired
-    private AccountRequestValidation accountRequestValidation;
+    private RequestAccountValidationService requestAccountValidationService;
 
     public ResponseAccountList accountsGetAccounts(String authorization, EnumAccountType accountType) {
 
         ///
-        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = accountRequestValidation.validateRequest(authorization, "", "ACCOUNTS_READ");
+        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = requestAccountValidationService.validateRequest(authorization, "", "ACCOUNTS_READ");
 
         ///
         List<AccountData> accountDataList = new ArrayList<>();

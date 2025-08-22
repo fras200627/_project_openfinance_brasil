@@ -8,7 +8,6 @@ security:
 tags:
   - name: ResourcesCorporate
 paths:
-
   /corporate/resources/account/permissions:
     get:
       tags:
@@ -22,7 +21,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ResponseAccountPermissions'
-
   /corporate/resources/customer/permissions:
     get:
       tags:

@@ -1,15 +1,18 @@
 package com.ofb.customers.service;
 
+import com.nimbusds.jose.shaded.gson.Gson;
 import com.ofb.customers.client.resources.model.ResourcesCustomerAuthorisedInner;
+import com.ofb.customers.model.PersonalDataModel;
+import com.ofb.customers.repository.PersonalDataRepository;
 import com.ofb.customers.server.customers.model.*;
-import com.ofb.customers.service.validation.CustomerRequestValidation;
+import com.ofb.customers.service.validation.RequestCustomerValidationService;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -21,55 +24,72 @@ import java.util.List;
 public class CustomerGetPersonalFinancialRelationsService {
 
     @Autowired
-    private CustomerRequestValidation customerRequestValidation;
+    private RequestCustomerValidationService requestCustomerValidationService;
 
+    @Autowired
+    private PersonalDataRepository personalDataRepository;
 
     public ResponsePersonalCustomersFinancialRelation customersGetPersonalFinancialRelations(String authorization) {
 
-        ///
-        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = customerRequestValidation.validateRequest(
+        Gson gson = new Gson();
+        String personalId = null;
+        PersonalDataModel personalData = null;
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+
+        /// Request Validation and get customer resource
+        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = requestCustomerValidationService.validateRequest(
                 authorization, "", "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ");
 
-        String personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
+        try {
+            personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
+            personalData = personalDataRepository.findById(personalId).get();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
 
         ///
         List<EnumProductServiceType> productsServicesType = new ArrayList<>();
-        productsServicesType.add(EnumProductServiceType.CARTAO_CREDITO);
+        productsServicesType.add(EnumProductServiceType.OUTROS);
 
         List<PersonalProcurator> procurators = new ArrayList<>();
         procurators.add(PersonalProcurator.builder()
-                .civilName("x")
-                .cpfNumber("x")
-                .socialName("x")
+                .civilName("none")
+                .cpfNumber("none")
+                .socialName("none")
                 .type(EnumProcuratorsTypePersonal.REPRESENTANTE_LEGAL)
                 .build());
 
         List<PersonalAccount> accounts = new ArrayList<>();
         accounts.add(PersonalAccount.builder()
-                .branchCode("x")
-                .checkDigit("x")
-                .compeCode("x")
-                .number("x")
-                .subtype(PersonalAccount.SubtypeEnum.CONJUNTA_SIMPLES)
+                .branchCode("none")
+                .checkDigit("none")
+                .compeCode("none")
+                .number("none")
+                .subtype(PersonalAccount.SubtypeEnum.INDIVIDUAL)
                 .type(EnumAccountTypeCustomers.CONTA_DEPOSITO_A_VISTA)
                 .build());
 
         List<PortabilitiesReceived> portabilitiesReceived = new ArrayList<>();
         portabilitiesReceived.add(PortabilitiesReceived.builder()
-                .employerCnpjCpf("x")
-                .employerName("x")
-                .paycheckBankDetainerCnpj("x")
-                .paycheckBankDetainerIspb("x")
+                .employerCnpjCpf("none")
+                .employerName("none")
+                .paycheckBankDetainerCnpj("none")
+                .paycheckBankDetainerIspb("none")
                 .portabilityApprovalDate(LocalDate.now().toString())
                 .build());
 
         List<PaychecksBankLink> paychecksBankLink = new ArrayList<>();
         paychecksBankLink.add(PaychecksBankLink.builder()
                 .accountOpeningDate(LocalDate.now().toString())
-                .employerCnpjCpf("x")
-                .employerName("x")
-                .paycheckBankCnpj("x")
-                .paycheckBankIspb("x")
+                .employerCnpjCpf("none")
+                .employerName("none")
+                .paycheckBankCnpj("none")
+                .paycheckBankIspb("none")
                 .build());
 
         PersonalFinancialRelationData data = PersonalFinancialRelationData.builder()
@@ -78,9 +98,9 @@ public class CustomerGetPersonalFinancialRelationsService {
                 .portabilitiesReceived(portabilitiesReceived)
                 .procurators(procurators)
                 .productsServicesType(productsServicesType)
-                .productsServicesTypeAdditionalInfo("x")
-                .startDate(OffsetDateTime.now(ZoneId.of("UTC")).toString())
-                .updateDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
+                .productsServicesTypeAdditionalInfo("none")
+                .startDate(personalData.getLastUpdate())
+                .updateDateTime(personalData.getLastUpdate())
                 .build();
 
         Links links = Links.builder()

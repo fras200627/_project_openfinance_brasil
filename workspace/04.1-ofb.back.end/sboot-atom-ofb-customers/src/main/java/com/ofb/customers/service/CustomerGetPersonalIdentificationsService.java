@@ -1,17 +1,19 @@
 package com.ofb.customers.service;
 
+import com.nimbusds.jose.shaded.gson.Gson;
 import com.ofb.customers.client.resources.model.ResourcesCustomerAuthorisedInner;
 import com.ofb.customers.model.PersonalDataModel;
 import com.ofb.customers.repository.PersonalDataRepository;
 import com.ofb.customers.server.customers.model.*;
-import com.ofb.customers.service.validation.CustomerRequestValidation;
+import com.ofb.customers.service.validation.RequestCustomerValidationService;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.bouncycastle.asn1.x509.sigi.PersonalData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.List;
 public class CustomerGetPersonalIdentificationsService {
 
     @Autowired
-    private CustomerRequestValidation customerRequestValidation;
+    private RequestCustomerValidationService requestCustomerValidationService;
 
     @Autowired
     private PersonalDataRepository personalDataRepository;
@@ -30,21 +32,34 @@ public class CustomerGetPersonalIdentificationsService {
                                                                                        Integer page,
                                                                                        Integer pageSize) {
 
-        ///
-        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = customerRequestValidation.validateRequest(
+        Gson gson = new Gson();
+        String personalId = null;
+        PersonalDataModel personalData = null;
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+
+        /// Request Validation and get customer resource
+        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = requestCustomerValidationService.validateRequest(
                 authorization, "", "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ");
 
-        String personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
+        try {
+            personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
+            personalData = personalDataRepository.findById(personalId).get();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
 
         ///
-        PersonalDataModel personalData = personalDataRepository.findById(personalId).get();
-
         List<PersonalPostalAddress> postalAddresses = new ArrayList<>();
         postalAddresses.add(PersonalPostalAddress.builder()
-                .additionalInfo(null)
+                .additionalInfo("none")
                 .address(personalData.getAddress())
                 .country(personalData.getCountry())
-                .countryCode(personalData.getCountry())
+                .countryCode("none")
                 .countrySubDivision(EnumCountrySubDivision.fromValue(personalData.getCountrySubDivision()))
                 .districtName(personalData.getDistrictName())
                 .geographicCoordinates(GeographicCoordinates.builder()
@@ -59,13 +74,13 @@ public class CustomerGetPersonalIdentificationsService {
 
         List<CustomerPhone> phones = new ArrayList<>();
         phones.add(CustomerPhone.builder()
-                .additionalInfo("adittionalInfo")
+                .additionalInfo("none")
                 .areaCode(personalData.getPhoneAreaCode())
-                .countryCallingCode(null)
+                .countryCallingCode("none")
                 .isMain(true)
                 .number(personalData.getPhoneNumber())
-                .phoneExtension(null)
-                .type(EnumCustomerPhoneType.MOVEL)
+                .phoneExtension("none")
+                .type(EnumCustomerPhoneType.fromValue(personalData.getPhoneType()))
                 .build());
 
         List<CustomerEmail> emails = new ArrayList<>();
@@ -75,45 +90,50 @@ public class CustomerGetPersonalIdentificationsService {
                 .build());
 
         List<String> companiesCnpj = new ArrayList<>();
-        companiesCnpj.add("companiesCNPJ");
+        companiesCnpj.add("none");
 
         List<PersonalIdentificationDataFiliationInner> filiation = new ArrayList<>();
         filiation.add(PersonalIdentificationDataFiliationInner.builder()
-                .civilName(personalData.getCivilName())
-                .socialName(personalData.getSocialName())
+                .civilName("Mae")
+                .socialName("Mae")
                 .type(EnumFiliationType.MAE)
                 .build());
-
+        filiation.add(PersonalIdentificationDataFiliationInner.builder()
+                .civilName("Pai")
+                .socialName("Pai")
+                .type(EnumFiliationType.PAI)
+                .build());
+        
         List<NationalityOtherDocument> documents = new ArrayList<>();
         documents.add(NationalityOtherDocument.builder()
                 .additionalInfo("none")
-                .country(null)
-                .expirationDate(null)
-                .issueDate(null)
-                .number(null)
-                .type(null)
+                .country(personalData.getCountry())
+                .expirationDate("none")
+                .issueDate("none")
+                .number("none")
+                .type("none")
                 .build());
         List<Nationality> nationality = new ArrayList<>();
         nationality.add(Nationality.builder()
                 .documents(documents)
-                .otherNationalitiesInfo(null)
+                .otherNationalitiesInfo("none")
                 .build());
 
         List<PersonalOtherDocument> otherDocuments = new ArrayList<>();
         otherDocuments.add(PersonalOtherDocument.builder()
-                .additionalInfo(null)
-                .checkDigit(null)
-                .expirationDate(null)
-                .number(null)
+                .additionalInfo("none")
+                .checkDigit("none")
+                .expirationDate("none")
+                .number("none")
                 .type(EnumPersonalOtherDocumentType.CNH)
-                .typeAdditionalInfo(null)
+                .typeAdditionalInfo("none")
                 .build());
 
         List<PersonalIdentificationData> personalIdentificationData = new ArrayList<>();
         personalIdentificationData.add(PersonalIdentificationData.builder()
                 .personalId(personalData.getId())
                 .birthDate(personalData.getBirthDate())
-                .brandName(null)
+                .brandName("none")
                 .civilName(personalData.getCivilName())
                 .companiesCnpj(companiesCnpj)
                 .contacts(PersonalContacts.builder()
@@ -125,20 +145,20 @@ public class CustomerGetPersonalIdentificationsService {
                         .cpfNumber(personalData.getCPFNumber())
                         .passport(PersonalPassport.builder()
                                 .country("none")
-                                .expirationDate(null)
-                                .issueDate(null)
+                                .expirationDate("none")
+                                .issueDate("none")
                                 .number("none")
                                 .build())
                         .build())
                 .filiation(filiation)
                 .hasBrazilianNationality(true)
-                .maritalStatusAdditionalInfo(null)
-                .maritalStatusCode(EnumMaritalStatusCode.CASADO)
+                .maritalStatusAdditionalInfo("none")
+                .maritalStatusCode(EnumMaritalStatusCode.fromValue(personalData.getMaritalStatusCode()))
                 .nationality(nationality)
                 .otherDocuments(otherDocuments)
-                .sex(EnumSex.MASCULINO)
+                .sex(EnumSex.fromValue(personalData.getSex()))
                 .socialName(personalData.getSocialName())
-                .updateDateTime(OffsetDateTime.now().toString())
+                .updateDateTime(personalData.getLastUpdate())
                 .build());
 
         Links links = Links.builder()

@@ -6,7 +6,7 @@ import com.ofb.accounts.repository.AccountTransactionsDataRepository;
 import com.ofb.accounts.repository.AccountTransactionsPaginationSettings;
 import com.ofb.accounts.repository.AccountTransactionsRecordFilter;
 import com.ofb.accounts.server.accounts.model.*;
-import com.ofb.accounts.service.validation.AccountRequestValidation;
+import com.ofb.accounts.service.validation.RequestAccountValidationService;
 import com.ofb.lib.commons.jpa.RequestFilterParams;
 import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
 import com.ofb.lib.commons.jpa.RequestFilterSpecification;
@@ -29,7 +29,7 @@ import java.util.Locale;
 public class AccountsGetTransactionsByAccountIdService {
 
     @Autowired
-    private AccountRequestValidation accountRequestValidation;
+    private RequestAccountValidationService requestAccountValidationService;
 
     @Autowired
     private AccountTransactionsDataRepository accountTransactionsDataRepository;
@@ -43,7 +43,7 @@ public class AccountsGetTransactionsByAccountIdService {
         DateTimeFormatter PARSER1 = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.ROOT);
 
         ///
-        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = accountRequestValidation.validateRequest(authorization, accountId, "ACCOUNTS_OVERDRAFT_LIMITS_READ");
+        List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList = requestAccountValidationService.validateRequest(authorization, accountId, "ACCOUNTS_OVERDRAFT_LIMITS_READ");
 
         ///  Date Range validate
         if ((isTransactionCurrent == true) || (fromBookingDate == null || fromBookingDate.isEmpty()) || (toBookingDate == null || toBookingDate.isEmpty())) {

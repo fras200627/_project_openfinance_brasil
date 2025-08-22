@@ -1,12 +1,16 @@
 package com.ofb.customers.service;
 
+import com.nimbusds.jose.shaded.gson.Gson;
 import com.ofb.customers.client.resources.model.ResourcesCustomerAuthorisedInner;
+import com.ofb.customers.model.PersonalDataModel;
+import com.ofb.customers.repository.PersonalDataRepository;
 import com.ofb.customers.server.customers.model.*;
-import com.ofb.customers.service.validation.CustomerRequestValidation;
+import com.ofb.customers.service.validation.RequestCustomerValidationService;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,20 +25,37 @@ import java.util.List;
 public class CustomerGetPersonalQualificationsService {
 
     @Autowired
-    private CustomerRequestValidation customerRequestValidation;
+    private RequestCustomerValidationService requestCustomerValidationService;
 
+    @Autowired
+    private PersonalDataRepository personalDataRepository;
 
     public ResponsePersonalCustomersQualification customersGetPersonalQualifications(String authorization) {
 
-        ///
-        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = customerRequestValidation.validateRequest(
+        Gson gson = new Gson();
+        String personalId = null;
+        PersonalDataModel personalData = null;
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+
+        /// Request Validation and get customer resource
+        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = requestCustomerValidationService.validateRequest(
                 authorization, "", "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ");
 
-        String personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
+        try {
+            personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
+            personalData = personalDataRepository.findById(personalId).get();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
 
         ///
         PersonalQualificationData data = PersonalQualificationData.builder()
-                .companyCnpj("000000000000199")
+                .companyCnpj("none")
                 .informedIncome(InformedIncome.builder()
                         .amount(InformedIncomeAmount.builder()
                                 .amount("0.0000")
@@ -52,7 +73,7 @@ public class CustomerGetPersonalQualificationsService {
                         .build())
                 .occupationCode(EnumOccupationMainCodeType.OUTRO)
                 .occupationDescription("X")
-                .updateDateTime(OffsetDateTime.now().toString())
+                .updateDateTime(personalData.getLastUpdate())
                 .build();
 
         Links links = Links.builder()
