@@ -20,14 +20,14 @@
     <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/target/generated-sources/oauth2/clients/api/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/sboot-atom-ofb-clients-business/target/generated-sources/ofb/clients/business/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-accounts/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-consents/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/target/generated-sources/ofb/customers/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.consents/sboot-atom-ofb-resources/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-consents/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/target/generated-sources/ofb/customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-resources/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java" charset="UTF-8" />
