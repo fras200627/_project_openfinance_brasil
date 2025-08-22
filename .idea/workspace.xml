@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="ajustes de diretórios">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetAccountsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetAccountsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetBalancesByAccountIdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetBalancesByAccountIdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetByAccountIdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetByAccountIdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetOverdraftLimitsByAccountIdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetOverdraftLimitsByAccountIdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetTransactionsByAccountIdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/AccountsGetTransactionsByAccountIdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/validation/AccountRequestValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-accounts/src/main/java/com/ofb/accounts/service/validation/RequestAccountValidationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/config/OpenAPIConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/model/PersonalDataModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/model/PersonalDataModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/validation/CustomerRequestValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/validation/RequestCustomerValidationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-resources/src/main/resources/openapi/server/openapi-resources-corporate.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-resources/src/main/resources/openapi/server/openapi-resources-corporate.1.0.0.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="consents, resources, accounts, customers ends" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -479,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755863762390</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="consents, resources, accounts, customers ends">
+      <option name="closed" value="true" />
+      <created>1755867781653</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1755867781653</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -516,7 +509,8 @@
     <MESSAGE value="Implementação de GetPermissionsResources na API Resources." />
     <MESSAGE value="Implementação da API Accounts" />
     <MESSAGE value="ajustes de diretórios" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajustes de diretórios" />
+    <MESSAGE value="consents, resources, accounts, customers ends" />
+    <option name="LAST_COMMIT_MESSAGE" value="consents, resources, accounts, customers ends" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
