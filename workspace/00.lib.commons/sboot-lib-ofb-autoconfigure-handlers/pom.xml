@@ -11,11 +11,11 @@
 	</parent>
 
 	<groupId>com.ofb</groupId>
-	<artifactId>ofb-lib-autoconfigure-amqp</artifactId>
+	<artifactId>sboot-lib-ofb-autoconfigure-handlers</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>ofb-lib-autoconfigure-amqp</name>
-	<description>OFB Lib AutoConfigure AMQP</description>
+	<name>sboot-lib-ofb-autoconfigure-handlers</name>
+	<description>OFB Lib AutoConfigure Handlers</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -23,8 +23,8 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 		<lombok.version>1.18.36</lombok.version>
-		<org.mapstruct.version>1.6.3</org.mapstruct.version>
 		<junit-jupiter-engine-version>5.8.2</junit-jupiter-engine-version>
 	</properties>
 
@@ -39,23 +39,18 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- MapStruct -->
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-processor</artifactId>
-			<version>${org.mapstruct.version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-test</artifactId>
@@ -78,6 +73,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -109,4 +110,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

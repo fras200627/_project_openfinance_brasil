@@ -3,7 +3,7 @@
     <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/jdk-17.0.9" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="com.ofb.api.gateway.StartApplication" />
-    <module name="ofb-api-gateway" />
+    <module name="sboot-orch-ofb-api-gateway" />
     <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />
     <extension name="net.ashald.envfile">
       <option name="IS_ENABLED" value="false" />

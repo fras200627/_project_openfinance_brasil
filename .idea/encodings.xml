@@ -3,17 +3,17 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/__backup/project-ofb-authentication-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-amqp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-handlers/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-interceptors/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-autoconfigure-security/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/project-ofb-lib-common-tools/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-ofb-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-ofb-discovery-services/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.cloud/project-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/project-ofb-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-amqp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-interceptors/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-common-tools/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-discovery-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/sboot-orch-ofb-authentication-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/02.authentication.server/sboot-orch-ofb-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/project-ofb-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.registered.clients/project-tican-oauth2-registered-clients-domain/src/main/java" charset="UTF-8" />

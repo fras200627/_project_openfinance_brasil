@@ -66,27 +66,27 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.ofb</groupId>
-			<artifactId>ofb-lib-common-tools</artifactId>
+			<artifactId>sboot-lib-ofb-common-tools</artifactId>
 			<version>${ofb-lib-common-tools-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ofb</groupId>
-			<artifactId>ofb-lib-autoconfigure-amqp</artifactId>
+			<artifactId>sboot-lib-ofb-autoconfigure-amqp</artifactId>
 			<version>${ofb-lib-autoconfigure-amqp-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ofb</groupId>
-			<artifactId>ofb-lib-autoconfigure-handlers</artifactId>
+			<artifactId>sboot-lib-ofb-autoconfigure-handlers</artifactId>
 			<version>${ofb-lib-autoconfigure-handlers-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ofb</groupId>
-			<artifactId>ofb-lib-autoconfigure-interceptors</artifactId>
+			<artifactId>sboot-lib-ofb-autoconfigure-interceptors</artifactId>
 			<version>${ofb-lib-autoconfigure-interceptors-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ofb</groupId>
-			<artifactId>ofb-lib-autoconfigure-security</artifactId>
+			<artifactId>sboot-lib-ofb-autoconfigure-security</artifactId>
 			<version>${ofb-lib-autoconfigure-security-version}</version>
 		</dependency>
 

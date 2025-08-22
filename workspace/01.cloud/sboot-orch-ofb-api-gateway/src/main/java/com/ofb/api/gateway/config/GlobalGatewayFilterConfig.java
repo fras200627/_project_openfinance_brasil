@@ -1,9 +1,5 @@
 package com.ofb.api.gateway.config;
 
-//import com.nimbusds.jose.shaded.json.parser.ParseException;
-//import com.nimbusds.jwt.JWT;
-//import com.nimbusds.jwt.JWTParser;
-//import com.nimbusds.jwt.SignedJWT;
 import com.ofb.lib.amqp.service.MessageService;
 import com.ofb.lib.amqp.model.MessageAuditTemplate;
 import lombok.extern.slf4j.Slf4j;
