@@ -74,6 +74,9 @@ app:
   paths:
     clients:
       authentication-server: 'http://localhost:3001/ofb-auth-server/'
+  consents:
+    authorization:
+      expires-in-minutes: 1
 eureka:
   client:
     serviceUrl:

@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -28,6 +30,9 @@ public class AuthorizationConsentsService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Value("${app.consents.authorization.expires-in-minutes}")
+    private Long CONSENTS_EXPIRES_IN_MINUTES;
 
     @Value("${amqp.ofb.exchange-direct}")
     private String OFB_EXCHANGE_DIRECT;
@@ -48,6 +53,27 @@ public class AuthorizationConsentsService {
         ConsentPersonalData consentCreated = consentPersonalRepository.findById(authorizationConsent.getConsentId()).get();
         Timestamp timestampThisOperation = null;
         ConsentResourcesAuthorised resourcesCustomerConfirmed = null;
+
+        /// Step 00: Validation time expiration of consent
+        Timestamp timestampNow = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")).minusMinutes(CONSENTS_EXPIRES_IN_MINUTES));
+        if (consentCreated.getAwaitingAuthStart().before(timestampNow)) {
+            timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+            consentCreated.setConsentStatusId(82L);
+            consentCreated.setStatus("REJECTED");
+            consentCreated.setAwaitingAuthEnd(timestampThisOperation);
+            consentCreated.setAwaitingAuthAdditionalInfo("permission rejected - approval time expired");
+            consentCreated.setAuthorisedAdditionalInfo("permission rejected - approval time expired");
+            consentCreated.setAuthorisedEnd(timestampThisOperation);
+            consentCreated.setModifyAt(timestampThisOperation);
+            consentCreated.setUserCode("ConsentsServiceAPI");
+            consentCreated = consentPersonalRepository.saveAndFlush(consentCreated);
+
+            /// SEND A MESSAGE AUDIT
+            rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_CONSENTS_AUTHORIZATION_ROUTING_KEY,
+                    consentCreated,
+                    new CorrelationData(authorizationConsent.getConsentId()));
+            return;
+        }
 
         /// Step 01: Insert consent permissions authorised
         List<ConsentPermissionRequestedModel> listConsentsPermissionsRequested = permissionsRequestedView.findAllConsentsPermissionsRequestedByConsentId(

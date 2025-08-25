@@ -6,12 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity(name = "ConsentPersonalData")
 @Table(schema = "OFB", name = "CONSENTS_PERSONAL_DATA")
 @Data @Builder @ToString @AllArgsConstructor @RequiredArgsConstructor
-public class ConsentPersonalData {
+public class ConsentPersonalData implements Serializable {
 
     @Id @Column(name = "CONSENTID")
     private String consentId;

@@ -110,7 +110,7 @@ public class ConsentGetService {
             responseConsentReadData.setExpirationDateTime(consentRequested.getExpirationDatetime());
         }
 
-        if (consentRequested.getStatus().equals("REJECT")) {
+        if (consentRequested.getStatus().equals("REJECTED")) {
             ResponseConsentReadDataRejection responseRejection = ResponseConsentReadDataRejection.builder()
                     .reason(ResponseConsentReadDataRejectionReason.builder()
                             .additionalInformation(consentRequested.getRejectedAdditionalInfo())
