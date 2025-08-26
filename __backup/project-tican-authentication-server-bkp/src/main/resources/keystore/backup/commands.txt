@@ -1,1 +1,0 @@
- keytool -genkeypair -alias awblog2 -keyalg RSA -keypass 123456 -keystore awblog2.jks -storepass 123456 -validity 3650

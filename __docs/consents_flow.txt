@@ -1,59 +1,30 @@
-Oracle 
-    
-Model
--------------------------------------------------------------
-Resources
-Personal Data
-Personal Account Data
-Personal Account Statement Data
-Consents
-
-SECURITY
--------------------------------------------------------------
-OK  Discovery Services
-OK  API Gateway
-OK  Authentication Server
-certificado: banco_tcn.jks
-Clients:
-
-ofb_admin_master    99999 ofb_admin client.read, client.write, client.root
-
-scopes:
---------------------
-client.read
-client.write
-client.root
---------------------
-client.ofb.consents
-client.ofb.accounts
-client.ofb.resources
-client.ofb.customers
---------------------
-
-banco_santander     
-banco_c6
-banco_vc
-
--------------------------------------------------------------
-APIs
-RESOURCES
-CUSTOMERS
-ACCOUNTS
-CONSENTS
-
--------------------------------------------------------------
-Backend
-
-Audit
-Consents
-Customers
-Accounts
-Resources
+Tasks
+project model OFB
 
 
-Orch
-Atom
 
 
-receptora --> transmissora --> recurso --> 
+post > cpf + permissions -> new consents + consents-data-permissions -> (redirect) -> authorizations
+
+authorizations -> load data permissions -> find resources -> submit authorization
+
+create resources -> change status consents -> end
+
+
+minimal
+CUSTOMERS   RESOURCES_READ                              CPF + PersonalId
+CUSTOMERS   CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ     CPF + PersonalId
+
+addicional
+CUSTOMERS   RESOURCES_READ                              (redundance)
+CUSTOMERS   CUSTOMERS_PERSONAL_ADITTIONALINFO_READ      CPF + PersonalId
+
+ACCOUNTS    RESOURCES_READ
+ACCOUNTS    ACCOUNTS_READ
+
+ACCOUNTS    ACCOUNTS_BALANCES_READ
+ACCOUNTS    ACCOUNTS_OVERDRAFT_LIMITS_READ
+ACCOUNTS    ACCOUNTS_TRANSACTIONS_READ
+
+
 

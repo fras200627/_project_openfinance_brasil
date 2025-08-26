@@ -8,54 +8,41 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tican-audit-services-api" />
+        <module name="sbatch-ofb-consents-expiration-control" />
         <module name="aulao-spring-security-e-jwt" />
         <module name="sboot-orch-ofb-api-gateway" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
-      <profile name="Annotation profile for sboot-lib-ofb-common-tools" enabled="true">
+      <profile name="Annotation profile for sboot-listener-ofb-consents-cancellation-services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="sboot-lib-ofb-autoconfigure-handlers" />
-        <module name="sboot-lib-ofb-autoconfigure-interceptors" />
-        <module name="sboot-lib-ofb-autoconfigure-security" />
-        <module name="sboot-lib-ofb-autoconfigure-amqp" />
-        <module name="sboot-lib-ofb-common-tools" />
-      </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
-        </processorPath>
-        <module name="sboot-atom-ofb-consents" />
         <module name="sboot-listener-ofb-consents-cancellation-services" />
-        <module name="sboot-atom-ofb-accounts" />
+        <module name="sboot-atom-ofb-consents" />
         <module name="sboot-atom-ofb-clients-business" />
+        <module name="sboot-atom-ofb-resources" />
+        <module name="sboot-lib-ofb-autoconfigure-security" />
+        <module name="sboot-lib-ofb-autoconfigure-interceptors" />
+        <module name="sboot-atom-ofb-accounts" />
         <module name="sboot-atom-ofb-customers" />
         <module name="sboot-orch-ofb-authentication-server" />
-        <module name="sboot-atom-ofb-resources" />
         <module name="sboot-listener-ofb-consents-authorization-services" />
+        <module name="sboot-lib-ofb-autoconfigure-amqp" />
+        <module name="sboot-lib-ofb-common-tools" />
         <module name="sboot-listener-ofb-audit-services" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aulao-spring-security-e-jwt" target="17" />
       <module name="ofb-oauth2-registered-clients-business-api" target="17" />
+      <module name="sbatch.consents.expiration.control" target="17" />
       <module name="sboot-atom-ofb-audit-services" target="17" />
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
       <module name="spring-security-template" target="17" />
@@ -75,6 +62,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="aulao-spring-security-e-jwt" options="-parameters" />
       <module name="ofb-oauth2-registered-clients-business-api" options="-parameters" />
+      <module name="sbatch-ofb-consents-expiration-control" options="-parameters" />
+      <module name="sbatch.consents.expiration.control" options="-parameters" />
       <module name="sboot-atom-ofb-accounts" options="-parameters" />
       <module name="sboot-atom-ofb-audit-services" options="-parameters" />
       <module name="sboot-atom-ofb-cancellation-consents-services" options="-parameters" />
