@@ -4,275 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="ajustes de estrutura de projetos e components">
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_full_1.pdd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_full_1.~pdd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_accounts_data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_consent_status.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_personal_account_statement_data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_personal_data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_resources_permissions.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_resources_status.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_resources_types.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_export.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_export.~sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_export_2.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_grants.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_grants.~sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs/db/ModeMySQL/V1__CREATE_SCHEMA.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs/db/ModeMySQL/V2__CREATE_AUDIT.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs/db/ModeMySQL/application-h2.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs/project-doc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/ApiApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/controller/AutenticacaoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/controller/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/domain/usuario/AutenticacaoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/domain/usuario/DadosAutenticacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/domain/usuario/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/domain/usuario/UsuarioRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/infra/exception/TratadorDeErros.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/infra/security/DadosTokenJWT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/infra/security/SecurityConfigurations.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/infra/security/SecurityFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/java/med/voll/api/infra/security/TokenService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/resources/db/migration/V1__create-table-medicos.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/resources/db/migration/V2__alter-table-medicos-add-column-telefone.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/resources/db/migration/V3__alter-table-medicos-add-column-ativo.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/resources/db/migration/V4__create-table-pacientes.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/2770-spring-boot-aula_5/src/main/resources/db/migration/V5__create-table-usuarios.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/ConsentResourcesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/.github/architecture.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/.github/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/java/br/com/giulianabezerra/authserver/AuthServerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/java/br/com/giulianabezerra/authserver/Config_0_SecurityFilterConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/java/br/com/giulianabezerra/authserver/Config_1_UserStoreConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/java/br/com/giulianabezerra/authserver/Config_2_ClientStoreConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/java/br/com/giulianabezerra/authserver/Config_3_TokenStoreConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/java/br/com/giulianabezerra/authserver/Config_4_AuthorizationServerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/authentication-server/src/test/java/br/com/giulianabezerra/authserver/AuthServerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/src/main/java/br/com/giulianabezerra/clientserver/ClientController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/src/main/java/br/com/giulianabezerra/clientserver/ClientServerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/client-server/src/test/java/br/com/giulianabezerra/clientserver/ClientServerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/src/main/java/br/com/giulianabezerra/resourceserver/ResourceServerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/src/main/java/br/com/giulianabezerra/resourceserver/TasksController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/__giuliana_template2/tutorial-spring-auth-server-main/resource-server/src/test/java/br/com/giulianabezerra/resourceserver/ResourceServerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/config/OpenAPIConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/HealthApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/OAuth2ClientApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsPaginationSettings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsRecord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/OAuth2RegisteredClientsRecordFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/entity/OAuth2RegisteredClientsEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/mapper/OAuth2RegisteredClientMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/repository/OAuth2RegisteredClientsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/service/OAuth2RegisteredClientsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/java/com/ofb/clients/business/service/PageableService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-business/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/config/OpenAPIConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/DomainApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/controller/HealthApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/entity/OAuth2RegisteredClientsEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/mapper/OAuth2RegisteredClientMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/repository/OAuth2RegisteredClientsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/java/com/ofb/clients/domain/service/OAuth2RegisteredClientsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-ofb-clients-domain/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/config/AppCorsFiltersConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/config/OpenAPIConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/config/RegisteredClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/controller/HealthApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/domain/RegisteredClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/model/UserEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/service/AuthProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/service/JKSProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/service/JPAUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/java/com/tican/authentication/service/RegisteredClientService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/keystore/application-k8s.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/keystore/backup/awblog.jks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/keystore/backup/commands.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/keystore/tican.jks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server-bkp/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/AuthController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/AuthServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/config/AMQPServicesConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/config/AuthServerSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/config/CorsFiltersConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/config/RegisteredClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/domain/RegisteredClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/model/UserEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/service/AuthProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/service/JKSProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/service/JPAUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/java/com/tican/authentication/service/RegisteredClientService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/resources/keystore/tican.jks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-authentication-server/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/config/OpenAPIConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/HealthApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/controller/OAuth2ClientApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsPaginationSettings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsRecord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/domain/OAuth2RegisteredClientsRecordFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/entity/OAuth2RegisteredClientsEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/mapper/OAuth2RegisteredClientMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/repository/OAuth2RegisteredClientsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/service/OAuth2RegisteredClientsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/java/com/tican/oauth2/clients/service/PageableService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/keystore/app.private.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/keystore/app.public.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-ofb-registered-clients-business/src/main/resources/openapi/server/openapi-oauth2-clients-server.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/java/com/tican/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/java/com/tican/open/finance/template/config/OpenAPIConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/openapi/server/ofb-accounts.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/openapi/server/ofb-consents.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/openapi/server/ofb-customers.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/resources/openapi/server/ofb-resources.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/entity/ConsentPersonalData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/listener/CancellationConsentsListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/repository/ConsentPersonalRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/java/com/ofb/cancellation/service/CancellationConsentsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/sboot-listener-ofb-consents-cancellation-services/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/StartApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/controller/AuthenticationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/model/RegisteredClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/repository/RegisteredClientRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/service/AuthenticationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/service/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/service/UserAuthenticated.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/java/com/spring/security/service/UserDetailsServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/keystore/app.private.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/keystore/app.public.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/logback/logback-docker.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/logback/logback-k8s.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/logback/logback-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__backup/spring-security-template/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/consents_flow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/consents_flow.txt" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ sbatch consents expiration control">
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -432,7 +169,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/04.1-ofb.consents/sboot-atom-ofb-customers/src/main/resources/openapi/client",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
@@ -442,11 +179,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services\sbatch-ofb-consents-expiration-control\src\main\resources" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.1-ofb.consents\sboot-atom-ofb-customers\src\main\resources\openapi\client" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.1-ofb.consents\sboot-atom-ofb-customers\src\main\java\com\ofb\customers\service" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.1-ofb.consents\sboot-atom-ofb-accounts\src\main\java\com\ofb\accounts\repository" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.1-ofb.consents\sboot-atom-ofb-accounts\src\main\resources\openapi\client" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.1-ofb.consents\sboot-atom-ofb-resources\src\main\resources\openapi\server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services" />
@@ -468,19 +205,9 @@
       <recent name="com.ofb.accounts.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.2-Gateway">
-    <configuration name="Batch Expiration Control" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.ofb.sbatch.consents.expiration.control.Application" />
-      <module name="sbatch.consents.expiration.control" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Batch Expiration Control">
     <list>
       <item itemvalue="Application.1-Discovery" />
-      <item itemvalue="Application.Batch Expiration Control" />
       <item itemvalue="Application.2-Gateway" />
       <item itemvalue="Application.3-Auth" />
       <item itemvalue="Application.4-Clients-Business" />
@@ -491,6 +218,7 @@
       <item itemvalue="Application.Listener Audit" />
       <item itemvalue="Application.Listener Cancellation" />
       <item itemvalue="Application.Listener Authorization" />
+      <item itemvalue="Application.Batch Expiration Control" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -814,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756137834205</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="+ sbatch consents expiration control">
+      <option name="closed" value="true" />
+      <created>1756212730600</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1756212730600</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -830,7 +566,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="AJustes OFB e ida para RegisteredClient Correto" />
     <MESSAGE value="AJustes OFB e final Disocvery Services, API Gateway e Authorization Server" />
     <MESSAGE value="Backup antes de atualizar para o novo ofb" />
     <MESSAGE value="Atualização com o novo ofb" />
@@ -855,7 +590,8 @@
     <MESSAGE value="update oracle schema and postman requests" />
     <MESSAGE value="update oracle/mysql schema and postman requests" />
     <MESSAGE value="ajustes de estrutura de projetos e components" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajustes de estrutura de projetos e components" />
+    <MESSAGE value="+ sbatch consents expiration control" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ sbatch consents expiration control" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
