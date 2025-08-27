@@ -58,12 +58,16 @@
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-customers/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.back.end/sboot-atom-ofb-resources/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" />
+        <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/pom.xml" />
+        <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula04/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/__backup/project-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/__backup/project-tican-open-finance-template/pom.xml" />
+        <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-amqp/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-handlers/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/pom.xml" />

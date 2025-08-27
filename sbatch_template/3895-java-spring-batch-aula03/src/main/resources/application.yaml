@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: codetickets
+  datasource:
+    url: jdbc:mysql://localhost:3306/ofb?serverTimezone=UTC
+    jdbcUrl: jdbc:mysql://localhost:3306/ofb?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_ROOT_PWD:root}
+  batch:
+    jdbc:
+      initialize-schema: always
+  jpa:
+    hibernate:
+      ddl-auto: update

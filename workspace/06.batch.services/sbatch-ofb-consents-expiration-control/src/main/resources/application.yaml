@@ -1,6 +1,10 @@
 spring:
   application:
-    name: ofb-accounts
+    name: sbatch-ofb-consents-expiration-control
+  batch:
+    jdbc:
+#      initialize-schema: always # uses only first execution to create batch control tables
+      initialize-schema: never
   jpa:
     properties:
       hibernate:
@@ -21,8 +25,11 @@ spring:
       on-profile: local
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
+    jdbcUrl: jdbc:oracle:thin:@localhost:1521:XE
+#    username: ${ORACLE_USER:OFB_USER}
+#    password: ${ORACLE_PWD:ofb}
+    username: ${ORACLE_USER:OFB}
+    password: ${ORACLE_PWD:ofb}
     driver-class-name: oracle.jdbc.OracleDriver
     serverTimezone: America/Sao_Paulo
     useSSL: false
@@ -72,8 +79,11 @@ spring:
       on-profile: docker
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
+    jdbcUrl: jdbc:oracle:thin:@localhost:1521:XE
+    #    username: ${ORACLE_USER:OFB_USER}
+    #    password: ${ORACLE_PWD:ofb}
+    username: ${ORACLE_USER:OFB}
+    password: ${ORACLE_PWD:ofb}
     driver-class-name: oracle.jdbc.OracleDriver
     serverTimezone: America/Sao_Paulo
     useSSL: false
@@ -123,8 +133,11 @@ spring:
       on-profile: k8s
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
+    jdbcUrl: jdbc:oracle:thin:@localhost:1521:XE
+    #    username: ${ORACLE_USER:OFB_USER}
+    #    password: ${ORACLE_PWD:ofb}
+    username: ${ORACLE_USER:OFB}
+    password: ${ORACLE_PWD:ofb}
     driver-class-name: oracle.jdbc.OracleDriver
     serverTimezone: America/Sao_Paulo
     useSSL: false

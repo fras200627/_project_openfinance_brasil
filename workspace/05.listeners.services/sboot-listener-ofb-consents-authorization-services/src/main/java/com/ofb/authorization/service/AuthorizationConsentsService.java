@@ -57,17 +57,23 @@ public class AuthorizationConsentsService {
         /// Step 00: Validation time expiration of consent
         Timestamp timestampNow = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")).minusMinutes(CONSENTS_EXPIRES_IN_MINUTES));
         if (consentCreated.getAwaitingAuthStart().before(timestampNow)) {
-            timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
-            consentCreated.setConsentStatusId(82L);
             consentCreated.setStatus("REJECTED");
-            consentCreated.setAwaitingAuthEnd(timestampThisOperation);
-            consentCreated.setAwaitingAuthAdditionalInfo("permission rejected - approval time expired");
-            consentCreated.setAuthorisedAdditionalInfo("permission rejected - approval time expired");
-            consentCreated.setAuthorisedEnd(timestampThisOperation);
-            consentCreated.setModifyAt(timestampThisOperation);
+            consentCreated.setStatusUpdateDatetime(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
+            consentCreated.setConsentStatusId(82L);
+            ///
+            consentCreated.setAwaitingAuthEnd(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
+            consentCreated.setAwaitingAuthAdditionalInfo("consents rejected - approval time expired");
+            //
+            consentCreated.setRejectedStartDatetime(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
+            consentCreated.setRejectedEndDatetime(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
+            ///
+            consentCreated.setRejectedCode("CONSENT_EXPIRED");
+            consentCreated.setRejectedBy("ControlBatchProcessor");
+            consentCreated.setRejectedReason("CONSENT_EXPIRED");
+            consentCreated.setRejectedAdditionalInfo("consents rejected - approval time expired");
+            ///
+            consentCreated.setModifyAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
             consentCreated.setUserCode("ConsentsServiceAPI");
-            consentCreated = consentPersonalRepository.saveAndFlush(consentCreated);
-
             /// SEND A MESSAGE AUDIT
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, AUDIT_CONSENTS_AUTHORIZATION_ROUTING_KEY,
                     consentCreated,

@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tican-audit-services-api" />
-        <module name="sbatch-ofb-consents-expiration-control" />
         <module name="aulao-spring-security-e-jwt" />
         <module name="sboot-orch-ofb-api-gateway" />
+        <module name="sbatch-ofb-consents-expiration-control" />
+        <module name="codetickets" />
+        <module name="sbatch-ofb-consents-approval-control" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
       <profile name="Annotation profile for sboot-listener-ofb-consents-cancellation-services" enabled="true">
@@ -61,7 +63,9 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="aulao-spring-security-e-jwt" options="-parameters" />
+      <module name="codetickets" options="-parameters" />
       <module name="ofb-oauth2-registered-clients-business-api" options="-parameters" />
+      <module name="sbatch-ofb-consents-approval-control" options="-parameters" />
       <module name="sbatch-ofb-consents-expiration-control" options="-parameters" />
       <module name="sbatch.consents.expiration.control" options="-parameters" />
       <module name="sboot-atom-ofb-accounts" options="-parameters" />

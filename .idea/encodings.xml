@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/__backup/project-ofb-authentication-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/__backup/project-tican-open-finance-template/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula04/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-amqp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-interceptors/src/main/java" charset="UTF-8" />
@@ -34,6 +36,7 @@
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/src/main/java" charset="UTF-8" />

@@ -1,0 +1,177 @@
+spring:
+  application:
+    name: sbatch-ofb-consents-expiration-control
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: ${API_JPA_SHOW_SQL:true}
+    hibernate:
+      ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
+server:
+  error:
+    include-stacktrace: never
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    mysql:
+      url: jdbc:mysql://localhost:3306/ofb-batch?serverTimezone=UTC
+      jdbcUrl: jdbc:mysql://localhost:3306/ofb-batch?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${MYSQL_USER:root}
+      password: ${MYSQL_ROOT_PWD:root}
+    oracle:
+      url: jdbc:oracle:thin:@localhost:1521:XE
+      jdbcUrl: jdbc:oracle:thin:@localhost:1521:XE
+      username: ${ORACLE_USER:OFB_USER}
+      password: ${ORACLE_PWD:ofb}
+      driver-class-name: oracle.jdbc.OracleDriver
+      serverTimezone: America/Sao_Paulo
+      useSSL: false
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        connectionTimeout: 30000
+        idleTimeout: 30000
+        maxLifetime: 2000000
+        maximumPoolSize: 20
+        minimumIdle: 5
+        poolName: SpringBootJPAHikariCP
+      type: com.zaxxer.hikari.HikariDataSource
+amqp:
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
+# The port can be fixed to "0" so that eureka-server determines a port dynamically
+# but in this case access to Swagger-UI will not work
+server:
+  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: OFB_USER
+    password: ofb
+    driver-class-name: oracle.jdbc.OracleDriver
+    serverTimezone: America/Sao_Paulo
+    useSSL: false
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connectionTimeout: 30000
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      maximumPoolSize: 20
+      minimumIdle: 5
+      poolName: SpringBootJPAHikariCP
+    type: com.zaxxer.hikari.HikariDataSource
+amqp:
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
+# The port can be fixed to "0" so that eureka-server determines a port dynamically
+# but in this case access to Swagger-UI will not work
+server:
+  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: OFB_USER
+    password: ofb
+    driver-class-name: oracle.jdbc.OracleDriver
+    serverTimezone: America/Sao_Paulo
+    useSSL: false
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connectionTimeout: 30000
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      maximumPoolSize: 20
+      minimumIdle: 5
+      poolName: SpringBootJPAHikariCP
+    type: com.zaxxer.hikari.HikariDataSource
+amqp:
+  ofb:
+    exchange-direct: "ofb.exchange.direct"
+    audit:
+      http-requests:
+        queue: "ofb.audit.http.requests"
+        routing-key: "audit.http.requests"
+      consents-authorization:
+        queue: "ofb.audit.consents.authorization"
+        routing-key: "audit.consents.auth"
+      consents-cancellation:
+        queue: "ofb.audit.consents.cancellation"
+        routing-key: "audit.consents.cancel"
+      consents-revoke:
+        queue: "ofb.audit.consents.revoke"
+        routing-key: "audit.consents.revoke"
+      consents-extends:
+        queue: "ofb.audit.consents.extends"
+        routing-key: "audit.consents.extends"
+    consents:
+      authorization:
+        queue: "ofb.consents.authorization"
+        routing-key: "exec.consents.auth"
+      cancellation:
+        queue: "ofb.consents.cancellation"
+        routing-key: "exec.consents.cancel"
+# The port can be fixed to "0" so that eureka-server determines a port dynamically
+# but in this case access to Swagger-UI will not work
+server:
+  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
