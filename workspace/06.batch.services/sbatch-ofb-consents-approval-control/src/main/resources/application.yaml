@@ -5,6 +5,14 @@ spring:
     jdbc:
 #      initialize-schema: always # uses only first execution to create batch control tables
       initialize-schema: never
+    job:
+      enabled: false
+    custom:
+      chunk:
+        size: 10
+      thread:
+        pool:
+          size: 5
   jpa:
     properties:
       hibernate:
@@ -15,8 +23,36 @@ spring:
 server:
   error:
     include-stacktrace: never
+jwt:
+  issuer: banco-tcn-openfinance-brasil
+  private:
+    key: classpath:keystore/app.private.key
+  public:
+    key: classpath:keystore/app.public.key
+eureka:
+  instance:
+    hostname: ${DISCOVERY_SERVICES_APP_NAME:ofb-discovery-services}
+    instance-id: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
+# Swagger page: http://localhost:5051/swagger-ui
+springdoc:
+  api-docs:
+    enabled: true
+  packagesToScan: com.ofb
+  pathsToMatch: /**
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+    disable-swagger-default-url: true
+    show-common-extensions: true
+    show-extensions: true
+    operationsSorter: alpha
+    tagsSorter: alpha
 
 ---
 spring:
@@ -42,6 +78,10 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
 app:
   consents:
     approval:
@@ -75,7 +115,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3053 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -100,6 +140,14 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
+app:
+  consents:
+    approval:
+      expires-in-minutes: 1
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -129,7 +177,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3053 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -154,6 +202,14 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
+app:
+  consents:
+    approval:
+      expires-in-minutes: 1
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -183,4 +239,4 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3051 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3053 # set to "0" if you want eureka-server to determine a port dynamically

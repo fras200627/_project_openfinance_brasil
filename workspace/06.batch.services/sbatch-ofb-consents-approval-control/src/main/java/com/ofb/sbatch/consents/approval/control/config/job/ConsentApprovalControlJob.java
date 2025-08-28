@@ -1,4 +1,4 @@
-package com.ofb.sbatch.consents.approval.control.config;
+package com.ofb.sbatch.consents.approval.control.config.job;
 
 import com.ofb.sbatch.consents.approval.control.entity.ConsentPersonalData;
 import com.ofb.sbatch.consents.approval.control.repository.ConsentPersonalRepository;

@@ -13,6 +13,7 @@
         <module name="sbatch-ofb-consents-expiration-control" />
         <module name="codetickets" />
         <module name="sbatch-ofb-consents-approval-control" />
+        <module name="spring-batch-dicas" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
       <profile name="Annotation profile for sboot-listener-ofb-consents-cancellation-services" enabled="true">
@@ -86,6 +87,7 @@
       <module name="sboot-orch-ofb-api-gateway" options="-parameters" />
       <module name="sboot-orch-ofb-authentication-server" options="-parameters" />
       <module name="sboot-orch-ofb-discovery-services" options="-parameters" />
+      <module name="spring-batch-dicas" options="-parameters" />
       <module name="spring-security-template" options="-parameters" />
       <module name="tican-audit-services-api" options="-parameters --enable-preview" />
       <module name="tican-discovery-services" options="-parameters" />
