@@ -1,0 +1,98 @@
+package com.ofb.consents.model;
+
+import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name = "ConsentPersonalView")
+@Table(schema = "OFB", name = "VW_CONSENTS_PERSONAL_DATA") //Materialized View
+@Data @Builder
+@AllArgsConstructor @RequiredArgsConstructor
+public class ConsentPersonalModel {
+
+    @Id
+    @Column(name = "CONSENTID")
+    private String consentId;
+
+    @Column(name = "CREATIONDATETIME")
+    private String creationDatetime;
+
+    @Column(name = "CONSENTSTATUSID")
+    private Long consentStatusId;
+
+    @Column(name = "STATUS")
+    private String status;
+
+    @Column(name = "ACCESSTOKENAUTHORISED")
+    private String accessTokenAuthorised;
+
+    @Column(name = "STATUSUPDATEDATETIME")
+    private String statusUpdateDatetime;
+
+    @Column(name = "EXPIRATIONDATETIME")
+    private String expirationDatetime;
+
+    @Column(name = "PERSONALID")
+    private String personalId;
+
+    @Column(name = "CIVILNAME")
+    private String civilName;
+
+    @Column(name = "CPFNUMBER")
+    private String cpfNumber;
+
+    @Column(name = "AWAITINGAUTHBY")
+    private String awaitingAuthBy;
+
+    @Column(name = "AWAITINGAUTHSTART")
+    private String awaitingAuthStart;
+
+    @Column(name = "AWAITINGAUTHEND")
+    private String awaitingAuthEnd;
+
+    @Column(name = "AWAITINGAUTHADDITIONALINFO")
+    private String awaitingAuthAdditionalInfo;
+
+    @Column(name = "AUTHORISEDBY")
+    private String authorisedBy;
+
+    @Column(name = "AUTHORISEDSTART")
+    private String authorisedStart;
+
+    @Column(name = "AUTHORISEDEND")
+    private String authorisedEnd;
+
+    @Column(name = "AUTHORISEDADDITIONALINFO")
+    private String authorisedAdditionalInfo;
+
+    @Column(name = "REJECTEDBY")
+    private String rejectedBy;
+
+    @Column(name = "REJECTEDCODE")
+    private String rejectedCode;
+
+    @Column(name = "REJECTEDREASON")
+    private String rejectedReason;
+
+    @Column(name = "REJECTEDADDITIONALINFO")
+    private String rejectedAdditionalInfo;
+
+    @Column(name = "REJECTEDSTARTDATETIME")
+    private String rejectedStartDatetime;
+
+    @Column(name = "REJECTEDENDDATETIME")
+    private String rejectedEndDatetime;
+
+    @Column(name = "CANCELLEDBY")
+    private String cancelledBy;
+
+    @Column(name = "CANCELLEDREASON")
+    private String cancelledReason;
+
+    @Column(name = "CANCELLEDADDITIONALINFO")
+    private String cancelledAdditionalInfo;
+
+}

@@ -10,13 +10,9 @@
         <module name="tican-audit-services-api" />
         <module name="aulao-spring-security-e-jwt" />
         <module name="sboot-orch-ofb-api-gateway" />
-        <module name="sbatch-ofb-consents-expiration-control" />
-        <module name="codetickets" />
-        <module name="sbatch-ofb-consents-approval-control" />
-        <module name="spring-batch-dicas" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
-      <profile name="Annotation profile for sboot-listener-ofb-consents-cancellation-services" enabled="true">
+      <profile name="Annotation profile for sbatch-ofb-consents-expiration-control" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -30,7 +26,9 @@
         <module name="sboot-listener-ofb-consents-cancellation-services" />
         <module name="sboot-atom-ofb-consents" />
         <module name="sboot-atom-ofb-clients-business" />
+        <module name="sbatch-ofb-consents-expiration-control" />
         <module name="sboot-atom-ofb-resources" />
+        <module name="sbatch-ofb-consents-approval-control" />
         <module name="sboot-lib-ofb-autoconfigure-security" />
         <module name="sboot-lib-ofb-autoconfigure-interceptors" />
         <module name="sboot-atom-ofb-accounts" />
@@ -44,10 +42,12 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aulao-spring-security-e-jwt" target="17" />
+      <module name="codetickets" target="17" />
       <module name="ofb-oauth2-registered-clients-business-api" target="17" />
       <module name="sbatch.consents.expiration.control" target="17" />
       <module name="sboot-atom-ofb-audit-services" target="17" />
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
+      <module name="spring-batch-dicas" target="17" />
       <module name="spring-security-template" target="17" />
       <module name="tican-audit-services-api" target="17" />
       <module name="tican-discovery-services" target="17" />

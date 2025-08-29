@@ -62,6 +62,7 @@
         <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula04/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-resources/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -69,6 +70,7 @@
         <option value="$PROJECT_DIR$/__backup/project-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/__backup/project-tican-open-finance-template/pom.xml" />
         <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/pom.xml" />
+        <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula04/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-amqp/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-handlers/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-interceptors/pom.xml" />
@@ -81,6 +83,7 @@
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05-mq.services/project-tican-audit-api/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/99-giuliana/aulao-spring-security-jwt-main/pom.xml" />

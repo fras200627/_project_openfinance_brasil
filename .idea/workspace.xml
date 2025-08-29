@@ -5,19 +5,103 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ sbatch consents expiration/approval control">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Approval_Control.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/config/BatchDatabaseConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/java/com/ofb/batch/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/java/com/ofb/batch/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/java/com/ofb/batch/controller/ResourcesCorporateControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/resources/openapi/server/openapi-batch-consents-approval.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/controller/ConsentsAPIControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/service/JobLauncherService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/resources/openapi/server/openapi-consents-approval.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/java/com/ofb/resources/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/java/com/ofb/resources/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesCorporateControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-resources/src/main/resources/openapi/server/openapi-batch-consents-approval.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/SpringBatchDicasApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/batch/JobCompletionNotificationListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/batch/Pessoa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/batch/PessoaItemProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/config/JobConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/resources/sample-data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/test/java/dev/ivanqueiroz/springbatchdicas/SpringBatchDicasApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/batch/config/job/ConsentApprovalControlJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/batch/config/job/ConsentApprovalProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/batch/entity/ConsentPersonalData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/batch/repository/ConsentPersonalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/batch/service/JobLauncherService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Approval_Control.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Approval_Control.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Expiration_Control.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Expiration_Control.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/ConsentApprovalControlJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/job/ConsentApprovalControlJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/ConsentApprovalProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/job/ConsentApprovalProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/controller/JobLauncherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/controller/JobLauncherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/job/ConsentApprovalControlJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/job/ConsentApprovalControlJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/job/ConsentApprovalProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/config/job/ConsentApprovalProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/controller/JobLauncherController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/entity/ConsentPersonalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/entity/ConsentPersonalData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/repository/ConsentPersonalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/java/com/ofb/sbatch/consents/approval/control/repository/ConsentPersonalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control-new1/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/src/test/java/com/ofb/sbatch/consents/expiration/control/StartApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/test/java/com/ofb/sbatch/consents/expiration/control/StartApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/config/ConsentExpirationControlJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/config/ConsentExpirationControlJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/config/ConsentExpirationProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/config/ConsentExpirationProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/controller/JobLauncherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/controller/JobLauncherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/entity/ConsentPersonalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/entity/ConsentPersonalData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/repository/ConsentPersonalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/sbatch/consents/expiration/control/repository/ConsentPersonalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-approval-control/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/test/java/com/ofb/sbatch/consents/expiration/control/StartApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/sbatch-ofb-consents-expiration-control/src/test/java/com/ofb/sbatch/consents/expiration/control/StartApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/config/BatchDatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/java/dev/ivanqueiroz/springbatchdicas/config/BatchDatabaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbatch_template/spring-batch-dicas-master/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +211,8 @@
     "Maven.sbatch-ofb-consents-approval-control [install].executor": "Run",
     "Maven.sbatch-ofb-consents-expiration-control [clean].executor": "Run",
     "Maven.sbatch-ofb-consents-expiration-control [install].executor": "Run",
+    "Maven.sbatch-ofb-resources [clean].executor": "Run",
+    "Maven.sbatch-ofb-resources [install].executor": "Run",
     "Maven.sboot-atom-audit-services [clean].executor": "Run",
     "Maven.sboot-atom-audit-services [install].executor": "Run",
     "Maven.sboot-atom-cancellation-consents-services [clean].executor": "Run",
@@ -186,7 +272,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/06.batch.services",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/06.batch.services/sbatch-ofb-consents-expiration-control/src/main/java/com/ofb/batch/service",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
@@ -196,11 +282,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services\sbatch-ofb-consents-expiration-control\src\main\java\com\ofb\batch\service" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services\sbatch-ofb-consents-expiration-control\src\main\java\com\ofb\batch\config\job" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services\sbatch-ofb-consents-expiration-control\src\main\java\com\ofb\sbatch\consents\expiration\control\job" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\sbatch_template\3895-java-spring-batch-aula04\src\main\java\br\com\alura\codetickets" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\files" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\sbatch_template" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services\sbatch-ofb-consents-approval-control\src\main\java\com\ofb\batch\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\sbatch_template\3895-java-spring-batch-aula04\files" />
@@ -223,26 +309,7 @@
       <recent name="com.ofb.sbatch.consents.expiration.control.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Batch Approval Control">
-    <configuration name="Batch Dicas" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="dev.ivanqueiroz.springbatchdicas.SpringBatchDicasApplication" />
-      <module name="spring-batch-dicas" />
-      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CodeticketsApplication" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="br.com.alura.codetickets.CodeticketsApplication" />
-      <module name="codetickets" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Batch Expiration Control">
     <list>
       <item itemvalue="Application.1-Discovery" />
       <item itemvalue="Application.2-Gateway" />
@@ -257,8 +324,6 @@
       <item itemvalue="Application.Listener Authorization" />
       <item itemvalue="Application.Batch Expiration Control" />
       <item itemvalue="Application.Batch Approval Control" />
-      <item itemvalue="Application.Batch Dicas" />
-      <item itemvalue="Application.CodeticketsApplication" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -606,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756321286962</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="+ sbatch consents expiration/approval control">
+      <option name="closed" value="true" />
+      <created>1756391181199</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1756391181199</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

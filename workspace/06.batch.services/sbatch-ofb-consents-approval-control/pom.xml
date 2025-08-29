@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.11</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<groupId>com.ofb</groupId>
@@ -15,7 +15,7 @@
 	<version>1.0.0-ofb</version>
 	<packaging>jar</packaging>
 	<name>sbatch-ofb-consents-approval-control</name>
-	<description>Sbatch Consents Approval Control</description>
+	<description>Project OFB - Batch</description>
 
 	<properties>
 		<!-- Project default infos -->
@@ -25,6 +25,14 @@
 		<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+		<!-- ATTENTION! IMPORTANT! Generate.OpenAPI Parameters Configuration-->
+		<exclude.generate.sources.tests>${project.build.directory}/generated-sources/ofb/batch/src/test/java/org</exclude.generate.sources.tests>
+		<exclude.generate.sources.org>${project.build.directory}/generated-sources/ofb/batch/src/main/java/org</exclude.generate.sources.org>
+		<openapi.input.sec.path>${project.basedir}/src/main/resources/openapi</openapi.input.sec.path>
+		<openapi.api.package.structure>com.ofb.batch.server.handler</openapi.api.package.structure>
+		<openapi.model.package.structure>com.ofb.batch.server.model</openapi.model.package.structure>
+		<openapi.output.path>target/generated-sources/ofb/batch</openapi.output.path>
+
 		<!-- Project OFB Lib dependencies-->
 		<ofb-lib-common-tools-version>1.0.0</ofb-lib-common-tools-version>
 		<ofb-lib-autoconfigure-amqp-version>1.0.0</ofb-lib-autoconfigure-amqp-version>
@@ -33,7 +41,7 @@
 		<ofb-lib-autoconfigure-security-version>1.0.0</ofb-lib-autoconfigure-security-version>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>BATCH.CONSENTS.APPROVAL.CONTROL</info.additional.project.module.name>
+		<info.additional.project.module.name>SBATCH-OFB-CONSENTS-APPROVAL</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -44,8 +52,9 @@
 		<org.springframework.cloud.version>2021.0.8</org.springframework.cloud.version>
 
 		<spring-security-oauth2-authorization-server-version>0.2.3</spring-security-oauth2-authorization-server-version>
-		<mysql-version>8.0.33</mysql-version>
-		<oracle-version>23.8.0.25.04</oracle-version>
+		<resilience4j-spring-boot2-version>1.7.0</resilience4j-spring-boot2-version>
+		<org.mapstruct.version>1.6.3</org.mapstruct.version>
+		<mysql-connector-java-version>8.0.33</mysql-connector-java-version>
 		<lombok.version>1.18.36</lombok.version>
 
 		<!-- Settings dependencies for the OpenAPI generator and Swagger-UI-->
@@ -115,11 +124,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-batch</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<!-- Spring Cloud -->
@@ -128,20 +141,30 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
-		<!-- JDBC Data Drivers -->
+		<!-- Spring Data -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<!-- Spring Test -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
+
+		<!-- Spring Cloud Backend Circuit-Breaker Services -->
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot2</artifactId>
+			<version>${resilience4j-spring-boot2-version}</version>
+		</dependency>
+
+		<!-- JDBC Data Drivers -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc11</artifactId>
-			<version>${oracle-version}</version>
+			<version>23.8.0.25.04</version>
 		</dependency>
 
 		<!-- Lombok -->
@@ -152,6 +175,18 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- MapStruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+
 		<!-- SWAGGER-UI:: SpringDoc and Swagger UI resources -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -159,6 +194,53 @@
 			<version>${openapi-springdoc-version}</version>
 		</dependency>
 
+		<!-- OpenAPI CORE:: Required dependencies for the OpenAPI generator -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>${javax.annotation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax-validation-api-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>${com.google.code.findbugs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>${okhttp-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<version>${okhttp-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.gsonfire</groupId>
+			<artifactId>gson-fire</artifactId>
+			<version>${gson-fire-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>${jackson-databind-nullable-version}</version>
+		</dependency>
+
+		<!-- OpenAPI TESTS:: Required dependencies for the OpenAPI generator -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
@@ -175,11 +257,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-test</artifactId>
 			<scope>test</scope>
@@ -188,19 +265,97 @@
 
 	<build>
 		<plugins>
+			<!-- Runs the Lombok and MapStruct Processors required for lombok.* annotations and created 'MapStruct' mappers. -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.6.3</version>
+						</path>
+						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+							<version>1.18.36</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 
+			<!-- removes unwanted test class instances and classes from /main/src/java/?/org/openapi generated by Generate.OpenAPI. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<delete dir="${exclude.generate.sources.tests}" />
+								<delete dir="${exclude.generate.sources.org}" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Runs Generate.OpenAPI from the *.yaml files included in the project. -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>${openapi-code-generator-version}</version>
+				<executions>
+
+					<execution>
+						<id>generator-resources-corporate</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>spring</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/server/openapi-batch-consents-approval.1.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.batch.server.handler</apiPackage>
+							<modelPackage>com.ofb.batch.server.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<skipValidateSpec>true</skipValidateSpec>
+							<configOptions>
+								<invokerpackage>com.ofb.batch.server.handler</invokerpackage>
+								<delegatePattern>true</delegatePattern>
+								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
+								<dateLibrary>java8</dateLibrary>
+								<useBeanValidation>true</useBeanValidation>
+								<performBeanValidation>true</performBeanValidation>
+								<openApiNullable>true</openApiNullable>
+								<documentationProvider>springdoc</documentationProvider>\
+								<library>spring-boot</library>
+								<useSpringBoot3>false</useSpringBoot3>
+								<generateBuilders>true</generateBuilders>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<generatedConstructorWithRequiredArgs>true</generatedConstructorWithRequiredArgs>
+							</configOptions>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -226,7 +381,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
