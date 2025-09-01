@@ -1,0 +1,58 @@
+Project Open Finance Brasil
+
+Modules OFB - Atoms
+Consents
+Customers
+Accounts
+Resources
+Participants Clients
+
+Modules OFB - Orchs
+Consents
+Customers
+Accounts
+Resources
+
+Environments
+Windows 11
+Windows Sub-System Linux (ubuntu)
+Docker in WSL
+Kubernets in WSL (MicroK8S)
+
+Projects
+Libs
+Atoms
+Orchs
+Listeners
+Batches
+
+Databases
+Oracle 21
+MySQL 8.0
+RabbitMQ 3
+
+Development
+IntelliJ
+JDK-17
+GitHub
+OpenAPI
+Swagger
+Portainer
+
+Frameworks
+Springboot
+SpringApacheCamel
+SpringBatch
+SpringCloud
+SpringSecurity
+Resilience4J
+Components
+Discovery Services (Eureka NetFlix)
+API Gateway
+Authentication Server
+Authorization Server
+MapStruct
+SpringStarterTests
+JUnit
+Maven
+Lombok
