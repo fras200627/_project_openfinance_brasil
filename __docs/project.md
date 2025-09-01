@@ -1,6 +1,7 @@
-# Project Open Finance Brasil 2025 (01.09.2025)
+# Project Open Finance Brasil 2025 
+#### (compiled at 01.09.2025)
 ### Description ???
-
+    text
 ---
 ### Modules OFB - Orchs (APIs /??)
 1. [x] Consents
@@ -20,11 +21,31 @@
 * Authentication Server
 * Participants Clients
 ---
-### Environment
+### Environments
+#### Dev (local)
 * Windows 11
-* Windows Sub-System Linux (ubuntu)
+* Oracle XE 21 for Windows 11 in local instalation
+* MySQL 8.0 for Windows 11 in local installation
+* RabbitMQ for Windows 11 in local installation
+* OFB APIs, Listeners and Batches started in IntelliJ
+
+#### Homolog simulation (docker) 
+* Windows Sub-System Linux (Ubuntu 22.04 LTS)
 * Docker in WSL
-* Kubernets in WSL (MicroK8S)
+  * controled by docker commands line
+* Oracle XE 21 image running in Docker
+* MySQL 8.0 image running in Docker
+* RabbitMQ 3.XX image running in Docker
+* OFB APIs, Listeners and Batches images running in Docker
+
+### Production simulation (microk8s)
+* Kubernetes in WSL (plugins MicroK8S)
+  * All components: 
+* Windows Sub-System Linux (Ubuntu 24.04 LTS)
+* Oracle XE 21 image running in Kubernetes
+* MySQL 8.0 image running in Kubernetes
+* RabbitMQ 3.XX image running in Kubernetes
+* OFB APIs, Listeners and Batches images running in Images
 ---
 ### Projects
 1. [x] Projects - Libs
@@ -48,8 +69,8 @@
     * sboot-listener-ofb-consents-authorization-services
     * sboot-listener-ofb-consents-cancellation-services
 5. [x] Projects - Batches
-    * sbatch-ofb-consents-approval-control
-    * sbatch-ofb-consents-expiration-control
+   * sbatch-ofb-consents-approval-control
+   * sbatch-ofb-consents-expiration-control
 ---
 ### Databases
 * Oracle XE core version 21
@@ -90,3 +111,27 @@
 * MapStruct
 * JUnit
 * Lombok
+
+
+    /**
+     * Get customersGetPersonalFinancialRelations
+     * Description:
+     * 
+     * Orchestration Steps:
+     *   Step 01: < atom-resources > Extract the claims and validate the AccessToken
+     *   Step 02: < atom-resources > Query the consentId provided in the AccessToken
+     *   Step 03: < atom-resources > Validate the information returned in the consent query
+     *   Step 04: < atom-resources > Validate whether the request is authorized by the consent permissions
+     *   Step 05: < atom-customers > Query the requested information
+     * 
+     * Parameters
+     * @param authorization 
+     * @param xFapiInteractionId
+     * 
+     * @return ResponsePersonalCustomersFinancialRelation
+     * 
+     * Exceptions
+     * @throws ???
+     *
+     * @see 
+     * /

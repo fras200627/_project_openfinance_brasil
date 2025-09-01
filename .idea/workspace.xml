@@ -5,10 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision documents">
-      <change afterPath="$PROJECT_DIR$/__docs/project.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/resources/openapi/server/openapi-customers.2.2.1.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Customers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Customers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/project.md" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/validation/RequestCustomerValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/validation/RequestCustomerValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/controller/BusinessApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/controller/BusinessApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/model/PersonalDataModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/repository/PersonalDataRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/java/com/ofb/customers/service/validation/RequestCustomerValidationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/src/main/resources/openapi/server/openapi-customers-resources.2.2.1.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +102,7 @@
     "Application.OFB-Authentication Server.executor": "Debug",
     "Application.OFB-Discovery-Services.executor": "Run",
     "Application.OFB-Registered-Clients-Business.executor": "Debug",
+    "Application.ORCH Customers.executor": "Debug",
     "Application.Resources.executor": "Debug",
     "Application.SpringJWT_1.executor": "Debug",
     "Application.SpringJWT_2.executor": "Run",
@@ -137,6 +154,7 @@
     "Maven.sboot-atom-ofb-consents [install].executor": "Run",
     "Maven.sboot-atom-ofb-customers [clean].executor": "Run",
     "Maven.sboot-atom-ofb-customers [install].executor": "Run",
+    "Maven.sboot-atom-ofb-customers [validate].executor": "Run",
     "Maven.sboot-atom-ofb-resources [clean].executor": "Run",
     "Maven.sboot-atom-ofb-resources [install].executor": "Run",
     "Maven.sboot-lib-ofb-autoconfigure-amqp [clean].executor": "Run",
@@ -160,6 +178,8 @@
     "Maven.sboot-orch-ofb-api-gateway [install].executor": "Run",
     "Maven.sboot-orch-ofb-authentication-server [clean].executor": "Run",
     "Maven.sboot-orch-ofb-authentication-server [install].executor": "Run",
+    "Maven.sboot-orch-ofb-customers [clean].executor": "Run",
+    "Maven.sboot-orch-ofb-customers [install].executor": "Run",
     "Maven.sboot-orch-ofb-discovery-services [clean].executor": "Run",
     "Maven.sboot-orch-ofb-discovery-services [install].executor": "Run",
     "Maven.spring-batch-dicas [install].executor": "Run",
@@ -216,7 +236,7 @@
       <recent name="com.ofb.sbatch.consents.expiration.control.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Batch Expiration Control">
+  <component name="RunManager" selected="Application.ORCH Customers">
     <list>
       <item itemvalue="Application.1-Discovery" />
       <item itemvalue="Application.2-Gateway" />
@@ -225,6 +245,7 @@
       <item itemvalue="Application.Accounts" />
       <item itemvalue="Application.Consents" />
       <item itemvalue="Application.Customers" />
+      <item itemvalue="Application.ORCH Customers" />
       <item itemvalue="Application.Resources" />
       <item itemvalue="Application.Listener Audit" />
       <item itemvalue="Application.Listener Cancellation" />
@@ -602,7 +623,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756733411160</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="+ revision documents">
+      <option name="closed" value="true" />
+      <created>1756737053246</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1756737053246</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

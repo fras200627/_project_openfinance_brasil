@@ -23,17 +23,17 @@ import java.util.UUID;
 public class BusinessApiControllerImpl implements BusinessApiDelegate {
 
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
+    @Override
     public ResponseEntity<ResponseBusinessCustomersFinancialRelation> customersGetBusinessFinancialRelations(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
         return BusinessApiDelegate.super.customersGetBusinessFinancialRelations(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
     }
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
+    @Override
     public ResponseEntity<ResponseBusinessCustomersIdentification> customersGetBusinessIdentifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize, String paginationKey) {
         return BusinessApiDelegate.super.customersGetBusinessIdentifications(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize, paginationKey);
     }
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
+    @Override
     public ResponseEntity<ResponseBusinessCustomersQualification> customersGetBusinessQualifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
         return BusinessApiDelegate.super.customersGetBusinessQualifications(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
     }

@@ -11,11 +11,11 @@
 	</parent>
 
 	<groupId>com.ofb</groupId>
-	<artifactId>sboot-atom-ofb-customers</artifactId>
-	<version>1.0.0-ofb</version>
+	<artifactId>sboot-orch-ofb-customers</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>sboot-atom-ofb-customers</name>
-	<description>Project OFB - Customers Resources</description>
+	<name>sboot-orch-ofb-customers</name>
+	<description>Project OFB - Orchestration Customers Resources</description>
 
 	<properties>
 		<!-- Project default infos -->
@@ -41,7 +41,7 @@
 		<ofb-lib-autoconfigure-security-version>1.0.0</ofb-lib-autoconfigure-security-version>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>API.CUSTOMERS</info.additional.project.module.name>
+		<info.additional.project.module.name>ORCH.CUSTOMERS</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -88,6 +88,12 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-spring-boot-starter</artifactId>
+			<version>4.14.0</version>
+		</dependency>
+
 		<!-- Lib dependencies-->
 		<dependency>
 			<groupId>com.ofb</groupId>
@@ -134,10 +140,10 @@
 		</dependency>
 
 		<!-- Spring Data -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--		</dependency>-->
 
 		<!-- Spring Test -->
 		<dependency>
@@ -153,11 +159,11 @@
 		</dependency>
 
 		<!-- JDBC Data Drivers -->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc11</artifactId>
-			<version>23.8.0.25.04</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.oracle.database.jdbc</groupId>-->
+<!--			<artifactId>ojdbc11</artifactId>-->
+<!--			<version>23.8.0.25.04</version>-->
+<!--		</dependency>-->
 
 		<!-- Lombok -->
 		<dependency>
@@ -352,7 +358,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-customers-resources.2.2.1.yaml</inputSpec>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-customers.2.2.1.yaml</inputSpec>
 							<apiPackage>com.ofb.customers.server.customers.handler</apiPackage>
 							<modelPackage>com.ofb.customers.server.customers.model</modelPackage>
 							<output>${openapi.output.path}</output>
@@ -372,37 +378,6 @@
 								<generateBuilders>true</generateBuilders>
 								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
 								<generatedConstructorWithRequiredArgs>true</generatedConstructorWithRequiredArgs>
-							</configOptions>
-						</configuration>
-					</execution>
-					<execution>
-						<id>generator-resources-client</id> <!-- It is not optional and must have a unique id -->
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-							 generatorName Types:
-							 OpenAPI Documentation for API Servers and API Clients in
-							 https://openapi-generator.tech/docs/generators/
-							 The 'spring' type generates a server package ++++++++++++++-->
-							<generatorName>java</generatorName>
-							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/client/openapi-resources-corporate.1.0.0.yaml</inputSpec>
-							<apiPackage>com.ofb.customers.client.resources.handler</apiPackage>
-							<modelPackage>com.ofb.customers.client.resources.model</modelPackage>
-							<output>${openapi.output.path}</output>
-							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-							<configOptions>
-								<invokerpackage>com.ofb.customers.client.resources.handler</invokerpackage>
-								<library>resttemplate</library>
-								<documentationProvider>source</documentationProvider>
-								<generateBuilders>true</generateBuilders>
-								<generateClientAsBean>true</generateClientAsBean>
-								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
-								<sourcefolder>src/gen/java/main</sourcefolder>
-								<java8>true</java8>
-								<datelibrary>java8</datelibrary>
 							</configOptions>
 						</configuration>
 					</execution>

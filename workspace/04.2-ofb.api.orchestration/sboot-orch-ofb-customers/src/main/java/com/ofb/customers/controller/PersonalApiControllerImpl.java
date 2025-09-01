@@ -1,12 +1,9 @@
 package com.ofb.customers.controller;
 
 import com.ofb.customers.server.customers.handler.PersonalApiDelegate;
-import com.ofb.customers.server.customers.model.*;
-import com.ofb.customers.service.CustomerGetPersonalFinancialRelationsService;
-import com.ofb.customers.service.CustomerGetPersonalIdentificationsService;
-import com.ofb.customers.service.CustomerGetPersonalQualificationsService;
-import com.ofb.lib.security.profiles.CanClientOFBRead;
-import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
+import com.ofb.customers.server.customers.model.ResponsePersonalCustomersFinancialRelation;
+import com.ofb.customers.server.customers.model.ResponsePersonalCustomersIdentification;
+import com.ofb.customers.server.customers.model.ResponsePersonalCustomersQualification;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -25,31 +22,18 @@ import java.util.UUID;
         in = SecuritySchemeIn.HEADER)
 public class PersonalApiControllerImpl implements PersonalApiDelegate {
 
-    @Autowired
-    private CustomerGetPersonalIdentificationsService customerGetPersonalIdentificationsService;
-
-    @Autowired
-    private CustomerGetPersonalQualificationsService customerGetPersonalQualificationsService;
-
-    @Autowired
-    private CustomerGetPersonalFinancialRelationsService customerGetPersonalFinancialRelationsService;
-
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponsePersonalCustomersIdentification> customersGetPersonalIdentifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize, String paginationKey) {
-        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentifications(authorization, page, pageSize),
-                HttpStatus.OK);
-    }
-
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponsePersonalCustomersQualification> customersGetPersonalQualifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(customerGetPersonalQualificationsService.customersGetPersonalQualifications(authorization),
-                HttpStatus.OK);
-    }
-
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
+    @Override
     public ResponseEntity<ResponsePersonalCustomersFinancialRelation> customersGetPersonalFinancialRelations(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(customerGetPersonalFinancialRelationsService.customersGetPersonalFinancialRelations(authorization),
-                HttpStatus.OK);
+        return PersonalApiDelegate.super.customersGetPersonalFinancialRelations(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
     }
 
+    @Override
+    public ResponseEntity<ResponsePersonalCustomersIdentification> customersGetPersonalIdentifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize, String paginationKey) {
+        return PersonalApiDelegate.super.customersGetPersonalIdentifications(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize, paginationKey);
+    }
+
+    @Override
+    public ResponseEntity<ResponsePersonalCustomersQualification> customersGetPersonalQualifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
+        return PersonalApiDelegate.super.customersGetPersonalQualifications(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
+    }
 }

@@ -63,6 +63,10 @@
         <option value="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-consents-approval-control/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/06.batch.services/sbatch-ofb-resources/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-resources/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-accounts/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

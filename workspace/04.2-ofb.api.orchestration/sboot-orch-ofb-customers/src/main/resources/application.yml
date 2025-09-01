@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ofb-customers
+    name: sboot-orch-customers
   jpa:
     properties:
       hibernate:
@@ -68,31 +68,10 @@ spring:
   config:
     activate:
       on-profile: local
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
-    driver-class-name: oracle.jdbc.OracleDriver
-    serverTimezone: America/Sao_Paulo
-    useSSL: false
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
-      maximumPoolSize: 20
-      minimumIdle: 5
-      poolName: SpringBootJPAHikariCP
-    type: com.zaxxer.hikari.HikariDataSource
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:3000/eureka
-app:
-  paths:
-    clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
-      ofb-resources: 'http://localhost:3001/ofb-resources/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -123,37 +102,16 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3035 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 5031 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
     activate:
       on-profile: docker
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
-    driver-class-name: oracle.jdbc.OracleDriver
-    serverTimezone: America/Sao_Paulo
-    useSSL: false
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
-      maximumPoolSize: 20
-      minimumIdle: 5
-      poolName: SpringBootJPAHikariCP
-    type: com.zaxxer.hikari.HikariDataSource
 eureka:
   client:
     serviceUrl:
       defaultZone: http://10.0.1.1:3000/eureka
-app:
-  paths:
-    clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
-      ofb-resources: 'http://localhost:3001/ofb-resources/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -184,37 +142,16 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3035 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 5031 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
     activate:
       on-profile: k8s
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
-    driver-class-name: oracle.jdbc.OracleDriver
-    serverTimezone: America/Sao_Paulo
-    useSSL: false
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
-      maximumPoolSize: 20
-      minimumIdle: 5
-      poolName: SpringBootJPAHikariCP
-    type: com.zaxxer.hikari.HikariDataSource
 eureka:
   client:
     serviceUrl:
       defaultZone: http://10.152.183.103:3000/eureka
-app:
-  paths:
-    clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
-      ofb-resources: 'http://localhost:3001/ofb-resources/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -245,4 +182,4 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3035 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 5031 # set to "0" if you want eureka-server to determine a port dynamically

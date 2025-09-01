@@ -39,6 +39,13 @@ public class RequestCustomerValidationService {
 
     public List<ResourcesCustomerAuthorisedInner> validateRequest(String authorization, String resourceId, String permission) {
 
+
+        // Extract and validate AccessToken
+        // Get Consent Customers Permissions
+        // Validate Consent information on AccessToken
+        // Validate a Permission
+
+
         Gson gson = new Gson();
         String      consentId;
         List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
@@ -59,7 +66,7 @@ public class RequestCustomerValidationService {
             throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
-        ///  Consents Accounts API parameters
+        ///  Consents Permissions API parameters
         try {
             resourcesCorporateApi.getApiClient().setBasePath(OFB_PATH_RESOURCES);
             resourcesCorporateApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
