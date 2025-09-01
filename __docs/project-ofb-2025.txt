@@ -1,58 +1,89 @@
-Project Open Finance Brasil
+# Project Open Finance Brasil 2025 (01.09.2025)
+### Description ???
 
-Modules OFB - Atoms
+# Modules OFB - Orchs (APIs /??)
+* Consents
+* Customers
+* Accounts
+* Resources
+
+# Modules OFB - Atoms (APIs Backend)
 Consents
 Customers
 Accounts
 Resources
+
+# Modules Structurals
+Discovery Services
+API Gateway
+Authentication Server
 Participants Clients
 
-Modules OFB - Orchs
-Consents
-Customers
-Accounts
-Resources
-
-Environments
+Environment
 Windows 11
 Windows Sub-System Linux (ubuntu)
 Docker in WSL
 Kubernets in WSL (MicroK8S)
 
-Projects
-Libs
-Atoms
-Orchs
-Listeners
-Batches
+Projects - Libs
+sboot-lib-ofb-autoconfigure-amqp
+sboot-lib-ofb-autoconfigure-handlers
+sboot-lib-ofb-autoconfigure-interceptors
+sboot-lib-ofb-autoconfigure-security
+sboot-lib-ofb-common-tools
+Projects - Atoms
+sboot-atom-ofb-consents
+sboot-atom-ofb-resources
+sboot-atom-ofb-customers
+sboot-atom-ofb-accounts
+Projects - Orchs
+sboot-orch-ofb-consents
+sboot-orch-ofb-resources
+sboot-orch-ofb-customers
+sboot-orch-ofb-accounts
+Projects - Listeners
+sboot-listener-ofb-audit-services
+sboot-listener-ofb-consents-authorization-services
+sboot-listener-ofb-consents-cancellation-services
+Projects - Batches
+sbatch-ofb-consents-approval-control
+sbatch-ofb-consents-expiration-control
 
 Databases
-Oracle 21
-MySQL 8.0
+Oracle XE core version 21
+MySQL CE core version 8.0
+
+Integration
 RabbitMQ 3
 
-Development
+Development Tools
 IntelliJ
-JDK-17
-GitHub
-OpenAPI
-Swagger
+OpenAPI (3.0.3)
+Swagger and Swagger Editor
 Portainer
+PL/SQL Development
+MySQL Workbench
+RabbitMQ Service Tools
 
-Frameworks
-Springboot
-SpringApacheCamel
+Project Management
+Git Hub
+Docker Hub
+Maven
+OpenAPI
+
+Frameworks and Plugins
+Java JDK-17
+org.OpenAPITools
+org.SpringDoc UI tools
+Springboot (2.7.11)
+Spring Apache Camel
 SpringBatch
-SpringCloud
-SpringSecurity
+SpringCloud (with Eureka NetFlix)
+SpringCloud (with Spring Gateway)
+SpringSecurity (with JWT and OAuth2)
 Resilience4J
-Components
-Discovery Services (Eureka NetFlix)
-API Gateway
 Authentication Server
 Authorization Server
 MapStruct
-SpringStarterTests
 JUnit
-Maven
 Lombok

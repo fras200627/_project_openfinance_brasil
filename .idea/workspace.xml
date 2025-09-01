@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision all sbatch consents expiration/approval control">
-      <change afterPath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision documents">
+      <change afterPath="$PROJECT_DIR$/__docs/project.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +184,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
     "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "MavenSettings"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -592,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756489773871</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="+ revision documents">
+      <option name="closed" value="true" />
+      <created>1756733411160</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1756733411160</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -608,7 +618,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Atualização com o novo ofb" />
     <MESSAGE value="Ajustes na validação do consentimento" />
     <MESSAGE value="inclusão de funções de mensagens MQ e componente Audit Services." />
     <MESSAGE value="Refactor RabbitMQ total. Lib AMQP, Discover, API Gateway, Auth Server, Registered Clients, OFB-Consents e Listeners Audit e Consents Cancel." />
@@ -633,7 +642,8 @@
     <MESSAGE value="+ sbatch consents expiration control" />
     <MESSAGE value="+ sbatch consents expiration/approval control" />
     <MESSAGE value="+ revision all sbatch consents expiration/approval control" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ revision all sbatch consents expiration/approval control" />
+    <MESSAGE value="+ revision documents" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ revision documents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
