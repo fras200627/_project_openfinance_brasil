@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.temporal.TemporalAccessor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +27,9 @@ public class AuthenticationService {
 
   @Value("${jwt.issuer}")
   private String issuerInfo;
+
+  @Value("${app.token.client-expiration-in-seconds}")
+  private int CLIENT_TOKEN_EXPIRATION_IN_SECONDS;
 
   private final JwtEncoder encoder;
   private final HttpServletResponse     httpServletResponse;
@@ -45,16 +48,19 @@ public class AuthenticationService {
   public TokenResponseModelTemplate generateClientToken() {
 
     UserAuthenticated userAuthenticated = userDetailsService.loadUserAuthenticated(httpServletRequest.getUserPrincipal().getName());
-    OffsetDateTime expiresAt = userAuthenticated.getClientSecretExpiresAt().toLocalDateTime().atOffset(ZoneOffset.UTC);
-    
+    // OffsetDateTime expiresAt = userAuthenticated.getClientSecretExpiresAt().toLocalDateTime().atOffset(ZoneOffset.UTC);
+    // OffsetDateTime expiresAt = OffsetDateTime.of(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth(), 17, 29, 59, 0, ZoneOffset.ofHours(-3));
+
+    Instant instant = Instant.now();
+
     JwtClaimsSet claims = JwtClaimsSet.builder()
             .issuer(issuerInfo)
             .subject(userAuthenticated.getUsername())
-            .issuedAt(Instant.now())
-            .expiresAt(expiresAt.toInstant())
+            .issuedAt(instant.atOffset(ZoneOffset.UTC).toInstant())
+            .expiresAt(instant.plusSeconds(CLIENT_TOKEN_EXPIRATION_IN_SECONDS).atOffset(ZoneOffset.UTC).toInstant())
             .claim("clientId"               , userAuthenticated.getUsername())
             .claim("clientName"             , userAuthenticated.getUsernameFull())
-            .claim("clientSecretExpiratesAt", expiresAt.toString())
+            .claim("clientSecretExpiratesAt", instant.plusSeconds(CLIENT_TOKEN_EXPIRATION_IN_SECONDS).atOffset(ZoneOffset.UTC).toInstant().toString())
             .claim("authorities"            , userAuthenticated.getAuthorities().stream()
                                                     .map(GrantedAuthority::getAuthority)
                                                     .collect(Collectors.joining(",")))
@@ -65,7 +71,7 @@ public class AuthenticationService {
                                                             .accessToken(encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue())
                                                             .scope(userAuthenticated.getScopes())
                                                             .tokenType("Bearer Token")
-                                                            .expiresIn(expiresAt.toInstant().hashCode())
+                                                            .expiresIn(instant.plusSeconds(CLIENT_TOKEN_EXPIRATION_IN_SECONDS).atOffset(ZoneOffset.UTC).toInstant().hashCode())
                                                             .build();
     
     messageService.sendMessageAuditTemplate(httpServletRequest);
@@ -93,12 +99,12 @@ public class AuthenticationService {
 //            .claim("ofb.consent.creation.datetime",	                     accessTokenRequest.getCreationDateTime())
 //            .claim("ofb.consent.expiration.datetime",                    accessTokenRequest.getExpirationDateTime())
 //            .claim("ofb.consent.businessEntity.name",                    accessTokenRequest.getBusinessEntity().getDocument().getEntityBusinessName())
-//            .claim("ofb.consent.businessEntity.document.identification", accessTokenRequest.getBusinessEntity().getDocument().getIdentification())
+            .claim("client.document", accessTokenRequest.getBusinessEntity().getDocument().getIdentification())
 //            .claim("ofb.consent.businessEntity.document.rel",            accessTokenRequest.getBusinessEntity().getDocument().getRel())
 //            .claim("ofb.consent.logged.user.name",                       accessTokenRequest.getLoggedUser().getDocument().getLoggedUserName())
-//            .claim("ofb.consent.logged.user.document.identification",    accessTokenRequest.getLoggedUser().getDocument().getIdentification())
+            .claim("customer.document",    accessTokenRequest.getLoggedUser().getDocument().getIdentification())
 //            .claim("ofb.consent.logged.user.document.rel",               accessTokenRequest.getLoggedUser().getDocument().getRel())
-            .claim("ofb.consent.permissions",                            consentPermissions)
+            .claim("permissions",                            consentPermissions.substring(0, 1050))
             .build();
 
     TokenResponseModelTemplate tokenResponseModelTemplate =  TokenResponseModelTemplate.builder()

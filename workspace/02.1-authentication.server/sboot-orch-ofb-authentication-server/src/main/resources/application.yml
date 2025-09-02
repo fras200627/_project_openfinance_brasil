@@ -76,6 +76,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:3000/eureka
+app:
+  token:
+    client:
+      expiration-in-seconds: 1800
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -121,6 +125,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://10.0.1.1:3000/eureka
+app:
+  token:
+    client:
+      expiration-in-seconds: 1800
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -165,6 +173,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://10.152.183.103:3000/eureka
+app:
+  token:
+    client:
+      expiration-in-seconds: 1800
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"

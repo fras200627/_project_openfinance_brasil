@@ -67,6 +67,14 @@
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-customers/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-resources/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-autorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.participants/sboot-atom-ofb-clients-business/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
