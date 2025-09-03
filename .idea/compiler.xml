@@ -23,21 +23,21 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="sboot-lib-ofb-autoconfigure-handlers" />
+        <module name="sboot-orch-ofb-authorization-server" />
         <module name="sboot-listener-ofb-consents-cancellation-services" />
         <module name="sboot-atom-ofb-consents" />
         <module name="sboot-atom-ofb-clients-business" />
         <module name="sboot-orch-ofb-customers" />
         <module name="sbatch-ofb-consents-expiration-control" />
-        <module name="sboot-atom-ofb-resources" />
-        <module name="sboot-atom-ofb-accounts (1)" />
+        <module name="sboot-orch-ofb-resources" />
         <module name="sbatch-ofb-consents-approval-control" />
+        <module name="sboot-orch-ofb-consents" />
         <module name="sboot-lib-ofb-autoconfigure-security" />
         <module name="sboot-lib-ofb-autoconfigure-interceptors" />
+        <module name="sboot-orch-ofb-accounts" />
         <module name="sboot-atom-ofb-accounts" />
         <module name="sboot-atom-ofb-customers" />
         <module name="sboot-orch-ofb-authentication-server" />
-        <module name="sboot-atom-ofb-consents (1)" />
-        <module name="sboot-atom-ofb-resources (1)" />
         <module name="sboot-listener-ofb-consents-authorization-services" />
         <module name="sboot-lib-ofb-autoconfigure-amqp" />
         <module name="sboot-lib-ofb-common-tools" />
@@ -51,7 +51,7 @@
       <module name="sbatch.consents.expiration.control" target="17" />
       <module name="sboot-atom-ofb-audit-services" target="17" />
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
-      <module name="sboot-orch-ofb-authorization-server" target="17" />
+      <module name="sboot-atom-ofb-resources" target="17" />
       <module name="spring-batch-dicas" target="17" />
       <module name="spring-security-template" target="17" />
       <module name="tican-audit-services-api" target="17" />
@@ -75,15 +75,12 @@
       <module name="sbatch-ofb-consents-expiration-control" options="-parameters" />
       <module name="sbatch.consents.expiration.control" options="-parameters" />
       <module name="sboot-atom-ofb-accounts" options="-parameters" />
-      <module name="sboot-atom-ofb-accounts (1)" options="-parameters" />
       <module name="sboot-atom-ofb-audit-services" options="-parameters" />
       <module name="sboot-atom-ofb-cancellation-consents-services" options="-parameters" />
       <module name="sboot-atom-ofb-clients-business" options="-parameters" />
       <module name="sboot-atom-ofb-consents" options="-parameters" />
-      <module name="sboot-atom-ofb-consents (1)" options="-parameters" />
       <module name="sboot-atom-ofb-customers" options="-parameters" />
       <module name="sboot-atom-ofb-resources" options="-parameters" />
-      <module name="sboot-atom-ofb-resources (1)" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-amqp" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-handlers" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-interceptors" options="-parameters" />
@@ -92,11 +89,14 @@
       <module name="sboot-listener-ofb-audit-services" options="-parameters" />
       <module name="sboot-listener-ofb-consents-authorization-services" options="-parameters" />
       <module name="sboot-listener-ofb-consents-cancellation-services" options="-parameters" />
+      <module name="sboot-orch-ofb-accounts" options="-parameters" />
       <module name="sboot-orch-ofb-api-gateway" options="-parameters" />
       <module name="sboot-orch-ofb-authentication-server" options="-parameters" />
       <module name="sboot-orch-ofb-authorization-server" options="-parameters" />
+      <module name="sboot-orch-ofb-consents" options="-parameters" />
       <module name="sboot-orch-ofb-customers" options="-parameters" />
       <module name="sboot-orch-ofb-discovery-services" options="-parameters" />
+      <module name="sboot-orch-ofb-resources" options="-parameters" />
       <module name="spring-batch-dicas" options="-parameters" />
       <module name="spring-security-template" options="-parameters" />
       <module name="tican-audit-services-api" options="-parameters --enable-preview" />

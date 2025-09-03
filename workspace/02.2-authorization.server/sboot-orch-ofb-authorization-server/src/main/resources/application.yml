@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ofb-orchaccounts
+    name: ofb-authorization-server
   jpa:
     properties:
       hibernate:
@@ -11,7 +11,6 @@ spring:
 server:
   error:
     include-stacktrace: never
-
 jwt:
   issuer: banco-tcn-openfinance-brasil
   private:
@@ -21,6 +20,9 @@ jwt:
 
 # Custom properties
 app:
+  consents:
+    organization: 'Banco TCN - OpenFinance Brasil'
+    consent-id-urn-use: 'bancotcn'
   listOfServers: #server item: id, description, url
     - 0, 'OFB Server at LOCAL execution', http://localhost/3000
     - 1, 'OFB Server at DOCKER execution', http://localhost/5000
@@ -43,7 +45,7 @@ resilience4j:
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
 
-# Swagger page: http://localhost:5051/swagger-ui
+# Swagger page: http://localhost:5041/swagger-ui
 springdoc:
   api-docs:
     enabled: true
@@ -79,15 +81,16 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:3000/eureka
+
 app:
   paths:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
-      ofb-resources: 'http://localhost:3001/ofb-resources/'
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -117,7 +120,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3037 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3013 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -139,6 +142,12 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+
+app:
+  paths:
+    clients:
+      ofb-consents: 'http://localhost:3001/ofb-consents/'
+
 eureka:
   client:
     serviceUrl:
@@ -172,7 +181,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3037 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3013 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -194,6 +203,12 @@ spring:
       minimumIdle: 5
       poolName: SpringBootJPAHikariCP
     type: com.zaxxer.hikari.HikariDataSource
+
+app:
+  paths:
+    clients:
+      ofb-consents: 'http://localhost:3001/ofb-consents/'
+
 eureka:
   client:
     serviceUrl:
@@ -227,4 +242,4 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3037 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3013 # set to "0" if you want eureka-server to determine a port dynamically

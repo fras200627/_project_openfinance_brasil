@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.ofb</groupId>
-	<artifactId>sboot-atom-ofb-resources</artifactId>
+	<artifactId>sboot-orch-ofb-resources</artifactId>
 	<version>1.0.0-ofb</version>
 	<packaging>jar</packaging>
-	<name>sboot-atom-ofb-resources</name>
+	<name>sboot-orch-ofb-resources</name>
 	<description>Project OFB - Resources</description>
 
 	<properties>
@@ -41,7 +41,7 @@
 		<ofb-lib-autoconfigure-security-version>1.0.0</ofb-lib-autoconfigure-security-version>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>API.RESOURCES</info.additional.project.module.name>
+		<info.additional.project.module.name>ORCH.RESOURCES</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>

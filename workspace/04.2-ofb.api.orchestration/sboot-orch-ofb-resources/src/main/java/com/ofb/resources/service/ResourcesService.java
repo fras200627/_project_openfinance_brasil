@@ -17,7 +17,6 @@ import com.ofb.resources.repository.ResourcesAuthorisedRepository;
 import com.ofb.resources.repository.ResourcesAuthorisedlPaginationSettings;
 import com.ofb.resources.repository.ResourcesPermissionsAuthorisedRepository;
 import com.ofb.resources.server.api.model.*;
-import com.ofb.resources.server.corporate.model.*;
 import com.ofb.resources.server.corporate.model.Meta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

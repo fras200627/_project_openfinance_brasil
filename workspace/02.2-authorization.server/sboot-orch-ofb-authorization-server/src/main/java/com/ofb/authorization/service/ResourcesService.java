@@ -1,6 +1,7 @@
-package com.ofb.resources.service;
+package com.ofb.authorization.service;
 
 import com.nimbusds.jose.shaded.gson.Gson;
+import com.ofb.authorization.server.model.*;
 import com.ofb.lib.commons.jpa.RequestFilterParams;
 import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
 import com.ofb.lib.commons.jpa.RequestFilterSpecification;
@@ -8,16 +9,12 @@ import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
-import com.ofb.resources.client.consent.resources.handler.ConsentsApi;
-import com.ofb.resources.client.consent.resources.model.ResponseConsentRead;
-import com.ofb.resources.model.ResourcesAuthorisedModel;
-import com.ofb.resources.model.ResourcesPermissionsAuthorisedModel;
-import com.ofb.resources.repository.ResourcesAuthorisedRecordFilter;
-import com.ofb.resources.repository.ResourcesAuthorisedRepository;
-import com.ofb.resources.repository.ResourcesAuthorisedlPaginationSettings;
-import com.ofb.resources.repository.ResourcesPermissionsAuthorisedRepository;
-import com.ofb.resources.server.api.model.*;
-import com.ofb.resources.server.corporate.model.Meta;
+import com.ofb.authorization.model.ResourcesAuthorisedModel;
+import com.ofb.authorization.model.ResourcesPermissionsAuthorisedModel;
+import com.ofb.authorization.repository.ResourcesAuthorisedRecordFilter;
+import com.ofb.authorization.repository.ResourcesAuthorisedRepository;
+import com.ofb.authorization.repository.ResourcesAuthorisedlPaginationSettings;
+import com.ofb.authorization.repository.ResourcesPermissionsAuthorisedRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,9 +43,6 @@ public class ResourcesService {
     HttpServletRequest request;
 
     @Autowired
-    private ConsentsApi consentsApi;
-
-    @Autowired
     private ResourcesAuthorisedRepository resourcesRepository;
 
     @Autowired
@@ -56,165 +50,6 @@ public class ResourcesService {
 
     @Autowired
     private JwtDecoder jwtDecoder;
-
-    public ResponseResourceList resourcesGetResources(String authorization,
-                                                      UUID xFapiInteractionId,
-                                                      String xFapiAuthDate,
-                                                      String xFapiCustomerIpAddress,
-                                                      String xCustomerUserAgent,
-                                                      Integer page, Integer pageSize) {
-
-        Gson gson = new Gson();
-        String      consentId;
-        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
-        ResponseConsentRead               responseConsentRead = null;
-
-        /// Extract AccessToken claims values
-        try {
-            consentId = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("ofb.consent.id").toString();
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
-        }
-
-        ///  Consents Resources API parameters
-        try {
-            consentsApi.getApiClient().setBasePath(OFB_PATH_CONSENTS);
-            consentsApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
-            responseConsentRead = consentsApi.consentsGetConsentsConsentId(consentId,
-                    authorization,
-                    xFapiInteractionId,
-                    xFapiAuthDate,
-                    xFapiCustomerIpAddress,
-                    xCustomerUserAgent);
-        } catch (HttpClientErrorException ex) {
-            if (ex.getRawStatusCode() == 400) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("AccessToken: " + ex.getMessage().substring(ex.getMessage().indexOf("detail") + 9, ex.getMessage().indexOf("meta") - 5))
-                        .build());
-                throw new BadRequestException(gson.toJson(listResponseErrors));
-            } else {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail(ex.getMessage())
-                        .build());
-                throw new BadRequestException(gson.toJson(listResponseErrors));
-            }
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error (in ConsentsAPI method consentsGetConsentsConsentId)")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail(e.getMessage())
-                    .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
-        /// Validations
-        if (!responseConsentRead.getData().getStatus().getValue().equals("AUTHORISED")) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in the " +
-                            "AccessToken has a current status of [" + responseConsentRead.getData().getStatus().getValue() + "].")
-                    .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
-        if (!OffsetDateTime.parse(responseConsentRead.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Unable to request RESOURCES information. The consentId (" + consentId + ") provided in " +
-                            "the AccessToken has an ExpirationDateTime " +
-                            "(" +
-                            responseConsentRead.getData().getExpirationDateTime()
-                            + ") of 'expired'. ")
-                    .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
-        /// Search Consent Resources
-        Page<ResourcesAuthorisedModel> resourcesConfirmedList;
-        List<ResponseResourceListDataInner> responseData = new ArrayList<>();
-        int recordsNotInclude = 0;
-
-        try {
-            ResourcesAuthorisedlPaginationSettings page_settings = new ResourcesAuthorisedlPaginationSettings(page, pageSize, "consentResourceId", "DESC");
-            ResourcesAuthorisedRecordFilter filter = new ResourcesAuthorisedRecordFilter(page_settings, null, consentId);
-            Specification<ResourcesAuthorisedModel> filterSpecs = this.buildFilter(filter);
-            Pageable pageParams = ResourcesAuthorisedlPaginationSettings
-                    .PaginationSettingsTemplate(filter.page_settings(), "consentResourceId");
-
-            resourcesConfirmedList = resourcesRepository.findAll(filterSpecs, pageParams);
-
-            for (ResourcesAuthorisedModel reg : resourcesConfirmedList.getContent()) {
-                if (!reg.getResourceType().trim().toUpperCase().equals("CUSTOMER")) {
-                    responseData.add(ResponseResourceListDataInner.builder()
-                            .resourceId(reg.getResourceId())
-                            .status(ResponseResourceListDataInner.StatusEnum.fromValue(reg.getResourceStatus().trim().toUpperCase()))
-                            .type(ResponseResourceListDataInner.TypeEnum.fromValue(reg.getResourceType().trim().toUpperCase()))
-                            .build());
-                } else {
-                    recordsNotInclude++;
-                }
-            }
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error (in FindAll Resources registry)")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
-        }
-
-        /// Build response objects
-        ResponseResourceList responseResourceList;
-        Links links = null;
-        MetaResponse meta;
-        try {
-            if (resourcesConfirmedList.getContent().size() != 0) {
-                int pageFirst = 1;
-                int pageNext = resourcesConfirmedList.getTotalPages() - page == 0 ? resourcesConfirmedList.getTotalPages() : page + 1;
-                int pagePrevius = resourcesConfirmedList.getTotalPages() - page == 0 ? resourcesConfirmedList.getTotalPages() : page - 1;
-                int pageLast = resourcesConfirmedList.getTotalPages();
-
-                links = links.builder().self(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources"))
-                        .first(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pageFirst + "&page-size=" + pageSize))
-                        .last(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pageLast + "&page-size=" + pageSize))
-                        .next(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pageNext + "&page-size=" + pageSize))
-                        .prev(URI.create("https://api.banco.com.br/open-banking/resources/v3/resources?page=" + pagePrevius + "&page-size=" + pageSize))
-                        .build();
-            }
-
-            meta = MetaResponse.builder()
-                    .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
-                    .totalPages(resourcesConfirmedList.getTotalPages())
-                    .totalRecords((int) resourcesConfirmedList.getTotalElements() - recordsNotInclude)
-                    .build();
-
-            responseResourceList = ResponseResourceList.builder()
-                    .data(responseData)
-                    .links(links)
-                    .meta(meta)
-                    .build();
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Resources request error (in build ResponseResourceList)")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
-        }
-
-        return responseResourceList;
-    }
 
     public ResourcesAccountPermissions resourcesGetAccountPermissions(String authorization, String consentId) {
 

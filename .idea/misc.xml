@@ -90,9 +90,9 @@
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-resources/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05-mq.services/project-tican-audit-api/pom.xml" />

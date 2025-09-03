@@ -17,6 +17,8 @@
     <file url="file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/target/generated-sources/ofb/authorization/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.participants/project-ofb-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />

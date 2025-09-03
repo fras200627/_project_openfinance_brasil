@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ofb-resources
+    name: ofb-orchresources
   jpa:
     properties:
       hibernate:

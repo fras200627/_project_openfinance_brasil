@@ -28,7 +28,7 @@ public class AuthenticationService {
   @Value("${jwt.issuer}")
   private String issuerInfo;
 
-  @Value("${app.token.client-expiration-in-seconds}")
+  @Value("${app.token.client.expiration-in-seconds}")
   private int CLIENT_TOKEN_EXPIRATION_IN_SECONDS;
 
   private final JwtEncoder encoder;

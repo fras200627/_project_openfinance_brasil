@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ${AUTHENTICATION_SERVER_APP_NAME:ofb-auth-server}
+    name: ${AUTHENTICATION_SERVER_APP_NAME:ofb-authentication-server}
   jpa:
     properties:
       hibernate:

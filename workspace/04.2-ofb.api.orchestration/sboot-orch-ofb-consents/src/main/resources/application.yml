@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ofb-consents
+    name: ofb-orchconsents
   jpa:
     properties:
       hibernate:

@@ -1,0 +1,439 @@
+openapi: 3.0.0
+info:
+  title: API Resources - Open Finance Brasil
+  description: ''
+  version: 1.0.0
+security:
+  - bearerAuth: []
+tags:
+  - name: ResourcesCorporate
+paths:
+  /corporate/resources/account/permissions:
+    get:
+      tags:
+        - ResourcesCorporate
+      summary: Obtém a lista permissões dos recursos consentidos pelo cliente.
+      operationId: resourcesGetAccountPermissions
+      description: Método para obter a lista de permissões dos recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAccountPermissions'
+  /corporate/resources/customer/permissions:
+    get:
+      tags:
+        - ResourcesCorporate
+      summary: Obtém a lista permissões dos recursos consentidos pelo cliente.
+      operationId: resourcesGetCustomerPermissions
+      description: Método para obter a lista de permissões dos recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseCustomerPermissions'
+
+components:
+  schemas:
+    ResourcesAccountPermissions:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourcesAccountPermissionsData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ResourcesAccountPermissionsData:
+      type: object
+      required:
+        - consentIdentification
+        - resourcesAuthorised
+      properties:
+        consentIdentification:
+          $ref: '#/components/schemas/ConsentIdentification'
+        resourcesAuthorised:
+          $ref: '#/components/schemas/ResourcesAccountAuthorised'
+    ConsentIdentification:
+      type: object
+      required:
+        - consentId
+        - consentStatus
+        - consentDateCreation
+        - consentExpiration
+        - personalCPF
+        - personalId
+        - personalName
+      properties:
+        consentId:
+          type: string
+          minLength: 11
+          maxLength: 256
+          example: "25cac914-d8ae-6789-b215-650a6215820d"
+        consentStatus:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "AUTHORISED"
+        consentDateCreation:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        consentExpiration:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        personalCPF:
+          type: string
+          minLength: 11
+          maxLength: 20
+          example: "01102203399"
+        personalId:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "accpf123456"
+        personalName:
+          type: string
+          minLength: 1
+          maxLength: 200
+          example: "Jose da Silva"
+    ResourcesAccountAuthorised:
+      type: array
+      minItems: 0
+      items:
+        type: object
+        required:
+          - resourceId
+          - resourceSummary
+          - resourceType
+          - resourceStatus
+          - accountType
+          - accountSubType
+          - accountStatus
+          - accountBrandName
+          - accountCompanyCNPJ
+          - accountCompeCode
+          - accountBranchCode
+          - accountNumber
+          - accountCheckDigit
+          - accountCurrency
+          - permissions
+        properties:
+          resourceId:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "acc123456"
+          resourceSummary:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "conta corrente"
+          resourceType:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "deposito_a_vista"
+          resourceStatus:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "Available"
+          accountType:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "DEPOSITO_A_VISTA"
+          accountSubType:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "INDIVIDUAL"
+          accountStatus:
+            type: string
+            minLength: 3
+            maxLength: 100
+            example: "ATIVA"
+          accountBrandName:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "Brand Name"
+          accountCompanyCNPJ:
+            type: string
+            minLength: 11
+            maxLength: 15
+            example: "001002003000199"
+          accountCompeCode:
+            type: string
+            minLength: 3
+            maxLength: 10
+            example: "999"
+          accountBranchCode:
+            type: string
+            minLength: 3
+            maxLength: 10
+            example: "090"
+          accountNumber:
+            type: string
+            minLength: 10
+            maxLength: 30
+            example: "010101"
+          accountCheckDigit:
+            type: string
+            minLength: 1
+            maxLength: 1
+            example: "0"
+          accountCurrency:
+            type: string
+            minLength: 1
+            maxLength: 10
+            example: "BRL"
+          permissions:
+            $ref: "#/components/schemas/Permissions"
+
+    ResourcesCustomerPermissions:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourcesCustomerPermissionsData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ResourcesCustomerPermissionsData:
+      type: object
+      required:
+        - consentCompleteIdentification
+        - resourcesAuthorised
+      properties:
+        consentCompleteIdentification:
+          $ref: '#/components/schemas/ConsentCompleteIdentification'
+        resourcesAuthorised:
+          $ref: '#/components/schemas/ResourcesCustomerAuthorised'
+    ConsentCompleteIdentification:
+      type: object
+      required:
+        - consentId
+        - consentStatus
+        - consentDateCreation
+        - consentExpiration
+        - personalCPF
+        - personalId
+        - personalName
+        - personalCpfNumber
+        - personalBirthDate
+        - personalSex
+        - personalAddress
+        - personalDistrictName
+        - personalTownName
+        - personalCountrySubDivision
+        - personalPostCode
+        - personalCountry
+        - personalPhoneType
+        - personalPhoneAreaCode
+        - personalPhoneNumber
+        - personalEmail
+      properties:
+        consentId:
+          type: string
+          minLength: 11
+          maxLength: 256
+          example: "25cac914-d8ae-6789-b215-650a6215820d"
+        consentStatus:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "AUTHORISED"
+        consentDateCreation:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        consentExpiration:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        personalId:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "accpf123456"
+        personalName:
+          type: string
+          minLength: 1
+          maxLength: 200
+          example: "Jose da Silva"
+        personalCpfNumber:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "01102203399"
+        personalBirthDate:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2024/08/01"
+        personalSex:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "MASCULINO"
+        personalAddress:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Rua X, 00"
+        personalDistrictName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Jd XX"
+        personalTownName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "São Paulo"
+        personalCountrySubDivision:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "SP"
+        personalPostCode:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "00000-000"
+        personalCountry:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Brazil"
+        personalPhoneType:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "MOVEL"
+        personalPhoneAreaCode:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "011"
+        personalPhoneNumber:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "99999-9999"
+        personalEmail:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "personal@email.com"
+    ResourcesCustomerAuthorised:
+      type: array
+      minItems: 0
+      items:
+        type: object
+        required:
+          - resourceId
+          - resourceSummary
+          - resourceType
+          - resourceStatus
+          - permissions
+        properties:
+          resourceId:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "acc123456"
+          resourceSummary:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "conta corrente"
+          resourceType:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "deposito_a_vista"
+          resourceStatus:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "Available"
+          permissions:
+            $ref: "#/components/schemas/Permissions"
+
+    Permissions:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required:
+          - permission
+        properties:
+          permission:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: 'permission'
+
+    Meta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - requestDateTime
+      properties:
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          format: date-time
+          example: '2021-05-21T08:30:00Z'
+
+  parameters:
+    ConsentId:
+      name: consentId
+      in: query
+      description: ''
+      required: true
+      schema:
+        type: string
+        minLength: 6
+        maxLength: 256
+    Authorization:
+      name: Authorization
+      in: header
+      description: Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado
+      required: true
+      schema:
+        type: string
+        maxLength: 2048
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+
+  responses:
+    ResponseAccountPermissions:
+      description: Dados das permissões dos recursos obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResourcesAccountPermissions'
+    ResponseCustomerPermissions:
+      description: Dados das permissões dos recursos obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResourcesCustomerPermissions'
