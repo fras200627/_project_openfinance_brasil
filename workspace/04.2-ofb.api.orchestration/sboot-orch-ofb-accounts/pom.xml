@@ -12,10 +12,10 @@
 
 	<groupId>com.ofb</groupId>
 	<artifactId>sboot-orch-ofb-accounts</artifactId>
-	<version>1.0.0-ofb</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>sboot-orch-ofb-accounts</name>
-	<description>Project OFB - Accounts Resources</description>
+	<description>Project OFB - Orch Accounts Resources</description>
 
 	<properties>
 		<!-- Project default infos -->

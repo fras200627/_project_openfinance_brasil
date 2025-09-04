@@ -5,46 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision documents + start orchs">
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/StartApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/HealthApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/ResourcesCorporateControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/model/ResourcesAuthorisedModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/model/ResourcesPermissionsAuthorisedModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/repository/ResourcesAuthorisedRecordFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/repository/ResourcesAuthorisedRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/repository/ResourcesAuthorisedlPaginationSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/repository/ResourcesPermissionsAuthorisedRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/ResourcesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/resources/openapi/server/api-health-checks.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/resources/openapi/server/openapi-authorization-server.1.0.0.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/3_Auth.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Customers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Customers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Resources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Resources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +38,9 @@
     &quot;assignee&quot;: &quot;fras200627&quot;
   }
 }</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d3f3e42d-a0c0-48a1-9169-0e65c59e5208" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/fras200627/_project_tican_openapi&quot;,
@@ -228,7 +197,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
     "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -287,14 +256,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00001" summary="AJustes OFB e ida para RegisteredClient Correto">
-      <option name="closed" value="true" />
-      <created>1748866358554</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1748866358554</updated>
     </task>
     <task id="LOCAL-00002" summary="AJustes OFB e final Disocvery Services, API Gateway e Authorization Server">
       <option name="closed" value="true" />
@@ -680,7 +641,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756918759062</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="+ revision documents + start orchs">
+      <option name="closed" value="true" />
+      <created>1756921499413</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1756921499413</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

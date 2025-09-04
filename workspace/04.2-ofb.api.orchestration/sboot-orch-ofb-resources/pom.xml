@@ -12,10 +12,10 @@
 
 	<groupId>com.ofb</groupId>
 	<artifactId>sboot-orch-ofb-resources</artifactId>
-	<version>1.0.0-ofb</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>sboot-orch-ofb-resources</name>
-	<description>Project OFB - Resources</description>
+	<description>Project OFB - Orch Resources</description>
 
 	<properties>
 		<!-- Project default infos -->

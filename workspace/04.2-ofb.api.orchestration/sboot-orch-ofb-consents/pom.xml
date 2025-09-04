@@ -12,10 +12,10 @@
 
 	<groupId>com.ofb</groupId>
 	<artifactId>sboot-orch-ofb-consents</artifactId>
-	<version>1.0.0-ofb</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>sboot-orch-ofb-consents</name>
-	<description>Project OFB - Consents Resources</description>
+	<description>Project OFB - Orch Consents Resources</description>
 
 	<properties>
 		<!-- Project default infos -->
