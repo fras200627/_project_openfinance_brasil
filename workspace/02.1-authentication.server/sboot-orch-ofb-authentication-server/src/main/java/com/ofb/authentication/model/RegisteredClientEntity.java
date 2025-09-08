@@ -15,6 +15,8 @@ public class RegisteredClientEntity {
     @Id
     private String      id;
     private String      clientId;
+    private String      document;
+    private String      documentType;
     private Timestamp   clientIdIssuedAt;
     private String      clientSecret;
     private Timestamp   clientSecretExpiresAt;

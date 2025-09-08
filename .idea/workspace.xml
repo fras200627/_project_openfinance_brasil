@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision documents + start orchs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/consents_flow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/old/consents_flow.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/project-doc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/old/project-doc.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/model/RegisteredClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/model/RegisteredClientEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
     "Application.1-Discovery.executor": "Run",
     "Application.2-Gateway.executor": "Run",
     "Application.3-Auth.executor": "Debug",
-    "Application.3-Authentication.executor": "Run",
+    "Application.3-Authentication.executor": "Debug",
     "Application.3-Authorization.executor": "Debug",
     "Application.4-Clients-Business.executor": "Run",
     "Application.Accounts.executor": "Debug",
@@ -209,11 +207,11 @@
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services\sbatch-ofb-consents-expiration-control\src\main\java\com\ofb\batch\config\job" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs\old" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\sbatch_template\3895-java-spring-batch-aula04\files" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\06.batch.services" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__oracle" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\99-giuliana\spring-security-template\src\main\resources\keystore" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -256,14 +254,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00002" summary="AJustes OFB e final Disocvery Services, API Gateway e Authorization Server">
-      <option name="closed" value="true" />
-      <created>1749050625447</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1749050625447</updated>
     </task>
     <task id="LOCAL-00003" summary="Backup antes de atualizar para o novo ofb">
       <option name="closed" value="true" />
@@ -649,7 +639,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756921499413</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="+ revision documents + start orchs">
+      <option name="closed" value="true" />
+      <created>1756997680337</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1756997680337</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -696,7 +694,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
           <line>199</line>
           <option name="timeStamp" value="194" />
         </line-breakpoint>
@@ -721,17 +719,17 @@
           <option name="timeStamp" value="202" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
           <line>66</line>
           <option name="timeStamp" value="203" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
           <line>87</line>
           <option name="timeStamp" value="204" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.backend/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/04.1-ofb.api.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/service/orchestration/ConsentGetService.java</url>
           <line>100</line>
           <option name="timeStamp" value="205" />
         </line-breakpoint>
@@ -749,6 +747,26 @@
           <url>file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
           <line>49</line>
           <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/UserDetailsServiceImpl.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/UserDetailsServiceImpl.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="223" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

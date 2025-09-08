@@ -101,39 +101,51 @@ Lombok
 
 
 Authentication - Acesso ao PostConsents
+Schema: user
+Table:  oauth2_registered_client
+
 ---------------------------------------------------------------------------------
-Validação do Token: clientToken é baseado no cadastro de participantes (clients.business)
-O Participante deve estar ATIVO e DESBLOQUEADO
-O Participante deve ter as roles: client.ofb.read e client.ofb.write
-O Participante deve ter data de expiração válida.
+Process 01: Get ClientToken
+Mode: Basic Auth (Client Credentials is valid)
+O Participante deve estar ATIVO e DESBLOQUEADO (status: ACTIVE, LOCKED, INACTIVE)
+O Participante deve ter data de expiração válida. (client_secret_expires_at)
 * O client token gerado tem validade de 30 minutos.
+
+Process 02: Get Access Token
+Mode: Bearer Token is valid
+Verify a expiration DateTime
+
 
 Authorization - Fluxos de Open Finance
 ----------------------------------------------------------------------------------
-Validação do AccessToken
-    AcessToken Expirou? *
-    Informa o consentId?
-    Informa o client.document?
-    Informa o customer.document?
+Process 01: Authentication Mode: Bearer Token
+Process 02: Validação do AccessToken (extract claims)
+    AcessToken Expirou ? *
+    Informa o consentId ?
+    Informa o client.document ?
+    Informa o customer.document ?
     Possui as roles minimas:
         resurces_read
         customers_read
-* O access token gerado tem validade baseada no pedido do consentimento AUTHORISED:
-    - Validade Trimestral (data hoje + 03 meses e horário 23:59:59)
-    - Validade Semestral (data hoje + 06 meses e horário 23:59:59)
-    - Validade Anual (data hoje + 12 meses e horário 23:59:59)
-    - Validade Indefinida (fica definido com expiração em: 2099-21-31T23:59:59Z)
 
-Verificação do Particpante (client.document):
-    Existe na base de participantes?
-    Está ativo e desbloqueado?
-    Possui as roles necessarias: client.ofb.read e client.ofb.write?
+    * O access token gerado tem validade baseada no pedido do consentimento AUTHORISED:
+        - Validade Trimestral (data hoje + 03 meses e horário 23:59:59)
+        - Validade Semestral (data hoje + 06 meses e horário 23:59:59)
+        - Validade Anual (data hoje + 12 meses e horário 23:59:59)
+        - Validade Indefinida (fica definido para expiração em: 2099-21-31T23:59:59Z)
 
-Verificação do Client (customer.document)
+Passo 03: Verificação do Particpante (client.document):
+Validação do Token: clientToken é baseado no cadastro de participantes (clients.business)
+    O Parcipente existe na base de participantes ?
+    O Participante deve estar ATIVO e DESBLOQUEADO (status: ACTIVE, LOCKED, INACTIVE)
+    O Participante deve ter data de expiração válida. (client_secret_expires_at)
+    O Participanente possui as roles necessarias: client.ofb.read e client.ofb.write?
+
+Passo 04: Verificação do Client (customer.document)
     Customer existe na base de customers ?
     Customer está ativo e desbloqueado?
 
-Verificação do Consentimento (ofb.consent.id)
+Passo 05: Verificação do Consentimento (ofb.consent.id)
     Consentimento existe na base de consentimentos?
     Consentimento está com status AUTHORISED?
     Consentimento expirou ?
