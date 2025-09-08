@@ -1,7 +1,7 @@
 package com.ofb.authorization.controller;
 
-import com.ofb.resources.server.health.checks.handler.ActuatorApiDelegate;
-import com.ofb.resources.server.health.checks.model.Code200Template;
+import com.ofb.authorization.server.health.checks.handler.ActuatorApiDelegate;
+import com.ofb.authorization.server.health.checks.model.Code200Template;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

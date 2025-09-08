@@ -29,8 +29,6 @@
 		<exclude.generate.sources.tests>${project.build.directory}/generated-sources/ofb/authorization/src/test/java/org</exclude.generate.sources.tests>
 		<exclude.generate.sources.org>${project.build.directory}/generated-sources/ofb/authorization/src/main/java/org</exclude.generate.sources.org>
 		<openapi.input.sec.path>${project.basedir}/src/main/resources/openapi</openapi.input.sec.path>
-		<openapi.api.package.structure>com.ofb.authorization.server.handler</openapi.api.package.structure>
-		<openapi.model.package.structure>com.ofb.authorization.server.model</openapi.model.package.structure>
 		<openapi.output.path>target/generated-sources/ofb/authorization</openapi.output.path>
 
 		<!-- Project OFB Lib dependencies-->
@@ -317,13 +315,13 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/server/api-health-checks.yaml</inputSpec>
-							<apiPackage>com.ofb.resources.server.health.checks.handler</apiPackage>
-							<modelPackage>com.ofb.resources.server.health.checks.model</modelPackage>
+							<apiPackage>com.ofb.authorization.server.health.checks.handler</apiPackage>
+							<modelPackage>com.ofb.authorization.server.health.checks.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.resources.server.health.checks.handler</invokerpackage>
+								<invokerpackage>com.ofb.authorization.server.health.checks.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -339,8 +337,12 @@
 							</configOptions>
 						</configuration>
 					</execution>
+
+
+
+
 					<execution>
-						<id>generator-resources-authorization</id> <!-- It is not optional and must have a unique id -->
+						<id>generator-client-participants</id> <!-- It is not optional and must have a unique id -->
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -350,31 +352,125 @@
 							 OpenAPI Documentation for API Servers and API Clients in
 							 https://openapi-generator.tech/docs/generators/
 							 The 'spring' type generates a server package ++++++++++++++-->
-							<generatorName>spring</generatorName>
+							<generatorName>java</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-authorization-server.1.0.0.yaml</inputSpec>
-							<apiPackage>com.ofb.authorization.server.handler</apiPackage>
-							<modelPackage>com.ofb.authorization.server.model</modelPackage>
+							<inputSpec>${openapi.input.sec.path}/client/openapi-clients-business-server.yaml</inputSpec>
+							<apiPackage>com.ofb.authorization.client.participants.handler</apiPackage>
+							<modelPackage>com.ofb.authorization.client.participants.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.authorization.server..handler</invokerpackage>
-								<delegatePattern>true</delegatePattern>
-								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
-								<dateLibrary>java8</dateLibrary>
-								<useBeanValidation>true</useBeanValidation>
-								<performBeanValidation>true</performBeanValidation>
-								<openApiNullable>true</openApiNullable>
-								<documentationProvider>springdoc</documentationProvider>\
-								<library>spring-boot</library>
-								<useSpringBoot3>false</useSpringBoot3>
+								<invokerpackage>com.ofb.authorization.client.participants.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
 								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
 								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
-								<generatedConstructorWithRequiredArgs>true</generatedConstructorWithRequiredArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
 							</configOptions>
 						</configuration>
 					</execution>
+
+
+					<execution>
+						<id>generator-client-consents</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-consents-resources.3.2.0.yaml</inputSpec>
+							<apiPackage>com.ofb.authorization.client.consents.handler</apiPackage>
+							<modelPackage>com.ofb.authorization.client.consents.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.authorization.client.consents.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
+
+					<execution>
+						<id>generator-resources</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-resources-server.3.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.authorization.client.resources.handler</apiPackage>
+							<modelPackage>com.ofb.authorization.client.resources.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.authorization.client.corporate.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>generator-resources-corporate</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-resources-corporate.1.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.authorization.client.resources.corporate.handler</apiPackage>
+							<modelPackage>com.ofb.authorization.client.resources.corporate.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.authorization.client.resources.corporate.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
 				</executions>
 			</plugin>
 			<plugin>
