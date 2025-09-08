@@ -12,7 +12,7 @@
         <module name="sboot-orch-ofb-api-gateway" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
-      <profile name="Annotation profile for sbatch-ofb-consents-expiration-control" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -27,6 +27,7 @@
         <module name="sboot-listener-ofb-consents-cancellation-services" />
         <module name="sboot-atom-ofb-clients-business" />
         <module name="sboot-orch-ofb-customers" />
+        <module name="sboot-atom-ofb-resources" />
         <module name="sbatch-ofb-consents-expiration-control" />
         <module name="sboot-orch-ofb-resources" />
         <module name="sbatch-ofb-consents-approval-control" />
@@ -51,7 +52,6 @@
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
       <module name="sboot-atom-ofb-consents" target="17" />
       <module name="sboot-atom-ofb-customers" target="17" />
-      <module name="sboot-atom-ofb-resources" target="17" />
       <module name="spring-batch-dicas" target="17" />
       <module name="spring-security-template" target="17" />
       <module name="tican-audit-services-api" target="17" />

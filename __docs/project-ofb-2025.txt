@@ -120,6 +120,7 @@ Authorization - Fluxos de Open Finance
 ----------------------------------------------------------------------------------
 Process 01: Authentication Mode: Bearer Token
 Process 02: Validação do AccessToken (extract claims)
+Database: none
     AcessToken Expirou ? *
     Informa o consentId ?
     Informa o client.document ?
@@ -136,16 +137,19 @@ Process 02: Validação do AccessToken (extract claims)
 
 Passo 03: Verificação do Particpante (client.document):
 Validação do Token: clientToken é baseado no cadastro de participantes (clients.business)
+Database: MySQL or Client Business API
     O Parcipente existe na base de participantes ?
     O Participante deve estar ATIVO e DESBLOQUEADO (status: ACTIVE, LOCKED, INACTIVE)
     O Participante deve ter data de expiração válida. (client_secret_expires_at)
     O Participanente possui as roles necessarias: client.ofb.read e client.ofb.write?
 
 Passo 04: Verificação do Client (customer.document)
+Database: Oracle or Customers API
     Customer existe na base de customers ?
     Customer está ativo e desbloqueado?
 
 Passo 05: Verificação do Consentimento (ofb.consent.id)
+Database: Oracle or ConsentsAPI
     Consentimento existe na base de consentimentos?
     Consentimento está com status AUTHORISED?
     Consentimento expirou ?

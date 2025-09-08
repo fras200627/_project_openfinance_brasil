@@ -75,6 +75,7 @@
         <option value="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-consents/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.2-ofb.api.orchestration/sboot-orch-ofb-accounts/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.participants/sboot-atom-ofb-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.1-ofb.api.atoms/sboot-atom-ofb-resources/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
