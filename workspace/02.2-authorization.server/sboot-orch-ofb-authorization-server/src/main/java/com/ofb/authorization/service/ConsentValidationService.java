@@ -1,5 +1,6 @@
 package com.ofb.authorization.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,8 +9,10 @@ import org.springframework.stereotype.Service;
  *     Consentimento está com status AUTHORISED?
  *     Consentimento expirou ?
  */
-@Service
-public class ConsentsValidationService {
+@Service @Slf4j
+public class ConsentValidationService {
 
-    /// Use API COnsents
+    public void consentValidate(Object objectData, Object referenceId) {
+    }
+
 }

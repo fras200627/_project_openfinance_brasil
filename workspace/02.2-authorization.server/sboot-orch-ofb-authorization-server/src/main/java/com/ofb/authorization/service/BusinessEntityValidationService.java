@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.ofb.authorization.client.consents.model.*;
 import com.ofb.authorization.client.participants.handler.ClientsBusinessResourcesApi;
 import com.ofb.authorization.client.participants.model.OAuth2ClientResponse;
-import com.ofb.authorization.model.ResponseValidateConsentModel;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
@@ -13,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.ofb.authorization.client.consents.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -21,72 +19,62 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * Process 02: Validação do AccessToken (extract claims)
- *     AcessToken Expirou ? *
- *     Informa o consentId ?
- *     Informa o client.document ?
- *     Informa o customer.document ?
- *     Possui as roles minimas:
- *         resurces_read
- *         customers_read
- *
- *     * O access token gerado tem validade baseada no pedido do consentimento AUTHORISED:
- *         - Validade Trimestral (data hoje + 03 meses e horário 23:59:59)
- *         - Validade Semestral (data hoje + 06 meses e horário 23:59:59)
- *         - Validade Anual (data hoje + 12 meses e horário 23:59:59)
- *         - Validade Indefinida (fica definido para expiração em: 2099-21-31T23:59:59Z)
+ * Passo 03: Verificação ds BusinessEntity (Participante indicado no client.document):
+ *     O Participante existe na base de participantes ?
+ *     O Participante deve estar ATIVO e DESBLOQUEADO (status: ACTIVE, LOCKED, INACTIVE)
+ *     O Participante deve ter data de expiração válida. (client_secret_expires_at)
+ *     O Participante possui as roles necessarias: client.ofb.read e client.ofb.write?
  */
 @Service @Slf4j
-public class ParticipantValidationService {
+public class BusinessEntityValidationService {
 
-    @Value("${app.paths.clients.registered-clients}")
-    private String pathRegisteredClients;
+    @Value("${app.parameters.consents.validate.check-if-consent-already-exists}")
+    private boolean EXECUTE_CHECK_IF_CONSENTS_ALREADY_EXISTS;
 
-    @Autowired
-    HttpServletRequest request;
+    @Value("${app.parameters.execute-throw-immediately}")
+    private boolean EXECUTE_THROW_IMMEDIATELY;
 
-    @Autowired
-    private ClientsBusinessResourcesApi registeredClientsResourcesApi;
+    @Value("${app.parameters.consents.organization}")
+    private String CONSENTS_ORGANIZATION;
 
-    /**
-     * Validates a BusinessEntity for consent information
-     * https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/219480491/Orienta+es+-+DC+Consentimento
-     * <br>
-     * @param objectData "Required (values described below)"
-     * </p>The objectData parameter used in the validate function must contain valid 'Document' information for the BusinessEntity requesting consent creation.
-     * <p> The objectData can be:
-     * <p> - String -->> passing the 'Document' directly
-     * <p> - CreateConsent Object -->> where CreateConsent.getData().getBusiness().getDocument().getIdentification() is valid.
-     * <p> - CreateConsentData Object -->> where CreateConsentData().getBusiness().getDocument().getIdentification() is valid.
-     * <p> - BusinessEntity Object -->> where BusinessEntity.getDocument().getIdentification() is valid. * <p> - BusinessEntityDocument object -->> where BusinessEntityDocument().getIdentification() is valid.
-     * <br>
-     * @param referenceId "Optional (may be null)"
-     * <p>The referenceId parameter is used to set a 'Key' value, if needed. Ex.: consentId
-     * <p><b>NOTE: THIS METHOD DOES NOT USE THIS PARAMETER</b></p>
-     * <br>
-     * @param executeThrowImmediately "Required (values: true or false)"
-     * <p>The executeThrowImmediately parameter is used to interrupt method execution
-     * throwing a 'ConsentResponseErrorException' exception
-     * <br>
-     * @return ResponseValidateConsentModel
-     * <p>Returns ObjectResponse with results for validation
-     * <p><b>Note</b></p>
-     * <p>in the 'objectData' field, returns an OAuth2ClientResponse object
-     * <br>
-     * @throws UnprocessedEntityException
-     * <p>if an error occurs while trying to invoke the method<p></p>
-     */
-    public ResponseValidateConsentModel validateBusinessEntityInformation(Object objectData, Object referenceId, Boolean executeThrowImmediately) {
+    @Value("${app.paths.clients.consents-api}")
+    private String PATH_CONSENTS_API;
 
+    @Value("${app.paths.clients.participants-api}")
+    private String PATH_PARTICIPANTS_API;
+
+    @Value("${app.paths.clients.customers-api}")
+    private String PATH_CUSTOMERS_API;
+
+    @Value("${app.paths.clients.resources-api}")
+    private String PATH_RESOURCES_API;
+
+    private final HttpServletRequest request;
+    private final ClientsBusinessResourcesApi registeredClientsResourcesApi = null;
+    private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+    private String registeredClientName = "";
+    private OAuth2ClientResponse registeredClient = new OAuth2ClientResponse();
+
+    public BusinessEntityValidationService(HttpServletRequest request, ClientsBusinessResourcesApi registeredClientsResourcesApi) {
+        this.request = request;
         ///  RegisteredClients API parameters
-        registeredClientsResourcesApi.getApiClient().setBasePath(pathRegisteredClients);
-        registeredClientsResourcesApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
+        this.registeredClientsResourcesApi.getApiClient().setBasePath(PATH_PARTICIPANTS_API);
+        this.registeredClientsResourcesApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
+    }
 
-        /// Registered Client validate steps
-        String registeredClientName                       = "";
-        OAuth2ClientResponse registeredClient             = new OAuth2ClientResponse();
-        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+    public void businessEntityValidate(Object objectData, Object referenceId) {
+        this.businessEntityObjectParamsValidate(objectData, referenceId);
+        this.businessEntityIfExistsValidate(objectData, referenceId);
+        this.businessEntityStatusValidate(objectData, referenceId);
+        this.businessEntityExpirationValidate(objectData, referenceId);
+        this.businessEntitySecurityScopesValidate(objectData, referenceId);
 
+        if (!listResponseErrors.isEmpty()) {
+            throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
+        }
+    }
+
+    public void businessEntityObjectParamsValidate(Object objectData, Object referenceId) {
         ///  ObjectData parameter validate
         try {
             if (objectData == null) {
@@ -95,13 +83,9 @@ public class ParticipantValidationService {
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("ObjectData is null. ObjectData is mandatory and must inform the BusinessEntity document")
                         .build());
-                if (executeThrowImmediately) {
+                if (EXECUTE_THROW_IMMEDIATELY) {
                     throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
                 }
-                return ResponseValidateConsentModel.builder()
-                        .errorsListed(true)
-                        .responseErrorsList(listResponseErrors)
-                        .build();
             } else if (objectData instanceof String) {
                 registeredClientName = (String) objectData;
             } else if (objectData instanceof CreateConsent) {
@@ -121,15 +105,14 @@ public class ParticipantValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("BusinessEntity verification error. Business Entity is mandatory and must inform the BusinessEntity document")
                     .build());
-            if (executeThrowImmediately) {
+            if (EXECUTE_THROW_IMMEDIATELY) {
                 throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
-            return ResponseValidateConsentModel.builder()
-                    .errorsListed(true)
-                    .objectException(e)
-                    .responseErrorsList(listResponseErrors)
-                    .build();
         }
+
+    }
+
+    public void businessEntityIfExistsValidate(Object objectData, Object referenceId) {
 
         /// Search Registered Client
         try {
@@ -141,13 +124,9 @@ public class ParticipantValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
                     .build());
-            if (executeThrowImmediately) {
+            if (EXECUTE_THROW_IMMEDIATELY) {
                 throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
             }
-            return ResponseValidateConsentModel.builder()
-                    .errorsListed(true)
-                    .responseErrorsList(listResponseErrors)
-                    .build();
         } catch (Exception e) {
             log.error(e.getMessage());
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -155,15 +134,19 @@ public class ParticipantValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error (API not active) occurred while checking the requested Registered Client: '" + registeredClientName + "'")
                     .build());
-            if (executeThrowImmediately) {
+            if (EXECUTE_THROW_IMMEDIATELY) {
                 throw new InternalErrorException(new Gson().toJson(listResponseErrors));
             }
-            return ResponseValidateConsentModel.builder()
-                    .errorsListed(true)
-                    .responseErrorsList(listResponseErrors)
-                    .objectException(e)
-                    .build();
         }
+    }
+
+    public void businessEntityStatusValidate(Object objectData, Object referenceId) {
+    }
+
+    public void businessEntityExpirationValidate(Object objectData, Object referenceId) {
+    }
+
+    public void businessEntitySecurityScopesValidate(Object objectData, Object referenceId) {
 
         ///  Registered Client return validate
         if (registeredClient == null) {
@@ -172,13 +155,6 @@ public class ParticipantValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
                     .build());
-            if (executeThrowImmediately) {
-                throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-            }
-            return ResponseValidateConsentModel.builder()
-                    .errorsListed(true)
-                    .responseErrorsList(listResponseErrors)
-                    .build();
         } else {
             if (registeredClient.getStatus() != null && !registeredClient.getStatus().equals("ACTIVE")) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -188,9 +164,6 @@ public class ParticipantValidationService {
                                 "' (" + registeredClient.getClientName() + ") is not authorized. Current status is '" +
                                 registeredClient.getStatus() + "' and is not valid at this time")
                         .build());
-                if (executeThrowImmediately) {
-                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-                }
             }
             if (registeredClient.getSecurityScope() != null && !registeredClient.getSecurityScope().contains("client.ofb.read")) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -200,9 +173,6 @@ public class ParticipantValidationService {
                                 "' (" + registeredClient.getClientName() +
                                 ") does not have scope/grant 'ofb.client.read'.")
                         .build());
-                if (executeThrowImmediately) {
-                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-                }
             }
             if (registeredClient.getSecurityScope() != null && !registeredClient.getSecurityScope().contains("client.ofb.write")) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -212,17 +182,8 @@ public class ParticipantValidationService {
                                 "' (" + registeredClient.getClientName() +
                                 ") does not have scope/grant 'ofb.client.write'.")
                         .build());
-                if (executeThrowImmediately) {
-                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-                }
             }
         }
 
-        return ResponseValidateConsentModel.builder()
-                .errorsListed(!listResponseErrors.isEmpty() ? true : false)
-                .objectData(registeredClientName)
-                .responseErrorsList(listResponseErrors)
-                .build();
     }
-
 }

@@ -3,14 +3,11 @@ package com.ofb.authorization.service;
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
-import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,21 +30,30 @@ import java.util.List;
 @Service
 public class AccessTokenValidationService {
 
-    @Autowired
-    private JwtDecoder jwtDecoder;
+    private final JwtDecoder jwtDecoder;
+    private final Gson gson;
+    private final List<ResponseErrorsInnerTemplate> listResponseErrors;
+
+    public AccessTokenValidationService(Gson gson, JwtDecoder jwtDecoder, List<ResponseErrorsInnerTemplate> listResponseErrors) {
+        this.jwtDecoder = jwtDecoder;
+        this.listResponseErrors = new ArrayList<>();
+        this.gson = new Gson();
+    }
 
     public void accessTokenValidate(String authorization) {
+        this.accessTokenConsentIdValidate(authorization);
+        this.accessTokenClientDocumentValidate(authorization);
+        this.accessTokenCustomerDocumentValidate(authorization);
+        this.accessTokenScopeValidate(authorization);
+        this.accessTokenExpirationDateTimeValidate();
 
-        Gson gson = new Gson();
+        if (!listResponseErrors.isEmpty()) {
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+    }
+
+    public void accessTokenConsentIdValidate(String authorization) {
         String consentId;
-        String clientDocument;
-        String customerDocument;
-        String scope;
-        String expiration;
-
-        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
-
-        /// Extract claim ofb.consent.id value
         try {
             consentId = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("ofb.consent.id").toString();
         } catch (Exception e) {
@@ -57,8 +63,10 @@ public class AccessTokenValidationService {
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
         }
+    }
 
-        /// Extract claim client.document value
+    public void accessTokenClientDocumentValidate(String authorization) {
+        String clientDocument;
         try {
             clientDocument = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("client.document").toString();
         } catch (Exception e) {
@@ -68,8 +76,10 @@ public class AccessTokenValidationService {
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
         }
+    }
 
-        /// Extract claim customer.document value
+    public void accessTokenCustomerDocumentValidate(String authorization) {
+        String customerDocument;
         try {
             customerDocument = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("customer.document").toString();
         } catch (Exception e) {
@@ -79,8 +89,10 @@ public class AccessTokenValidationService {
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
         }
+    }
 
-        /// Extract claim scope values
+    public void accessTokenScopeValidate(String authorization) {
+        String scope;
         try {
             scope = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("scope").toString();
         } catch (Exception e) {
@@ -90,8 +102,10 @@ public class AccessTokenValidationService {
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
         }
+    }
 
-        /// Extract claim expiration value
+    public void accessTokenExpirationDateTimeValidate(String authorization) {
+        String expiration;
         try {
             expiration = jwtDecoder.decode(authorization.replace("Bearer ", "")).getClaim("expiration").toString();
 //            if (!OffsetDateTime.parse(responseConsentRead.getData().getExpirationDateTime()).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
@@ -111,10 +125,6 @@ public class AccessTokenValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
-        }
-
-        if (!listResponseErrors.isEmpty()) {
-            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
     }
 
