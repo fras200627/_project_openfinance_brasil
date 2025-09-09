@@ -28,6 +28,28 @@ public class CustomerGetPersonalIdentificationsService {
     @Autowired
     private PersonalDataRepository personalDataRepository;
 
+    public PersonalDataModel getCustomerData(String authorization) {
+
+        Gson gson = new Gson();
+        String personalId = "";
+        PersonalDataModel personalData = null;
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+
+        try {
+            personalData = personalDataRepository.findById(personalId).get();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
+                    .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
+
+        return personalData;
+
+    }
+
     public ResponsePersonalCustomersIdentification customersGetPersonalIdentifications(String authorization,
                                                                                        Integer page,
                                                                                        Integer pageSize) {
@@ -132,6 +154,7 @@ public class CustomerGetPersonalIdentificationsService {
         List<PersonalIdentificationData> personalIdentificationData = new ArrayList<>();
         personalIdentificationData.add(PersonalIdentificationData.builder()
                 .personalId(personalData.getId())
+                .personalStatus(personalData.getStatus())
                 .birthDate(personalData.getBirthDate())
                 .brandName("none")
                 .civilName(personalData.getCivilName())

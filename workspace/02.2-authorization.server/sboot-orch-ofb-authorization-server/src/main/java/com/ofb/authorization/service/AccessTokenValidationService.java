@@ -45,7 +45,7 @@ public class AccessTokenValidationService {
         this.accessTokenClientDocumentValidate(authorization);
         this.accessTokenCustomerDocumentValidate(authorization);
         this.accessTokenScopeValidate(authorization);
-        this.accessTokenExpirationDateTimeValidate();
+        this.accessTokenExpirationDateTimeValidate(authorization);
 
         if (!listResponseErrors.isEmpty()) {
             throw new BadRequestException(gson.toJson(listResponseErrors));

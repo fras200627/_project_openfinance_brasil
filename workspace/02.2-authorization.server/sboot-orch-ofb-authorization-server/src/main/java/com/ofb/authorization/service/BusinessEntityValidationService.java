@@ -49,141 +49,78 @@ public class BusinessEntityValidationService {
     @Value("${app.paths.clients.resources-api}")
     private String PATH_RESOURCES_API;
 
-    private final HttpServletRequest request;
-    private final ClientsBusinessResourcesApi registeredClientsResourcesApi = null;
-    private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
-    private String registeredClientName = "";
-    private OAuth2ClientResponse registeredClient = new OAuth2ClientResponse();
-
-    public BusinessEntityValidationService(HttpServletRequest request, ClientsBusinessResourcesApi registeredClientsResourcesApi) {
-        this.request = request;
-        ///  RegisteredClients API parameters
-        this.registeredClientsResourcesApi.getApiClient().setBasePath(PATH_PARTICIPANTS_API);
-        this.registeredClientsResourcesApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
-    }
+    @Autowired private HttpServletRequest request;
+    @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi = null;
 
     public void businessEntityValidate(Object objectData, Object referenceId) {
-        this.businessEntityObjectParamsValidate(objectData, referenceId);
-        this.businessEntityIfExistsValidate(objectData, referenceId);
-        this.businessEntityStatusValidate(objectData, referenceId);
-        this.businessEntityExpirationValidate(objectData, referenceId);
-        this.businessEntitySecurityScopesValidate(objectData, referenceId);
 
-        if (!listResponseErrors.isEmpty()) {
-            throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-        }
-    }
+        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+        String registeredClientName = "";
+        OAuth2ClientResponse returnData = new OAuth2ClientResponse();
 
-    public void businessEntityObjectParamsValidate(Object objectData, Object referenceId) {
-        ///  ObjectData parameter validate
-        try {
-            if (objectData == null) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Consent Business Entity")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("ObjectData is null. ObjectData is mandatory and must inform the BusinessEntity document")
-                        .build());
-                if (EXECUTE_THROW_IMMEDIATELY) {
-                    throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-                }
-            } else if (objectData instanceof String) {
-                registeredClientName = (String) objectData;
-            } else if (objectData instanceof CreateConsent) {
-                registeredClientName = ((CreateConsent) objectData).getData().getBusinessEntity().getDocument().getIdentification();
-            } else if (objectData instanceof CreateConsentData) {
-                registeredClientName = ((CreateConsentData) objectData).getBusinessEntity().getDocument().getIdentification();
-            } else if (objectData instanceof BusinessEntity) {
-                registeredClientName = ((BusinessEntity) objectData).getDocument().getIdentification();
-            } else if (objectData instanceof BusinessEntityDocument) {
-                registeredClientName = ((BusinessEntityDocument) objectData).getIdentification();
-            } else if (objectData instanceof BusinessEntityExtensions) {
-                registeredClientName = ((BusinessEntityExtensions) objectData).getDocument().getIdentification();
-            }
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("BusinessEntity verification error. Business Entity is mandatory and must inform the BusinessEntity document")
-                    .build());
-            if (EXECUTE_THROW_IMMEDIATELY) {
-                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
-            }
-        }
+        registeredClientsResourcesApi.getApiClient().setBasePath(PATH_PARTICIPANTS_API);
+        registeredClientsResourcesApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
 
-    }
-
-    public void businessEntityIfExistsValidate(Object objectData, Object referenceId) {
-
-        /// Search Registered Client
         try {
             registeredClientName = request.getUserPrincipal().getName();
-            registeredClient = registeredClientsResourcesApi.getFindByClientId(registeredClientName);
+            returnData = registeredClientsResourcesApi.getFindByClientId(registeredClientName);
         } catch (NoSuchElementException e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
                     .build());
-            if (EXECUTE_THROW_IMMEDIATELY) {
-                throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
-            }
         } catch (Exception e) {
-            log.error(e.getMessage());
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity error")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail("An error (API not active) occurred while checking the requested Registered Client: '" + registeredClientName + "'")
                     .build());
-            if (EXECUTE_THROW_IMMEDIATELY) {
-                throw new InternalErrorException(new Gson().toJson(listResponseErrors));
-            }
         }
-    }
 
-    public void businessEntityStatusValidate(Object objectData, Object referenceId) {
-    }
+        returnData.getIsAccountExpired();
+        returnData.getIsAccountLocked();
+        returnData.getIsCredentialsExpired();
+        returnData.getIsEnabled();
 
-    public void businessEntityExpirationValidate(Object objectData, Object referenceId) {
-    }
-
-    public void businessEntitySecurityScopesValidate(Object objectData, Object referenceId) {
-
-        ///  Registered Client return validate
-        if (registeredClient == null) {
+        if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Consent Business Entity")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
                     .build());
-        } else {
-            if (registeredClient.getStatus() != null && !registeredClient.getStatus().equals("ACTIVE")) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Consent Business Entity")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("Registered Client '" + registeredClientName +
-                                "' (" + registeredClient.getClientName() + ") is not authorized. Current status is '" +
-                                registeredClient.getStatus() + "' and is not valid at this time")
-                        .build());
-            }
-            if (registeredClient.getSecurityScope() != null && !registeredClient.getSecurityScope().contains("client.ofb.read")) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Consent Business Entity")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("Registered Client '" + registeredClientName +
-                                "' (" + registeredClient.getClientName() +
-                                ") does not have scope/grant 'ofb.client.read'.")
-                        .build());
-            }
-            if (registeredClient.getSecurityScope() != null && !registeredClient.getSecurityScope().contains("client.ofb.write")) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Consent Business Entity")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                        .detail("Registered Client '" + registeredClientName +
-                                "' (" + registeredClient.getClientName() +
-                                ") does not have scope/grant 'ofb.client.write'.")
-                        .build());
-            }
+        }
+        if (returnData.getStatus() != null && !returnData.getStatus().equals("ACTIVE")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Consent Business Entity")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Registered Client '" + registeredClientName +
+                            "' (" + returnData.getClientName() + ") is not authorized. Current status is '" +
+                            returnData.getStatus() + "' and is not valid at this time")
+                    .build());
+        }
+        if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.read")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Consent Business Entity")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Registered Client '" + registeredClientName +
+                            "' (" + returnData.getClientName() +
+                            ") does not have scope/grant 'ofb.client.read'.")
+                    .build());
+        }
+        if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.write")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Consent Business Entity")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("Registered Client '" + registeredClientName +
+                            "' (" + returnData.getClientName() +
+                            ") does not have scope/grant 'ofb.client.write'.")
+                    .build());
         }
 
+        if (!listResponseErrors.isEmpty()) {
+            throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
+        }
     }
+
 }

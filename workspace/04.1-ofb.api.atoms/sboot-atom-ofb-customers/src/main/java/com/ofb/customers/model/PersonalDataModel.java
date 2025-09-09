@@ -20,6 +20,9 @@ public class PersonalDataModel {
     @Column(name = "PERSONALID")
     private String id;
 
+    @Column(name = "STATUS")
+    private String status;
+
     @Column(name = "CPFNUMBER")
     private String CPFNumber;
 
