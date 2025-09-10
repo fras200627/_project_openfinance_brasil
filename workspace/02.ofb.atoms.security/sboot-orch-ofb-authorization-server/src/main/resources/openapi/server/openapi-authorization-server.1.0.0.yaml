@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: API Resources - Open Finance Brasil
+  description: ''
+  version: 1.0.0
+security:
+  - bearerAuth: []
+tags:
+  - name: AuthorizationValidate
+paths:
+  /authorization/accessTokenValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: accessTokenValidate
+      description: 'description'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseValidate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    ResponseAuthorizationValidate:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ValidateResult'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ValidateResult:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          minLength: 1
+          maxLength: 2048
+          example: "OK"
+    ResponseAuthorizationError:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                maxLength: 2048
+        meta:
+          $ref: '#/components/schemas/Meta'
+    Meta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - requestDateTime
+      properties:
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          example: '2021-05-21T08:30:00Z'
+
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description: 'Somente AccessToken são válidos'
+      required: true
+      schema:
+        type: string
+        maxLength: 2048
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+
+  responses:
+    ResponseValidate:
+      description: 'description'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseAuthorizationValidate'
+    BadRequest:
+      description: 'O AccessToken informado possui informações inválidas'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseAuthorizationError'

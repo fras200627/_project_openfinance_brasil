@@ -86,13 +86,17 @@ spring:
 app:
   paths:
     clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
-  consents:
-    organization: 'Banco TCN - OpenFinance Brasil'
-    consent-id-urn-use: 'bancotcn'
-    validate:
-      check-if-consent-already-exists: false
-      execute-throw-immediately: false
+      consents-api: 'http://localhost:3001/ofb-consents/'
+      customers-api: 'http://localhost:3001/ofb-customers/'
+      participants-api: 'http://localhost:3001/ofb-business-entities/'
+      resources-api: 'http://localhost:3001/ofb-resources/'
+  parameters:
+    consents:
+      organization: 'Banco TCN - OpenFinance Brasil'
+      consent-id-urn-use: 'bancotcn'
+      validate:
+        check-if-consent-already-exists: false
+    execute-throw-immediately: false
 
 eureka:
   client:
@@ -154,13 +158,17 @@ spring:
 app:
   paths:
     clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
-  consents:
-    organization: 'Banco TCN - OpenFinance Brasil'
-    consent-id-urn-use: 'bancotcn'
-    validate:
-      check-if-consent-already-exists: false
-      execute-throw-immediately: false
+      consents-api: 'http://localhost:3001/ofb-consents/'
+      customers-api: 'http://localhost:3001/ofb-customers/'
+      participants-api: 'http://localhost:3001/ofb-business-entities/'
+      resources-api: 'http://localhost:3001/ofb-resources/'
+  parameters:
+    consents:
+      organization: 'Banco TCN - OpenFinance Brasil'
+      consent-id-urn-use: 'bancotcn'
+      validate:
+        check-if-consent-already-exists: false
+    execute-throw-immediately: false
 
 eureka:
   client:

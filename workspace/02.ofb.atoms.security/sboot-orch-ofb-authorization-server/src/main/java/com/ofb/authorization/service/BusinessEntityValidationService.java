@@ -4,16 +4,23 @@ import com.google.gson.Gson;
 import com.ofb.authorization.client.consents.model.*;
 import com.ofb.authorization.client.participants.handler.ClientsBusinessResourcesApi;
 import com.ofb.authorization.client.participants.model.OAuth2ClientResponse;
+import com.ofb.authorization.server.authorizations.model.Meta;
+import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
+import com.ofb.authorization.server.authorizations.model.ValidateResult;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -49,20 +56,32 @@ public class BusinessEntityValidationService {
     @Value("${app.paths.clients.resources-api}")
     private String PATH_RESOURCES_API;
 
-    @Autowired private HttpServletRequest request;
+    @Autowired private JwtDecoder jwtDecoder;
+    private com.nimbusds.jose.shaded.gson.Gson gson = new com.nimbusds.jose.shaded.gson.Gson();
+    private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+
     @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi = null;
 
-    public void businessEntityValidate(Object objectData, Object referenceId) {
+    public ResponseAuthorizationValidate businessEntityValidate(String accessToken) {
 
-        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
-        String registeredClientName = "";
         OAuth2ClientResponse returnData = new OAuth2ClientResponse();
+        String clientDocument = null;
 
         registeredClientsResourcesApi.getApiClient().setBasePath(PATH_PARTICIPANTS_API);
-        registeredClientsResourcesApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
+        registeredClientsResourcesApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
 
         try {
-            registeredClientName = request.getUserPrincipal().getName();
+            clientDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization inválid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (document of Participant) verify.")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        try {
             returnData = registeredClientsResourcesApi.getFindByClientId(registeredClientName);
         } catch (NoSuchElementException e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
