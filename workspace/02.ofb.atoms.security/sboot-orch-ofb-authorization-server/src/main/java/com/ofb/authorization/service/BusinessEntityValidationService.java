@@ -1,7 +1,6 @@
 package com.ofb.authorization.service;
 
 import com.google.gson.Gson;
-import com.ofb.authorization.client.consents.model.*;
 import com.ofb.authorization.client.participants.handler.ClientsBusinessResourcesApi;
 import com.ofb.authorization.client.participants.model.OAuth2ClientResponse;
 import com.ofb.authorization.server.authorizations.model.Meta;
@@ -9,8 +8,6 @@ import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationVa
 import com.ofb.authorization.server.authorizations.model.ValidateResult;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
-import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
-import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -57,7 +53,7 @@ public class BusinessEntityValidationService {
     private String PATH_RESOURCES_API;
 
     @Autowired private JwtDecoder jwtDecoder;
-    private com.nimbusds.jose.shaded.gson.Gson gson = new com.nimbusds.jose.shaded.gson.Gson();
+    private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
 
     @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi = null;
@@ -74,7 +70,7 @@ public class BusinessEntityValidationService {
             clientDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization inválid (in getClaim AccessToken")
+                    .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in clientDocument (document of Participant) verify.")
                     .build());
@@ -82,63 +78,70 @@ public class BusinessEntityValidationService {
         }
 
         try {
-            returnData = registeredClientsResourcesApi.getFindByClientId(registeredClientName);
+            returnData = registeredClientsResourcesApi.getFindByClientDocument(clientDocument);
         } catch (NoSuchElementException e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (document of Participant) verify.")
                     .build());
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An error (API not active) occurred while checking the requested Registered Client: '" + registeredClientName + "'")
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (document of Participant) verify.")
                     .build());
         }
 
-        returnData.getIsAccountExpired();
-        returnData.getIsAccountLocked();
-        returnData.getIsCredentialsExpired();
-        returnData.getIsEnabled();
+//        returnData.getIsAccountExpired();
+//        returnData.getIsAccountLocked();
+//        returnData.getIsCredentialsExpired();
+//        returnData.getIsEnabled();
 
         if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client '" + registeredClientName + "' does not exist in the OFB registered client database")
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (Participant not exists) verify.")
                     .build());
         }
         if (returnData.getStatus() != null && !returnData.getStatus().equals("ACTIVE")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client '" + registeredClientName +
-                            "' (" + returnData.getClientName() + ") is not authorized. Current status is '" +
-                            returnData.getStatus() + "' and is not valid at this time")
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (Participant must be ACTIVE) verify.")
                     .build());
         }
         if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.read")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client '" + registeredClientName +
-                            "' (" + returnData.getClientName() +
-                            ") does not have scope/grant 'ofb.client.read'.")
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (Participant must be role client.ofb.read) verify.")
                     .build());
         }
         if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.write")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client '" + registeredClientName +
-                            "' (" + returnData.getClientName() +
-                            ") does not have scope/grant 'ofb.client.write'.")
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (Participant must be role client.ofb.write) verify.")
+                    .build());;
+        }
+        if (returnData.getSecurityScope() != null && !returnData.getIsCredentialsExpired().equals("true")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in clientDocument (Participant must be secret password not expired) verify.")
                     .build());
         }
 
-        if (!listResponseErrors.isEmpty()) {
-            throw new UnprocessedEntityException(new Gson().toJson(listResponseErrors));
+        if (listResponseErrors.isEmpty()) {
+            return ResponseAuthorizationValidate.builder()
+                    .data(ValidateResult.builder()
+                            .status("BusinessEntity (in Authorization Service) successfully validate.").build())
+                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
+                    .build();
+        } else {
+            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
     }
 

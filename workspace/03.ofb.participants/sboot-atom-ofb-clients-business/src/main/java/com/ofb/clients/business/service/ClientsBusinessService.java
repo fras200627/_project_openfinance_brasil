@@ -60,6 +60,16 @@ public class ClientsBusinessService {
             throw new InternalErrorException("Client Name= [" + client_name + "] not found! Check and Try Again.");
         }
     }
+
+    public OAuth2ClientResponse findByClientDocument(String client_document) {
+        try {
+            OAuth2ClientResponse result = ClientsBusinessMapper.INSTANCE.entityToResponse(repository.findByClientDocument(client_document));
+            //messageService.sendMessageAuditTemplate(request);
+            return result;
+        } catch (Exception ex) {
+            throw new InternalErrorException("Client Name= [" + client_document + "] not found! Check and Try Again.");
+        }
+    }
     
     public List<OAuth2ClientResponse> findAll() {
         List<OAuth2ClientResponse> result = ClientsBusinessMapper.INSTANCE.listEntityToListResponse(repository.findAll(Sort.by(Sort.Direction.ASC, "id")));

@@ -40,6 +40,9 @@ public class ClientsBusinessEntity implements Serializable {
     @Column(name = "clientId")
     private String clientId;
 
+    @Column(name = "document")
+    private String document;
+
     @Column(name = "clientIdIssuedAt")
     private Date clientIdIssuedAt;
 

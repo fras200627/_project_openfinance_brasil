@@ -3,6 +3,7 @@ package com.ofb.authorization.controller;
 import com.ofb.authorization.server.authorizations.handler.AuthorizationApiDelegate;
 import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
 import com.ofb.authorization.service.AccessTokenValidationService;
+import com.ofb.authorization.service.BusinessEntityValidationService;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -22,8 +23,16 @@ public class AuthorizationApiControllerImpl implements AuthorizationApiDelegate 
     @Autowired
     private AccessTokenValidationService accessTokenValidationService;
 
+    @Autowired
+    private BusinessEntityValidationService businessEntityValidationService;
+
     @Override
     public ResponseEntity<ResponseAuthorizationValidate> accessTokenValidate(String authorization) {
         return new ResponseEntity<>(accessTokenValidationService.accessTokenValidate(authorization), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ResponseAuthorizationValidate> businessEntityValidate(String authorization) {
+        return new ResponseEntity<>(businessEntityValidationService.businessEntityValidate(authorization), HttpStatus.OK);
     }
 }

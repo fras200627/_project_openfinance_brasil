@@ -40,6 +40,7 @@ public interface ClientsBusinessMapper {
 
     @Mapping(target = "registeredId",               source = "source.id")
     @Mapping(target = "clientId",                   source = "source.clientId")
+    @Mapping(target = "document",                   source = "source.document")
     @Mapping(target = "clientIdIssuedAt",           source = "source.clientIdIssuedAt")
     @Mapping(target = "clientSecretExpiresAt",      source = "source.clientSecretExpiresAt")
     @Mapping(target = "clientName",                 source = "source.clientName")
@@ -58,6 +59,7 @@ public interface ClientsBusinessMapper {
 
     @Mapping(target = "registeredId",               source = "source.id")
     @Mapping(target = "clientId",                   source = "source.clientId")
+    @Mapping(target = "document",                   source = "source.document")
     @Mapping(target = "clientIdIssuedAt",           source = "source.clientIdIssuedAt")
     @Mapping(target = "clientSecretExpiresAt",      source = "source.clientSecretExpiresAt")
     @Mapping(target = "clientName",                 source = "source.clientName")
@@ -76,6 +78,7 @@ public interface ClientsBusinessMapper {
 
     @Mapping(target = "id",                         source = "source.registeredId")
     @Mapping(target = "clientId",                   source = "source.clientId")
+    @Mapping(target = "document",                   source = "source.document")
     @Mapping(target = "clientIdIssuedAt",           source = "source.clientIdIssuedAt")
     @Mapping(target = "clientSecretExpiresAt",      source = "source.clientSecretExpiresAt")
     @Mapping(target = "clientName",                 source = "source.clientName")

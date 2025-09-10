@@ -32,6 +32,12 @@ public class BusinessApiControllerImpl implements BusinessApiDelegate {
                                     HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<OAuth2ClientResponse> getFindByClientDocument(String clientDocument) {
+        return new ResponseEntity<>(service.findByClientDocument(clientDocument),
+                HttpStatus.OK);
+    }
+
     @Override @CanClientOFBRead
     public ResponseEntity<OAuth2ClientResponse> getFindById(String registeredId) {
         return new ResponseEntity<>(service.findById(registeredId),

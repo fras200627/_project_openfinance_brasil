@@ -1,10 +1,14 @@
 openapi: 3.0.3
 info:
-  title: 'Project OFB OAuth2 Clients'
-  description: 'Project OFB OAuth2 Clients'
+  title: 'Project OFB - OpenAPI 3.0.3'
+  description: 'Project OFB using Open API'
   version: 1.0.0
-#servers:
-#  - url: /oauth2/registered/clients
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: fras200627@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
 security:
   - bearerAuth: []
 tags:
@@ -94,6 +98,31 @@ paths:
       parameters:
         - name: clientName
           $ref: '#/components/parameters/OAuth2ClientName'
+      responses:
+        '200':
+          $ref: '#/components/responses/OAuth2ClientResponse'
+        '400':
+          $ref: '#/components/responses/ResponseCode400Template'
+        '401':
+          $ref: '#/components/responses/ResponseCode401Template'
+        '403':
+          $ref: '#/components/responses/ResponseCode403Template'
+        '404':
+          $ref: '#/components/responses/ResponseCode404Template'
+        '500':
+          $ref: '#/components/responses/ResponseCode500Template'
+        default:
+          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
+  /business/findByClientDocument:
+    get:
+      tags:
+        - clients.business.resources
+      summary: 'Get one oauth2 registered client by Document Number'
+      description: 'Get one oauth2 registered client by Document Number'
+      operationId: getFindByClientDocument
+      parameters:
+        - name: clientDocument
+          $ref: '#/components/parameters/OAuth2ClientDocument'
       responses:
         '200':
           $ref: '#/components/responses/OAuth2ClientResponse'
@@ -231,6 +260,16 @@ components:
         minLength: 3
         maxLength: 50
         nullable: false
+    OAuth2ClientDocument:
+      name: clientDocument
+      description: 'OAuth2 Client Document. Example: Client CNPJ'
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 50
+        nullable: false
     OAuth2ClientNameOptional:
       name: clientName
       description: 'OAuth2 Client Name. Example: Tican Client 1'
@@ -311,6 +350,9 @@ components:
         registeredId:
           type: string
           description: 'Registered Client Id in format UUID'
+        document:
+          type: string
+          description: 'Client document number'
         clientId:
           type: string
           description: 'Client id alias'

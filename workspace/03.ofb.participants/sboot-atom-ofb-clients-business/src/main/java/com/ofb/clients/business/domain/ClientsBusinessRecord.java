@@ -8,6 +8,7 @@ import java.util.Date;
 public record ClientsBusinessRecord(
         String  id,
         String  clientId,
+        String document,
         @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
         Date    clientIdIssuedAt,
         @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -28,6 +29,7 @@ public record ClientsBusinessRecord(
     public ClientsBusinessRecord(ClientsBusinessEntity response) {
         this(response.getId(),
                 response.getClientId(),
+                response.getDocument(),
                 response.getClientIdIssuedAt(),
                 response.getClientSecretExpiresAt(),
                 response.getClientName(),

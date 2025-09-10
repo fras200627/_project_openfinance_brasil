@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/workspace/06.batch.services" />
+      <excludeFolder url="file://$MODULE_DIR$/workspace/07.ofb.batch.services" />
     </content>
     <orderEntry type="jdk" jdkName="jdk-17.0.9" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

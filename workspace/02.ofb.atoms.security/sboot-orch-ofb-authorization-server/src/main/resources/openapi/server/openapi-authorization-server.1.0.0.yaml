@@ -22,6 +22,20 @@ paths:
           $ref: '#/components/responses/ResponseValidate'
         '400':
           $ref: '#/components/responses/BadRequest'
+  /authorization/businessEntityValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: businessEntityValidate
+      description: 'description'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseValidate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 components:
   schemas:
     ResponseAuthorizationValidate:
