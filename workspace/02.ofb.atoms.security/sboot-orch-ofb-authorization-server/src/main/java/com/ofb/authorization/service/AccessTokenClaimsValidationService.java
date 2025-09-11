@@ -33,13 +33,15 @@ import java.util.List;
  *         - Validade Indefinida (fica definido para expiração em: 2099-21-31T23:59:59Z)
  */
 @Service
-public class AccessTokenValidationService {
+public class AccessTokenClaimsValidationService {
 
     @Autowired private JwtDecoder jwtDecoder;
     private Gson gson = new Gson();
-    private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+    private List<ResponseErrorsInnerTemplate> listResponseErrors;
 
-    public ResponseAuthorizationValidate accessTokenValidate(String accessToken) {
+    public ResponseAuthorizationValidate accessTokenClaimsValidate(String accessToken) {
+        listResponseErrors = new ArrayList<>();
+
         this.accessTokenConsentIdValidate(accessToken);
         this.accessTokenClientDocumentValidate(accessToken);
         this.accessTokenCustomerDocumentValidate(accessToken);

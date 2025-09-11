@@ -46,6 +46,12 @@ public class PersonalApiControllerImpl implements PersonalApiDelegate {
                 HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<ResponsePersonalCustomerData> customerIdentificationSummary(String authorization, String customerDocument) {
+        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentificationSummary(authorization, customerDocument),
+                HttpStatus.OK);
+    }
+
     @Override @CanSystemOFBAdmin @CanClientOFBRead
     public ResponseEntity<ResponsePersonalCustomersFinancialRelation> customersGetPersonalFinancialRelations(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
         return new ResponseEntity<>(customerGetPersonalFinancialRelationsService.customersGetPersonalFinancialRelations(authorization),

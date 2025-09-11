@@ -83,6 +83,7 @@
         <option value="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

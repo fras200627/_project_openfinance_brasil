@@ -4,25 +4,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision folders">
-      <change beforePath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision folders and authorization server">
+      <change afterPath="$PROJECT_DIR$/__docs/AcessTokenTemplates.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenClaimsValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-customers-resources.2.2.1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-customers-resources.2.2.1.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/server/openapi-authorization-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/server/openapi-authorization-server.1.0.0.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/BusinessApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/controller/BusinessApiControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/ClientsBusinessRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/domain/ClientsBusinessRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/entity/ClientsBusinessEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/entity/ClientsBusinessEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/mapper/ClientsBusinessMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/mapper/ClientsBusinessMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/repository/ClientsBusinessRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/repository/ClientsBusinessRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/service/ClientsBusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/java/com/ofb/clients/business/service/ClientsBusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/resources/openapi/server/openapi-clients-business-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-clients-business/src/main/resources/openapi/server/openapi-clients-business-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/repository/PersonalDataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/repository/PersonalDataRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/resources/openapi/server/openapi-customers-resources.2.2.1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/resources/openapi/server/openapi-customers-resources.2.2.1.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,14 +267,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Atualização com o novo ofb">
-      <option name="closed" value="true" />
-      <created>1752526127192</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1752526127192</updated>
     </task>
     <task id="LOCAL-00010" summary="Ajustes na validação do consentimento">
       <option name="closed" value="true" />
@@ -660,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757521470969</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="+ revision folders and authorization server">
+      <option name="closed" value="true" />
+      <created>1757526035497</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1757526035498</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -676,7 +676,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor RabbitMQ total. Lib AMQP, Discover, API Gateway, Auth Server, Registered Clients, OFB-Consents e Listeners Audit e Consents Cancel." />
     <MESSAGE value="Ajutes no gitignore e gitexclude" />
     <MESSAGE value="Postman" />
     <MESSAGE value="Listener AuthorizationConsents concluído e revisão dos outros listeners. Revisão do Registered Clients." />
@@ -701,15 +700,31 @@
     <MESSAGE value="+ revision documents" />
     <MESSAGE value="+ revision documents + start orchs" />
     <MESSAGE value="+ revision folders" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ revision folders" />
+    <MESSAGE value="+ revision folders and authorization server" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ revision folders and authorization server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="1" />
+          <line>85</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java</url>
+          <line>224</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java</url>
+          <line>316</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -49,6 +49,7 @@
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-accounts/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-consents/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-customers/target/generated-sources/ofb/customers/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java" charset="UTF-8" />

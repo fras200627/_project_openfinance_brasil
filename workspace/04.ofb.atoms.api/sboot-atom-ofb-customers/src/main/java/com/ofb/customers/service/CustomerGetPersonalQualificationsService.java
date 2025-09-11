@@ -7,6 +7,7 @@ import com.ofb.customers.repository.PersonalDataRepository;
 import com.ofb.customers.server.customers.model.*;
 import com.ofb.customers.service.validation.RequestCustomerValidationService;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,15 @@ public class CustomerGetPersonalQualificationsService {
                     .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
                     .build());
             throw new InternalErrorException(gson.toJson(listResponseErrors));
+        }
+
+        if (personalData == null) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in request: Customer not exists.")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
 
         ///

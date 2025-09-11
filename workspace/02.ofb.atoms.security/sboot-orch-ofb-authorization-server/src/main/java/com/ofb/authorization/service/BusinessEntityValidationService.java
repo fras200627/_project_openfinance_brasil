@@ -8,6 +8,7 @@ import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationVa
 import com.ofb.authorization.server.authorizations.model.ValidateResult;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 /**
@@ -31,37 +34,20 @@ import java.util.NoSuchElementException;
 @Service @Slf4j
 public class BusinessEntityValidationService {
 
-    @Value("${app.parameters.consents.validate.check-if-consent-already-exists}")
-    private boolean EXECUTE_CHECK_IF_CONSENTS_ALREADY_EXISTS;
-
-    @Value("${app.parameters.execute-throw-immediately}")
-    private boolean EXECUTE_THROW_IMMEDIATELY;
-
-    @Value("${app.parameters.consents.organization}")
-    private String CONSENTS_ORGANIZATION;
-
-    @Value("${app.paths.clients.consents-api}")
-    private String PATH_CONSENTS_API;
-
     @Value("${app.paths.clients.participants-api}")
     private String PATH_PARTICIPANTS_API;
 
-    @Value("${app.paths.clients.customers-api}")
-    private String PATH_CUSTOMERS_API;
-
-    @Value("${app.paths.clients.resources-api}")
-    private String PATH_RESOURCES_API;
-
     @Autowired private JwtDecoder jwtDecoder;
-    private Gson gson = new Gson();
-    private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+    @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi;
 
-    @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi = null;
+    private Gson gson = new Gson();
+    private List<ResponseErrorsInnerTemplate> listResponseErrors;
 
     public ResponseAuthorizationValidate businessEntityValidate(String accessToken) {
 
         OAuth2ClientResponse returnData = new OAuth2ClientResponse();
         String clientDocument = null;
+        listResponseErrors = new ArrayList<>();
 
         registeredClientsResourcesApi.getApiClient().setBasePath(PATH_PARTICIPANTS_API);
         registeredClientsResourcesApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
@@ -72,7 +58,7 @@ public class BusinessEntityValidationService {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (document of Participant) verify.")
+                    .detail("An error occurred in client.document (document of Participant) verify.")
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
@@ -82,21 +68,20 @@ public class BusinessEntityValidationService {
         } catch (NoSuchElementException e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (document of Participant) verify.")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred while accessing the Participants API. "  +
+                            "Error message: [" + e.getMessage() + "]")
                     .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (document of Participant) verify.")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An internal error occurred while accessing the Participants API. " +
+                            "Error message: [" + e.getMessage() + "]")
                     .build());
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
-
-//        returnData.getIsAccountExpired();
-//        returnData.getIsAccountLocked();
-//        returnData.getIsCredentialsExpired();
-//        returnData.getIsEnabled();
 
         if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -104,8 +89,9 @@ public class BusinessEntityValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in clientDocument (Participant not exists) verify.")
                     .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
         }
-        if (returnData.getStatus() != null && !returnData.getStatus().equals("ACTIVE")) {
+        if (!returnData.getStatus().equals("ACTIVE")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
@@ -126,7 +112,8 @@ public class BusinessEntityValidationService {
                     .detail("An error occurred in clientDocument (Participant must be role client.ofb.write) verify.")
                     .build());;
         }
-        if (returnData.getSecurityScope() != null && !returnData.getIsCredentialsExpired().equals("true")) {
+
+        if (returnData.getIsCredentialsExpired().equals("true")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())

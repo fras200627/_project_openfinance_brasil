@@ -96,7 +96,7 @@
 			]
 		},
 		{
-			"name": "(3) AUTH-SERVER",
+			"name": "(3) AUTHENTICATION-SERVER",
 			"item": [
 				{
 					"name": "Health Check",
@@ -104,14 +104,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/health",
+							"raw": "http://localhost:3001/ofb-authentication-server/health",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
 								"health"
 							]
 						}
@@ -124,14 +124,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/actuator/info",
+							"raw": "http://localhost:3001/ofb-authentication-server/actuator/info",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
 								"actuator",
 								"info"
 							]
@@ -187,14 +187,77 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/token/client",
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
+								"token",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token \"OFB Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ofb-test",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "3d864f47-9b38-45e5-bf12-9c960c95c807",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ticket-id",
+								"value": "753192333",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
 								"token",
 								"client"
 							]
@@ -237,14 +300,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/token/client",
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
 								"token",
 								"client"
 							]
@@ -287,14 +350,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/token/client",
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
 								"token",
 								"client"
 							]
@@ -337,14 +400,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/token/client",
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
 								"token",
 								"client"
 							]
@@ -354,6 +417,21 @@
 				},
 				{
 					"name": "get Token Access Consents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token_consent\", pm.response.json().access_token)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -375,7 +453,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"consentId\": \"urn:bancoex:C1DD33123\",\r\n  \"creationDateTime\": \"2025-07-01T08:30:00Z\",\r\n  \"expirationDateTime\": \"2025-10-01T08:30:00Z\",\r\n  \"loggedUser\": {\r\n    \"document\": {\r\n      \"loggedUserName\": \"loggedUserName\",\r\n      \"identification\": \"08809902299\",\r\n      \"rel\": \"CPF\"\r\n    }\r\n  },\r\n  \"businessEntity\": {\r\n    \"document\": {\r\n      \"entityBusinessName\": \"entityBusinessName\",\r\n      \"identification\": \"99888777000199\",\r\n      \"rel\": \"CNPJ\"\r\n    }\r\n  },\r\n  \"scopes\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"\r\n  ]\r\n}",
+							"raw": "{\r\n  \"consentId\": \"urn:bancoex:C1DD33123\",\r\n  \"creationDateTime\": \"2025-07-01T08:30:00Z\",\r\n  \"expirationDateTime\": \"2025-10-01T08:30:00Z\",\r\n  \"loggedUser\": {\r\n    \"document\": {\r\n      \"loggedUserName\": \"loggedUserName\",\r\n      \"identification\": \"08809902299\",\r\n      \"rel\": \"CPF\"\r\n    }\r\n  },\r\n  \"businessEntity\": {\r\n    \"document\": {\r\n      \"entityBusinessName\": \"entityBusinessName\",\r\n      \"identification\": \"94420534000110\",\r\n      \"rel\": \"CNPJ\"\r\n    }\r\n  },\r\n  \"scopes\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -383,14 +461,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/ofb-auth-server/token/access/consents",
+							"raw": "http://localhost:3001/ofb-authentication-server/token/access/consents",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-auth-server",
+								"ofb-authentication-server",
 								"token",
 								"access",
 								"consents"
@@ -402,7 +480,164 @@
 			]
 		},
 		{
-			"name": "(4) REGISTERED-CLIENTS",
+			"name": "(4) AUTHORIZATION-SERVER",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateAccessTokenClaims",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessTokenClaimsValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessTokenClaimsValidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateBusinessEntity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/businessEntityValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"businessEntityValidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateLoggedUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItYWRtaW4tbWFzdGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY29leDpDMUREMzMxMjMiLCJwZXJtaXNzaW9ucyI6IlJFU09VUkNFU19SRUFELCBBQ0NPVU5UU19SRUFELCBBQ0NPVU5UU19CQUxBTkNFU19SRUFELCBBQ0NPVU5UU19UUkFOU0FDVElPTlNfUkVBRCwgQUNDT1VOVFNfT1ZFUkRSQUZUX0xJTUlUU19SRUFELCBDUkVESVRfQ0FSRFNfQUNDT1VOVFNfUkVBRCwgQ1JFRElUX0NBUkRTX0FDQ09VTlRTX0JJTExTX1JFQUQsIENSRURJVF9DQVJEU19BQ0NPVU5UU19CSUxMU19UUkFOU0FDVElPTlNfUkVBRCwgQ1JFRElUX0NBUkRTX0FDQ09VTlRTX0xJTUlUU19SRUFELCBDUkVESVRfQ0FSRFNfQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIENVU1RPTUVSU19QRVJTT05BTF9JREVOVElGSUNBVElPTlNfUkVBRCwgQ1VTVE9NRVJTX1BFUlNPTkFMX0FESVRUSU9OQUxJTkZPX1JFQUQsIENVU1RPTUVSU19CVVNJTkVTU19JREVOVElGSUNBVElPTlNfUkVBRCwgQ1VTVE9NRVJTX0JVU0lORVNTX0FESVRUSU9OQUxJTkZPX1JFQUQsIEZJTkFOQ0lOR1NfUkVBRCwgRklOQU5DSU5HU19TQ0hFRFVMRURfSU5TVEFMTUVOVFNfUkVBRCwgRklOQU5DSU5HU19QQVlNRU5UU19SRUFELCBGSU5BTkNJTkdTX1dBUlJBTlRJRVNfUkVBRCwgSU5WT0lDRV9GSU5BTkNJTkdTX1JFQUQsIElOVk9JQ0VfRklOQU5DSU5HU19TQ0hFRFVMRURfSU5TVEFMTUVOVFNfUkVBRCwgSU5WT0lDRV9GSU5BTkNJTkdTX1BBWU1FTlRTX1JFQUQsIElOVk9JQ0VfRklOQU5DSU5HU19XQVJSQU5USUVTX1JFQUQsIExPQU5TX1JFQUQsIExPQU5TX1NDSEVEVUxFRF9JTlNUQUxNRU5UU19SRUFELCBMT0FOU19QQVlNRU5UU19SRUFELCBMT0FOU19XQVJSQU5USUVTX1JFQUQsIFVOQVJSQU5HRURfQUNDT1VOVFNfT1ZFUkRSQUZUX1JFQUQsIFVOQVJSQU5HRURfQUNDT1VOVFNfT1ZFUkRSQUZUX1NDSEVEVUxFRF9JTlNUQUxNRU5UU19SRUFELCBVTkFSUkFOR0VEX0FDQ09VTlRTX09WRVJEUkFGVF9QQVlNRU5UU19SRUFELCBVTkFSUkFOR0VEX0FDQ09VTlRTX09WRVJEUkFGVF9XQVJSQU5USUVTX1JFQUQsIEJBTktfRklYRURfSU5DT01FU19SRUFELCBDUkVESVRfRklYRURfSU5DT01FU19SRUFELCBGVU5EU19SRSIsImlzcyI6ImJhbmNvLXRjbiIsImV4cCI6MTc1OTMwNzQwMCwiaWF0IjoxNzU3NjExNzYyLCJjbGllbnQuZG9jdW1lbnQiOiI5NDQyMDUzNDAwMDExMCIsImN1c3RvbWVyLmRvY3VtZW50IjoiMDg4MDk5MDIyOTkifQ.sj9ITmb4cSDs_w_UHTlJuHe2sUV_naNTyLLh59TtLdcqoAFDBzg-ojeES0s9EEW6L82Ll9gWIqUr5UtcyKp7NXO2V2qbCUPt-jAR_j9xNj0s9EIIsTZWcUbyFgFnV-4lKzb6AH-x-FeGzEuptNg2igW6SGFEgcB1iRHP_LM2e-r3Bz9UNnFFzeT5QwDMC42ggflrLuCT74mglqj9nTubMByToR-mw-jCS_RdfKQElblx0OMspPQALFJ0Fbeu6b79kjYkmY_alaM9MB8dukzGgdD9natdhQSN5x0ANG2uHVQ0hdH9sQJCKmBdDBIYl2nSAmwflSMf1h1pnldct81qZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/loggedUserValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"loggedUserValidate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "(5) REGISTERED-CLIENTS",
 			"item": [
 				{
 					"name": "APIs with Load Balance",
@@ -537,6 +772,49 @@
 												{
 													"key": "clientId",
 													"value": "ofb-santander"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find by Client  Document Number",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientDocument?clientDocument=94420534000110",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findByClientDocument"
+											],
+											"query": [
+												{
+													"key": "clientDocument",
+													"value": "94420534000110"
 												}
 											]
 										}
@@ -1284,7 +1562,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-08-25T06:33:23Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-09-02T06:33:23Z\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3000,7 +3278,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
+									"value": "{{access_token}}",
 									"type": "string"
 								}
 							]
@@ -3058,6 +3336,55 @@
 								{
 									"key": "pagination-key",
 									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get PERSONAL IDENTIFICATION SUMMARY",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-customers/personal/identificationSummary?customerDocument=54880884588",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-customers",
+								"personal",
+								"identificationSummary"
+							],
+							"query": [
+								{
+									"key": "customerDocument",
+									"value": "54880884588"
 								}
 							]
 						}

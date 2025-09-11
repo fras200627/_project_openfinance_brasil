@@ -80,7 +80,11 @@ public class ClientsBusinessEntity implements Serializable {
         if (this.status.equals("EXPIRED")) {
             return true;
         } else {
-            return false;
+            if (this.clientSecretExpiresAt.getTime() < (new Date().getTime())) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -93,7 +97,7 @@ public class ClientsBusinessEntity implements Serializable {
     }
 
     public boolean isCredentialsExpired() {
-        if (this.status.equals("EXPIRED")) {
+        if (this.clientSecretExpiresAt.getTime() < (new Date().getTime())) {
             return true;
         } else {
             return false;
