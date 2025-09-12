@@ -65,9 +65,8 @@ paths:
       description: Método para obter os registros de identificação da pessoa natural mantidos na instituição transmissora.
       operationId: customerIdentificationSummary
       parameters:
-        - $ref: '#/components/parameters/Authorization'
+        #- $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/CustomerDocument'
-
       responses:
         '200':
           $ref: '#/components/responses/ResponsePersonalCustomerSummary'

@@ -47,8 +47,8 @@ public class PersonalApiControllerImpl implements PersonalApiDelegate {
     }
 
     @Override
-    public ResponseEntity<ResponsePersonalCustomerData> customerIdentificationSummary(String authorization, String customerDocument) {
-        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentificationSummary(authorization, customerDocument),
+    public ResponseEntity<ResponsePersonalCustomerData> customerIdentificationSummary(String customerDocument) {
+        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentificationSummary(customerDocument),
                 HttpStatus.OK);
     }
 

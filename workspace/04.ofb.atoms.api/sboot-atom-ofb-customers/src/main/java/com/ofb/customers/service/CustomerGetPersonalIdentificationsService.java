@@ -219,8 +219,7 @@ public class CustomerGetPersonalIdentificationsService {
     }
 
 
-    public ResponsePersonalCustomerData customersGetPersonalIdentificationSummary(String authorization,
-                                                                                  String customerDocument) {
+    public ResponsePersonalCustomerData customersGetPersonalIdentificationSummary(String customerDocument) {
 
         Gson gson = new Gson();
         PersonalDataModel personalData = null;

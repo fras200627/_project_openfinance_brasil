@@ -63,12 +63,12 @@ public class LoggedUserValidationService {
         }
 
         try {
-            returnData = customersApi.customerIdentificationSummary(accessToken.replace("Bearer ", ""), customerDocument);
+            returnData = customersApi.customerIdentificationSummary(customerDocument);
         } catch (NoSuchElementException e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred while accessing the Customers API. "  +
+                    .detail("An internal error occurred while accessing the Customers API. " +
                             "Error message: [" + e.getMessage() + "]")
                     .build());
             throw new InternalErrorException(gson.toJson(listResponseErrors));
@@ -86,15 +86,24 @@ public class LoggedUserValidationService {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in customer.document (Cusomer not exists) verify.")
+                    .detail("An error occurred in Customer validation: Customer not exists.")
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (!returnData.getData().get(0).getPersonalStatus().equals("ATIVO")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization invalid (in getClaim AccessToken")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred in Customer validation: Customer status is [" +
+                            returnData.getData().get(0).getPersonalStatus() + "].")
+                    .build());
         }
 
         if (listResponseErrors.isEmpty()) {
             return ResponseAuthorizationValidate.builder()
                     .data(ValidateResult.builder()
-                            .status("BusinessEntity (in Authorization Service) successfully validate.").build())
+                            .status("Customer (in Authorization Service) is successfully validate.").build())
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
         } else {

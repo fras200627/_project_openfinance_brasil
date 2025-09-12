@@ -87,7 +87,7 @@ public class BusinessEntityValidationService {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (Participant not exists) verify.")
+                    .detail("An error occurred in Participant verification: Participant not exists.")
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
@@ -95,21 +95,21 @@ public class BusinessEntityValidationService {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (Participant must be ACTIVE) verify.")
+                    .detail("An error occurred in Participant verification: Participant must be ACTIVE.")
                     .build());
         }
         if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.read")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (Participant must be role client.ofb.read) verify.")
+                    .detail("An error occurred in Participant varification: Participant must be role client.ofb.read.")
                     .build());
         }
         if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.write")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (Participant must be role client.ofb.write) verify.")
+                    .detail("An error occurred in Partipant verification: Participant must be role client.ofb.write.")
                     .build());;
         }
 
@@ -117,14 +117,14 @@ public class BusinessEntityValidationService {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in clientDocument (Participant must be secret password not expired) verify.")
+                    .detail("An error occurred in Participant verification: Participant must be secret password not expired.")
                     .build());
         }
 
         if (listResponseErrors.isEmpty()) {
             return ResponseAuthorizationValidate.builder()
                     .data(ValidateResult.builder()
-                            .status("BusinessEntity (in Authorization Service) successfully validate.").build())
+                            .status("BusinessEntity/Partipant (in Authorization Service) successfully validate.").build())
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
         } else {
