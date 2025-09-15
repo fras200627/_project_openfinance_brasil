@@ -8,6 +8,20 @@ security:
 tags:
   - name: AuthorizationValidate
 paths:
+  /authorization/authorizationValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: authorizationValidate
+      description: 'description'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseValidate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /authorization/accessTokenClaimsValidate:
     get:
       tags:
@@ -42,6 +56,20 @@ paths:
         - AuthorizationValidate
       summary: 'summary'
       operationId: loggedUserValidate
+      description: 'description'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseValidate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /authorization/consentValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: consentValidate
       description: 'description'
       parameters:
         - $ref: '#/components/parameters/Authorization'

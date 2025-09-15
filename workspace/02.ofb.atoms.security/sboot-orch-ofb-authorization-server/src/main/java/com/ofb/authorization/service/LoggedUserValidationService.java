@@ -3,13 +3,12 @@ package com.ofb.authorization.service;
 import com.google.gson.Gson;
 import com.ofb.authorization.client.customers.handler.CustomersApi;
 import com.ofb.authorization.client.customers.model.ResponsePersonalCustomerData;
-import com.ofb.authorization.client.customers.model.ResponsePersonalCustomersIdentification;
 import com.ofb.authorization.server.authorizations.model.Meta;
 import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
 import com.ofb.authorization.server.authorizations.model.ValidateResult;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
-import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +16,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
 
 /**
  * Passo 04: Verificação do LoggedUser (customer.document)
@@ -41,9 +37,22 @@ public class LoggedUserValidationService {
 
     private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
+    private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
     public ResponseAuthorizationValidate loggedUserValidate(String accessToken) {
+        listResponseErrors = this.executeValidate(accessToken);
+        if (listResponseErrors.isEmpty()) {
+            return ResponseAuthorizationValidate.builder()
+                    .data(ValidateResult.builder()
+                            .status("Customer (in Authorization Service) is successfully validate.").build())
+                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
+                    .build();
+        } else {
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+    }
 
+    public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
         listResponseErrors = new ArrayList<>();
         String customerDocument = null;
         ResponsePersonalCustomerData returnData = null;
@@ -53,33 +62,10 @@ public class LoggedUserValidationService {
 
         try {
             customerDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("customer.document").toString();
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in customer.document (document of Customer) verify.")
-                    .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
-        try {
             returnData = customersApi.customerIdentificationSummary(customerDocument);
-        } catch (NoSuchElementException e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred while accessing the Customers API. " +
-                            "Error message: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred while accessing the Customers API. " +
-                            "Error message: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
+            listResponseErrors.addAll(validateErrorResponse.buildErrorResponse(e, true));
+            return listResponseErrors;
         }
 
         if (returnData == null) {
@@ -88,7 +74,7 @@ public class LoggedUserValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in Customer validation: Customer not exists.")
                     .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
+            return listResponseErrors;
         }
 
         if (!returnData.getData().get(0).getPersonalStatus().equals("ATIVO")) {
@@ -100,16 +86,7 @@ public class LoggedUserValidationService {
                     .build());
         }
 
-        if (listResponseErrors.isEmpty()) {
-            return ResponseAuthorizationValidate.builder()
-                    .data(ValidateResult.builder()
-                            .status("Customer (in Authorization Service) is successfully validate.").build())
-                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
-                    .build();
-        } else {
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
+        return listResponseErrors;
     }
 
 }

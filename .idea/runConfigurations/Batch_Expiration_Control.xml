@@ -3,7 +3,6 @@
     <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="com.ofb.batch.StartApplication" />
-    <module name="sbatch-ofb-consents-expiration-control" />
     <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />
     <method v="2">
       <option name="Make" enabled="true" />

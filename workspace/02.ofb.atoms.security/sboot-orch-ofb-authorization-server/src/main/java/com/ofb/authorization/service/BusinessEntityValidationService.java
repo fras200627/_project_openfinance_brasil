@@ -9,6 +9,7 @@ import com.ofb.authorization.server.authorizations.model.ValidateResult;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
+import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,22 @@ public class BusinessEntityValidationService {
 
     private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
+    private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
     public ResponseAuthorizationValidate businessEntityValidate(String accessToken) {
+        listResponseErrors = this.executeValidate(accessToken);
+        if (listResponseErrors.isEmpty()) {
+            return ResponseAuthorizationValidate.builder()
+                    .data(ValidateResult.builder()
+                            .status("BusinessEntity/Partipant (in Authorization Service) successfully validate.").build())
+                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
+                    .build();
+        } else {
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+    }
+
+    public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
 
         OAuth2ClientResponse returnData = new OAuth2ClientResponse();
         String clientDocument = null;
@@ -54,33 +69,10 @@ public class BusinessEntityValidationService {
 
         try {
             clientDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in client.document (document of Participant) verify.")
-                    .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
-        try {
             returnData = registeredClientsResourcesApi.getFindByClientDocument(clientDocument);
-        } catch (NoSuchElementException e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred while accessing the Participants API. "  +
-                            "Error message: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred while accessing the Participants API. " +
-                            "Error message: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
+            listResponseErrors.addAll(validateErrorResponse.buildErrorResponse(e, true));
+            return listResponseErrors;
         }
 
         if (returnData == null) {
@@ -89,7 +81,7 @@ public class BusinessEntityValidationService {
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in Participant verification: Participant not exists.")
                     .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
+            return listResponseErrors;
         }
         if (!returnData.getStatus().equals("ACTIVE")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
@@ -121,15 +113,8 @@ public class BusinessEntityValidationService {
                     .build());
         }
 
-        if (listResponseErrors.isEmpty()) {
-            return ResponseAuthorizationValidate.builder()
-                    .data(ValidateResult.builder()
-                            .status("BusinessEntity/Partipant (in Authorization Service) successfully validate.").build())
-                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
-                    .build();
-        } else {
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
+            return listResponseErrors;
+
     }
 
 }

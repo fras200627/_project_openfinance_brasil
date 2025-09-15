@@ -1,19 +1,24 @@
 package com.ofb.authorization.service;
 
+import com.google.gson.Gson;
 import com.ofb.authorization.client.consents.handler.ConsentsApi;
 import com.ofb.authorization.client.consents.model.ResponseConsentRead;
+import com.ofb.authorization.server.authorizations.model.Meta;
+import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
+import com.ofb.authorization.server.authorizations.model.ValidateResult;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 /**
  * Passo 05: Verificação do Consentimento (ofb.consent.id)
@@ -24,54 +29,72 @@ import java.util.UUID;
 @Service @Slf4j
 public class ConsentValidationService {
 
-    @Autowired
-    private HttpServletRequest request;
-
     @Value("${app.paths.clients.consents-api}")
     private String PATH_CONSENTS_API;
 
-    @Autowired
-    private ConsentsApi consentsApi;
+    @Autowired private JwtDecoder jwtDecoder;
+    @Autowired private ConsentsApi consentsApi;
 
-    private List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+    private Gson gson = new Gson();
+    private List<ResponseErrorsInnerTemplate> listResponseErrors;
+    private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
-    public void consentValidate(Object objectData, Object referenceId) {
+    public ResponseAuthorizationValidate consentValidate(String accessToken) {
+        listResponseErrors = this.executeValidate(accessToken);
+        if (listResponseErrors.isEmpty()) {
+            return ResponseAuthorizationValidate.builder()
+                    .data(ValidateResult.builder()
+                            .status("Consents (in Authorization Validation) successfully validate.").build())
+                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
+                    .build();
+        } else {
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+    }
 
+    public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
+
+        listResponseErrors = new ArrayList<>();
         String consentId = "";
         ResponseConsentRead returnData = null;
+
         consentsApi.getApiClient().setBasePath(PATH_CONSENTS_API);
-        consentsApi.getApiClient().setBearerToken(request.getHeader("Authorization").replace("Bearer ", ""));
+        consentsApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
 
         try {
-            returnData = consentsApi.consentsGetConsentsConsentId(
-                                    consentId, request.getHeader("Authorization"),
-                                    UUID.randomUUID(),
-                                    null, null, null);
-        } catch (NoSuchElementException e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client does not exist in the OFB registered client database")
-                    .build());
+            consentId = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("ofb.consent.id").toString();
+            returnData = consentsApi.consentsGetConsentsConsentId(consentId,
+                        UUID.randomUUID(),
+                        null, null, null);
         } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An error (API not active) occurred while checking the requested Registered Client")
-                    .build());
+            listResponseErrors.addAll(validateErrorResponse.buildErrorResponse(e, true));
+            return listResponseErrors;
         }
 
         if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Consent Business Entity")
-                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("Registered Client  does not exist in the OFB registered client database")
+                    .title("Authorization validate error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred while checking the Authorization validate: [Consent not exists].")
                     .build());
-            return;
+            return listResponseErrors;
+        }
+        if (!returnData.getData().getStatus().getValue().equals("AUTHORISED")) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization validate error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred while checking the Authorization validate: [Consent must by AUTHORISED].")
+                    .build());
+        }
+        if (OffsetDateTime.parse(returnData.getData().getExpirationDateTime()).isBefore(OffsetDateTime.now(ZoneId.of("UTC")))) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization validate error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .detail("An error occurred while checking the Authorization validate: [Consent must bu Expired].")
+                    .build());
         }
 
-        returnData.getData().getStatus();
-        returnData.getData().getExpirationDateTime();
+        return listResponseErrors;
     }
 
 }

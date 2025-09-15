@@ -32,19 +32,19 @@ public class ConsentsAPIControllerImpl implements ConsentsApiDelegate {
     @Autowired private ConsentPostExtendsService consentPostExtendsService;
 
     @Override
-    public ResponseEntity<ResponseConsent> consentsPostConsents(String authorization, UUID xFapiInteractionId, CreateConsent createConsent, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
+    public ResponseEntity<ResponseConsent> consentsPostConsents(UUID xFapiInteractionId, CreateConsent createConsent, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
         return new ResponseEntity<>(consentPostService.consentsPostConsents(createConsent),
                 HttpStatus.CREATED);
     }
 
     @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponseConsentRead> consentsGetConsentsConsentId(String consentId, String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(consentGetService.consentsGetConsentsConsentId(consentId, authorization, xFapiInteractionId),
+    public ResponseEntity<ResponseConsentRead> consentsGetConsentsConsentId(String consentId, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
+        return new ResponseEntity<>(consentGetService.consentsGetConsentsConsentId(consentId, xFapiInteractionId),
                 HttpStatus.OK);
     }
 
     @Override @CanSystemOFBAdmin @CanClientOFBRead @CanClientOFBWrite
-    public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId, String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
+    public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
         consentRevokeService.consentsDeleteConsentsConsentId(consentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

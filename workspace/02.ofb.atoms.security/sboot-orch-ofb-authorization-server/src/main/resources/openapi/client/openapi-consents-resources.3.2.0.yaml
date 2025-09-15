@@ -176,7 +176,7 @@ paths:
       operationId: consentsPostConsents
       description: Método para a criação de um novo consentimento.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
+        # - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
@@ -233,7 +233,7 @@ paths:
       description: Método para obter detalhes do consentimento identificado por consentId.
       parameters:
         - $ref: '#/components/parameters/ConsentId'
-        - $ref: '#/components/parameters/Authorization'
+        # - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
@@ -278,7 +278,7 @@ paths:
       description: Método para deletar / revogar o consentimento identificado por consentId.
       parameters:
         - $ref: '#/components/parameters/ConsentId'
-        - $ref: '#/components/parameters/Authorization'
+        # - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
@@ -493,7 +493,7 @@ components:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
           maxLength: 20
-#          format: date-time
+          #          format: date-time
           example: '2021-05-21T08:30:00Z'
     MetaExtensions:
       type: object
@@ -517,7 +517,7 @@ components:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
           maxLength: 20
-#          format: date-time
+          #          format: date-time
           example: '2021-05-21T08:30:00Z'
     MetaError:
       type: object
@@ -529,7 +529,7 @@ components:
           description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
           type: string
           maxLength: 20
-#          format: date-time
+          #          format: date-time
           example: '2021-05-21T08:30:00Z'
     CreateConsent:
       type: object
@@ -606,8 +606,8 @@ components:
                 Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
               type: string
               maxLength: 20
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
     CreateConsentExtensions:
       type: object
@@ -628,7 +628,7 @@ components:
                 Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
                 Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
               type: string
-#              format: date-time
+              #              format: date-time
               pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
               maxLength: 20
               example: '2021-05-21T08:30:00Z'
@@ -683,8 +683,8 @@ components:
             creationDateTime:
               description: 'Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             status:
@@ -698,8 +698,8 @@ components:
             statusUpdateDateTime:
               description: 'Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             permissions:
@@ -758,8 +758,8 @@ components:
                 Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
                 Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
               type: string
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
         links:
@@ -798,7 +798,7 @@ components:
             creationDateTime:
               description: Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
               type: string
-#              format: date-time
+              #              format: date-time
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             status:
@@ -812,7 +812,7 @@ components:
             statusUpdateDateTime:
               description: Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
               type: string
-#              format: date-time
+              #              format: date-time
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             permissions:
@@ -871,7 +871,7 @@ components:
                 Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
                 Quando preenchido, o valor do campo não pode ultrapassar 12 meses.
               type: string
-#              format: date-time
+              #              format: date-time
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
         links:
@@ -890,6 +890,8 @@ components:
             - creationDateTime
             - status
             - statusUpdateDateTime
+            - businessEntity
+            - loggedUser
             - permissions
           x-regulatory-required:
             - permissions
@@ -913,8 +915,8 @@ components:
             creationDateTime:
               description: 'Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             status:
@@ -928,10 +930,14 @@ components:
             statusUpdateDateTime:
               description: 'Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
               type: string
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
+            loggedUser:
+              $ref: '#/components/schemas/LoggedUser'
+            businessEntity:
+              $ref: '#/components/schemas/BusinessEntity'
             permissions:
               type: array
               minItems: 1
@@ -985,8 +991,8 @@ components:
 
                 [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado o campo não deve ser preenchido.
               type: string
-#              format: date-time
-#              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              #              format: date-time
+              #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
             rejection:
@@ -1055,8 +1061,8 @@ components:
 
                   Em casos de consentimento com prazo indeterminada o campo não deve ser preenchido.
                 type: string
-#                format: date-time
-#                pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
+                #                format: date-time
+                #                pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
                 maxLength: 20
                 example: '2021-05-21T08:30:00Z'
               loggedUser:
@@ -1064,7 +1070,7 @@ components:
               requestDateTime:
                 description: Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).
                 type: string
-#                format: date-time
+                #                format: date-time
                 example: '2021-05-21T08:30:00Z'
                 maxLength: 20
               previousExpirationDateTime:
@@ -1073,8 +1079,8 @@ components:
 
                   [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada. Em casos de consentimento com prazo indeterminado, ou renovações feitas com a v2.2.0 em que não exista persistência dessa informação, o campo não deve ser preenchido.
                 type: string
-#                format: date-time
-#                pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
+                #                format: date-time
+                #                pattern: '(^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$)'
                 maxLength: 20
                 example: '2023-10-18T18:30:00Z'
               xFapiCustomerIpAddress:
@@ -1526,16 +1532,16 @@ components:
       type: http
       bearerFormat: JWT
       scheme: bearer
-#  OAuth2AuthorizationCode:
-#    type: oauth2
-#    description: Fluxo OAuthnecessário para que a receptora tenha acesso aos endpoints de consentimento na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário.
-#    flows:
-#      authorizationCode:
-#        authorizationUrl: 'https://authserver.example/code'
-#        tokenUrl: 'https://authserver.example/token'
-#        scopes:
-#          openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
-#          'consent:consentId': Escopo contendo o identificador único do consentimento criado para compartilhamento de dados solicitada.
+  #  OAuth2AuthorizationCode:
+  #    type: oauth2
+  #    description: Fluxo OAuthnecessário para que a receptora tenha acesso aos endpoints de consentimento na instituição transmissora. Requer o processo de redirecionamento e autenticação do usuário.
+  #    flows:
+  #      authorizationCode:
+  #        authorizationUrl: 'https://authserver.example/code'
+  #        tokenUrl: 'https://authserver.example/token'
+  #        scopes:
+  #          openid: Indica que a autorização está sendo realizada utilizando o protocolo definido pela openid.
+  #          'consent:consentId': Escopo contendo o identificador único do consentimento criado para compartilhamento de dados solicitada.
   responses:
     UnsupportedMediaType:
       description: O formato do payload não é um formato suportado.
@@ -1673,7 +1679,7 @@ components:
                     description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
                     type: string
                     maxLength: 20
-#                    format: date-time
+                    #                    format: date-time
                     example: '2021-05-21T08:30:00Z'
                 additionalProperties: false
             additionalProperties: false

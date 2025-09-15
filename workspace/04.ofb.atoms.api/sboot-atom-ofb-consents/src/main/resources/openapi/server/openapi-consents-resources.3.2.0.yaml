@@ -176,7 +176,7 @@ paths:
       operationId: consentsPostConsents
       description: Método para a criação de um novo consentimento.
       parameters:
-        - $ref: '#/components/parameters/Authorization'
+        # - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
@@ -233,7 +233,7 @@ paths:
       description: Método para obter detalhes do consentimento identificado por consentId.
       parameters:
         - $ref: '#/components/parameters/ConsentId'
-        - $ref: '#/components/parameters/Authorization'
+        # - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
@@ -278,7 +278,7 @@ paths:
       description: Método para deletar / revogar o consentimento identificado por consentId.
       parameters:
         - $ref: '#/components/parameters/ConsentId'
-        - $ref: '#/components/parameters/Authorization'
+        # - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/xFapiAuthDate'
         - $ref: '#/components/parameters/xFapiCustomerIpAddress'
         - $ref: '#/components/parameters/xFapiInteractionId'
@@ -890,6 +890,8 @@ components:
             - creationDateTime
             - status
             - statusUpdateDateTime
+            - businessEntity
+            - loggedUser
             - permissions
           x-regulatory-required:
             - permissions
@@ -932,6 +934,10 @@ components:
 #              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
               example: '2021-05-21T08:30:00Z'
               maxLength: 20
+            loggedUser:
+              $ref: '#/components/schemas/LoggedUser'
+            businessEntity:
+              $ref: '#/components/schemas/BusinessEntity'
             permissions:
               type: array
               minItems: 1

@@ -3,11 +3,13 @@ package com.ofb.consents.service.orchestration;
 import com.google.gson.Gson;
 import com.ofb.consents.client.authentication.handler.AppAuthenticationResourcesApi;
 import com.ofb.consents.client.authentication.model.*;
-import com.ofb.consents.client.authentication.model.BusinessEntity;
-import com.ofb.consents.client.authentication.model.BusinessEntityDocument;
-import com.ofb.consents.client.authentication.model.LoggedUser;
-import com.ofb.consents.client.authentication.model.LoggedUserDocument;
 import com.ofb.consents.entity.ConsentPersonalData;
+import com.ofb.consents.model.ConsentPersonalExpirationControlModel;
+import com.ofb.consents.repository.views.ConsentPersonalExpirationControlViewRepository;
+import com.ofb.consents.server.consents.model.BusinessEntity;
+import com.ofb.consents.server.consents.model.BusinessEntityDocument;
+import com.ofb.consents.server.consents.model.LoggedUser;
+import com.ofb.consents.server.consents.model.LoggedUserDocument;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
@@ -57,12 +59,17 @@ public class ConsentGetService {
     @Autowired
     private ConsentPermissionsRequestedlViewRepository permissionsRequested;
 
+    @Autowired
+    private ConsentPersonalExpirationControlViewRepository consentsExpirationControlRepositoryView;
+
     @Value("${app.paths.clients.authentication-server}")
     private String PATH_AUTHENTICATION_SERVER;
 
     @Autowired private AppAuthenticationResourcesApi authenticationResourcesApi;
 
-    public ResponseConsentRead consentsGetConsentsConsentId(String consentId, String authorization, UUID xFapiInteractionId) {
+    public ResponseConsentRead consentsGetConsentsConsentId(String consentId, UUID xFapiInteractionId) {
+
+        String authorization = httpServletRequest.getHeader("authorization").replace("Bearer ", "");
 
         List<ResponseErrorsInnerTemplate> listError = new ArrayList<>();
         ConsentPersonalModel consentRequested;
@@ -98,11 +105,25 @@ public class ConsentGetService {
             }
         }
 
+        ConsentPersonalExpirationControlModel consentPersonalExpirationControl = consentsExpirationControlRepositoryView.findRegistryOdMaxExpirationByConsentId(consentId);
+        LoggedUser loggedUser = LoggedUser.builder()
+                .document(LoggedUserDocument.builder()
+                        .identification(consentPersonalExpirationControl.getLoggedUserIdentification())
+                        .rel(consentPersonalExpirationControl.getLoggedUserDocumentRel()).build())
+                .build();
+        BusinessEntity business = BusinessEntity.builder()
+                .document(BusinessEntityDocument.builder()
+                        .identification(consentPersonalExpirationControl.getBusinessEntityIdentification())
+                        .rel(consentPersonalExpirationControl.getBusinessEntityDocumentRel()).build())
+                .build();
+
         ResponseConsentReadData responseConsentReadData = ResponseConsentReadData.builder()
                 .consentId(consentId)
                 .creationDateTime(consentRequested.getCreationDatetime())
                 .status(ResponseConsentReadData.StatusEnum.fromValue(consentRequested.getStatus()))
                 .statusUpdateDateTime(consentRequested.getStatusUpdateDatetime())
+                .businessEntity(business)
+                .loggedUser(loggedUser)
                 .permissions(permissions)
                 .build();
 

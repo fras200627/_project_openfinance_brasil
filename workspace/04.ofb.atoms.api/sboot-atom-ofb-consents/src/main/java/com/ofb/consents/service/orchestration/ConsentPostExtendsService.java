@@ -168,7 +168,7 @@ public class ConsentPostExtendsService {
             throw new RuntimeException(e);
         }
 
-        ResponseConsentRead responseConsentRead = consentGetService.consentsGetConsentsConsentId(consentId, authorization, xFapiInteractionId);
+        ResponseConsentRead responseConsentRead = consentGetService.consentsGetConsentsConsentId(consentId, xFapiInteractionId);
 
         List<ResponseConsentExtensionsData.PermissionsEnum> permissions = new ArrayList<>();
         for (ResponseConsentReadData.PermissionsEnum permission : responseConsentRead.getData().getPermissions().stream().distinct().toList()) {

@@ -104,7 +104,7 @@ public class AuthenticationService {
 //            .claim("ofb.consent.logged.user.name",                       accessTokenRequest.getLoggedUser().getDocument().getLoggedUserName())
             .claim("customer.document",    accessTokenRequest.getLoggedUser().getDocument().getIdentification())
 //            .claim("ofb.consent.logged.user.document.rel",               accessTokenRequest.getLoggedUser().getDocument().getRel())
-            .claim("permissions",                            consentPermissions.substring(0, 1050))
+            .claim("permissions",                            consentPermissions.substring(0, 1010))
             .build();
 
     TokenResponseModelTemplate tokenResponseModelTemplate =  TokenResponseModelTemplate.builder()

@@ -35,18 +35,17 @@ import java.util.List;
 @Service
 public class AccessTokenClaimsValidationService {
 
+    @Autowired private BusinessEntityValidationService businessEntityValidationService;
+    @Autowired private LoggedUserValidationService loggedUserValidationService;
+    @Autowired private ConsentValidationService consentValidationService;
     @Autowired private JwtDecoder jwtDecoder;
+
     private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
 
     public ResponseAuthorizationValidate accessTokenClaimsValidate(String accessToken) {
-        listResponseErrors = new ArrayList<>();
 
-        this.accessTokenConsentIdValidate(accessToken);
-        this.accessTokenClientDocumentValidate(accessToken);
-        this.accessTokenCustomerDocumentValidate(accessToken);
-        this.accessTokenPermissionsValidate(accessToken);
-        this.accessTokenExpirationDateTimeValidate(accessToken);
+        listResponseErrors = this.executeValidate(accessToken);
 
         if (listResponseErrors.isEmpty()) {
             return ResponseAuthorizationValidate.builder()
@@ -57,6 +56,17 @@ public class AccessTokenClaimsValidationService {
         } else {
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
+    }
+
+    public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
+        listResponseErrors = new ArrayList<>();
+        this.accessTokenConsentIdValidate(accessToken);
+        this.accessTokenClientDocumentValidate(accessToken);
+        this.accessTokenCustomerDocumentValidate(accessToken);
+        this.accessTokenPermissionsValidate(accessToken);
+        this.accessTokenExpirationDateTimeValidate(accessToken);
+
+        return listResponseErrors;
     }
 
     public void accessTokenConsentIdValidate(String accessToken) {
