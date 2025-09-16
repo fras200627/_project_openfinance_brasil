@@ -14,7 +14,6 @@ import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.consents.model.ConsentPermissionAuthorisedModel;
-import com.ofb.consents.model.ConsentPermissionRequestedModel;
 import com.ofb.consents.model.ConsentPersonalModel;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
@@ -185,26 +184,24 @@ public class ConsentGetService {
         }
 
         /// Step 03 -
-//        LoggedUserDocument loggedUserDocument = new LoggedUserDocument();
-//        loggedUserDocument.setLoggedUserName(consentsPersonalAccepted.getCivilName());
-//        loggedUserDocument.setIdentification(consentsPersonalAccepted.getLoggedUserIdentification());
-//        loggedUserDocument.setRel(consentsPersonalAccepted.getLoggedUserDocumentRel());
-
-        /// Step 04 -
-//        LoggedUser loggedUser = new LoggedUser();
-//        loggedUser.setDocument(loggedUserDocument);
-//        accessTokenRequest.setLoggedUser(loggedUser);
+        com.ofb.consents.client.authentication.model.LoggedUser loggedUser = new com.ofb.consents.client.authentication.model.LoggedUser().toBuilder()
+                .document(com.ofb.consents.client.authentication.model.LoggedUserDocument.builder()
+                        .loggedUserName(consentsPersonalAccepted.getCivilName())
+                        .identification(consentsPersonalAccepted.getLoggedUserIdentification())
+                        .rel(consentsPersonalAccepted.getLoggedUserDocumentRel()).build())
+                        .build();
 
         /// Step 05 -
-//        BusinessEntityDocument businessEntityDocument = new BusinessEntityDocument();
-//        businessEntityDocument.setEntityBusinessName(httpServletRequest.getUserPrincipal().getName());
-//        businessEntityDocument.setIdentification(consentsPersonalAccepted.getBusinessEntityIdentification());
-//        businessEntityDocument.setRel(consentsPersonalAccepted.getBusinessEntityDocumentRel());
+        com.ofb.consents.client.authentication.model.BusinessEntity businessEntity = new com.ofb.consents.client.authentication.model.BusinessEntity().toBuilder()
+                .document(com.ofb.consents.client.authentication.model.BusinessEntityDocument.builder()
+                        .entityBusinessName(httpServletRequest.getUserPrincipal().getName())
+                        .identification(consentsPersonalAccepted.getBusinessEntityIdentification())
+                        .rel(consentsPersonalAccepted.getBusinessEntityDocumentRel())
+                        .build())
+                .build();
 
-        /// Step 06 -
-//        BusinessEntity businessEntity = new BusinessEntity();
-//        businessEntity.setDocument(businessEntityDocument);
-//        accessTokenRequest.setBusinessEntity(businessEntity);
+        accessTokenRequest.setLoggedUser(loggedUser);
+        accessTokenRequest.setBusinessEntity(businessEntity);
 
         /// Step 07 -
         List<ConsentPermissionAuthorisedModel> listPermissionAuthorised = permissionsAuthorised.findAllConsentsPermissionsAuthorisedByConsentId(

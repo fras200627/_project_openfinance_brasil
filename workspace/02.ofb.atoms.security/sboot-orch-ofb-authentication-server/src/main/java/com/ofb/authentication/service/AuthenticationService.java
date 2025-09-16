@@ -88,6 +88,8 @@ public class AuthenticationService {
       expiresConsentAt = OffsetDateTime.of(2099, 12, 31, 23, 59, 59, 0, ZoneOffset.UTC);
     }
     String consentPermissions = Arrays.toString(accessTokenRequest.getScopes().toArray()).replace("[", "").replace("]", "");
+    consentPermissions = consentPermissions.length() < 1011 ? consentPermissions : consentPermissions.substring(0, 1010);
+
 
     JwtClaimsSet claims = JwtClaimsSet.builder()
             .issuer(issuerInfo)
@@ -104,7 +106,7 @@ public class AuthenticationService {
 //            .claim("ofb.consent.logged.user.name",                       accessTokenRequest.getLoggedUser().getDocument().getLoggedUserName())
             .claim("customer.document",    accessTokenRequest.getLoggedUser().getDocument().getIdentification())
 //            .claim("ofb.consent.logged.user.document.rel",               accessTokenRequest.getLoggedUser().getDocument().getRel())
-            .claim("permissions",                            consentPermissions.substring(0, 1010))
+            .claim("permissions",                            consentPermissions)
             .build();
 
     TokenResponseModelTemplate tokenResponseModelTemplate =  TokenResponseModelTemplate.builder()

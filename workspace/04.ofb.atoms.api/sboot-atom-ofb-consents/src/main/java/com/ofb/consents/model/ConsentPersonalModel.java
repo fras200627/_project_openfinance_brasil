@@ -17,6 +17,15 @@ public class ConsentPersonalModel {
     @Column(name = "CONSENTID")
     private String consentId;
 
+    @Column(name = "PERSONALID")
+    private String personalId;
+
+    @Column(name = "CIVILNAME")
+    private String civilName;
+
+    @Column(name = "CPFNUMBER")
+    private String cpfNumber;
+
     @Column(name = "CREATIONDATETIME")
     private String creationDatetime;
 
@@ -35,14 +44,24 @@ public class ConsentPersonalModel {
     @Column(name = "EXPIRATIONDATETIME")
     private String expirationDatetime;
 
-    @Column(name = "PERSONALID")
-    private String personalId;
+    @Column(name = "EXPIRATIONINMONTHS")
+    private String expirationInMonths;
 
-    @Column(name = "CIVILNAME")
-    private String civilName;
+    @Column(name = "EXPIRATIONDATEINFO")
+    private String expirationDateInfo;
 
-    @Column(name = "CPFNUMBER")
-    private String cpfNumber;
+
+    @Column(name = "LOGGEDUSERIDENTIFICATION")
+    private String loggedUserIdentification;
+
+    @Column(name = "LOGGEDUSERDOCUMENTREL")
+    private String loggedUserDocumentRel;
+
+    @Column(name = "BUSINESSENTITYIDENTIFICATION")
+    private String businessEntityIdentification;
+
+    @Column(name = "BUSINESSENTITYDOCUMENTREL")
+    private String businessEntityDocumentRel;
 
     @Column(name = "AWAITINGAUTHBY")
     private String awaitingAuthBy;

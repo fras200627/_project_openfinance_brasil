@@ -89,7 +89,7 @@ app:
   paths:
     clients:
       registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
-      authentication-server: 'http://localhost:3001/ofb-auth-server/'
+      authentication-server: 'http://localhost:3001/ofb-authentication-server/'
 eureka:
   client:
     serviceUrl:
@@ -150,7 +150,7 @@ app:
   paths:
     clients:
       registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
-      authentication-server: 'http://localhost:3001/ofb-auth-server/'
+      authentication-server: 'http://localhost:3001/ofb-authentication-server/'
 eureka:
   client:
     serviceUrl:
@@ -210,7 +210,7 @@ app:
   paths:
     clients:
       registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
-      authentication-server: 'http://localhost:3001/ofb-auth-server/'
+      authentication-server: 'http://localhost:3001/ofb-authentication-server/'
 eureka:
   client:
     serviceUrl:

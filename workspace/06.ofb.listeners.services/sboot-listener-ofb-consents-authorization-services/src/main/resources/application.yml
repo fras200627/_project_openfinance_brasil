@@ -73,10 +73,10 @@ spring:
 app:
   paths:
     clients:
-      authentication-server: 'http://localhost:3001/ofb-auth-server/'
+      authentication-server: 'http://localhost:3001/ofb-authentication-server/'
   consents:
     authorization:
-      expires-in-minutes: 1
+      expires-in-minutes: 60
 eureka:
   client:
     serviceUrl:

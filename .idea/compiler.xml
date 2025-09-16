@@ -12,7 +12,7 @@
         <module name="sboot-orch-ofb-api-gateway" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
-      <profile name="Annotation profile for sboot-orch-ofb-authorization-server" enabled="true">
+      <profile name="Annotation profile for sboot-listener-ofb-consents-authorization-services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

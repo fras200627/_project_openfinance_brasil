@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: 'OFB Authentication Server'
   description: 'Authentication Server for OFB'
@@ -334,7 +334,6 @@ components:
           type: string
           default: 'message description'
   responses:
-    # Global responses #
     TokenResponseModel:
       description: ''
       content:
