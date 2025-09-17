@@ -8,7 +8,7 @@ security:
 tags:
   - name: AuthorizationValidate
 paths:
-  /authorization/authorizationValidate:
+  /authorization/accessToken/validate:
     get:
       tags:
         - AuthorizationValidate
@@ -22,7 +22,7 @@ paths:
           $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
-  /authorization/accessTokenClaimsValidate:
+  /authorization/accessToken/tokenClaimsValidate:
     get:
       tags:
         - AuthorizationValidate
@@ -36,7 +36,7 @@ paths:
           $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
-  /authorization/businessEntityValidate:
+  /authorization/accessToken/businessEntityValidate:
     get:
       tags:
         - AuthorizationValidate
@@ -50,7 +50,7 @@ paths:
           $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
-  /authorization/loggedUserValidate:
+  /authorization/accessToken/loggedUserValidate:
     get:
       tags:
         - AuthorizationValidate
@@ -64,7 +64,7 @@ paths:
           $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
-  /authorization/consentValidate:
+  /authorization/accessToken/consentValidate:
     get:
       tags:
         - AuthorizationValidate
@@ -116,7 +116,7 @@ components:
         status:
           type: string
           enum:
-            - ACCESS_TOKEN_UNATHORIZED
+            - ACCESS_TOKEN_UNAUTHORIZED
             - ACCESS_TOKEN_AUTHORIZED
         consentId:
           type: string

@@ -5,7 +5,6 @@ import com.ofb.authorization.client.participants.handler.ClientsBusinessResource
 import com.ofb.authorization.client.participants.model.OAuth2ClientResponse;
 import com.ofb.authorization.server.authorizations.model.*;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
-import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +34,7 @@ public class BusinessEntityValidationService {
     @Autowired private JwtDecoder jwtDecoder;
     @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi;
 
+    //private Gson gson = new Gson();
     private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
     private ValidateErrorResponse             validateErrorResponse;
@@ -58,18 +58,10 @@ public class BusinessEntityValidationService {
             }
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNATHORIZED)
-                            .consentId(null)
-                            .loggedUserDocument(null)
-                            .loggedUserDocumentRel(null)
-                            .businessEntityDocument(null)
-                            .businessEntityDocumentRel(null)
+                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
                             .build())
                     .resultValidation(ResultValidation.builder()
-                            .accessToken(null)
-                            .consent(null)
-                            .loggedUser(null)
-                            .businessEntity(null)
+                            .accessToken("AccessToken is invalid")
                             .build())
                     .resultErrors(ResultErrors.builder()
                             .errors(errors)
@@ -80,25 +72,23 @@ public class BusinessEntityValidationService {
                     .data(data)
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
-            throw new BadRequestException(gson.toJson(responseAuthorizationData));
-
         } else {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
                             .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
-                            .consentId(null)
-                            .loggedUserDocument(null)
-                            .loggedUserDocumentRel(null)
+//                            .consentId(consentId)
+//                            .loggedUserDocument(customerDocument)
+//                            .loggedUserDocumentRel("CPF")
                             .businessEntityDocument(documentNumber)
                             .businessEntityDocumentRel("CNPJ")
                             .build())
                     .resultValidation(ResultValidation.builder()
-                            .accessToken(null)
-                            .consent(null)
-                            .loggedUser(null)
-                            .businessEntity("BusinessEntity Authorized")
+                            .accessToken("AccessToken is valid")
+//                            .consent("consentId is informed")
+//                            .loggedUser("LoggedUser is informed ")
+                            .businessEntity("BusinessEntity informed is valid and Authorized")
                             .build())
-                    .resultErrors(null)
+//                    .resultErrors(null)
                     .build();
 
             responseAuthorizationData = ResponseAuthorizationData.builder()
@@ -113,7 +103,7 @@ public class BusinessEntityValidationService {
     public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
 
         returnData          = new OAuth2ClientResponse();
-        documentNumber = null;
+        documentNumber      = null;
         listResponseErrors  = new ArrayList<>();
         validateErrorResponse = new ValidateErrorResponse();
 
@@ -124,7 +114,11 @@ public class BusinessEntityValidationService {
             documentNumber = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
             returnData = registeredClientsResourcesApi.getFindByClientDocument(documentNumber);
         } catch (Exception e) {
-            listResponseErrors.addAll(validateErrorResponse.buildErrorResponse(e, true));
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An Internal error occurred in BusinessEntity validation: [" + e.getMessage() + "].")
+                    .build());
             return listResponseErrors;
         }
 

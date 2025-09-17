@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="+ revision folders and authorization server">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-interceptors/src/main/java/com/ofb/lib/interceptor/config/AppWebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-interceptors/src/main/java/com/ofb/lib/interceptor/config/AppWebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/config/OpenAPIConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenClaimsValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenClaimsValidationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AuthorizationValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AuthorizationValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/ConsentValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/ConsentValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java" afterDir="false" />
@@ -87,7 +87,7 @@
     "Application.Batch Expiration Control.executor": "Debug",
     "Application.Cancellation.executor": "Debug",
     "Application.CodeticketsApplication.executor": "Debug",
-    "Application.Consents.executor": "Debug",
+    "Application.Consents.executor": "Run",
     "Application.Customers.executor": "Run",
     "Application.Listener Audit.executor": "Run",
     "Application.Listener Authorization.executor": "Debug",
@@ -194,7 +194,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/04.ofb.atoms.api/sboot-atom-ofb-consents/src/main/resources/openapi/client",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/00.lib.commons/sboot-lib-ofb-common-tools/src/main/resources",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
@@ -204,11 +204,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\00.lib.commons\sboot-lib-ofb-common-tools\src\main\resources" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms.api\sboot-atom-ofb-consents\src\main\resources\openapi\client" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms.api\sboot-atom-ofb-consents\src\main\resources\openapi\client\backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.ofb.atoms.security\sboot-orch-ofb-authorization-server\src\main\resources\openapi\client" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.2-authorization.server\sboot-orch-ofb-authorization-server\src\main\resources\openapi\server" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.2-authorization.server\sboot-orch-ofb-authorization-server\src\main\resources\openapi\client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms.api\sboot-atom-ofb-consents\src\main\resources\openapi\client\backup" />
@@ -231,7 +231,7 @@
       <recent name="com.ofb.sbatch.consents.expiration.control.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.3-Authorization">
+  <component name="RunManager" selected="Application.Consents">
     <list>
       <item itemvalue="Application.1-Discovery" />
       <item itemvalue="Application.2-Gateway" />
@@ -258,14 +258,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Ajutes no gitignore e gitexclude">
-      <option name="closed" value="true" />
-      <created>1753092892112</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1753092892112</updated>
     </task>
     <task id="LOCAL-00015" summary="Postman">
       <option name="closed" value="true" />
@@ -651,7 +643,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758037143644</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="+ revision folders and authorization server">
+      <option name="closed" value="true" />
+      <created>1758120659066</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1758120659066</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -743,19 +743,24 @@
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.ofb.atoms.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="72" />
+          <line>57</line>
+          <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms.api/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/ConsentPersonalModel.java</url>

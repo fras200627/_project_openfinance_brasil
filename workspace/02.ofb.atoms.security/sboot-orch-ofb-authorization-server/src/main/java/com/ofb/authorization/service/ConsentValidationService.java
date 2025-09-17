@@ -3,10 +3,8 @@ package com.ofb.authorization.service;
 import com.google.gson.Gson;
 import com.ofb.authorization.client.consents.handler.ConsentsApi;
 import com.ofb.authorization.client.consents.model.ResponseConsentRead;
-import com.ofb.authorization.server.authorizations.model.Meta;
-import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationData;
+import com.ofb.authorization.server.authorizations.model.*;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
-import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -38,23 +36,72 @@ public class ConsentValidationService {
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
     private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
+    private String consentId;
+    private ResponseConsentRead returnData;
+
     public ResponseAuthorizationData consentValidate(String accessToken) {
+        List<ResultErrorsErrorsInner> errors = new ArrayList<>();
+        ResponseAuthorizationData responseAuthorizationData =  new ResponseAuthorizationData();
+
         listResponseErrors = this.executeValidate(accessToken);
-        if (listResponseErrors.isEmpty()) {
-            return ResponseAuthorizationData.builder()
-                    .data(null)
+
+        if (!listResponseErrors.isEmpty()) {
+            for (ResponseErrorsInnerTemplate reg : listResponseErrors) {
+                errors.add(ResultErrorsErrorsInner.builder()
+                        .title(reg.getTitle())
+                        .code(reg.getCode())
+                        .detail(reg.getDetail())
+                        .build());
+            }
+            ResponseResultData data = ResponseResultData.builder()
+                    .resultStatus(ResultStatus.builder()
+                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
+                            .build())
+                    .resultValidation(ResultValidation.builder()
+                            .accessToken("AccessToken is invalid")
+                            .build())
+                    .resultErrors(ResultErrors.builder()
+                            .errors(errors)
+                            .build())
+                    .build();
+
+            responseAuthorizationData = ResponseAuthorizationData.builder()
+                    .data(data)
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
         } else {
-            throw new BadRequestException(gson.toJson(listResponseErrors));
+            ResponseResultData data = ResponseResultData.builder()
+                    .resultStatus(ResultStatus.builder()
+                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
+                            .consentId(consentId)
+//                            .loggedUserDocument(customerDocument)
+//                            .loggedUserDocumentRel("CPF")
+//                            .businessEntityDocument(clientDocument)
+//                            .businessEntityDocumentRel("CNPJ")
+                            .build())
+                    .resultValidation(ResultValidation.builder()
+                            .accessToken("AccessToken is valid")
+                            .consent("consentId informed is valid and Authorized")
+//                            .loggedUser("LoggedUser is informed ")
+//                            .businessEntity("BusinessEntity is informed")
+                            .build())
+//                    .resultErrors(null)
+                    .build();
+
+            responseAuthorizationData = ResponseAuthorizationData.builder()
+                    .data(data)
+                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
+                    .build();
         }
+
+        return responseAuthorizationData;
     }
 
     public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
 
         listResponseErrors = new ArrayList<>();
-        String consentId = "";
-        ResponseConsentRead returnData = null;
+        consentId = "";
+        returnData = new ResponseConsentRead();
 
         consentsApi.getApiClient().setBasePath(PATH_CONSENTS_API);
         consentsApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
@@ -65,7 +112,11 @@ public class ConsentValidationService {
                         UUID.randomUUID(),
                         null, null, null);
         } catch (Exception e) {
-            listResponseErrors.addAll(validateErrorResponse.buildErrorResponse(e, true));
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Authorization error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail("An Internal error occurred in Consent validation: [" + e.getMessage() + "].")
+                    .build());
             return listResponseErrors;
         }
 
