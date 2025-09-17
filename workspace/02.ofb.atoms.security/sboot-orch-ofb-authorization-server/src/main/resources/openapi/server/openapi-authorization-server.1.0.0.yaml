@@ -19,7 +19,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       responses:
         '200':
-          $ref: '#/components/responses/ResponseValidate'
+          $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
   /authorization/accessTokenClaimsValidate:
@@ -33,7 +33,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       responses:
         '200':
-          $ref: '#/components/responses/ResponseValidate'
+          $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
   /authorization/businessEntityValidate:
@@ -47,7 +47,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       responses:
         '200':
-          $ref: '#/components/responses/ResponseValidate'
+          $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
   /authorization/loggedUserValidate:
@@ -61,7 +61,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       responses:
         '200':
-          $ref: '#/components/responses/ResponseValidate'
+          $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
   /authorization/consentValidate:
@@ -75,32 +75,94 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       responses:
         '200':
-          $ref: '#/components/responses/ResponseValidate'
+          $ref: '#/components/responses/ResponseAuthorization'
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
-    ResponseAuthorizationValidate:
+    ResponseAuthorizationData:
       type: object
       required:
         - data
         - meta
       properties:
         data:
-          $ref: '#/components/schemas/ValidateResult'
+          $ref: '#/components/schemas/ResponseResultData'
         meta:
           $ref: '#/components/schemas/Meta'
-    ValidateResult:
+    ResponseResultData:
+      type: object
+      required:
+        - resultStatus
+        - resultValidation
+        - resultErrors
+      properties:
+        resultStatus:
+          $ref: '#/components/schemas/ResultStatus'
+        resultValidation:
+          $ref: '#/components/schemas/ResultValidation'
+        resultErrors:
+          $ref: '#/components/schemas/ResultErrors'
+    ResultStatus:
       type: object
       required:
         - status
+        - consentId
+        - loggedUserDocument
+        - loggedUserDocumentRel
+        - businessEntityDocument
+        - businessEntityDocumentRel
       properties:
         status:
           type: string
+          enum:
+            - ACCESS_TOKEN_UNATHORIZED
+            - ACCESS_TOKEN_AUTHORIZED
+        consentId:
+          type: string
+          minLength: 1
+          maxLength: 150
+        loggedUserDocument:
+          type: string
+          minLength: 1
+          maxLength: 150
+        loggedUserDocumentRel:
+          type: string
+          minLength: 1
+          maxLength: 150
+        businessEntityDocument:
+          type: string
+          minLength: 1
+          maxLength: 150
+        businessEntityDocumentRel:
+          type: string
+          minLength: 1
+          maxLength: 150
+    ResultValidation:
+      type: object
+      required:
+        - accessToken
+        - consent
+        - loggedUser
+        - businessEntity
+      properties:
+        accessToken:
+          type: string
           minLength: 1
           maxLength: 2048
-          example: "OK"
-    ResponseAuthorizationError:
+        consent:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        loggedUser:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        businessEntity:
+          type: string
+          minLength: 1
+          maxLength: 2048
+    ResultErrors:
       type: object
       required:
         - errors
@@ -128,8 +190,6 @@ components:
                 description: Descrição legível por humanos deste erro específico
                 type: string
                 maxLength: 2048
-        meta:
-          $ref: '#/components/schemas/Meta'
     Meta:
       type: object
       description: Meta informações referente à API requisitada.
@@ -159,15 +219,15 @@ components:
       scheme: bearer
 
   responses:
-    ResponseValidate:
+    ResponseAuthorization:
       description: 'description'
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ResponseAuthorizationValidate'
+            $ref: '#/components/schemas/ResponseAuthorizationData'
     BadRequest:
       description: 'O AccessToken informado possui informações inválidas'
       content:
         application/json; charset=utf-8:
           schema:
-            $ref: '#/components/schemas/ResponseAuthorizationError'
+            $ref: '#/components/schemas/ResultErrors'

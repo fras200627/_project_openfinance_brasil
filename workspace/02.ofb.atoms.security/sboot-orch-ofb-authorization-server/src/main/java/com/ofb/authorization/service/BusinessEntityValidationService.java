@@ -3,12 +3,9 @@ package com.ofb.authorization.service;
 import com.google.gson.Gson;
 import com.ofb.authorization.client.participants.handler.ClientsBusinessResourcesApi;
 import com.ofb.authorization.client.participants.model.OAuth2ClientResponse;
-import com.ofb.authorization.server.authorizations.model.Meta;
-import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
-import com.ofb.authorization.server.authorizations.model.ValidateResult;
+import com.ofb.authorization.server.authorizations.model.*;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
-import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.NoSuchElementException;
 
 /**
  * Passo 03: Verificação ds BusinessEntity (Participante indicado no client.document):
@@ -43,33 +37,92 @@ public class BusinessEntityValidationService {
 
     private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
-    private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
+    private ValidateErrorResponse             validateErrorResponse;
+    private OAuth2ClientResponse              returnData;
+    private String                            documentNumber;
 
-    public ResponseAuthorizationValidate businessEntityValidate(String accessToken) {
+    public ResponseAuthorizationData businessEntityValidate(String accessToken) {
+
+        List<ResultErrorsErrorsInner> errors = new ArrayList<>();
+        ResponseAuthorizationData responseAuthorizationData =  new ResponseAuthorizationData();
+
         listResponseErrors = this.executeValidate(accessToken);
-        if (listResponseErrors.isEmpty()) {
-            return ResponseAuthorizationValidate.builder()
-                    .data(ValidateResult.builder()
-                            .status("BusinessEntity/Partipant (in Authorization Service) successfully validate.").build())
+
+        if (!listResponseErrors.isEmpty()) {
+            for (ResponseErrorsInnerTemplate reg : listResponseErrors) {
+                errors.add(ResultErrorsErrorsInner.builder()
+                        .title(reg.getTitle())
+                        .code(reg.getCode())
+                        .detail(reg.getDetail())
+                        .build());
+            }
+            ResponseResultData data = ResponseResultData.builder()
+                    .resultStatus(ResultStatus.builder()
+                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNATHORIZED)
+                            .consentId(null)
+                            .loggedUserDocument(null)
+                            .loggedUserDocumentRel(null)
+                            .businessEntityDocument(null)
+                            .businessEntityDocumentRel(null)
+                            .build())
+                    .resultValidation(ResultValidation.builder()
+                            .accessToken(null)
+                            .consent(null)
+                            .loggedUser(null)
+                            .businessEntity(null)
+                            .build())
+                    .resultErrors(ResultErrors.builder()
+                            .errors(errors)
+                            .build())
+                    .build();
+
+            responseAuthorizationData = ResponseAuthorizationData.builder()
+                    .data(data)
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
+            throw new BadRequestException(gson.toJson(responseAuthorizationData));
+
         } else {
-            throw new BadRequestException(gson.toJson(listResponseErrors));
+            ResponseResultData data = ResponseResultData.builder()
+                    .resultStatus(ResultStatus.builder()
+                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
+                            .consentId(null)
+                            .loggedUserDocument(null)
+                            .loggedUserDocumentRel(null)
+                            .businessEntityDocument(documentNumber)
+                            .businessEntityDocumentRel("CNPJ")
+                            .build())
+                    .resultValidation(ResultValidation.builder()
+                            .accessToken(null)
+                            .consent(null)
+                            .loggedUser(null)
+                            .businessEntity("BusinessEntity Authorized")
+                            .build())
+                    .resultErrors(null)
+                    .build();
+
+            responseAuthorizationData = ResponseAuthorizationData.builder()
+                    .data(data)
+                    .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
+                    .build();
         }
+
+        return responseAuthorizationData;
     }
 
     public List<ResponseErrorsInnerTemplate> executeValidate(String accessToken) {
 
-        OAuth2ClientResponse returnData = new OAuth2ClientResponse();
-        String clientDocument = null;
-        listResponseErrors = new ArrayList<>();
+        returnData          = new OAuth2ClientResponse();
+        documentNumber = null;
+        listResponseErrors  = new ArrayList<>();
+        validateErrorResponse = new ValidateErrorResponse();
 
         registeredClientsResourcesApi.getApiClient().setBasePath(PATH_PARTICIPANTS_API);
         registeredClientsResourcesApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
 
         try {
-            clientDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
-            returnData = registeredClientsResourcesApi.getFindByClientDocument(clientDocument);
+            documentNumber = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
+            returnData = registeredClientsResourcesApi.getFindByClientDocument(documentNumber);
         } catch (Exception e) {
             listResponseErrors.addAll(validateErrorResponse.buildErrorResponse(e, true));
             return listResponseErrors;
@@ -90,21 +143,20 @@ public class BusinessEntityValidationService {
                     .detail("An error occurred in Participant verification: Participant must be ACTIVE.")
                     .build());
         }
-        if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.read")) {
+        if (!returnData.getSecurityScope().contains("client.ofb.read")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in Participant varification: Participant must be role client.ofb.read.")
                     .build());
         }
-        if (returnData.getSecurityScope() != null && !returnData.getSecurityScope().contains("client.ofb.write")) {
+        if (!returnData.getSecurityScope().contains("client.ofb.write")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in Partipant verification: Participant must be role client.ofb.write.")
                     .build());;
         }
-
         if (returnData.getIsCredentialsExpired().equals("true")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Authorization invalid (in getClaim AccessToken")
@@ -113,8 +165,7 @@ public class BusinessEntityValidationService {
                     .build());
         }
 
-            return listResponseErrors;
-
+        return listResponseErrors;
     }
 
 }

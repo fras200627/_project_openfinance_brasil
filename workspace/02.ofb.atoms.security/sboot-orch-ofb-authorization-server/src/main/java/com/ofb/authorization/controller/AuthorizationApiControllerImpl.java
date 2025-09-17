@@ -1,7 +1,7 @@
 package com.ofb.authorization.controller;
 
 import com.ofb.authorization.server.authorizations.handler.AuthorizationApiDelegate;
-import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
+import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationData;
 import com.ofb.authorization.service.*;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -26,27 +26,31 @@ public class AuthorizationApiControllerImpl implements AuthorizationApiDelegate 
     @Autowired private AuthorizationValidationService authorizationValidationService;
 
     @Override
-    public ResponseEntity<ResponseAuthorizationValidate> accessTokenClaimsValidate(String authorization) {
+    public ResponseEntity<ResponseAuthorizationData> accessTokenClaimsValidate(String authorization) {
         return new ResponseEntity<>(accessTokenClaimsValidationService.accessTokenClaimsValidate(authorization), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponseAuthorizationValidate> authorizationValidate(String authorization) {
-        return new ResponseEntity<>(authorizationValidationService.authorizationValidate(authorization), HttpStatus.OK);
+    public ResponseEntity<ResponseAuthorizationData> authorizationValidate(String authorization) {
+        ResponseAuthorizationData responseAuthorizationData = authorizationValidationService.authorizationValidate(authorization);
+        if (responseAuthorizationData.getData().getResultStatus().getStatus().equals("ERROR")) {
+            return new ResponseEntity<>(responseAuthorizationData, HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(responseAuthorizationData, HttpStatus.ACCEPTED);
     }
 
     @Override
-    public ResponseEntity<ResponseAuthorizationValidate> businessEntityValidate(String authorization) {
+    public ResponseEntity<ResponseAuthorizationData> businessEntityValidate(String authorization) {
         return new ResponseEntity<>(businessEntityValidationService.businessEntityValidate(authorization), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponseAuthorizationValidate> consentValidate(String authorization) {
+    public ResponseEntity<ResponseAuthorizationData> consentValidate(String authorization) {
         return new ResponseEntity<>(consentValidationService.consentValidate(authorization), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponseAuthorizationValidate> loggedUserValidate(String authorization) {
+    public ResponseEntity<ResponseAuthorizationData> loggedUserValidate(String authorization) {
         return new ResponseEntity<>(loggedUserValidationService.loggedUserValidate(authorization), HttpStatus.OK);
     }
 }

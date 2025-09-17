@@ -2,8 +2,7 @@ package com.ofb.authorization.service;
 
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.ofb.authorization.server.authorizations.model.Meta;
-import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
-import com.ofb.authorization.server.authorizations.model.ValidateResult;
+import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationData;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
@@ -43,14 +42,13 @@ public class AccessTokenClaimsValidationService {
     private Gson gson = new Gson();
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
 
-    public ResponseAuthorizationValidate accessTokenClaimsValidate(String accessToken) {
+    public ResponseAuthorizationData accessTokenClaimsValidate(String accessToken) {
 
         listResponseErrors = this.executeValidate(accessToken);
 
         if (listResponseErrors.isEmpty()) {
-            return ResponseAuthorizationValidate.builder()
-                    .data(ValidateResult.builder()
-                            .status("AccessToken (in Authorization Service) successfully validate.").build())
+            return ResponseAuthorizationData.builder()
+                    .data(null)
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
         } else {

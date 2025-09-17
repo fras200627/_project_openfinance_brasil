@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.ofb.authorization.client.consents.handler.ConsentsApi;
 import com.ofb.authorization.client.consents.model.ResponseConsentRead;
 import com.ofb.authorization.server.authorizations.model.Meta;
-import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationValidate;
-import com.ofb.authorization.server.authorizations.model.ValidateResult;
+import com.ofb.authorization.server.authorizations.model.ResponseAuthorizationData;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.ValidateErrorResponse;
@@ -39,12 +38,11 @@ public class ConsentValidationService {
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
     private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
-    public ResponseAuthorizationValidate consentValidate(String accessToken) {
+    public ResponseAuthorizationData consentValidate(String accessToken) {
         listResponseErrors = this.executeValidate(accessToken);
         if (listResponseErrors.isEmpty()) {
-            return ResponseAuthorizationValidate.builder()
-                    .data(ValidateResult.builder()
-                            .status("Consents (in Authorization Validation) successfully validate.").build())
+            return ResponseAuthorizationData.builder()
+                    .data(null)
                     .meta(Meta.builder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString()).build())
                     .build();
         } else {
