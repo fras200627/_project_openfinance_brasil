@@ -36,7 +36,7 @@ public class LoggedUserValidationService {
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
     private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
-    private String customerDocument;
+    private String customerDocument = null;
     private ResponsePersonalCustomerData returnData;
 
     public ResponseAuthorizationData loggedUserValidate(String accessToken) {
@@ -57,9 +57,12 @@ public class LoggedUserValidationService {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
                             .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
+                            .loggedUserDocument(customerDocument == null ? "not verified" : customerDocument)
+                            .loggedUserDocumentRel(customerDocument == null ? null : "CPF")
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is invalid")
+                            .loggedUser("An error occurred while the LoggedUser validation")
                             .build())
                     .resultErrors(ResultErrors.builder()
                             .errors(errors)
@@ -74,19 +77,13 @@ public class LoggedUserValidationService {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
                             .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
-//                            .consentId(consentId)
                             .loggedUserDocument(customerDocument)
                             .loggedUserDocumentRel("CPF")
-//                            .businessEntityDocument(clientDocument)
-//                            .businessEntityDocumentRel("CNPJ")
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is valid")
-//                            .consent("consentId is informed")
                             .loggedUser("LoggedUser informed is valid and Authorized")
-//                            .businessEntity("BusinessEntity is informed")
                             .build())
-//                    .resultErrors(null)
                     .build();
 
             responseAuthorizationData = ResponseAuthorizationData.builder()

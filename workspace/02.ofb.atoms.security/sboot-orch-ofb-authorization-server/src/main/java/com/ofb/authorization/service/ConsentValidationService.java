@@ -36,7 +36,7 @@ public class ConsentValidationService {
     private List<ResponseErrorsInnerTemplate> listResponseErrors;
     private ValidateErrorResponse validateErrorResponse = new ValidateErrorResponse();
 
-    private String consentId;
+    private String consentId = null;
     private ResponseConsentRead returnData;
 
     public ResponseAuthorizationData consentValidate(String accessToken) {
@@ -56,9 +56,11 @@ public class ConsentValidationService {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
                             .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
+                            .consentId(consentId == null ? "not verified" : consentId)
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is invalid")
+                            .consent("An error occurred while the Consent validation")
                             .build())
                     .resultErrors(ResultErrors.builder()
                             .errors(errors)
@@ -74,18 +76,11 @@ public class ConsentValidationService {
                     .resultStatus(ResultStatus.builder()
                             .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
                             .consentId(consentId)
-//                            .loggedUserDocument(customerDocument)
-//                            .loggedUserDocumentRel("CPF")
-//                            .businessEntityDocument(clientDocument)
-//                            .businessEntityDocumentRel("CNPJ")
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is valid")
                             .consent("consentId informed is valid and Authorized")
-//                            .loggedUser("LoggedUser is informed ")
-//                            .businessEntity("BusinessEntity is informed")
                             .build())
-//                    .resultErrors(null)
                     .build();
 
             responseAuthorizationData = ResponseAuthorizationData.builder()

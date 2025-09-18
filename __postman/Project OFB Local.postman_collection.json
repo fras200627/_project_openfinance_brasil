@@ -453,7 +453,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"consentId\": \"urn:bancoex:C1DD33123\",\r\n  \"creationDateTime\": \"2025-07-01T08:30:00Z\",\r\n  \"expirationDateTime\": \"2025-10-01T08:30:00Z\",\r\n  \"loggedUser\": {\r\n    \"document\": {\r\n      \"loggedUserName\": \"loggedUserName\",\r\n      \"identification\": \"54880884588\",\r\n      \"rel\": \"CPF\"\r\n    }\r\n  },\r\n  \"businessEntity\": {\r\n    \"document\": {\r\n      \"entityBusinessName\": \"entityBusinessName\",\r\n      \"identification\": \"94420534000110\",\r\n      \"rel\": \"CNPJ\"\r\n    }\r\n  },\r\n  \"scopes\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"\r\n  ]\r\n}",
+							"raw": "{\r\n  \"consentId\": \"urn:bancotcn:1971b182-173e-49c9-ab71-147e91078193\",\r\n  \"creationDateTime\": \"2025-07-01T08:30:00Z\",\r\n  \"expirationDateTime\": \"2025-10-01T08:30:00Z\",\r\n  \"loggedUser\": {\r\n    \"document\": {\r\n      \"loggedUserName\": \"loggedUserName\",\r\n      \"identification\": \"54880884588\",\r\n      \"rel\": \"CPF\"\r\n    }\r\n  },\r\n  \"businessEntity\": {\r\n    \"document\": {\r\n      \"entityBusinessName\": \"entityBusinessName\",\r\n      \"identification\": \"94420534000110\",\r\n      \"rel\": \"CNPJ\"\r\n    }\r\n  },\r\n  \"scopes\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -524,6 +524,44 @@
 					"response": []
 				},
 				{
+					"name": "ValidateAuthorization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/validate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "validateAccessTokenClaims",
 					"request": {
 						"auth": {
@@ -545,7 +583,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessTokenClaimsValidate",
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/tokenClaimsValidate",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -554,7 +592,8 @@
 							"path": [
 								"ofb-authorization-server",
 								"authorization",
-								"accessTokenClaimsValidate"
+								"accessToken",
+								"tokenClaimsValidate"
 							]
 						}
 					},
@@ -582,7 +621,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-authorization-server/authorization/businessEntityValidate",
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/businessEntityValidate",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -591,6 +630,7 @@
 							"path": [
 								"ofb-authorization-server",
 								"authorization",
+								"accessToken",
 								"businessEntityValidate"
 							]
 						}
@@ -619,7 +659,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-authorization-server/authorization/loggedUserValidate",
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/loggedUserValidate",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -628,7 +668,46 @@
 							"path": [
 								"ofb-authorization-server",
 								"authorization",
+								"accessToken",
 								"loggedUserValidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateConsent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/consentValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"consentValidate"
 							]
 						}
 					},
@@ -1562,7 +1641,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-09-02T06:33:23Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-09-16T06:33:23Z\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2765,7 +2844,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:3b37c093-79bf-4d1e-9dfe-b3e79f57abdc"
+									"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
 								}
 							]
 						}
@@ -2780,7 +2859,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "{{access_token_consent}}",
 									"type": "string"
 								}
 							]
@@ -2839,7 +2918,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:1971b182-173e-49c9-ab71-147e91078193"
+									"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
 								}
 							]
 						}
@@ -2854,7 +2933,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "{{access_token_consent}}",
 									"type": "string"
 								}
 							]
@@ -2889,7 +2968,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-08-12T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2025-12-16T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2912,7 +2991,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:1971b182-173e-49c9-ab71-147e91078193"
+									"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
 								}
 							]
 						}
@@ -2975,7 +3054,7 @@
 							"variable": [
 								{
 									"key": "consentId",
-									"value": "urn:bancotcn:d3996431-b403-4f6b-b305-fc68266ebc44"
+									"value": "urn:bancotcn:bc2b4dc7-67ea-4064-9f14-2f5df809339a"
 								}
 							]
 						}

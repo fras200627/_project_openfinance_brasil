@@ -93,7 +93,6 @@ public class AccessTokenClaimsValidationService {
                             .loggedUser("LoggedUser is informed")
                             .businessEntity("BusinessEntity is informed")
                             .build())
-//                    .resultErrors(null)
                     .build();
 
             responseAuthorizationData = ResponseAuthorizationData.builder()
@@ -122,7 +121,7 @@ public class AccessTokenClaimsValidationService {
             consentId = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("ofb.consent.id").toString();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
+                    .title("Authorization invalid")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in consentId verify.")
                     .build());
@@ -135,7 +134,7 @@ public class AccessTokenClaimsValidationService {
             clientDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("client.document").toString();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
+                    .title("Authorization invalid")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in clientDocument (document of Participant) verify.")
                     .build());
@@ -148,7 +147,7 @@ public class AccessTokenClaimsValidationService {
             customerDocument = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("customer.document").toString();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
+                    .title("Authorization invalid")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in customerDocument (document of LoggedUser) verify.")
                     .build());
@@ -161,7 +160,7 @@ public class AccessTokenClaimsValidationService {
             scope = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("permissions").toString();
             if (!scope.contains("RESOURCES_READ") || !scope.contains("CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ")) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Authorization invalid (in getClaim AccessToken")
+                        .title("Authorization invalid")
                         .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                         .detail("Authorization not exists a consent permissions RESOURCES_READ and CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ " +
                                 "of LoggedUser verify.")
@@ -169,7 +168,7 @@ public class AccessTokenClaimsValidationService {
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
+                    .title("Authorization invalid")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in scope (consent permissions) of LoggedUser verify.")
                     .build());
@@ -182,14 +181,14 @@ public class AccessTokenClaimsValidationService {
             expiration = jwtDecoder.decode(accessToken.replace("Bearer ", "")).getClaim("exp").toString();
             if (!OffsetDateTime.parse(expiration).isAfter(OffsetDateTime.now(ZoneId.of("UTC")))) {
                 listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title("Authorization invalid (in getClaim AccessToken)")
+                        .title("Authorization invalid)")
                         .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                         .detail("The consent ExpirationDateTime is invalid.")
                         .build());
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
+                    .title("Authorization invalid")
                     .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
                     .detail("An error occurred in consent Expiration DateTime verify.")
                     .build());
