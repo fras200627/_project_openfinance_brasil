@@ -93,6 +93,7 @@ app:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
       ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -154,6 +155,7 @@ app:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
       ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"
@@ -215,6 +217,7 @@ app:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
       ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"

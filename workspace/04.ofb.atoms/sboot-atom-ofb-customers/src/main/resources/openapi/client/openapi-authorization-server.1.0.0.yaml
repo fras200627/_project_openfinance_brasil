@@ -1,0 +1,255 @@
+openapi: 3.0.0
+info:
+  title: API Resources - Open Finance Brasil
+  description: ''
+  version: 1.0.0
+security:
+  - bearerAuth: []
+tags:
+  - name: AuthorizationValidate
+paths:
+  /authorization/accessToken/validate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: authorizationValidate
+      description: 'description'
+      #      parameters:
+      #        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '202':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '203':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /authorization/accessToken/tokenClaimsValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: accessTokenClaimsValidate
+      description: 'description'
+      #      parameters:
+      #        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '202':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '203':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /authorization/accessToken/businessEntityValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: businessEntityValidate
+      description: 'description'
+      #      parameters:
+      #        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '202':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '203':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /authorization/accessToken/loggedUserValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: loggedUserValidate
+      description: 'description'
+      #      parameters:
+      #        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '202':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '203':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /authorization/accessToken/consentValidate:
+    get:
+      tags:
+        - AuthorizationValidate
+      summary: 'summary'
+      operationId: consentValidate
+      description: 'description'
+      #      parameters:
+      #        - $ref: '#/components/parameters/Authorization'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '202':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '203':
+          $ref: '#/components/responses/ResponseAuthorization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    ResponseAuthorizationData:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseResultData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ResponseResultData:
+      type: object
+      required:
+        - resultStatus
+        - resultValidation
+        - resultErrors
+      properties:
+        resultStatus:
+          $ref: '#/components/schemas/ResultStatus'
+        resultValidation:
+          $ref: '#/components/schemas/ResultValidation'
+        resultErrors:
+          $ref: '#/components/schemas/ResultErrors'
+    ResultStatus:
+      type: object
+      required:
+        - status
+        - consentId
+        - loggedUserDocument
+        - loggedUserDocumentRel
+        - businessEntityDocument
+        - businessEntityDocumentRel
+      properties:
+        status:
+          type: string
+          enum:
+            - ACCESS_TOKEN_UNAUTHORIZED
+            - ACCESS_TOKEN_AUTHORIZED
+            - AUTHORIZATION_DENIED
+            - AUTHORIZATION_GRANTED
+        consentId:
+          type: string
+          minLength: 1
+          maxLength: 150
+        loggedUserDocument:
+          type: string
+          minLength: 1
+          maxLength: 150
+        loggedUserDocumentRel:
+          type: string
+          minLength: 1
+          maxLength: 150
+        businessEntityDocument:
+          type: string
+          minLength: 1
+          maxLength: 150
+        businessEntityDocumentRel:
+          type: string
+          minLength: 1
+          maxLength: 150
+    ResultValidation:
+      type: object
+      required:
+        - accessToken
+        - consent
+        - loggedUser
+        - businessEntity
+      properties:
+        accessToken:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        consent:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        loggedUser:
+          type: string
+          minLength: 1
+          maxLength: 2048
+        businessEntity:
+          type: string
+          minLength: 1
+          maxLength: 2048
+    ResultErrors:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                maxLength: 2048
+    Meta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - requestDateTime
+      properties:
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          example: '2021-05-21T08:30:00Z'
+
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description: Cabeçalho HTTP padrão. Permite que as credenciais sejam fornecidas dependendo do tipo de recurso solicitado
+      required: true
+      schema:
+        type: string
+        maxLength: 2048
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+
+  responses:
+    ResponseAuthorization:
+      description: 'description'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseAuthorizationData'
+    BadRequest:
+      description: 'O AccessToken informado possui informações inválidas'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResultErrors'

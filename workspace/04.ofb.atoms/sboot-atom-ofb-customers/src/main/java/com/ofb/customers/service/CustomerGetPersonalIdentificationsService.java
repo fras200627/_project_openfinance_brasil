@@ -1,21 +1,26 @@
 package com.ofb.customers.service;
 
-import com.nimbusds.jose.shaded.gson.Gson;
-import com.ofb.customers.client.resources.model.ResourcesCustomerAuthorisedInner;
+import com.google.gson.Gson;
+import com.ofb.customers.client.authorization.handler.AuthorizationValidateApi;
+import com.ofb.customers.client.authorization.model.ResponseAuthorizationData;
+import com.ofb.customers.client.authorization.model.ResultErrorsErrorsInner;
+import com.ofb.customers.client.authorization.model.ResultStatus;
+import com.ofb.customers.client.resources.handler.ResourcesCorporateApi;
+import com.ofb.customers.client.resources.model.*;
 import com.ofb.customers.model.PersonalDataModel;
 import com.ofb.customers.repository.PersonalDataRepository;
 import com.ofb.customers.server.customers.model.*;
-import com.ofb.customers.service.validation.RequestCustomerValidationService;
+import com.ofb.customers.server.customers.model.Meta;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -25,50 +30,138 @@ import java.util.List;
 @Service @Slf4j
 public class CustomerGetPersonalIdentificationsService {
 
-    @Autowired
-    private RequestCustomerValidationService requestCustomerValidationService;
 
-    @Autowired
-    private PersonalDataRepository personalDataRepository;
+    private final static String PERMISSION_REQUIRED = "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ";
 
-    public PersonalDataModel getCustomerData(String authorization) {
+    @Value("${app.paths.clients.ofb-resources}")
+    private String OFB_PATH_RESOURCES;
 
-        Gson gson = new Gson();
-        String personalId = "";
-        PersonalDataModel personalData = null;
-        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+    @Value("${app.paths.clients.ofb-authorization}")
+    private String OFB_PATH_AUTHORIZATION;
 
-        try {
-            personalData = personalDataRepository.findById(personalId).get();
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Customer request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An internal error occurred. Message Error: [" + e.getMessage() + "]")
-                    .build());
-            throw new InternalErrorException(gson.toJson(listResponseErrors));
-        }
+    @Autowired private ResourcesCorporateApi resourcesCorporateApi;
+    @Autowired private AuthorizationValidateApi authorizationValidateApi;
+    @Autowired private PersonalDataRepository personalDataRepository;
 
-        return personalData;
+    private Gson gson = new Gson();
+    private String consentId;
+    private List<ResponseErrorsInnerTemplate>   listResponseErrors;
+    private ConsentIdentification consentIdentification;
+    private ResponseAuthorizationData responseAuthorizationData;
 
-    }
 
-    public ResponsePersonalCustomersIdentification customersGetPersonalIdentifications(String authorization,
+
+    public ResponsePersonalCustomersIdentification customersGetPersonalIdentifications(String accessToken,
                                                                                        Integer page,
                                                                                        Integer pageSize) {
 
-        Gson gson = new Gson();
-        String personalId = null;
-        PersonalDataModel personalData = null;
-        List<ResponseErrorsInnerTemplate> listResponseErrors = new ArrayList<>();
+        authorizationValidateApi.getApiClient().setBasePath(OFB_PATH_AUTHORIZATION);
+        authorizationValidateApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
 
-        /// Request Validation and get customer resource
-        List<ResourcesCustomerAuthorisedInner> resourcesCustomerAuthorisedInnerList = requestCustomerValidationService.validateRequest(
-                authorization, "", "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ");
+        resourcesCorporateApi.getApiClient().setBasePath(OFB_PATH_RESOURCES);
+        resourcesCorporateApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
+
+        consentId                   = "";
+        listResponseErrors          = new ArrayList<>();
+        consentIdentification       = new ConsentIdentification();
+        responseAuthorizationData   = new ResponseAuthorizationData();
+
+        /// Authorize AccessToken
+        try {
+            responseAuthorizationData = authorizationValidateApi.authorizationValidate();
+            consentId = responseAuthorizationData.getData().getResultStatus().getConsentId();
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Account request error (in ResourcesAPI)")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail(e.getMessage())
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
+            for (ResultErrorsErrorsInner reg : responseAuthorizationData.getData().getResultErrors().getErrors()) {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title(reg.getTitle())
+                        .code(reg.getCode())
+                        .detail(reg.getDetail().replaceAll("\\\\", ""))
+                        .build());
+            }
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        /// Get All Customer Resources
+        ResourcesCustomerPermissions responseCustomerPermissions = null;
+        ConsentCompleteIdentification consentIdentification = null;
+        List<ResourcesCustomerAuthorisedInner> resourcesAuthorisedList = new ArrayList<>();
 
         try {
-            personalId = resourcesCustomerAuthorisedInnerList.get(0).getResourceId();
-            personalData = personalDataRepository.findById(personalId).get();
+            responseCustomerPermissions = resourcesCorporateApi.resourcesGetCustomerPermissions(accessToken, consentId);
+            consentIdentification = responseCustomerPermissions.getData().getConsentCompleteIdentification();
+            resourcesAuthorisedList = responseCustomerPermissions.getData().getResourcesAuthorised();
+        } catch (HttpClientErrorException ex) {
+            if (ex.getRawStatusCode() == 400) {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title("Get Customer request error (in ResourcesAPI")
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .detail("AccessToken: " + ex.getMessage().substring(ex.getMessage().indexOf("detail") + 9, ex.getMessage().indexOf("meta") - 5))
+                        .build());
+                throw new BadRequestException(gson.toJson(listResponseErrors));
+            } else {
+                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                        .title("Get Customer request error (in ResourcesAPI")
+                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .detail(ex.getMessage())
+                        .build());
+                throw new BadRequestException(gson.toJson(listResponseErrors));
+            }
+        } catch (Exception e) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error (in ResourcesAPI")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail(e.getMessage())
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        boolean customerExists = false;
+        boolean permissionExists = false;
+        for (ResourcesCustomerAuthorisedInner reg : resourcesAuthorisedList) {
+            if (reg.getResourceId().equals(consentIdentification.getPersonalId())) {
+                customerExists = true;
+                if (reg.getPermissions().toString().contains(PERMISSION_REQUIRED)) {
+                    permissionExists = true;
+                    break;
+                }
+            }
+        }
+
+        if (!customerExists) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("The request information(s) for " +
+                            "the consentId [" + consentId + "] reported in the AccessToken " +
+                            "is not authorized in that consent.")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        if (!permissionExists) {
+            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                    .title("Get Customer request error")
+                    .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                    .detail("The customer information(s) request for the consentId (" + consentId + ") " +
+                            "reported in the AccessToken has [" +  resourcesAuthorisedList.size() + "] " +
+                            "Authorised ResourceAccount, but none have the permission = [" + PERMISSION_REQUIRED + "].")
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        PersonalDataModel personalData = null;
+
+        try {
+            personalData = personalDataRepository.findById(consentIdentification.getPersonalId()).get();
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Get Customer request error")
@@ -87,7 +180,7 @@ public class CustomerGetPersonalIdentificationsService {
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
 
-        ///
+        /// Build Response
         List<PersonalPostalAddress> postalAddresses = new ArrayList<>();
         postalAddresses.add(PersonalPostalAddress.builder()
                 .additionalInfo("none")
