@@ -56,7 +56,7 @@ public class CustomerGetPersonalFinancialRelationsService {
         if (personalData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Get Customer request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .code("INVALID_AUTHORIZATIONS")
                     .detail("An error occurred in request: Customer not exists.")
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));

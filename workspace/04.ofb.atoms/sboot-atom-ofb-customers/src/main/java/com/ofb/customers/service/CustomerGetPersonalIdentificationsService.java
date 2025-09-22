@@ -81,7 +81,7 @@ public class CustomerGetPersonalIdentificationsService {
         if (personalData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
                     .title("Get Customer request error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
+                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATION.getValue())
                     .detail("An error occurred in request: Customer not exists.")
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));

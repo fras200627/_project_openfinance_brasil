@@ -12,7 +12,7 @@
 
 	<groupId>com.ofb</groupId>
 	<artifactId>sboot-atom-ofb-accounts</artifactId>
-	<version>1.0.0-ofb</version>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 	<name>sboot-atom-ofb-accounts</name>
 	<description>Project OFB - Accounts Resources</description>
@@ -436,9 +436,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-
-
 					<execution>
 						<id>generator-authorization-client</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -470,9 +467,6 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-
-
 				</executions>
 			</plugin>
 			<plugin>
@@ -502,5 +496,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
