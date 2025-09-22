@@ -15,8 +15,8 @@ paths:
       summary: 'summary'
       operationId: authorizationValidate
       description: 'description'
-#      parameters:
-#        - $ref: '#/components/parameters/Authorization'
+      #      parameters:
+      #        - $ref: '#/components/parameters/Authorization'
       responses:
         '200':
           $ref: '#/components/responses/ResponseAuthorization'

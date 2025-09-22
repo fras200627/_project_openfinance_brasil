@@ -56,13 +56,13 @@ public class LoggedUserValidationService {
             }
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
+                            .status(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)
                             .loggedUserDocument(customerDocument == null ? "not verified" : customerDocument)
                             .loggedUserDocumentRel(customerDocument == null ? null : "CPF")
                             .build())
                     .resultValidation(ResultValidation.builder()
-                            .accessToken("AccessToken is invalid")
-                            .loggedUser("An error occurred while the LoggedUser validation")
+                            .accessToken("Authorization was denied")
+                            .loggedUser("LoggedUser is invalid or cannot be executed")
                             .build())
                     .resultErrors(ResultErrors.builder()
                             .errors(errors)
@@ -76,13 +76,13 @@ public class LoggedUserValidationService {
         } else {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
+                            .status(ResultStatus.StatusEnum.AUTHORIZATION_GRANTED)
                             .loggedUserDocument(customerDocument)
                             .loggedUserDocumentRel("CPF")
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is valid")
-                            .loggedUser("LoggedUser informed is valid and Authorized")
+                            .loggedUser("The LoggedUser informed is valid and is Authorized")
                             .build())
                     .build();
 
@@ -108,27 +108,27 @@ public class LoggedUserValidationService {
             returnData = customersApi.customerIdentificationSummary(customerDocument);
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization error")
+                    .title("Error executing Authorization")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An Internal error occurred in LoggedUser validation: [" + e.getMessage() + "].")
+                    .detail(e.getMessage())
                     .build());
             return listResponseErrors;
         }
 
         if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in LoggedUser validation: Customer not exists.")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Customer (LoggedUser) not exists.")
                     .build());
             return listResponseErrors;
         }
 
         if (!returnData.getData().get(0).getPersonalStatus().equals("ATIVO")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in LoggedUser validation: Customer status is [" +
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Customer (LoggedUser) status is [" +
                             returnData.getData().get(0).getPersonalStatus() + "].")
                     .build());
         }

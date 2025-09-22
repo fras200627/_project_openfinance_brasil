@@ -58,13 +58,13 @@ public class BusinessEntityValidationService {
             }
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
+                            .status(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)
                             .businessEntityDocument(documentNumber == null ? "not verified" : documentNumber)
                             .businessEntityDocumentRel(documentNumber == null ? null : "CNPJ")
                             .build())
                     .resultValidation(ResultValidation.builder()
-                            .accessToken("AccessToken is invalid")
-                            .businessEntity("An error occurred while the BusinessEntity validation")
+                            .accessToken("Authorization was denied")
+                            .businessEntity("BusinessEntity is invalid or cannot be executed")
                             .build())
                     .resultErrors(ResultErrors.builder()
                             .errors(errors)
@@ -78,13 +78,13 @@ public class BusinessEntityValidationService {
         } else {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
+                            .status(ResultStatus.StatusEnum.AUTHORIZATION_GRANTED)
                             .businessEntityDocument(documentNumber)
                             .businessEntityDocumentRel("CNPJ")
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is valid")
-                            .businessEntity("BusinessEntity informed is valid and Authorized")
+                            .businessEntity("The Business Entity informed is valid and is Authorized")
                             .build())
                     .build();
 
@@ -112,47 +112,47 @@ public class BusinessEntityValidationService {
             returnData = registeredClientsResourcesApi.getFindByClientDocument(documentNumber);
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization error")
+                    .title("Error executing Authorization")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An Internal error occurred in BusinessEntity validation: [" + e.getMessage() + "].")
+                    .detail(e.getMessage())
                     .build());
             return listResponseErrors;
         }
 
         if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in Participant verification: Participant not exists.")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Participant not exists.")
                     .build());
             return listResponseErrors;
         }
         if (!returnData.getStatus().equals("ACTIVE")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in Participant verification: Participant must be ACTIVE.")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Participant must be ACTIVE.")
                     .build());
         }
         if (!returnData.getSecurityScope().contains("client.ofb.read")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in Participant varification: Participant must be role client.ofb.read.")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Participant must be role client.ofb.read.")
                     .build());
         }
         if (!returnData.getSecurityScope().contains("client.ofb.write")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in Partipant verification: Participant must be role client.ofb.write.")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Participant must be role client.ofb.write.")
                     .build());;
         }
         if (returnData.getIsCredentialsExpired().equals("true")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization invalid (in getClaim AccessToken")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred in Participant verification: Participant must be secret password not expired.")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Participant must be secret password not expired.")
                     .build());
         }
 

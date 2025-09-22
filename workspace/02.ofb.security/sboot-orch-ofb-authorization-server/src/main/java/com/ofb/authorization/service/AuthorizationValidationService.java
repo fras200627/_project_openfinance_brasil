@@ -26,12 +26,12 @@ public class AuthorizationValidationService {
         List<ResultErrorsErrorsInner> errors = new ArrayList<>();
 
         responseAuthorizationData = accessTokenClaimsValidationService.accessTokenClaimsValidate(accessToken);
-        if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)) {
+        if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
             return responseAuthorizationData;
         }
 
         responseExecuteValidate = businessEntityValidationService.businessEntityValidate(accessToken);
-        if (responseExecuteValidate.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)) {
+        if (responseExecuteValidate.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
             responseAuthorizationData.getData().getResultStatus().setStatus(responseExecuteValidate.getData().getResultStatus().getStatus());
             responseAuthorizationData.getData().getResultValidation().setBusinessEntity(responseExecuteValidate.getData().getResultValidation().getBusinessEntity());
             errors.addAll(responseExecuteValidate.getData().getResultErrors().getErrors());
@@ -41,7 +41,7 @@ public class AuthorizationValidationService {
         }
 
         responseExecuteValidate = loggedUserValidationService.loggedUserValidate(accessToken);
-        if (responseExecuteValidate.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)) {
+        if (responseExecuteValidate.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
             responseAuthorizationData.getData().getResultStatus().setStatus(responseExecuteValidate.getData().getResultStatus().getStatus());
             responseAuthorizationData.getData().getResultValidation().setLoggedUser(responseExecuteValidate.getData().getResultValidation().getLoggedUser());
             errors.addAll(responseExecuteValidate.getData().getResultErrors().getErrors());
@@ -51,7 +51,7 @@ public class AuthorizationValidationService {
         }
 
         responseExecuteValidate = consentValidationService.consentValidate(accessToken);
-        if (responseExecuteValidate.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)) {
+        if (responseExecuteValidate.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
             responseAuthorizationData.getData().getResultStatus().setStatus(responseExecuteValidate.getData().getResultStatus().getStatus());
             responseAuthorizationData.getData().getResultValidation().setConsent(responseExecuteValidate.getData().getResultValidation().getConsent());
             errors.addAll(responseExecuteValidate.getData().getResultErrors().getErrors());

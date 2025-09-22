@@ -3072,14 +3072,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/ofb-consents-resources/health",
+							"raw": "http://localhost:3001/ofb-resources/health",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"ofb-consents-resources",
+								"ofb-resources",
 								"health"
 							]
 						}
@@ -3961,7 +3961,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItc2FudGFuZGVyIiwib2ZiLmNvbnNlbnQuaWQiOiJ1cm46YmFuY290Y246ZTA0YjkxMjUtZDNjYi00YTc0LTk3NjctM2YwYzQxZjcyMDJlIiwiaXNzIjoiYmFuY28tdGNuIiwiZXhwIjoxNzg2NjY1NTk5LCJpYXQiOjE3NTUxMDA3NjEsIm9mYi5jb25zZW50LnBlcm1pc3Npb25zIjoiQ1VTVE9NRVJTX1BFUlNPTkFMX0lERU5USUZJQ0FUSU9OU19SRUFELCBDVVNUT01FUlNfUEVSU09OQUxfQURJVFRJT05BTElORk9fUkVBRCwgQUNDT1VOVFNfUkVBRCwgQUNDT1VOVFNfVFJBTlNBQ1RJT05TX1JFQUQsIEFDQ09VTlRTX09WRVJEUkFGVF9MSU1JVFNfUkVBRCwgQUNDT1VOVFNfQkFMQU5DRVNfUkVBRCwgUkVTT1VSQ0VTX1JFQUQifQ.TAZTXHTMIc_LoJevMMgBt4Y9Bb65OoxyldPtITxNo6CbeXFUJ2M-K-KKicUhVO2ETxWRGM2IBjGpOgAhzLl70BNxhaB9ybmZOsoZgT5Cg5WUJy8gIZfOGsbBMwdqUxhUgEkuZPAdm4znsBO9pEjRocp-sG0ycCM4Jv3YTICKQD8v4TFzfuhyc910-RF3VeQhBnLZE15TObaGADl2-To-wqsjHUSz85Yf0eCkX_8PwMrGCv9ChKTgMYC_KB6VNtyZwcMB9D38tQju1-qy3eX-38QkUy3ztT8lohubjnFY33Qh9ByeQw0XYfAvT-P4vjkJRjFuav-sk7hW9_eR35gpeA",
+									"value": "{{access_token_consent}}",
 									"type": "string"
 								}
 							]

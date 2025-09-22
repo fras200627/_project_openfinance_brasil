@@ -55,12 +55,12 @@ public class ConsentValidationService {
             }
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_UNAUTHORIZED)
+                            .status(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)
                             .consentId(consentId == null ? "not verified" : consentId)
                             .build())
                     .resultValidation(ResultValidation.builder()
-                            .accessToken("AccessToken is invalid")
-                            .consent("An error occurred while the Consent validation")
+                            .accessToken("Authorization was denied")
+                            .consent("Consent validation is invalid or cannot be executed")
                             .build())
                     .resultErrors(ResultErrors.builder()
                             .errors(errors)
@@ -74,12 +74,12 @@ public class ConsentValidationService {
         } else {
             ResponseResultData data = ResponseResultData.builder()
                     .resultStatus(ResultStatus.builder()
-                            .status(ResultStatus.StatusEnum.ACCESS_TOKEN_AUTHORIZED)
+                            .status(ResultStatus.StatusEnum.AUTHORIZATION_GRANTED)
                             .consentId(consentId)
                             .build())
                     .resultValidation(ResultValidation.builder()
                             .accessToken("AccessToken is valid")
-                            .consent("consentId informed is valid and Authorized")
+                            .consent("The ConsentId  informed is valid and is Authorized")
                             .build())
                     .build();
 
@@ -108,33 +108,33 @@ public class ConsentValidationService {
                         null, null, null);
         } catch (Exception e) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization error")
+                    .title("Error executing Authorization")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail("An Internal error occurred in Consent validation: [" + e.getMessage() + "].")
+                    .detail(e.getMessage())
                     .build());
             return listResponseErrors;
         }
 
         if (returnData == null) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization validate error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred while checking the Authorization validate: [Consent not exists].")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("ConsentId not exists.")
                     .build());
             return listResponseErrors;
         }
         if (!returnData.getData().getStatus().getValue().equals("AUTHORISED")) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization validate error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred while checking the Authorization validate: [Consent must by AUTHORISED].")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("ConsentId must by AUTHORISED.")
                     .build());
         }
         if (OffsetDateTime.parse(returnData.getData().getExpirationDateTime()).isBefore(OffsetDateTime.now(ZoneId.of("UTC")))) {
             listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Authorization validate error")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INVALID_AUTHORIZATIONS.getValue())
-                    .detail("An error occurred while checking the Authorization validate: [Consent must bu Expired].")
+                    .title("Authorization was denied")
+                    .code(ResponseOFBCodesEnum.CodeEnum.AUTHORIZATION_DENIED.getValue())
+                    .detail("Consent has Expired.")
                     .build());
         }
 
