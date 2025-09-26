@@ -65,22 +65,22 @@ spring:
   config:
     activate:
       on-profile: local
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
-    driver-class-name: oracle.jdbc.OracleDriver
-    serverTimezone: America/Sao_Paulo
-    useSSL: false
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
-      maximumPoolSize: 20
-      minimumIdle: 5
-      poolName: SpringBootJPAHikariCP
-    type: com.zaxxer.hikari.HikariDataSource
+#  datasource:
+#    url: jdbc:oracle:thin:@localhost:1521:XE
+#    username: OFB_USER
+#    password: ofb
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    serverTimezone: America/Sao_Paulo
+#    useSSL: false
+#    hikari:
+#      connection-test-query: SELECT 1 FROM DUAL
+#      connectionTimeout: 30000
+#      idleTimeout: 30000
+#      maxLifetime: 2000000
+#      maximumPoolSize: 20
+#      minimumIdle: 5
+#      poolName: SpringBootJPAHikariCP
+#    type: com.zaxxer.hikari.HikariDataSource
 
 app:
   paths:
@@ -126,22 +126,22 @@ spring:
   config:
     activate:
       on-profile: docker
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
-    driver-class-name: oracle.jdbc.OracleDriver
-    serverTimezone: America/Sao_Paulo
-    useSSL: false
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
-      maximumPoolSize: 20
-      minimumIdle: 5
-      poolName: SpringBootJPAHikariCP
-    type: com.zaxxer.hikari.HikariDataSource
+#  datasource:
+#    url: jdbc:oracle:thin:@localhost:1521:XE
+#    username: OFB_USER
+#    password: ofb
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    serverTimezone: America/Sao_Paulo
+#    useSSL: false
+#    hikari:
+#      connection-test-query: SELECT 1 FROM DUAL
+#      connectionTimeout: 30000
+#      idleTimeout: 30000
+#      maxLifetime: 2000000
+#      maximumPoolSize: 20
+#      minimumIdle: 5
+#      poolName: SpringBootJPAHikariCP
+#    type: com.zaxxer.hikari.HikariDataSource
 
 app:
   paths:
@@ -187,22 +187,22 @@ spring:
   config:
     activate:
       on-profile: k8s
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    username: OFB_USER
-    password: ofb
-    driver-class-name: oracle.jdbc.OracleDriver
-    serverTimezone: America/Sao_Paulo
-    useSSL: false
-    hikari:
-      connection-test-query: SELECT 1 FROM DUAL
-      connectionTimeout: 30000
-      idleTimeout: 30000
-      maxLifetime: 2000000
-      maximumPoolSize: 20
-      minimumIdle: 5
-      poolName: SpringBootJPAHikariCP
-    type: com.zaxxer.hikari.HikariDataSource
+#  datasource:
+#    url: jdbc:oracle:thin:@localhost:1521:XE
+#    username: OFB_USER
+#    password: ofb
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    serverTimezone: America/Sao_Paulo
+#    useSSL: false
+#    hikari:
+#      connection-test-query: SELECT 1 FROM DUAL
+#      connectionTimeout: 30000
+#      idleTimeout: 30000
+#      maxLifetime: 2000000
+#      maximumPoolSize: 20
+#      minimumIdle: 5
+#      poolName: SpringBootJPAHikariCP
+#    type: com.zaxxer.hikari.HikariDataSource
 
 app:
   paths:

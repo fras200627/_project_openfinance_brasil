@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/backup/camel-spring-boot-main/archetypes/camel-archetype-spring-boot/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -12,7 +15,16 @@
         <module name="sboot-orch-ofb-api-gateway" />
         <module name="sboot-orch-ofb-discovery-services" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-customers" enabled="true">
+      <profile name="Annotation profile for spring-boot-camel-integration" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
+        </processorPath>
+        <module name="spring-boot-camel-integration" />
+      </profile>
+      <profile name="Annotation profile for sboot-listener-ofb-consents-authorization-services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -23,37 +35,546 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="sboot-lib-ofb-autoconfigure-handlers" />
-        <module name="sboot-lib-ofb-autoconfigure-interceptors" />
         <module name="sboot-orch-ofb-authorization-server" />
         <module name="sboot-atom-ofb-consents" />
-        <module name="sboot-atom-ofb-accounts" />
         <module name="sboot-atom-ofb-clients-business" />
-        <module name="sboot-atom-ofb-customers" />
         <module name="sboot-atom-ofb-resources" />
-        <module name="sboot-listener-ofb-consents-authorization-services" />
+        <module name="sboot-camel-orch-ofb-resources" />
         <module name="sboot-lib-ofb-autoconfigure-security" />
+        <module name="sboot-lib-ofb-autoconfigure-interceptors" />
+        <module name="sboot-atom-ofb-accounts" />
+        <module name="sboot-atom-ofb-customers" />
+        <module name="sboot-listener-ofb-consents-authorization-services" />
         <module name="sboot-lib-ofb-autoconfigure-amqp" />
         <module name="sboot-lib-ofb-common-tools" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="archetypes" target="1.5" />
       <module name="aulao-spring-security-e-jwt" target="17" />
+      <module name="camel-activemq-starter" target="1.5" />
+      <module name="camel-activemq6-starter" target="1.5" />
+      <module name="camel-amqp-starter" target="1.5" />
+      <module name="camel-arangodb-starter" target="1.5" />
+      <module name="camel-archetype-spring-boot" target="1.5" />
+      <module name="camel-as2-starter" target="1.5" />
+      <module name="camel-asn1-starter" target="1.5" />
+      <module name="camel-asterisk-starter" target="1.5" />
+      <module name="camel-atmosphere-websocket-starter" target="1.5" />
+      <module name="camel-atom-starter" target="1.5" />
+      <module name="camel-avro-rpc-starter" target="1.5" />
+      <module name="camel-avro-starter" target="1.5" />
+      <module name="camel-aws-bedrock-starter" target="1.5" />
+      <module name="camel-aws-cloudtrail-starter" target="1.5" />
+      <module name="camel-aws-config-starter" target="1.5" />
+      <module name="camel-aws-secrets-manager-starter" target="1.5" />
+      <module name="camel-aws-xray-starter" target="1.5" />
+      <module name="camel-aws2-athena-starter" target="1.5" />
+      <module name="camel-aws2-cw-starter" target="1.5" />
+      <module name="camel-aws2-ddb-starter" target="1.5" />
+      <module name="camel-aws2-ec2-starter" target="1.5" />
+      <module name="camel-aws2-ecs-starter" target="1.5" />
+      <module name="camel-aws2-eks-starter" target="1.5" />
+      <module name="camel-aws2-eventbridge-starter" target="1.5" />
+      <module name="camel-aws2-iam-starter" target="1.5" />
+      <module name="camel-aws2-kinesis-starter" target="1.5" />
+      <module name="camel-aws2-kms-starter" target="1.5" />
+      <module name="camel-aws2-lambda-starter" target="1.5" />
+      <module name="camel-aws2-mq-starter" target="1.5" />
+      <module name="camel-aws2-msk-starter" target="1.5" />
+      <module name="camel-aws2-redshift-starter" target="1.5" />
+      <module name="camel-aws2-s3-starter" target="1.5" />
+      <module name="camel-aws2-ses-starter" target="1.5" />
+      <module name="camel-aws2-sns-starter" target="1.5" />
+      <module name="camel-aws2-sqs-starter" target="1.5" />
+      <module name="camel-aws2-step-functions-starter" target="1.5" />
+      <module name="camel-aws2-sts-starter" target="1.5" />
+      <module name="camel-aws2-textract-starter" target="1.5" />
+      <module name="camel-aws2-timestream-starter" target="1.5" />
+      <module name="camel-aws2-transcribe-starter" target="1.5" />
+      <module name="camel-aws2-translate-starter" target="1.5" />
+      <module name="camel-azure-cosmosdb-starter" target="1.5" />
+      <module name="camel-azure-eventhubs-starter" target="1.5" />
+      <module name="camel-azure-files-starter" target="1.5" />
+      <module name="camel-azure-key-vault-starter" target="1.5" />
+      <module name="camel-azure-servicebus-starter" target="1.5" />
+      <module name="camel-azure-storage-blob-starter" target="1.5" />
+      <module name="camel-azure-storage-datalake-starter" target="1.5" />
+      <module name="camel-azure-storage-queue-starter" target="1.5" />
+      <module name="camel-barcode-starter" target="1.5" />
+      <module name="camel-base64-starter" target="1.5" />
+      <module name="camel-bean-starter" target="1.5" />
+      <module name="camel-bean-validator-starter" target="1.5" />
+      <module name="camel-beanio-starter" target="1.5" />
+      <module name="camel-bindy-starter" target="1.5" />
+      <module name="camel-bonita-starter" target="1.5" />
+      <module name="camel-box-starter" target="1.5" />
+      <module name="camel-braintree-starter" target="1.5" />
+      <module name="camel-browse-starter" target="1.5" />
+      <module name="camel-caffeine-starter" target="1.5" />
+      <module name="camel-cassandraql-starter" target="1.5" />
+      <module name="camel-catalog-provider-springboot" target="1.5" />
+      <module name="camel-cbor-starter" target="1.5" />
+      <module name="camel-chatscript-starter" target="1.5" />
+      <module name="camel-chunk-starter" target="1.5" />
+      <module name="camel-cli-connector-starter" target="1.5" />
+      <module name="camel-clickup-starter" target="1.5" />
+      <module name="camel-cloudevents-starter" target="1.5" />
+      <module name="camel-cm-sms-starter" target="1.5" />
+      <module name="camel-coap-starter" target="1.5" />
+      <module name="camel-cometd-starter" target="1.5" />
+      <module name="camel-componentdsl-starter" target="1.5" />
+      <module name="camel-console-starter" target="1.5" />
+      <module name="camel-consul-cluster-service-starter" target="1.5" />
+      <module name="camel-consul-starter" target="1.5" />
+      <module name="camel-controlbus-starter" target="1.5" />
+      <module name="camel-core-starter" target="1.5" />
+      <module name="camel-couchbase-starter" target="1.5" />
+      <module name="camel-couchdb-starter" target="1.5" />
+      <module name="camel-cron-starter" target="1.5" />
+      <module name="camel-crypto-pgp-starter" target="1.5" />
+      <module name="camel-crypto-starter" target="1.5" />
+      <module name="camel-csimple-joor-starter" target="1.5" />
+      <module name="camel-csv-starter" target="1.5" />
+      <module name="camel-cxf-rest-starter" target="1.5" />
+      <module name="camel-cxf-soap-starter" target="1.5" />
+      <module name="camel-cxf-transport-starter" target="1.5" />
+      <module name="camel-dapr-starter" target="1.5" />
+      <module name="camel-dataformat-starter" target="1.5" />
+      <module name="camel-dataset-starter" target="1.5" />
+      <module name="camel-datasonnet-starter" target="1.5" />
+      <module name="camel-debezium-db2-starter" target="1.5" />
+      <module name="camel-debezium-mongodb-starter" target="1.5" />
+      <module name="camel-debezium-mysql-starter" target="1.5" />
+      <module name="camel-debezium-oracle-starter" target="1.5" />
+      <module name="camel-debezium-postgres-starter" target="1.5" />
+      <module name="camel-debezium-sqlserver-starter" target="1.5" />
+      <module name="camel-debug-starter" target="1.5" />
+      <module name="camel-dfdl-starter" target="1.5" />
+      <module name="camel-dhis2-starter" target="1.5" />
+      <module name="camel-digitalocean-starter" target="1.5" />
+      <module name="camel-direct-starter" target="1.5" />
+      <module name="camel-disruptor-starter" target="1.5" />
+      <module name="camel-djl-starter" target="1.5" />
+      <module name="camel-dns-starter" target="1.5" />
+      <module name="camel-docker-starter" target="1.5" />
+      <module name="camel-docling-starter" target="1.5" />
+      <module name="camel-drill-starter" target="1.5" />
+      <module name="camel-dropbox-starter" target="1.5" />
+      <module name="camel-dsl-modeline-starter" target="1.5" />
+      <module name="camel-dynamic-router-starter" target="1.5" />
+      <module name="camel-ehcache-starter" target="1.5" />
+      <module name="camel-elasticsearch-rest-client-starter" target="1.5" />
+      <module name="camel-elasticsearch-starter" target="1.5" />
+      <module name="camel-endpointdsl-starter" target="1.5" />
+      <module name="camel-example-endpointdsl" target="17" />
+      <module name="camel-example-spring-boot" target="17" />
+      <module name="camel-example-spring-boot-activemq" target="17" />
+      <module name="camel-example-spring-boot-actuator-http-metrics" target="17" />
+      <module name="camel-example-spring-boot-amqp" target="17" />
+      <module name="camel-example-spring-boot-aot-basic" target="17" />
+      <module name="camel-example-spring-boot-arangodb" target="17" />
+      <module name="camel-example-spring-boot-artemis" target="17" />
+      <module name="camel-example-spring-boot-aws-secrets-manager" target="17" />
+      <module name="camel-example-spring-boot-aws2-s3" target="17" />
+      <module name="camel-example-spring-boot-azure" target="17" />
+      <module name="camel-example-spring-boot-azure-eventhubs" target="17" />
+      <module name="camel-example-spring-boot-azure-servicebus" target="17" />
+      <module name="camel-example-spring-boot-fhir" target="17" />
+      <module name="camel-example-spring-boot-fhir-auth-tx" target="17" />
+      <module name="camel-example-spring-boot-groovy" target="17" />
+      <module name="camel-example-spring-boot-health-checks" target="17" />
+      <module name="camel-example-spring-boot-http-ssl" target="17" />
+      <module name="camel-example-spring-boot-http-ssl-camel-server" target="17" />
+      <module name="camel-example-spring-boot-http-ssl-client" target="17" />
+      <module name="camel-example-spring-boot-http-ssl-server" target="17" />
+      <module name="camel-example-spring-boot-http-streaming" target="17" />
+      <module name="camel-example-spring-boot-http-streaming-download-proxy-server" target="17" />
+      <module name="camel-example-spring-boot-http-streaming-download-server" target="17" />
+      <module name="camel-example-spring-boot-http-streaming-upload-proxy-server" target="17" />
+      <module name="camel-example-spring-boot-http-streaming-upload-server" target="17" />
+      <module name="camel-example-spring-boot-infinispan" target="17" />
+      <module name="camel-example-spring-boot-jira" target="17" />
+      <module name="camel-example-spring-boot-jolokia" target="17" />
+      <module name="camel-example-spring-boot-kafka-avro" target="17" />
+      <module name="camel-example-spring-boot-kafka-oauth" target="17" />
+      <module name="camel-example-spring-boot-kafka-offsetrepository" target="17" />
+      <module name="camel-example-spring-boot-kafka-sql-transaction" target="17" />
+      <module name="camel-example-spring-boot-kamelet-chucknorris" target="17" />
+      <module name="camel-example-spring-boot-load-balancer-eip" target="17" />
+      <module name="camel-example-spring-boot-mail-exchange-oauth2" target="17" />
+      <module name="camel-example-spring-boot-master" target="17" />
+      <module name="camel-example-spring-boot-metrics" target="17" />
+      <module name="camel-example-spring-boot-observability-services" target="17" />
+      <module name="camel-example-spring-boot-observation" target="17" />
+      <module name="camel-example-spring-boot-observation-client" target="17" />
+      <module name="camel-example-spring-boot-observation-loggingtracer" target="1.8" />
+      <module name="camel-example-spring-boot-observation-service1" target="17" />
+      <module name="camel-example-spring-boot-observation-service2" target="17" />
+      <module name="camel-example-spring-boot-openapi-contract-first" target="17" />
+      <module name="camel-example-spring-boot-opentelemetry" target="17" />
+      <module name="camel-example-spring-boot-opentelemetry-carbooking" target="17" />
+      <module name="camel-example-spring-boot-opentelemetry-flightbooking" target="17" />
+      <module name="camel-example-spring-boot-opentelemetry-hotelbooking" target="17" />
+      <module name="camel-example-spring-boot-opentelemetry-tripbooking" target="17" />
+      <module name="camel-example-spring-boot-paho-mqtt5-shared-subscriptions" target="17" />
+      <module name="camel-example-spring-boot-platform-http" target="17" />
+      <module name="camel-example-spring-boot-platform-http-proxy" target="17" />
+      <module name="camel-example-spring-boot-pojo" target="17" />
+      <module name="camel-example-spring-boot-quartz" target="17" />
+      <module name="camel-example-spring-boot-rabbitmq" target="17" />
+      <module name="camel-example-spring-boot-reactive-streams" target="17" />
+      <module name="camel-example-spring-boot-resilience4j" target="17" />
+      <module name="camel-example-spring-boot-resilience4j-client" target="17" />
+      <module name="camel-example-spring-boot-resilience4j-client2" target="17" />
+      <module name="camel-example-spring-boot-resilience4j-service1" target="17" />
+      <module name="camel-example-spring-boot-resilience4j-service2" target="17" />
+      <module name="camel-example-spring-boot-rest-cxf" target="17" />
+      <module name="camel-example-spring-boot-rest-cxf-opentelemetry" target="17" />
+      <module name="camel-example-spring-boot-rest-cxf-otel-common" target="17" />
+      <module name="camel-example-spring-boot-rest-cxf-otel-even" target="17" />
+      <module name="camel-example-spring-boot-rest-cxf-otel-odd" target="17" />
+      <module name="camel-example-spring-boot-rest-cxf-otel-random" target="17" />
+      <module name="camel-example-spring-boot-rest-openapi" target="17" />
+      <module name="camel-example-spring-boot-rest-openapi-simple" target="17" />
+      <module name="camel-example-spring-boot-rest-openapi-springdoc" target="17" />
+      <module name="camel-example-spring-boot-route-reload" target="17" />
+      <module name="camel-example-spring-boot-routes-configuration" target="17" />
+      <module name="camel-example-spring-boot-routetemplate" target="17" />
+      <module name="camel-example-spring-boot-routetemplate-xml" target="17" />
+      <module name="camel-example-spring-boot-saga" target="17" />
+      <module name="camel-example-spring-boot-saga-app" target="17" />
+      <module name="camel-example-spring-boot-saga-flight" target="17" />
+      <module name="camel-example-spring-boot-saga-payment" target="17" />
+      <module name="camel-example-spring-boot-saga-train" target="17" />
+      <module name="camel-example-spring-boot-salesforce" target="17" />
+      <module name="camel-example-spring-boot-soap-cxf" target="17" />
+      <module name="camel-example-spring-boot-splitter-eip" target="17" />
+      <module name="camel-example-spring-boot-spring-jdbc" target="17" />
+      <module name="camel-example-spring-boot-strimzi" target="17" />
+      <module name="camel-example-spring-boot-supervising-route-controller" target="17" />
+      <module name="camel-example-spring-boot-twitter-salesforce" target="17" />
+      <module name="camel-example-spring-boot-type-converter" target="17" />
+      <module name="camel-example-spring-boot-validator" target="17" />
+      <module name="camel-example-spring-boot-variables" target="17" />
+      <module name="camel-example-spring-boot-vault" target="17" />
+      <module name="camel-example-spring-boot-webhook" target="17" />
+      <module name="camel-example-spring-boot-widget-gadget" target="17" />
+      <module name="camel-example-spring-boot-xml" target="17" />
+      <module name="camel-example-spring-boot-xml-import" target="17" />
+      <module name="camel-exec-starter" target="1.5" />
+      <module name="camel-fastjson-starter" target="1.5" />
+      <module name="camel-fhir-starter" target="1.5" />
+      <module name="camel-file-cluster-service-starter" target="1.5" />
+      <module name="camel-file-starter" target="1.5" />
+      <module name="camel-file-watch-starter" target="1.5" />
+      <module name="camel-flatpack-starter" target="1.5" />
+      <module name="camel-flink-starter" target="1.5" />
+      <module name="camel-flowable-starter" target="1.5" />
+      <module name="camel-fop-starter" target="1.5" />
+      <module name="camel-fory-starter" target="1.5" />
+      <module name="camel-freemarker-starter" target="1.5" />
+      <module name="camel-ftp-starter" target="1.5" />
+      <module name="camel-geocoder-starter" target="1.5" />
+      <module name="camel-git-starter" target="1.5" />
+      <module name="camel-github-starter" target="1.5" />
+      <module name="camel-google-bigquery-starter" target="1.5" />
+      <module name="camel-google-calendar-starter" target="1.5" />
+      <module name="camel-google-drive-starter" target="1.5" />
+      <module name="camel-google-functions-starter" target="1.5" />
+      <module name="camel-google-mail-starter" target="1.5" />
+      <module name="camel-google-pubsub-lite-starter" target="1.5" />
+      <module name="camel-google-pubsub-starter" target="1.5" />
+      <module name="camel-google-secret-manager-starter" target="1.5" />
+      <module name="camel-google-sheets-starter" target="1.5" />
+      <module name="camel-google-storage-starter" target="1.5" />
+      <module name="camel-grape-starter" target="1.5" />
+      <module name="camel-graphql-starter" target="1.5" />
+      <module name="camel-grok-starter" target="1.5" />
+      <module name="camel-groovy-starter" target="1.5" />
+      <module name="camel-groovy-xml-starter" target="1.5" />
+      <module name="camel-grpc-starter" target="1.5" />
+      <module name="camel-gson-starter" target="1.5" />
+      <module name="camel-guava-eventbus-starter" target="1.5" />
+      <module name="camel-hashicorp-vault-starter" target="1.5" />
+      <module name="camel-hazelcast-starter" target="1.5" />
+      <module name="camel-hl7-starter" target="1.5" />
+      <module name="camel-http-starter" target="1.5" />
+      <module name="camel-huaweicloud-dms-starter" target="1.5" />
+      <module name="camel-huaweicloud-frs-starter" target="1.5" />
+      <module name="camel-huaweicloud-functiongraph-starter" target="1.5" />
+      <module name="camel-huaweicloud-iam-starter" target="1.5" />
+      <module name="camel-huaweicloud-imagerecognition-starter" target="1.5" />
+      <module name="camel-huaweicloud-obs-starter" target="1.5" />
+      <module name="camel-huaweicloud-smn-starter" target="1.5" />
+      <module name="camel-ibm-secrets-manager-starter" target="1.5" />
+      <module name="camel-ical-starter" target="1.5" />
+      <module name="camel-iec60870-starter" target="1.5" />
+      <module name="camel-ignite-starter" target="1.5" />
+      <module name="camel-infinispan-cluster-service-starter" target="1.5" />
+      <module name="camel-infinispan-embedded-starter" target="1.5" />
+      <module name="camel-infinispan-starter" target="1.5" />
+      <module name="camel-influxdb-starter" target="1.5" />
+      <module name="camel-influxdb2-starter" target="1.5" />
+      <module name="camel-irc-starter" target="1.5" />
+      <module name="camel-ironmq-starter" target="1.5" />
+      <module name="camel-iso8583-starter" target="1.5" />
+      <module name="camel-itest-spring-boot" target="1.5" />
+      <module name="camel-jackson-avro-starter" target="1.5" />
+      <module name="camel-jackson-protobuf-starter" target="1.5" />
+      <module name="camel-jackson-starter" target="1.5" />
+      <module name="camel-jacksonxml-starter" target="1.5" />
+      <module name="camel-jandex-starter" target="1.5" />
+      <module name="camel-jasypt-starter" target="1.5" />
+      <module name="camel-java-joor-dsl-starter" target="1.5" />
+      <module name="camel-javascript-starter" target="1.5" />
+      <module name="camel-jaxb-starter" target="1.5" />
+      <module name="camel-jcache-starter" target="1.5" />
+      <module name="camel-jcr-starter" target="1.5" />
+      <module name="camel-jdbc-starter" target="1.5" />
+      <module name="camel-jetty-starter" target="1.5" />
+      <module name="camel-jfr-starter" target="1.5" />
+      <module name="camel-jgroups-raft-cluster-service-starter" target="1.5" />
+      <module name="camel-jgroups-raft-starter" target="1.5" />
+      <module name="camel-jgroups-starter" target="1.5" />
+      <module name="camel-jira-starter" target="1.5" />
+      <module name="camel-jms-starter" target="1.5" />
+      <module name="camel-jmx-starter" target="1.5" />
+      <module name="camel-jolokia-starter" target="1.5" />
+      <module name="camel-jolt-starter" target="1.5" />
+      <module name="camel-jooq-starter" target="1.5" />
+      <module name="camel-joor-starter" target="1.5" />
+      <module name="camel-jpa-starter" target="1.5" />
+      <module name="camel-jq-starter" target="1.5" />
+      <module name="camel-jsch-starter" target="1.5" />
+      <module name="camel-jslt-starter" target="1.5" />
+      <module name="camel-json-patch-starter" target="1.5" />
+      <module name="camel-json-validator-starter" target="1.5" />
+      <module name="camel-jsonapi-starter" target="1.5" />
+      <module name="camel-jsonata-starter" target="1.5" />
+      <module name="camel-jsonb-starter" target="1.5" />
+      <module name="camel-jsonpath-starter" target="1.5" />
+      <module name="camel-jt400-starter" target="1.5" />
+      <module name="camel-jte-starter" target="1.5" />
+      <module name="camel-kafka-starter" target="1.5" />
+      <module name="camel-kamelet-starter" target="1.5" />
+      <module name="camel-knative-starter" target="1.5" />
+      <module name="camel-kserve-starter" target="1.5" />
+      <module name="camel-kubernetes-cluster-service-starter" target="1.5" />
+      <module name="camel-kubernetes-starter" target="1.5" />
+      <module name="camel-kudu-starter" target="1.5" />
+      <module name="camel-langchain4j-agent-starter" target="1.5" />
+      <module name="camel-langchain4j-chat-starter" target="1.5" />
+      <module name="camel-langchain4j-embeddings-starter" target="1.5" />
+      <module name="camel-langchain4j-tokenizer-starter" target="1.5" />
+      <module name="camel-langchain4j-tools-starter" target="1.5" />
+      <module name="camel-langchain4j-web-search-starter" target="1.5" />
+      <module name="camel-language-starter" target="1.5" />
+      <module name="camel-ldap-starter" target="1.5" />
+      <module name="camel-ldif-starter" target="1.5" />
+      <module name="camel-leveldb-starter" target="1.5" />
+      <module name="camel-log-starter" target="1.5" />
+      <module name="camel-lra-starter" target="1.5" />
+      <module name="camel-lucene-starter" target="1.5" />
+      <module name="camel-lumberjack-starter" target="1.5" />
+      <module name="camel-lzf-starter" target="1.5" />
+      <module name="camel-mail-microsoft-oauth-starter" target="1.5" />
+      <module name="camel-mail-starter" target="1.5" />
+      <module name="camel-management-starter" target="1.5" />
+      <module name="camel-mapstruct-starter" target="1.5" />
+      <module name="camel-master-starter" target="1.5" />
+      <module name="camel-metrics-starter" target="1.5" />
+      <module name="camel-micrometer-observability-starter" target="1.5" />
+      <module name="camel-micrometer-starter" target="1.5" />
+      <module name="camel-milvus-starter" target="1.5" />
+      <module name="camel-mina-starter" target="1.5" />
+      <module name="camel-minio-starter" target="1.5" />
+      <module name="camel-mllp-starter" target="1.5" />
+      <module name="camel-mock-starter" target="1.5" />
+      <module name="camel-mongodb-gridfs-starter" target="1.5" />
+      <module name="camel-mongodb-starter" target="1.5" />
+      <module name="camel-mustache-starter" target="1.5" />
+      <module name="camel-mvel-starter" target="1.5" />
+      <module name="camel-mybatis-starter" target="1.5" />
+      <module name="camel-nats-starter" target="1.5" />
+      <module name="camel-neo4j-starter" target="1.5" />
+      <module name="camel-netty-http-starter" target="1.5" />
+      <module name="camel-netty-starter" target="1.5" />
+      <module name="camel-nitrite-starter" target="1.5" />
+      <module name="camel-oaipmh-starter" target="1.5" />
+      <module name="camel-observability-services-starter" target="1.5" />
+      <module name="camel-observation-starter" target="1.5" />
+      <module name="camel-ognl-starter" target="1.5" />
+      <module name="camel-olingo2-starter" target="1.5" />
+      <module name="camel-olingo4-starter" target="1.5" />
+      <module name="camel-openapi-java-starter" target="1.5" />
+      <module name="camel-openapi-validator-starter" target="1.5" />
+      <module name="camel-opensearch-starter" target="1.5" />
+      <module name="camel-openstack-starter" target="1.5" />
+      <module name="camel-opentelemetry-starter" target="1.5" />
+      <module name="camel-opentelemetry2-starter" target="1.5" />
+      <module name="camel-optaplanner-starter" target="1.5" />
+      <module name="camel-paho-mqtt5-starter" target="1.5" />
+      <module name="camel-paho-starter" target="1.5" />
+      <module name="camel-parquet-avro-starter" target="1.5" />
+      <module name="camel-pdf-starter" target="1.5" />
+      <module name="camel-pg-replication-slot-starter" target="1.5" />
+      <module name="camel-pgevent-starter" target="1.5" />
+      <module name="camel-pinecone-starter" target="1.5" />
+      <module name="camel-platform-http-starter" target="1.5" />
+      <module name="camel-plc4x-starter" target="1.5" />
+      <module name="camel-pqc-starter" target="1.5" />
+      <module name="camel-printer-starter" target="1.5" />
+      <module name="camel-protobuf-starter" target="1.5" />
+      <module name="camel-pubnub-starter" target="1.5" />
+      <module name="camel-pulsar-starter" target="1.5" />
+      <module name="camel-python-starter" target="1.5" />
+      <module name="camel-qdrant-starter" target="1.5" />
+      <module name="camel-quartz-starter" target="1.5" />
+      <module name="camel-quickfix-starter" target="1.5" />
+      <module name="camel-reactive-streams-starter" target="1.5" />
+      <module name="camel-reactor-starter" target="1.5" />
+      <module name="camel-ref-starter" target="1.5" />
+      <module name="camel-resilience4j-micrometer-starter" target="1.5" />
+      <module name="camel-resilience4j-starter" target="1.5" />
+      <module name="camel-rest-openapi-starter" target="1.5" />
+      <module name="camel-rest-starter" target="1.5" />
+      <module name="camel-robotframework-starter" target="1.5" />
+      <module name="camel-rocketmq-starter" target="1.5" />
+      <module name="camel-rss-starter" target="1.5" />
+      <module name="camel-rxjava-starter" target="1.5" />
+      <module name="camel-saga-starter" target="1.5" />
+      <module name="camel-salesforce-starter" target="1.5" />
+      <module name="camel-sap-netweaver-starter" target="1.5" />
+      <module name="camel-saxon-starter" target="1.5" />
+      <module name="camel-scheduler-starter" target="1.5" />
+      <module name="camel-schematron-starter" target="1.5" />
+      <module name="camel-seda-starter" target="1.5" />
+      <module name="camel-service-starter" target="1.5" />
+      <module name="camel-servicenow-starter" target="1.5" />
+      <module name="camel-servlet-starter" target="1.5" />
+      <module name="camel-shiro-starter" target="1.5" />
+      <module name="camel-sjms-starter" target="1.5" />
+      <module name="camel-sjms2-starter" target="1.5" />
+      <module name="camel-slack-starter" target="1.5" />
+      <module name="camel-smb-starter" target="1.5" />
+      <module name="camel-smooks-starter" target="1.5" />
+      <module name="camel-smpp-starter" target="1.5" />
+      <module name="camel-snakeyaml-starter" target="1.5" />
+      <module name="camel-snmp-starter" target="1.5" />
+      <module name="camel-soap-starter" target="1.5" />
+      <module name="camel-solr-starter" target="1.5" />
+      <module name="camel-splunk-hec-starter" target="1.5" />
+      <module name="camel-splunk-starter" target="1.5" />
+      <module name="camel-spring-batch-starter" target="1.5" />
+      <module name="camel-spring-boot" target="1.5" />
+      <module name="camel-spring-boot-bom" target="1.5" />
+      <module name="camel-spring-boot-bom-generator" target="1.5" />
+      <module name="camel-spring-boot-config-generator-maven-plugin" target="1.5" />
+      <module name="camel-spring-boot-dependencies" target="1.5" />
+      <module name="camel-spring-boot-dependencies-generator" target="1.5" />
+      <module name="camel-spring-boot-engine-starter" target="1.5" />
+      <module name="camel-spring-boot-generator-maven-plugin" target="1.5" />
+      <module name="camel-spring-boot-starter" target="1.5" />
+      <module name="camel-spring-boot-starter-generator" target="1.5" />
+      <module name="camel-spring-boot-xml" target="1.5" />
+      <module name="camel-spring-boot-xml-starter" target="1.5" />
+      <module name="camel-spring-cloud-config-starter" target="1.5" />
+      <module name="camel-spring-jdbc-starter" target="1.5" />
+      <module name="camel-spring-ldap-starter" target="1.5" />
+      <module name="camel-spring-rabbitmq-starter" target="1.5" />
+      <module name="camel-spring-redis-starter" target="1.5" />
+      <module name="camel-spring-security-starter" target="1.5" />
+      <module name="camel-spring-starter" target="1.5" />
+      <module name="camel-spring-ws-starter" target="1.5" />
+      <module name="camel-springdoc-starter" target="1.5" />
+      <module name="camel-sql-starter" target="1.5" />
+      <module name="camel-ssh-starter" target="1.5" />
+      <module name="camel-starter-parent" target="1.5" />
+      <module name="camel-stax-starter" target="1.5" />
+      <module name="camel-stitch-starter" target="1.5" />
+      <module name="camel-stomp-starter" target="1.5" />
+      <module name="camel-stream-starter" target="1.5" />
+      <module name="camel-stringtemplate-starter" target="1.5" />
+      <module name="camel-stub-starter" target="1.5" />
+      <module name="camel-swift-starter" target="1.5" />
+      <module name="camel-syslog-starter" target="1.5" />
+      <module name="camel-tahu-starter" target="1.5" />
+      <module name="camel-tarfile-starter" target="1.5" />
+      <module name="camel-telegram-starter" target="1.5" />
+      <module name="camel-telemetry-dev-starter" target="1.5" />
+      <module name="camel-tensorflow-serving-starter" target="1.5" />
+      <module name="camel-thrift-starter" target="1.5" />
+      <module name="camel-thymeleaf-starter" target="1.5" />
+      <module name="camel-tika-starter" target="1.5" />
+      <module name="camel-timer-starter" target="1.5" />
+      <module name="camel-torchserve-starter" target="1.5" />
+      <module name="camel-twilio-starter" target="1.5" />
+      <module name="camel-twitter-starter" target="1.5" />
+      <module name="camel-undertow-spring-security-starter" target="1.5" />
+      <module name="camel-undertow-starter" target="1.5" />
+      <module name="camel-univocity-parsers-starter" target="1.5" />
+      <module name="camel-validator-starter" target="1.5" />
+      <module name="camel-velocity-starter" target="1.5" />
+      <module name="camel-vertx-http-starter" target="1.5" />
+      <module name="camel-vertx-starter" target="1.5" />
+      <module name="camel-vertx-websocket-starter" target="1.5" />
+      <module name="camel-wasm-starter" target="1.5" />
+      <module name="camel-weather-starter" target="1.5" />
+      <module name="camel-weaviate-starter" target="1.5" />
+      <module name="camel-web3j-starter" target="1.5" />
+      <module name="camel-webhook-starter" target="1.5" />
+      <module name="camel-whatsapp-starter" target="1.5" />
+      <module name="camel-wordpress-starter" target="1.5" />
+      <module name="camel-workday-starter" target="1.5" />
+      <module name="camel-xchange-starter" target="1.5" />
+      <module name="camel-xj-starter" target="1.5" />
+      <module name="camel-xml-io-dsl-starter" target="1.5" />
+      <module name="camel-xml-jaxb-dsl-starter" target="1.5" />
+      <module name="camel-xml-jaxb-starter" target="1.5" />
+      <module name="camel-xml-jaxp-starter" target="1.5" />
+      <module name="camel-xmlsecurity-starter" target="1.5" />
+      <module name="camel-xmpp-starter" target="1.5" />
+      <module name="camel-xpath-starter" target="1.5" />
+      <module name="camel-xslt-saxon-starter" target="1.5" />
+      <module name="camel-xslt-starter" target="1.5" />
+      <module name="camel-yaml-dsl-starter" target="1.5" />
+      <module name="camel-yaml-io-starter" target="1.5" />
+      <module name="camel-zeebe-starter" target="1.5" />
+      <module name="camel-zendesk-starter" target="1.5" />
+      <module name="camel-zip-deflater-starter" target="1.5" />
+      <module name="camel-zipfile-starter" target="1.5" />
+      <module name="camel-zookeeper-cluster-service-starter" target="1.5" />
+      <module name="camel-zookeeper-master-starter" target="1.5" />
+      <module name="camel-zookeeper-starter" target="1.5" />
+      <module name="catalog" target="1.5" />
       <module name="codetickets" target="17" />
+      <module name="components-starter" target="1.5" />
+      <module name="core-modules" target="1.5" />
+      <module name="core-starter" target="1.5" />
+      <module name="docs" target="1.5" />
+      <module name="dsl-starter" target="1.5" />
+      <module name="examples" target="17" />
+      <module name="integracaoarquivo" target="11" />
       <module name="ofb-oauth2-registered-clients-business-api" target="17" />
+      <module name="Orchestrator Resources" target="17" />
       <module name="sbatch-ofb-consents-approval-control" target="17" />
       <module name="sbatch-ofb-consents-expiration-control" target="17" />
       <module name="sbatch.consents.expiration.control" target="17" />
       <module name="sboot-atom-ofb-audit-services" target="17" />
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
+      <module name="sboot-camel-ofb-template1" target="11" />
       <module name="sboot-listener-ofb-audit-services" target="17" />
       <module name="sboot-listener-ofb-consents-cancellation-services" target="17" />
       <module name="sboot-orch-ofb-accounts" target="17" />
       <module name="sboot-orch-ofb-authentication-server" target="17" />
       <module name="sboot-orch-ofb-consents" target="17" />
       <module name="sboot-orch-ofb-customers" target="17" />
-      <module name="sboot-orch-ofb-resources" target="17" />
+      <module name="sboot.camel.orch.template1" target="17" />
       <module name="spring-batch-dicas" target="17" />
+      <module name="spring-boot-parent" target="1.5" />
       <module name="spring-security-template" target="17" />
+      <module name="tests" target="1.5" />
       <module name="tican-audit-services-api" target="17" />
       <module name="tican-discovery-services" target="17" />
       <module name="tican-lib-autoconfigure-amqp" target="17" />
@@ -64,10 +585,12 @@
       <module name="tican-oauth2-users-business-api" target="17" />
       <module name="tican-oauth2-users-domain-api" target="17" />
       <module name="tican-open-finance-template" target="17" />
+      <module name="tooling" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Orchestrator Resources" options="-parameters" />
       <module name="aulao-spring-security-e-jwt" options="-parameters" />
       <module name="codetickets" options="-parameters" />
       <module name="ofb-oauth2-registered-clients-business-api" options="-parameters" />
@@ -81,6 +604,8 @@
       <module name="sboot-atom-ofb-consents" options="-parameters" />
       <module name="sboot-atom-ofb-customers" options="-parameters" />
       <module name="sboot-atom-ofb-resources" options="-parameters" />
+      <module name="sboot-camel-ofb-template1" options="-parameters" />
+      <module name="sboot-camel-orch-ofb-resources" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-amqp" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-handlers" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-interceptors" options="-parameters" />
@@ -96,8 +621,9 @@
       <module name="sboot-orch-ofb-consents" options="-parameters" />
       <module name="sboot-orch-ofb-customers" options="-parameters" />
       <module name="sboot-orch-ofb-discovery-services" options="-parameters" />
-      <module name="sboot-orch-ofb-resources" options="-parameters" />
+      <module name="sboot.camel.orch.template1" options="-parameters" />
       <module name="spring-batch-dicas" options="-parameters" />
+      <module name="spring-boot-camel-integration" options="-parameters" />
       <module name="spring-security-template" options="-parameters" />
       <module name="tican-audit-services-api" options="-parameters --enable-preview" />
       <module name="tican-discovery-services" options="-parameters" />
