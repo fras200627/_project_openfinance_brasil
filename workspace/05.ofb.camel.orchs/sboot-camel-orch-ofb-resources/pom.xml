@@ -84,6 +84,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.apache.camel</groupId>-->
+<!--				<artifactId>camel-bom</artifactId>-->
+<!--				<version>3.22.4</version>-->
+<!--				<type>pom</type>-->
+<!--				<scope>import</scope>-->
+<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -134,28 +141,54 @@
 		</dependency>
 
 		<!-- ApacheCamel -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.camel.springboot</groupId>-->
-<!--			<artifactId>camel-core-starter</artifactId>-->
-<!--			<version>3.22.4</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-spring-boot-starter</artifactId>
 			<version>3.22.4</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.apache.camel.springboot</groupId>-->
-<!--			<artifactId>camel-spring-boot-dependencies</artifactId>-->
-<!--			<version>3.22.4</version>-->
-<!--			<type>pom</type>-->
-<!--			<scope>provided</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test-spring-junit5</artifactId>
+			<version>3.22.4</version>
+			<scope>test</scope>
+		</dependency>
 
-		<!-- Spring Data -->
 <!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-core-engine</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-main</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-log</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-file</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-rest</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-jetty</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-xpath</artifactId>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-http</artifactId>
+			<version>3.22.4</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.apache.camel</groupId>-->
+<!--			<artifactId>camel-direct</artifactId>-->
 <!--		</dependency>-->
 
 		<!-- Spring Test -->
@@ -170,13 +203,6 @@
 			<artifactId>resilience4j-spring-boot2</artifactId>
 			<version>${resilience4j-spring-boot2-version}</version>
 		</dependency>
-
-		<!-- JDBC Data Drivers -->
-<!--		<dependency>-->
-<!--			<groupId>com.oracle.database.jdbc</groupId>-->
-<!--			<artifactId>ojdbc11</artifactId>-->
-<!--			<version>23.8.0.25.04</version>-->
-<!--		</dependency>-->
 
 		<!-- Lombok -->
 		<dependency>
@@ -394,6 +420,41 @@
 							</configOptions>
 						</configuration>
 					</execution>
+
+
+					<execution>
+						<id>generator-authorization-client</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-authorization-server.1.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.resources.client.authorization.handler</apiPackage>
+							<modelPackage>com.ofb.resources.client.authorization.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.resources.client.authorization.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
+
 				</executions>
 			</plugin>
 			<plugin>

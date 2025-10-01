@@ -193,6 +193,9 @@
     <file url="file://$PROJECT_DIR$/backup/camel-spring-boot-examples-main/xml-import/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/camel-spring-boot-examples-main/xml/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/camel-spring-boot-examples-main/xml/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backup/demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backup/demo2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backup/messaging-modules/spring-apache-camel/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/minicurso-apache-camel-video-008/integracaoarquivo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/minicurso-apache-camel-video-008/integracaoarquivo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/src/main/java" charset="UTF-8" />
@@ -252,9 +255,11 @@
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-accounts/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-accounts/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/target/generated-sources/ofb/customers/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-resources/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-audit-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java" charset="UTF-8" />

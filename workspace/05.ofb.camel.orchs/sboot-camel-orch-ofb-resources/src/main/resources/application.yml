@@ -1,13 +1,16 @@
 spring:
   application:
     name: ofb-orch-resources
-  jpa:
-    properties:
-      hibernate:
-        format_sql: true    
-    show-sql: ${API_JPA_SHOW_SQL:true}
-    hibernate:
-      ddl-auto: ${API_HIBERNATE_DDL_AUTO:none}
+camel:
+  springboot:
+    name: ServicesRest
+endpoints:
+  enabled: false
+  health:
+    enabled: true
+quickstart:
+  generateOrderPeriod: 10s
+  processOrderPeriod: 30s
 server:
   error:
     include-stacktrace: never
@@ -86,6 +89,8 @@ app:
   paths:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
+      ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 
 eureka:
   client:
@@ -147,6 +152,8 @@ app:
   paths:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
+      ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 
 eureka:
   client:
@@ -208,6 +215,8 @@ app:
   paths:
     clients:
       ofb-consents: 'http://localhost:3001/ofb-consents/'
+      ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 
 eureka:
   client:

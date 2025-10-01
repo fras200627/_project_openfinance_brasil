@@ -4,45 +4,49 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="API Accounts and Customers +Authorization+Resources">
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/service/CamelTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/main/java/com/ofb/integration/FileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/main/java/com/ofb/integration/FileMoveRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start orchs">
+      <change afterPath="$PROJECT_DIR$/__docs/AuthorizationBuilderRoute.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/camel-final.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/pedidos/1_pedido.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/pedidos/2_pedido.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/pedidos/3_pedido.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/pedidos/4_pedido.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/src/main/java/br/com/caelum/camel/RotaEnviaPedidos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/src/main/java/br/com/caelum/camel/RotaPedidos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/src/main/resources/pedido-para-soap.xslt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/camel-alura/src/main/resources/pedido.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/IllegalArgumentExceptionThrowingProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/routes/AuthorizationRoute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/service/AuthorizationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/client/openapi-authorization-server.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/client/openapi-consents-resources.3.2.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/main/java/com/ofb/integration/SpringBootCamelIntegrationApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/test/java/com/ofb/spring_boot_camel_integration/SpringBootCamelIntegrationApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Approval_Control.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Batch_Approval_Control.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/StartApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/config/OpenAPIConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/HealthApiControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesApiControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesCorporateControllerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesAuthorisedModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/model/ResourcesPermissionsAuthorisedModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesAuthorisedRecordFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesAuthorisedRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesAuthorisedlPaginationSettings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/repository/ResourcesPermissionsAuthorisedRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/java/com/ofb/resources/service/ResourcesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/openapi/client/openapi-consents-client.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/openapi/server/openapi-resources-corporate.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/server/openapi-resources.3.0.0.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-resources/src/main/resources/openapi/server/openapi-resources-server.3.0.0.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/service/CamelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/logback/logback-local.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,189 +101,195 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.1-Discovery.executor": "Run",
-    "Application.2-Gateway.executor": "Run",
-    "Application.3-Auth.executor": "Debug",
-    "Application.3-Authentication.executor": "Run",
-    "Application.3-Authorization.executor": "Debug",
-    "Application.4-Clients-Business.executor": "Run",
-    "Application.Accounts.executor": "Debug",
-    "Application.Audit.executor": "Debug",
-    "Application.Batch Approval Control.executor": "Debug",
-    "Application.Batch Dicas.executor": "Debug",
-    "Application.Batch Expiration Control.executor": "Debug",
-    "Application.Cancellation.executor": "Debug",
-    "Application.CodeticketsApplication.executor": "Debug",
-    "Application.Consents.executor": "Run",
-    "Application.Customers.executor": "Debug",
-    "Application.Listener Audit.executor": "Run",
-    "Application.Listener Authorization.executor": "Debug",
-    "Application.Listener Cancellation.executor": "Run",
-    "Application.Main.executor": "Debug",
-    "Application.OFB-API Gateway.executor": "Run",
-    "Application.OFB-Authentication Server.executor": "Debug",
-    "Application.OFB-Discovery-Services.executor": "Run",
-    "Application.OFB-Registered-Clients-Business.executor": "Debug",
-    "Application.ORCH Customers.executor": "Debug",
-    "Application.ORCH Resources.executor": "Debug",
-    "Application.Resources.executor": "Run",
-    "Application.SpringBootCamelIntegrationApplication.executor": "Debug",
-    "Application.SpringJWT_1.executor": "Debug",
-    "Application.SpringJWT_2.executor": "Run",
-    "Application.Unnamed.executor": "Debug",
-    "JUnit.AuthorizationConsentsServiceTest.testExpiration.executor": "Debug",
-    "Maven.aulao-spring-security-e-jwt [clean].executor": "Run",
-    "Maven.codetickets [clean].executor": "Run",
-    "Maven.codetickets [install].executor": "Run",
-    "Maven.ofb-api-gateway [clean].executor": "Run",
-    "Maven.ofb-api-gateway [install].executor": "Run",
-    "Maven.ofb-audit-services [clean].executor": "Run",
-    "Maven.ofb-authentication-server [clean].executor": "Run",
-    "Maven.ofb-authentication-server [install].executor": "Run",
-    "Maven.ofb-discovery-services [clean].executor": "Run",
-    "Maven.ofb-discovery-services [install].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-amqp [clean].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-amqp [install].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-handlers [clean].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-handlers [install].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-interceptors [clean].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-interceptors [install].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-security [clean].executor": "Run",
-    "Maven.ofb-lib-autoconfigure-security [install].executor": "Run",
-    "Maven.ofb-lib-common-tools [clean].executor": "Run",
-    "Maven.ofb-lib-common-tools [compile].executor": "Run",
-    "Maven.ofb-lib-common-tools [install].executor": "Run",
-    "Maven.ofb-oauth2-registered-clients-business-api [clean].executor": "Run",
-    "Maven.ofb-oauth2-registered-clients-business-api [install].executor": "Run",
-    "Maven.sbatch-ofb-consents-approval-control [clean].executor": "Run",
-    "Maven.sbatch-ofb-consents-approval-control [install].executor": "Run",
-    "Maven.sbatch-ofb-consents-expiration-control [clean].executor": "Run",
-    "Maven.sbatch-ofb-consents-expiration-control [install].executor": "Run",
-    "Maven.sbatch-ofb-resources [clean].executor": "Run",
-    "Maven.sbatch-ofb-resources [install].executor": "Run",
-    "Maven.sboot-atom-audit-services [clean].executor": "Run",
-    "Maven.sboot-atom-audit-services [install].executor": "Run",
-    "Maven.sboot-atom-cancellation-consents-services [clean].executor": "Run",
-    "Maven.sboot-atom-cancellation-consents-services [install].executor": "Run",
-    "Maven.sboot-atom-ofb-accounts [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-accounts [install].executor": "Run",
-    "Maven.sboot-atom-ofb-audit-services [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-audit-services [install].executor": "Run",
-    "Maven.sboot-atom-ofb-audit-services [verify].executor": "Run",
-    "Maven.sboot-atom-ofb-cancellation-consents-services [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-cancellation-consents-services [install].executor": "Run",
-    "Maven.sboot-atom-ofb-clients-business [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-clients-business [install].executor": "Run",
-    "Maven.sboot-atom-ofb-consents [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-consents [install].executor": "Run",
-    "Maven.sboot-atom-ofb-customers [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-customers [install].executor": "Run",
-    "Maven.sboot-atom-ofb-customers [validate].executor": "Run",
-    "Maven.sboot-atom-ofb-resources [clean].executor": "Run",
-    "Maven.sboot-atom-ofb-resources [install].executor": "Run",
-    "Maven.sboot-camel-ofb-template1 [clean].executor": "Run",
-    "Maven.sboot-camel-ofb-template1 [install].executor": "Run",
-    "Maven.sboot-camel-orch-ofb-resources [clean].executor": "Run",
-    "Maven.sboot-camel-orch-ofb-resources [install].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-amqp [clean].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-amqp [install].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-handlers [clean].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-handlers [install].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-interceptors [clean].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-interceptors [install].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-security [clean].executor": "Run",
-    "Maven.sboot-lib-ofb-autoconfigure-security [install].executor": "Run",
-    "Maven.sboot-lib-ofb-common-tools [clean].executor": "Run",
-    "Maven.sboot-lib-ofb-common-tools [install].executor": "Run",
-    "Maven.sboot-listener-ofb-audit-services [clean].executor": "Run",
-    "Maven.sboot-listener-ofb-audit-services [install].executor": "Run",
-    "Maven.sboot-listener-ofb-consents-authorization-services [clean].executor": "Run",
-    "Maven.sboot-listener-ofb-consents-authorization-services [install].executor": "Run",
-    "Maven.sboot-listener-ofb-consents-cancellation-services [clean].executor": "Run",
-    "Maven.sboot-listener-ofb-consents-cancellation-services [install].executor": "Run",
-    "Maven.sboot-orch-ofb-api-gateway [clean].executor": "Run",
-    "Maven.sboot-orch-ofb-api-gateway [compile].executor": "Run",
-    "Maven.sboot-orch-ofb-api-gateway [install].executor": "Run",
-    "Maven.sboot-orch-ofb-authentication-server [clean].executor": "Run",
-    "Maven.sboot-orch-ofb-authentication-server [install].executor": "Run",
-    "Maven.sboot-orch-ofb-authorization-server [clean].executor": "Run",
-    "Maven.sboot-orch-ofb-authorization-server [install].executor": "Run",
-    "Maven.sboot-orch-ofb-customers [clean].executor": "Run",
-    "Maven.sboot-orch-ofb-customers [install].executor": "Run",
-    "Maven.sboot-orch-ofb-discovery-services [clean].executor": "Run",
-    "Maven.sboot-orch-ofb-discovery-services [install].executor": "Run",
-    "Maven.sboot.camel.orch.template1 [clean].executor": "Run",
-    "Maven.sboot.camel.orch.template1 [install].executor": "Run",
-    "Maven.spring-batch-dicas [install].executor": "Run",
-    "Maven.spring-security-jwt [clean].executor": "Run",
-    "Maven.spring-security-jwt [install].executor": "Run",
-    "Maven.spring-security-template [clean].executor": "Run",
-    "Maven.spring-security-template [install].executor": "Run",
-    "Maven.tican-audit-services-api [clean].executor": "Run",
-    "Maven.tican-authentication-server [clean].executor": "Run",
-    "Maven.tican-authentication-server [install].executor": "Run",
-    "Maven.tican-oauth2-registered-clients-business-api [clean].executor": "Run",
-    "Maven.tican-oauth2-registered-clients-business-api [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "dev",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/backup",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.291954",
-    "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.1-Discovery.executor&quot;: &quot;Run&quot;,
+    &quot;Application.2-Gateway.executor&quot;: &quot;Run&quot;,
+    &quot;Application.3-Auth.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.3-Authentication.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.3-Authorization.executor&quot;: &quot;Run&quot;,
+    &quot;Application.4-Clients-Business.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Accounts.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Audit.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Batch Approval Control.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Batch Dicas.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Batch Expiration Control.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Cancellation.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.CodeticketsApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Consents.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Customers.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.DemoApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Listener Audit.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Listener Authorization.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Listener Cancellation.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.OFB-API Gateway.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OFB-Authentication Server.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.OFB-Discovery-Services.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OFB-Registered-Clients-Business.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.ORCH Customers.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.ORCH Resources.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Resources.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SpringBootCamelIntegrationApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.SpringJWT_1.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.SpringJWT_2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.com.example.demo2.DemoApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AuthorizationConsentsServiceTest.testExpiration.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DemoApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DemoApplicationTests.givenMessage_whenSendingSimpleMessage_thenReturnsProcessedMessage.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DemoApplicationTests.givenMessage_whenSendingToAllRoutes_thenReturnsUppercaseMessage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DemoApplicationTests.givenMessage_whenSendingToBean_thenReturnsUppercaseMessage.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DemoApplicationTests.givenMessage_whenSendingToFile_thenFileContainsMessage.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DemoApplicationTests.givenMessage_whenSendingToProcess_thenReturnsUppercaseMessage.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.aulao-spring-security-e-jwt [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.codetickets [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.codetickets [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo [site].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo2 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.demo2 [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-api-gateway [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-api-gateway [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-audit-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-authentication-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-authentication-server [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-discovery-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-discovery-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-amqp [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-amqp [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-handlers [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-handlers [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-interceptors [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-interceptors [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-security [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-autoconfigure-security [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-common-tools [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-common-tools [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-lib-common-tools [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-oauth2-registered-clients-business-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ofb-oauth2-registered-clients-business-api [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sbatch-ofb-consents-approval-control [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sbatch-ofb-consents-approval-control [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sbatch-ofb-consents-expiration-control [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sbatch-ofb-consents-expiration-control [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sbatch-ofb-resources [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sbatch-ofb-resources [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-audit-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-audit-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-cancellation-consents-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-cancellation-consents-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-accounts [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-accounts [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-audit-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-audit-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-audit-services [verify].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-cancellation-consents-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-cancellation-consents-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-clients-business [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-clients-business [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-consents [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-consents [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-customers [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-customers [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-customers [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-resources [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-atom-ofb-resources [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-camel-ofb-template1 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-camel-ofb-template1 [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-camel-orch-ofb-resources [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-camel-orch-ofb-resources [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-amqp [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-amqp [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-handlers [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-handlers [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-interceptors [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-interceptors [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-security [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-autoconfigure-security [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-common-tools [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-lib-ofb-common-tools [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-listener-ofb-audit-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-listener-ofb-audit-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-listener-ofb-consents-authorization-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-listener-ofb-consents-authorization-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-listener-ofb-consents-cancellation-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-listener-ofb-consents-cancellation-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-api-gateway [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-api-gateway [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-api-gateway [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-authentication-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-authentication-server [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-authorization-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-authorization-server [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-customers [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-customers [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-discovery-services [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot-orch-ofb-discovery-services [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot.camel.orch.template1 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.sboot.camel.orch.template1 [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-batch-dicas [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-security-jwt [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-security-jwt [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-security-template [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-security-template [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tican-audit-services-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tican-authentication-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tican-authentication-server [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tican-oauth2-registered-clients-business-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tican-oauth2-registered-clients-business-api [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/_development/__projects/_project_openfinance_brasil/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.291954&quot;,
+    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-resources\src\main\java\com\ofb\resources\camel" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-customers\src\main\resources\openapi\client" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-accounts\src\main\resources\openapi\client" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\00.lib.commons\sboot-lib-ofb-common-tools\src\main\resources" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms.api\sboot-atom-ofb-consents\src\main\resources\openapi\client" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-resources\src\main\resources\openapi" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-resources\pedidos" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\backup\demo\src\test\java\com\example\demo" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms.api\sboot-atom-ofb-consents\src\main\resources\openapi\client\backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.security" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs\old" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\sbatch_template\3895-java-spring-batch-aula04\files" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.demo2.camel.routes" />
+      <recent name="com.example.demo2.controller" />
+      <recent name="com.ofb.resources.camel.routes" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.demo" />
       <recent name="com.ofb.authorization.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.ofb.sbatch.consents.approval.control.config" />
-      <recent name="dev.ivanqueiroz.springbatchdicas.config" />
-      <recent name="com.ofb.sbatch.consents.expiration.control.config" />
-      <recent name="com.ofb.sbatch.consents.expiration.control.repository" />
-      <recent name="com.ofb.sbatch.consents.expiration.control.entity" />
+      <recent name="com.ofb.lib.handlers.exception.template" />
+      <recent name="com.example.demo2.camel.routes" />
+      <recent name="com.example.demo2.camel.processors" />
+      <recent name="com.ofb.resources.camel.routes" />
+      <recent name="com.ofb.resources.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.2-Gateway">
-    <configuration name="SpringBootCamelIntegrationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ofb.integration.SpringBootCamelIntegrationApplication" />
-      <module name="spring-boot-camel-integration" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ofb.integration.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.ORCH Resources">
     <list>
       <item itemvalue="Application.ORCH Resources" />
       <item itemvalue="Application.1-Discovery" />
@@ -296,13 +306,7 @@
       <item itemvalue="Application.Listener Authorization" />
       <item itemvalue="Application.Batch Expiration Control" />
       <item itemvalue="Application.Batch Approval Control" />
-      <item itemvalue="Application.SpringBootCamelIntegrationApplication" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.SpringBootCamelIntegrationApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -312,14 +316,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00022" summary="inclusão RESOURCES">
-      <option name="closed" value="true" />
-      <created>1753889344988</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1753889344988</updated>
     </task>
     <task id="LOCAL-00023" summary="inclusão RESOURCES">
       <option name="closed" value="true" />
@@ -705,7 +701,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758560922318</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="start orchs">
+      <option name="closed" value="true" />
+      <created>1758891916878</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1758891916878</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -721,7 +725,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Extends e Extensions final" />
     <MESSAGE value="Revisão consents" />
     <MESSAGE value="inclusão RESOURCES" />
     <MESSAGE value="Revisão e ajustes em responses" />
@@ -746,7 +749,8 @@
     <MESSAGE value="resume authorization server" />
     <MESSAGE value="API Accounts+Authorization+Resources" />
     <MESSAGE value="API Accounts and Customers +Authorization+Resources" />
-    <option name="LAST_COMMIT_MESSAGE" value="API Accounts and Customers +Authorization+Resources" />
+    <MESSAGE value="start orchs" />
+    <option name="LAST_COMMIT_MESSAGE" value="start orchs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -837,16 +841,6 @@
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/service/CamelTest.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/main/java/com/ofb/integration/FileController.java</url>
           <line>20</line>
           <option name="timeStamp" value="109" />
@@ -860,6 +854,61 @@
           <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/src/main/java/com/ofb/integration/FileController.java</url>
           <line>21</line>
           <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backup/demo2/src/main/java/com/example/demo2/camel/beans/ProcessingBean.java</url>
+          <line>4</line>
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backup/demo2/src/main/java/com/example/demo2/camel/processors/MyProcess.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backup/demo2/src/test/java/com/example/demo/DemoApplicationTest.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/IllegalArgumentExceptionThrowingProcessor.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
+          <line>191</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
+          <line>515</line>
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/ConsentPersonalModel.java</url>

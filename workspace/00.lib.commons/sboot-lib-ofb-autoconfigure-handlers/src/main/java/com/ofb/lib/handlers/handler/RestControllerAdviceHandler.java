@@ -9,7 +9,9 @@ import com.ofb.lib.handlers.exception.template.MetaErrorResponseTemplate;
 import com.ofb.lib.handlers.exception.template.ResponseErrorTemplate;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.camel.CamelExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -38,6 +40,10 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.camel.CamelExecutionException;
+import org.apache.camel.CamelException;
+import com.google.gson.Gson;
+
 @RestControllerAdvice @Slf4j
 public class RestControllerAdviceHandler {
 
@@ -46,6 +52,66 @@ public class RestControllerAdviceHandler {
 
     @Autowired private
     HttpServletResponse response;
+
+    /* ------------------------------------------------------------------------ */
+    @ExceptionHandler(CamelExecutionException.class)
+    public ResponseEntity handleException(CamelExecutionException ex) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        String exceptionCause = ex.getCause().getMessage();
+        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
+
+        if (ex.getCause().getClass().toString().contains("BadRequestException")) {
+            exceptionCause = exceptionCause.replaceAll("\\\\", "").replaceAll("404 : \"", "").replaceAll("detail\":\"\\{", "detail\": {").replaceAll("\\}\"\"\\}", "}}" );
+            exceptionCause = exceptionCause.substring(1, exceptionCause.length() -1);
+
+
+        } else if (ex.getCause().getClass().toString().contains("InternalErrorException")) {
+
+        } else {
+
+        }
+
+//        try {
+//            Object myObject = mapper.readValue(exceptionCause, Object.class);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+
+        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                .title(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.toString())
+                .detail(exceptionCause)
+                .build());
+
+        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+
+        return ResponseEntity.badRequest().body(new ResponseErrorTemplate().toBuilder()
+                .errors(errors)
+                .meta(meta)
+                .build());
+    }
+    /* ------------------------------------------------------------------------ */
+    @ExceptionHandler(CamelException.class)
+    public ResponseEntity handleException(CamelException ex) {
+        String[] message = ex.getMessage().split(";");
+        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
+
+        BadRequestException badRequestException = new BadRequestException(ex.getCause().getMessage());
+
+        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
+        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
+                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                .title(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.toString())
+                .detail(ex.getCause().getMessage())
+                .build());
+
+        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+
+        return ResponseEntity.badRequest().body(badRequestException.getMessage());
+    }
+    /* ------------------------------------------------------------------------ */
+
 
     /* ------------------------------------------------------------------------ */
     private void writeError(String className, String message, String[] messageDetails) {

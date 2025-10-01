@@ -1,0 +1,72 @@
+2025-09-25T14:43:52.857-03:00  INFO 68732 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : Starting SpringBootCamelIntegrationApplication using Java 17.0.9 with PID 68732 (C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\spring-boot-camel-integration\target\classes started by fras200627 in C:\_development\__projects\_project_openfinance_brasil)
+2025-09-25T14:43:52.874-03:00  INFO 68732 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : No active profile set, falling back to 1 default profile: "default"
+2025-09-25T14:43:53.007-03:00  INFO 68732 --- [integration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-25T14:43:53.012-03:00  INFO 68732 --- [integration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-25T14:43:55.809-03:00  INFO 68732 --- [integration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 5001 (http)
+2025-09-25T14:43:55.852-03:00  INFO 68732 --- [integration] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T14:43:55.852-03:00  INFO 68732 --- [integration] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-09-25T14:43:55.962-03:00  INFO 68732 --- [integration] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T14:43:55.963-03:00  INFO 68732 --- [integration] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2949 ms
+2025-09-25T14:43:57.526-03:00  INFO 68732 --- [integration] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-25T14:43:57.712-03:00  INFO 68732 --- [integration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 5001 (http) with context path '/'
+2025-09-25T14:43:58.158-03:00  INFO 68732 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) is starting
+2025-09-25T14:43:58.185-03:00  INFO 68732 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Routes startup (total:1)
+2025-09-25T14:43:58.185-03:00  INFO 68732 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   :     Started route1 (direct://fileMoveRoute)
+2025-09-25T14:43:58.186-03:00  INFO 68732 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) started in 24ms (build:0ms init:0ms start:24ms boot:2s8ms)
+2025-09-25T14:43:58.193-03:00  INFO 68732 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : Started SpringBootCamelIntegrationApplication in 6.725 seconds (process running for 8.082)
+2025-09-25T14:45:30.847-03:00  INFO 68732 --- [integration] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T14:45:30.993-03:00  INFO 68732 --- [integration] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T14:45:30.998-03:00  INFO 68732 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) is shutting down (timeout:45s)
+2025-09-25T14:45:31.008-03:00  INFO 68732 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Routes stopped (total:1)
+2025-09-25T14:45:31.009-03:00  INFO 68732 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   :     Stopped route1 (direct://fileMoveRoute)
+2025-09-25T14:45:31.018-03:00  INFO 68732 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) shutdown in 20ms (uptime:1m32s)
+2025-09-25T14:45:39.512-03:00  INFO 44136 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : Starting SpringBootCamelIntegrationApplication using Java 17.0.9 with PID 44136 (C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\spring-boot-camel-integration\target\classes started by fras200627 in C:\_development\__projects\_project_openfinance_brasil)
+2025-09-25T14:45:39.520-03:00  INFO 44136 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : No active profile set, falling back to 1 default profile: "default"
+2025-09-25T14:45:39.685-03:00  INFO 44136 --- [integration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-25T14:45:39.686-03:00  INFO 44136 --- [integration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-25T14:45:42.620-03:00  INFO 44136 --- [integration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 5001 (http)
+2025-09-25T14:45:42.648-03:00  INFO 44136 --- [integration] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T14:45:42.649-03:00  INFO 44136 --- [integration] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-09-25T14:45:42.773-03:00  INFO 44136 --- [integration] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T14:45:42.774-03:00  INFO 44136 --- [integration] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3086 ms
+2025-09-25T14:45:44.401-03:00  INFO 44136 --- [integration] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-25T14:45:44.524-03:00  INFO 44136 --- [integration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 5001 (http) with context path '/'
+2025-09-25T14:45:53.751-03:00  INFO 44136 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) is starting
+2025-09-25T14:45:53.782-03:00  INFO 44136 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Routes startup (total:1)
+2025-09-25T14:45:53.782-03:00  INFO 44136 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   :     Started route1 (direct://fileMoveRoute)
+2025-09-25T14:45:53.783-03:00  INFO 44136 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) started in 27ms (build:0ms init:0ms start:27ms boot:10s803ms)
+2025-09-25T14:45:53.789-03:00  INFO 44136 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : Started SpringBootCamelIntegrationApplication in 15.567 seconds (process running for 16.796)
+2025-09-25T14:46:35.722-03:00  INFO 44136 --- [integration] [http-nio-5001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25T14:46:35.724-03:00  INFO 44136 --- [integration] [http-nio-5001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-25T14:46:35.726-03:00  INFO 44136 --- [integration] [http-nio-5001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-25T14:46:44.851-03:00  INFO 44136 --- [integration] [http-nio-5001-exec-1] route1                                   : Processing file: 
+2025-09-25T14:47:24.130-03:00  INFO 44136 --- [integration] [http-nio-5001-exec-3] route1                                   : Processing file: 
+2025-09-25T14:47:54.676-03:00  INFO 44136 --- [integration] [http-nio-5001-exec-6] route1                                   : Processing file: 
+2025-09-25T14:48:09.353-03:00  INFO 44136 --- [integration] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T14:48:09.486-03:00  INFO 44136 --- [integration] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T14:48:09.492-03:00  INFO 44136 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) is shutting down (timeout:45s)
+2025-09-25T14:48:09.503-03:00  INFO 44136 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Routes stopped (total:1)
+2025-09-25T14:48:09.504-03:00  INFO 44136 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   :     Stopped route1 (direct://fileMoveRoute)
+2025-09-25T14:48:09.512-03:00  INFO 44136 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) shutdown in 20ms (uptime:2m15s)
+2025-09-25T14:48:21.106-03:00  INFO 67344 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : Starting SpringBootCamelIntegrationApplication using Java 17.0.9 with PID 67344 (C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\spring-boot-camel-integration\target\classes started by fras200627 in C:\_development\__projects\_project_openfinance_brasil)
+2025-09-25T14:48:21.113-03:00  INFO 67344 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : No active profile set, falling back to 1 default profile: "default"
+2025-09-25T14:48:21.242-03:00  INFO 67344 --- [integration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-25T14:48:21.243-03:00  INFO 67344 --- [integration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-25T14:48:24.289-03:00  INFO 67344 --- [integration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 5001 (http)
+2025-09-25T14:48:24.319-03:00  INFO 67344 --- [integration] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-25T14:48:24.320-03:00  INFO 67344 --- [integration] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-09-25T14:48:24.420-03:00  INFO 67344 --- [integration] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-25T14:48:24.421-03:00  INFO 67344 --- [integration] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3177 ms
+2025-09-25T14:48:26.014-03:00  INFO 67344 --- [integration] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-25T14:48:26.133-03:00  INFO 67344 --- [integration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 5001 (http) with context path '/'
+2025-09-25T14:48:35.134-03:00  INFO 67344 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) is starting
+2025-09-25T14:48:35.161-03:00  INFO 67344 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Routes startup (total:1)
+2025-09-25T14:48:35.162-03:00  INFO 67344 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   :     Started route1 (direct://fileMoveRoute)
+2025-09-25T14:48:35.162-03:00  INFO 67344 --- [integration] [restartedMain] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) started in 25ms (build:0ms init:0ms start:25ms boot:10s543ms)
+2025-09-25T14:48:35.169-03:00  INFO 67344 --- [integration] [restartedMain] .i.SpringBootCamelIntegrationApplication : Started SpringBootCamelIntegrationApplication in 15.386 seconds (process running for 16.657)
+2025-09-25T14:49:48.830-03:00  INFO 67344 --- [integration] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25T14:49:48.956-03:00  INFO 67344 --- [integration] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-25T14:49:48.962-03:00  INFO 67344 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) is shutting down (timeout:45s)
+2025-09-25T14:49:48.971-03:00  INFO 67344 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Routes stopped (total:1)
+2025-09-25T14:49:48.971-03:00  INFO 67344 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   :     Stopped route1 (direct://fileMoveRoute)
+2025-09-25T14:49:48.980-03:00  INFO 67344 --- [integration] [SpringApplicationShutdownHook] o.a.c.impl.engine.AbstractCamelContext   : Apache Camel 4.14.0 (camel-1) shutdown in 17ms (uptime:1m13s)

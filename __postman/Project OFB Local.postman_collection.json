@@ -3139,7 +3139,7 @@
 							},
 							{
 								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6\n",
 								"type": "text"
 							},
 							{
@@ -3157,6 +3157,144 @@
 							"port": "3001",
 							"path": [
 								"ofb-resources",
+								"resources"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page-size",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Resources Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-orch-resources/resources?page=1&page-size=30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-orch-resources",
+								"resources"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page-size",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Resources Copy 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-orch-resources/resources?page=1&page-size=30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-orch-resources",
 								"resources"
 							],
 							"query": [

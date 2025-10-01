@@ -1,0 +1,77 @@
+package com.ofb.resources.camel.routes;
+
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.resources.camel.processors.IllegalArgumentExceptionThrowingProcessor;
+import com.ofb.resources.service.AuthorizationService;
+import org.apache.camel.CamelExecutionException;
+import org.apache.camel.Endpoint;
+import org.apache.camel.Exchange;
+import org.apache.camel.builder.RouteBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.apache.camel.http.base.HttpOperationFailedException;
+
+@Component
+class AuthorizationRoute extends RouteBuilder {
+
+    @Override
+    public void configure() {
+        //Order: onException primeiro e errorHandler depois
+
+        //Global por RouteBuilder
+        //mas cobre qualquer erro
+//        errorHandler(deadLetterChannel("dsl, route, process")
+//                .useOriginalBody()
+//                .useOriginalBody());
+
+        //Global por RouteBuilder
+        //Especifico pela error class
+        //pode ter vários onException
+        //handled: não continua a execução
+//        onException(BadRequestException.class)
+//                .handled(true)
+//                //.continued() //
+//                .useOriginalMessage() //
+//                .useOriginalBody()    //
+//                .to("dsl, route, process")
+//                .bean("bean class")
+//                .process("processor class");
+        //...
+//        onException(CamelExecutionException.class)
+//                .useOriginalMessage()
+//                .process(exchange -> {
+//                    var ex = exchange.getProperty(Exchange.EXCEPTION_CAUGHT, CamelExecutionException.class);
+//                    exchange.getMessage().setBody(ex.getMessage());
+//                });
+
+//        onException(HttpOperationFailedException.class)
+//                .useOriginalMessage()
+//                        .process(exchange -> {
+//                            var ex = exchange.getProperty(Exchange.EXCEPTION_CAUGHT, HttpOperationFailedException.class);
+//                            exchange.getMessage().setBody(ex.getResponseBody());
+//                        });
+
+//                onException(BadRequestException.class)
+//                .useOriginalMessage()
+//                .process(new IllegalArgumentExceptionThrowingProcessor())
+//                        .end();
+
+        from("direct:authorizationRoute")
+            .tracing()
+            .log("<< start >>")
+//                .errorHandler(noErrorHandler())
+////            .errorHandler("v1").process(new IllegalArgumentExceptionThrowingProcessor()).end()
+////            .onException().to().bean().process().end()
+//                .onException(Exception.class).process(new IllegalArgumentExceptionThrowingProcessor()).end()
+////                .setBody(constant("v1"))
+            .bean(AuthorizationService.class)
+            .log("<< fim >>");
+
+    }
+
+    @Bean
+    public AuthorizationService authorizationService() {
+        return new AuthorizationService();
+    }
+
+}
