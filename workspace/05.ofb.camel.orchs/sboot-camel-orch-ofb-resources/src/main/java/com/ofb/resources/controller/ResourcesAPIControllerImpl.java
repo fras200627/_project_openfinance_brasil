@@ -26,7 +26,9 @@ public class ResourcesAPIControllerImpl implements ResourcesApiDelegate {
 
     @Override
     public ResponseEntity<ResponseResourceList> resourcesGetResources(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize) {
-        ResponseAuthorizationData response = producerTemplate.requestBody("direct:authorizationRoute", authorization, ResponseAuthorizationData.class);
+        ResponseAuthorizationData responseAuthorization = producerTemplate.requestBody("direct:authorizationRoute", authorization, ResponseAuthorizationData.class);
+        com.ofb.resources.client.resources.model.ResponseResourceList responseResources = producerTemplate.requestBody("direct:resourcesRoute", authorization,
+                com.ofb.resources.client.resources.model.ResponseResourceList.class);
 
         return ResourcesApiDelegate.super.resourcesGetResources(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize);
     }

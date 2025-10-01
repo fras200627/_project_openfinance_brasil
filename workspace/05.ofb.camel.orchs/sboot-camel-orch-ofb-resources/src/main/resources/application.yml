@@ -88,7 +88,6 @@ spring:
 app:
   paths:
     clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
       ofb-resources: 'http://localhost:3001/ofb-resources/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 
@@ -151,7 +150,6 @@ spring:
 app:
   paths:
     clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
       ofb-resources: 'http://localhost:3001/ofb-resources/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 
@@ -214,7 +212,6 @@ spring:
 app:
   paths:
     clients:
-      ofb-consents: 'http://localhost:3001/ofb-consents/'
       ofb-resources: 'http://localhost:3001/ofb-resources/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 

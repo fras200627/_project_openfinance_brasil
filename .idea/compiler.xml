@@ -17,12 +17,13 @@
         <module name="demo2" />
       </profile>
       <profile name="Annotation profile for spring-boot-camel-integration" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <sourceOutputDir name="../../workspace/05.ofb.camel.orchs/spring-boot-camel-integration/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../workspace/05.ofb.camel.orchs/spring-boot-camel-integration/target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
         </processorPath>
+        <module name="spring-boot-camel-integration" />
       </profile>
       <profile name="Annotation profile for sboot-camel-orch-ofb-resources" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -573,7 +574,6 @@
       <module name="sboot.camel.orch.template1" target="17" />
       <module name="spring-apache-camel" target="17" />
       <module name="spring-batch-dicas" target="17" />
-      <module name="spring-boot-camel-integration" target="17" />
       <module name="spring-boot-parent" target="1.5" />
       <module name="spring-security-template" target="17" />
       <module name="tests" target="1.5" />
