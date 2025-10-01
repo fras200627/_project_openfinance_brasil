@@ -12,23 +12,8 @@ import javax.persistence.Table;
 @Data @Builder @ToString @AllArgsConstructor @RequiredArgsConstructor
 public class ResourcesAuthorisedModel {
 
-    @Id @Column(name = "CONSENTRESOURCEID")
+    @Id @Column(name = "ID")
     private String consentResourceId;
-
-    @Column(name = "PERSONALCPF")
-    private String personalCPF;
-
-    @Column(name = "RESOURCEID")
-    private String resourceId;
-
-    @Column(name = "RESOURCETYPE")
-    private String resourceType;
-
-    @Column(name = "RESOURCEIDSUMMARY")
-    private String resourceIdSummary;
-
-    @Column(name = "RESOURCESTATUS")
-    private String resourceStatus;
 
     @Column(name = "CONSENTID")
     private String consentId;
@@ -47,5 +32,20 @@ public class ResourcesAuthorisedModel {
 
     @Column(name = "PERSONALNAME")
     private String personalName;
+
+    @Column(name = "CPFNUMBER")
+    private String personalCPF;
+
+    @Column(name = "RESOURCEID")
+    private String resourceId;
+
+    @Column(name = "RESOURCETYPE")
+    private String resourceType;
+
+    @Column(name = "RESOURCEIDSUMMARY")
+    private String resourceIdSummary;
+
+    @Column(name = "RESOURCESTATUS")
+    private String resourceStatus;
 
 }

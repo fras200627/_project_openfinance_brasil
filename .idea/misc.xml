@@ -635,6 +635,7 @@
         <option value="$PROJECT_DIR$/workspace/05-mq.services/project-tican-audit-api/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-ofb-template1/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot.camel.orch.template1/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/spring-boot-camel-integration/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/06.batch.services/spring-batch-dicas-master/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/pom.xml" />
