@@ -1,0 +1,51 @@
+package com.ofb.resources.camel.processors;
+
+import com.google.gson.Gson;
+import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.resources.client.authorization.model.ResultErrorsErrorsInner;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import com.ofb.resources.client.resources.handler.ResourcesApi;
+import com.ofb.resources.client.resources.model.*;
+
+@Component @Slf4j
+public class ResourcesRouteProcessor implements Processor {
+
+    private Gson gson = new Gson();
+    private ResponseResourceList responseResourceList;
+    private List<ResultErrorsErrorsInner> listResponseErrors ;
+
+    @Override
+    public void process(Exchange exchange) throws Exception {
+
+        ResourcesApi resourcesApi = new ResourcesApi();
+        String accessToken        = exchange.getIn().getBody(String.class).replace("Bearer ", "");
+        listResponseErrors        = new ArrayList<>();
+        responseResourceList      = new ResponseResourceList();
+
+        resourcesApi.getApiClient().setBasePath(exchange.getIn().getHeader("OFB_PATH_RESOURCES").toString());
+        resourcesApi.getApiClient().setBearerToken(accessToken);
+
+        try {
+            responseResourceList = resourcesApi.resourcesGetResources(1, 100);
+        } catch (Exception e) {
+            listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
+                    .title("Get Authorization request error (in ResourcesAPI)")
+                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
+                    .detail(e.getMessage())
+                    .build());
+            throw new BadRequestException(gson.toJson(listResponseErrors));
+        }
+
+        exchange.getMessage().setBody(responseResourceList);
+    }
+
+}

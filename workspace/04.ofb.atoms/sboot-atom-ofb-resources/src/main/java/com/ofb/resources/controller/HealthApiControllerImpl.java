@@ -1,7 +1,7 @@
 package com.ofb.resources.controller;
 
-import com.ofb.resources.server.health.checks.handler.HealthApiDelegate;
-import com.ofb.resources.server.health.checks.model.Code200Template;
+import com.ofb.resources.health.checks.handler.HealthApiDelegate;
+import com.ofb.resources.health.checks.model.Code200Template;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

@@ -467,7 +467,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>java</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/client/openapi-resources-server.3.0.0.yaml</inputSpec>
+							<inputSpec>${openapi.input.sec.path}/client/openapi-atom-resources-server.1.0.0.yaml</inputSpec>
 							<apiPackage>com.ofb.resources.client.resources.handler</apiPackage>
 							<modelPackage>com.ofb.resources.client.resources.model</modelPackage>
 							<output>${openapi.output.path}</output>

@@ -54,62 +54,62 @@ public class RestControllerAdviceHandler {
     HttpServletResponse response;
 
     /* ------------------------------------------------------------------------ */
-    @ExceptionHandler(CamelExecutionException.class)
-    public ResponseEntity handleException(CamelExecutionException ex) {
-
-        ObjectMapper mapper = new ObjectMapper();
-        String exceptionCause = ex.getCause().getMessage();
-        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
-
-        if (ex.getCause().getClass().toString().contains("BadRequestException")) {
-            exceptionCause = exceptionCause.replaceAll("\\\\", "").replaceAll("404 : \"", "").replaceAll("detail\":\"\\{", "detail\": {").replaceAll("\\}\"\"\\}", "}}" );
-            exceptionCause = exceptionCause.substring(1, exceptionCause.length() -1);
-
-
-        } else if (ex.getCause().getClass().toString().contains("InternalErrorException")) {
-
-        } else {
-
-        }
-
-//        try {
-//            Object myObject = mapper.readValue(exceptionCause, Object.class);
-//        } catch (JsonProcessingException e) {
-//            throw new RuntimeException(e);
+//    @ExceptionHandler(CamelExecutionException.class)
+//    public ResponseEntity handleException(CamelExecutionException ex) {
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        String exceptionCause = ex.getCause().getMessage();
+//        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
+//
+//        if (ex.getCause().getClass().toString().contains("BadRequestException")) {
+//            exceptionCause = exceptionCause.replaceAll("\\\\", "").replaceAll("404 : \"", "").replaceAll("detail\":\"\\{", "detail\": {").replaceAll("\\}\"\"\\}", "}}" );
+//            exceptionCause = exceptionCause.substring(1, exceptionCause.length() -1);
+//
+//
+//        } else if (ex.getCause().getClass().toString().contains("InternalErrorException")) {
+//
+//        } else {
+//
 //        }
-
-        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                .title(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.toString())
-                .detail(exceptionCause)
-                .build());
-
-        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
-
-        return ResponseEntity.badRequest().body(new ResponseErrorTemplate().toBuilder()
-                .errors(errors)
-                .meta(meta)
-                .build());
-    }
+//
+////        try {
+////            Object myObject = mapper.readValue(exceptionCause, Object.class);
+////        } catch (JsonProcessingException e) {
+////            throw new RuntimeException(e);
+////        }
+//
+//        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
+//                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+//                .title(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.toString())
+//                .detail(exceptionCause)
+//                .build());
+//
+//        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+//
+//        return ResponseEntity.badRequest().body(new ResponseErrorTemplate().toBuilder()
+//                .errors(errors)
+//                .meta(meta)
+//                .build());
+//    }
     /* ------------------------------------------------------------------------ */
     @ExceptionHandler(CamelException.class)
-    public ResponseEntity handleException(CamelException ex) {
-        String[] message = ex.getMessage().split(";");
-        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
-
-        BadRequestException badRequestException = new BadRequestException(ex.getCause().getMessage());
-
-        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
-        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                .title(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.toString())
-                .detail(ex.getCause().getMessage())
-                .build());
-
-        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
-
-        return ResponseEntity.badRequest().body(badRequestException.getMessage());
-    }
+//    public ResponseEntity handleException(CamelException ex) {
+//        String[] message = ex.getMessage().split(";");
+//        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
+//
+//        BadRequestException badRequestException = new BadRequestException(ex.getCause().getMessage());
+//
+//        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
+//        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
+//                .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+//                .title(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.toString())
+//                .detail(ex.getCause().getMessage())
+//                .build());
+//
+//        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+//
+//        return ResponseEntity.badRequest().body(badRequestException.getMessage());
+//    }
     /* ------------------------------------------------------------------------ */
 
 
@@ -173,8 +173,12 @@ public class RestControllerAdviceHandler {
         List<ResponseErrorsInnerTemplate> errors = new ArrayList<>();
         try {
             errors = objectMapper.readValue(ex.getMessage(), new TypeReference<List<ResponseErrorsInnerTemplate>>(){});
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            errors.add(ResponseErrorsInnerTemplate.builder()
+                    .code(HttpStatus.BAD_REQUEST.toString())
+                    .title(HttpStatus.BAD_REQUEST.toString())
+                    .detail(ex.getMessage().replaceAll("\\\\", ""))
+                    .build());
         }
 
         MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
@@ -208,7 +212,7 @@ public class RestControllerAdviceHandler {
                 .build());
     }
     /* ------------------------------------------------------------------------ */
-    
+
     /* ------------------------------------------------------------------------ */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity handleException(MethodArgumentTypeMismatchException ex){
@@ -511,47 +515,47 @@ public class RestControllerAdviceHandler {
     /* ------------------------------------------------------------------------ */
 
     /* ------------------------------------------------------------------------ */
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity handleException(RuntimeException ex) {
-        String[] message = ex.getMessage().split(";");
-        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
-
-        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
-        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                .code(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
-                .detail(ex.getMessage())
-                .build());
-
-        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
-
-        return ResponseEntity.internalServerError().body(new ResponseErrorTemplate().toBuilder()
-                .errors(errors)
-                .meta(meta)
-                .build());
-    }
+//    @ExceptionHandler(RuntimeException.class)
+//    public ResponseEntity handleException(RuntimeException ex) {
+//        String[] message = ex.getMessage().split(";");
+//        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
+//
+//        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
+//        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
+//                .code(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+//                .title(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
+//                .detail(ex.getMessage())
+//                .build());
+//
+//        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+//
+//        return ResponseEntity.internalServerError().body(new ResponseErrorTemplate().toBuilder()
+//                .errors(errors)
+//                .meta(meta)
+//                .build());
+//    }
     /* ------------------------------------------------------------------------ */
 
     /* ------------------------------------------------------------------------ */
-    @ExceptionHandler(RuntimeErrorException.class)
-    public ResponseEntity handleException(RuntimeErrorException ex) {
-        String[] message = ex.getMessage().split(";");
-        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
-
-        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
-        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                .code(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
-                .title(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
-                .detail(ex.getMessage())
-                .build());
-
-        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
-
-        return ResponseEntity.internalServerError().body(new ResponseErrorTemplate().toBuilder()
-                .errors(errors)
-                .meta(meta)
-                .build());
-    }
+//    @ExceptionHandler(RuntimeErrorException.class)
+//    public ResponseEntity handleException(RuntimeErrorException ex) {
+//        String[] message = ex.getMessage().split(";");
+//        this.writeError(ex.getClass().toString(), ex.getMessage(), message );
+//
+//        List<ResponseErrorsInnerTemplate> errors = new ArrayList<ResponseErrorsInnerTemplate>();
+//        errors.add(new ResponseErrorsInnerTemplate().toBuilder()
+//                .code(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.getValue())
+//                .title(ResponseOFBCodesEnum.CodeEnum.ERRO_NAO_MAPEADO.toString())
+//                .detail(ex.getMessage())
+//                .build());
+//
+//        MetaErrorResponseTemplate meta = new MetaErrorResponseTemplate().toBuilder().requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString().substring(0, 19) + "Z").build();
+//
+//        return ResponseEntity.internalServerError().body(new ResponseErrorTemplate().toBuilder()
+//                .errors(errors)
+//                .meta(meta)
+//                .build());
+//    }
     /* ------------------------------------------------------------------------ */
 
 }
