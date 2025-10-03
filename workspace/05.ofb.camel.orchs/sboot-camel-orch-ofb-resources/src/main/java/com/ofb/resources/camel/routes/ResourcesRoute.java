@@ -14,8 +14,9 @@ class ResourcesRoute extends RouteBuilder {
     @Override
     public void configure() {
         from("direct:resourcesRoute")
+            .routeId("resourcesRoute")
             .tracing()
-            .setHeader("OFB_PATH_RESOURCES", constant(OFB_PATH_RESOURCES))
+            .setProperty("OFB_PATH_RESOURCES", constant(OFB_PATH_RESOURCES))
             .process(new ResourcesRouteProcessor());
     }
 }

@@ -13,11 +13,10 @@ class AuthorizationRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-
         from("direct:authorizationRoute")
+                .routeId("authorizationRoute")
                 .tracing()
-                .setHeader("OFB_PATH_AUTHORIZATION", constant(OFB_PATH_AUTHORIZATION))
+                .setProperty("OFB_PATH_AUTHORIZATION", constant(OFB_PATH_AUTHORIZATION))
                 .process(new AuthorizationRouteProcessor());
     }
-
 }

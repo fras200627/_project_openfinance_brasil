@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.ofb.resources.client.resources.handler.ResourcesApi;
 import com.ofb.resources.client.resources.model.*;
@@ -25,14 +24,12 @@ public class ResourcesRouteProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-
         ResourcesApi resourcesApi = new ResourcesApi();
-        String accessToken        = exchange.getIn().getBody(String.class).replace("Bearer ", "");
         listResponseErrors        = new ArrayList<>();
         responseResourceList      = new ResponseResourceList();
 
-        resourcesApi.getApiClient().setBasePath(exchange.getIn().getHeader("OFB_PATH_RESOURCES").toString());
-        resourcesApi.getApiClient().setBearerToken(accessToken);
+        resourcesApi.getApiClient().setBasePath(exchange.getProperty("OFB_PATH_RESOURCES").toString());
+        resourcesApi.getApiClient().setBearerToken(exchange.getProperty("Authorization").toString().replace("Bearer ", ""));
 
         try {
             responseResourceList = resourcesApi.resourcesGetResources(1, 100);
@@ -47,5 +44,4 @@ public class ResourcesRouteProcessor implements Processor {
 
         exchange.getMessage().setBody(responseResourceList);
     }
-
 }

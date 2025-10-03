@@ -25,11 +25,10 @@ public class AuthorizationRouteProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-
         AuthorizationValidateApi authorizationValidateApi = new AuthorizationValidateApi();
 
-        authorizationValidateApi.getApiClient().setBasePath(exchange.getIn().getHeader("OFB_PATH_AUTHORIZATION").toString());
-        authorizationValidateApi.getApiClient().setBearerToken(exchange.getIn().getBody(String.class).replace("Bearer ", ""));
+        authorizationValidateApi.getApiClient().setBasePath(exchange.getProperty("OFB_PATH_AUTHORIZATION").toString());
+        authorizationValidateApi.getApiClient().setBearerToken(exchange.getProperty("Authorization").toString().replace("Bearer ", ""));
 
         listResponseErrors    = new ArrayList<>();
         responseAuthorizationData = new ResponseAuthorizationData();
