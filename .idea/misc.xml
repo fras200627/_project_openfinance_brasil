@@ -105,6 +105,8 @@
         <option value="$PROJECT_DIR$/backup/demo2/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -630,6 +632,8 @@
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-common-tools/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-orch-ofb-api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-orch-ofb-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />

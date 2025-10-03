@@ -210,10 +210,10 @@
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-discovery-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.cloud/sboot-orch-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-orch-ofb-api-gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-orch-ofb-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-orch-ofb-discovery-services/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-orch-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.2-authorization.server/sboot-orch-ofb-authorization-server/src/main/java" charset="UTF-8" />

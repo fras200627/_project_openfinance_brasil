@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>2.7.11</version>
+		<relativePath/>
 	</parent>
-
+	
 	<groupId>com.ofb</groupId>
-	<artifactId>sboot-orch-ofb-discovery-services</artifactId>
+	<artifactId>sboot-atom-ofb-api-gateway</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0.0</version>
-	<name>sboot-orch-ofb-discovery-services</name>
-	<description>Project OFB Discovery Services</description>
+	<name>sboot-atom-ofb-api-gateway</name>
+	<description>Project OFB API Gateway</description>
 
 	<properties>
 		<!-- default builder infos -->
@@ -25,10 +26,10 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Necessary to avoid conflicts with OpenAPI -->
-<!--		<start-class>com.ofb.discovery.services.StartApplication</start-class>-->
+<!--		<start-class>com.ofb.api.gateway.StartApplication</start-class>-->
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>DISCOVERY.SERVICES</info.additional.project.module.name>
+		<info.additional.project.module.name>API.GATEWAY</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -77,7 +78,17 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ofb</groupId>
+			<artifactId>sboot-lib-ofb-autoconfigure-amqp</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 		<!-- Spring defaults -->
@@ -151,11 +162,11 @@
 			<artifactId>gson-fire</artifactId>
 			<version>${gson-fire-version}</version>
 		</dependency>
-								<!--		<dependency>-->
-								<!--			<groupId>org.apache.oltu.oauth2</groupId>-->
-								<!--			<artifactId>org.apache.oltu.oauth2.client</artifactId>-->
-								<!--			<version>1.0.2</version>-->
-								<!--		</dependency>-->
+						<!--		<dependency>-->
+						<!--			<groupId>org.apache.oltu.oauth2</groupId>-->
+						<!--			<artifactId>org.apache.oltu.oauth2.client</artifactId>-->
+						<!--			<version>1.0.2</version>-->
+						<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -195,7 +206,33 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.22</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.22</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--        <dependency>-->
+								<!--            <groupId>com.nimbusds</groupId>-->
+								<!--            <artifactId>nimbus-jose-jwt</artifactId>-->
+								<!--            <version>9.22</version>-->
+								<!--            <scope>compile</scope>-->
+								<!--        </dependency>-->
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -235,12 +272,11 @@
 							 OpenAPI Documentation for API Servers and API Clients in
 							 https://openapi-generator.tech/docs/generators/
 							 The 'spring' type generates a server package ++++++++++++++-->
-							<generatorName>spring</generatorName>
 							<skipValidateSpec>true</skipValidateSpec>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/server/api-health-checks.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/server/openapi-health-checks.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.ofb.discovery.services.server.handler</apiPackage>
-							<modelPackage>com.ofb.discovery.services.server.model</modelPackage>
+							<apiPackage>com.ofb.api.gateway.server.handler</apiPackage>
+							<modelPackage>com.ofb.api.gateway.server.model</modelPackage>
 							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 							<output>target/generated-sources/server</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
@@ -290,5 +326,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
