@@ -4,16 +4,67 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start orch resources">
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/ExchangeSettingsProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/OrchestrationResponseProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/routes/OrchestrationFlow.java" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="final orch resources">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/1_Discovery.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/2_Gateway.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Accounts.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/AuthorizationRouteProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/AuthorizationRouteProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/ResourcesRouteProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processors/ResourcesRouteProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/routes/AuthorizationRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/routes/AuthorizationRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/routes/ResourcesRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/routes/ResourcesRoute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/controller/ResourcesAPIControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/config/CustomFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/config/CustomFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/config/CustomFilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/config/CustomFilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/Oauth2ApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/controller/Oauth2ApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/model/RegisteredClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/model/RegisteredClientEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/model/UserAuthenticated.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/model/UserAuthenticated.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/repository/RegisteredClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/repository/RegisteredClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/keystore/app.private.key" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/keystore/app.private.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/keystore/app.public.key" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/keystore/app.public.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/openapi/server/api-authentication-resources.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/openapi/server/openapi-atom-authentication-server.1.0.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/StartApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/StartApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenClaimsValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AccessTokenClaimsValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AuthorizationValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/service/AuthorizationValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/service/BusinessEntityValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/ConsentValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/service/ConsentValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/service/LoggedUserValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-consents-resources.3.2.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-consents-resources.3.2.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/client/openapi-customers-resources.2.2.1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-customers-resources.2.2.1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/server/api-health-checks.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authorization-server/src/main/resources/openapi/server/openapi-authorization-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/server/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/client/openapi-authorization-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/openapi/client/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +130,8 @@
     "Application.4-Clients-Business.executor": "Run",
     "Application.Accounts.executor": "Debug",
     "Application.Audit.executor": "Debug",
+    "Application.Base-Authentication.executor": "Run",
+    "Application.Base-Authorization.executor": "Run",
     "Application.Batch Approval Control.executor": "Debug",
     "Application.Batch Dicas.executor": "Debug",
     "Application.Batch Expiration Control.executor": "Debug",
@@ -153,6 +206,9 @@
     "Maven.sboot-atom-ofb-audit-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [install].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [verify].executor": "Run",
+    "Maven.sboot-atom-ofb-authentication-server [clean].executor": "Run",
+    "Maven.sboot-atom-ofb-authentication-server [install].executor": "Run",
+    "Maven.sboot-atom-ofb-authorization-server [clean].executor": "Run",
     "Maven.sboot-atom-ofb-cancellation-consents-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-cancellation-consents-services [install].executor": "Run",
     "Maven.sboot-atom-ofb-clients-business [clean].executor": "Run",
@@ -256,23 +312,23 @@
       <recent name="com.example.demo2.camel.routes" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.4-Clients-Business">
+  <component name="RunManager" selected="Application.Batch-ApprovalControl">
     <list>
-      <item itemvalue="Application.ORCH Resources" />
-      <item itemvalue="Application.1-Discovery" />
-      <item itemvalue="Application.2-Gateway" />
-      <item itemvalue="Application.3-Authentication" />
-      <item itemvalue="Application.3-Authorization" />
-      <item itemvalue="Application.4-Clients-Business" />
-      <item itemvalue="Application.Accounts" />
-      <item itemvalue="Application.Consents" />
-      <item itemvalue="Application.Customers" />
-      <item itemvalue="Application.Resources" />
-      <item itemvalue="Application.Listener Audit" />
-      <item itemvalue="Application.Listener Cancellation" />
-      <item itemvalue="Application.Listener Authorization" />
-      <item itemvalue="Application.Batch Expiration Control" />
-      <item itemvalue="Application.Batch Approval Control" />
+      <item itemvalue="Application.Base-DiscoveryServices" />
+      <item itemvalue="Application.Base-APIGateway" />
+      <item itemvalue="Application.Base-Authentication" />
+      <item itemvalue="Application.Base-Authorization" />
+      <item itemvalue="Application.Orch-Resources" />
+      <item itemvalue="Application.Atom-Participants" />
+      <item itemvalue="Application.Atom-Accounts" />
+      <item itemvalue="Application.Atom-Consents" />
+      <item itemvalue="Application.Atom-Customers" />
+      <item itemvalue="Application.Atom-Resources" />
+      <item itemvalue="Application.Listener-Audit" />
+      <item itemvalue="Application.Listener-Cancellations" />
+      <item itemvalue="Application.Listener-Authorizations" />
+      <item itemvalue="Application.Batch-ExpirationControl" />
+      <item itemvalue="Application.Batch-ApprovalControl" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -283,14 +339,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Implementação de GetPermissionsResources na API Resources.">
-      <option name="closed" value="true" />
-      <created>1755100866271</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1755100866271</updated>
     </task>
     <task id="LOCAL-00028" summary="Implementação de GetPermissionsResources na API Resources.">
       <option name="closed" value="true" />
@@ -676,7 +724,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759427231943</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="final orch resources">
+      <option name="closed" value="true" />
+      <created>1759510731781</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1759510731781</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -692,7 +748,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="inclusão RESOURCES" />
     <MESSAGE value="Revisão e ajustes em responses" />
     <MESSAGE value="Revisão e ajustes em requests authorised" />
     <MESSAGE value="Revisão e ajustes em permissions authorised" />
@@ -717,7 +772,8 @@
     <MESSAGE value="API Accounts and Customers +Authorization+Resources" />
     <MESSAGE value="start orchs" />
     <MESSAGE value="start orch resources" />
-    <option name="LAST_COMMIT_MESSAGE" value="start orch resources" />
+    <MESSAGE value="final orch resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="final orch resources" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -743,17 +799,17 @@
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
           <line>82</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
           <line>49</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-orch-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
+          <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
           <line>89</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>

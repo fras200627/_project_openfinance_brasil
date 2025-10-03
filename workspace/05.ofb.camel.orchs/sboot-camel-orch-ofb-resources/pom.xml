@@ -435,7 +435,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>java</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/client/openapi-authorization-server.1.0.0.yaml</inputSpec>
+							<inputSpec>${openapi.input.sec.path}/client/openapi-atom-authorization-server.1.0.0.yaml</inputSpec>
 							<apiPackage>com.ofb.resources.client.authorization.handler</apiPackage>
 							<modelPackage>com.ofb.resources.client.authorization.model</modelPackage>
 							<output>${openapi.output.path}</output>

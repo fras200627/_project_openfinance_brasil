@@ -12,10 +12,10 @@
 	</parent>
 	
 	<groupId>com.ofb</groupId>
-	<artifactId>sboot-orch-ofb-authentication-server</artifactId>
+	<artifactId>sboot-atom-ofb-authentication-server</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0.0</version>
-	<name>sboot-orch-ofb-authentication-server</name>
+	<name>sboot-atom-ofb-authentication-server</name>
 	<description>Project OFB Authentication Server</description>
 
 	<properties>
@@ -27,7 +27,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>AUTH.SERVER</info.additional.project.module.name>
+		<info.additional.project.module.name>API.AUTHENTICATION.SERVER</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -307,7 +307,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${project.basedir}/src/main/resources/openapi/server/api-health-checks.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/server/openapi-health-checks.yaml</inputSpec>
 							<apiPackage>com.ofb.authentication.server.handler</apiPackage>
 							<modelPackage>com.ofb.authentication.server.model</modelPackage>
 							<output>target/generated-sources/server</output>
@@ -334,7 +334,7 @@
 
 
 					<execution>
-						<id>generator-api-authentication-resource</id> <!-- It is not optional and must have a unique id -->
+						<id>generator-authentication-server</id> <!-- It is not optional and must have a unique id -->
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -346,7 +346,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${project.basedir}/src/main/resources/openapi/server/api-authentication-resources.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/server/openapi-atom-authentication-server.1.0.0.yaml</inputSpec>
 							<apiPackage>com.ofb.authentication.server.handler</apiPackage>
 							<modelPackage>com.ofb.authentication.server.model</modelPackage>
 							<output>target/generated-sources/server</output>
