@@ -1,7 +1,7 @@
-package com.ofb.clients.business.mapper;
+package com.ofb.participants.mapper;
 
-import com.ofb.clients.business.entity.ClientsBusinessEntity;
-import com.ofb.clients.business.server.clients.model.OAuth2ClientResponse;
+import com.ofb.participants.entity.ClientsBusinessEntity;
+import com.ofb.participants.server.model.OAuth2ClientResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

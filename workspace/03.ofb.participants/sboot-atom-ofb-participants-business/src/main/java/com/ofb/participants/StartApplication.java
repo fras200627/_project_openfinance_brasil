@@ -1,4 +1,4 @@
-package com.ofb.clients.business;
+package com.ofb.participants;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

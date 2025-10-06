@@ -1,4 +1,4 @@
-package com.ofb.clients.business.domain;
+package com.ofb.participants.domain;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.data.domain.PageRequest;

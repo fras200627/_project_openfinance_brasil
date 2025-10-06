@@ -16,7 +16,7 @@
         <module name="demo2" />
         <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sboot-listener-ofb-consents-authorization-services" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-participants-business" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -28,10 +28,10 @@
         </processorPath>
         <module name="sboot-lib-ofb-autoconfigure-handlers" />
         <module name="sboot-atom-ofb-consents" />
-        <module name="sboot-atom-ofb-clients-business" />
         <module name="sboot-atom-ofb-resources" />
         <module name="sboot-camel-orch-ofb-resources" />
         <module name="sboot-lib-ofb-autoconfigure-security" />
+        <module name="sboot-atom-ofb-participants-business" />
         <module name="sboot-atom-ofb-authorization-server" />
         <module name="sboot-lib-ofb-autoconfigure-interceptors" />
         <module name="sboot-atom-ofb-accounts" />
@@ -556,6 +556,7 @@
       <module name="sbatch.consents.expiration.control" target="17" />
       <module name="sboot-atom-ofb-audit-services" target="17" />
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
+      <module name="sboot-atom-ofb-clients-business" target="17" />
       <module name="sboot-camel-ofb-template1" target="11" />
       <module name="sboot-listener-ofb-audit-services" target="17" />
       <module name="sboot-listener-ofb-consents-cancellation-services" target="17" />
@@ -606,6 +607,7 @@
       <module name="sboot-atom-ofb-consents" options="-parameters" />
       <module name="sboot-atom-ofb-customers" options="-parameters" />
       <module name="sboot-atom-ofb-discovery-services" options="-parameters" />
+      <module name="sboot-atom-ofb-participants-business" options="-parameters" />
       <module name="sboot-atom-ofb-resources" options="-parameters" />
       <module name="sboot-camel-ofb-template1" options="-parameters" />
       <module name="sboot-camel-orch-ofb-resources" options="-parameters" />

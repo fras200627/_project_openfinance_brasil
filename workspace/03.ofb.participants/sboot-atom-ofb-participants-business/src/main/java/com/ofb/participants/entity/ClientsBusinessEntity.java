@@ -1,4 +1,4 @@
-package com.ofb.clients.business.entity;
+package com.ofb.participants.entity;
 
 import lombok.*;
 

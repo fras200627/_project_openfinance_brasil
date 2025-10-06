@@ -1,6 +1,6 @@
-package com.ofb.clients.business.repository;
+package com.ofb.participants.repository;
 
-import com.ofb.clients.business.entity.ClientsBusinessEntity;
+import com.ofb.participants.entity.ClientsBusinessEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

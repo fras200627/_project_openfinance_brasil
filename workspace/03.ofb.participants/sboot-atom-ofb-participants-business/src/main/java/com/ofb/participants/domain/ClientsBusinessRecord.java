@@ -1,7 +1,7 @@
-package com.ofb.clients.business.domain;
+package com.ofb.participants.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ofb.clients.business.entity.ClientsBusinessEntity;
+import com.ofb.participants.entity.ClientsBusinessEntity;
 
 import java.util.Date;
 

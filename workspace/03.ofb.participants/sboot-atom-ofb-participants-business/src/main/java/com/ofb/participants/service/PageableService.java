@@ -1,9 +1,9 @@
-package com.ofb.clients.business.service;
+package com.ofb.participants.service;
 
-import com.ofb.clients.business.entity.ClientsBusinessEntity;
-import com.ofb.clients.business.mapper.ClientsBusinessMapper;
-import com.ofb.clients.business.server.clients.model.OAuth2ClientsPageable;
-import com.ofb.clients.business.server.clients.model.PageableDetailsTemplate;
+import com.ofb.participants.entity.ClientsBusinessEntity;
+import com.ofb.participants.mapper.ClientsBusinessMapper;
+import com.ofb.participants.server.model.OAuth2ClientsPageable;
+import com.ofb.participants.server.model.PageableDetailsTemplate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

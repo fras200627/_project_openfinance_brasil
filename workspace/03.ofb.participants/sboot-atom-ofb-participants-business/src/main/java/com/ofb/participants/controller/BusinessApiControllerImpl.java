@@ -1,9 +1,9 @@
-package com.ofb.clients.business.controller;
+package com.ofb.participants.controller;
 
-import com.ofb.clients.business.server.clients.handler.BusinessApiDelegate;
-import com.ofb.clients.business.server.clients.model.OAuth2ClientResponse;
-import com.ofb.clients.business.server.clients.model.OAuth2ClientsPageable;
-import com.ofb.clients.business.service.ClientsBusinessService;
+import com.ofb.participants.server.handler.BusinessApiDelegate;
+import com.ofb.participants.server.model.OAuth2ClientResponse;
+import com.ofb.participants.server.model.OAuth2ClientsPageable;
+import com.ofb.participants.service.ClientsBusinessService;
 import com.ofb.lib.security.profiles.CanClientOFBRead;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;

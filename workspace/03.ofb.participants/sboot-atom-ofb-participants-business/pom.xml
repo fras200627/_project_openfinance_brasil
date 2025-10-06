@@ -11,11 +11,11 @@
 	</parent>
 
 	<groupId>com.ofb</groupId>
-	<artifactId>sboot-atom-ofb-clients-business</artifactId>
+	<artifactId>sboot-atom-ofb-participants-business</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>sboot-atom-ofb-clients-business</name>
-	<description>Project OFB Registered Clients Business API</description>
+	<name>sboot-atom-ofb-participants-business</name>
+	<description>Project OFB Registered Partipants Business API</description>
 
 	<properties>
 		<!-- Project default infos -->
@@ -26,12 +26,12 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- ATTENTION! IMPORTANT! Generate.OpenAPI Parameters Configuration-->
-		<exclude.generate.sources.tests>${project.build.directory}/generated-sources/ofb/consents/src/test/java/org</exclude.generate.sources.tests>
-		<exclude.generate.sources.org>${project.build.directory}/generated-sources/ofb/clients/business/src/main/java/org</exclude.generate.sources.org>
+		<exclude.generate.sources.tests>${project.build.directory}/generated-sources/ofb/participants/src/test/java/org</exclude.generate.sources.tests>
+		<exclude.generate.sources.org>${project.build.directory}/generated-sources/ofb/participants/src/main/java/org</exclude.generate.sources.org>
 		<openapi.input.sec.path>${project.basedir}/src/main/resources/openapi</openapi.input.sec.path>
-		<openapi.api.package.structure>com.ofb.clients.business.server.clients.handler</openapi.api.package.structure>
-		<openapi.model.package.structure>com.ofb.clients.business.server.clients.model</openapi.model.package.structure>
-		<openapi.output.path>target/generated-sources/ofb/clients/business</openapi.output.path>
+		<openapi.api.package.structure>com.ofb.participants.server.handler</openapi.api.package.structure>
+		<openapi.model.package.structure>com.ofb.participants.server.model</openapi.model.package.structure>
+		<openapi.output.path>target/generated-sources/ofb/participants</openapi.output.path>
 
 		<!-- Project OFB Lib dependencies-->
 		<ofb-lib-common-tools-version>1.0.0</ofb-lib-common-tools-version>
@@ -340,13 +340,13 @@
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
 							<inputSpec>${openapi.input.sec.path}/server/openapi-health-checks-resources.yaml</inputSpec>
-							<apiPackage>com.ofb.clients.business.server.health.resources.handler</apiPackage>
-							<modelPackage>com.ofb.clients.business.server.health.resources.model</modelPackage>
+							<apiPackage>com.ofb.participants.health.checks.handler</apiPackage>
+							<modelPackage>com.ofb.participants.health.checks.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.clients.business.server.health.resources.handler</invokerpackage>
+								<invokerpackage>com.ofb.participants.health.checks.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>
@@ -375,14 +375,14 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-clients-business-server.yaml</inputSpec>
-							<apiPackage>com.ofb.clients.business.server.clients.handler</apiPackage>
-							<modelPackage>com.ofb.clients.business.server.clients.model</modelPackage>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-atom-participants-business-server.1.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.participants.server.handler</apiPackage>
+							<modelPackage>com.ofb.participants.server.model</modelPackage>
 							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<skipValidateSpec>true</skipValidateSpec>
 							<configOptions>
-								<invokerpackage>com.ofb.clients.business.server.clients.handler</invokerpackage>
+								<invokerpackage>com.ofb.participants.server.handler</invokerpackage>
 								<delegatePattern>true</delegatePattern>
 								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
 								<dateLibrary>java8</dateLibrary>

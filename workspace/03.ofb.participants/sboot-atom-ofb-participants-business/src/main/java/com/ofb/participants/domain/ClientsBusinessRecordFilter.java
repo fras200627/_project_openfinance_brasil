@@ -1,4 +1,4 @@
-package com.ofb.clients.business.domain;
+package com.ofb.participants.domain;
 
 import org.springframework.lang.Nullable;
 
