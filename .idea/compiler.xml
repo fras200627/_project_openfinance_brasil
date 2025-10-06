@@ -16,7 +16,7 @@
         <module name="demo2" />
         <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
+      <profile name="Annotation profile for sboot-camel-orch-ofb-accounts" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -27,14 +27,17 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="sboot-lib-ofb-autoconfigure-handlers" />
+        <module name="sboot-camel-orch-ofb-accounts" />
         <module name="sboot-atom-ofb-consents" />
         <module name="sboot-atom-ofb-resources" />
         <module name="sboot-camel-orch-ofb-resources" />
         <module name="sboot-lib-ofb-autoconfigure-security" />
         <module name="sboot-atom-ofb-participants-business" />
         <module name="sboot-atom-ofb-authorization-server" />
+        <module name="sboot-camel-orch-ofb-consents" />
         <module name="sboot-lib-ofb-autoconfigure-interceptors" />
         <module name="sboot-atom-ofb-accounts" />
+        <module name="sboot-camel-orch-ofb-customers" />
         <module name="sboot-atom-ofb-customers" />
         <module name="sboot-listener-ofb-consents-authorization-services" />
         <module name="sboot-atom-ofb-authentication-server" />
@@ -558,6 +561,7 @@
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
       <module name="sboot-atom-ofb-clients-business" target="17" />
       <module name="sboot-camel-ofb-template1" target="11" />
+      <module name="sboot-camel-orch-ofb-customres" target="17" />
       <module name="sboot-listener-ofb-audit-services" target="17" />
       <module name="sboot-listener-ofb-consents-cancellation-services" target="17" />
       <module name="sboot-orch-ofb-accounts" target="17" />
@@ -610,6 +614,10 @@
       <module name="sboot-atom-ofb-participants-business" options="-parameters" />
       <module name="sboot-atom-ofb-resources" options="-parameters" />
       <module name="sboot-camel-ofb-template1" options="-parameters" />
+      <module name="sboot-camel-orch-ofb-accounts" options="-parameters" />
+      <module name="sboot-camel-orch-ofb-consents" options="-parameters" />
+      <module name="sboot-camel-orch-ofb-customers" options="-parameters" />
+      <module name="sboot-camel-orch-ofb-customres" options="-parameters" />
       <module name="sboot-camel-orch-ofb-resources" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-amqp" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-handlers" options="-parameters" />

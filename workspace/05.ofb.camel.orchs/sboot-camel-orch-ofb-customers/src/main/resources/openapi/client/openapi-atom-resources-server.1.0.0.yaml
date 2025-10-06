@@ -1,0 +1,750 @@
+openapi: 3.0.0
+info:
+  title: "API Resources - Backend Open Finance Brasil"
+  description: ""
+  version: 1.0.0
+security:
+  - bearerAuth: []
+tags:
+  - name: Resources
+paths:
+  /resources:
+    get:
+      tags:
+        - Resources
+      summary: Obtém a lista de recursos consentidos pelo cliente.
+      operationId: resourcesGetResources
+      description: Método para obter a lista de recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          $ref: '#/components/responses/OKResponseResourceList'
+        '202':
+          $ref: '#/components/responses/202ResponseResource'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
+        default:
+          $ref: '#/components/responses/Default'
+  /resources/account/permissions:
+    get:
+      tags:
+        - Resources
+      summary: Obtém a lista permissões dos recursos consentidos pelo cliente.
+      operationId: resourcesGetAccountPermissions
+      description: Método para obter a lista de permissões dos recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      parameters:
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseAccountPermissions'
+  /resources/customer/permissions:
+    get:
+      tags:
+        - Resources
+      summary: Obtém a lista permissões dos recursos consentidos pelo cliente.
+      operationId: resourcesGetCustomerPermissions
+      description: Método para obter a lista de permissões dos recursos mantidos pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.
+      parameters:
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          $ref: '#/components/responses/ResponseCustomerPermissions'
+components:
+  schemas:
+    ResponseResourceList:
+      type: object
+      required:
+        - data
+        - links
+        - meta
+      properties:
+        data:
+          type: array
+          minItems: 0
+          items:
+            type: object
+            required:
+              - resourceId
+              - type
+              - status
+            x-regulatory-required:
+              - resourceId
+              - type
+              - status
+            properties:
+              resourceId:
+                type: string
+                description: |
+                  Identifica o recurso reportado pelo participante do Open Finance, no caso de:
+                  - Contas de depósito à vista, de poupança ou de pagamento pré-paga : corresponde ao accountId;
+                  - Conta de pagamento pós-paga: corresponde ao  creditCardAccountId;
+                  - Empréstimos, Financiamentos, Direitos creditórios descontados e Adiantamento a depositantes: corresponde ao contractId
+                  - Renda Fixa Bancária, Renda Fixa Crédito, Renda Variável, Título do Tesouro Direto e Fundo de Investimento: corresponde ao investmentId;
+                  - Câmbio: corresponde ao operationId.
+                minLength: 1
+                maxLength: 100
+                pattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{0,99}$'
+                example: 25cac914-d8ae-6789-b215-650a6215820d
+              type:
+                type: string
+                enum:
+                  - ACCOUNT
+                  - CREDIT_CARD_ACCOUNT
+                  - LOAN
+                  - FINANCING
+                  - UNARRANGED_ACCOUNT_OVERDRAFT
+                  - INVOICE_FINANCING
+                  - BANK_FIXED_INCOME
+                  - CREDIT_FIXED_INCOME
+                  - VARIABLE_INCOME
+                  - TREASURE_TITLE
+                  - FUND
+                  - EXCHANGE
+                description: |
+                  Tipo de recurso (vide Enum):
+                    - Account - Conta de depósito à vista, poupança ou pagamento pré-paga
+                    - Credit Card Account - Conta de pagamento pós-paga (Cartão de Crédito)
+                    - Loan - Empréstimo
+                    - Financing - Financiamento
+                    - Unarranged Account Overdraft - Cheque Especial
+                    - Invoice Financing - Financiamento de Fatura
+                    - Bank Fixed Income - Renda Fixa Bancária
+                    - Credit Fixed Income - Renda Fixa Crédito
+                    - Variabel Income - Renda Variável
+                    - Treasure Title - Título do Tesouro Direto
+                    - Fund - Fundo de Investimento
+                    - Exchange - Câmbio
+                example: ACCOUNT
+              status:
+                type: string
+                enum:
+                  - AVAILABLE
+                  - UNAVAILABLE
+                  - TEMPORARILY_UNAVAILABLE
+                  - PENDING_AUTHORISATION
+                description: |
+                  Tipo de status de recurso (vide Enum):
+                  Available - Disponível
+                  Unavailable - Indisponível
+                  Temporarily Unavailable - Temporariamente Indisponível
+                  Pending Authorisation - Pendente de Autorização
+                example: AVAILABLE
+          description: Lista de recursos e seus respectivos status.
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/MetaResponse'
+    Links:
+      type: object
+      description: Referências para outros recusos da API requisitada.
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          format: uri
+          maxLength: 2000
+          description: URI completo que gerou a resposta atual.
+          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
+          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+        first:
+          type: string
+          format: uri
+          maxLength: 2000
+          description: URI da primeira página que originou essa lista de resultados. Restrição - Obrigatório quando não for a primeira página da resposta
+          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
+          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+        prev:
+          type: string
+          format: uri
+          maxLength: 2000
+          description: "URI da página anterior dessa lista de resultados. Restrição - \tObrigatório quando não for a primeira página da resposta"
+          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
+          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+        next:
+          type: string
+          format: uri
+          maxLength: 2000
+          description: URI da próxima página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
+          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
+          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+        last:
+          type: string
+          format: uri
+          maxLength: 2000
+          description: URI da última página dessa lista de resultados. Restrição - Obrigatório quando não for a última página da resposta
+          example: 'https://api.banco.com.br/open-banking/api/v1/resource'
+          pattern: '^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    Meta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - requestDateTime
+      properties:
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          format: date-time
+          example: '2021-05-21T08:30:00Z'
+    MetaResponse:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - requestDateTime
+        - totalRecords
+        - totalPages
+      properties:
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          format: date-time
+          example: '2021-05-21T08:30:00Z'
+        totalRecords:
+          type: integer
+          format: int32
+          description: Número total de registros no resultado
+          example: 1
+        totalPages:
+          type: integer
+          format: int32
+          description: Número total de páginas no resultado
+          example: 1
+    XFapiInteractionId:
+      type: string
+      format: uuid
+      minLength: 1
+      maxLength: 36
+      pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+      example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
+    ResponseErrorWithAbleAdditionalProperties:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 2048
+        meta:
+          $ref: '#/components/schemas/Meta'
+
+    ResourcesAccountPermissions:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourcesAccountPermissionsData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ResourcesAccountPermissionsData:
+      type: object
+      required:
+        - consentIdentification
+        - resourcesAuthorised
+      properties:
+        consentIdentification:
+          $ref: '#/components/schemas/ConsentIdentification'
+        resourcesAuthorised:
+          $ref: '#/components/schemas/ResourcesAccountAuthorised'
+    ConsentIdentification:
+      type: object
+      required:
+        - consentId
+        - consentStatus
+        - consentDateCreation
+        - consentExpiration
+        - personalCPF
+        - personalId
+        - personalName
+      properties:
+        consentId:
+          type: string
+          minLength: 11
+          maxLength: 256
+          example: "25cac914-d8ae-6789-b215-650a6215820d"
+        consentStatus:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "AUTHORISED"
+        consentDateCreation:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        consentExpiration:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        personalCPF:
+          type: string
+          minLength: 11
+          maxLength: 20
+          example: "01102203399"
+        personalId:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "accpf123456"
+        personalName:
+          type: string
+          minLength: 1
+          maxLength: 200
+          example: "Jose da Silva"
+    ResourcesAccountAuthorised:
+      type: array
+      minItems: 0
+      items:
+        type: object
+        required:
+          - resourceId
+          - resourceSummary
+          - resourceType
+          - resourceStatus
+          - accountType
+          - accountSubType
+          - accountStatus
+          - accountBrandName
+          - accountCompanyCNPJ
+          - accountCompeCode
+          - accountBranchCode
+          - accountNumber
+          - accountCheckDigit
+          - accountCurrency
+          - permissions
+        properties:
+          resourceId:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "acc123456"
+          resourceSummary:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "conta corrente"
+          resourceType:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "deposito_a_vista"
+          resourceStatus:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "Available"
+          accountType:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "DEPOSITO_A_VISTA"
+          accountSubType:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "INDIVIDUAL"
+          accountStatus:
+            type: string
+            minLength: 3
+            maxLength: 100
+            example: "ATIVA"
+          accountBrandName:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "Brand Name"
+          accountCompanyCNPJ:
+            type: string
+            minLength: 11
+            maxLength: 15
+            example: "001002003000199"
+          accountCompeCode:
+            type: string
+            minLength: 3
+            maxLength: 10
+            example: "999"
+          accountBranchCode:
+            type: string
+            minLength: 3
+            maxLength: 10
+            example: "090"
+          accountNumber:
+            type: string
+            minLength: 10
+            maxLength: 30
+            example: "010101"
+          accountCheckDigit:
+            type: string
+            minLength: 1
+            maxLength: 1
+            example: "0"
+          accountCurrency:
+            type: string
+            minLength: 1
+            maxLength: 10
+            example: "BRL"
+          permissions:
+            $ref: "#/components/schemas/Permissions"
+    ResourcesCustomerPermissions:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourcesCustomerPermissionsData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ResourcesCustomerPermissionsData:
+      type: object
+      required:
+        - consentCompleteIdentification
+        - resourcesAuthorised
+      properties:
+        consentCompleteIdentification:
+          $ref: '#/components/schemas/ConsentCompleteIdentification'
+        resourcesAuthorised:
+          $ref: '#/components/schemas/ResourcesCustomerAuthorised'
+    ConsentCompleteIdentification:
+      type: object
+      required:
+        - consentId
+        - consentStatus
+        - consentDateCreation
+        - consentExpiration
+        - personalCPF
+        - personalId
+        - personalName
+        - personalCpfNumber
+        - personalBirthDate
+        - personalSex
+        - personalAddress
+        - personalDistrictName
+        - personalTownName
+        - personalCountrySubDivision
+        - personalPostCode
+        - personalCountry
+        - personalPhoneType
+        - personalPhoneAreaCode
+        - personalPhoneNumber
+        - personalEmail
+      properties:
+        consentId:
+          type: string
+          minLength: 11
+          maxLength: 256
+          example: "25cac914-d8ae-6789-b215-650a6215820d"
+        consentStatus:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "AUTHORISED"
+        consentDateCreation:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        consentExpiration:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2021-05-21T08:30:00Z"
+        personalId:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "accpf123456"
+        personalName:
+          type: string
+          minLength: 1
+          maxLength: 200
+          example: "Jose da Silva"
+        personalCpfNumber:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "01102203399"
+        personalBirthDate:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "2024/08/01"
+        personalSex:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "MASCULINO"
+        personalAddress:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Rua X, 00"
+        personalDistrictName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Jd XX"
+        personalTownName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "São Paulo"
+        personalCountrySubDivision:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "SP"
+        personalPostCode:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "00000-000"
+        personalCountry:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "Brazil"
+        personalPhoneType:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "MOVEL"
+        personalPhoneAreaCode:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "011"
+        personalPhoneNumber:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "99999-9999"
+        personalEmail:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "personal@email.com"
+    ResourcesCustomerAuthorised:
+      type: array
+      minItems: 0
+      items:
+        type: object
+        required:
+          - resourceId
+          - resourceSummary
+          - resourceType
+          - resourceStatus
+          - permissions
+        properties:
+          resourceId:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: "acc123456"
+          resourceSummary:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "conta corrente"
+          resourceType:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "deposito_a_vista"
+          resourceStatus:
+            type: string
+            minLength: 1
+            maxLength: 200
+            example: "Available"
+          permissions:
+            $ref: "#/components/schemas/Permissions"
+    Permissions:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required:
+          - permission
+        properties:
+          permission:
+            type: string
+            minLength: 1
+            maxLength: 100
+            example: 'permission'
+
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Número da página que está sendo requisitada (o valor da primeira página é 1).
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+        maximum: 2147483647
+        format: int32
+    pageSize:
+      name: page-size
+      in: query
+      description: |
+        Quantidade total de registros por páginas. 
+        A transmissora deve considerar entrada como 25, caso seja informado algum valor menor pela receptora. 
+        Enquanto houver mais que 25 registros a enviar, a transmissora deve considerar o mínimo por página como 25. 
+        Somente a última página retornada (ou primeira, no caso de página única) pode conter menos de 25 registros. 
+        Mais informações, acesse Especificações de APIs > Padrões > Paginação.
+      schema:
+        type: integer
+        default: 25
+        minimum: 25
+        format: int32
+        maximum: 1000
+    ConsentId:
+      name: consentId
+      in: query
+      description: ''
+      required: true
+      schema:
+        type: string
+        minLength: 6
+        maxLength: 256
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+
+  responses:
+    ResponseAccountPermissions:
+      description: Dados das permissões dos recursos obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResourcesAccountPermissions'
+    ResponseCustomerPermissions:
+      description: Dados das permissões dos recursos obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResourcesCustomerPermissions'
+    OKResponseResourceList:
+      description: Dados de status dos recursos obtidos com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseResourceList'
+    202ResponseResource:
+      description: Requisição foi recebida.
+    BadRequest:
+      description: 'A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL.'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    Forbidden:
+      description: O token tem escopo incorreto ou uma política de segurança foi violada
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    InternalServerError:
+      description: Ocorreu um erro no gateway da API ou no microsserviço
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    GatewayTimeout:
+      description: GATEWAY TIMEOUT - A requisição não foi atendida dentro do tempo limite estabelecido
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    MethodNotAllowed:
+      description: O consumidor tentou acessar o recurso com um método não suportado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    NotAcceptable:
+      description: A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    NotFound:
+      description: O recurso solicitado não existe ou não foi implementado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    TooManyRequests:
+      description: 'A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    Unauthorized:
+      description: Cabeçalho de autenticação ausente/inválido ou token inválido
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    SiteIsOverloaded:
+      description: 'O site está sobrecarregado e a operação foi recusada, pois foi atingido o limite máximo de TPS global, neste momento.'
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'
+    Default:
+      description: Erro inesperado.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ResponseErrorWithAbleAdditionalProperties'

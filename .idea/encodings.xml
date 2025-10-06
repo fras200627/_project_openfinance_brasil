@@ -198,6 +198,9 @@
     <file url="file://$PROJECT_DIR$/backup/messaging-modules/spring-apache-camel/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/minicurso-apache-camel-video-008/integracaoarquivo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/minicurso-apache-camel-video-008/integracaoarquivo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backup/sboot-camel-orch-ofb-customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backup/sboot-camel-orch-ofb-template/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backup/sboot-camel-orch-ofb-template/target/generated-sources/ofb/template/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backup/spring-boot-camel-integration/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula04/src/main/java" charset="UTF-8" />
@@ -268,6 +271,13 @@
     <file url="file://$PROJECT_DIR$/workspace/05.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-ofb-template1/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-ofb-template1/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/target/generated-sources/ofb/accounts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/target/generated-sources/ofb/customers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot.camel.orch.template1/src/main/java" charset="UTF-8" />

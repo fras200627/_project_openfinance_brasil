@@ -108,6 +108,12 @@
         <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/backup/sboot-camel-orch-ofb-template/pom.xml" />
+        <option value="$PROJECT_DIR$/backup/sboot-camel-orch-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/backup/sboot-camel-orch-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -624,6 +630,9 @@
         <option value="$PROJECT_DIR$/backup/demo/pom.xml" />
         <option value="$PROJECT_DIR$/backup/messaging-modules/spring-apache-camel/pom.xml" />
         <option value="$PROJECT_DIR$/backup/minicurso-apache-camel-video-008/integracaoarquivo/pom.xml" />
+        <option value="$PROJECT_DIR$/backup/sboot-camel-orch-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/backup/sboot-camel-orch-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/backup/sboot-camel-orch-ofb-template/pom.xml" />
         <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula03/pom.xml" />
         <option value="$PROJECT_DIR$/sbatch_template/3895-java-spring-batch-aula04/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/00.lib.commons/project-tican-lib-autoconfigure-amqp/pom.xml" />
