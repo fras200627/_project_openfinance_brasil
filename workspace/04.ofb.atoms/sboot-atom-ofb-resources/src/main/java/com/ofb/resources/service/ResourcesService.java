@@ -119,7 +119,7 @@ public class ResourcesService {
             }
 
             meta = MetaResponse.builder()
-                    .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")))
+                    .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
                     .totalPages(resourcesConfirmedList.getTotalPages())
                     .totalRecords((int) resourcesConfirmedList.getTotalElements() - recordsNotInclude)
                     .build();

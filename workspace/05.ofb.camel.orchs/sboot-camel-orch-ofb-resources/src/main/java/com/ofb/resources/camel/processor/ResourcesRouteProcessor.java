@@ -1,8 +1,9 @@
-package com.ofb.resources.camel.processors;
+package com.ofb.resources.camel.processor;
 
 import com.google.gson.Gson;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.resources.client.authorization.model.ResultErrorsErrorsInner;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;
@@ -28,8 +29,9 @@ public class ResourcesRouteProcessor implements Processor {
         listResponseErrors        = new ArrayList<>();
         responseResourceList      = new ResponseResourceList();
 
-        resourcesApi.getApiClient().setBasePath(exchange.getProperty("OFB_PATH_RESOURCES").toString());
+        resourcesApi.getApiClient().setBasePath(exchange.getProperty("OFB_RESOURCES_API_URL").toString());
         resourcesApi.getApiClient().setBearerToken(exchange.getProperty("Authorization").toString().replace("Bearer ", ""));
+        resourcesApi.getApiClient().addDefaultHeader("x-fapi-interaction-id",exchange.getProperty("x-fapi-interaction-id").toString());
 
         try {
             responseResourceList = resourcesApi.resourcesGetResources(1, 100);
@@ -39,7 +41,7 @@ public class ResourcesRouteProcessor implements Processor {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
         exchange.getMessage().setBody(responseResourceList);

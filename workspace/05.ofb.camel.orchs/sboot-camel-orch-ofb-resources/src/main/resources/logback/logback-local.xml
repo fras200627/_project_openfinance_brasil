@@ -16,6 +16,5 @@
     <logger name="com.ofb" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.hibernate" level="INFO"/>
-    <logger name="org.apache.camel" level="TRACE"/>
-
+    <logger name="org.apache.camel" level="INFO"/>
 </configuration>

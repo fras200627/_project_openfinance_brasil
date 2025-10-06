@@ -1,8 +1,9 @@
-package com.ofb.resources.camel.processors;
+package com.ofb.resources.camel.processor;
 
 import com.google.gson.Gson;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.resources.client.authorization.handler.AuthorizationValidateApi;
 import com.ofb.resources.client.authorization.model.ResponseAuthorizationData;
 import com.ofb.resources.client.authorization.model.ResultErrorsErrorsInner;
@@ -27,8 +28,9 @@ public class AuthorizationRouteProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         AuthorizationValidateApi authorizationValidateApi = new AuthorizationValidateApi();
 
-        authorizationValidateApi.getApiClient().setBasePath(exchange.getProperty("OFB_PATH_AUTHORIZATION").toString());
+        authorizationValidateApi.getApiClient().setBasePath(exchange.getProperty("AUTHORIZATION_API_URL").toString());
         authorizationValidateApi.getApiClient().setBearerToken(exchange.getProperty("Authorization").toString().replace("Bearer ", ""));
+        authorizationValidateApi.getApiClient().addDefaultHeader("x-fapi-interaction-id",exchange.getProperty("x-fapi-interaction-id").toString());
 
         listResponseErrors    = new ArrayList<>();
         responseAuthorizationData = new ResponseAuthorizationData();
@@ -42,7 +44,7 @@ public class AuthorizationRouteProcessor implements Processor {
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
+            throw new InternalErrorException(gson.toJson(listResponseErrors));
         }
 
         if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {

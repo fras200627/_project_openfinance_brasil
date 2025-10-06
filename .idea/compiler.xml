@@ -16,7 +16,7 @@
         <module name="demo2" />
         <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-participants-business" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-resources" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
