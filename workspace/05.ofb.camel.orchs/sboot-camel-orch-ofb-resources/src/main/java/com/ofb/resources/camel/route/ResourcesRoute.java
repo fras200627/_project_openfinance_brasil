@@ -1,6 +1,6 @@
 package com.ofb.resources.camel.route;
 
-import com.ofb.resources.camel.processor.ResourcesRouteProcessor;
+import com.ofb.resources.camel.processor.ResourcesProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,6 +23,6 @@ class ResourcesRoute extends RouteBuilder {
             .routeId("resourcesRoute")
             .tracing()
             .setProperty("OFB_RESOURCES_API_URL", constant(OFB_RESOURCES_API_URL))
-            .process(new ResourcesRouteProcessor());
+            .process(new ResourcesProcessor());
     }
 }

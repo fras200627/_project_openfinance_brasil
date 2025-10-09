@@ -21,6 +21,21 @@ public class ExchangeSettingsProcessor implements Processor {
             if (param.getParamName().equals("x-fapi-interaction-id")) {
                 exchange.setProperty("x-fapi-interaction-id", ((UUID) param.getParamValue()).toString());
             }
+            if (param.getParamName().equals("consentId")) {
+                exchange.setProperty("consentId", param.getParamValue().toString());
+            }
+            if (param.getParamName().equals("requestType") && param.getParamValue().equals("IDENTIFICATIONS_READ")) {
+                exchange.setProperty("requestType", param.getParamValue().toString());
+                exchange.setProperty("PERMISSION_REQUIRED", "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ");
+            } else
+            if (param.getParamName().equals("requestType") && param.getParamValue().equals("ADITTIONALINFO_READ")) {
+                exchange.setProperty("requestType", param.getParamValue().toString());
+                exchange.setProperty("PERMISSION_REQUIRED", "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ");
+            } else
+            if (param.getParamName().equals("requestType") && param.getParamValue().equals("FINANCIAL_READ")) {
+                exchange.setProperty("requestType", param.getParamValue().toString());
+                exchange.setProperty("PERMISSION_REQUIRED", "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ");
+            }
         }
     }
 }

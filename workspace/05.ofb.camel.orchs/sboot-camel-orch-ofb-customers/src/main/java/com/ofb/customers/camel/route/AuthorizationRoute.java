@@ -1,6 +1,6 @@
 package com.ofb.customers.camel.route;
 
-import com.ofb.customers.camel.processor.AuthorizationRouteProcessor;
+import com.ofb.customers.camel.processor.AuthorizationProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,6 +23,6 @@ class AuthorizationRoute extends RouteBuilder {
                 .routeId("authorizationRoute")
                 .tracing()
                 .setProperty("AUTHORIZATION_API_URL", constant(AUTHORIZATION_API_URL))
-                .process(new AuthorizationRouteProcessor());
+                .process(new AuthorizationProcessor());
     }
 }

@@ -6,7 +6,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrchestrationFlow extends RouteBuilder {
+public class CustomersOrchestrationFlow extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
@@ -16,12 +16,13 @@ public class OrchestrationFlow extends RouteBuilder {
 //                .useOriginalMessage()
 //                .end();
 
-        from("direct:orchestrationFlow")
-                .routeId("resourceOrchestrationFlow")
+        from("direct:customersOrchestrationFlow")
+                .routeId("customersOrchestrationFlow")
                 .tracing()
                 .process(new ExchangeSettingsProcessor())
                 .to("direct:authorizationRoute")
-                .to("direct:resourcesRoute")
+                .to("direct:customerResourcesRoute")
+                .to("direct:customerDataRoute")
                 .process(new OrchestrationResponseProcessor());
     }
 }

@@ -2,7 +2,6 @@ package com.ofb.customers.service;
 
 import com.ofb.customers.model.PersonalDataModel;
 import com.ofb.customers.server.model.*;
-import com.ofb.customers.server.model.Meta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,20 +15,18 @@ import java.util.List;
 import java.util.UUID;
 
 @Service @Slf4j
-public class CustomerGetPersonalIdentificationsService {
+public class CustomerGetPersonalIdentificationsSummaryService {
 
     @Autowired private HttpServletRequest httpServletRequest;
     @Autowired private CustomerGetPersonalDataService customerGetPersonalDataService;
 
-    public ResponsePersonalCustomersIdentification customersGetPersonalIdentifications(String customerDocument,
-                                                                                       String personalId,
-                                                                                       UUID xFapiInteractionId,
-                                                                                       Integer page,
-                                                                                       Integer pageSize) {
+    public ResponsePersonalCustomerData customersGetPersonalIdentificationSummary(String customerDocument,
+                                                                                  String personalId,
+                                                                                  UUID xFapiInteractionId) {
 
         PersonalDataModel personalData = customerGetPersonalDataService.getPersonalData(customerDocument, personalId);
 
-        /// Build Response
+        // Build response
         List<PersonalPostalAddress> postalAddresses = new ArrayList<>();
         postalAddresses.add(PersonalPostalAddress.builder()
                 .additionalInfo("none")
@@ -65,21 +62,6 @@ public class CustomerGetPersonalIdentificationsService {
                 .isMain(true)
                 .build());
 
-        List<String> companiesCnpj = new ArrayList<>();
-        companiesCnpj.add("none");
-
-        List<PersonalIdentificationDataFiliationInner> filiation = new ArrayList<>();
-        filiation.add(PersonalIdentificationDataFiliationInner.builder()
-                .civilName("Mae")
-                .socialName("Mae")
-                .type(EnumFiliationType.MAE)
-                .build());
-        filiation.add(PersonalIdentificationDataFiliationInner.builder()
-                .civilName("Pai")
-                .socialName("Pai")
-                .type(EnumFiliationType.PAI)
-                .build());
-
         List<NationalityOtherDocument> documents = new ArrayList<>();
         documents.add(NationalityOtherDocument.builder()
                 .additionalInfo("none")
@@ -89,30 +71,13 @@ public class CustomerGetPersonalIdentificationsService {
                 .number("none")
                 .type("none")
                 .build());
-        List<Nationality> nationality = new ArrayList<>();
-        nationality.add(Nationality.builder()
-                .documents(documents)
-                .otherNationalitiesInfo("none")
-                .build());
 
-        List<PersonalOtherDocument> otherDocuments = new ArrayList<>();
-        otherDocuments.add(PersonalOtherDocument.builder()
-                .additionalInfo("none")
-                .checkDigit("none")
-                .expirationDate("none")
-                .number("none")
-                .type(EnumPersonalOtherDocumentType.CNH)
-                .typeAdditionalInfo("none")
-                .build());
-
-        List<PersonalIdentificationData> personalIdentificationData = new ArrayList<>();
-        personalIdentificationData.add(PersonalIdentificationData.builder()
+        List<PersonalCustomerData> data = new ArrayList<>();
+        data.add(PersonalCustomerData.builder()
                 .personalId(personalData.getId())
                 .personalStatus(personalData.getStatus())
                 .birthDate(personalData.getBirthDate())
-                .brandName("none")
                 .civilName(personalData.getCivilName())
-                .companiesCnpj(companiesCnpj)
                 .contacts(PersonalContacts.builder()
                         .emails(emails)
                         .phones(phones)
@@ -120,43 +85,22 @@ public class CustomerGetPersonalIdentificationsService {
                         .build())
                 .documents(PersonalDocument.builder()
                         .cpfNumber(personalData.getCPFNumber())
-                        .passport(PersonalPassport.builder()
-                                .country("none")
-                                .expirationDate("none")
-                                .issueDate("none")
-                                .number("none")
-                                .build())
                         .build())
-                .filiation(filiation)
-                .hasBrazilianNationality(true)
-                .maritalStatusAdditionalInfo("none")
-                .maritalStatusCode(EnumMaritalStatusCode.fromValue(personalData.getMaritalStatusCode()))
-                .nationality(nationality)
-                .otherDocuments(otherDocuments)
                 .sex(EnumSex.fromValue(personalData.getSex()))
                 .socialName(personalData.getSocialName())
                 .updateDateTime(personalData.getLastUpdate())
                 .build());
 
-        Links links = Links.builder()
-                .self(URI.create("https://api.banco.com.br/open-banking/personal/identifications").toString())
-                .first(URI.create("https://api.banco.com.br/open-banking/personal/identifications").toString())
-                .last(URI.create("https://api.banco.com.br/open-banking/personal/identifications").toString())
-                .next(URI.create("https://api.banco.com.br/open-banking/personal/identifications").toString())
-                .prev(URI.create("https://api.banco.com.br/open-banking/personal/identifications").toString())
-                .build();
         Meta meta = Meta.builder()
                 .requestDateTime(OffsetDateTime.now(ZoneId.of("UTC")).toString())
                 .build();
 
-        ResponsePersonalCustomersIdentification responseCustomerIndentification = ResponsePersonalCustomersIdentification.builder()
-                .data(personalIdentificationData)
-                .links(links)
+        ResponsePersonalCustomerData responsePersonalCustomerData = ResponsePersonalCustomerData.builder()
+                .data(data)
                 .meta(meta)
                 .build();
 
-
-        return responseCustomerIndentification;
-
+        return responsePersonalCustomerData;
     }
+
 }

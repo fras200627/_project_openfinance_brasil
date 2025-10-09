@@ -32,9 +32,9 @@ public class AuthorizationApiControllerImpl implements AuthorizationApiDelegate 
     @Autowired private AuthorizationValidationService       authorizationValidationService;
 
     @Override
-    public ResponseEntity<ResponseAuthorizationData> accessTokenClaimsValidate() {
+    public ResponseEntity<ResponseAuthorizationData> authorizationValidate() {
         String authorization = httpServletRequest.getHeader("Authorization");
-        ResponseAuthorizationData responseAuthorizationData = accessTokenClaimsValidationService.accessTokenClaimsValidate(authorization);
+        ResponseAuthorizationData responseAuthorizationData = authorizationValidationService.authorizationValidate(authorization);
         if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
             return new ResponseEntity<>(responseAuthorizationData, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
         }
@@ -42,9 +42,9 @@ public class AuthorizationApiControllerImpl implements AuthorizationApiDelegate 
     }
 
     @Override
-    public ResponseEntity<ResponseAuthorizationData> authorizationValidate() {
+    public ResponseEntity<ResponseAuthorizationData> accessTokenClaimsValidate() {
         String authorization = httpServletRequest.getHeader("Authorization");
-        ResponseAuthorizationData responseAuthorizationData = authorizationValidationService.authorizationValidate(authorization);
+        ResponseAuthorizationData responseAuthorizationData = accessTokenClaimsValidationService.accessTokenClaimsValidate(authorization);
         if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
             return new ResponseEntity<>(responseAuthorizationData, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
         }

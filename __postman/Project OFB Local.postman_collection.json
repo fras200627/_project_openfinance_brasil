@@ -3134,14 +3134,12 @@
 									{
 										"key": "x-fapi-auth-date",
 										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									},
 									{
 										"key": "x-fapi-customer-ip-address",
 										"value": "192.192.192.192",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									},
 									{
 										"key": "x-fapi-interaction-id",
@@ -3151,8 +3149,7 @@
 									{
 										"key": "x-customer-user-agent",
 										"value": "banco santander",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									}
 								],
 								"url": {
@@ -3327,9 +3324,8 @@
 									},
 									{
 										"key": "x-fapi-interaction-id",
-										"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6\n",
-										"type": "text",
-										"disabled": true
+										"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+										"type": "text"
 									},
 									{
 										"key": "x-customer-user-agent",
@@ -3498,109 +3494,6 @@
 			"name": "OFB-CONSENTS CUSTOMERS",
 			"item": [
 				{
-					"name": "Corporate",
-					"item": [
-						{
-							"name": "get [access_token] PERSONAL IDENTIFICATION SUMMARY",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{access_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"type": "text"
-									},
-									{
-										"key": "x-fapi-interaction-id",
-										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"url": {
-									"raw": "http://localhost:3001/ofb-customers/personal/identificationSummary?customerDocument=54880884588",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3001",
-									"path": [
-										"ofb-customers",
-										"personal",
-										"identificationSummary"
-									],
-									"query": [
-										{
-											"key": "customerDocument",
-											"value": "54880884588"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get [acess_token_consents] PERSONAL IDENTIFICATION SUMMARY",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{access_token_consent}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"type": "text"
-									},
-									{
-										"key": "x-fapi-interaction-id",
-										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"url": {
-									"raw": "http://localhost:3001/ofb-customers/personal/identificationSummary?customerDocument=54880884588",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3001",
-									"path": [
-										"ofb-customers",
-										"personal",
-										"identificationSummary"
-									],
-									"query": [
-										{
-											"key": "customerDocument",
-											"value": "54880884588"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Health Check",
 					"request": {
 						"method": "GET",
@@ -3642,6 +3535,55 @@
 					"response": []
 				},
 				{
+					"name": "get PERSONAL IDENTIFICATION SUMMARY",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-customers/personal/identificationSummary?personalId=custpf-955-172CA7E6149CE9D7BE967A0064B9F",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-customers",
+								"personal",
+								"identificationSummary"
+							],
+							"query": [
+								{
+									"key": "customerDocument",
+									"value": "54880884588",
+									"disabled": true
+								},
+								{
+									"key": "personalId",
+									"value": "custpf-955-172CA7E6149CE9D7BE967A0064B9F"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get PERSONAL IDENTIFICATIONS",
 					"request": {
 						"auth": {
@@ -3657,34 +3599,13 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-customers/personal/identifications?page&page-size&pagination-key",
+							"raw": "http://localhost:3001/ofb-customers/personal/identifications?page&page-size&personalId=custpf-538-343BC2B5A48B984AB69F16FECCC1A",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3705,8 +3626,13 @@
 									"value": null
 								},
 								{
-									"key": "pagination-key",
-									"value": null
+									"key": "customerDocument",
+									"value": "73991016982",
+									"disabled": true
+								},
+								{
+									"key": "personalId",
+									"value": "custpf-538-343BC2B5A48B984AB69F16FECCC1A"
 								}
 							]
 						}
@@ -3729,33 +3655,13 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-customers/personal/qualifications",
+							"raw": "http://localhost:3001/ofb-customers/personal/qualifications?customerDocument=73991016982&personalId=custpf-538-343BC2B5A48B984AB69F16FECCC1A",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3765,6 +3671,16 @@
 								"ofb-customers",
 								"personal",
 								"qualifications"
+							],
+							"query": [
+								{
+									"key": "customerDocument",
+									"value": "73991016982"
+								},
+								{
+									"key": "personalId",
+									"value": "custpf-538-343BC2B5A48B984AB69F16FECCC1A"
+								}
 							]
 						}
 					},
@@ -3786,33 +3702,13 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
 								"key": "x-fapi-interaction-id",
 								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/ofb-customers/personal/financial-relations",
+							"raw": "http://localhost:3001/ofb-customers/personal/financial-relations?customerDocument=73991016982&personalId=custpf-538-343BC2B5A48B984AB69F16FECCC1A",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3822,191 +3718,16 @@
 								"ofb-customers",
 								"personal",
 								"financial-relations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get BUSINESS IDENTIFICATIONS",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-customers/business/identifications?page&page-size&pagination-key",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-customers",
-								"business",
-								"identifications"
 							],
 							"query": [
 								{
-									"key": "page",
-									"value": null
+									"key": "customerDocument",
+									"value": "73991016982"
 								},
 								{
-									"key": "page-size",
-									"value": null
-								},
-								{
-									"key": "pagination-key",
-									"value": null
+									"key": "personalId",
+									"value": "custpf-538-343BC2B5A48B984AB69F16FECCC1A"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get BUSINESS QUALIFICATIONS",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-customers/business/qualifications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-customers",
-								"business",
-								"qualifications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get PERSONAL BUSINESS-RELATIONS",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-customers/business/financial-relations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-customers",
-								"business",
-								"financial-relations"
 							]
 						}
 					},

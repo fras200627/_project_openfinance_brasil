@@ -1,13 +1,13 @@
-package com.ofb.customers.camel.processor;
+package com.ofb.resources.camel.processor;
 
 import com.google.gson.Gson;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
-import com.ofb.customers.client.authorization.handler.AuthorizationValidateApi;
-import com.ofb.customers.client.authorization.model.ResponseAuthorizationData;
-import com.ofb.customers.client.authorization.model.ResultErrorsErrorsInner;
-import com.ofb.customers.client.authorization.model.ResultStatus;
+import com.ofb.resources.client.authorization.handler.AuthorizationValidateApi;
+import com.ofb.resources.client.authorization.model.ResponseAuthorizationData;
+import com.ofb.resources.client.authorization.model.ResultErrorsErrorsInner;
+import com.ofb.resources.client.authorization.model.ResultStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component @Slf4j
-public class AuthorizationRouteProcessor implements Processor {
+public class AuthorizationProcessor implements Processor {
 
     private Gson gson = new Gson();
     private String consentId;
     private List<ResultErrorsErrorsInner> listResponseErrors ;
-    private ResponseAuthorizationData responseAuthorizationData;
+    private ResponseAuthorizationData     responseAuthorizationData;
 
     @Override
     public void process(Exchange exchange) throws Exception {

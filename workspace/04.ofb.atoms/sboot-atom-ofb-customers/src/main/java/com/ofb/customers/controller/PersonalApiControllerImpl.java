@@ -1,9 +1,10 @@
 package com.ofb.customers.controller;
 
-import com.ofb.customers.server.customers.handler.PersonalApiDelegate;
-import com.ofb.customers.server.customers.model.*;
+import com.ofb.customers.server.handler.PersonalApiDelegate;
+import com.ofb.customers.server.model.*;
 import com.ofb.customers.service.CustomerGetPersonalFinancialRelationsService;
 import com.ofb.customers.service.CustomerGetPersonalIdentificationsService;
+import com.ofb.customers.service.CustomerGetPersonalIdentificationsSummaryService;
 import com.ofb.customers.service.CustomerGetPersonalQualificationsService;
 import com.ofb.lib.security.profiles.CanClientOFBRead;
 import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
@@ -29,32 +30,56 @@ public class PersonalApiControllerImpl implements PersonalApiDelegate {
     private CustomerGetPersonalIdentificationsService customerGetPersonalIdentificationsService;
 
     @Autowired
+    private CustomerGetPersonalIdentificationsSummaryService customerGetPersonalIdentificationsSummaryService;
+
+    @Autowired
     private CustomerGetPersonalQualificationsService customerGetPersonalQualificationsService;
 
     @Autowired
     private CustomerGetPersonalFinancialRelationsService customerGetPersonalFinancialRelationsService;
 
     @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponsePersonalCustomersIdentification> customersGetPersonalIdentifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize, String paginationKey) {
-        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentifications(authorization, page, pageSize),
+    public ResponseEntity<ResponsePersonalCustomersIdentification> customersGetPersonalIdentifications(String customerDocument,
+                                                                                                       String personalId,
+                                                                                                       UUID xFapiInteractionId,
+                                                                                                       Integer page, Integer pageSize) {
+        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentifications(
+                customerDocument,
+                personalId,
+                xFapiInteractionId,
+                page, pageSize),
                 HttpStatus.OK);
     }
 
     @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponsePersonalCustomersQualification> customersGetPersonalQualifications(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(customerGetPersonalQualificationsService.customersGetPersonalQualifications(authorization),
+    public ResponseEntity<ResponsePersonalCustomersQualification> customersGetPersonalQualifications(String customerDocument,
+                                                                                                     String personalId,
+                                                                                                     UUID xFapiInteractionId) {
+        return new ResponseEntity<>(customerGetPersonalQualificationsService.customersGetPersonalQualifications(
+                customerDocument,
+                personalId,
+                xFapiInteractionId),
                 HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponsePersonalCustomerData> customerIdentificationSummary(String customerDocument) {
-        return new ResponseEntity<>(customerGetPersonalIdentificationsService.customersGetPersonalIdentificationSummary(customerDocument),
+    public ResponseEntity<ResponsePersonalCustomerData> customerIdentificationSummary(String customerDocument,
+                                                                                      String personalId,
+                                                                                      UUID xFapiInteractionId) {
+        return new ResponseEntity<>(customerGetPersonalIdentificationsSummaryService.customersGetPersonalIdentificationSummary(customerDocument,
+                personalId,
+                xFapiInteractionId),
                 HttpStatus.OK);
     }
 
     @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponsePersonalCustomersFinancialRelation> customersGetPersonalFinancialRelations(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(customerGetPersonalFinancialRelationsService.customersGetPersonalFinancialRelations(authorization),
+    public ResponseEntity<ResponsePersonalCustomersFinancialRelation> customersGetPersonalFinancialRelations(String customerDocument,
+                                                                                                             String personalId,
+                                                                                                             UUID xFapiInteractionId) {
+        return new ResponseEntity<>(customerGetPersonalFinancialRelationsService.customersGetPersonalFinancialRelations(
+                customerDocument,
+                personalId,
+                xFapiInteractionId),
                 HttpStatus.OK);
     }
 

@@ -4,91 +4,46 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="end camel.orch.resource">
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/StartApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/model/RequestOrchParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/model/RequestParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/orchestration/OrchestrationFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/processor/AuthorizationRouteProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/processor/ExchangeSettingsProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/processor/OrchestrationResponseProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/processor/ResourcesRouteProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/route/AuthorizationRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/camel/route/ResourcesRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/java/com/ofb/accounts/controller/HealthApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/openapi/client/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/openapi/client/openapi-atom-resources-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/StartApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/model/RequestOrchParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/model/RequestParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/orchestration/OrchestrationFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/processor/AuthorizationRouteProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/processor/ExchangeSettingsProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/processor/OrchestrationResponseProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/processor/ResourcesRouteProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/route/AuthorizationRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/camel/route/ResourcesRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/controller/HealthApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/openapi/client/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/openapi/client/openapi-atom-resources-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/StartApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/model/RequestOrchParams.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/model/RequestParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/orchestration/OrchestrationFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/AuthorizationRouteProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/ExchangeSettingsProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/OrchestrationResponseProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/ResourcesRouteProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/AuthorizationRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/ResourcesRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/config/OpenAPIConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/controller/HealthApiControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/client/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/client/openapi-atom-resources-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="end camel.orch.resources &#10;start orchs customers, accounts, consents">
+      <change afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalDataService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsSummaryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/CustomersPersonalFinancialsProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/CustomersPersonalIdentificationsProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/CustomersPersonalQualificationsProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/CustomerResourcesRoute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/controller/BusinessApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/client/openapi-atom-customers-server.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/server/openapi-customers.2.2.1.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-customers/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.orchs/sboot-orch-ofb-customers/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/ActuatorInfoApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/BusinessApiControllerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/HealthApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/controller/PersonalApiControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/openapi/client/openapi-authorization-server.1.0.0.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/openapi/server/openapi-customers-resources.2.2.1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/openapi/server/openapi-atom-customers-server.1.0.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/openapi/server/openapi-atom-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/orchestration/OrchestrationFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/orchestration/CustomersOrchestrationFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/AuthorizationRouteProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/AuthorizationProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/ExchangeSettingsProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/ExchangeSettingsProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/ResourcesRouteProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/CustomerResourcesProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/AuthorizationRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/AuthorizationRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/ResourcesRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/route/CustomerDataRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/client/openapi-atom-resources-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/openapi/client/openapi-atom-resources-server.1.0.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processor/AuthorizationRouteProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processor/AuthorizationProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processor/ResourcesRouteProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/processor/ResourcesProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/route/AuthorizationRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/route/AuthorizationRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/route/ResourcesRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/java/com/ofb/resources/camel/route/ResourcesRoute.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,8 +57,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -122,6 +77,9 @@
     &quot;accountId&quot;: &quot;d3f3e42d-a0c0-48a1-9169-0e65c59e5208&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="vcs://C:/_development/__projects/_project_openfinance_brasil/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -156,7 +114,7 @@
     "Application.Accounts.executor": "Debug",
     "Application.Atom-Accounts.executor": "Run",
     "Application.Atom-Consents.executor": "Run",
-    "Application.Atom-Customers.executor": "Run",
+    "Application.Atom-Customers.executor": "Debug",
     "Application.Atom-Participants.executor": "Run",
     "Application.Atom-Resources.executor": "Debug",
     "Application.Audit.executor": "Debug",
@@ -317,7 +275,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/05.ofb.camel.orchs",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/controller",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
@@ -327,11 +285,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\backup\sboot-camel-orch-ofb-customers\src\main\resources\openapi\server" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-customers\src\main\resources\openapi\client" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-customers\src\main\java\com\ofb\customers\controller" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-customers\src\main\resources\openapi\server" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-customers\src\main\resources\openapi\client" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-customers\src\main\resources\openapi\client" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-customers\src\main\resources\openapi\server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs" />
@@ -354,14 +312,14 @@
       <recent name="com.ofb.authorization.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ofb.customers.camel.processor" />
+      <recent name="com.ofb.customers.camel.route" />
+      <recent name="com.ofb.customers.service" />
       <recent name="com.ofb.template.camel.processor" />
       <recent name="com.ofb.resources.service" />
-      <recent name="com.ofb.resources.camel.processors" />
-      <recent name="com.ofb.resources.camel.routes" />
-      <recent name="com.ofb.lib.handlers.exception.template" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Base-APIGateway">
+  <component name="RunManager" selected="Application.Orch-Customers">
     <configuration name="XXX-Orch-Template" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -411,14 +369,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Implementação da API Accounts">
-      <option name="closed" value="true" />
-      <created>1755720373490</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1755720373490</updated>
     </task>
     <task id="LOCAL-00033" summary="Implementação da API Accounts">
       <option name="closed" value="true" />
@@ -804,7 +754,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759776699646</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="end camel.orch.resources &#10;start orchs customers, accounts, consents">
+      <option name="closed" value="true" />
+      <created>1759786555824</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1759786555824</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -820,7 +778,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Revisão e ajustes em permissions authorised" />
     <MESSAGE value="Implementação de GetPermissionsResources na API Resources." />
     <MESSAGE value="Implementação da API Accounts" />
     <MESSAGE value="ajustes de diretórios" />
@@ -845,7 +802,8 @@
     <MESSAGE value="final orch resources" />
     <MESSAGE value="reorg components" />
     <MESSAGE value="end camel.orch.resource" />
-    <option name="LAST_COMMIT_MESSAGE" value="end camel.orch.resource" />
+    <MESSAGE value="end camel.orch.resources &#10;start orchs customers, accounts, consents" />
+    <option name="LAST_COMMIT_MESSAGE" value="end camel.orch.resources &#10;start orchs customers, accounts, consents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -916,21 +874,6 @@
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalIdentificationsService.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalQualificationsService.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/java/com/ofb/customers/service/CustomerGetPersonalFinancialRelationsService.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot.camel.orch.template1/src/main/java/com/ofb/camel/orch/CamelConfig.java</url>
           <line>8</line>
           <option name="timeStamp" value="106" />
@@ -989,6 +932,11 @@
           <url>file://$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/src/main/java/com/ofb/lib/handlers/handler/RestControllerAdviceHandler.java</url>
           <line>130</line>
           <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/java/com/ofb/customers/camel/processor/AuthorizationProcessor.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="190" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/ConsentPersonalModel.java</url>

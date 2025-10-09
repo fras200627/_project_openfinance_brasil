@@ -1,12 +1,15 @@
 package com.ofb.customers.camel.route;
 
-import com.ofb.customers.camel.processor.ResourcesRouteProcessor;
+import com.ofb.customers.camel.processor.CustomerResourcesProcessor;
+import com.ofb.customers.camel.processor.CustomersPersonalFinancialsProcessor;
+import com.ofb.customers.camel.processor.CustomersPersonalIdentificationsProcessor;
+import com.ofb.customers.camel.processor.CustomersPersonalQualificationsProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-class ResourcesRoute extends RouteBuilder {
+class CustomerResourcesRoute extends RouteBuilder {
 
     @Value("${app.paths.clients.ofb-resources}")
     private String OFB_RESOURCES_API_URL;
@@ -19,10 +22,10 @@ class ResourcesRoute extends RouteBuilder {
 //                .useOriginalMessage()
 //                .end();
 
-        from("direct:resourcesRoute")
-            .routeId("resourcesRoute")
+        from("direct:customerResourcesRoute")
+            .routeId("customerResourcesRoute")
             .tracing()
             .setProperty("OFB_RESOURCES_API_URL", constant(OFB_RESOURCES_API_URL))
-            .process(new ResourcesRouteProcessor());
+            .process(new CustomerResourcesProcessor());
     }
 }

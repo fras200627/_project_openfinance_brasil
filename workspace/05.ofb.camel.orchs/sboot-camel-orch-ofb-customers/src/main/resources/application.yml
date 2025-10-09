@@ -74,6 +74,7 @@ app:
   paths:
     clients:
       ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-customers: 'http://localhost:3001/ofb-customers/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 eureka:
   client:
@@ -118,6 +119,7 @@ app:
   paths:
     clients:
       ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-customers: 'http://localhost:3001/ofb-customers/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 eureka:
   client:
@@ -162,6 +164,7 @@ app:
   paths:
     clients:
       ofb-resources: 'http://localhost:3001/ofb-resources/'
+      ofb-customers: 'http://localhost:3001/ofb-customers/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
 eureka:
   client:

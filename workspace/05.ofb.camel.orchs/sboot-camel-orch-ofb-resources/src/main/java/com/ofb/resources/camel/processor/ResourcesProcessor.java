@@ -2,7 +2,6 @@ package com.ofb.resources.camel.processor;
 
 import com.google.gson.Gson;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
-import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.resources.client.authorization.model.ResultErrorsErrorsInner;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,7 @@ import com.ofb.resources.client.resources.handler.ResourcesApi;
 import com.ofb.resources.client.resources.model.*;
 
 @Component @Slf4j
-public class ResourcesRouteProcessor implements Processor {
+public class ResourcesProcessor implements Processor {
 
     private Gson gson = new Gson();
     private ResponseResourceList responseResourceList;
