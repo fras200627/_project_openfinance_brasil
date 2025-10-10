@@ -11,6 +11,8 @@ public class ResourcesOrchestrationFlow extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
+//        errorHandler();
+
 //        onException(BadRequestException.class)
 //                .continued(true)
 //                .useOriginalMessage()

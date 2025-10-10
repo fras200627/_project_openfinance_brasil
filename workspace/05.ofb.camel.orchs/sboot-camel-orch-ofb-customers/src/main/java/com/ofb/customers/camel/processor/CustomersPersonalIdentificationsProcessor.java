@@ -37,7 +37,8 @@ public class CustomersPersonalIdentificationsProcessor implements Processor {
                     exchange.getProperty("customerDocument").toString(),
                     null,
                     UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()),
-                    1, 100);
+                    Integer.valueOf(exchange.getProperty("page").toString()),
+                    Integer.valueOf(exchange.getProperty("pageSize").toString()));
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
                     .title("Get Customer Identifications Data request error")

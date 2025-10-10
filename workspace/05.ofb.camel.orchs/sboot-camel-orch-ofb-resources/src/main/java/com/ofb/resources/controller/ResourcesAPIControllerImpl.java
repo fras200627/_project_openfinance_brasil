@@ -36,6 +36,10 @@ public class ResourcesAPIControllerImpl implements ResourcesApiDelegate {
                 .paramValue(authorization).build());
         requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
                 .paramValue(xFapiInteractionId).build());
+        requestParams.add(RequestParam.builder().paramName("page")
+                .paramValue(page).build());
+        requestParams.add(RequestParam.builder().paramName("pageSize")
+                .paramValue(pageSize).build());
         RequestOrchParams requestOrchParams = RequestOrchParams.builder()
                 .requestOrchParams(requestParams).build();
 

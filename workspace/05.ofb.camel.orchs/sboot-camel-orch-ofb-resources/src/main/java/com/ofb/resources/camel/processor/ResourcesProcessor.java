@@ -33,7 +33,9 @@ public class ResourcesProcessor implements Processor {
         resourcesApi.getApiClient().addDefaultHeader("x-fapi-interaction-id",exchange.getProperty("x-fapi-interaction-id").toString());
 
         try {
-            responseResourceList = resourcesApi.resourcesGetResources(1, 100);
+            responseResourceList = resourcesApi.resourcesGetResources(
+                    Integer.valueOf(exchange.getProperty("page").toString()),
+                    Integer.valueOf(exchange.getProperty("pageSize").toString()));
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
                     .title("Get Authorization request error (in ResourcesAPI)")

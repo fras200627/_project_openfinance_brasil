@@ -21,6 +21,12 @@ public class ExchangeSettingsProcessor implements Processor {
             if (param.getParamName().equals("x-fapi-interaction-id")) {
                 exchange.setProperty("x-fapi-interaction-id", ((UUID) param.getParamValue()).toString());
             }
+            if (param.getParamName().equals("page")) {
+                exchange.setProperty("page", param.getParamValue().toString());
+            }
+            if (param.getParamName().equals("pageSize")) {
+                exchange.setProperty("pageSize", param.getParamValue().toString());
+            }
         }
     }
 }
