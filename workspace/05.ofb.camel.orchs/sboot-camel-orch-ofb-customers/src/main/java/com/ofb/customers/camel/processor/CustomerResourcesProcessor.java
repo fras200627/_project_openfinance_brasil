@@ -35,8 +35,8 @@ public class CustomerResourcesProcessor implements Processor {
         ResourcesApi resourcesApi = new ResourcesApi();
         listResponseErrors        = new ArrayList<>();
         resourcesCustomerPermissions      = new ResourcesCustomerPermissions();
-        ResourcesCustomerPermissions responseCustomerPermissions = null;
-        ConsentCompleteIdentification consentIdentification      = null;
+        ResourcesCustomerPermissions responseCustomerPermissions = new ResourcesCustomerPermissions();
+        ConsentCompleteIdentification consentIdentification      = new ConsentCompleteIdentification();
         List<ResourcesCustomerAuthorisedInner> resourcesAuthorisedList = new ArrayList<>();
 
         resourcesApi.getApiClient().setBasePath(exchange.getProperty("OFB_RESOURCES_API_URL").toString());
@@ -47,27 +47,27 @@ public class CustomerResourcesProcessor implements Processor {
 
         try {
             resourcesCustomerPermissions = resourcesApi.resourcesGetCustomerPermissions(consentId);
-            consentIdentification = responseCustomerPermissions.getData().getConsentCompleteIdentification();
-            resourcesAuthorisedList = responseCustomerPermissions.getData().getResourcesAuthorised();
+            consentIdentification = resourcesCustomerPermissions.getData().getConsentCompleteIdentification();
+            resourcesAuthorisedList = resourcesCustomerPermissions.getData().getResourcesAuthorised();
         } catch (HttpClientErrorException ex) {
             if (ex.getRawStatusCode() == 400) {
                 listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                        .title("Get Customer request error (in ResourcesAPI")
+                        .title("Get Customer Resources Permissions request error")
                         .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                         .detail("AccessToken: " + ex.getMessage().substring(ex.getMessage().indexOf("detail") + 9, ex.getMessage().indexOf("meta") - 5))
                         .build());
                 throw new BadRequestException(gson.toJson(listResponseErrors));
             } else {
                 listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                        .title("Get Customer request error (in ResourcesAPI")
-                        .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
+                        .title("Get Customer Resources Permissions request error")
+                        .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                         .detail(ex.getMessage())
                         .build());
-                throw new BadRequestException(gson.toJson(listResponseErrors));
+                throw new InternalErrorException(gson.toJson(listResponseErrors));
             }
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Customer request error (in ResourcesAPI")
+                    .title("Get Customer Resources Permissions request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
@@ -88,7 +88,7 @@ public class CustomerResourcesProcessor implements Processor {
 
         if (!customerExists) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Customer request error")
+                    .title("Get Customer Resources Permissions request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail("The request information(s) for " +
                             "the consentId [" + consentId + "] reported in the AccessToken " +
@@ -99,9 +99,9 @@ public class CustomerResourcesProcessor implements Processor {
 
         if (!permissionExists) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Customer request error")
+                    .title("Get Customer Resources Permissions request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
-                    .detail("The customer information(s) request for the consentId (" + consentId + ") " +
+                    .detail("The Customer Resources Permissions information(s) request for the consentId (" + consentId + ") " +
                             "reported in the AccessToken has [" +  resourcesAuthorisedList.size() + "] " +
                             "Authorised ResourceAccount, but none have the permission = [" + permissionRequired + "].")
                     .build());

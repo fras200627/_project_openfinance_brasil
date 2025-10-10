@@ -16,6 +16,8 @@ class CustomerDataRoute extends RouteBuilder {
     @Override
     public void configure() {
 
+//        errorHandler();
+
 //        onException(BadRequestException.class)
 //                .continued(true)
 //                .useOriginalMessage()
@@ -24,11 +26,13 @@ class CustomerDataRoute extends RouteBuilder {
         from("direct:customerDataRoute")
             .routeId("customerDataRoute")
             .tracing()
+            //.errorHandler()
+            //.onException()
             .setProperty("OFB_CUSTOMERS_API_URL", constant(OFB_CUSTOMERS_API_URL))
             .choice()
-                .when(exchangeProperty("requestType").isEqualTo("IDENTIFICATIONS_READ"))
+                .when(exchangeProperty("requestType").isEqualTo("IDENTIFICATION_READ"))
                     .process(new CustomersPersonalIdentificationsProcessor())
-                .when(exchangeProperty("requestType").isEqualTo("ADITTIONALINFO_READ"))
+                .when(exchangeProperty("requestType").isEqualTo("QUALIFICATION_READ"))
                     .process(new CustomersPersonalQualificationsProcessor())
                 .when(exchangeProperty("requestType").isEqualTo("FINANCIAL_READ"))
                     .process(new CustomersPersonalFinancialsProcessor())

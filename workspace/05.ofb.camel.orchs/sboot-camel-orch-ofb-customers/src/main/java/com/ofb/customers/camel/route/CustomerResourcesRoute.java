@@ -17,6 +17,8 @@ class CustomerResourcesRoute extends RouteBuilder {
     @Override
     public void configure() {
 
+//        errorHandler();
+
 //        onException(BadRequestException.class)
 //                .continued(true)
 //                .useOriginalMessage()
@@ -25,6 +27,8 @@ class CustomerResourcesRoute extends RouteBuilder {
         from("direct:customerResourcesRoute")
             .routeId("customerResourcesRoute")
             .tracing()
+            //.errorHandler()
+            //.onException()
             .setProperty("OFB_RESOURCES_API_URL", constant(OFB_RESOURCES_API_URL))
             .process(new CustomerResourcesProcessor());
     }

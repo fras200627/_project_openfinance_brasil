@@ -28,18 +28,18 @@ public class CustomersPersonalQualificationsProcessor implements Processor {
         listResponseErrors        = new ArrayList<>();
         responseResourceList      = new ResponsePersonalCustomersQualification();
 
-        customersApi.getApiClient().setBasePath(exchange.getProperty("OFB_RESOURCES_API_URL").toString());
+        customersApi.getApiClient().setBasePath(exchange.getProperty("OFB_CUSTOMERS_API_URL").toString());
         customersApi.getApiClient().setBearerToken(exchange.getProperty("Authorization").toString().replace("Bearer ", ""));
         customersApi.getApiClient().addDefaultHeader("x-fapi-interaction-id",exchange.getProperty("x-fapi-interaction-id").toString());
 
         try {
             responseResourceList = customersApi.customersGetPersonalQualifications(
-                    null,
                     exchange.getProperty("customerDocument").toString(),
+                    null,
                     UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()));
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Authorization request error (in ResourcesAPI)")
+                    .title("Get Customer Qualifications Data request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());

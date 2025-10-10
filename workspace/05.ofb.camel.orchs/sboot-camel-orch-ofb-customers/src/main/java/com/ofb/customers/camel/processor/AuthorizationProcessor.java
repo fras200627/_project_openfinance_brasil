@@ -40,7 +40,7 @@ public class AuthorizationProcessor implements Processor {
             consentId = responseAuthorizationData.getData().getResultStatus().getConsentId();
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Authorization request error (in ResourcesAPI)")
+                    .title("Get Authorization request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
@@ -59,8 +59,8 @@ public class AuthorizationProcessor implements Processor {
         }
 
         /// Set a consentId property in exchange properties
-        exchange.setProperty("consentId", responseAuthorizationData.getData().getResultValidation().getConsent());
-        exchange.setProperty("customerDocument", responseAuthorizationData.getData().getResultValidation().getLoggedUser());
+        exchange.setProperty("consentId", responseAuthorizationData.getData().getResultStatus().getConsentId());
+        exchange.setProperty("customerDocument", responseAuthorizationData.getData().getResultStatus().getLoggedUserDocument());
         ///
 
         exchange.getMessage().setBody(responseAuthorizationData);

@@ -24,11 +24,11 @@ public class ExchangeSettingsProcessor implements Processor {
             if (param.getParamName().equals("consentId")) {
                 exchange.setProperty("consentId", param.getParamValue().toString());
             }
-            if (param.getParamName().equals("requestType") && param.getParamValue().equals("IDENTIFICATIONS_READ")) {
+            if (param.getParamName().equals("requestType") && param.getParamValue().equals("IDENTIFICATION_READ")) {
                 exchange.setProperty("requestType", param.getParamValue().toString());
                 exchange.setProperty("PERMISSION_REQUIRED", "CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ");
             } else
-            if (param.getParamName().equals("requestType") && param.getParamValue().equals("ADITTIONALINFO_READ")) {
+            if (param.getParamName().equals("requestType") && param.getParamValue().equals("QUALIFICATION_READ")) {
                 exchange.setProperty("requestType", param.getParamValue().toString());
                 exchange.setProperty("PERMISSION_REQUIRED", "CUSTOMERS_PERSONAL_ADITTIONALINFO_READ");
             } else

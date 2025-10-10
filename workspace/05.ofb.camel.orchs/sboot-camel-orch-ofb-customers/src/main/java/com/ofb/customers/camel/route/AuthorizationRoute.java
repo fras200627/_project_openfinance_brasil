@@ -14,6 +14,8 @@ class AuthorizationRoute extends RouteBuilder {
     @Override
     public void configure() {
 
+//        errorHandler();
+
 //        onException(BadRequestException.class)
 //                .continued(true)
 //                .useOriginalMessage()
@@ -22,6 +24,8 @@ class AuthorizationRoute extends RouteBuilder {
         from("direct:authorizationRoute")
                 .routeId("authorizationRoute")
                 .tracing()
+                //.errorHandler()
+                //.onException()
                 .setProperty("AUTHORIZATION_API_URL", constant(AUTHORIZATION_API_URL))
                 .process(new AuthorizationProcessor());
     }

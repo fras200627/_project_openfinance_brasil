@@ -68,7 +68,7 @@ public class PersonalApiControllerImpl implements PersonalApiDelegate {
         requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
                 .paramValue(xFapiInteractionId).build());
         requestParams.add(RequestParam.builder().paramName("requestType")
-                .paramValue("IDENTIFICATIONS_READ").build());
+                .paramValue("IDENTIFICATION_READ").build());
         requestParams.add(RequestParam.builder().paramName("page")
                 .paramValue(page).build());
         requestParams.add(RequestParam.builder().paramName("pageSize")
@@ -94,7 +94,7 @@ public class PersonalApiControllerImpl implements PersonalApiDelegate {
         requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
                 .paramValue(xFapiInteractionId).build());
         requestParams.add(RequestParam.builder().paramName("requestType")
-                .paramValue("ADITTIONALINFO_READ").build());
+                .paramValue("QUALIFICATION_READ").build());
         RequestOrchParams requestOrchParams = RequestOrchParams.builder()
                 .requestOrchParams(requestParams).build();
 
