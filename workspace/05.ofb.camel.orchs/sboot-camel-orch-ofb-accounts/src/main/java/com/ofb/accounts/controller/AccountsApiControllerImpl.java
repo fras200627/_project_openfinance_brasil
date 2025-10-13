@@ -19,10 +19,10 @@ import java.util.UUID;
 
 @RestController
 @SecurityScheme(type    = SecuritySchemeType.HTTP,
-        name    = "bearerAuth",
-        scheme  = "bearer",
-        bearerFormat = "JWT",
-        in = SecuritySchemeIn.HEADER)
+                name    = "bearerAuth",
+                scheme  = "bearer",
+                bearerFormat = "JWT",
+                in = SecuritySchemeIn.HEADER)
 public class AccountsApiControllerImpl implements AccountsApiDelegate {
 
     @Autowired
@@ -58,8 +58,6 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         return new ResponseEntity<>(producerTemplate.requestBody("direct:accountsOrchestrationFlow",
                 requestOrchParams, ResponseAccountList.class),
                 HttpStatus.OK);
-
-        //return AccountsApiDelegate.super.accountsGetAccounts(authorization, xFapiInteractionId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize, accountType, paginationKey);
     }
 
     @Override
@@ -84,8 +82,6 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         return new ResponseEntity<>(producerTemplate.requestBody("direct:accountsOrchestrationFlow",
                 requestOrchParams, ResponseAccountIdentification.class),
                 HttpStatus.OK);
-
-//        return AccountsApiDelegate.super.accountsGetAccountsAccountId(authorization, xFapiInteractionId, accountId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
     }
 
     @Override
@@ -111,8 +107,6 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         return new ResponseEntity<>(producerTemplate.requestBody("direct:accountsOrchestrationFlow",
                 requestOrchParams, ResponseAccountBalances.class),
                 HttpStatus.OK);
-
-//        return AccountsApiDelegate.super.accountsGetAccountsAccountIdBalances(authorization, xFapiInteractionId, accountId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
     }
 
     @Override
@@ -137,8 +131,6 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         return new ResponseEntity<>(producerTemplate.requestBody("direct:accountsOrchestrationFlow",
                 requestOrchParams, ResponseAccountOverdraftLimits.class),
                 HttpStatus.OK);
-
-//        return AccountsApiDelegate.super.accountsGetAccountsAccountIdOverdraftLimits(authorization, xFapiInteractionId, accountId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent);
     }
 
     @Override
@@ -180,8 +172,6 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         return new ResponseEntity<>(producerTemplate.requestBody("direct:accountsOrchestrationFlow",
                 requestOrchParams, ResponseAccountTransactions.class),
                 HttpStatus.OK);
-
-//        return AccountsApiDelegate.super.accountsGetAccountsAccountIdTransactions(authorization, xFapiInteractionId, accountId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize, fromBookingDate, toBookingDate, creditDebitIndicator, paginationKey);
     }
 
     @Override
@@ -223,6 +213,5 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
                 requestOrchParams, ResponseAccountTransactions.class),
                 HttpStatus.OK);
 
-//        return AccountsApiDelegate.super.accountsGetAccountsAccountIdTransactionsCurrent(authorization, xFapiInteractionId, accountId, xFapiAuthDate, xFapiCustomerIpAddress, xCustomerUserAgent, page, pageSize, fromBookingDate, toBookingDate, creditDebitIndicator, paginationKey);
     }
 }
