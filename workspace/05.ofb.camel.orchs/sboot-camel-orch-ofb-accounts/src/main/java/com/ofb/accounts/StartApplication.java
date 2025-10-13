@@ -1,4 +1,4 @@
-package com.ofb.customers;
+package com.ofb.accounts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

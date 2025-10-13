@@ -1,6 +1,6 @@
 package com.ofb.accounts.camel.route;
 
-import com.ofb.accounts.camel.processor.AuthorizationRouteProcessor;
+import com.ofb.accounts.camel.processor.AuthorizationProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,6 +14,8 @@ class AuthorizationRoute extends RouteBuilder {
     @Override
     public void configure() {
 
+//        errorHandler();
+
 //        onException(BadRequestException.class)
 //                .continued(true)
 //                .useOriginalMessage()
@@ -22,7 +24,9 @@ class AuthorizationRoute extends RouteBuilder {
         from("direct:authorizationRoute")
                 .routeId("authorizationRoute")
                 .tracing()
+                //.errorHandler()
+                //.onException()
                 .setProperty("AUTHORIZATION_API_URL", constant(AUTHORIZATION_API_URL))
-                .process(new AuthorizationRouteProcessor());
+                .process(new AuthorizationProcessor());
     }
 }

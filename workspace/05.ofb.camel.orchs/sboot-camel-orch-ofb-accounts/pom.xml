@@ -15,7 +15,7 @@
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>sboot-camel-orch-ofb-accounts</name>
-	<description>Project OFB - Orch accounts</description>
+	<description>Project OFB - Orch Accounts</description>
 
 	<properties>
 		<!-- Project default infos -->
@@ -341,6 +341,7 @@
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<version>${openapi-code-generator-version}</version>
 				<executions>
+
 					<execution>
 						<id>generator-health-checks</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -377,42 +378,44 @@
 							</configOptions>
 						</configuration>
 					</execution>
-<!--					<execution>-->
-<!--						<id>generator-resources-server</id> &lt;!&ndash; It is not optional and must have a unique id &ndash;&gt;-->
-<!--						<goals>-->
-<!--							<goal>generate</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							&lt;!&ndash;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-<!--							 generatorName Types:-->
-<!--							 OpenAPI Documentation for API Servers and API Clients in-->
-<!--							 https://openapi-generator.tech/docs/generators/-->
-<!--							 The 'spring' type generates a server package ++++++++++++++&ndash;&gt;-->
-<!--							<generatorName>spring</generatorName>-->
-<!--							&lt;!&ndash; OpenAPI generated artifacts settings ++++++++++++++++++&ndash;&gt;-->
-<!--							<inputSpec>${openapi.input.sec.path}/server/openapi-resources.3.0.0.yaml</inputSpec>-->
-<!--							<apiPackage>com.ofb.resources.server.api.handler</apiPackage>-->
-<!--							<modelPackage>com.ofb.resources.server.api.model</modelPackage>-->
-<!--							<output>target/generated-sources/ofb/resources</output>-->
-<!--							&lt;!&ndash;++++++++++++++++++++++++++++++++++++++++++++++++++++++++&ndash;&gt;-->
-<!--							<skipValidateSpec>true</skipValidateSpec>-->
-<!--							<configOptions>-->
-<!--								<invokerpackage>com.ofb.resources.server.api.handler</invokerpackage>-->
-<!--								<delegatePattern>true</delegatePattern>-->
-<!--								<requestMappingMode>controller</requestMappingMode> &lt;!&ndash; Default &ndash;&gt;-->
-<!--								<dateLibrary>java8</dateLibrary>-->
-<!--								<useBeanValidation>true</useBeanValidation>-->
-<!--								<performBeanValidation>true</performBeanValidation>-->
-<!--								<openApiNullable>true</openApiNullable>-->
-<!--								<documentationProvider>springdoc</documentationProvider>\-->
-<!--								<library>spring-boot</library>-->
-<!--								<useSpringBoot3>false</useSpringBoot3>-->
-<!--								<generateBuilders>true</generateBuilders>-->
-<!--								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>-->
-<!--								<generatedConstructorWithRequiredArgs>true</generatedConstructorWithRequiredArgs>-->
-<!--							</configOptions>-->
-<!--						</configuration>-->
-<!--					</execution>-->
+
+					<execution>
+						<id>generator-accounts-server</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>spring</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/server/openapi-accounts.2.4.2.yaml</inputSpec>
+							<apiPackage>com.ofb.accounts.server.api.handler</apiPackage>
+							<modelPackage>com.ofb.accounts.server.api.model</modelPackage>
+							<output>target/generated-sources/ofb/accounts</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<skipValidateSpec>true</skipValidateSpec>
+							<configOptions>
+								<invokerpackage>com.ofb.accounts.server.api.handler</invokerpackage>
+								<delegatePattern>true</delegatePattern>
+								<requestMappingMode>controller</requestMappingMode> <!-- Default -->
+								<dateLibrary>java8</dateLibrary>
+								<useBeanValidation>true</useBeanValidation>
+								<performBeanValidation>true</performBeanValidation>
+								<openApiNullable>true</openApiNullable>
+								<documentationProvider>springdoc</documentationProvider>\
+								<library>spring-boot</library>
+								<useSpringBoot3>false</useSpringBoot3>
+								<generateBuilders>true</generateBuilders>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<generatedConstructorWithRequiredArgs>true</generatedConstructorWithRequiredArgs>
+							</configOptions>
+						</configuration>
+					</execution>
+
 					<execution>
 						<id>generator-atom-authorization-client</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -429,7 +432,7 @@
 							<inputSpec>${openapi.input.sec.path}/client/openapi-atom-authorization-server.1.0.0.yaml</inputSpec>
 							<apiPackage>com.ofb.accounts.client.authorization.handler</apiPackage>
 							<modelPackage>com.ofb.accounts.client.authorization.model</modelPackage>
-							<output>target/generated-sources/ofb/accounts</output>
+							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<configOptions>
 								<invokerpackage>com.ofb.accounts.client.authorization.handler</invokerpackage>
@@ -444,6 +447,7 @@
 							</configOptions>
 						</configuration>
 					</execution>
+
 					<execution>
 						<id>generator-atom-resources-client</id> <!-- It is not optional and must have a unique id -->
 						<goals>
@@ -460,7 +464,7 @@
 							<inputSpec>${openapi.input.sec.path}/client/openapi-atom-resources-server.1.0.0.yaml</inputSpec>
 							<apiPackage>com.ofb.accounts.client.resources.handler</apiPackage>
 							<modelPackage>com.ofb.accounts.client.resources.model</modelPackage>
-							<output>target/generated-sources/ofb/accounts</output>
+							<output>${openapi.output.path}</output>
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<configOptions>
 								<invokerpackage>com.ofb.accounts.client.resources.handler</invokerpackage>
@@ -475,6 +479,39 @@
 							</configOptions>
 						</configuration>
 					</execution>
+
+					<execution>
+						<id>generator-atom-accounts-client</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-atom-accounts-server.1.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.accounts.client.accounts.handler</apiPackage>
+							<modelPackage>com.ofb.accounts.client.accounts.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.accounts.client.accounts.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+
 				</executions>
 			</plugin>
 

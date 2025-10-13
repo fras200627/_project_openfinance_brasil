@@ -16,7 +16,7 @@
         <module name="demo2" />
         <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sboot-camel-orch-ofb-customers" enabled="true">
+      <profile name="Annotation profile for sboot-listener-ofb-consents-authorization-services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -561,6 +561,7 @@
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
       <module name="sboot-atom-ofb-clients-business" target="17" />
       <module name="sboot-camel-ofb-template1" target="11" />
+      <module name="sboot-camel-orch-ofb-customers (1)" target="17" />
       <module name="sboot-camel-orch-ofb-customres" target="17" />
       <module name="sboot-listener-ofb-audit-services" target="17" />
       <module name="sboot-listener-ofb-consents-cancellation-services" target="17" />
@@ -617,6 +618,7 @@
       <module name="sboot-camel-orch-ofb-accounts" options="-parameters" />
       <module name="sboot-camel-orch-ofb-consents" options="-parameters" />
       <module name="sboot-camel-orch-ofb-customers" options="-parameters" />
+      <module name="sboot-camel-orch-ofb-customers (1)" options="-parameters" />
       <module name="sboot-camel-orch-ofb-customres" options="-parameters" />
       <module name="sboot-camel-orch-ofb-resources" options="-parameters" />
       <module name="sboot-lib-ofb-autoconfigure-amqp" options="-parameters" />

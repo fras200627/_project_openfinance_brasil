@@ -1,11 +1,7 @@
 package com.ofb.accounts.service;
 
 import com.google.gson.Gson;
-import com.ofb.accounts.client.authorization.handler.AuthorizationValidateApi;
-import com.ofb.accounts.client.authorization.model.ResponseAuthorizationData;
-import com.ofb.accounts.client.authorization.model.ResultErrorsErrorsInner;
-import com.ofb.accounts.client.authorization.model.ResultStatus;
-import com.ofb.accounts.client.resources.handler.ResourcesCorporateApi;
+import com.ofb.accounts.client.resources.handler.ResourcesApi;
 import com.ofb.accounts.client.resources.model.ConsentIdentification;
 import com.ofb.accounts.client.resources.model.ResourcesAccountAuthorisedInner;
 import com.ofb.accounts.client.resources.model.ResourcesAccountPermissions;
@@ -19,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -28,67 +25,37 @@ import java.util.List;
 @Service @Slf4j
 public class AccountsGetAccountsService {
 
+    @Autowired
+    private HttpServletRequest request;
+
     private final static String PERMISSION_REQUIRED = "ACCOUNTS_READ";
 
     @Value("${app.paths.clients.ofb-resources}")
     private String OFB_PATH_RESOURCES;
 
-    @Value("${app.paths.clients.ofb-authorization}")
-    private String OFB_PATH_AUTHORIZATION;
-
-    @Autowired private ResourcesCorporateApi resourcesCorporateApi;
-    @Autowired private AuthorizationValidateApi authorizationValidateApi;
+    @Autowired private ResourcesApi resourcesApi;
 
     private Gson gson = new Gson();
-    private String consentId;
     private List<ResponseErrorsInnerTemplate>   listResponseErrors;
     private ResourcesAccountPermissions         responseAccountPermissions;
     private ConsentIdentification               consentIdentification;
     private List<ResourcesAccountAuthorisedInner> resourcesAuthorisedList;
-    private ResponseAuthorizationData             responseAuthorizationData;
 
-    public ResponseAccountList accountsGetAccounts(String accessToken, EnumAccountType accountType) {
+    public ResponseAccountList accountsGetAccounts(String consentId, EnumAccountType accountType) {
 
-        authorizationValidateApi.getApiClient().setBasePath(OFB_PATH_AUTHORIZATION);
-        authorizationValidateApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
+        String token = request.getHeader("Authorization");
 
-        resourcesCorporateApi.getApiClient().setBasePath(OFB_PATH_RESOURCES);
-        resourcesCorporateApi.getApiClient().setBearerToken(accessToken.replace("Bearer ", ""));
+        resourcesApi.getApiClient().setBasePath(OFB_PATH_RESOURCES);
+        resourcesApi.getApiClient().setBearerToken(token.replace("Bearer ", ""));
 
-        consentId                   = "";
         listResponseErrors          = new ArrayList<>();
         responseAccountPermissions  = new ResourcesAccountPermissions();
         consentIdentification       = new ConsentIdentification();
         resourcesAuthorisedList     = new ArrayList<>();
-        responseAuthorizationData   = new ResponseAuthorizationData();
-
-        /// Authorize AccessToken
-        try {
-            responseAuthorizationData = authorizationValidateApi.authorizationValidate();
-            consentId = responseAuthorizationData.getData().getResultStatus().getConsentId();
-        } catch (Exception e) {
-            listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                    .title("Get Account request error (in ResourcesAPI)")
-                    .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
-                    .detail(e.getMessage())
-                    .build());
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
-
-        if (responseAuthorizationData.getData().getResultStatus().getStatus().equals(ResultStatus.StatusEnum.AUTHORIZATION_DENIED)) {
-            for (ResultErrorsErrorsInner reg : responseAuthorizationData.getData().getResultErrors().getErrors()) {
-                listResponseErrors.add(new ResponseErrorsInnerTemplate().toBuilder()
-                        .title(reg.getTitle())
-                        .code(reg.getCode())
-                        .detail(reg.getDetail().replaceAll("\\\\", ""))
-                        .build());
-            }
-            throw new BadRequestException(gson.toJson(listResponseErrors));
-        }
 
         /// Get All Accounts Resources
         try {
-            responseAccountPermissions = resourcesCorporateApi.resourcesGetAccountPermissions(accessToken, consentId);
+            responseAccountPermissions = resourcesApi.resourcesGetAccountPermissions(consentId);
             consentIdentification   = responseAccountPermissions.getData().getConsentIdentification();
             resourcesAuthorisedList = responseAccountPermissions.getData().getResourcesAuthorised();
         } catch (HttpClientErrorException ex) {

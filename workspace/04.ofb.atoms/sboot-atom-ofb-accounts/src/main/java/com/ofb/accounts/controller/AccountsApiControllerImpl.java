@@ -3,8 +3,6 @@ package com.ofb.accounts.controller;
 import com.ofb.accounts.server.accounts.handler.AccountsApiDelegate;
 import com.ofb.accounts.server.accounts.model.*;
 import com.ofb.accounts.service.*;
-import com.ofb.lib.security.profiles.CanClientOFBRead;
-import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -38,47 +35,47 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
     @Autowired
     private AccountsGetTransactionsByAccountIdService accountsGetTransactionsByAccountIdService;
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponseAccountList> accountsGetAccounts(String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize, EnumAccountType accountType, String paginationKey) {
-        return new ResponseEntity<>(accountsGetAccountsService.accountsGetAccounts(
-                authorization, accountType),
+    @Override
+    public ResponseEntity<ResponseAccountList> accountsGetAccounts(String consentId,
+                                                                   UUID xFapiInteractionId,
+                                                                   Integer page,
+                                                                   Integer pageSize,
+                                                                   EnumAccountType accountType) {
+        return new ResponseEntity<>(accountsGetAccountsService.accountsGetAccounts(consentId, accountType),
                 HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponseAccountIdentification> accountsGetAccountsAccountId(String authorization, UUID xFapiInteractionId, String accountId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(accountsGetByAccountIdService.accountsGetByAccountId(
-                authorization, accountId),
+    public ResponseEntity<ResponseAccountIdentification> accountsGetAccountsAccountId(String accountId,
+                                                                                      UUID xFapiInteractionId) {
+        return new ResponseEntity<>(accountsGetByAccountIdService.accountsGetByAccountId(accountId),
                 HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponseAccountBalances> accountsGetAccountsAccountIdBalances(String authorization, UUID xFapiInteractionId, String accountId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(accountsGetBalancesByAccountIdService.accountsGetAccountsAccountIdBalances(
-                authorization, accountId),
+    public ResponseEntity<ResponseAccountBalances> accountsGetAccountsAccountIdBalances(String accountId,
+                                                                                        UUID xFapiInteractionId) {
+        return new ResponseEntity<>(accountsGetBalancesByAccountIdService.accountsGetAccountsAccountIdBalances(accountId),
                 HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ResponseAccountOverdraftLimits> accountsGetAccountsAccountIdOverdraftLimits(String authorization, UUID xFapiInteractionId, String accountId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(accountsGetOverdraftLimitsByAccountIdService.accountsGetAccountsAccountIdOverdraftLimits(
-                authorization, accountId),
+    public ResponseEntity<ResponseAccountOverdraftLimits> accountsGetAccountsAccountIdOverdraftLimits(String accountId,
+                                                                                                      UUID xFapiInteractionId) {
+        return new ResponseEntity<>(accountsGetOverdraftLimitsByAccountIdService.accountsGetAccountsAccountIdOverdraftLimits(accountId),
                 HttpStatus.OK);
     }
 
-
-
     @Override
-    public ResponseEntity<ResponseAccountTransactions> accountsGetAccountsAccountIdTransactions(String authorization,
+    public ResponseEntity<ResponseAccountTransactions> accountsGetAccountsAccountIdTransactions(String accountId,
                                                                                                 UUID xFapiInteractionId,
-                                                                                                String accountId,
-                                                                                                String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent,
-                                                                                                Integer page, Integer pageSize,
-                                                                                                String fromBookingDate, String toBookingDate,
-                                                                                                EnumCreditDebitIndicator creditDebitIndicator,
-                                                                                                String paginationKey) {
+                                                                                                Integer page,
+                                                                                                Integer pageSize,
+                                                                                                String fromBookingDate,
+                                                                                                String toBookingDate,
+                                                                                                EnumCreditDebitIndicator creditDebitIndicator) {
         return new ResponseEntity<>(accountsGetTransactionsByAccountIdService.accountsGetAccountsAccountIdTransactions(
-                authorization, accountId,
+                accountId,
                 page, pageSize, fromBookingDate,
                 toBookingDate, creditDebitIndicator,
                 false),
@@ -86,16 +83,15 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<ResponseAccountTransactions> accountsGetAccountsAccountIdTransactionsCurrent(String authorization,
+    public ResponseEntity<ResponseAccountTransactions> accountsGetAccountsAccountIdTransactionsCurrent(String accountId,
                                                                                                        UUID xFapiInteractionId,
-                                                                                                       String accountId,
-                                                                                                       String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent,
-                                                                                                       Integer page, Integer pageSize,
-                                                                                                       String fromBookingDate, String toBookingDate,
-                                                                                                       EnumCreditDebitIndicator creditDebitIndicator,
-                                                                                                       String paginationKey) {
+                                                                                                       Integer page,
+                                                                                                       Integer pageSize,
+                                                                                                       String fromBookingDate,
+                                                                                                       String toBookingDate,
+                                                                                                       EnumCreditDebitIndicator creditDebitIndicator) {
         return new ResponseEntity<>(accountsGetTransactionsByAccountIdService.accountsGetAccountsAccountIdTransactions(
-                authorization, accountId,
+                accountId,
                 page, pageSize, fromBookingDate,
                 toBookingDate, creditDebitIndicator,
                 true),

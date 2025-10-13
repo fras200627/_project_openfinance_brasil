@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component @Slf4j
-public class AuthorizationRouteProcessor implements Processor {
+public class AuthorizationProcessor implements Processor {
 
     private Gson gson = new Gson();
     private String consentId;
@@ -40,7 +40,7 @@ public class AuthorizationRouteProcessor implements Processor {
             consentId = responseAuthorizationData.getData().getResultStatus().getConsentId();
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Authorization request error (in ResourcesAPI)")
+                    .title("Get Authorization request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.INTERNAL_ERROR.getValue())
                     .detail(e.getMessage())
                     .build());
@@ -57,6 +57,12 @@ public class AuthorizationRouteProcessor implements Processor {
             }
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
+
+        /// Set a consentId property in exchange properties
+        exchange.setProperty("consentId", responseAuthorizationData.getData().getResultStatus().getConsentId());
+        exchange.setProperty("customerDocument", responseAuthorizationData.getData().getResultStatus().getLoggedUserDocument());
+        ///
+
         exchange.getMessage().setBody(responseAuthorizationData);
     }
 
