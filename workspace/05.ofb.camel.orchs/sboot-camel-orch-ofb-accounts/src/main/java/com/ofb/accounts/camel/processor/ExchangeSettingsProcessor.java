@@ -34,13 +34,13 @@ public class ExchangeSettingsProcessor implements Processor {
                 exchange.setProperty("pageSize", param.getParamValue().toString());
             }
             if (param.getParamName().equals("fromBookingDate")) {
-                exchange.setProperty("fromBookingDate", param.getParamValue().toString());
+                exchange.setProperty("fromBookingDate", param.getParamValue() == null ? "" : param.getParamValue().toString());
             }
             if (param.getParamName().equals("toBookingDate")) {
-                exchange.setProperty("toBookingDate", param.getParamValue().toString());
+                exchange.setProperty("toBookingDate", param.getParamValue() == null ? "" : param.getParamValue().toString());
             }
             if (param.getParamName().equals("creditDebitIndicator")) {
-                exchange.setProperty("creditDebitIndicator", param.getParamValue().toString());
+                exchange.setProperty("creditDebitIndicator", param.getParamValue() == null ? "" : param.getParamValue().toString());
             }
             if (param.getParamName().equals("requestType") && param.getParamValue().equals("GET_ACCOUNTS_READ")) {
                 exchange.setProperty("requestType", param.getParamValue().toString());

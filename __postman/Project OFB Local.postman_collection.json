@@ -3850,14 +3850,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/health",
+									"raw": "http://localhost:3001/ofb-orch-accounts/health",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"health"
 									]
 								}
@@ -3870,14 +3870,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/actuator/info",
+									"raw": "http://localhost:3001/ofb-orch-accounts/actuator/info",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"actuator",
 										"info"
 									]
@@ -3901,11 +3901,6 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Authorization",
-										"value": "",
-										"type": "text"
-									},
-									{
 										"key": "x-fapi-auth-date",
 										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
 										"type": "text"
@@ -3927,14 +3922,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/accounts?page&page-size&accountType=CONTA_DEPOSITO_A_VISTA&pagination-key",
+									"raw": "http://localhost:3001/ofb-orch-accounts/accounts?page&page-size&accountType=CONTA_DEPOSITO_A_VISTA&pagination-key",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"accounts"
 									],
 									"query": [
@@ -4066,8 +4061,7 @@
 									{
 										"key": "x-fapi-interaction-id",
 										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									},
 									{
 										"key": "x-customer-user-agent",
@@ -4076,14 +4070,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/balances",
+									"raw": "http://localhost:3001/ofb-orch-accounts/accounts/:accountId/balances",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"accounts",
 										":accountId",
 										"balances"
@@ -4141,14 +4135,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions?fromBookingDate=2025-01-01&toBookingDate=2025-08-31&pagination-key",
+									"raw": "http://localhost:3001/ofb-orch-accounts/accounts/:accountId/transactions?page=1&page-size=25&fromBookingDate=2025-01-01&toBookingDate=2025-08-31&creditDebitIndicator=CREDITO&pagination-key",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"accounts",
 										":accountId",
 										"transactions"
@@ -4156,13 +4150,11 @@
 									"query": [
 										{
 											"key": "page",
-											"value": "1",
-											"disabled": true
+											"value": "1"
 										},
 										{
 											"key": "page-size",
-											"value": "25",
-											"disabled": true
+											"value": "25"
 										},
 										{
 											"key": "fromBookingDate",
@@ -4179,8 +4171,7 @@
 										},
 										{
 											"key": "creditDebitIndicator",
-											"value": "CREDITO",
-											"disabled": true
+											"value": "CREDITO"
 										},
 										{
 											"key": "creditDebitIndicator",
@@ -4244,14 +4235,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions-current?page&page-size&creditDebitIndicator&pagination-key",
+									"raw": "http://localhost:3001/ofb-orch-accounts/accounts/:accountId/transactions-current",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"accounts",
 										":accountId",
 										"transactions-current"
@@ -4259,11 +4250,13 @@
 									"query": [
 										{
 											"key": "page",
-											"value": null
+											"value": null,
+											"disabled": true
 										},
 										{
 											"key": "page-size",
-											"value": null
+											"value": null,
+											"disabled": true
 										},
 										{
 											"key": "fromBookingDate",
@@ -4277,11 +4270,13 @@
 										},
 										{
 											"key": "creditDebitIndicator",
-											"value": null
+											"value": "CREDITO",
+											"disabled": true
 										},
 										{
 											"key": "pagination-key",
-											"value": null
+											"value": null,
+											"disabled": true
 										}
 									],
 									"variable": [
@@ -4327,8 +4322,7 @@
 									{
 										"key": "x-fapi-interaction-id",
 										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									},
 									{
 										"key": "x-customer-user-agent",
@@ -4337,14 +4331,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/overdraft-limits",
+									"raw": "http://localhost:3001/ofb-orch-accounts/accounts/:accountId/overdraft-limits",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-accounts",
+										"ofb-orch-accounts",
 										"accounts",
 										":accountId",
 										"overdraft-limits"

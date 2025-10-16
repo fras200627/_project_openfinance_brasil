@@ -46,6 +46,8 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
                 .paramValue(xFapiInteractionId).build());
         requestParams.add(RequestParam.builder().paramName("requestType")
                 .paramValue("GET_ACCOUNTS_READ").build());
+        requestParams.add(RequestParam.builder().paramName("accountId")
+                .paramValue("").build());
         requestParams.add(RequestParam.builder().paramName("page")
                 .paramValue(page).build());
         requestParams.add(RequestParam.builder().paramName("pageSize")
@@ -165,7 +167,7 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         requestParams.add(RequestParam.builder().paramName("toBookingDate")
                 .paramValue(toBookingDate).build());
         requestParams.add(RequestParam.builder().paramName("creditDebitIndicator")
-                .paramValue(creditDebitIndicator.getValue()).build());
+                .paramValue(creditDebitIndicator == null  ? "" : creditDebitIndicator.getValue().toString()).build());
         RequestOrchParams requestOrchParams = RequestOrchParams.builder()
                 .requestOrchParams(requestParams).build();
 
@@ -205,7 +207,7 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
         requestParams.add(RequestParam.builder().paramName("toBookingDate")
                 .paramValue(toBookingDate).build());
         requestParams.add(RequestParam.builder().paramName("creditDebitIndicator")
-                .paramValue(creditDebitIndicator.getValue()).build());
+                .paramValue(creditDebitIndicator == null  ? "" : creditDebitIndicator.getValue().toString()).build());
         RequestOrchParams requestOrchParams = RequestOrchParams.builder()
                 .requestOrchParams(requestParams).build();
 
