@@ -3839,522 +3839,863 @@
 			]
 		},
 		{
-			"name": "OFB-CONSENTS ACCOUNTS",
+			"name": "OFB-ACCOUNTS",
 			"item": [
 				{
-					"name": "Health Check",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/health",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"health"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actuator Info",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/actuator/info",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"actuator",
-								"info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get ACCOUNTS",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
+					"name": "orch",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"health"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts?page&page-size&accountType=CONTA_DEPOSITO_A_VISTA&pagination-key",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"accounts"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": null
-								},
-								{
-									"key": "page-size",
-									"value": null
-								},
-								{
-									"key": "accountType",
-									"value": "CONTA_POUPANCA",
-									"disabled": true
-								},
-								{
-									"key": "accountType",
-									"value": "CONTA_DEPOSITO_A_VISTA"
-								},
-								{
-									"key": "accountType",
-									"value": "CONTA_PAGAMENTO_PRE_PAGA",
-									"disabled": true
-								},
-								{
-									"key": "pagination-key",
-									"value": null
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"actuator",
+										"info"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNTS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts?page&page-size&accountType=CONTA_DEPOSITO_A_VISTA&pagination-key",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": null
+										},
+										{
+											"key": "page-size",
+											"value": null
+										},
+										{
+											"key": "accountType",
+											"value": "CONTA_POUPANCA",
+											"disabled": true
+										},
+										{
+											"key": "accountType",
+											"value": "CONTA_DEPOSITO_A_VISTA"
+										},
+										{
+											"key": "accountType",
+											"value": "CONTA_PAGAMENTO_PRE_PAGA",
+											"disabled": true
+										},
+										{
+											"key": "pagination-key",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNT ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNT BALANCES",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/balances",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"balances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNT TRANSACTIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions?fromBookingDate=2025-01-01&toBookingDate=2025-08-31&pagination-key",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"transactions"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "page-size",
+											"value": "25",
+											"disabled": true
+										},
+										{
+											"key": "fromBookingDate",
+											"value": "2025-01-01"
+										},
+										{
+											"key": "toBookingDate",
+											"value": "2025-08-31"
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": "CREDITO",
+											"disabled": true
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": "DEBITO",
+											"disabled": true
+										},
+										{
+											"key": "pagination-key",
+											"value": null
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNT TRANSACTIONS  CURRENT",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions-current?page&page-size&creditDebitIndicator&pagination-key",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"transactions-current"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": null
+										},
+										{
+											"key": "page-size",
+											"value": null
+										},
+										{
+											"key": "fromBookingDate",
+											"value": "2025-01-01",
+											"disabled": true
+										},
+										{
+											"key": "toBookingDate",
+											"value": "2025-08-31",
+											"disabled": true
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": null
+										},
+										{
+											"key": "pagination-key",
+											"value": null
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNT OVERDRAFT-LIMITS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/overdraft-limits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"overdraft-limits"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "get ACCOUNT ID",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
+					"name": "atom",
+					"item": [
+						{
+							"name": "Health Check Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"health"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"accounts",
-								":accountId"
-							],
-							"variable": [
-								{
-									"key": "accountId",
-									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+						{
+							"name": "Actuator Info Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"actuator",
+										"info"
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get ACCOUNT BALANCES",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/balances",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"accounts",
-								":accountId",
-								"balances"
-							],
-							"variable": [
-								{
-									"key": "accountId",
-									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+						{
+							"name": "get ACCOUNT ID Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get ACCOUNT TRANSACTIONS",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions?fromBookingDate=2025-01-01&toBookingDate=2025-08-31&pagination-key",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"accounts",
-								":accountId",
-								"transactions"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
+						{
+							"name": "get ACCOUNT BALANCES Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "page-size",
-									"value": "25",
-									"disabled": true
-								},
-								{
-									"key": "fromBookingDate",
-									"value": "2025-01-01"
-								},
-								{
-									"key": "toBookingDate",
-									"value": "2025-08-31"
-								},
-								{
-									"key": "creditDebitIndicator",
-									"value": "",
-									"disabled": true
-								},
-								{
-									"key": "creditDebitIndicator",
-									"value": "CREDITO",
-									"disabled": true
-								},
-								{
-									"key": "creditDebitIndicator",
-									"value": "DEBITO",
-									"disabled": true
-								},
-								{
-									"key": "pagination-key",
-									"value": null
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/balances",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"balances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
 								}
-							],
-							"variable": [
-								{
-									"key": "accountId",
-									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get ACCOUNT TRANSACTIONS  CURRENT",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text"
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions-current?page&page-size&creditDebitIndicator&pagination-key",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"accounts",
-								":accountId",
-								"transactions-current"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": null
+						{
+							"name": "get ACCOUNT TRANSACTIONS Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "page-size",
-									"value": null
-								},
-								{
-									"key": "fromBookingDate",
-									"value": "2025-01-01",
-									"disabled": true
-								},
-								{
-									"key": "toBookingDate",
-									"value": "2025-08-31",
-									"disabled": true
-								},
-								{
-									"key": "creditDebitIndicator",
-									"value": null
-								},
-								{
-									"key": "pagination-key",
-									"value": null
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions?fromBookingDate=2025-01-01&toBookingDate=2025-08-31&pagination-key",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"transactions"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "page-size",
+											"value": "25",
+											"disabled": true
+										},
+										{
+											"key": "fromBookingDate",
+											"value": "2025-01-01"
+										},
+										{
+											"key": "toBookingDate",
+											"value": "2025-08-31"
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": "CREDITO",
+											"disabled": true
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": "DEBITO",
+											"disabled": true
+										},
+										{
+											"key": "pagination-key",
+											"value": null
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
 								}
-							],
-							"variable": [
-								{
-									"key": "accountId",
-									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get ACCOUNT OVERDRAFT-LIMITS",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token_consent}}",
-									"type": "string"
-								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-auth-date",
-								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-customer-ip-address",
-								"value": "192.192.192.192",
-								"type": "text"
-							},
-							{
-								"key": "x-fapi-interaction-id",
-								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-customer-user-agent",
-								"value": "banco santander",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/overdraft-limits",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"ofb-accounts",
-								"accounts",
-								":accountId",
-								"overdraft-limits"
-							],
-							"variable": [
-								{
-									"key": "accountId",
-									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+						{
+							"name": "get ACCOUNT TRANSACTIONS  CURRENT Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions-current?page&page-size&creditDebitIndicator&pagination-key",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"transactions-current"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": null
+										},
+										{
+											"key": "page-size",
+											"value": null
+										},
+										{
+											"key": "fromBookingDate",
+											"value": "2025-01-01",
+											"disabled": true
+										},
+										{
+											"key": "toBookingDate",
+											"value": "2025-08-31",
+											"disabled": true
+										},
+										{
+											"key": "creditDebitIndicator",
+											"value": null
+										},
+										{
+											"key": "pagination-key",
+											"value": null
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "get ACCOUNT OVERDRAFT-LIMITS Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/overdraft-limits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-accounts",
+										"accounts",
+										":accountId",
+										"overdraft-limits"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},

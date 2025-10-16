@@ -1,7 +1,6 @@
 package com.ofb.accounts.service;
 
 import com.ofb.accounts.model.AccountPersonalDataModel;
-import com.ofb.accounts.repository.AccountPersonalDataRepository;
 import com.ofb.accounts.server.accounts.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,15 @@ import java.time.ZoneId;
 @Service @Slf4j
 public class AccountsGetBalancesByAccountIdService {
 
-//    private final static String PERMISSION_REQUIRED = "ACCOUNTS_BALANCES_READ";
-    @Autowired private AccountPersonalDataRepository accountPersonalRepository;
+    @Autowired
+    private AccountsGetAccountDataByIdService accountsGetAccountDataByIdService;
 
     public ResponseAccountBalances accountsGetAccountsAccountIdBalances(String accountId) {
 
-        /// Build Response
-        AccountPersonalDataModel accountPersonalData = accountPersonalRepository.findAccountByAccountId(accountId);
+        ///
+        AccountPersonalDataModel accountPersonalData = accountsGetAccountDataByIdService.getAccountDataById(accountId);
+
+        ///
         AccountBalancesData accountBalancesData = AccountBalancesData.builder()
                 .automaticallyInvestedAmount(AccountBalancesDataAutomaticallyInvestedAmount.builder()
                         .amount(accountPersonalData.getAutomaticallyInvestedAmount())

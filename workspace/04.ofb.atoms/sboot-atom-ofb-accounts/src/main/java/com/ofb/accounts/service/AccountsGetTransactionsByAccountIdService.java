@@ -1,8 +1,7 @@
 package com.ofb.accounts.service;
 
-import com.google.gson.Gson;
+import com.ofb.accounts.model.AccountPersonalDataModel;
 import com.ofb.accounts.model.AccountTransactionDataModel;
-import com.ofb.accounts.repository.AccountPersonalDataRepository;
 import com.ofb.accounts.repository.AccountTransactionsDataRepository;
 import com.ofb.accounts.repository.AccountTransactionsPaginationSettings;
 import com.ofb.accounts.repository.AccountTransactionsRecordFilter;
@@ -10,7 +9,6 @@ import com.ofb.accounts.server.accounts.model.*;
 import com.ofb.lib.commons.jpa.RequestFilterParams;
 import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
 import com.ofb.lib.commons.jpa.RequestFilterSpecification;
-import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,9 +27,13 @@ import java.util.Locale;
 @Service @Slf4j
 public class AccountsGetTransactionsByAccountIdService {
 
-//    private final static String PERMISSION_REQUIRED = "ACCOUNTS_OVERDRAFT_LIMITS_READ";
+    @Autowired
+    private AccountsGetAccountDataByIdService accountsGetAccountDataByIdService;
 
-    @Autowired private AccountTransactionsDataRepository accountTransactionsDataRepository;
+    @Autowired
+    private AccountTransactionsDataRepository accountTransactionsDataRepository;
+
+    private DateTimeFormatter PARSER1 = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.ROOT);
 
     public ResponseAccountTransactions accountsGetAccountsAccountIdTransactions(String accountId,
                                                                                 Integer page, Integer pageSize,
@@ -39,8 +41,10 @@ public class AccountsGetTransactionsByAccountIdService {
                                                                                 EnumCreditDebitIndicator creditDebitIndicator,
                                                                                 Boolean isTransactionCurrent) {
 
+        ///
+        AccountPersonalDataModel accountPersonalData = accountsGetAccountDataByIdService.getAccountDataById(accountId);
+
         ///  Date Range validate
-        DateTimeFormatter PARSER1 = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.ROOT);
         if ((isTransactionCurrent == true) || (fromBookingDate == null || fromBookingDate.isEmpty()) || (toBookingDate == null || toBookingDate.isEmpty())) {
             fromBookingDate = OffsetDateTime.now().minusDays(6).format(PARSER1);
             toBookingDate   = OffsetDateTime.now().format(PARSER1);

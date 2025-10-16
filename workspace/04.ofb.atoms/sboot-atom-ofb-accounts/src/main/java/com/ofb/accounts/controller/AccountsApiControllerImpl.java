@@ -21,9 +21,6 @@ import java.util.UUID;
 public class AccountsApiControllerImpl implements AccountsApiDelegate {
 
     @Autowired
-    private AccountsGetAccountsService accountsGetAccountsService;
-
-    @Autowired
     private AccountsGetByAccountIdService accountsGetByAccountIdService;
 
     @Autowired
@@ -34,16 +31,6 @@ public class AccountsApiControllerImpl implements AccountsApiDelegate {
 
     @Autowired
     private AccountsGetTransactionsByAccountIdService accountsGetTransactionsByAccountIdService;
-
-    @Override
-    public ResponseEntity<ResponseAccountList> accountsGetAccounts(String consentId,
-                                                                   UUID xFapiInteractionId,
-                                                                   Integer page,
-                                                                   Integer pageSize,
-                                                                   EnumAccountType accountType) {
-        return new ResponseEntity<>(accountsGetAccountsService.accountsGetAccounts(consentId, accountType),
-                HttpStatus.OK);
-    }
 
     @Override
     public ResponseEntity<ResponseAccountIdentification> accountsGetAccountsAccountId(String accountId,

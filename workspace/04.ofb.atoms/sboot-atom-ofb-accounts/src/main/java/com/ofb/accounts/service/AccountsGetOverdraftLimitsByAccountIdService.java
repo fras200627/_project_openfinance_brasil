@@ -1,7 +1,6 @@
 package com.ofb.accounts.service;
 
 import com.ofb.accounts.model.AccountPersonalDataModel;
-import com.ofb.accounts.repository.AccountPersonalDataRepository;
 import com.ofb.accounts.server.accounts.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +13,15 @@ import java.time.ZoneId;
 @Service @Slf4j
 public class AccountsGetOverdraftLimitsByAccountIdService {
 
-//    private final static String PERMISSION_REQUIRED = "ACCOUNTS_OVERDRAFT_LIMITS_READ";
-
-    @Autowired private AccountPersonalDataRepository accountPersonalRepository;
+    @Autowired
+    private AccountsGetAccountDataByIdService accountsGetAccountDataByIdService;
 
     public ResponseAccountOverdraftLimits accountsGetAccountsAccountIdOverdraftLimits(String accountId) {
 
-        /// Build Response
-        AccountPersonalDataModel accountPersonalData = accountPersonalRepository.findAccountByAccountId(accountId);
+        ///
+        AccountPersonalDataModel accountPersonalData = accountsGetAccountDataByIdService.getAccountDataById(accountId);
+
+        ///
         AccountOverdraftLimitsData accountOverdraftLimitsData = AccountOverdraftLimitsData.builder()
                 .overdraftContractedLimit(AccountOverdraftLimitsDataOverdraftContractedLimit.builder()
                         .amount(accountPersonalData.getOverdraftContractedLimit())
