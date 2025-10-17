@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-import com.ofb.consents.server.consents.model.CreateConsent;
-import com.ofb.consents.server.consents.model.CreateConsentData;
+import com.ofb.consents.server.model.CreateConsent;
+import com.ofb.consents.server.model.CreateConsentData;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;

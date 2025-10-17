@@ -12,7 +12,7 @@ import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.model.RespponseExpirationDatetimeModel;
 import com.ofb.consents.repository.data.*;
 import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.model.*;
+import com.ofb.consents.server.model.*;
 import com.ofb.consents.service.validation.ValidateExpirationDatetimeService;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;

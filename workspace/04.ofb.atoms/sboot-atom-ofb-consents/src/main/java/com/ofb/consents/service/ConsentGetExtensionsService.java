@@ -1,4 +1,4 @@
-package com.ofb.consents.service.orchestration;
+package com.ofb.consents.service;
 
 import com.google.gson.Gson;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
@@ -11,7 +11,7 @@ import com.ofb.consents.repository.jpa.ConsentsExpirationControlPaginationSettin
 import com.ofb.consents.repository.jpa.ConsentsExpirationControlRecordFilter;
 import com.ofb.consents.repository.views.ConsentPersonalExpirationControlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
-import com.ofb.consents.server.consents.model.*;
+import com.ofb.consents.server.model.*;
 import com.ofb.lib.commons.jpa.RequestFilterParams;
 import com.ofb.lib.commons.jpa.RequestFilterPredicatesEnum;
 import com.ofb.lib.commons.jpa.RequestFilterSpecification;
@@ -48,7 +48,7 @@ public class ConsentGetExtensionsService {
     @Autowired
     private ConsentPersonalExpirationControlViewRepository consentsExpirationControlRepositoryView;
 
-    public ResponseConsentReadExtensions consentsGetConsentsConsentIdExtensions(String consentId, String authorization, UUID xFapiInteractionId, Integer page, Integer pageSize) {
+    public ResponseConsentReadExtensions consentsGetConsentsConsentIdExtensions(String consentId, UUID xFapiInteractionId, Integer page, Integer pageSize) {
 
         List<ResponseConsentReadExtensionsDataInner> listResponseExtensions = new ArrayList<>();
         Page<ConsentPersonalExpirationControlModel> consentRequestList;

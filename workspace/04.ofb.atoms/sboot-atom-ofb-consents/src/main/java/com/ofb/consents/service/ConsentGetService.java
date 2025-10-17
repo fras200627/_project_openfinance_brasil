@@ -1,4 +1,4 @@
-package com.ofb.consents.service.orchestration;
+package com.ofb.consents.service;
 
 import com.google.gson.Gson;
 import com.ofb.consents.client.authentication.handler.AppAuthenticationResourcesApi;
@@ -6,10 +6,10 @@ import com.ofb.consents.client.authentication.model.*;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.model.ConsentPersonalExpirationControlModel;
 import com.ofb.consents.repository.views.ConsentPersonalExpirationControlViewRepository;
-import com.ofb.consents.server.consents.model.BusinessEntity;
-import com.ofb.consents.server.consents.model.BusinessEntityDocument;
-import com.ofb.consents.server.consents.model.LoggedUser;
-import com.ofb.consents.server.consents.model.LoggedUserDocument;
+import com.ofb.consents.server.model.BusinessEntity;
+import com.ofb.consents.server.model.BusinessEntityDocument;
+import com.ofb.consents.server.model.LoggedUser;
+import com.ofb.consents.server.model.LoggedUserDocument;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
@@ -19,7 +19,7 @@ import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsRequestedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
-import com.ofb.consents.server.consents.model.*;
+import com.ofb.consents.server.model.*;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class ConsentGetService {
 
     @Autowired private AppAuthenticationResourcesApi authenticationResourcesApi;
 
-    public ResponseConsentRead consentsGetConsentsConsentId(String consentId, UUID xFapiInteractionId) {
+    public ResponseConsentRead consentsGetConsentsConsentId(String consentId) {
 
         String authorization = httpServletRequest.getHeader("authorization").replace("Bearer ", "");
 
@@ -142,7 +142,7 @@ public class ConsentGetService {
         }
 
         if (consentRequested.getStatus().equals("AUTHORISED") && consentRequested.getAccessTokenAuthorised() == null) {
-            String accessToken = this.getAcessToken(consentRequested, authorization, xFapiInteractionId);
+            String accessToken = this.getAcessToken(consentRequested, authorization, UUID.randomUUID());
             httpServletResponse.addHeader("AccessToken", accessToken);
             ConsentPersonalData consentCreated = consentPersonalRepository.findById(consentRequested.getConsentId()).get();
             Timestamp timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));

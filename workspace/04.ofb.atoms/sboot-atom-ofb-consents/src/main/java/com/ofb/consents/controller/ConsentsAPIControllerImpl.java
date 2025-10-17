@@ -1,12 +1,8 @@
 package com.ofb.consents.controller;
 
-import com.ofb.consents.server.consents.handler.ConsentsApiDelegate;
-import com.ofb.consents.server.consents.model.*;
-import com.ofb.consents.server.consents.model.ResponseConsentRead;
-import com.ofb.consents.service.orchestration.*;
-import com.ofb.lib.security.profiles.CanClientOFBRead;
-import com.ofb.lib.security.profiles.CanClientOFBWrite;
-import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
+import com.ofb.consents.server.handler.ConsentsApiDelegate;
+import com.ofb.consents.server.model.*;
+import com.ofb.consents.service.*;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -25,43 +21,53 @@ import java.util.*;
         in = SecuritySchemeIn.HEADER)
 public class ConsentsAPIControllerImpl implements ConsentsApiDelegate {
 
-    @Autowired private ConsentPostService   consentPostService;
-    @Autowired private ConsentGetService    consentGetService;
+    @Autowired private ConsentPostService consentPostService;
+    @Autowired private ConsentGetService consentGetService;
     @Autowired private ConsentRevokeService consentRevokeService;
     @Autowired private ConsentGetExtensionsService consentGetExtensionsService;
     @Autowired private ConsentPostExtendsService consentPostExtendsService;
 
     @Override
-    public ResponseEntity<ResponseConsent> consentsPostConsents(UUID xFapiInteractionId, CreateConsent createConsent, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
+    public ResponseEntity<ResponseConsent> consentsPostConsents(CreateConsent createConsent, UUID xFapiInteractionId) {
         return new ResponseEntity<>(consentPostService.consentsPostConsents(createConsent),
                 HttpStatus.CREATED);
     }
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponseConsentRead> consentsGetConsentsConsentId(String consentId, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
-        return new ResponseEntity<>(consentGetService.consentsGetConsentsConsentId(consentId, xFapiInteractionId),
+    @Override
+    public ResponseEntity<ResponseConsentRead> consentsGetConsentsConsentId(String consentId,
+                                                                            UUID xFapiInteractionId) {
+        return new ResponseEntity<>(consentGetService.consentsGetConsentsConsentId(consentId),
                 HttpStatus.OK);
     }
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead @CanClientOFBWrite
-    public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent) {
+    @Override
+    public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId, UUID xFapiInteractionId) {
         consentRevokeService.consentsDeleteConsentsConsentId(consentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead
-    public ResponseEntity<ResponseConsentReadExtensions> consentsGetConsentsConsentIdExtensions(String consentId, String authorization, UUID xFapiInteractionId, String xFapiAuthDate, String xFapiCustomerIpAddress, String xCustomerUserAgent, Integer page, Integer pageSize) {
-        return new ResponseEntity<>(consentGetExtensionsService.consentsGetConsentsConsentIdExtensions(consentId, authorization, xFapiInteractionId, page, pageSize),
+    @Override
+    public ResponseEntity<ResponseConsentReadExtensions> consentsGetConsentsConsentIdExtensions(String consentId,
+                                                                                                UUID xFapiInteractionId,
+                                                                                                Integer page,
+                                                                                                Integer pageSize) {
+        return new ResponseEntity<>(consentGetExtensionsService.consentsGetConsentsConsentIdExtensions(
+                consentId,
+                xFapiInteractionId,
+                page,
+                pageSize),
                 HttpStatus.OK);
     }
 
-    @Override @CanSystemOFBAdmin @CanClientOFBRead @CanClientOFBWrite
-    public ResponseEntity<ResponseConsentExtensions> consentsPostConsentsConsentIdExtends(String consentId, String authorization, String xFapiCustomerIpAddress, UUID xFapiInteractionId, String xCustomerUserAgent, CreateConsentExtensions createConsentExtensions, String xFapiAuthDate) {
-        return new ResponseEntity<>(consentPostExtendsService.consentsPostConsentsConsentIdExtends(consentId,
-                                                            authorization,
-                                                            xFapiInteractionId,
-                                                            xFapiCustomerIpAddress,
-                                                            xCustomerUserAgent,
-                                                            createConsentExtensions), HttpStatus.CREATED);
+    @Override
+    public ResponseEntity<ResponseConsentExtensions> consentsPostConsentsConsentIdExtends(String consentId,
+                                                                                          CreateConsentExtensions createConsentExtensions,
+                                                                                          UUID xFapiInteractionId) {
+        return new ResponseEntity<>(consentPostExtendsService.consentsPostConsentsConsentIdExtends(
+                consentId,
+                xFapiInteractionId,
+                createConsentExtensions),
+                HttpStatus.CREATED);
     }
+
 }

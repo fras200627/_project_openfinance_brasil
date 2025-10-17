@@ -1,4 +1,4 @@
-package com.ofb.consents.service.orchestration;
+package com.ofb.consents.service;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
@@ -6,7 +6,7 @@ import com.ofb.consents.model.ConsentPersonalModel;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
 import com.ofb.consents.repository.views.ConsentPermissionsAuthorisedlViewRepository;
 import com.ofb.consents.repository.views.ConsentPersonalViewRepository;
-import com.ofb.consents.server.consents.model.*;
+import com.ofb.consents.server.model.*;
 import com.ofb.lib.amqp.model.MessageRevokeConsentTemplate;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;

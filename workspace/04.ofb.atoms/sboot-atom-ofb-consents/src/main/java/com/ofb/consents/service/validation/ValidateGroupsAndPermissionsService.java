@@ -7,7 +7,7 @@ import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResourcePermissionsModel;
 import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.repository.views.ResourcePermissionsViewRepository;
-import com.ofb.consents.server.consents.model.*;
+import com.ofb.consents.server.model.*;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

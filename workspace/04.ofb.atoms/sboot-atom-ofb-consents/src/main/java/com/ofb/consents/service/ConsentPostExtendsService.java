@@ -1,4 +1,4 @@
-package com.ofb.consents.service.orchestration;
+package com.ofb.consents.service;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
@@ -11,10 +11,8 @@ import com.ofb.consents.model.ResponseValidateConsentModel;
 import com.ofb.consents.model.RespponseExpirationDatetimeModel;
 import com.ofb.consents.repository.data.ConsentPersonalExpiirationControlRepository;
 import com.ofb.consents.repository.data.ConsentPersonalRepository;
-import com.ofb.consents.server.consents.model.*;
-import com.ofb.consents.service.validation.ValidateBusinessEntityService;
+import com.ofb.consents.server.model.*;
 import com.ofb.consents.service.validation.ValidateExpirationDatetimeService;
-import com.ofb.consents.service.validation.ValidateLoggedUserService;
 import com.ofb.lib.amqp.model.MessageExtendsConsentTemplate;
 import com.ofb.lib.handlers.exception.template.ResponseErrorsInnerTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +42,6 @@ public class ConsentPostExtendsService {
     private boolean executeThrowImmediately;
 
     @Autowired private ConsentPersonalRepository consentsRepository;
-    @Autowired private ValidateBusinessEntityService validateBusinessEntityService;
-    @Autowired private ValidateLoggedUserService validateLoggedUserService;
     @Autowired private ValidateExpirationDatetimeService validateExpirationDatetimeService;
     @Autowired private ConsentPersonalExpiirationControlRepository consentsExpirationControlRepository;
     @Autowired private ConsentGetService consentGetService;
@@ -60,10 +56,7 @@ public class ConsentPostExtendsService {
     private String AUDIT_CONSENTS_EXTENDS_ROUTING_KEY;
 
     public ResponseConsentExtensions consentsPostConsentsConsentIdExtends(String consentId,
-                                                                              String authorization,
                                                                               UUID xFapiInteractionId,
-                                                                              String xFapiCustomerIpAddress,
-                                                                              String xCustomerUserAgent,
                                                                               CreateConsentExtensions createConsentExtensions) {
 
         ConsentPersonalData consentRequested;
@@ -101,12 +94,6 @@ public class ConsentPostExtendsService {
 
 
         /// Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        responseValidate = validateBusinessEntityService.validateBusinessEntityInformation(createConsentExtensions.getData().getBusinessEntity(), consentId, executeThrowImmediately);
-        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-
-        responseValidate = validateLoggedUserService.validateLoggedUserInformation(createConsentExtensions.getData().getLoggedUser(), consentId, executeThrowImmediately);
-        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-
         // No caso de criação ou renovação de consentimentos com prazo indeterminado, a receptora não deve
         // enviar o atributo expirationDateTime. Para prazos determinados o campo deve ser enviado.
         responseValidate = validateExpirationDatetimeService.validateExpirationDateInfo(createConsentExtensions.getData().getExpirationDateTime(), consentId, executeThrowImmediately);
@@ -126,8 +113,8 @@ public class ConsentPostExtendsService {
                 .consentId(consentId)
                 .requestDatetime(timestampThisOperation)
                 .previusExpirationDatetime(consentRequested.getExpirationDatetime())
-                .xFapiCustomerIpAddress(xFapiCustomerIpAddress)
-                .xCustomerAgent(xCustomerUserAgent)
+//                .xFapiCustomerIpAddress(xFapiCustomerIpAddress)
+//                .xCustomerAgent(xCustomerUserAgent)
                 .loggedUserIdentification(createConsentExtensions.getData().getLoggedUser().getDocument().getIdentification())
                 .loggedUserDocumentRel(createConsentExtensions.getData().getLoggedUser().getDocument().getRel())
                 .businessEntityIdentification(createConsentExtensions.getData().getBusinessEntity().getDocument().getIdentification())
@@ -168,7 +155,7 @@ public class ConsentPostExtendsService {
             throw new RuntimeException(e);
         }
 
-        ResponseConsentRead responseConsentRead = consentGetService.consentsGetConsentsConsentId(consentId, xFapiInteractionId);
+        ResponseConsentRead responseConsentRead = consentGetService.consentsGetConsentsConsentId(consentId);
 
         List<ResponseConsentExtensionsData.PermissionsEnum> permissions = new ArrayList<>();
         for (ResponseConsentReadData.PermissionsEnum permission : responseConsentRead.getData().getPermissions().stream().distinct().toList()) {

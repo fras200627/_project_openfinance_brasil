@@ -1,16 +1,13 @@
-package com.ofb.consents.service.orchestration;
+package com.ofb.consents.service;
 
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
+import com.ofb.consents.server.model.*;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import com.ofb.lib.handlers.exception.ofb.UnprocessedEntityException;
 import com.ofb.consents.model.ResponseValidateConsentModel;
-import com.ofb.consents.repository.data.*;
-import com.ofb.consents.repository.views.*;
-import com.ofb.consents.server.consents.model.*;
-import com.ofb.consents.service.persistence.ConsentCancelService;
 import com.ofb.consents.service.persistence.ConsentCreateService;
 import com.ofb.consents.service.persistence.ConsentCreatePermissionsService;
 import com.ofb.consents.service.persistence.ConsentUpdateService;
@@ -56,18 +53,12 @@ public class ConsentPostService {
     @Value("${amqp.ofb.consents.cancellation.routing-key}")
     private String CONSENTS_CANCELLATION_ROUTING_KEY;
 
-    @Autowired private ValidateBusinessEntityService        validateBusinessEntityService;
-    @Autowired private ValidateLoggedUserService            validateLoggedUserService;
-    @Autowired private ValidateConsentAlreadyExistsService  validateConsentAlreadyExistsService;
     @Autowired private ValidateExpirationDatetimeService    validateExpirationDatetimeService;
     @Autowired private ValidateGroupsAndPermissionsService  validateGroupsAndPermissionsService;
     @Autowired private ValidatePermissionsRequestedService  validatePermissionsRequestedService;
     @Autowired private ConsentCreateService                 consentCreateService;
-    @Autowired private ConsentCancelService                 consentCancelService;
     @Autowired private ConsentCreatePermissionsService      consentCreatePermissionsService;
     @Autowired private ConsentUpdateService                 consentUpdateService;
-    @Autowired private ConsentPersonalRepository            consentRepositoryData;
-    @Autowired private ConsentPersonalViewRepository        consentRepositoryView;
 
     @Autowired private RabbitTemplate rabbitTemplate;
 
@@ -85,25 +76,15 @@ public class ConsentPostService {
         ConsentPersonalData                       consentCreated;
         ResponseValidateConsentModel              responseValidate;
         List<ResponseConsentData.PermissionsEnum> permissionsResponse   = List.of();
-        List<ResponseErrorsInnerTemplate>            overallResponseErrors = new ArrayList<ResponseErrorsInnerTemplate>();
+        List<ResponseErrorsInnerTemplate>         overallResponseErrors = new ArrayList<ResponseErrorsInnerTemplate>();
 
-        /// STEP 01 - Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        responseValidate = validateBusinessEntityService.validateBusinessEntityInformation(createConsent, consentId, executeThrowImmediately);
-        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-
-        responseValidate = validateLoggedUserService.validateLoggedUserInformation(createConsent, consentId, executeThrowImmediately);
-        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-
+        /// STEP 01 - Consent Expiration Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // No caso de criação ou renovação de consentimentos com prazo indeterminado, a receptora não deve
         // enviar o atributo expirationDateTime. Para prazos determinados o campo deve ser enviado.
         responseValidate = validateExpirationDatetimeService.validateExpirationDateInfo(createConsent, consentId, executeThrowImmediately);
         overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
-        if (consentsValidateAlreadyExists) {
-            responseValidate = validateConsentAlreadyExistsService.validateConsentAlreadyExists(createConsent, consentId, executeThrowImmediately);
-            overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
-        }
-
+        /// STEP 02 - Consent Permissions Validations +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = validateGroupsAndPermissionsService.validateGroupsAndPermissionsRequested(createConsent, consentId, executeThrowImmediately);
         overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
@@ -116,11 +97,12 @@ public class ConsentPostService {
             overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
         }
 
+        /// STEP 03 - Consent Verify results of Validations +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if (!overallResponseErrors.isEmpty()) {
             throw new UnprocessedEntityException(new Gson().toJson(overallResponseErrors));
         }
 
-        ///  STEP 02 - Insert New Consent +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ///  STEP 04 - Insert New Consent +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = consentCreateService.insertNewConsent(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
             throw new UnprocessedEntityException(new Gson().toJson(responseValidate.getResponseErrorsList()));
@@ -128,7 +110,7 @@ public class ConsentPostService {
             consentCreated = (ConsentPersonalData) responseValidate.getObjectData();
         }
 
-        /// STEP 03 - Insert Consent Permissions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// STEP 05 - Insert Consent Permissions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         responseValidate = consentCreatePermissionsService.insertConsentPermissions(createConsent, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
@@ -149,10 +131,10 @@ public class ConsentPostService {
             permissionsResponse = (List<ResponseConsentData.PermissionsEnum>) responseValidate.getObjectData();
         }
 
-        // STEP 04 - Build ResponseConsentData ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// STEP 06 - Build ResponseConsentData ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         ResponseConsentData responseConsentData;
         LinksConsents links;
-        Meta                meta;
+        Meta          meta;
         try {
             responseConsentData = new ResponseConsentData(
                     consentCreated.getConsentId(),
@@ -190,7 +172,7 @@ public class ConsentPostService {
                     .build()));
         }
 
-        // STEP 05 - Update Status Consent to 'AWAITING_AUTHORISED' and send message consent to Authorization in RabbitMQ +++++++++++
+        /// STEP 07 - Update Status Consent to 'AWAITING_AUTHORISED' and send message consent to Authorization in RabbitMQ +++++++++++
         responseValidate = consentUpdateService.updateConsentToAwaitingAuthorization(consentCreated, consentId, executeThrowImmediately);
         if (responseValidate.isErrorsListed()) {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_CANCELLATION_ROUTING_KEY,
@@ -212,6 +194,7 @@ public class ConsentPostService {
                     .build()));
         }
 
+        /// Step 08 - Send message to Authorization Service +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         try {
             rabbitTemplate.convertAndSend(OFB_EXCHANGE_DIRECT, CONSENTS_AUTHORIZATION_ROUTING_KEY,
                     MessageAuthorisedConsentTemplate.builder()
@@ -245,7 +228,7 @@ public class ConsentPostService {
                     .build()));
         }
 
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // Response ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         return ResponseConsent.builder().data(responseConsentData)
                 .links(links)
                 .meta(meta)
