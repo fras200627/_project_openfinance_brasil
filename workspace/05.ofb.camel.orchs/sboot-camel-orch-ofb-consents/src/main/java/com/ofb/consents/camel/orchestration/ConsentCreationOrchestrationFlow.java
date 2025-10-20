@@ -26,7 +26,7 @@ public class ConsentCreationOrchestrationFlow extends RouteBuilder {
                 .tracing()
                 .process(new ExchangeSettingsProcessor())
                 .to("direct:authorizationRoute")
-                .to("direct:resourcesRoute")
+//                .to("direct:resourcesRoute")
                 .process(new OrchestrationResponseProcessor());
     }
 }

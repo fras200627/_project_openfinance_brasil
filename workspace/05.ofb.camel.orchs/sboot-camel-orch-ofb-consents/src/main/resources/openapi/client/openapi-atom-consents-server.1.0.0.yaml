@@ -657,7 +657,6 @@ components:
                   - FUNDS_READ
                   - VARIABLE_INCOMES_READ
                   - TREASURE_TITLES_READ
-                  - EXCHANGES_READ
               example:
                 - ACCOUNTS_READ
                 - ACCOUNTS_OVERDRAFT_LIMITS_READ
