@@ -6,18 +6,23 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrchestrationFlow extends RouteBuilder {
+public class ConsentCreationOrchestrationFlow extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
 
-//        onException(BadRequestException.class)
-//                .continued(true)
-//                .useOriginalMessage()
-//                .end();
+        // Consents OpenFinance Methods
+        // ------------------------------------
+        // consentsPostConsents
+        // consentsPostConsentsConsentIdExtends
+        //
+        // consentsDeleteConsentsConsentId
+        //
+        // consentsGetConsentsConsentId
+        // consentsGetConsentsConsentIdExtensions
 
-        from("direct:orchestrationFlow")
-                .routeId("resourceOrchestrationFlow")
+        from("direct:consentCreationOrchestrationFlow")
+                .routeId("consentCreationOrchestrationFlow")
                 .tracing()
                 .process(new ExchangeSettingsProcessor())
                 .to("direct:authorizationRoute")

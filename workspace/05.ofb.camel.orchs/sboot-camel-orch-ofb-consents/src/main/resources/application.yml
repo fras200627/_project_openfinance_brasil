@@ -75,6 +75,7 @@ app:
     clients:
       ofb-resources: 'http://localhost:3001/ofb-resources/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
+      ofb-consents: 'http://localhost:3001/ofb-consents/'
 eureka:
   client:
     serviceUrl:
@@ -119,6 +120,7 @@ app:
     clients:
       ofb-resources: 'http://localhost:3001/ofb-resources/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
+      ofb-consents: 'http://localhost:3001/ofb-consents/'
 eureka:
   client:
     serviceUrl:
@@ -163,6 +165,7 @@ app:
     clients:
       ofb-resources: 'http://localhost:3001/ofb-resources/'
       ofb-authorization: 'http://localhost:3001/ofb-authorization-server/'
+      ofb-consents: 'http://localhost:3001/ofb-consents/'
 eureka:
   client:
     serviceUrl:
