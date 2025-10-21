@@ -381,7 +381,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>generator-client-authentication-resources</id> <!-- It is not optional and must have a unique id -->
+						<id>generator-client-authentication</id> <!-- It is not optional and must have a unique id -->
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -400,6 +400,37 @@
 							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 							<configOptions>
 								<invokerpackage>com.ofb.consents.client.authentication.handler</invokerpackage>
+								<library>resttemplate</library>
+								<documentationProvider>source</documentationProvider>
+								<generateBuilders>true</generateBuilders>
+								<generateClientAsBean>true</generateClientAsBean>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
+								<sourcefolder>src/gen/java/main</sourcefolder>
+								<java8>true</java8>
+								<datelibrary>java8</datelibrary>
+							</configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generator-client-participants</id> <!-- It is not optional and must have a unique id -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+							 generatorName Types:
+							 OpenAPI Documentation for API Servers and API Clients in
+							 https://openapi-generator.tech/docs/generators/
+							 The 'spring' type generates a server package ++++++++++++++-->
+							<generatorName>java</generatorName>
+							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
+							<inputSpec>${openapi.input.sec.path}/client/openapi-atom-participants-business-server.1.0.0.yaml</inputSpec>
+							<apiPackage>com.ofb.consents.client.participants.handler</apiPackage>
+							<modelPackage>com.ofb.consents.client.participants.model</modelPackage>
+							<output>${openapi.output.path}</output>
+							<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							<configOptions>
+								<invokerpackage>com.ofb.consents.client.participants.handler</invokerpackage>
 								<library>resttemplate</library>
 								<documentationProvider>source</documentationProvider>
 								<generateBuilders>true</generateBuilders>

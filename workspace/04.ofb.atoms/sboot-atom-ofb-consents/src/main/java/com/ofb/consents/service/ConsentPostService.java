@@ -53,6 +53,8 @@ public class ConsentPostService {
     @Value("${amqp.ofb.consents.cancellation.routing-key}")
     private String CONSENTS_CANCELLATION_ROUTING_KEY;
 
+    @Autowired private ValidateBusinessEntityService        validateBusinessEntityService;
+    @Autowired private ValidateLoggedUserService            validateLoggedUserService;
     @Autowired private ValidateExpirationDatetimeService    validateExpirationDatetimeService;
     @Autowired private ValidateGroupsAndPermissionsService  validateGroupsAndPermissionsService;
     @Autowired private ValidatePermissionsRequestedService  validatePermissionsRequestedService;
@@ -77,6 +79,13 @@ public class ConsentPostService {
         ResponseValidateConsentModel              responseValidate;
         List<ResponseConsentData.PermissionsEnum> permissionsResponse   = List.of();
         List<ResponseErrorsInnerTemplate>         overallResponseErrors = new ArrayList<ResponseErrorsInnerTemplate>();
+
+        /// STEP 00 - Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        responseValidate = validateBusinessEntityService.validateBusinessEntityInformation(createConsent, consentId, executeThrowImmediately);
+        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
+
+        responseValidate = validateLoggedUserService.validateLoggedUserInformation(createConsent, consentId, executeThrowImmediately);
+        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
         /// STEP 01 - Consent Expiration Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // No caso de criação ou renovação de consentimentos com prazo indeterminado, a receptora não deve

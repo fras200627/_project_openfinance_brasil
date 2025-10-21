@@ -3,6 +3,8 @@ package com.ofb.consents.service;
 import com.google.gson.Gson;
 import com.ofb.consents.entity.ConsentPersonalData;
 import com.ofb.consents.entity.ConsentPersonalDataExpirationControl;
+import com.ofb.consents.service.validation.ValidateBusinessEntityService;
+import com.ofb.consents.service.validation.ValidateLoggedUserService;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
@@ -41,6 +43,8 @@ public class ConsentPostExtendsService {
     @Value("${app.consents.validate.execute-throw-immediately}")
     private boolean executeThrowImmediately;
 
+    @Autowired private ValidateBusinessEntityService validateBusinessEntityService;
+    @Autowired private ValidateLoggedUserService validateLoggedUserService;
     @Autowired private ConsentPersonalRepository consentsRepository;
     @Autowired private ValidateExpirationDatetimeService validateExpirationDatetimeService;
     @Autowired private ConsentPersonalExpiirationControlRepository consentsExpirationControlRepository;
@@ -92,6 +96,12 @@ public class ConsentPostExtendsService {
         ResponseValidateConsentModel responseValidate;
         List<ResponseErrorsInnerTemplate> overallResponseErrors = new ArrayList<ResponseErrorsInnerTemplate>();
 
+        /// Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        responseValidate = validateBusinessEntityService.validateBusinessEntityInformation(createConsentExtensions.getData().getBusinessEntity(), consentId, executeThrowImmediately);
+        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
+
+        responseValidate = validateLoggedUserService.validateLoggedUserInformation(createConsentExtensions.getData().getLoggedUser(), consentId, executeThrowImmediately);
+        overallResponseErrors.addAll(responseValidate.getResponseErrorsList());
 
         /// Consent Validations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // No caso de criação ou renovação de consentimentos com prazo indeterminado, a receptora não deve
