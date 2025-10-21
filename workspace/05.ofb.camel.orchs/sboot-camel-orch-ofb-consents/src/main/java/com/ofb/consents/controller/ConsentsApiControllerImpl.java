@@ -6,9 +6,7 @@ import com.ofb.consents.client.consents.handler.ConsentsApi;
 import com.ofb.consents.client.consents.model.ResponseAccessTokenRead;
 import com.ofb.consents.client.consents.model.ResponseAccessTokenReadData;
 import com.ofb.consents.server.handler.ConsentsApiDelegate;
-import com.ofb.consents.server.model.ResponseConsentRead;
-import com.ofb.consents.server.model.ResponseConsentReadData;
-import com.ofb.consents.server.model.ResponseConsentReadExtensions;
+import com.ofb.consents.server.model.*;
 import com.ofb.consents.service.ConsentGetAccessTokenService;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -104,143 +102,86 @@ public class ConsentsApiControllerImpl implements ConsentsApiDelegate {
 
     }
 
+    @Override
+    public ResponseEntity<ResponseConsent> consentsPostConsents(String authorization,
+                                                                UUID xFapiInteractionId,
+                                                                CreateConsent createConsent,
+                                                                String xFapiAuthDate,
+                                                                String xFapiCustomerIpAddress,
+                                                                String xCustomerUserAgent) {
 
-//    @Override
-//    public ResponseEntity<ResponseConsentRead> consentsGetConsentsConsentId(String consentId,
-//                                                                            String authorization,
-//                                                                            UUID xFapiInteractionId,
-//                                                                            String xFapiAuthDate,
-//                                                                            String xFapiCustomerIpAddress,
-//                                                                            String xCustomerUserAgent) {
-//
-//        List<RequestParam> requestParams = new ArrayList<>();
-//        requestParams.add(RequestParam.builder().paramName("Authorization")
-//                .paramValue(authorization).build());
-//        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
-//                .paramValue(xFapiInteractionId).build());
-//        requestParams.add(RequestParam.builder().paramName("requestType")
-//                .paramValue("GET_CONSENT").build());
-//        requestParams.add(RequestParam.builder().paramName("consentId")
-//                .paramValue(consentId).build());
-//        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
-//                .requestOrchParams(requestParams).build();
-//
-//        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentRequestOrchestrationFlow",
-//                requestOrchParams, ResponseConsentRead.class),
-//                HttpStatus.OK);
-//    }
-//
-//    @Override
-//    public ResponseEntity<ResponseConsentReadExtensions> consentsGetConsentsConsentIdExtensions(String consentId,
-//                                                                                                String authorization,
-//                                                                                                UUID   xFapiInteractionId,
-//                                                                                                String xFapiAuthDate,
-//                                                                                                String xFapiCustomerIpAddress,
-//                                                                                                String xCustomerUserAgent,
-//                                                                                                Integer page,
-//                                                                                                Integer pageSize) {
-//
-//
-//        List<RequestParam> requestParams = new ArrayList<>();
-//        requestParams.add(RequestParam.builder().paramName("Authorization")
-//                .paramValue(authorization).build());
-//        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
-//                .paramValue(xFapiInteractionId).build());
-//        requestParams.add(RequestParam.builder().paramName("requestType")
-//                .paramValue("GET_CONSENT_EXTENSIONS").build());
-//        requestParams.add(RequestParam.builder().paramName("consentId")
-//                .paramValue(consentId).build());
-//        requestParams.add(RequestParam.builder().paramName("page")
-//                .paramValue(page).build());
-//        requestParams.add(RequestParam.builder().paramName("pageSize")
-//                .paramValue(pageSize).build());
-//        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
-//                .requestOrchParams(requestParams).build();
-//
-//        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentRequestOrchestrationFlow",
-//                requestOrchParams, ResponseConsentReadExtensions.class),
-//                HttpStatus.OK);
-//    }
-//
-//    @Override
-//    public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId,
-//                                                                String authorization,
-//                                                                UUID xFapiInteractionId,
-//                                                                String xFapiAuthDate,
-//                                                                String xFapiCustomerIpAddress,
-//                                                                String xCustomerUserAgent) {
-//
-//        List<RequestParam> requestParams = new ArrayList<>();
-//        requestParams.add(RequestParam.builder().paramName("Authorization")
-//                .paramValue(authorization).build());
-//        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
-//                .paramValue(xFapiInteractionId).build());
-//        requestParams.add(RequestParam.builder().paramName("requestType")
-//                .paramValue("DELETE_CONSENTS").build());
-////        requestParams.add(RequestParam.builder().paramName("accountId")
-////                .paramValue("").build());
-////        requestParams.add(RequestParam.builder().paramName("page")
-////                .paramValue(page).build());
-////        requestParams.add(RequestParam.builder().paramName("pageSize")
-////                .paramValue(pageSize).build());
-////        requestParams.add(RequestParam.builder().paramName("accountType")
-////                .paramValue(accountType.getValue()).build());
-//        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
-//                .requestOrchParams(requestParams).build();
-//
-//        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentDeletionOrchestrationFlow",
-//                requestOrchParams, void.class),
-//                HttpStatus.OK);
-//    }
-//
-//    @Override
-//    public ResponseEntity<ResponseConsent> consentsPostConsents(String authorization,
-//                                                                UUID xFapiInteractionId,
-//                                                                CreateConsent createConsent,
-//                                                                String xFapiAuthDate,
-//                                                                String xFapiCustomerIpAddress,
-//                                                                String xCustomerUserAgent) {
-//
-//        List<RequestParam> requestParams = new ArrayList<>();
-//        requestParams.add(RequestParam.builder().paramName("Authorization")
-//                .paramValue(authorization).build());
-//        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
-//                .paramValue(xFapiInteractionId).build());
-//        requestParams.add(RequestParam.builder().paramName("requestType")
-//                .paramValue("POST_CONSENTS").build());
-//        requestParams.add(RequestParam.builder().paramName("createConsent")
-//                .paramValue(createConsent).build());
-//        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
-//                .requestOrchParams(requestParams).build();
-//
-//        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentCreationOrchestrationFlow",
-//                requestOrchParams, ResponseConsent.class),
-//                HttpStatus.OK);
-//    }
-//
-//    @Override
-//    public ResponseEntity<ResponseConsentExtensions> consentsPostConsentsConsentIdExtends(String consentId,
-//                                                                                          String authorization,
-//                                                                                          String xFapiCustomerIpAddress,
-//                                                                                          UUID xFapiInteractionId,
-//                                                                                          String xCustomerUserAgent,
-//                                                                                          CreateConsentExtensions createConsentExtensions,
-//                                                                                          String xFapiAuthDate) {
-//
-//        List<RequestParam> requestParams = new ArrayList<>();
-//        requestParams.add(RequestParam.builder().paramName("Authorization")
-//                .paramValue(authorization).build());
-//        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
-//                .paramValue(xFapiInteractionId).build());
-//        requestParams.add(RequestParam.builder().paramName("requestType")
-//                .paramValue("POST_CONSENTS_EXTENDS").build());
-//        requestParams.add(RequestParam.builder().paramName("createConsentExtensions")
-//                .paramValue(createConsentExtensions).build());
-//        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
-//                .requestOrchParams(requestParams).build();
-//
-//        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentExtensionOrchestrationFlow",
-//                requestOrchParams, ResponseConsentExtensions.class),
-//                HttpStatus.OK);
-//    }
+
+        List<RequestParam> requestParams = new ArrayList<>();
+        requestParams.add(RequestParam.builder().paramName("Authorization")
+                .paramValue(authorization).build());
+        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
+                .paramValue(xFapiInteractionId).build());
+        requestParams.add(RequestParam.builder().paramName("requestType")
+                .paramValue("POST_CONSENTS").build());
+        requestParams.add(RequestParam.builder().paramName("createConsent")
+                .paramValue(createConsent).build());
+        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
+                .requestOrchParams(requestParams).build();
+
+        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentRequestOrchestrationFlow",
+                requestOrchParams, ResponseConsent.class),
+                HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<ResponseConsentExtensions> consentsPostConsentsConsentIdExtends(String consentId,
+                                                                                          String authorization,
+                                                                                          String xFapiCustomerIpAddress,
+                                                                                          UUID xFapiInteractionId,
+                                                                                          String xCustomerUserAgent,
+                                                                                          CreateConsentExtensions createConsentExtensions,
+                                                                                          String xFapiAuthDate) {
+
+        List<RequestParam> requestParams = new ArrayList<>();
+        requestParams.add(RequestParam.builder().paramName("Authorization")
+                .paramValue(authorization).build());
+        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
+                .paramValue(xFapiInteractionId).build());
+        requestParams.add(RequestParam.builder().paramName("requestType")
+                .paramValue("POST_CONSENTS_EXTENDS").build());
+        requestParams.add(RequestParam.builder().paramName("consentId")
+                .paramValue(consentId).build());
+        requestParams.add(RequestParam.builder().paramName("createConsentExtensions")
+                .paramValue(createConsentExtensions).build());
+        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
+                .requestOrchParams(requestParams).build();
+
+        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentRequestOrchestrationFlow",
+                requestOrchParams, ResponseConsentExtensions.class),
+                HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId,
+                                                                String authorization,
+                                                                UUID xFapiInteractionId,
+                                                                String xFapiAuthDate,
+                                                                String xFapiCustomerIpAddress,
+                                                                String xCustomerUserAgent) {
+
+        List<RequestParam> requestParams = new ArrayList<>();
+        requestParams.add(RequestParam.builder().paramName("Authorization")
+                .paramValue(authorization).build());
+        requestParams.add(RequestParam.builder().paramName("x-fapi-interaction-id")
+                .paramValue(xFapiInteractionId).build());
+        requestParams.add(RequestParam.builder().paramName("requestType")
+                .paramValue("DELETE_CONSENTS").build());
+        requestParams.add(RequestParam.builder().paramName("consentId")
+                .paramValue(consentId).build());
+        RequestOrchParams requestOrchParams = RequestOrchParams.builder()
+                .requestOrchParams(requestParams).build();
+
+        return new ResponseEntity<>(producerTemplate.requestBody("direct:consentRequestOrchestrationFlow",
+                requestOrchParams, void.class),
+                HttpStatus.OK);
+
+    }
+
 }

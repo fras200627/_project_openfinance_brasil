@@ -27,6 +27,12 @@ public class ExchangeSettingsProcessor implements Processor {
             if (param.getParamName().equals("createConsent")) {
                 exchange.setProperty("createConsent", param.getParamValue());
             }
+            if (param.getParamName().equals("createConsentExtensions")) {
+                exchange.setProperty("createConsentExtensions", param.getParamValue());
+            }
+            if (param.getParamName().equals("createConsent")) {
+                exchange.setProperty("createConsent", param.getParamValue());
+            }
             if (param.getParamName().equals("consentId")) {
                 exchange.setProperty("consentId", param.getParamValue().toString());
             }

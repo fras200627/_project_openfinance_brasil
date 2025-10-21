@@ -1,9 +1,11 @@
 package com.ofb.consents.camel.processor;
 
 import com.google.gson.Gson;
+import com.ofb.consents.camel.mapper.ConsentExtendsMapper;
 import com.ofb.consents.client.authorization.model.ResultErrorsErrorsInner;
 import com.ofb.consents.client.consents.handler.ConsentsApi;
-import com.ofb.consents.client.consents.model.ResponseConsent;
+import com.ofb.consents.client.consents.model.CreateConsentExtensions;
+import com.ofb.consents.client.consents.model.ResponseConsentExtensions;
 import com.ofb.consents.client.consents.model.ResponseConsentReadExtensions;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
@@ -11,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-public class ConsentsGetConsentExtensionsProcessor implements Processor {
+public class ConsentsPostConsentExtendsProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -33,23 +36,28 @@ public class ConsentsGetConsentExtensionsProcessor implements Processor {
         consentsApi.getApiClient().addDefaultHeader("x-fapi-interaction-id",exchange.getProperty("x-fapi-interaction-id").toString());
 
         ///
-        try {
-            ResponseConsentReadExtensions responseConsentReadExtensions = consentsApi.consentsGetConsentsConsentIdExtensions(
-                    exchange.getProperty("consentId").toString(),
-                    UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()),
-                    Integer.valueOf(exchange.getProperty("page").toString()),
-                    Integer.valueOf(exchange.getProperty("pageSize").toString()));
+        com.ofb.consents.server.model.CreateConsentExtensions createConsentExtensionsServer =
+                (com.ofb.consents.server.model.CreateConsentExtensions) exchange.getProperty("createConsentExtensions");
 
-            exchange.getMessage().setBody(responseConsentReadExtensions);
+        com.ofb.consents.client.consents.model.CreateConsentExtensions  createConsentExtensionsClient =
+                ConsentExtendsMapper.INSTANCE.consentExtendsServerToConsentExtendsClient(createConsentExtensionsServer);
+
+        try {
+            ResponseConsentExtensions responseConsentExtensions = consentsApi.consentsPostConsentsConsentIdExtends(
+                    exchange.getProperty("consentId").toString(),
+                    createConsentExtensionsClient,
+                    UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString())
+            );
+
+            exchange.getMessage().setBody(responseConsentExtensions);
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Consent Extensions request error")
+                    .title("Post Consent Extends request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail(e.getMessage())
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
-
     }
 
 }

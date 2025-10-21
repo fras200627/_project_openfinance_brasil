@@ -5,9 +5,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface ResponseConsentExtensionsMapper {
+public interface ResponseGetConsentExtensionsMapper {
 
-    ResponseConsentExtensionsMapper INSTANCE = Mappers.getMapper(ResponseConsentExtensionsMapper.class);
+    ResponseGetConsentExtensionsMapper INSTANCE = Mappers.getMapper(ResponseGetConsentExtensionsMapper.class);
 
     @Mapping(target = "data",  source = "source.data")
     @Mapping(target = "meta",  source = "source.meta")

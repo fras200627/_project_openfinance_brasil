@@ -1,10 +1,11 @@
 package com.ofb.consents.camel.processor;
 
 import com.google.gson.Gson;
+import com.ofb.consents.camel.mapper.ConsentMapper;
 import com.ofb.consents.client.authorization.model.ResultErrorsErrorsInner;
 import com.ofb.consents.client.consents.handler.ConsentsApi;
+import com.ofb.consents.client.consents.model.CreateConsent;
 import com.ofb.consents.client.consents.model.ResponseConsent;
-import com.ofb.consents.client.consents.model.ResponseConsentReadExtensions;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-public class ConsentsGetConsentExtensionsProcessor implements Processor {
+public class ConsentsPostConsentProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -33,23 +34,26 @@ public class ConsentsGetConsentExtensionsProcessor implements Processor {
         consentsApi.getApiClient().addDefaultHeader("x-fapi-interaction-id",exchange.getProperty("x-fapi-interaction-id").toString());
 
         ///
-        try {
-            ResponseConsentReadExtensions responseConsentReadExtensions = consentsApi.consentsGetConsentsConsentIdExtensions(
-                    exchange.getProperty("consentId").toString(),
-                    UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()),
-                    Integer.valueOf(exchange.getProperty("page").toString()),
-                    Integer.valueOf(exchange.getProperty("pageSize").toString()));
+        com.ofb.consents.server.model.CreateConsent createConsent =
+                (com.ofb.consents.server.model.CreateConsent) exchange.getProperty("createConsent");
+        CreateConsent  createConsentClient = ConsentMapper.INSTANCE.consentServerToConsentClient(createConsent);
 
-            exchange.getMessage().setBody(responseConsentReadExtensions);
+        ///
+        try {
+            ResponseConsent responseConsent = consentsApi.consentsPostConsents(
+                    createConsentClient,
+                    UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString())
+            );
+
+            exchange.getMessage().setBody(responseConsent);
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Consent Extensions request error")
+                    .title("Post Consent request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail(e.getMessage())
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
-
     }
 
 }

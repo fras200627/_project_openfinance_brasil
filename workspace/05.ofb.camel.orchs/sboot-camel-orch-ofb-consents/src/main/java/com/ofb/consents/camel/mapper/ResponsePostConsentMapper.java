@@ -5,14 +5,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface ResponseConsentMapper {
+public interface ResponsePostConsentMapper {
 
-    ResponseConsentMapper INSTANCE = Mappers.getMapper(ResponseConsentMapper.class);
+    ResponsePostConsentMapper INSTANCE = Mappers.getMapper(ResponsePostConsentMapper.class);
 
     @Mapping(target = "data",  source = "source.data")
     @Mapping(target = "meta",  source = "source.meta")
     @Mapping(target = "links", source = "source.links")
-    com.ofb.consents.server.model.ResponseConsentRead responseConsentRead(
-        com.ofb.consents.client.consents.model.ResponseConsentRead source);
-
+    com.ofb.consents.server.model.ResponseConsent responseConsentExtends(
+        com.ofb.consents.client.consents.model.ResponseConsent source);
 }

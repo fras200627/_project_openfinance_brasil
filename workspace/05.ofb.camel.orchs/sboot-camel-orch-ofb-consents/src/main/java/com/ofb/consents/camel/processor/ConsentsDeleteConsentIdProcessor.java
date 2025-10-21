@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.ofb.consents.client.authorization.model.ResultErrorsErrorsInner;
 import com.ofb.consents.client.consents.handler.ConsentsApi;
 import com.ofb.consents.client.consents.model.ResponseConsent;
-import com.ofb.consents.client.consents.model.ResponseConsentReadExtensions;
+import com.ofb.consents.client.consents.model.ResponseConsentRead;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-public class ConsentsGetConsentExtensionsProcessor implements Processor {
+public class ConsentsDeleteConsentIdProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -34,22 +34,18 @@ public class ConsentsGetConsentExtensionsProcessor implements Processor {
 
         ///
         try {
-            ResponseConsentReadExtensions responseConsentReadExtensions = consentsApi.consentsGetConsentsConsentIdExtensions(
-                    exchange.getProperty("consentId").toString(),
-                    UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()),
-                    Integer.valueOf(exchange.getProperty("page").toString()),
-                    Integer.valueOf(exchange.getProperty("pageSize").toString()));
+            consentsApi.consentsDeleteConsentsConsentId(exchange.getProperty("consentId").toString(),
+                    UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()));
 
-            exchange.getMessage().setBody(responseConsentReadExtensions);
+            exchange.getMessage().setBody("");
         } catch (Exception e) {
             listResponseErrors.add(new ResultErrorsErrorsInner().toBuilder()
-                    .title("Get Consent Extensions request error")
+                    .title("Delete Consent request error")
                     .code(ResponseOFBCodesEnum.CodeEnum.BAD_REQUEST.getValue())
                     .detail(e.getMessage())
                     .build());
             throw new BadRequestException(gson.toJson(listResponseErrors));
         }
-
     }
 
 }

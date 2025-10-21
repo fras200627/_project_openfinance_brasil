@@ -1,8 +1,6 @@
 package com.ofb.consents.camel.orchestration;
 
-import com.ofb.consents.camel.processor.ExchangeSettingsProcessor;
-import com.ofb.consents.camel.processor.ResponseConsentGetConsentExtensionsProcessor;
-import com.ofb.consents.camel.processor.ResponseConsentGetConsentIdProcessor;
+import com.ofb.consents.camel.processor.*;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +31,12 @@ public class ConsentRequestOrchestrationFlow extends RouteBuilder {
                         .process(new ResponseConsentGetConsentIdProcessor())
                     .when(exchangeProperty("requestType").isEqualTo("GET_CONSENT_EXTENSIONS"))
                         .process(new ResponseConsentGetConsentExtensionsProcessor())
+                    .when(exchangeProperty("requestType").isEqualTo("POST_CONSENTS_EXTENDS"))
+                        .process(new ResponseConsentPostConsentExtendsProcessor())
+                    .when(exchangeProperty("requestType").isEqualTo("POST_CONSENTS"))
+                        .process(new ResponseConsentPostConsentProcessor())
+//                    .when(exchangeProperty("requestType").isEqualTo("DELETE_CONSENTS"))
+//                        .process(new ResponseConsentDeleteConsentProcessor())
                     .otherwise()
                         .log("mapping not applicable")
                     .end()

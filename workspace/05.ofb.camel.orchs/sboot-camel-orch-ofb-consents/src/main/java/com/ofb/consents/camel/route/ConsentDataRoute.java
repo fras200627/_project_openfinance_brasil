@@ -1,7 +1,6 @@
 package com.ofb.consents.camel.route;
 
-import com.ofb.consents.camel.processor.ConsentsGetConsentExtensionsProcessor;
-import com.ofb.consents.camel.processor.ConsentsGetConsentIdProcessor;
+import com.ofb.consents.camel.processor.*;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,6 +25,12 @@ class ConsentDataRoute extends RouteBuilder {
                     .process(new ConsentsGetConsentIdProcessor())
                 .when(exchangeProperty("requestType").isEqualTo("GET_CONSENT_EXTENSIONS"))
                     .process(new ConsentsGetConsentExtensionsProcessor())
+                .when(exchangeProperty("requestType").isEqualTo("POST_CONSENTS_EXTENDS"))
+                    .process(new ConsentsPostConsentExtendsProcessor())
+                .when(exchangeProperty("requestType").isEqualTo("POST_CONSENTS"))
+                    .process(new ConsentsPostConsentProcessor())
+                .when(exchangeProperty("requestType").isEqualTo("DELETE_CONSENTS"))
+                    .process(new ConsentsDeleteConsentIdProcessor())
                 .end()
             .end();
 
