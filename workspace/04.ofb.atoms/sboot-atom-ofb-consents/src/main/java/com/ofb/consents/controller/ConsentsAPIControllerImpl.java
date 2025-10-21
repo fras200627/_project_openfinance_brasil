@@ -26,6 +26,7 @@ public class ConsentsAPIControllerImpl implements ConsentsApiDelegate {
     @Autowired private ConsentRevokeService consentRevokeService;
     @Autowired private ConsentGetExtensionsService consentGetExtensionsService;
     @Autowired private ConsentPostExtendsService consentPostExtendsService;
+    @Autowired private ConsentGetAccessTokenService consentGetAccessTokenService;
 
     @Override
     public ResponseEntity<ResponseConsent> consentsPostConsents(CreateConsent createConsent, UUID xFapiInteractionId) {
@@ -44,6 +45,12 @@ public class ConsentsAPIControllerImpl implements ConsentsApiDelegate {
     public ResponseEntity<Void> consentsDeleteConsentsConsentId(String consentId, UUID xFapiInteractionId) {
         consentRevokeService.consentsDeleteConsentsConsentId(consentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<ResponseAccessTokenRead> consentsGetAccessTokenConsentId(String consentId, UUID xFapiInteractionId) {
+        return new ResponseEntity<>(consentGetAccessTokenService.consentsGetAccessTokenConsentId(consentId),
+                HttpStatus.OK);
     }
 
     @Override

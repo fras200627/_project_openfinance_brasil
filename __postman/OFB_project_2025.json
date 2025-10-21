@@ -1,0 +1,4445 @@
+{
+	"info": {
+		"_postman_id": "4322a3ff-6937-4424-a4f9-eb8f7c561e56",
+		"name": "Project OFB Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6640495",
+		"_collection_link": "https://galactic-desert-57790.postman.co/workspace/tican~ff03dcf4-749e-436d-be35-b5ec435afd80/collection/6640495-4322a3ff-6937-4424-a4f9-eb8f7c561e56?action=share&source=collection_link&creator=6640495"
+	},
+	"item": [
+		{
+			"name": "(1) DISCOVERY-SERVICES",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "(2) API-GATEWAY",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "(3) AUTHENTICATION-SERVER",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token \"Admin Master\" -> scope system.admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ofb-admin-master",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "3d864f47-9b38-45e5-bf12-9c960c95c807",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ticket-id",
+								"value": "753192333",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"token",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token \"OFB Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ofb-test",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "3d864f47-9b38-45e5-bf12-9c960c95c807",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ticket-id",
+								"value": "753192333",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"token",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token 'Santander' -> scope client.ofb.read / write",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token)",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ofb-santander",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"token",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token 'Banco BV' -> scope client.ofb.read / write",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ofb-banco-bv",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"token",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token 'C6 Bank' -> scope client.ofb.read / write",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token\", pm.response.json().access_token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ofb-c6-bank",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"token",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Token Access Consents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code == 200){\r",
+									"    pm.environment.set(\"access_token_consent\", pm.response.json().access_token)\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"consentId\": \"urn:bancotcn:1971b182-173e-49c9-ab71-147e91078193\",\r\n  \"creationDateTime\": \"2025-10-03T08:30:00Z\",\r\n  \"expirationDateTime\": \"2026-10-03T08:30:00Z\",\r\n  \"loggedUser\": {\r\n    \"document\": {\r\n      \"loggedUserName\": \"loggedUserName\",\r\n      \"identification\": \"54880884588\",\r\n      \"rel\": \"CPF\"\r\n    }\r\n  },\r\n  \"businessEntity\": {\r\n    \"document\": {\r\n      \"entityBusinessName\": \"entityBusinessName\",\r\n      \"identification\": \"94420534000110\",\r\n      \"rel\": \"CNPJ\"\r\n    }\r\n  },\r\n  \"scopes\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-authentication-server/token/access/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authentication-server",
+								"token",
+								"access",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "(4) AUTHORIZATION-SERVER",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ValidateAuthorization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/validate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateAccessTokenClaims",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/tokenClaimsValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"tokenClaimsValidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateBusinessEntity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/businessEntityValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"businessEntityValidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateLoggedUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/loggedUserValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"loggedUserValidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validateConsent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "d78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-authorization-server/authorization/accessToken/consentValidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-authorization-server",
+								"authorization",
+								"accessToken",
+								"consentValidate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "(5) REGISTERED-CLIENTS",
+			"item": [
+				{
+					"name": "APIs with Load Balance",
+					"item": [
+						{
+							"name": "OAuth2 Registered Clients Business",
+							"item": [
+								{
+									"name": "Health Check",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/health",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"health"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Actuator Info",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/actuator/info",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"actuator",
+												"info"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find by Id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findById?registeredId=99999",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findById"
+											],
+											"query": [
+												{
+													"key": "registeredId",
+													"value": "99999"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find by Client Id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientId?clientId=ofb-santander",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findByClientId"
+											],
+											"query": [
+												{
+													"key": "clientId",
+													"value": "ofb-santander"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find by Client  Document Number",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientDocument?clientDocument=94420534000110",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findByClientDocument"
+											],
+											"query": [
+												{
+													"key": "clientDocument",
+													"value": "94420534000110"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find by Client Name",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientName?clientName=Client Tican Admin Master",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findByClientName"
+											],
+											"query": [
+												{
+													"key": "clientName",
+													"value": "Client Tican Admin Master"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find All",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findAll",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findAll"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find By Pageable",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findByPageable"
+											],
+											"query": [
+												{
+													"key": "pageNumber",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												},
+												{
+													"key": "pageSortField",
+													"value": "id"
+												},
+												{
+													"key": "pageSortOrder",
+													"value": "ASC"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find By Filters",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-business-api",
+												"business",
+												"findByFilters"
+											],
+											"query": [
+												{
+													"key": "pageNumber",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												},
+												{
+													"key": "pageSortField",
+													"value": "id"
+												},
+												{
+													"key": "pageSortOrder",
+													"value": "ASC"
+												},
+												{
+													"key": "registeredId",
+													"value": "4cc15249-9ca9-421a-a646-96a0328960fa"
+												},
+												{
+													"key": "clientId",
+													"value": "tican-client-2"
+												},
+												{
+													"key": "clientName",
+													"value": "tican client 2"
+												},
+												{
+													"key": "securityScope",
+													"value": "client.root",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "OAuth2 Registered Clients Domain",
+							"item": [
+								{
+									"name": "Health Check",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/health",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"health"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Actuator Info",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/actuator/info",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"actuator",
+												"info"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Registered Client 1",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"clientId\": \"tican-client-15042025\",\r\n\"clientName\": \"Tican Client 15042025\",\r\n\"clientSecret\": \"123456\",\r\n\"tokenDurationOfMinutes\": \"30\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\",\r\n\"listOfClientAuthenticationMethods\": [\r\n    {\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n],\r\n\"listOfAuthorizationGrantTypes\": [\r\n    {\"authorizationGrantType\": \"client_credentials\"}\r\n],\r\n\"listOfRedirectUris\": [\r\n    {\"redirectUri\": \"nopnopnopnop3\"},\r\n    {\"redirectUri\": \"nopnopnopnop4\"}\r\n],\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.read\"},\r\n    {\"scope\": \"client.write\"},\r\n    {\"scope\": \"client.root\"}\r\n]\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Registered Client 2",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"clientId\": \"tican-client-2b\",\r\n\"clientName\": \"Tican Client 2b\",\r\n\"clientSecret\": \"123456\",\r\n\"tokenDurationOfMinutes\": \"30\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\",\r\n\"listOfClientAuthenticationMethods\": [\r\n    {\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n],\r\n\"listOfAuthorizationGrantTypes\": [\r\n    {\"authorizationGrantType\": \"client_credentials\"}\r\n],\r\n\"listOfRedirectUris\": [\r\n    {\"redirectUri\": \"nopnopnopnop3\"},\r\n    {\"redirectUri\": \"nopnopnopnop4\"}\r\n],\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.root\"}\r\n]\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Secret Registered Client",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "clientSecretOld",
+												"value": "123456",
+												"type": "text"
+											},
+											{
+												"key": "clientSecretNew",
+												"value": "123456789",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain/change-client-secret?registeredId=a508e782-b873-48d9-92f1-c50f380640fd",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain",
+												"change-client-secret"
+											],
+											"query": [
+												{
+													"key": "registeredId",
+													"value": "a508e782-b873-48d9-92f1-c50f380640fd"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Status Registered Client",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain/change-status?registeredId=a508e782-b873-48d9-92f1-c50f380640fd&status=ENABLED",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain",
+												"change-status"
+											],
+											"query": [
+												{
+													"key": "registeredId",
+													"value": "a508e782-b873-48d9-92f1-c50f380640fd"
+												},
+												{
+													"key": "status",
+													"value": "ENABLED"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update All Fields Registered Client",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"registeredId\": \"21707ece-51c8-4192-8d30-232f564b8350\",     \r\n    \"clientId\": \"tican-client-2b\",\r\n    \"clientName\": \"Tican Client 2b\",\r\n    \"tokenDurationOfMinutes\": 5,\r\n    \"clientSecretExpiresAtOfDays\": 10,\r\n    \"requireAuthorizationConsent\": \"false\",\r\n    \"status\": \"LOCKED\",\r\n    \"listOfClientAuthenticationMethods\": [\r\n        {\r\n        \"clientAuthenticationMethod\": \"basic\"\r\n        }\r\n    ],\r\n    \"listOfAuthorizationGrantTypes\": [\r\n        {\r\n        \"authorizationGrantType\": \"jwt_bearer\"\r\n        }\r\n    ],\r\n    \"listOfRedirectUris\": [\r\n        {\r\n        \"redirectUri\": \"Redirect Uri\"\r\n        }\r\n    ],\r\n    \"listOfScopes\": [\r\n        {\r\n        \"scope\": \"client.read\"},\r\n        {\"scope\": \"client.write\"\r\n        }\r\n    ]\r\n}\r\n"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Scopes Registered Client",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"registeredId\": \"a508e782-b873-48d9-92f1-c50f380640fd\",\r\n\"clientId\": \"ticanclient3\",\r\n\"clientName\": \"ticanclient3\",\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.write\"}\r\n]\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Expired Dates Registered Client",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"id\": \"7697fa91-86b6-43a9-9414-4f7049b1b198\",\r\n\"clientId\": \"ticanclient1\",\r\n\"tokenDurationOfMinutes\": \"10\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\"\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"ofb-clients-domain-api",
+												"oauth2",
+												"registered",
+												"clients",
+												"domain"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "OFB-CONSENTS",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** OK ** Create Consents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-09-16T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** OK ** Create Consents Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\"],\r\n    \"expirationDateTime\": \"\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** OK ** Create Consents Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2026-07-14T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** OK ** Create Consents Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2026-07-10T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** NOK ** Create Consents  ExpirationDate '<'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": []\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** NOK ** Create Consents  ExpirationDate '!='",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2025-10-02T\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** NOK ** Create Consents  ExpirationDate  format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2025-01-01T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** NOK ** Create Consents  LoggerdUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016980\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2026-07-04T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** NOK ** Create Consents (permissions)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016982\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"]\r\n,\r\n    \"expirationDateTime\": \"2026-07-04T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 1 :: ** NOK ** Create Consents permissions name error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the 'data' object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('object');\r",
+									"    \r",
+									"    pm.expect(responseData.data).to.have.all.keys('consentId', 'creationDateTime', 'status', 'statusUpdateDateTime', 'permissions', 'expirationDateTime');\r",
+									"    \r",
+									"    pm.expect(responseData.data.consentId).to.be.a('string');\r",
+									"    pm.expect(responseData.data.creationDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.status).to.be.a('string');\r",
+									"    pm.expect(responseData.data.statusUpdateDateTime).to.be.a('string');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array');\r",
+									"    pm.expect(responseData.data.expirationDateTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Consent ID must be a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.consentId).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Consent ID should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Permissions is an array that contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data.permissions).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Permissions array should contain at least one element\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true,
+							"accept-encoding": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco tcn",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"73991016980\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111111111111\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\"\r\n        ]\r\n,\r\n    \"expirationDateTime\": \"2026-07-04T06:33:23Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 2 :: Get Consents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco.santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents/:consentId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents",
+								":consentId"
+							],
+							"variable": [
+								{
+									"key": "consentId",
+									"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 3 :: Get Consents Extends",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco.santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents/:consentId/extensions?page=1&page-size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents",
+								":consentId",
+								"extensions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page-size",
+									"value": "5"
+								}
+							],
+							"variable": [
+								{
+									"key": "consentId",
+									"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 4 :: Renew a Consents Extends Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvZmItYzYtYmFuayIsImNsaWVudElkIjoib2ZiLWM2LWJhbmsiLCJjbGllbnROYW1lIjoiQ2xpZW50IE9GQiBDNiBCYW5rIiwiY2xpZW50U2VjcmV0RXhwaXJhdGVzQXQiOiIyMDI1LTEyLTMxVDIwOjU5OjU5WiIsInNjb3BlIjoiY2xpZW50Lm9mYi5yZWFkLGNsaWVudC5vZmIud3JpdGUiLCJpc3MiOiJiYW5jby10Y24tb3BlbmZpbmFuY2UtYnJhc2lsIiwiZXhwIjoxNzY3MjE0Nzk5LCJpYXQiOjE3NDk2NjYyMTMsImF1dGhvcml0aWVzIjoiY2xpZW50X2NyZWRlbnRpYWxzIn0.ajOKUV5F-1Y8nJxyxsYRTUUF4sBHVN5TqZAb0gpqtvrr4My-IcZ_liGFP4ZDlGbKAHe7RTkgsE0BlRwb13xdnZoITfUvP-yv530VG0g7SfkgKrQbqjHpyUX96ush25R2u-YwVABbcmEWjwnC5gL56RuaNY84H0mdGEmTOiLBL8Ltvg3xKG8FssJTMAfMO-2SFbmJqRKy98vrCxscSzIU_Fp6S9mZRr18w4XRoSUcaue4eYFS1RM7YBSbM4MKD-wLelo4zu1kgf6yAW4WgkQ63FN2AJZNaHW4BRQtKhcDHv-FN77pIbBNBhPsogo8vpfFf_tNvDR7VRwt5PHMcYQfSw",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco.santander",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2025-12-16T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents/:consentId/extends",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents",
+								":consentId",
+								"extends"
+							],
+							"variable": [
+								{
+									"key": "consentId",
+									"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step 5 - Delete Consents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco.santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-consents/consents/:consentId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-consents",
+								"consents",
+								":consentId"
+							],
+							"variable": [
+								{
+									"key": "consentId",
+									"value": "urn:bancotcn:bc2b4dc7-67ea-4064-9f14-2f5df809339a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OFB-RESOURCES",
+			"item": [
+				{
+					"name": "Orch",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-resources/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-resources",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-resources/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-resources",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Resources ORCH",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+										"type": "text"
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-resources/resources?page=1&page-size=30",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-resources",
+										"resources"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "page-size",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atom",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-resources/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-resources",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-resources/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-resources",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Resources",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+										"type": "text"
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-resources/resources?page=1&page-size=30",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-resources",
+										"resources"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "page-size",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Resources Account Permissions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-resources/resources/account/permissions?consentId=urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-resources",
+										"resources",
+										"account",
+										"permissions"
+									],
+									"query": [
+										{
+											"key": "consentId",
+											"value": "urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Resources Customer Permissions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.192.192.192",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									},
+									{
+										"key": "x-customer-user-agent",
+										"value": "banco santander",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-resources/resources/customer/permissions?consentId=urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-resources",
+										"resources",
+										"customer",
+										"permissions"
+									],
+									"query": [
+										{
+											"key": "consentId",
+											"value": "urn:bancotcn:e04b9125-d3cb-4a74-9767-3f0c41f7202e"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "OFB-CUSTOMERS",
+			"item": [
+				{
+					"name": "Orch",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-customers/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-customers",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-customers/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-customers",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL IDENTIFICATIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-customers/personal/identifications?page=1&page-size=25",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-customers",
+										"personal",
+										"identifications"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "page-size",
+											"value": "25"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL QUALIFICATIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-customers/personal/qualifications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-customers",
+										"personal",
+										"qualifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL FINANCIAL-RELATIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-orch-customers/personal/financial-relations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-orch-customers",
+										"personal",
+										"financial-relations"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atom",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-customers/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-customers",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-customers/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-customers",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL IDENTIFICATION SUMMARY",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-customers/personal/identificationSummary?personalId=custpf-955-172CA7E6149CE9D7BE967A0064B9F",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-customers",
+										"personal",
+										"identificationSummary"
+									],
+									"query": [
+										{
+											"key": "customerDocument",
+											"value": "54880884588",
+											"disabled": true
+										},
+										{
+											"key": "personalId",
+											"value": "custpf-955-172CA7E6149CE9D7BE967A0064B9F"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL IDENTIFICATIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-customers/personal/identifications?page&page-size&personalId=custpf-538-343BC2B5A48B984AB69F16FECCC1A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-customers",
+										"personal",
+										"identifications"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": null
+										},
+										{
+											"key": "page-size",
+											"value": null
+										},
+										{
+											"key": "customerDocument",
+											"value": "73991016982",
+											"disabled": true
+										},
+										{
+											"key": "personalId",
+											"value": "custpf-538-343BC2B5A48B984AB69F16FECCC1A"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL QUALIFICATIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-customers/personal/qualifications?customerDocument=73991016982&personalId=custpf-538-343BC2B5A48B984AB69F16FECCC1A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-customers",
+										"personal",
+										"qualifications"
+									],
+									"query": [
+										{
+											"key": "customerDocument",
+											"value": "73991016982"
+										},
+										{
+											"key": "personalId",
+											"value": "custpf-538-343BC2B5A48B984AB69F16FECCC1A"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get PERSONAL FINANCIAL-RELATIONS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-customers/personal/financial-relations?customerDocument=73991016982&personalId=custpf-538-343BC2B5A48B984AB69F16FECCC1A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-customers",
+										"personal",
+										"financial-relations"
+									],
+									"query": [
+										{
+											"key": "customerDocument",
+											"value": "73991016982"
+										},
+										{
+											"key": "personalId",
+											"value": "custpf-538-343BC2B5A48B984AB69F16FECCC1A"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "OFB-CONSENTS ACCOUNTS",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/actuator/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ACCOUNTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/accounts?page&page-size&accountType=CONTA_DEPOSITO_A_VISTA&pagination-key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"accounts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": null
+								},
+								{
+									"key": "page-size",
+									"value": null
+								},
+								{
+									"key": "accountType",
+									"value": "CONTA_POUPANCA",
+									"disabled": true
+								},
+								{
+									"key": "accountType",
+									"value": "CONTA_DEPOSITO_A_VISTA"
+								},
+								{
+									"key": "accountType",
+									"value": "CONTA_PAGAMENTO_PRE_PAGA",
+									"disabled": true
+								},
+								{
+									"key": "pagination-key",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ACCOUNT ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"accounts",
+								":accountId"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ACCOUNT BALANCES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/balances",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"accounts",
+								":accountId",
+								"balances"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ACCOUNT TRANSACTIONS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions?fromBookingDate=2025-01-01&toBookingDate=2025-08-31&pagination-key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"accounts",
+								":accountId",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page-size",
+									"value": "25",
+									"disabled": true
+								},
+								{
+									"key": "fromBookingDate",
+									"value": "2025-01-01"
+								},
+								{
+									"key": "toBookingDate",
+									"value": "2025-08-31"
+								},
+								{
+									"key": "creditDebitIndicator",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "creditDebitIndicator",
+									"value": "CREDITO",
+									"disabled": true
+								},
+								{
+									"key": "creditDebitIndicator",
+									"value": "DEBITO",
+									"disabled": true
+								},
+								{
+									"key": "pagination-key",
+									"value": null
+								}
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ACCOUNT TRANSACTIONS  CURRENT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/transactions-current?page&page-size&creditDebitIndicator&pagination-key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"accounts",
+								":accountId",
+								"transactions-current"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": null
+								},
+								{
+									"key": "page-size",
+									"value": null
+								},
+								{
+									"key": "fromBookingDate",
+									"value": "2025-01-01",
+									"disabled": true
+								},
+								{
+									"key": "toBookingDate",
+									"value": "2025-08-31",
+									"disabled": true
+								},
+								{
+									"key": "creditDebitIndicator",
+									"value": null
+								},
+								{
+									"key": "pagination-key",
+									"value": null
+								}
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ACCOUNT OVERDRAFT-LIMITS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_consent}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "Sun, 10 Sep 2017 19:43:31 UTC",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.192.192.192",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "78fc4e5-37ca-4da3-adf2-9b082bf92280",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "banco santander",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/ofb-accounts/accounts/:accountId/overdraft-limits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ofb-accounts",
+								"accounts",
+								":accountId",
+								"overdraft-limits"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "accpf-175-3D4FB130A4DC491B03F4DEC415068"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OFB-Batches",
+			"item": [
+				{
+					"name": "Get Consents Approval",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/sbatch-ofb-consents-approval/consents/approval/batch/joblauncher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sbatch-ofb-consents-approval",
+								"consents",
+								"approval",
+								"batch",
+								"joblauncher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Consents Expiration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/sbatch-ofb-consents-expiration/consents/expiration/batch/joblauncher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sbatch-ofb-consents-expiration",
+								"consents",
+								"expiration",
+								"batch",
+								"joblauncher"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

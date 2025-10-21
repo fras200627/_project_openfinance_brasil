@@ -136,6 +136,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
+  '/consents/{consentId}/access-token':
+    get:
+      tags:
+        - Consents
+      summary: Obter detalhes do consentimento identificado por consentId.
+      operationId: consentsGetAccessTokenConsentId
+      description: Método para obter detalhes do consentimento identificado por consentId.
+      parameters:
+        - $ref: '#/components/parameters/ConsentId'
+        - $ref: '#/components/parameters/xFapiInteractionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/ConsentAccessTokenRead'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+        '529':
+          $ref: '#/components/responses/SiteIsOverloaded'
+        default:
+          description: Erro inesperado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
   '/consents/{consentId}/extensions':
     get:
       tags:
@@ -838,6 +877,36 @@ components:
           $ref: '#/components/schemas/LinksConsents'
         meta:
           $ref: '#/components/schemas/Meta'
+    ResponseAccessTokenRead:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - consentId
+            - accessToken
+          properties:
+            consentId:
+              description: consent Id
+              type: string
+              maxLength: 256
+              example: 'urn:bancoex:C1DD33123'
+            accessToken:
+              description: AccessToken
+              type: string
+              maxLength: 5000
+            status:
+              description: Estado atual do consentimento cadastrado.
+              type: string
+              enum:
+                - AUTHORISED
+                - AWAITING_AUTHORISATION
+                - REJECTED
+              example: AWAITING_AUTHORISATION
+        meta:
+          $ref: '#/components/schemas/Meta'
     ResponseConsentReadExtensions:
       type: object
       required:
@@ -1438,6 +1507,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ResponseConsentExtensions'
+    ConsentAccessTokenRead:
+      description: Consentimento consultado com sucesso.
+      headers:
+        x-fapi-interaction-id:
+          description: |
+            Um UUID RFC4122 usado como um ID de correlação entre request e response. Campo de geração e envio obrigatório pela receptora (client) e o seu valor deve ser “espelhado” pela transmissora (server) no cabeçalho de resposta. Caso não seja recebido ou se for recebido um valor inválido, a transmissora deve gerar um x-fapi-interaction-id e retorná-lo na resposta com o HTTP Status Code 400. A receptora deve acatar o valor recebido da transmissora.
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+            minLength: 1
+            maxLength: 36
+            example: d78fc4e5-37ca-4da3-adf2-9b082bf92280
+            format: uuid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseAccessTokenRead'
     ConsentsConsentIdRead:
       description: Consentimento consultado com sucesso.
       headers:

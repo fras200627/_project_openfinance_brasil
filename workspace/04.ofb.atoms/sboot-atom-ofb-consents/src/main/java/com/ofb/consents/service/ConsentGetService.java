@@ -141,15 +141,19 @@ public class ConsentGetService {
             responseConsentReadData.setRejection(responseRejection);
         }
 
-        if (consentRequested.getStatus().equals("AUTHORISED") && consentRequested.getAccessTokenAuthorised() == null) {
-            String accessToken = this.getAcessToken(consentRequested, authorization, UUID.randomUUID());
-            httpServletResponse.addHeader("AccessToken", accessToken);
-            ConsentPersonalData consentCreated = consentPersonalRepository.findById(consentRequested.getConsentId()).get();
-            Timestamp timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
-            consentCreated.setModifyAt(timestampThisOperation);
-            consentCreated.setUserCode("ConsentsServiceAPI");
-            consentCreated.setAccessTokenAuthorised(accessToken);
-            consentPersonalRepository.saveAndFlush(consentCreated);
+        if (consentRequested.getStatus().equals("AUTHORISED")) {
+            if (consentRequested.getAccessTokenAuthorised() == null) {
+                String accessToken = this.getAcessToken(consentRequested, authorization, UUID.randomUUID());
+                httpServletResponse.addHeader("AccessToken", accessToken);
+                ConsentPersonalData consentCreated = consentPersonalRepository.findById(consentRequested.getConsentId()).get();
+                Timestamp timestampThisOperation = Timestamp.valueOf(OffsetDateTime.now(ZoneId.of("UTC")).toString().replace("T", " ").replace("Z", ""));
+                consentCreated.setModifyAt(timestampThisOperation);
+                consentCreated.setUserCode("ConsentsServiceAPI");
+                consentCreated.setAccessTokenAuthorised(accessToken);
+                consentPersonalRepository.saveAndFlush(consentCreated);
+            } else {
+                httpServletResponse.addHeader("AccessToken", consentRequested.getAccessTokenAuthorised());
+            }
         }
 
         LinksConsents links          = LinksConsents.builder().self(URI.create("https://api.banco.com.br/open-banking/api/v1/resource")).build();

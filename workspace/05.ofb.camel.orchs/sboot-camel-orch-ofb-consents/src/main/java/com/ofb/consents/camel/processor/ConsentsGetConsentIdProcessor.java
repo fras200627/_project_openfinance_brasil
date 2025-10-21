@@ -1,10 +1,12 @@
 package com.ofb.consents.camel.processor;
 
 import com.ofb.consents.client.consents.handler.ConsentsApi;
+import com.ofb.consents.client.consents.model.ResponseAccessTokenRead;
 import com.ofb.consents.client.consents.model.ResponseConsentRead;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -25,6 +27,7 @@ public class ConsentsGetConsentIdProcessor implements Processor {
         ///
         ResponseConsentRead responseConsentRead = consentsApi.consentsGetConsentsConsentId(exchange.getProperty("consentId").toString(),
                                                  UUID.fromString(exchange.getProperty("x-fapi-interaction-id").toString()));
+
 
         ///
         exchange.getMessage().setBody(responseConsentRead);
