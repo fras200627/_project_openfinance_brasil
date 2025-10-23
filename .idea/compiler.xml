@@ -12,37 +12,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="tican-audit-services-api" />
         <module name="aulao-spring-security-e-jwt" />
-        <module name="sboot-atom-ofb-discovery-services" />
-        <module name="demo2" />
-        <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-consents" enabled="true">
+      <profile name="Annotation profile for sboot-camel-orch-ofb-accounts" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
-        <module name="sboot-lib-ofb-autoconfigure-handlers" />
-        <module name="sboot-atom-ofb-consents" />
         <module name="sboot-camel-orch-ofb-accounts" />
-        <module name="sboot-atom-ofb-resources" />
-        <module name="sboot-camel-orch-ofb-resources" />
-        <module name="sboot-lib-ofb-autoconfigure-security" />
-        <module name="sboot-atom-ofb-participants-business" />
-        <module name="sboot-atom-ofb-authorization-server" />
-        <module name="sboot-camel-orch-ofb-consents" />
-        <module name="sboot-lib-ofb-autoconfigure-interceptors" />
-        <module name="sboot-atom-ofb-accounts" />
-        <module name="sboot-camel-orch-ofb-customers" />
-        <module name="sboot-atom-ofb-customers" />
-        <module name="sboot-listener-ofb-consents-authorization-services" />
-        <module name="sboot-atom-ofb-authentication-server" />
-        <module name="sboot-lib-ofb-autoconfigure-amqp" />
-        <module name="sboot-lib-ofb-common-tools" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -548,22 +529,49 @@
       <module name="components-starter" target="1.5" />
       <module name="core-modules" target="1.5" />
       <module name="core-starter" target="1.5" />
+      <module name="demo2" target="17" />
       <module name="docs" target="1.5" />
       <module name="dsl-starter" target="1.5" />
       <module name="examples" target="17" />
       <module name="integracaoarquivo" target="11" />
+      <module name="ofb-api-gateway" target="17" />
+      <module name="ofb-authentication-server" target="17" />
+      <module name="ofb-discovery-services" target="17" />
+      <module name="ofb-lib-autoconfigure-amqp" target="17" />
+      <module name="ofb-lib-autoconfigure-handlers" target="17" />
+      <module name="ofb-lib-autoconfigure-interceptors" target="17" />
+      <module name="ofb-lib-autoconfigure-security" target="17" />
+      <module name="ofb-lib-common-tools" target="17" />
       <module name="ofb-oauth2-registered-clients-business-api" target="17" />
       <module name="Orchestrator Resources" target="17" />
       <module name="sbatch-ofb-consents-approval-control" target="17" />
       <module name="sbatch-ofb-consents-expiration-control" target="17" />
       <module name="sbatch.consents.expiration.control" target="17" />
+      <module name="sboot-atom-ofb-accounts" target="17" />
+      <module name="sboot-atom-ofb-api-gateway" target="17" />
       <module name="sboot-atom-ofb-audit-services" target="17" />
+      <module name="sboot-atom-ofb-authentication-server" target="17" />
+      <module name="sboot-atom-ofb-authorization-server" target="17" />
       <module name="sboot-atom-ofb-cancellation-consents-services" target="17" />
       <module name="sboot-atom-ofb-clients-business" target="17" />
+      <module name="sboot-atom-ofb-consents" target="17" />
+      <module name="sboot-atom-ofb-customers" target="17" />
+      <module name="sboot-atom-ofb-discovery-services" target="17" />
+      <module name="sboot-atom-ofb-participants-business" target="17" />
+      <module name="sboot-atom-ofb-resources" target="17" />
       <module name="sboot-camel-ofb-template1" target="11" />
+      <module name="sboot-camel-orch-ofb-consents" target="17" />
+      <module name="sboot-camel-orch-ofb-customers" target="17" />
       <module name="sboot-camel-orch-ofb-customers (1)" target="17" />
       <module name="sboot-camel-orch-ofb-customres" target="17" />
+      <module name="sboot-camel-orch-ofb-resources" target="17" />
+      <module name="sboot-lib-ofb-autoconfigure-amqp" target="17" />
+      <module name="sboot-lib-ofb-autoconfigure-handlers" target="17" />
+      <module name="sboot-lib-ofb-autoconfigure-interceptors" target="17" />
+      <module name="sboot-lib-ofb-autoconfigure-security" target="17" />
+      <module name="sboot-lib-ofb-common-tools" target="17" />
       <module name="sboot-listener-ofb-audit-services" target="17" />
+      <module name="sboot-listener-ofb-consents-authorization-services" target="17" />
       <module name="sboot-listener-ofb-consents-cancellation-services" target="17" />
       <module name="sboot-orch-ofb-accounts" target="17" />
       <module name="sboot-orch-ofb-api-gateway" target="17" />
@@ -585,6 +593,7 @@
       <module name="tican-lib-autoconfigure-handlers" target="17" />
       <module name="tican-lib-autoconfigure-interceptors" target="17" />
       <module name="tican-lib-autoconfigure-security" target="17" />
+      <module name="tican-oauth2-registered-clients-business-api" target="17" />
       <module name="tican-oauth2-registered-clients-domain-api" target="17" />
       <module name="tican-oauth2-users-business-api" target="17" />
       <module name="tican-oauth2-users-domain-api" target="17" />

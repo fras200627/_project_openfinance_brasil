@@ -31,20 +31,24 @@ sboot-lib-ofb-autoconfigure-handlers
 sboot-lib-ofb-autoconfigure-interceptors
 sboot-lib-ofb-autoconfigure-security
 sboot-lib-ofb-common-tools
+
 Projects - Atoms
 sboot-atom-ofb-consents
 sboot-atom-ofb-resources
 sboot-atom-ofb-customers
 sboot-atom-ofb-accounts
+
 Projects - Orchs
 sboot-orch-ofb-consents
 sboot-orch-ofb-resources
 sboot-orch-ofb-customers
 sboot-orch-ofb-accounts
+
 Projects - Listeners
 sboot-listener-ofb-audit-services
 sboot-listener-ofb-consents-authorization-services
 sboot-listener-ofb-consents-cancellation-services
+
 Projects - Batches
 sbatch-ofb-consents-approval-control
 sbatch-ofb-consents-expiration-control

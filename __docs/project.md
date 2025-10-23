@@ -3,7 +3,7 @@
 ### Description ???
     text
 ---
-### Modules OFB - Orchs (APIs /??)
+### Modules OFB - Orchs (Servers)
 1. [x] Consents
 2. [x] Customers
 3. [x] Accounts
@@ -59,11 +59,16 @@
     * sboot-atom-ofb-resources
     * sboot-atom-ofb-customers
     * sboot-atom-ofb-accounts
+    * sboot-atom-ofb-participants-business
+    * sboot-atom-ofb-discovery-services
+    * sbbot-atom-ofb-api-gateway
+    * sbbot-atom-ofb-authentication-server
+    * sboot-atom-ofb-authorization-server
 3. [x] Projects - Orchs
-    * sboot-orch-ofb-consents
-    * sboot-orch-ofb-resources
-    * sboot-orch-ofb-customers
-    * sboot-orch-ofb-accounts
+    * sboot-camel-orch-ofb-consents
+    * sboot-camel-orch-ofb-resources
+    * sboot-camel-orch-ofb-customers
+    * sboot-camel-orch-ofb-accounts
 4. [x] Projects - Listeners
     * sboot-listener-ofb-audit-services
     * sboot-listener-ofb-consents-authorization-services
@@ -111,27 +116,3 @@
 * MapStruct
 * JUnit
 * Lombok
-
-
-    /**
-     * Get customersGetPersonalFinancialRelations
-     * Description:
-     * 
-     * Orchestration Steps:
-     *   Step 01: < atom-resources > Extract the claims and validate the AccessToken
-     *   Step 02: < atom-resources > Query the consentId provided in the AccessToken
-     *   Step 03: < atom-resources > Validate the information returned in the consent query
-     *   Step 04: < atom-resources > Validate whether the request is authorized by the consent permissions
-     *   Step 05: < atom-customers > Query the requested information
-     * 
-     * Parameters
-     * @param authorization 
-     * @param xFapiInteractionId
-     * 
-     * @return ResponsePersonalCustomersFinancialRelation
-     * 
-     * Exceptions
-     * @throws ???
-     *
-     * @see 
-     * /

@@ -30,24 +30,23 @@ Users Control OAuth2 API
     Lib Commons
 
 Next Steps:
-    Build Github repositories - OK 22.04.2025 - 09:29h
+Build Github repositories - OK 22.04.2025 - 09:29h
     Build Linux WSL with Kubernetes ...
-    Study OpenFinance
-    Create structure for OpenFinance
-        customers
-        branchs
-        accounts
-        credit cards
-    Build OpenFinance APIs
-    Build OpenFinance Orchs
+Study OpenFinance
+Create structure for OpenFinance
+    customers
+    branchs
+    accounts
+    credit cards
+Build OpenFinance APIs
+Build OpenFinance Orchs
+SpringBatch
+Apache Camel
 
 Remain:
 ----------------------------------------------------------------------
 ?? Unit Tests
-?? Git
 ?? Host Linux Kubernets
-    ?? SpringBatch
-    ?? Apache Camel
 
 =======================================================================
 WSL Ubuntu-22.04 ->> run Tican with Docker environment
