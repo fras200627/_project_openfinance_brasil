@@ -216,6 +216,7 @@
     <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.1-authentication.server/sboot-orch-ofb-authentication-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
@@ -295,7 +296,11 @@
     <file url="file://$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/target/generated-sources/ofb/consents/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/target/generated-sources/ofb/batch/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/target/generated-sources/ofb/batch/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/07.ofb.batch.services/spring-batch-dicas-master/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/08.open.finance/project-tican-open-finance-template/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/99-giuliana/aulao-spring-security-jwt-main/src/main/java" charset="UTF-8" />

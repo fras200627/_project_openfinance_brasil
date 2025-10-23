@@ -33,6 +33,28 @@
         <option value="$PROJECT_DIR$/__backup/project-ofb-authentication-server/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-amqp/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-handlers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-interceptors/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-autoconfigure-security/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/00.lib.commons/sboot-lib-ofb-common-tools/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-resources/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-audit-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-cancellation-services/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -402,7 +424,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jdk-17.0.9" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="java-17.0.9" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

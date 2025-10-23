@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="build orch.camel.consents">
-      <change afterPath="$PROJECT_DIR$/__docs/old/test.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/old/project-doc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/old/project-doc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/project.md" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/db/ModeMySQL/V1__CREATE_SCHEMA.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/db/ModeMySQL/V1__CREATE_SCHEMA.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/db/ModeMySQL/V2__CREATE_AUDIT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/db/ModeMySQL/V2__CREATE_AUDIT.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/db/ModeMySQL/application-h2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/db/ModeMySQL/application-h2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/account_personal_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/account_personal_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/account_personal_data_statement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/account_personal_data_statement.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/consents_status.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/consents_status.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/ofb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/ofb.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/ofb_schema_export.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/ofb_schema_export.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/personal_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/personal_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/resources_permissions.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/resources_permissions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/resources_status.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/resources_status.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__oracle/resources_types.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/__oracle/resources_types.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,11 +274,11 @@
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\resources\openapi\server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup\demo\src\test\java\com\example\demo" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms.api\sboot-atom-ofb-consents\src\main\resources\openapi\client\backup" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.security" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -287,46 +301,26 @@
       <recent name="com.ofb.consents.camel.orchestration" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Atom-Consents">
-    <configuration name="XXX-Orch-Template" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="jdk-17.0.9" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.ofb.template.StartApplication" />
-      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Base-APIGateway">
     <list>
-      <item itemvalue="Application.XXX-Orch-Template" />
+      <item itemvalue="Application.Base-APIGateway" />
+      <item itemvalue="Application.Base-Authentication" />
+      <item itemvalue="Application.Base-Authorization" />
+      <item itemvalue="Application.Base-DiscoveryServices" />
+      <item itemvalue="Application.Orch-Accounts" />
+      <item itemvalue="Application.Orch-Consents" />
+      <item itemvalue="Application.Orch-Customers" />
+      <item itemvalue="Application.Orch-Resources" />
       <item itemvalue="Application.Atom-Accounts" />
       <item itemvalue="Application.Atom-Consents" />
       <item itemvalue="Application.Atom-Customers" />
       <item itemvalue="Application.Atom-Participants" />
       <item itemvalue="Application.Atom-Resources" />
-      <item itemvalue="Application.Base-APIGateway" />
-      <item itemvalue="Application.Base-Authentication" />
-      <item itemvalue="Application.Base-Authorization" />
-      <item itemvalue="Application.Base-DiscoveryServices" />
       <item itemvalue="Application.Batch-ApprovalControl" />
       <item itemvalue="Application.Batch-ExpirationControl" />
       <item itemvalue="Application.Listener-Audit" />
       <item itemvalue="Application.Listener-Authorizations" />
       <item itemvalue="Application.Listener-Cancellations" />
-      <item itemvalue="Application.Orch-Accounts" />
-      <item itemvalue="Application.Orch-Consents" />
-      <item itemvalue="Application.Orch-Customers" />
-      <item itemvalue="Application.Orch-Resources" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -337,14 +331,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00045" summary="+ revision documents">
-      <option name="closed" value="true" />
-      <created>1756733411160</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1756733411160</updated>
     </task>
     <task id="LOCAL-00046" summary="+ revision documents">
       <option name="closed" value="true" />
@@ -730,7 +716,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761078058370</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="build orch.camel.consents">
+      <option name="closed" value="true" />
+      <created>1761225290074</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1761225290076</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
