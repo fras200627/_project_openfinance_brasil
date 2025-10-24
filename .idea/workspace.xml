@@ -4,18 +4,24 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="review project">
-      <change beforePath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Listener_Audit.xml" beforeDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="review and reorg project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-audit-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-audit-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-cancellation-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-cancellation-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/openapi/client/openapi-resources-corporate.1.0.0.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-accounts/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-customers/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-resources/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-accounts/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-customers/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-resources/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-audit-services/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-audit-services/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-cancellation-services/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +83,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.** ATOM --> Accounts.executor": "Run",
+    "Application.** ATOM --> Consents.executor": "Run",
+    "Application.** ATOM --> Customers.executor": "Run",
+    "Application.** ATOM --> Participants.executor": "Run",
+    "Application.** ATOM --> Resources.executor": "Run",
+    "Application.** BATCH ** Approval Consents Control.executor": "Run",
+    "Application.** BATCH ** Expiration Consents Control.executor": "Run",
+    "Application..:: ORCH :::.   Accounts.executor": "Run",
+    "Application..:: ORCH :::.  Consents.executor": "Run",
+    "Application..:: ORCH :::.  Customers.executor": "Run",
+    "Application..:: ORCH :::.  Resources.executor": "Run",
     "Application.1-Discovery.executor": "Run",
     "Application.2-Gateway.executor": "Run",
     "Application.3-Auth.executor": "Debug",
@@ -128,6 +145,13 @@
     "Application.Unnamed.executor": "Debug",
     "Application.XXX-Orch-Template.executor": "Run",
     "Application.com.example.demo2.DemoApplication.executor": "Debug",
+    "Application.¬| SVC |¬  API Gateway.executor": "Run",
+    "Application.¬| SVC |¬  Authentication.executor": "Run",
+    "Application.¬| SVC |¬  Authorization.executor": "Run",
+    "Application.¬| SVC |¬  Discovery Services.executor": "Run",
+    "Application.ºº LISTENER  ºº  Listener Consents Authorizations.executor": "Run",
+    "Application.ºº LISTENER  ºº  Listener Consents Cancellations.executor": "Run",
+    "Application.ºº LISTENER  ºº  Listener OFB Audit.executor": "Run",
     "JUnit.AuthorizationConsentsServiceTest.testExpiration.executor": "Debug",
     "JUnit.DemoApplicationTests.executor": "Run",
     "JUnit.DemoApplicationTests.givenMessage_whenSendingSimpleMessage_thenReturnsProcessedMessage.executor": "Debug",
@@ -298,7 +322,7 @@
       <recent name="com.ofb.consents.camel.orchestration" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ºº LISTENER  ºº  Listener Consents Cancellations">
+  <component name="RunManager" selected="Application.** BATCH ** Expiration Consents Control">
     <list>
       <item itemvalue="Application.¬| SVC |¬  Discovery Services" />
       <item itemvalue="Application.¬| SVC |¬  API Gateway" />
@@ -328,22 +352,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00047" summary="+ revision documents + start orchs">
-      <option name="closed" value="true" />
-      <created>1756749422156</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1756749422156</updated>
-    </task>
-    <task id="LOCAL-00048" summary="+ revision documents + start orchs">
-      <option name="closed" value="true" />
-      <created>1756841836253</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1756841836253</updated>
     </task>
     <task id="LOCAL-00049" summary="+ revision documents + start orchs">
       <option name="closed" value="true" />
@@ -721,7 +729,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761226493580</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="review and reorg project">
+      <option name="closed" value="true" />
+      <created>1761315872849</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1761315872850</updated>
+    </task>
+    <task id="LOCAL-00097" summary="review and reorg project">
+      <option name="closed" value="true" />
+      <created>1761315990705</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1761315990705</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -737,7 +761,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="+ sbatch consents expiration control" />
     <MESSAGE value="+ sbatch consents expiration/approval control" />
     <MESSAGE value="+ revision all sbatch consents expiration/approval control" />
     <MESSAGE value="+ revision documents" />
@@ -762,7 +785,8 @@
     <MESSAGE value="strat orch.camel.consents" />
     <MESSAGE value="build orch.camel.consents" />
     <MESSAGE value="review project" />
-    <option name="LAST_COMMIT_MESSAGE" value="review project" />
+    <MESSAGE value="review and reorg project" />
+    <option name="LAST_COMMIT_MESSAGE" value="review and reorg project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -90,7 +90,7 @@ amqp:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
 server:
-  port: 3301 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3035 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -141,7 +141,7 @@ amqp:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
 server:
-  port: 3301 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3035 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -192,4 +192,4 @@ amqp:
         queue: "ofb.consents.cancellation"
         routing-key: "exec.consents.cancel"
 server:
-  port: 3301 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3035 # set to "0" if you want eureka-server to determine a port dynamically

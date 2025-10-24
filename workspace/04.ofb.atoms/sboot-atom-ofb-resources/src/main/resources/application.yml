@@ -120,7 +120,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3033 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3017 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -181,7 +181,7 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3033 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3017 # set to "0" if you want eureka-server to determine a port dynamically
 ---
 spring:
   config:
@@ -242,4 +242,4 @@ amqp:
 # The port can be fixed to "0" so that eureka-server determines a port dynamically
 # but in this case access to Swagger-UI will not work
 server:
-  port: 3033 # set to "0" if you want eureka-server to determine a port dynamically
+  port: 3017 # set to "0" if you want eureka-server to determine a port dynamically
