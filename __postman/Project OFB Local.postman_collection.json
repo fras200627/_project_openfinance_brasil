@@ -4394,7 +4394,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-10-21T06:33:23Z\"\r\n  }\r\n}",
+									"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-10-1T06:33:23Z\"\r\n  }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4581,7 +4581,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-01-21T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+									"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-01-02T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4662,7 +4662,7 @@
 									"variable": [
 										{
 											"key": "consentId",
-											"value": "urn:bancotcn:55904ced-3416-4b6f-a946-4df2798f2681"
+											"value": "urn:bancotcn:55904ced-3416-4b6f-a946-4df2798f268"
 										}
 									]
 								}
@@ -5984,13 +5984,7 @@
 							]
 						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "http://localhost:3001/sbatch-ofb-consents-approval/consents/approval/batch/joblauncher",
 							"protocol": "http",
@@ -6023,13 +6017,7 @@
 							]
 						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "http://localhost:3001/sbatch-ofb-consents-expiration/consents/expiration/batch/joblauncher",
 							"protocol": "http",
