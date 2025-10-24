@@ -14,7 +14,7 @@
 	<groupId>com.ofb</groupId>
 	<artifactId>sboot-listener-ofb-consents-authorization-services</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-ofb</version>
+	<version>1.0.0</version>
 	<name>sboot-listener-ofb-consents-authorization-services</name>
 	<description>Project OFB Listener Consents Authorization Services</description>
 

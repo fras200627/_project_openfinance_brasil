@@ -12,7 +12,7 @@
 
 	<groupId>com.ofb</groupId>
 	<artifactId>sbatch-ofb-consents-expiration-control</artifactId>
-	<version>1.0.0-ofb</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>sbatch-ofb-consents-expiration-control</name>
 	<description>Project OFB - Batch</description>
@@ -318,7 +318,7 @@
 				<executions>
 
 					<execution>
-						<id>generator-resources-corporate</id> <!-- It is not optional and must have a unique id -->
+						<id>generator-consents-expiration</id> <!-- It is not optional and must have a unique id -->
 						<goals>
 							<goal>generate</goal>
 						</goals>

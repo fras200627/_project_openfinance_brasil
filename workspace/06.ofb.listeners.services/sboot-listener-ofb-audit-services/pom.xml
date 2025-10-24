@@ -14,7 +14,7 @@
 	<groupId>com.ofb</groupId>
 	<artifactId>sboot-listener-ofb-audit-services</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-ofb</version>
+	<version>1.0.0</version>
 	<name>sboot-listener-ofb-audit-services</name>
 	<description>Project OFB Listener Audit Services</description>
 
