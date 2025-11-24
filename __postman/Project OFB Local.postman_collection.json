@@ -716,13 +716,13 @@
 			]
 		},
 		{
-			"name": "(5) REGISTERED-CLIENTS",
+			"name": "(5) REGISTERED-PARTICIPANTS",
 			"item": [
 				{
 					"name": "APIs with Load Balance",
 					"item": [
 						{
-							"name": "OAuth2 Registered Clients Business",
+							"name": "OAuth2 Registered Participants Business",
 							"item": [
 								{
 									"name": "Health Check",
@@ -733,14 +733,14 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/health",
+											"raw": "http://localhost:3001/ofb-participants-business-api/health",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"health"
 											]
 										}
@@ -756,14 +756,14 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/actuator/info",
+											"raw": "http://localhost:3001/ofb-participants-business-api/actuator/info",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"actuator",
 												"info"
 											]
@@ -793,14 +793,14 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findById?registeredId=99999",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findById?registeredId=99999",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findById"
 											],
@@ -836,14 +836,14 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientId?clientId=ofb-santander",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findByClientId?clientId=ofb-santander",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findByClientId"
 											],
@@ -879,14 +879,14 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientDocument?clientDocument=94420534000110",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findByClientDocument?clientDocument=94420534000110",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findByClientDocument"
 											],
@@ -922,14 +922,14 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByClientName?clientName=Client Tican Admin Master",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findByClientName?clientName=Client Tican Admin Master",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findByClientName"
 											],
@@ -959,14 +959,14 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findAll",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findAll",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findAll"
 											]
@@ -1003,14 +1003,14 @@
 											"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findByPageable"
 											],
@@ -1065,14 +1065,14 @@
 											"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-business-api/business/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-business-api",
+												"ofb-participants-business-api",
 												"business",
 												"findByFilters"
 											],
@@ -1129,14 +1129,14 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/health",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/health",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
+												"ofb-participants-domain-api",
 												"health"
 											]
 										}
@@ -1152,14 +1152,14 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/actuator/info",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/actuator/info",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
+												"ofb-participants-domain-api",
 												"actuator",
 												"info"
 											]
@@ -1193,17 +1193,14 @@
 											"raw": "{\r\n\"clientId\": \"tican-client-15042025\",\r\n\"clientName\": \"Tican Client 15042025\",\r\n\"clientSecret\": \"123456\",\r\n\"tokenDurationOfMinutes\": \"30\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\",\r\n\"listOfClientAuthenticationMethods\": [\r\n    {\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n],\r\n\"listOfAuthorizationGrantTypes\": [\r\n    {\"authorizationGrantType\": \"client_credentials\"}\r\n],\r\n\"listOfRedirectUris\": [\r\n    {\"redirectUri\": \"nopnopnopnop3\"},\r\n    {\"redirectUri\": \"nopnopnopnop4\"}\r\n],\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.read\"},\r\n    {\"scope\": \"client.write\"},\r\n    {\"scope\": \"client.root\"}\r\n]\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain"
 											]
 										}
@@ -1236,17 +1233,14 @@
 											"raw": "{\r\n\"clientId\": \"tican-client-2b\",\r\n\"clientName\": \"Tican Client 2b\",\r\n\"clientSecret\": \"123456\",\r\n\"tokenDurationOfMinutes\": \"30\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\",\r\n\"listOfClientAuthenticationMethods\": [\r\n    {\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n],\r\n\"listOfAuthorizationGrantTypes\": [\r\n    {\"authorizationGrantType\": \"client_credentials\"}\r\n],\r\n\"listOfRedirectUris\": [\r\n    {\"redirectUri\": \"nopnopnopnop3\"},\r\n    {\"redirectUri\": \"nopnopnopnop4\"}\r\n],\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.root\"}\r\n]\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain"
 											]
 										}
@@ -1285,17 +1279,14 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain/change-client-secret?registeredId=a508e782-b873-48d9-92f1-c50f380640fd",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain/change-client-secret?registeredId=a508e782-b873-48d9-92f1-c50f380640fd",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain",
 												"change-client-secret"
 											],
@@ -1331,17 +1322,14 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain/change-status?registeredId=a508e782-b873-48d9-92f1-c50f380640fd&status=ENABLED",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain/change-status?registeredId=a508e782-b873-48d9-92f1-c50f380640fd&status=ENABLED",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain",
 												"change-status"
 											],
@@ -1385,17 +1373,14 @@
 											"raw": "{\r\n    \"registeredId\": \"21707ece-51c8-4192-8d30-232f564b8350\",     \r\n    \"clientId\": \"tican-client-2b\",\r\n    \"clientName\": \"Tican Client 2b\",\r\n    \"tokenDurationOfMinutes\": 5,\r\n    \"clientSecretExpiresAtOfDays\": 10,\r\n    \"requireAuthorizationConsent\": \"false\",\r\n    \"status\": \"LOCKED\",\r\n    \"listOfClientAuthenticationMethods\": [\r\n        {\r\n        \"clientAuthenticationMethod\": \"basic\"\r\n        }\r\n    ],\r\n    \"listOfAuthorizationGrantTypes\": [\r\n        {\r\n        \"authorizationGrantType\": \"jwt_bearer\"\r\n        }\r\n    ],\r\n    \"listOfRedirectUris\": [\r\n        {\r\n        \"redirectUri\": \"Redirect Uri\"\r\n        }\r\n    ],\r\n    \"listOfScopes\": [\r\n        {\r\n        \"scope\": \"client.read\"},\r\n        {\"scope\": \"client.write\"\r\n        }\r\n    ]\r\n}\r\n"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain"
 											]
 										}
@@ -1428,17 +1413,14 @@
 											"raw": "{\r\n\"registeredId\": \"a508e782-b873-48d9-92f1-c50f380640fd\",\r\n\"clientId\": \"ticanclient3\",\r\n\"clientName\": \"ticanclient3\",\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.write\"}\r\n]\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain"
 											]
 										}
@@ -1471,17 +1453,14 @@
 											"raw": "{\r\n\"id\": \"7697fa91-86b6-43a9-9414-4f7049b1b198\",\r\n\"clientId\": \"ticanclient1\",\r\n\"tokenDurationOfMinutes\": \"10\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\"\r\n}"
 										},
 										"url": {
-											"raw": "http://localhost:3001/ofb-clients-domain-api/oauth2/registered/clients/domain",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
 											"protocol": "http",
 											"host": [
 												"localhost"
 											],
 											"port": "3001",
 											"path": [
-												"ofb-clients-domain-api",
-												"oauth2",
-												"registered",
-												"clients",
+												"ofb-participants-domain-api",
 												"domain"
 											]
 										}
@@ -4394,7 +4373,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-10-1T06:33:23Z\"\r\n  }\r\n}",
+									"raw": "{\r\n  \"data\": {\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n        \"RESOURCES_READ\",\r\n        \"ACCOUNTS_READ\",\r\n        \"ACCOUNTS_BALANCES_READ\",\r\n        \"ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n        \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_PERSONAL_ADITTIONALINFO_READ\",\r\n        \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n        \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n        \"FINANCINGS_READ\",\r\n        \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"FINANCINGS_PAYMENTS_READ\",\r\n        \"FINANCINGS_WARRANTIES_READ\",\r\n        \"INVOICE_FINANCINGS_READ\",\r\n        \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n        \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n        \"LOANS_READ\",\r\n        \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n        \"LOANS_PAYMENTS_READ\",\r\n        \"LOANS_WARRANTIES_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n        \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n        \"BANK_FIXED_INCOMES_READ\",\r\n        \"CREDIT_FIXED_INCOMES_READ\",\r\n        \"FUNDS_READ\",\r\n        \"VARIABLE_INCOMES_READ\",\r\n        \"TREASURE_TITLES_READ\",\r\n        \"EXCHANGES_READ\"],\r\n    \"expirationDateTime\": \"2026-10-24T06:33:23Z\"\r\n  }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4467,7 +4446,7 @@
 									"variable": [
 										{
 											"key": "consentId",
-											"value": "urn:bancotcn:55904ced-3416-4b6f-a946-4df2798f2681"
+											"value": "urn:bancotcn:ef4d9ddc-5ac3-414f-ad04-c9ca52ca69ae"
 										}
 									]
 								}
@@ -4536,7 +4515,7 @@
 									"variable": [
 										{
 											"key": "consentId",
-											"value": "urn:bancotcn:55904ced-3416-4b6f-a946-4df2798f2681"
+											"value": "urn:bancotcn:ef4d9ddc-5ac3-414f-ad04-c9ca52ca69ae"
 										}
 									]
 								}
@@ -4581,7 +4560,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-01-02T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+									"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2026-01-24T23:59:59Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"54880884588\",\r\n        \"rel\": \"CPF\"\r\n      } \r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"94420534000110\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4604,7 +4583,7 @@
 									"variable": [
 										{
 											"key": "consentId",
-											"value": "urn:bancotcn:cb84dab3-0a0a-4df7-b189-1dfb72cf12e5"
+											"value": "urn:bancotcn:ef4d9ddc-5ac3-414f-ad04-c9ca52ca69ae"
 										}
 									]
 								}
@@ -4662,7 +4641,7 @@
 									"variable": [
 										{
 											"key": "consentId",
-											"value": "urn:bancotcn:55904ced-3416-4b6f-a946-4df2798f268"
+											"value": "urn:bancotcn:ef4d9ddc-5ac3-414f-ad04-c9ca52ca69ae"
 										}
 									]
 								}
