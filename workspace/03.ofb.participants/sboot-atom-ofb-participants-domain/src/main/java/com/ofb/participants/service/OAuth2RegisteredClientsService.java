@@ -12,6 +12,8 @@ import org.springframework.security.oauth2.server.authorization.config.ClientSet
 import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
 import org.springframework.stereotype.Service;
 
+import com.ofb.lib.handlers.exception.ofb.BadRequestException;
+
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.time.Instant;
@@ -38,16 +40,16 @@ public class OAuth2RegisteredClientsService {
 
     public OAuth2RegisteredClientsEntity findById(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new BadRequestExceptionHandler("id= '" + id + "' not found!"));
+                .orElseThrow(() -> new BadRequestException("id= '" + id + "' not found!"));
     }
 
     public OAuth2ClientResponse save(ClientCreateRecord clientRequest) {
 
         if (repository.findByClientId(clientRequest.getClientId()) != null) {
-            throw new BadRequestExceptionHandler("Client id='" + clientRequest.getClientId() + "' already exists in other Registered Client. check and adjust!");
+            throw new BadRequestException("Client id='" + clientRequest.getClientId() + "' already exists in other Registered Client. check and adjust!");
         }
         if (repository.findByClientName(clientRequest.getClientName()) != null) {
-            throw new BadRequestExceptionHandler("Client Name='" + clientRequest.getClientName() + "' already exists in other Registered Client. check and adjust!");
+            throw new BadRequestException("Client Name='" + clientRequest.getClientName() + "' already exists in other Registered Client. check and adjust!");
         }
 
         String id = UUID.randomUUID().toString();
@@ -89,12 +91,12 @@ public class OAuth2RegisteredClientsService {
         //Validate unique Client Name and unique Client Name
         if (clientRequest.getClientId() != null) {
             if (repository.findByClientId(clientRequest.getRegisteredId(), clientRequest.getClientId()) != null) {
-                throw new BadRequestExceptionHandler("Client Id='" + clientRequest.getClientId() + "' already exists in other Registered Client. check and adjust!");
+                throw new BadRequestException("Client Id='" + clientRequest.getClientId() + "' already exists in other Registered Client. check and adjust!");
             }
         }
         if (clientRequest.getClientName() != null) {
             if (repository.findByClientName(clientRequest.getRegisteredId(), clientRequest.getClientName()) != null) {
-                throw new BadRequestExceptionHandler("Client Name='" + clientRequest.getClientId() + "' already exists in other Registered Client. check and adjust!");
+                throw new BadRequestException("Client Name='" + clientRequest.getClientId() + "' already exists in other Registered Client. check and adjust!");
             }
         }
 
@@ -146,7 +148,7 @@ public class OAuth2RegisteredClientsService {
         OAuth2RegisteredClientsEntity clientEntity = this.findById(registeredId);
 
         if (!passwordEncoder.matches(clientSecretOld, clientEntity.getClientSecret())) {
-            throw new BadRequestExceptionHandler("The Old Secret does not match. check and adjust!");
+            throw new BadRequestException("The Old Secret does not match. check and adjust!");
         }
 
         clientEntity.setClientSecret(passwordEncoder.encode(clientSecretNew));
