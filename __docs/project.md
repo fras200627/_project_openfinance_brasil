@@ -4,22 +4,23 @@
     text
 ---
 ### Modules OFB - Orchs (Servers)
-1. [x] Consents
-2. [x] Customers
-3. [x] Accounts
-4. [x] Resources
+   1. [x] Consents
+   2. [x] Customers
+   3. [x] Accounts
+   4. [x] Resources
 
 ### Modules OFB - Atoms (APIs Backend)
-1. [x] Consents
-2. [x] Customers
-3. [x] Accounts
-4. [x] Resources
+   1. [x] Consents
+   2. [x] Customers
+   3. [x] Accounts
+   4. [x] Resources
+   5. [x] Participants Clients (API Domain, API Business)
 
 ### Modules Structurals
-* Discovery Services
-* API Gateway
-* Authentication Server
-* Participants Clients
+   1. [x] Discovery Services
+   2. [x] API Gateway
+   3. [x] Authentication Server
+   4. [x] Authorization Server
 ---
 ### Environments
 #### Dev (local)
@@ -38,7 +39,7 @@
 * RabbitMQ 3.XX image running in Docker
 * OFB APIs, Listeners and Batches images running in Docker
 
-### Production simulation (microk8s)
+#### Production simulation (microk8s)
 * Kubernetes in WSL (plugins MicroK8S)
   * All components: 
 * Windows Sub-System Linux (Ubuntu 24.04 LTS)
@@ -48,32 +49,34 @@
 * OFB APIs, Listeners and Batches images running in Images
 ---
 ### Projects
-1. [x] Projects - Libs
+1. [x] 01 - Projects - Libs
     * sboot-lib-ofb-autoconfigure-amqp
     * sboot-lib-ofb-autoconfigure-handlers
     * sboot-lib-ofb-autoconfigure-interceptors
     * sboot-lib-ofb-autoconfigure-security
     * sboot-lib-ofb-common-tools
-2. [x] Projects - Atoms
+2. [x] 02 - Projects - Atoms
     * sboot-atom-ofb-consents
     * sboot-atom-ofb-resources
     * sboot-atom-ofb-customers
     * sboot-atom-ofb-accounts
+   
+    * sboot-atom-ofb-participants-domain
     * sboot-atom-ofb-participants-business
     * sboot-atom-ofb-discovery-services
     * sbbot-atom-ofb-api-gateway
     * sbbot-atom-ofb-authentication-server
     * sboot-atom-ofb-authorization-server
-3. [x] Projects - Orchs
+3. [x] 03 - Projects - Orchs
     * sboot-camel-orch-ofb-consents
     * sboot-camel-orch-ofb-resources
     * sboot-camel-orch-ofb-customers
     * sboot-camel-orch-ofb-accounts
-4. [x] Projects - Listeners
+4. [x] 04 - Projects - Listeners
     * sboot-listener-ofb-audit-services
     * sboot-listener-ofb-consents-authorization-services
     * sboot-listener-ofb-consents-cancellation-services
-5. [x] Projects - Batches
+5. [x] 05 - Projects - Batches
    * sbatch-ofb-consents-approval-control
    * sbatch-ofb-consents-expiration-control
 ---
