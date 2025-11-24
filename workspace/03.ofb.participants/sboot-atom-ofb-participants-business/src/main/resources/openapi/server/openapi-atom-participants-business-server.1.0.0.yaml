@@ -232,7 +232,6 @@ components:
         nullable: true
     OAuth2ClientId:
       name: clientId
-      description: 'OAuth2 Client Id is a identified Id. Example: tican-client-1'
       in: query
       required: true
       schema:
@@ -242,7 +241,6 @@ components:
         nullable: false
     OAuth2ClientIdOptional:
       name: clientId
-      description: 'OAuth2 Client Id is a identified Id. Example: tican-client-1'
       in: query
       required: false
       schema:
@@ -252,7 +250,6 @@ components:
         nullable: true
     OAuth2ClientName:
       name: clientName
-      description: 'OAuth2 Client Name. Example: Tican Client 1'
       in: query
       required: true
       schema:
@@ -272,7 +269,6 @@ components:
         nullable: false
     OAuth2ClientNameOptional:
       name: clientName
-      description: 'OAuth2 Client Name. Example: Tican Client 1'
       in: query
       required: false
       schema:
@@ -282,21 +278,21 @@ components:
         nullable: true
     OAuth2SecurityScopes:
       name: securityScope
-      description: 'Required is: client.admin or client.read or client.write'
+      description: 'Required is: client.admin or client.ofb.read or client.write'
       in: query
       required: true
       schema:
         type: string
-        pattern: '(client.admin|client.root|client.read|client.write)'
+        pattern: '(client.admin|client.root|client.ofb.read|client.ofb.write)'
         nullable: false
     OAuth2SecurityScopesOptional:
       name: securityScope
-      description: 'Required is: client.admin or client.read or client.write or Empty Value'
+      description: 'Required is: client.admin or client.ofb.read or client.ofb.write or Empty Value'
       in: query
       required: false
       schema:
         type: string
-        pattern: '(client.admin|client.root|client.read|client.write)'
+        pattern: '(client.admin|client.root|client.ofb.read|client.ofb.write)'
         nullable: true
     PageNumber:
       name: pageNumber

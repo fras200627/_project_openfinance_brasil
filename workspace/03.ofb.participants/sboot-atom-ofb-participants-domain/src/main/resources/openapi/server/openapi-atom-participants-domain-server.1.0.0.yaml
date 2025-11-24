@@ -20,10 +20,10 @@ paths:
       tags:
         - participants.domain.resources
       operationId: createRegisteredClient
-      summary: 'create a new registered client'
-      description: 'create a new registered client'
+      summary: 'create a new registered participant'
+      description: 'create a new registered participant'
       requestBody:
-        description: 'Payload Body od a create new client'
+        description: 'Payload Body od a create new participant'
         content:
           application/json:
             schema:
@@ -46,10 +46,10 @@ paths:
       tags:
         - participants.domain.resources
       operationId: updateRegisteredClient
-      summary: 'update a registered client record'
-      description: 'update a registered client record'
+      summary: 'update a registered participant record'
+      description: 'update a registered participant record'
       requestBody:
-        description: 'Payload body a update data of a client'
+        description: 'Payload body a update data of a participant'
         content:
           application/json:
             schema:
@@ -73,13 +73,13 @@ paths:
       tags:
         - participants.domain.resources
       operationId: changeSecretRegisteredClient
-      summary: 'update a password secret a registered client'
-      description: 'update a password secret a registered client'
+      summary: 'update a password secret a registered participant'
+      description: 'update a password secret a registered participant'
       parameters:
         - name: registeredId
           in: query
           required: true
-          description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+          description: 'OAuth2 Registered participant Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
           schema:
             type: string
             minLength: 3
@@ -122,12 +122,12 @@ paths:
       tags:
         - participants.domain.resources
       operationId: changeStatusRegisteredClient
-      summary: 'update a status a registered client'
-      description: 'update a status a registered client'
+      summary: 'update a status a registered participant'
+      description: 'update a status a registered participant'
       parameters:
         - name: registeredId
           in: query
-          description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+          description: 'OAuth2 Registered participant Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
           required: true
           schema:
             type: string
@@ -136,7 +136,7 @@ paths:
             nullable: false
         - name: status
           in: query
-          description: 'Option os the registered client status'
+          description: 'Option os the registered participant status'
           required: true
           schema:
             type: string
@@ -161,16 +161,15 @@ components:
   schemas:
     OAuth2ClientResponse:
       type: object
-      description: 'OAuth2 Client Response'
+      description: 'OAuth2 participant Response'
       properties:
         registeredId:
           type: string
-          description: 'Registered Client Id in format UUID'
+          description: 'Registered participant Id in format UUID'
           example: '42a60be9-6483-4ae2-9d0e-887aae23d0a7'
         clientId:
           type: string
           description: 'Client id alias'
-          example: 'tican.client.1'
         clientIdIssuedAt:
           type: string
           description: 'Create Date'
@@ -181,8 +180,7 @@ components:
           example: "2025-04-07T19:59:33.127Z"
         clientName:
           type: string
-          description: 'Client name'
-          example: "Tican Client 1"
+          description: 'Participant name'
         clientAuthenticationMethods:
           type: string
           description: 'Authentication Methods'
@@ -227,8 +225,8 @@ components:
           example: 'true'
 
     ClientCreateRecord:
-      title: 'Payload a Client Create Record'
-      description: 'Payload a Client Create Record'
+      title: 'Payload a participant Create Record'
+      description: 'Payload a participant Create Record'
       type: object
       required:
         - clientId
@@ -244,7 +242,7 @@ components:
       properties:
         clientId:
           type: string
-          description: 'Client Id is a Alias used for a client'
+          description: 'Client Id is a Alias used for a participant'
           minLength: 3
           maxLength: 100
           nullable: false
@@ -256,7 +254,7 @@ components:
           nullable: false
         clientName:
           type: string
-          description: 'Full description a Client Name'
+          description: 'Full description a participant Name'
           minLength: 3
           maxLength: 200
           nullable: false
@@ -269,7 +267,7 @@ components:
           nullable: false
         clientSecretExpiresAtOfDays:
           type: integer
-          description: 'Number a days a duration client secret password'
+          description: 'Number a days a duration participant secret password'
           minimum: 10
           maximum: 180
           default: 30
@@ -298,8 +296,8 @@ components:
             $ref: '#/components/schemas/Scopes'
 
     ClientUpdateRecord:
-      title: 'Payload a Client Update Record'
-      description: 'Payload a Client Update Record'
+      title: 'Payload a participant Update Record'
+      description: 'Payload a participant Update Record'
       type: object
       required:
         - registeredId
@@ -308,19 +306,19 @@ components:
       properties:
         registeredId:
           type: string
-          description: 'Registered Client Id in format UUID'
+          description: 'Registered participant Id in format UUID'
           minLength: 36
           maxLength: 36
           nullable: false
         clientId:
           type: string
-          description: 'Client Id is a Alias used for a client'
+          description: 'Client Id is a Alias used for a participant'
           minLength: 3
           maxLength: 100
           nullable: false
         clientName:
           type: string
-          description: 'Full description a Client Name'
+          description: 'Full description a participant Name'
           minLength: 3
           maxLength: 200
           nullable: false
@@ -335,7 +333,7 @@ components:
         clientSecretExpiresAtOfDays:
           type: integer
           format: int32
-          description: 'Number a days a duration client secret password'
+          description: 'Number a days a duration participant secret password'
           minimum: 10
           maximum: 180
           default: 30
@@ -347,7 +345,7 @@ components:
           default: 'true'
           nullable: false
         status:
-          description: 'Option os the registered client status'
+          description: 'Option os the registered participant status'
           type: string
           pattern: '(ENABLED|DISABLED|EXPIRED|LOCKED)'
           default: 'DISABLED'
@@ -405,9 +403,12 @@ components:
       properties:
         scope:
           type: string
-          description: 'Security Scope'
-          pattern: '(client.read|client.write|client.root)'
-          default: 'client.root'
+          description: 'Security Scope: 
+                        system.admin: 
+                        client.ofb.read: 
+                        client.ofb.write: 
+                        client.root: '
+          pattern: '(system.admin|client.ofb.read|client.ofb.write|client.root)'
           nullable: false
 
 
@@ -513,7 +514,7 @@ components:
 
   responses:
     OAuth2ClientResponse:
-      description: 'Registered Client Response'
+      description: 'Registered participant Response'
       content:
         application/json:
           schema:

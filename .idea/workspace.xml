@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="add participants domain API and revision participants business API">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/openapi/server/openapi-atom-participants-business-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/openapi/server/openapi-atom-participants-business-server.1.0.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/openapi/server/openapi-atom-participants-domain-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/openapi/server/openapi-atom-participants-domain-server.1.0.0.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +73,8 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.** ATOM --> Accounts.executor": "Run",
     "Application.** ATOM --> Consents.executor": "Run",
-    "Application.** ATOM --> Customers.executor": "Run",
-    "Application.** ATOM --> Participants Business.executor": "Debug",
+    "Application.** ATOM --> Customers.executor": "Coverage",
+    "Application.** ATOM --> Participants Business.executor": "Run",
     "Application.** ATOM --> Participants Domain.executor": "Debug",
     "Application.** ATOM --> Participants.executor": "Run",
     "Application.** ATOM --> Resources.executor": "Run",
@@ -138,9 +139,9 @@
     "Application.¬| SVC |¬  Authentication.executor": "Run",
     "Application.¬| SVC |¬  Authorization.executor": "Run",
     "Application.¬| SVC |¬  Discovery Services.executor": "Run",
-    "Application.ºº LISTENER  ºº  Listener Consents Authorizations.executor": "Run",
+    "Application.ºº LISTENER  ºº  Listener Consents Authorizations.executor": "Debug",
     "Application.ºº LISTENER  ºº  Listener Consents Cancellations.executor": "Run",
-    "Application.ºº LISTENER  ºº  Listener OFB Audit.executor": "Run",
+    "Application.ºº LISTENER  ºº  Listener OFB Audit.executor": "Debug",
     "JUnit.AuthorizationConsentsServiceTest.testExpiration.executor": "Debug",
     "JUnit.DemoApplicationTests.executor": "Run",
     "JUnit.DemoApplicationTests.givenMessage_whenSendingSimpleMessage_thenReturnsProcessedMessage.executor": "Debug",
@@ -208,6 +209,7 @@
     "Maven.sboot-atom-ofb-discovery-services [install].executor": "Run",
     "Maven.sboot-atom-ofb-participants-business [clean].executor": "Run",
     "Maven.sboot-atom-ofb-participants-business [install].executor": "Run",
+    "Maven.sboot-atom-ofb-participants-domain [clean].executor": "Run",
     "Maven.sboot-atom-ofb-participants-domain [install].executor": "Run",
     "Maven.sboot-atom-ofb-resources [clean].executor": "Run",
     "Maven.sboot-atom-ofb-resources [install].executor": "Run",
@@ -312,7 +314,7 @@
       <recent name="com.ofb.consents.camel.orchestration" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.** ATOM --&gt; Participants Domain">
+  <component name="RunManager" selected="Application..:: ORCH :::.  Consents">
     <configuration name="** ATOM --&gt; Participants Domain" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="java-17.0.9" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -363,14 +365,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00054" summary="+ revision documents + start orchs">
-      <option name="closed" value="true" />
-      <created>1757356019025</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1757356019025</updated>
     </task>
     <task id="LOCAL-00055" summary="+ revision documents + start orchs">
       <option name="closed" value="true" />
@@ -756,7 +750,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763989471656</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="add participants domain API and revision participants business API">
+      <option name="closed" value="true" />
+      <created>1763990162599</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1763990162599</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -910,5 +912,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/_project_openfinance_brasil$___ATOM_____Customers.ic" NAME="** ATOM --&gt; Customers Coverage Results" MODIFIED="1764004630559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
