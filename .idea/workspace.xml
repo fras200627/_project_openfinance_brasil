@@ -5,10 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="review and reorg project">
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/controller/DomainApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/entity/OAuth2RegisteredClientsEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/mapper/OAuth2RegisteredClientMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/repository/OAuth2RegisteredClientsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/service/OAuth2RegisteredClientsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/openapi/server/openapi-atom-participants-domain-server.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/project-doc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project-doc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__docs/project.md" beforeDir="false" afterPath="$PROJECT_DIR$/__docs/project.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/openapi/server/openapi-atom-participants-business-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/openapi/server/openapi-atom-participants-business-server.1.0.0.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +62,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/fras200627/_project_tican_openapi&quot;,
-    &quot;accountId&quot;: &quot;d3f3e42d-a0c0-48a1-9169-0e65c59e5208&quot;
+    &quot;accountId&quot;: &quot;6842a840-eca6-411c-a4e7-058b6dbc93ca&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -265,21 +288,21 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/_development/__projects/_project_openfinance_brasil/workspace/07.ofb.batch.services/sbatch-ofb-consents-approval-control/src/main/resources/openapi/client&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/_development/__projects/_project_openfinance_brasil/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/controller&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.291954&quot;,
     &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.participants\sboot-atom-ofb-participants-domain\src\main\java\com\ofb\participants\controller" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.participants\sboot-atom-ofb-participants-domain\src\main\resources\openapi\server" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\07.ofb.batch.services\sbatch-ofb-consents-approval-control\src\main\resources\openapi\client" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\resources\openapi\client" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\java\com\ofb\consents\service\validation" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs\sboot-camel-orch-ofb-consents\src\main\resources\openapi\client" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs" />
@@ -339,14 +362,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00050" summary="+ revision documents + start orchs">
-      <option name="closed" value="true" />
-      <created>1756921499413</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1756921499413</updated>
     </task>
     <task id="LOCAL-00051" summary="+ revision documents + start orchs">
       <option name="closed" value="true" />
@@ -732,7 +747,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761325112475</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="review and reorg project">
+      <option name="closed" value="true" />
+      <created>1763982310583</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1763982310583</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

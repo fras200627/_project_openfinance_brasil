@@ -12,13 +12,13 @@ info:
 security:
   - bearerAuth: []
 tags:
-  - name: clients.business.resources
-    description: 'registered.clients.business'
+  - name: participants.business.resources
+    description: 'registered.participants.business'
 paths:
   /business/findAll:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get all oauth2 registered clients'
       description: 'Get all oauth2 registered clients'
       operationId: getFindAll
@@ -41,7 +41,7 @@ paths:
   /business/findById:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get a registered client in oauth2 by ID (ID is the UUID of a client)'
       description: 'Get a registered client in oauth2 by ID (ID is the UUID of a client)'
       operationId: getFindById
@@ -66,7 +66,7 @@ paths:
   /business/findByClientId:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get a registered client in oauth2 by ID (client ID is an alias/nickname of a client)'
       description: 'Get a registered client in oauth2 by ID (client ID is an alias/nickname of a client)'
       operationId: getFindByClientId
@@ -91,7 +91,7 @@ paths:
   /business/findByClientName:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get one oauth2 registered client by Description Name'
       description: 'Get one oauth2 registered client by Description Name'
       operationId: getFindByClientName
@@ -116,7 +116,7 @@ paths:
   /business/findByClientDocument:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get one oauth2 registered client by Document Number'
       description: 'Get one oauth2 registered client by Document Number'
       operationId: getFindByClientDocument
@@ -141,7 +141,7 @@ paths:
   /business/findByPageable:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get oauth2 registered clients by Pageable'
       description: 'Get oauth2 registered clients by Pageable'
       operationId: getFindByPageable
@@ -172,7 +172,7 @@ paths:
   /business/findByFilters:
     get:
       tags:
-        - clients.business.resources
+        - participants.business.resources
       summary: 'Get oauth2 registered clients by Pageable and F\ilters'
       description: 'Get oauth2 registered clients by Pageable and Filters'
       operationId: getFindByFilters
