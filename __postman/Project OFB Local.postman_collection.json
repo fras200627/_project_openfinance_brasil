@@ -793,7 +793,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-participants-business-api/business/findById?registeredId=99999",
+											"raw": "http://localhost:3001/ofb-participants-business-api/business/findById?registeredId=047346d8-021b-4754-a7dd-e39cf43b4e2c",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -807,7 +807,7 @@
 											"query": [
 												{
 													"key": "registeredId",
-													"value": "99999"
+													"value": "047346d8-021b-4754-a7dd-e39cf43b4e2c"
 												}
 											]
 										}
@@ -1118,7 +1118,7 @@
 							]
 						},
 						{
-							"name": "OAuth2 Registered Clients Domain",
+							"name": "OAuth2 Registered Participants Domain",
 							"item": [
 								{
 									"name": "Health Check",
@@ -1190,7 +1190,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n\"clientId\": \"tican-client-15042025\",\r\n\"clientName\": \"Tican Client 15042025\",\r\n\"clientSecret\": \"123456\",\r\n\"tokenDurationOfMinutes\": \"30\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\",\r\n\"listOfClientAuthenticationMethods\": [\r\n    {\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n],\r\n\"listOfAuthorizationGrantTypes\": [\r\n    {\"authorizationGrantType\": \"client_credentials\"}\r\n],\r\n\"listOfRedirectUris\": [\r\n    {\"redirectUri\": \"nopnopnopnop3\"},\r\n    {\"redirectUri\": \"nopnopnopnop4\"}\r\n],\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.read\"},\r\n    {\"scope\": \"client.write\"},\r\n    {\"scope\": \"client.root\"}\r\n]\r\n}"
+											"raw": "{\r\n\"clientId\": \"santander-new-24112025\",\r\n\"clientName\": \"Santander New\",\r\n\"clientSecret\": \"123456\",\r\n\"tokenDurationOfMinutes\": \"30\",\r\n\"clientSecretExpiresAtOfDays\": \"180\",\r\n\"requireAuthorizationConsent\": \"false\",\r\n\"listOfClientAuthenticationMethods\": [\r\n    {\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n],\r\n\"listOfAuthorizationGrantTypes\": [\r\n    {\"authorizationGrantType\": \"client_credentials\"}\r\n],\r\n\"listOfRedirectUris\": [\r\n    {\"redirectUri\": \"nopnopnopnop3\"},\r\n    {\"redirectUri\": \"nopnopnopnop4\"}\r\n],\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.read\"},\r\n    {\"scope\": \"client.write\"},\r\n    {\"scope\": \"client.root\"}\r\n]\r\n}"
 										},
 										"url": {
 											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
@@ -1322,7 +1322,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:3001/ofb-participants-domain-api/domain/change-status?registeredId=a508e782-b873-48d9-92f1-c50f380640fd&status=ENABLED",
+											"raw": "http://localhost:3001/ofb-participants-domain-api/domain/change-status?registeredId=047346d8-021b-4754-a7dd-e39cf43b4e2c&status=ENABLED",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -1336,7 +1336,7 @@
 											"query": [
 												{
 													"key": "registeredId",
-													"value": "a508e782-b873-48d9-92f1-c50f380640fd"
+													"value": "047346d8-021b-4754-a7dd-e39cf43b4e2c"
 												},
 												{
 													"key": "status",
@@ -1410,7 +1410,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n\"registeredId\": \"a508e782-b873-48d9-92f1-c50f380640fd\",\r\n\"clientId\": \"ticanclient3\",\r\n\"clientName\": \"ticanclient3\",\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.write\"}\r\n]\r\n}"
+											"raw": "{\r\n\"registeredId\": \"047346d8-021b-4754-a7dd-e39cf43b4e2c\",\r\n\"clientId\": \"santander-new-24112025\",\r\n\"clientName\": \"Santander New\",\r\n\"listOfScopes\": [\r\n    {\"scope\": \"client.ofb.read\"},\r\n    {\"scope\": \"client.ofb.write\"}\r\n]\r\n}"
 										},
 										"url": {
 											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",

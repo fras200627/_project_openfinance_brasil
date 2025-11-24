@@ -88,7 +88,7 @@ spring:
 app:
   paths:
     clients:
-      registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
+      registered-clients: 'http://localhost:3001/ofb-participants-business-api/'
       authentication-server: 'http://localhost:3001/ofb-authentication-server/'
 eureka:
   client:
@@ -149,7 +149,7 @@ spring:
 app:
   paths:
     clients:
-      registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
+      registered-clients: 'http://localhost:3001/ofb-participants-business-api/'
       authentication-server: 'http://localhost:3001/ofb-authentication-server/'
 eureka:
   client:
@@ -209,7 +209,7 @@ spring:
 app:
   paths:
     clients:
-      registered-clients: 'http://localhost:3001/ofb-clients-business-api/'
+      registered-clients: 'http://localhost:3001/ofb-participants-business-api/'
       authentication-server: 'http://localhost:3001/ofb-authentication-server/'
 eureka:
   client:

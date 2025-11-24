@@ -88,7 +88,7 @@ app:
     clients:
       consents-api: 'http://localhost:3001/ofb-consents/'
       customers-api: 'http://localhost:3001/ofb-customers/'
-      participants-api: 'http://localhost:3001/ofb-clients-business-api/'
+      participants-api: 'http://localhost:3001/ofb-participants-business-api/'
       resources-api: 'http://localhost:3001/ofb-resources/'
   parameters:
     consents:
@@ -160,7 +160,7 @@ app:
     clients:
       consents-api: 'http://localhost:3001/ofb-consents/'
       customers-api: 'http://localhost:3001/ofb-customers/'
-      participants-api: 'http://localhost:3001/ofb-clients-business-api/'
+      participants-api: 'http://localhost:3001/ofb-participants-business-api/'
       resources-api: 'http://localhost:3001/ofb-resources/'
   parameters:
     consents:
@@ -232,7 +232,7 @@ app:
     clients:
       consents-api: 'http://localhost:3001/ofb-consents/'
       customers-api: 'http://localhost:3001/ofb-customers/'
-      participants-api: 'http://localhost:3001/ofb-clients-business-api/'
+      participants-api: 'http://localhost:3001/ofb-participants-business-api/'
       resources-api: 'http://localhost:3001/ofb-resources/'
   parameters:
     consents:
