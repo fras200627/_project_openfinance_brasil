@@ -1,0 +1,57 @@
+---
+#### Database Environments 
+### Dev (local)
+* Windows 11
+* Oracle XE 21 for Windows 11 in local instalation
+* MySQL 8.0 for Windows 11 in local installation
+
+### Homolog simulation (docker) 
+* Windows Sub-System Linux (Ubuntu 22.04 LTS)
+* Docker in WSL
+  * controled by docker commands line
+* Oracle XE 21 image running in Docker
+* MySQL 8.0 image running in Docker
+
+### Production simulation (microk8s)
+* Windows Sub-System Linux (Ubuntu 24.04 LTS)
+* Kubernetes in WSL (plugins MicroK8S)
+  * All components: 
+* Oracle XE 21 image running in Kubernetes
+* MySQL 8.0 image running in Kubernetes
+
+---
+Oracle: schema OFB
+Users:
+OFB
+OFB_OWNER
+OFB_USER
+
+Objects:
+Tables
+Sequences
+Views
+Procedures
+
+Data Core:
+
+---
+MySQL used in Spring Security: user USER
+Users:
+USER
+
+Objects:
+Tables
+Sequences
+
+Data Core:
+
+---
+MySQL used in OFB: user OFB
+Users:
+OFB
+
+Objects:
+Tables
+Sequences
+
+Data Core:

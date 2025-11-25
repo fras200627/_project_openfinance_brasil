@@ -4,12 +4,72 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="add participants domain API and revision participants business API">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="final before new tests">
+      <change afterPath="$PROJECT_DIR$/__databases_implementation/ofb_db_structue.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__keypairs/app.private.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__keypairs/app.public.key" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/openapi/server/openapi-atom-participants-business-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/openapi/server/openapi-atom-participants-business-server.1.0.0.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/openapi/server/openapi-atom-participants-domain-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/openapi/server/openapi-atom-participants-domain-server.1.0.0.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/000_BANCO_TCN_create_TABLES_oracle.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/000_BANCO_TCN_create_users_oracle.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/000_OFB_CREATE_TABLES_FULL_1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/000_OFB_CREATE_TABLES_FULL_1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/000_OFB_create_users_oracle.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/000_OFB_create_users_oracle.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/001_OFB_create_users_oracle.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/001_OFB_create_users_oracle.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/OFB_CREATE_TABLES_MYSQL_AUDIT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/OFB_CREATE_TABLES_MYSQL_AUDIT.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/account_personal_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/account_personal_data_statement.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/consents_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/ofb.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/ofb_schema_export.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/personal_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/resources_permissions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/resources_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/__oracle/resources_types.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_full_1.pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_full_1.~pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_accounts_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_consent_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_personal_account_statement_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_personal_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_resources_permissions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_resources_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_insert_resources_types.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_export.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_export.~sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_export_2.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_grants.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/_project_ofb/ofb_schema_grants.~sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/clear_consents.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/consents_resourcer_flow.pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/db/ModeMySQL/V1__CREATE_SCHEMA.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/db/ModeMySQL/V2__CREATE_AUDIT.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/db/ModeMySQL/application-h2.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/ofb_routines.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-payments_flyway_schema_history.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-payments_pagamentos.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-payments_routines.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-security_routines.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-tikets_flyway_schema_history.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-tikets_item_do_pedido.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-tikets_pedidos.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/tican-tikets_routines.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_cursos.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_usuarios.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_create_table_consents_expiration_control.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_full_1.pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_accounts_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_accounts_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_consent_status.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_consent_status.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_personal_account_statement_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_personal_account_statement_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_personal_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_personal_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_resources_permissions.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_resources_permissions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_resources_status.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_resources_status.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_insert_resources_types.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_resources_types.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_schema_export.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_schema_export.~sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_schema_export_2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_schema_export_2.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_schema_grants.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_schema_grants.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/resources_account_data.pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/tolls2.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/AcessTokenTemplates.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +330,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/controller",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/__keypairs",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
@@ -280,18 +340,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__keypairs" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.participants\sboot-atom-ofb-participants-domain\src\main\java\com\ofb\participants\controller" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.participants\sboot-atom-ofb-participants-domain\src\main\resources\openapi\server" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\07.ofb.batch.services\sbatch-ofb-consents-approval-control\src\main\resources\openapi\client" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\resources\openapi\client" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\java\com\ofb\consents\service\validation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\05.ofb.camel.orchs" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\backup\demo\src\test\java\com\example\demo" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__backup" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__ofb_revision\oracle" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__ofb_revision\mysql" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -365,14 +425,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00055" summary="+ revision documents + start orchs">
-      <option name="closed" value="true" />
-      <created>1757422272370</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1757422272370</updated>
     </task>
     <task id="LOCAL-00056" summary="+ revision documents + start orchs">
       <option name="closed" value="true" />
@@ -758,7 +810,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763990162599</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="final before new tests">
+      <option name="closed" value="true" />
+      <created>1764005869639</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1764005869639</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -774,7 +834,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="+ revision documents" />
     <MESSAGE value="+ revision documents + start orchs" />
     <MESSAGE value="+ revision folders" />
     <MESSAGE value="+ revision folders and authorization server" />
@@ -799,16 +858,12 @@
     <MESSAGE value="review and reorg project" />
     <MESSAGE value="add participants domain API" />
     <MESSAGE value="add participants domain API and revision participants business API" />
-    <option name="LAST_COMMIT_MESSAGE" value="add participants domain API and revision participants business API" />
+    <MESSAGE value="final before new tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="final before new tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/workspace/06.ofb.listeners.services/sboot-listener-ofb-consents-authorization-services/src/main/java/com/ofb/authorization/service/AuthorizationConsentsService.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/java/com/ofb/authentication/service/AuthenticationService.java</url>
           <line>82</line>
