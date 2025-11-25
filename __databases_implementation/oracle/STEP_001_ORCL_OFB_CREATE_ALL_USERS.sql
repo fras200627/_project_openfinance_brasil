@@ -1,4 +1,6 @@
-/***********************************************************************/
+/***********************************************************************
+ Using sysmtem user in XE database
+ ***********************************************************************/
 ALTER SESSION SET "_ORACLE_SCRIPT"=true;
 
 --Drop All users ofb
@@ -6,9 +8,9 @@ ALTER SESSION SET "_ORACLE_SCRIPT"=true;
 --DROP USER OFB_OWNER CASCADE;
 --DROP USER OFB_USER CASCADE;
 
--- Create schema OFB
+-- Create OFB
 CREATE USER OFB
-  IDENTIFIED BY ofb_tican
+  IDENTIFIED BY ofb
   DEFAULT TABLESPACE SYSTEM
   TEMPORARY TABLESPACE TEMP
   PROFILE DEFAULT
@@ -20,11 +22,9 @@ GRANT ALL PRIVILEGES TO OFB;
 * Step 2 - Login  Session with OFB
 *  create user OFB_OWNER
 ************************************************************************/
-ALTER SESSION SET "_ORACLE_SCRIPT"=true;
-/
 -- Create OFB_OWNER  
 CREATE USER OFB_OWNER
-  IDENTIFIED BY ofb_tican
+  IDENTIFIED BY ofb
   DEFAULT TABLESPACE USERS
   TEMPORARY TABLESPACE TEMP
   PROFILE DEFAULT
@@ -34,13 +34,13 @@ GRANT CONNECT, RESOURCE, DBA TO OFB_OWNER;
 /
 -- Create TICAN_USER 
 CREATE USER OFB_USER
-  IDENTIFIED BY ofb_tican
+  IDENTIFIED BY ofb
   DEFAULT TABLESPACE USERS
   TEMPORARY TABLESPACE TEMP
   PROFILE DEFAULT
   ACCOUNT UNLOCK;
 /  
-GRANT CONNECT TO OFB_USER;
+GRANT CONNECT, RESOURCE, DBA TO OFB_TEST_USER;
 /
 
 /***********************************************************************

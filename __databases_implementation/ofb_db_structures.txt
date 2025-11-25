@@ -40,17 +40,105 @@ validate steps scripts
 #### Database Data Objects Structures
 ---
 ### Oracle
+* connection
+    Using
+      Home: OraDB18Home2
+      DLL: C:\_development\_oraclexe21c\product\21c\dbhomeXE\bin\oci.dll
+      OCI: version 12.1  (21.3.0.0.0)
+      Oracle Database 21c Express Edition Release 21.0.0.0.0 
+    Aliases
+      LISTENER_XE
+      LISTENER_XE_DOCKER
+      LISTENER_XE_K8S
+      ORACLR_CONNECTION_DATA
+      XE
+      XE_DOCKER
+      XE_K8S
+---
+Admin user: sys (pwd: tican)
+Admin user: system (pwd: tican)
+---
 * schema: OFB
 * users:
-- OFB
-- OFB_OWNER
-- OFB_USER
+    - SCRIPT: STEP_001_ORCL_CREATE_OFB_USERS.sql
+    - OFB (pwd: ofb)
+    - OFB_OWNER (pwd: ofb)
+    - OFB_USER (pwd: ofb)
 * Objects:
 - Tables
+    -- TABLES CORE: PARAMETERS/SETTINGS
+    -- ---------------------------------------------------------
+    ofb.consents_status
+    ofb.resources_permissions
+    ofb.resources_status
+    ofb.resources_types
+    
+    -- TABLES CORE: PERSONAL CLIENTS AND ACCOUNTS
+    -- ---------------------------------------------------------
+    ofb.personal_data
+    ofb.account_personal_data
+    ofb.account_personal_data_statement
+    
+    -- TABLES CORE: CONSENTS DATA
+    -- ---------------------------------------------------------
+    ofb.consents_personal_data
+    ofb.consents_personal_data_expiration_control
+    ofb.consents_personal_data_permissions_authorised
+    ofb.consents_personal_data_permissions_requested
+    ofb.consents_personal_data_resources_authorised
+    ofb.consents_personal_data_resourses_authorised_permissions
+    
+    -- TABLES AUX: Spring Batch Controls
+    -- ---------------------------------------------------------
+    ofb.batch_job_execution
+    ofb.batch_job_execution_context
+    ofb.batch_job_execution_params
+    ofb.batch_job_instance
+    ofb.batch_step_execution
+    ofb.batch_step_execution_context
 - Sequences
+    -- SEQUENCES CORE: used for all pk fields in OFB tables
+    -- ---------------------------------------------------------
+    ofb.sq_ofb_system
+    
+    -- SEQUENCES AUX: Spring Batch Controls
+    -- ---------------------------------------------------------
+    ofb.batch_job_execution_seq
+    ofb.batch_job_seq
+    ofb.batch_step_execution_seq
 - Views
-- Procedures
-* Data Core:
+    -- VIEWS CORE: PARAMETERS/SETTINGS
+    -- ---------------------------------------------------------
+    ofb.vw_consents_status
+    ofb.vw_resources_permissions
+    ofb.vw_resources_status
+    ofb.vw_resources_types
+    
+    -- VIEWS CORE: PERSONAL CLIENTS AND ACCOUNTS
+    -- ---------------------------------------------------------
+    ofb.vw_personal_data
+    ofb.vw_account_personal_data
+    ofb.vw_account_personal_data_statement
+    
+    -- VIEWS CORE: CONSENTS DATA
+    -- ---------------------------------------------------------
+    ofb.vw_consents_personal_data
+    ofb.vw_consents_personal_data_expiration_control
+    ofb.vw_consents_personal_data_permissions_authorised
+    ofb.vw_consents_personal_data_permissions_requested
+    ofb.vw_consents_personal_data_resources_authorised
+    ofb.vw_consents_personal_data_resources_authorised_permissions
+- Procedures (not used)
+- Triggers
+    -- Trigger Accounts Status Control
+    -- ---------------------------------------------------------
+    ofb.trg_account_personal_data
+
+* grants:
+- OFB user: grant all privileges
+- OFB_OWNER: grant DDL and DML privileges
+- OFB_USER: brant DML privileges (is a OFB apps user)
+* data core:
 
 ---
 ### MySQL (used in Spring Security)
@@ -71,5 +159,86 @@ validate steps scripts
 - Tables
 - Sequences
 * Data Core:
+
+
+
+
+-- Users and Schemas
+-- ---------------------------------------------------------
+* USERS:
+- ofb
+- ofb_owner
+- ofb_user
+* CREATE USERS AND USERS
+
+
+-- TABLES CORE: PARAMETERS/SETTINGS
+-- ---------------------------------------------------------
+ofb.consents_status
+ofb.resources_permissions
+ofb.resources_status
+ofb.resources_types
+
+-- TABLES CORE: PERSONAL CLIENTS AND ACCOUNTS
+-- ---------------------------------------------------------
+ofb.personal_data
+ofb.account_personal_data
+ofb.account_personal_data_statement
+
+-- TABLES CORE: CONSENTS DATA
+-- ---------------------------------------------------------
+ofb.consents_personal_data
+ofb.consents_personal_data_expiration_control
+ofb.consents_personal_data_permissions_authorised
+ofb.consents_personal_data_permissions_requested
+ofb.consents_personal_data_resources_authorised
+ofb.consents_personal_data_resourses_authorised_permissions
+
+-- TABLES AUX: Spring Batch Controls
+-- ---------------------------------------------------------
+ofb.batch_job_execution
+ofb.batch_job_execution_context
+ofb.batch_job_execution_params
+ofb.batch_job_instance
+ofb.batch_step_execution
+ofb.batch_step_execution_context
+
+-- SEQUENCES CORE: used for all pk fields in OFB tables
+-- ---------------------------------------------------------
+ofb.sq_ofb_system
+
+-- SEQUENCES AUX: Spring Batch Controls
+-- ---------------------------------------------------------
+ofb.batch_job_execution_seq
+ofb.batch_job_seq
+ofb.batch_step_execution_seq
+
+-- VIEWS CORE: PARAMETERS/SETTINGS
+-- ---------------------------------------------------------
+ofb.vw_consents_status
+ofb.vw_resources_permissions
+ofb.vw_resources_status
+ofb.vw_resources_types
+
+-- VIEWS CORE: PERSONAL CLIENTS AND ACCOUNTS
+-- ---------------------------------------------------------
+ofb.vw_personal_data
+ofb.vw_account_personal_data
+ofb.vw_account_personal_data_statement
+
+-- VIEWS CORE: CONSENTS DATA
+-- ---------------------------------------------------------
+ofb.vw_consents_personal_data
+ofb.vw_consents_personal_data_expiration_control
+ofb.vw_consents_personal_data_permissions_authorised
+ofb.vw_consents_personal_data_permissions_requested
+ofb.vw_consents_personal_data_resources_authorised
+ofb.vw_consents_personal_data_resources_authorised_permissions
+
+
+-- Trigger Accounts Status Control
+-- ---------------------------------------------------------
+ofb.trg_account_personal_data
+
 
 

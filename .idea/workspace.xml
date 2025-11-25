@@ -5,7 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start reorg implemention steps">
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_db_structue.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/ofb_db_structue.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_001_MYSQL_CREATE_user_USER_AND_SECURITY_OBJECTS.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_004_ORCL_OFB_INPUT_DATA.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_005_ORCL_OFB_INPUT_DATA.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/OFB_CREATE_TABLES_MYSQL_AUDIT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_002_MYSQL_CREATE_USER_OFB_AND_AUDIT_OBJECTS.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/ofb_ofb_audit.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/ofb_ofb_audit_authorization_consents.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/ofb_ofb_audit_cancellation_consents.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/ofb_ofb_audit_extends_consents.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/ofb_ofb_audit_revoked_consents.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_authorities.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_clientdetails.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_group_authorities.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_group_members.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_groups.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_hibernate_sequence.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth2_authorization.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth2_authorization_consent.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth2_authorized_client.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth2_registered_client.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth_access_token.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth_approvals.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth_client_details.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth_client_token.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth_code.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_oauth_refresh_token.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_persistent_logins.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_respostas.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_routines.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_spring_session.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_spring_session_attributes.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_topicos.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_user_entity.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/user_users.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_db_structures.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/ofb_db_structures.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/000_OFB_CREATE_TABLES_FULL_1.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/000_OFB_create_users_oracle.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_001_ORCL_OFB_CREATE_ALL_USERS.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/001_OFB_create_users_oracle.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_accounts_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_consent_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_personal_account_statement_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_personal_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_resources_permissions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_resources_status.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_insert_resources_types.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_schema_export_2.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/ofb_schema_grants.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_003_ORCL_OFB_GRANTS_TO_USERS.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,11 +330,11 @@
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\resources\openapi\client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\oracle" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__ofb_revision\oracle" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__ofb_revision\mysql" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -361,22 +408,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00057" summary="+ revision folders">
-      <option name="closed" value="true" />
-      <created>1757521470968</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1757521470969</updated>
-    </task>
-    <task id="LOCAL-00058" summary="+ revision folders and authorization server">
-      <option name="closed" value="true" />
-      <created>1757526035497</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1757526035498</updated>
     </task>
     <task id="LOCAL-00059" summary="+ revision folders and authorization server">
       <option name="closed" value="true" />
@@ -754,7 +785,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764067111104</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="start reorg implemention steps">
+      <option name="closed" value="true" />
+      <created>1764067780069</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1764067780069</updated>
+    </task>
+    <task id="LOCAL-00107" summary="start reorg implemention steps">
+      <option name="closed" value="true" />
+      <created>1764067812465</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1764067812465</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
