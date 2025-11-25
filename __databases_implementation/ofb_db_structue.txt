@@ -1,3 +1,13 @@
+create schemas and users
+grant to users
+extract objects tables, sequences, views, procedures
+extract data core
+
+create schemas and users to test
+validate steps scripts
+
+
+
 ---
 #### Database Environments 
 ### Dev (local)
@@ -20,38 +30,46 @@
 * MySQL 8.0 image running in Kubernetes
 
 ---
-Oracle: schema OFB
-Users:
-OFB
-OFB_OWNER
-OFB_USER
-
-Objects:
-Tables
-Sequences
-Views
-Procedures
-
-Data Core:
+#### Database Structures
+### Oracle
+* OFB Core and SpringBatch objects control
+### MySQL
+* OFB Audit Core and SpringSecurity objects control 
 
 ---
-MySQL used in Spring Security: user USER
-Users:
-USER
-
-Objects:
-Tables
-Sequences
-
-Data Core:
+#### Database Data Objects Structures
+---
+### Oracle
+* schema: OFB
+* users:
+- OFB
+- OFB_OWNER
+- OFB_USER
+* Objects:
+- Tables
+- Sequences
+- Views
+- Procedures
+* Data Core:
 
 ---
-MySQL used in OFB: user OFB
-Users:
-OFB
+### MySQL (used in Spring Security)
+* user USER
+* Users:
+- USER
+* Objects:
+- Tables
+- Sequences
+* Data Core:
 
-Objects:
-Tables
-Sequences
+---
+### MySQL (used in OFB)
+* user OFB
+* Users:
+- OFB
+* Objects:
+- Tables
+- Sequences
+* Data Core:
 
-Data Core:
+
