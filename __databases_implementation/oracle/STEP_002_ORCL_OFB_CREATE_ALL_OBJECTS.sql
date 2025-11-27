@@ -1,12 +1,12 @@
-﻿--prompt  PL/SQL Developer Export User Objects for user OFB@XE
---prompt  Created by fras200627 on terça-feira, 25 de novembro de 2025
---set define off
---spool STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.log
+﻿prompt PL/SQL Developer Export User Objects for user OFB@XE
+prompt Created by fras200627 on quinta-feira, 27 de novembro de 2025
+set define off
+spool STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.log
 
---prompt 
---prompt  Creating sequence BATCH_JOB_EXECUTION_SEQ
---prompt  =========================================
---prompt 
+prompt
+prompt Creating sequence BATCH_JOB_EXECUTION_SEQ
+prompt =========================================
+prompt
 create sequence OFB.BATCH_JOB_EXECUTION_SEQ
 minvalue 0
 maxvalue 9223372036854775807
@@ -14,10 +14,10 @@ start with 260
 increment by 1
 cache 20;
 
---prompt 
---prompt  Creating sequence BATCH_JOB_SEQ
---prompt  ===============================
---prompt 
+prompt
+prompt Creating sequence BATCH_JOB_SEQ
+prompt ===============================
+prompt
 create sequence OFB.BATCH_JOB_SEQ
 minvalue 0
 maxvalue 9223372036854775807
@@ -25,10 +25,10 @@ start with 220
 increment by 1
 cache 20;
 
---prompt 
---prompt  Creating sequence BATCH_STEP_EXECUTION_SEQ
---prompt  ==========================================
---prompt 
+prompt
+prompt Creating sequence BATCH_STEP_EXECUTION_SEQ
+prompt ==========================================
+prompt
 create sequence OFB.BATCH_STEP_EXECUTION_SEQ
 minvalue 0
 maxvalue 9223372036854775807
@@ -36,22 +36,22 @@ start with 220
 increment by 1
 cache 20;
 
---prompt 
---prompt  Creating sequence SQ_OFB_SYSTEM
---prompt  ===============================
---prompt 
+prompt
+prompt Creating sequence SQ_OFB_SYSTEM
+prompt ===============================
+prompt
 create sequence OFB.SQ_OFB_SYSTEM
 minvalue 1
 maxvalue 999999999999
-start with 1
+start with 96187
 increment by 1
 cache 20
 cycle;
 
---prompt 
---prompt  Creating table PERSONAL_DATA
---prompt  ============================
---prompt 
+prompt
+prompt Creating table PERSONAL_DATA
+prompt ============================
+prompt
 create table OFB.PERSONAL_DATA
 (
   personalid         CHAR(40) default 'custpf-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{3})([A-F0-9]{29})', '\1-\2') not null,
@@ -87,6 +87,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.PERSONAL_DATA
+  is 'Registro dos customers utilizados no OFB.';
 comment on column OFB.PERSONAL_DATA.personalid
   is 'Personal Id (é o PK) assume como default um UUID';
 comment on column OFB.PERSONAL_DATA.civilname
@@ -126,7 +128,9 @@ comment on column OFB.PERSONAL_DATA.create_at
 comment on column OFB.PERSONAL_DATA.modify_at
   is 'Data da última modificação';
 comment on column OFB.PERSONAL_DATA.user_code
-  is 'Usuário executar da criação ou última alteração';
+  is 'Usuário executor da criação ou última alteração';
+comment on column OFB.PERSONAL_DATA.status
+  is 'Status do customer';
 alter table OFB.PERSONAL_DATA
   add constraint PERSONALDATAPK primary key (PERSONALID)
   using index
@@ -185,10 +189,10 @@ alter table OFB.PERSONAL_DATA
   add constraint PERSONAL_DATA_CHECK5
   check (UPPER(TRIM(STATUS)) IN ('ATIVO', 'INATIVO', 'BLOQUEADO', 'ENCERRADO'));
 
---prompt 
---prompt  Creating table ACCOUNT_PERSONAL_DATA
---prompt  ====================================
---prompt 
+prompt
+prompt Creating table ACCOUNT_PERSONAL_DATA
+prompt ====================================
+prompt
 create table OFB.ACCOUNT_PERSONAL_DATA
 (
   accountid                   CHAR(39) default 'accpf-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{3})([A-F0-9]{29})', '\1-\2') not null,
@@ -225,6 +229,46 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.ACCOUNT_PERSONAL_DATA
+  is 'Registro da contas-corrente';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.accountid
+  is 'Account id';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.personalid
+  is 'Personal Id';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.accountstatus
+  is 'Status do conta';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.accounttype
+  is 'Type de conta';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.accountsubtype
+  is 'SubType da conta';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.currency
+  is 'Identificação da moeda definida para a conta';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.brandname
+  is 'Nome da Instituição Financeira ';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.companycnpj
+  is 'CNPJ da Instituição Financeira';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.compecode
+  is 'Código de Compensação definida pelo Banco Central';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.branchcode
+  is 'Código da Institução Financeira';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.accountnumber
+  is 'Número da conta-corrente';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.accountcheckdigit
+  is 'Dígito verificador da conta-corrente';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.updateamountsdatetime
+  is 'Data/Hora de última atualização de valores da conta-corrente';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.availableamount
+  is 'Saldo dísponível';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.blockedamount
+  is 'Saldo Bloqueado';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.automaticallyinvestedamount
+  is 'Valor de Investimentos';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.overdraftcontractedlimit
+  is 'Valor de Cheque Especial';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.overdraftusedlimit
+  is 'Valor utilizado do Cheque especial';
+comment on column OFB.ACCOUNT_PERSONAL_DATA.unarrangedoverdraftamount
+  is 'Valor negativo existente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.create_at
   is 'Data de criação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.modify_at
@@ -279,10 +323,10 @@ alter table OFB.ACCOUNT_PERSONAL_DATA
   check (UPPER(TRIM(accountSubtype)) IN (
   'INDIVIDUAL', 'CONJUNTA_SIMPLES', 'CONJUNTA_SOLIDARIA'));
 
---prompt 
---prompt  Creating table ACCOUNT_PERSONAL_DATA_STATEMENT
---prompt  ==============================================
---prompt 
+prompt
+prompt Creating table ACCOUNT_PERSONAL_DATA_STATEMENT
+prompt ==============================================
+prompt
 create table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
 (
   transactionid                  CHAR(39) default 'acctx-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{32})', '\1') not null,
@@ -310,10 +354,14 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
+  is 'Registro de lançamentos de conta-corrente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactionid
   is 'Transaction Id';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.accountid
   is 'Account Id';
+comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.referencetransactionid
+  is 'Reference a one transaction';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactiondatetime
   is 'Transation Date/Time';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.completedauthorisedpaymenttype
@@ -372,10 +420,10 @@ alter table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
  'RENDIMENTO_APLIC_FINANCEIRA', 'PORTABILIDADE_SALARIO',
  'RESGATE_APLIC_FINANCEIRA', 'OPERACAO_CREDITO', 'OUTROS'));
 
---prompt 
---prompt  Creating table BATCH_JOB_INSTANCE
---prompt  =================================
---prompt 
+prompt
+prompt Creating table BATCH_JOB_INSTANCE
+prompt =================================
+prompt
 create table OFB.BATCH_JOB_INSTANCE
 (
   job_instance_id NUMBER(19) not null,
@@ -394,6 +442,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.BATCH_JOB_INSTANCE
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_INSTANCE
   add primary key (JOB_INSTANCE_ID)
   using index
@@ -423,10 +473,10 @@ alter table OFB.BATCH_JOB_INSTANCE
     maxextents unlimited
   );
 
---prompt 
---prompt  Creating table BATCH_JOB_EXECUTION
---prompt  ==================================
---prompt 
+prompt
+prompt Creating table BATCH_JOB_EXECUTION
+prompt ==================================
+prompt
 create table OFB.BATCH_JOB_EXECUTION
 (
   job_execution_id           NUMBER(19) not null,
@@ -452,6 +502,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.BATCH_JOB_EXECUTION
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_EXECUTION
   add primary key (JOB_EXECUTION_ID)
   using index
@@ -470,10 +522,10 @@ alter table OFB.BATCH_JOB_EXECUTION
   add constraint JOB_INST_EXEC_FK foreign key (JOB_INSTANCE_ID)
   references OFB.BATCH_JOB_INSTANCE (JOB_INSTANCE_ID);
 
---prompt 
---prompt  Creating table BATCH_JOB_EXECUTION_CONTEXT
---prompt  ==========================================
---prompt 
+prompt
+prompt Creating table BATCH_JOB_EXECUTION_CONTEXT
+prompt ==========================================
+prompt
 create table OFB.BATCH_JOB_EXECUTION_CONTEXT
 (
   job_execution_id   NUMBER(19) not null,
@@ -491,6 +543,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.BATCH_JOB_EXECUTION_CONTEXT
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_EXECUTION_CONTEXT
   add primary key (JOB_EXECUTION_ID)
   using index
@@ -509,10 +563,10 @@ alter table OFB.BATCH_JOB_EXECUTION_CONTEXT
   add constraint JOB_EXEC_CTX_FK foreign key (JOB_EXECUTION_ID)
   references OFB.BATCH_JOB_EXECUTION (JOB_EXECUTION_ID);
 
---prompt 
---prompt  Creating table BATCH_JOB_EXECUTION_PARAMS
---prompt  =========================================
---prompt 
+prompt
+prompt Creating table BATCH_JOB_EXECUTION_PARAMS
+prompt =========================================
+prompt
 create table OFB.BATCH_JOB_EXECUTION_PARAMS
 (
   job_execution_id NUMBER(19) not null,
@@ -535,14 +589,16 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.BATCH_JOB_EXECUTION_PARAMS
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_EXECUTION_PARAMS
   add constraint JOB_EXEC_PARAMS_FK foreign key (JOB_EXECUTION_ID)
   references OFB.BATCH_JOB_EXECUTION (JOB_EXECUTION_ID);
 
---prompt 
---prompt  Creating table BATCH_STEP_EXECUTION
---prompt  ===================================
---prompt 
+prompt
+prompt Creating table BATCH_STEP_EXECUTION
+prompt ===================================
+prompt
 create table OFB.BATCH_STEP_EXECUTION
 (
   step_execution_id  NUMBER(19) not null,
@@ -575,6 +631,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.BATCH_STEP_EXECUTION
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_STEP_EXECUTION
   add primary key (STEP_EXECUTION_ID)
   using index
@@ -593,10 +651,10 @@ alter table OFB.BATCH_STEP_EXECUTION
   add constraint JOB_EXEC_STEP_FK foreign key (JOB_EXECUTION_ID)
   references OFB.BATCH_JOB_EXECUTION (JOB_EXECUTION_ID);
 
---prompt 
---prompt  Creating table BATCH_STEP_EXECUTION_CONTEXT
---prompt  ===========================================
---prompt 
+prompt
+prompt Creating table BATCH_STEP_EXECUTION_CONTEXT
+prompt ===========================================
+prompt
 create table OFB.BATCH_STEP_EXECUTION_CONTEXT
 (
   step_execution_id  NUMBER(19) not null,
@@ -614,6 +672,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.BATCH_STEP_EXECUTION_CONTEXT
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_STEP_EXECUTION_CONTEXT
   add primary key (STEP_EXECUTION_ID)
   using index
@@ -632,10 +692,10 @@ alter table OFB.BATCH_STEP_EXECUTION_CONTEXT
   add constraint STEP_EXEC_CTX_FK foreign key (STEP_EXECUTION_ID)
   references OFB.BATCH_STEP_EXECUTION (STEP_EXECUTION_ID);
 
---prompt 
---prompt  Creating table CONSENTS_STATUS
---prompt  ==============================
---prompt 
+prompt
+prompt Creating table CONSENTS_STATUS
+prompt ==============================
+prompt
 create table OFB.CONSENTS_STATUS
 (
   consentstatusid        NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -659,6 +719,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_STATUS
+  is 'Registro do dominío de status possíveis para os consentimentos.';
 comment on column OFB.CONSENTS_STATUS.consentstatusid
   is 'Consent Status Id';
 comment on column OFB.CONSENTS_STATUS.consentstatuscontrolid
@@ -706,10 +768,10 @@ alter table OFB.CONSENTS_STATUS
     maxextents unlimited
   );
 
---prompt 
---prompt  Creating table CONSENTS_PERSONAL_DATA
---prompt  =====================================
---prompt 
+prompt
+prompt Creating table CONSENTS_PERSONAL_DATA
+prompt =====================================
+prompt
 create table OFB.CONSENTS_PERSONAL_DATA
 (
   consentid                  VARCHAR2(256) default 'urn:bancotcn:' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{32})', '\1') not null,
@@ -753,6 +815,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_PERSONAL_DATA
+  is 'Registro dos consentimentos criados para as solicitações recebidas dos clientes';
 comment on column OFB.CONSENTS_PERSONAL_DATA.consentid
   is 'consent id';
 comment on column OFB.CONSENTS_PERSONAL_DATA.creationdatetime
@@ -832,10 +896,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA
   add constraint CONSENTSPERSONALDATAFK3 foreign key (PERSONALID)
   references OFB.PERSONAL_DATA (PERSONALID);
 
---prompt 
---prompt  Creating table CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
---prompt  ========================================================
---prompt 
+prompt
+prompt Creating table CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+prompt ========================================================
+prompt
 create table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
 (
   expirationcontrolid          NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -868,6 +932,44 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+  is 'Registros de controle da expiração dos consentimentos criados.';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationcontrolid
+  is 'Id gerado por sequence';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.consentid
+  is 'Id do consentimento';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.requestdatetime
+  is 'Data/Hora da requisição';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.previusexpirationdatetime
+  is 'Data/Hora de expiração do consentimento';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.xfapicustomeripaddress
+  is 'Controle da requisição';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.xcustomeruseragent
+  is 'Controle da requisição';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdatetime
+  is 'Data/Hora de expiração atualmente valida.';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdatetimerequested
+  is 'Data/Hora de expiração recebida na requsição';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdatetimeadjusted
+  is 'Data/Hora de expiração ajustada';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationinmonths
+  is 'Expiração em meses';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdateinfo
+  is 'Informação adicional sobre a expiração';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.loggeduseridentification
+  is 'Documento de Identificação do cliente';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.loggeduserdocumentrel
+  is 'Tipo de documento de identificação do cliente';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.businessentityidentification
+  is 'Documento de identificação do participante';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.businessentitydocumentrel
+  is 'Tipo de documento de identificação do participante';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.create_at
+  is 'Data/Hora da criação do registro';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.modify_at
+  is 'Data/Hora da última alteração do registro';
+comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.user_code
+  is 'Identificação do user responsável pela criação/alteração do registro';
 alter table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
   add constraint EXPIRATIONCONTROLPK primary key (EXPIRATIONCONTROLID)
   using index
@@ -886,10 +988,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
   add constraint CONSENTEXPIRATIONCONTROLFK1 foreign key (CONSENTID)
   references OFB.CONSENTS_PERSONAL_DATA (CONSENTID);
 
---prompt 
---prompt  Creating table RESOURCES_TYPES
---prompt  ==============================
---prompt 
+prompt
+prompt Creating table RESOURCES_TYPES
+prompt ==============================
+prompt
 create table OFB.RESOURCES_TYPES
 (
   resourcetypeid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -913,7 +1015,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.RESOURCES_TYPES
-  is 'Table System OFB to defined data resources';
+  is 'Registro do dominíos dos TYPES dos RESOURCES definidos no OFB. ';
 comment on column OFB.RESOURCES_TYPES.resourcetypeid
   is 'Resource type PK';
 comment on column OFB.RESOURCES_TYPES.type
@@ -979,10 +1081,10 @@ alter table OFB.RESOURCES_TYPES
                               'FUND',
                               'EXCHANGE'));
 
---prompt 
---prompt  Creating table RESOURCES_PERMISSIONS
---prompt  ====================================
---prompt 
+prompt
+prompt Creating table RESOURCES_PERMISSIONS
+prompt ====================================
+prompt
 create table OFB.RESOURCES_PERMISSIONS
 (
   resourcepermissionid         NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1015,6 +1117,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.RESOURCES_PERMISSIONS
+  is 'Registros do dominío de controle das permissões possíveis para as RESOURCES definidos pelo OFB. ';
 comment on column OFB.RESOURCES_PERMISSIONS.resourcepermissionid
   is 'Resource Permission Id';
 comment on column OFB.RESOURCES_PERMISSIONS.resourcetypeid
@@ -1083,10 +1187,10 @@ alter table OFB.RESOURCES_PERMISSIONS
   add constraint RESOURCEPERMISSIONFK1 foreign key (RESOURCETYPEID)
   references OFB.RESOURCES_TYPES (RESOURCETYPEID);
 
---prompt 
---prompt  Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
---prompt  ============================================================
---prompt 
+prompt
+prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+prompt ============================================================
+prompt
 create table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
 (
   consentpermissionauthorisedid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1107,6 +1211,14 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+  is 'Registros das permissões autorizadas para os consentimentos solicitados';
+comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.consentpermissionauthorisedid
+  is 'Id gerado pela sequence';
+comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.consentid
+  is 'Id do consentimento';
+comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.permissionid
+  is 'Id da permissão';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.create_at
   is 'Record creation date';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.modify_at
@@ -1148,10 +1260,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
   add constraint CONSENTSPERMISSIONSAUTHORISEDFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
 
---prompt 
---prompt  Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
---prompt  ===========================================================
---prompt 
+prompt
+prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+prompt ===========================================================
+prompt
 create table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
 (
   consentpermissionrequestedid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1172,6 +1284,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+  is 'Registros das permissões solicitadas dos consentimentos solicitados';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED.consentpermissionrequestedid
   is 'Consents Permission Id';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED.consentid
@@ -1219,10 +1333,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
   add constraint CONSENTSPERMISSIONFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
 
---prompt 
---prompt  Creating table RESOURCES_STATUS
---prompt  ===============================
---prompt 
+prompt
+prompt Creating table RESOURCES_STATUS
+prompt ===============================
+prompt
 create table OFB.RESOURCES_STATUS
 (
   resourcestatusid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1243,6 +1357,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.RESOURCES_STATUS
+  is 'Registro do dominído de controle do possíveis status dos RESOURCES existentes no OFB.';
 comment on column OFB.RESOURCES_STATUS.resourcestatusid
   is 'Resources Status Id';
 comment on column OFB.RESOURCES_STATUS.status
@@ -1284,10 +1400,10 @@ alter table OFB.RESOURCES_STATUS
     maxextents unlimited
   );
 
---prompt 
---prompt  Creating table CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
---prompt  ==========================================================
---prompt 
+prompt
+prompt Creating table CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+prompt ==========================================================
+prompt
 create table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
 (
   consentresourceid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1311,6 +1427,8 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+  is 'Registros dos RESOURCES autorizados para os consentimentos criados';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED.consentresourceid
   is 'Consents Resources PK';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED.resourceid
@@ -1368,10 +1486,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
   check (TRIM(resourceidsummary) IN
 ('customerId','accountId', 'creditCardAccountId', 'contractId', 'investmentId', 'operationId'));
 
---prompt 
---prompt  Creating table CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
---prompt  ======================================================================
---prompt 
+prompt
+prompt Creating table CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
+prompt ======================================================================
+prompt
 create table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
 (
   consentresourcepermissionid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1392,12 +1510,20 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
+comment on table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
+  is 'Registros das PERMISSONS dos  RESOURCES autorizados para os consentimentos criados';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.consentresourcepermissionid
   is 'Consents Resources Confirmed Permissions Pk';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.consentresourceid
   is 'Consents Resources Confirmed reference';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.permissionid
   is 'Resources Permission Id reference';
+comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.create_at
+  is 'Data/Hora da criação do registro';
+comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.modify_at
+  is 'Data/Hora da ultima alteração do registro';
+comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.user_code
+  is 'Código do usuário responsável pela criação ou alteração';
 alter table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
   add constraint CONSENTRESOURCECONFIRMEDPERMISSIONPK primary key (CONSENTRESOURCEPERMISSIONID)
   using index
@@ -1433,87 +1559,75 @@ alter table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
   add constraint CONSENTRESOURCECONFIRMEDPERMISSIONFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
 
---prompt 
---prompt  Creating table TESTE
---prompt  ====================
---prompt 
-create table OFB.TESTE
-(
-  teste NUMBER
-)
-tablespace USERS
-  pctfree 10
-  initrans 1
-  maxtrans 255;
-
---prompt 
---prompt  Creating view VW_ACCOUNT_PERSONAL_DATA
---prompt  ======================================
---prompt 
+prompt
+prompt Creating view VW_ACCOUNT_PERSONAL_DATA
+prompt ======================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_ACCOUNT_PERSONAL_DATA AS
 SELECT
-  t.rowid AS ID,
-  v.cpfnumber,
-  v.status AS personalStatus,
-  t.personalid,
-  v.civilname,
-  t.accountid,
-  t.accountstatus,
-  t.accounttype,
-  t.accountsubtype,
-  t.currency,
-  t.brandname,
-  t.companycnpj,
-  t.compecode,
-  t.branchcode,
-  t.accountnumber,
-  t.accountcheckdigit,
-  to_char(t.updateamountsdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')    AS updateamountsdatetime,
-  to_char(t.availableamount, 'FM999999999999990.0000')             AS availableamount,
-  to_char(t.blockedamount, 'FM999999999999990.0000')               AS blockedamount,
-  to_char(t.automaticallyinvestedamount, 'FM999999999999990.0000') AS automaticallyinvestedamount,
-  to_char(t.overdraftcontractedlimit, 'FM999999999999990.0000')    AS overdraftcontractedlimit,
-  to_char(t.overdraftusedlimit, 'FM999999999999990.0000')          AS overdraftusedlimit,
-  to_char(t.unarrangedoverdraftamount, 'FM999999999999990.0000')   AS unarrangedoverdraftamount
+  t.rowid AS ID,               --
+  v.cpfnumber,                 --
+  v.status AS personalStatus,  --
+  t.personalid,                --
+  v.civilname,                 --
+  t.accountid,                 --
+  t.accountstatus,             --
+  t.accounttype,               --
+  t.accountsubtype,            --
+  t.currency,                  --
+  t.brandname,                 --
+  t.companycnpj,               --
+  t.compecode,                 --
+  t.branchcode,                --
+  t.accountnumber,             --
+  t.accountcheckdigit,         --
+  to_char(t.updateamountsdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')    AS updateamountsdatetime,      --
+  to_char(t.availableamount, 'FM999999999999990.0000')             AS availableamount,            --
+  to_char(t.blockedamount, 'FM999999999999990.0000')               AS blockedamount,              --
+  to_char(t.automaticallyinvestedamount, 'FM999999999999990.0000') AS automaticallyinvestedamount,--
+  to_char(t.overdraftcontractedlimit, 'FM999999999999990.0000')    AS overdraftcontractedlimit,   --
+  to_char(t.overdraftusedlimit, 'FM999999999999990.0000')          AS overdraftusedlimit,         --
+  to_char(t.unarrangedoverdraftamount, 'FM999999999999990.0000')   AS unarrangedoverdraftamount   --
 from
   OFB.ACCOUNT_PERSONAL_DATA t
   INNER JOIN OFB.PERSONAL_DATA v
   ON t.personalid = v.personalid
 ORDER BY
-  v.cpfnumber, t.compecode, t.branchcode, t.accountnumber;
+  v.cpfnumber, t.compecode, t.branchcode, t.accountnumber
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA
---prompt  ==============================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA
+prompt ==============================================
+prompt
 create or replace synonym OFB.LIST_OF_ACCOUNT_PERSONAL_DATA
   for OFB.VW_ACCOUNT_PERSONAL_DATA;
 
---prompt 
---prompt  Creating view VW_ACCOUNT_PERSONAL_DATA_STATEMENT
---prompt  ================================================
---prompt 
+prompt
+prompt Creating view VW_ACCOUNT_PERSONAL_DATA_STATEMENT
+prompt ================================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT AS
 SELECT
-  x.cpfnumber,
-  t.transactionid,
-  t.accountid,
-  v.compecode,
-  v.branchcode,
-  v.accountnumber,
-  v.accountcheckdigit,
-  v.accounttype,
-  v.personalid,
-  x.civilname,
-  t.referencetransactionid,
-  to_char(t.transactiondatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS transactiondatetime,
-  t.transactiondatetime AS txdatetime,
-  t.completedauthorisedpaymenttype,
-  t.creditdebittype,
-  t.transactionname,
-  t.transactiontype,
-  to_char(t.transactionamount, 'FM999999999999990.0000')    AS transactionamount,
-  t.transactioncurrency
+  x.cpfnumber,         --
+  t.transactionid,     --
+  t.accountid,         --
+  v.compecode,         --
+  v.branchcode,        --
+  v.accountnumber,     --
+  v.accountcheckdigit, --
+  v.accounttype,       --
+  v.personalid,        --
+  x.civilname,         --
+  t.referencetransactionid, --
+  to_char(t.transactiondatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS transactiondatetime, --
+  t.transactiondatetime AS txdatetime, --
+  t.completedauthorisedpaymenttype,    --
+  t.creditdebittype,                   --
+  t.transactionname,                   --
+  t.transactiontype,                   --
+  to_char(t.transactionamount, 'FM999999999999990.0000')    AS transactionamount, --
+  t.transactioncurrency --
 from
   OFB.ACCOUNT_PERSONAL_DATA_STATEMENT t
   INNER JOIN OFB.ACCOUNT_PERSONAL_DATA v
@@ -1523,149 +1637,153 @@ from
 ORDER BY
   x.cpfnumber, v.compecode,
   v.branchcode, v.accountnumber,
-  t.transactiondatetime;
+  t.transactiondatetime
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
---prompt  ========================================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
+prompt ========================================================
+prompt
 create or replace synonym OFB.LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
   for OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT;
 
---prompt 
---prompt  Creating view VW_CONSENTS_PERSONAL_DATA
---prompt  =======================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA
+prompt =======================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA AS
 SELECT z."CONSENTID",z."EXPIRATIONCONTROLID",z."PERSONALID",z."CIVILNAME",z."CPFNUMBER",z."CREATIONDATETIME",z."CONSENTSTATUSID",z."STATUS",z."ACCESSTOKENAUTHORISED",z."CONSENTSTATUSCONTROLID",z."STATUSSTEP",z."STATUSREASON",z."STATUSUPDATEDATETIME",z."EXPIRATIONDATETIME",z."EXPIRATIONINMONTHS",z."EXPIRATIONDATEINFO",z."LOGGEDUSERIDENTIFICATION",z."LOGGEDUSERDOCUMENTREL",z."BUSINESSENTITYIDENTIFICATION",z."BUSINESSENTITYDOCUMENTREL",z."AWAITINGAUTHBY",z."AWAITINGAUTHSTART",z."AWAITINGAUTHEND",z."AWAITINGAUTHADDITIONALINFO",z."AUTHORISEDBY",z."AUTHORISEDSTART",z."AUTHORISEDEND",z."AUTHORISEDADDITIONALINFO",z."REJECTEDBY",z."REJECTEDCODE",z."REJECTEDREASON",z."REJECTEDADDITIONALINFO",z."REJECTEDSTARTDATETIME",z."REJECTEDENDDATETIME",z."CANCELLEDBY",z."CANCELLEDREASON",z."CANCELLEDADDITIONALINFO" FROM (
 SELECT
-  a.consentid,
-  d.expirationcontrolid,
-  a.personalid,
-  c.civilname,
-  c.cpfnumber,
+  a.consentid,            --
+  d.expirationcontrolid,  --
+  a.personalid,           --
+  c.civilname,            --
+  c.cpfnumber,            --
   --
-  to_char(a.creationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')     AS creationdatetime,
-  a.consentstatusid,
-  a.status,
-  a.accesstokenauthorised,
-  b.consentstatuscontrolid,
-  b.statusstep,
-  b.statusreason,
+  to_char(a.creationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')     AS creationdatetime, --
+  a.consentstatusid,       --
+  a.status,                --
+  a.accesstokenauthorised, --
+  b.consentstatuscontrolid,--
+  b.statusstep,            --
+  b.statusreason,          --
   --
-  to_char(a.statusupdatedatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS statusupdatedatetime,
-  to_char(a.expirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')   AS expirationdatetime,
-  d.expirationinmonths,
-  a.expirationdateinfo,
+  to_char(a.statusupdatedatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS statusupdatedatetime, --
+  to_char(a.expirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')   AS expirationdatetime,   --
+  d.expirationinmonths,    --
+  a.expirationdateinfo,    --
   --
-  d.loggeduseridentification,
-  d.loggeduserdocumentrel,
-  d.businessentityidentification,
-  d.businessentitydocumentrel,
+  d.loggeduseridentification,     --
+  d.loggeduserdocumentrel,        --
+  d.businessentityidentification, --
+  d.businessentitydocumentrel,    --
   --
-  a.awaitingauthby,
-  to_char(a.awaitingauthstart,'YYYY-MM-DD"T"HH24:MI:SS"Z"')    AS awaitingauthstart,
-  to_char(a.awaitingauthend,'YYYY-MM-DD"T"HH24:MI:SS"Z"')      AS awaitingauthend,
-  a.awaitingauthadditionalinfo,
+  a.awaitingauthby,               --
+  to_char(a.awaitingauthstart,'YYYY-MM-DD"T"HH24:MI:SS"Z"')    AS awaitingauthstart, --
+  to_char(a.awaitingauthend,'YYYY-MM-DD"T"HH24:MI:SS"Z"')      AS awaitingauthend,   --
+  a.awaitingauthadditionalinfo,   --
   --
-  a.authorisedby,
-  to_char(a.authorisedstart,'YYYY-MM-DD"T"HH24:MI:SS"Z"')      AS authorisedstart,
-  to_char(a.authorisedend,'YYYY-MM-DD"T"HH24:MI:SS"Z"')        AS authorisedend,
-  a.authorisedadditionalinfo,
+  a.authorisedby,                 --
+  to_char(a.authorisedstart,'YYYY-MM-DD"T"HH24:MI:SS"Z"')      AS authorisedstart,   --
+  to_char(a.authorisedend,'YYYY-MM-DD"T"HH24:MI:SS"Z"')        AS authorisedend,     --
+  a.authorisedadditionalinfo,     --
   --
-  a.rejectedby,
-  a.rejectedcode,
-  a.rejectedreason,
-  a.rejectedadditionalinfo,
-  to_char(a.rejectedstartdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS rejectedstartdatetime,
-  to_char(a.rejectedenddatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')   AS rejectedenddatetime,
+  a.rejectedby,                   --
+  a.rejectedcode,                 --
+  a.rejectedreason,               --
+  a.rejectedadditionalinfo,       --
+  to_char(a.rejectedstartdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS rejectedstartdatetime, --
+  to_char(a.rejectedenddatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"')   AS rejectedenddatetime,   --
   --
-  a.cancelledby,
-  a.cancelledreason,
-  a.cancelledadditionalinfo
+  a.cancelledby,                  --
+  a.cancelledreason,              --
+  a.cancelledadditionalinfo       --
 from
   OFB.CONSENTS_PERSONAL_DATA a
   INNER JOIN OFB.CONSENTS_STATUS b
   ON a.consentstatusid = b.consentstatusid
   INNER JOIN OFB.PERSONAL_DATA c
   ON a.personalid = c.personalid
-  INNER JOIN OFB.consents_personal_data_expiration_control d
+  INNER JOIN ofb.consents_personal_data_expiration_control d
   ON d.consentid = a.consentid) z
 WHERE
   z.expirationcontrolid = (SELECT MAX(x.expirationcontrolid)
                            FROM
-                           OFB.consents_personal_data_expiration_control x
+                           ofb.consents_personal_data_expiration_control x
                            WHERE
                            x.consentid = z.consentid)
 order by
   z.cpfnumber, z.consentid
 ;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA
---prompt  ===============================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA
+prompt ===============================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA
   for OFB.VW_CONSENTS_PERSONAL_DATA;
 
---prompt 
---prompt  Creating view VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
---prompt  ==========================================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+prompt ==========================================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL AS
 SELECT
-  b.expirationcontrolid,
-  a.consentid,
-  to_char(a.creationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS creationdatetime,
-  a.status,
-  b.create_at AS createat,
-  to_char(b.requestdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS requestdatetime,
-  to_char(b.previusexpirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS previusexpirationdatetime,
-  b.xfapicustomeripaddress,
-  b.xcustomeruseragent,
-  to_char(b.expirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetime,
-  to_char(b.expirationdatetimerequested,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetimerequested,
-  to_char(b.expirationdatetimeadjusted,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetimeadjusted,
-  b.expirationinmonths,
-  b.expirationdateinfo,
-  b.loggeduseridentification,
-  b.loggeduserdocumentrel,
-  b.businessentityidentification,
-  b.businessentitydocumentrel
+  b.expirationcontrolid, --
+  a.consentid,           --
+  to_char(a.creationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS creationdatetime, --
+  a.status,                        --
+  b.create_at AS createat,         --
+  to_char(b.requestdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS requestdatetime,                     --
+  to_char(b.previusexpirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS previusexpirationdatetime, --
+  b.xfapicustomeripaddress,        --
+  b.xcustomeruseragent,            --
+  to_char(b.expirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetime,                  --
+  to_char(b.expirationdatetimerequested,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetimerequested,--
+  to_char(b.expirationdatetimeadjusted,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetimeadjusted,  --
+  b.expirationinmonths,            --
+  b.expirationdateinfo,            --
+  b.loggeduseridentification,      --
+  b.loggeduserdocumentrel,         --
+  b.businessentityidentification,  --
+  b.businessentitydocumentrel      --
 from
   OFB.CONSENTS_PERSONAL_DATA a
   INNER JOIN OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL b
   ON a.consentid = b.consentid
 order by
-  a.consentid, b.requestdatetime DESC;
+  a.consentid, b.requestdatetime DESC
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
---prompt  ==================================================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+prompt ==================================================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
   for OFB.VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL;
 
---prompt 
---prompt  Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
---prompt  ==============================================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+prompt ==============================================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED AS
 SELECT
-  A.CONSENTPERMISSIONAUTHORISEDID AS ID,
-  E.CPFNUMBER                     AS CUSTOMERCPFNUMBER,
-  E.CIVILNAME                     AS CUSTOMERNAME,
-  E.PERSONALID,
-  A.CONSENTID,
-  B.STATUS                        AS CONSENTSTATUS,
-  TO_CHAR(B.EXPIRATIONDATETIME,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS EXPIRATIONDATETIME,
-  D.TYPE                          AS RESOURCETYPE,
-  C.RESOURCESTATUS,
-  A.PERMISSIONID,
-  C.PERMISSIONCATEGORYORDER,
-  C.PERMISSION,
-  C.PERMISSIONCATEGORY,
-  C.PERMISSIONCATEGORYGROUP
+  A.CONSENTPERMISSIONAUTHORISEDID AS ID,                 --
+  E.CPFNUMBER                     AS CUSTOMERCPFNUMBER,  --
+  E.CIVILNAME                     AS CUSTOMERNAME,       --
+  E.PERSONALID,                                          --
+  A.CONSENTID,                                           --
+  B.STATUS                        AS CONSENTSTATUS,      --
+  TO_CHAR(
+  B.EXPIRATIONDATETIME,
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS EXPIRATIONDATETIME,   --
+  D.TYPE                          AS RESOURCETYPE,       --
+  C.RESOURCESTATUS,                                      --
+  A.PERMISSIONID,                                        --
+  C.PERMISSIONCATEGORYORDER,                             --
+  C.PERMISSION,                                          --
+  C.PERMISSIONCATEGORY,                                  --
+  C.PERMISSIONCATEGORYGROUP                              --
 FROM
   OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED A
   INNER JOIN OFB.CONSENTS_PERSONAL_DATA B
@@ -1682,34 +1800,38 @@ ORDER BY
   E.CPFNUMBER,
   A.CONSENTID,
   C.PERMISSIONCATEGORYGROUP,
-  C.PERMISSIONCATEGORYORDER;
+  C.PERMISSIONCATEGORYORDER
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
---prompt  ======================================================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+prompt ======================================================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
   for OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED;
 
---prompt 
---prompt  Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
---prompt  =============================================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+prompt =============================================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED AS
 SELECT
-  a.consentpermissionrequestedid,
-  e.cpfnumber,
-  a.consentid,
-  e.civilname          AS customer,
-  b.status             AS consentstatus,
-  b.expirationdatetime AS consentexpiration,
-  to_char(b.expirationdatetime,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS expirationdatetime,
-  d.type               AS resourcetype,
-  c.permission,
-  c.permissioncategory,
-  c.permissioncategorygroup,
-  a.permissionid,
-  c.permissioncategoryorder
+  a.consentpermissionrequestedid,            --
+  e.cpfnumber,                               --
+  a.consentid,                               --
+  e.civilname          AS customer,          --
+  b.status             AS consentstatus,     --
+  b.expirationdatetime AS consentexpiration, --
+  to_char(
+  b.expirationdatetime,
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"')
+  AS expirationdatetime,                     --
+  d.type               AS resourcetype,      --
+  c.permission,                              --
+  c.permissioncategory,                      --
+  c.permissioncategorygroup,                 --
+  a.permissionid,                            --
+  c.permissioncategoryorder                  --
 from
   OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED a
   INNER JOIN OFB.CONSENTS_PERSONAL_DATA b
@@ -1725,56 +1847,57 @@ ORDER BY
   a.consentid,
   c.permissioncategoryid,
   c.permissioncategorygroup,
-  c.permissioncategoryorder;
+  c.permissioncategoryorder
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
---prompt  =====================================================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+prompt =====================================================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
   for OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED;
 
---prompt 
---prompt  Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
---prompt  ============================================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+prompt ============================================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED AS
 SELECT
-  A.CONSENTRESOURCEID           AS ID,
-  A.CONSENTID,
-  TO_CHAR(D.CREATIONDATETIME,
-  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTDATECREATION,
-  D.STATUS                      AS CONSENTSTATUS,
-  TO_CHAR(D.EXPIRATIONDATETIME,
-  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTEXPIRATION,
-  F.PERSONALID,
-  F.CIVILNAME           AS PERSONALNAME,
-  F.CPFNUMBER,
-  F.BIRTHDATE,
-  F.SEX,
-  F.ADDRESS,
-  F.DISTRICTNAME,
-  F.TOWNNAME,
-  F.COUNTRYSUBDIVISION,
-  F.POSTCODE,
-  F.COUNTRY,
-  F.PHONETYPE,
-  F.PHONEAREACODE,
-  F.PHONENUMBER,
-  F.EMAIL,
-  A.RESOURCEID,
-  B.TYPE                AS RESOURCETYPE,
-  A.RESOURCEIDSUMMARY,
-  C.STATUS              AS RESOURCESTATUS,
-  I.ACCOUNTTYPE,
-  I.ACCOUNTSUBTYPE,
-  I.ACCOUNTSTATUS,
-  I.BRANDNAME           AS ACCOUNTBRANDNAME,
-  I.COMPANYCNPJ         AS ACCOUNTCOMPANYCNPJ,
-  I.COMPECODE           AS ACCOUNTCOMPECODE,
-  I.BRANCHCODE          AS ACCOUNTBRANCHCODE,
-  I.ACCOUNTNUMBER,
-  I.ACCOUNTCHECKDIGIT
+  A.CONSENTRESOURCEID           AS ID,                  --
+  A.CONSENTID,                                          --
+  TO_CHAR(D.CREATIONDATETIME,                           --
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTDATECREATION, --
+  D.STATUS                      AS CONSENTSTATUS,       --
+  TO_CHAR(D.EXPIRATIONDATETIME,                         --
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTEXPIRATION,   --
+  F.PERSONALID,                                         --
+  F.CIVILNAME           AS PERSONALNAME,                --
+  F.CPFNUMBER,                                          --
+  F.BIRTHDATE,                                          --
+  F.SEX,                                                --
+  F.ADDRESS,                                            --
+  F.DISTRICTNAME,                                       --
+  F.TOWNNAME,                                           --
+  F.COUNTRYSUBDIVISION,                                 --
+  F.POSTCODE,                                           --
+  F.COUNTRY,                                            --
+  F.PHONETYPE,                                          --
+  F.PHONEAREACODE,                                      --
+  F.PHONENUMBER,                                        --
+  F.EMAIL,                                              --
+  A.RESOURCEID,                                         --
+  B.TYPE                AS RESOURCETYPE,                --
+  A.RESOURCEIDSUMMARY,                                  --
+  C.STATUS              AS RESOURCESTATUS,              --
+  I.ACCOUNTTYPE,                                        --
+  I.ACCOUNTSUBTYPE,                                     --
+  I.ACCOUNTSTATUS,                                      --
+  I.BRANDNAME           AS ACCOUNTBRANDNAME,            --
+  I.COMPANYCNPJ         AS ACCOUNTCOMPANYCNPJ,          --
+  I.COMPECODE           AS ACCOUNTCOMPECODE,            --
+  I.BRANCHCODE          AS ACCOUNTBRANCHCODE,           --
+  I.ACCOUNTNUMBER,                                      --
+  I.ACCOUNTCHECKDIGIT                                   --
 FROM
   OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED A
   INNER JOIN OFB.RESOURCES_TYPES B
@@ -1788,60 +1911,61 @@ FROM
   LEFT JOIN OFB.ACCOUNT_PERSONAL_DATA I
   ON A.RESOURCEID = I.ACCOUNTID
 ORDER BY
-  F.CPFNUMBER, D.CREATIONDATETIME DESC, A.RESOURCEID;
+  F.CPFNUMBER, D.CREATIONDATETIME DESC, A.RESOURCEID
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
---prompt  ====================================================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+prompt ====================================================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
   for OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED;
 
---prompt 
---prompt  Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
---prompt  ========================================================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
+prompt ========================================================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS AS
 SELECT
-  G.CONSENTRESOURCEPERMISSIONID AS ID,
-  F.CPFNUMBER                   AS PERSONALCPF,
-  A.CONSENTID,
-  D.STATUS                      AS CONSENTSTATUS,
-  TO_CHAR(D.CREATIONDATETIME,
-  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTDATECREATION,
-  TO_CHAR(D.EXPIRATIONDATETIME,
-  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTEXPIRATION,
-  F.PERSONALID,
-  F.CIVILNAME                   AS PERSONALNAME,
-  F.CPFNUMBER,
-  F.BIRTHDATE,
-  F.SEX,
-  F.ADDRESS,
-  F.DISTRICTNAME,
-  F.TOWNNAME,
-  F.COUNTRYSUBDIVISION,
-  F.POSTCODE,
-  F.COUNTRY,
-  F.PHONETYPE,
-  F.PHONEAREACODE,
-  F.PHONENUMBER,
-  F.EMAIL,
-  A.RESOURCEID,
-  B.TYPE                        AS RESOURCETYPE,
-  I.ACCOUNTTYPE,
-  I.ACCOUNTSUBTYPE,
-  I.ACCOUNTSTATUS,
-  I.BRANDNAME                   AS ACCOUNTBRANDNAME,
-  I.COMPANYCNPJ                 AS ACCOUNTCOMPANYCNPJ,
-  I.COMPECODE                   AS ACCOUNTCOMPECODE,
-  I.BRANCHCODE                  AS ACCOUNTBRANCHCODE,
-  I.ACCOUNTNUMBER,
-  I.ACCOUNTCHECKDIGIT,
-  I.CURRENCY,
-  A.RESOURCEIDSUMMARY,
-  C.STATUS                      AS RESOURCESTATUS,
-  G.PERMISSIONID,
-  H.PERMISSION
+  G.CONSENTRESOURCEPERMISSIONID AS ID,                   --
+  F.CPFNUMBER                   AS PERSONALCPF,          --
+  A.CONSENTID,                                           --
+  D.STATUS                      AS CONSENTSTATUS,        --
+  TO_CHAR(D.CREATIONDATETIME,                            --
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTDATECREATION,  --
+  TO_CHAR(D.EXPIRATIONDATETIME,                          --
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS CONSENTEXPIRATION,    --
+  F.PERSONALID,                                          --
+  F.CIVILNAME                   AS PERSONALNAME,         --
+  F.CPFNUMBER,                                           --
+  F.BIRTHDATE,                                           --
+  F.SEX,                                                 --
+  F.ADDRESS,                                             --
+  F.DISTRICTNAME,                                        --
+  F.TOWNNAME,                                            --
+  F.COUNTRYSUBDIVISION,                                  --
+  F.POSTCODE,                                            --
+  F.COUNTRY,                                             --
+  F.PHONETYPE,                                           --
+  F.PHONEAREACODE,                                       --
+  F.PHONENUMBER,                                         --
+  F.EMAIL,                                               --
+  A.RESOURCEID,                                          --
+  B.TYPE                        AS RESOURCETYPE,         --
+  I.ACCOUNTTYPE,                                         --
+  I.ACCOUNTSUBTYPE,                                      --
+  I.ACCOUNTSTATUS,                                       --
+  I.BRANDNAME                   AS ACCOUNTBRANDNAME,     --
+  I.COMPANYCNPJ                 AS ACCOUNTCOMPANYCNPJ,   --
+  I.COMPECODE                   AS ACCOUNTCOMPECODE,     --
+  I.BRANCHCODE                  AS ACCOUNTBRANCHCODE,    --
+  I.ACCOUNTNUMBER,                                       --
+  I.ACCOUNTCHECKDIGIT,                                   --
+  I.CURRENCY,                                            --
+  A.RESOURCEIDSUMMARY,                                   --
+  C.STATUS                      AS RESOURCESTATUS,       --
+  G.PERMISSIONID,                                        --
+  H.PERMISSION                                           --
 FROM
   OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED A
   INNER JOIN OFB.RESOURCES_TYPES B
@@ -1860,161 +1984,170 @@ FROM
   ON A.RESOURCEID = I.ACCOUNTID
 ORDER BY
   F.CPFNUMBER, D.CONSENTID, A.RESOURCEID, H.PERMISSIONCATEGORYID,
-  H.PERMISSIONEVENTGROUPID, H.PERMISSIONCATEGORYORDER;
+  H.PERMISSIONEVENTGROUPID, H.PERMISSIONCATEGORYORDER
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
---prompt  ================================================================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
+prompt ================================================================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
   for OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS;
 
---prompt 
---prompt  Creating view VW_CONSENTS_STATUS
---prompt  ================================
---prompt 
+prompt
+prompt Creating view VW_CONSENTS_STATUS
+prompt ================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_STATUS AS
 SELECT
-  t.CONSENTSTATUSID,
-  t.CONSENTSTATUSCONTROLID,
-  t.STATUS,
-  t.STATUSSTEP,
-  t.STATUSREASON,
-  t.STATUSDESCRIPTION
+  t.CONSENTSTATUSID,         --
+  t.CONSENTSTATUSCONTROLID,  --
+  t.STATUS,                  --
+  t.STATUSSTEP,              --
+  t.STATUSREASON,            --
+  t.STATUSDESCRIPTION        --
 FROM
   OFB.CONSENTS_STATUS t
 ORDER BY
   t.CONSENTSTATUSCONTROLID,
-  t.STATUSSTEP;
+  t.STATUSSTEP
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_CONSENTS_STATUS
---prompt  ========================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_CONSENTS_STATUS
+prompt ========================================
+prompt
 create or replace synonym OFB.LIST_OF_CONSENTS_STATUS
   for OFB.VW_CONSENTS_STATUS;
 
---prompt 
---prompt  Creating view VW_PERSONAL_DATA
---prompt  ==============================
---prompt 
+prompt
+prompt Creating view VW_PERSONAL_DATA
+prompt ==============================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_PERSONAL_DATA AS
 SELECT
-  t.CPFNUMBER,
-  t.PERSONALID,
-  t.STATUS,
-  t.CIVILNAME,
-  t.SOCIALNAME,
-  t.BIRTHDATE,
-  t.MARITALSTATUSCODE,
-  t.SEX,
-  t.ADDRESS,
-  t.DISTRICTNAME,
-  t.TOWNNAME,
-  t.COUNTRYSUBDIVISION,
-  t.POSTCODE,
-  t.COUNTRY,
-  t.PHONETYPE,
-  t.PHONEAREACODE,
-  t.PHONENUMBER,
-  t.EMAIL,
-  to_char(t.modify_at,'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS LASTUPDATE
+  t.CPFNUMBER,         --
+  t.PERSONALID,        --
+  t.STATUS,            --
+  t.CIVILNAME,         --
+  t.SOCIALNAME,        --
+  t.BIRTHDATE,         --
+  t.MARITALSTATUSCODE, --
+  t.SEX,               --
+  t.ADDRESS,           --
+  t.DISTRICTNAME,      --
+  t.TOWNNAME,          --
+  t.COUNTRYSUBDIVISION,--
+  t.POSTCODE,          --
+  t.COUNTRY,           --
+  t.PHONETYPE,         --
+  t.PHONEAREACODE,     --
+  t.PHONENUMBER,       --
+  t.EMAIL,             --
+  to_char(
+  t.modify_at,
+  'YYYY-MM-DD"T"HH24:MI:SS"Z"')
+  AS LASTUPDATE        --
 FROM
   OFB.PERSONAL_DATA t
 ORDER BY
-  T.CPFNUMBER ASC;
+  T.CPFNUMBER ASC
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_PERSONAL_DATA
---prompt  ======================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_PERSONAL_DATA
+prompt ======================================
+prompt
 create or replace synonym OFB.LIST_OF_PERSONAL_DATA
   for OFB.VW_PERSONAL_DATA;
 
---prompt 
---prompt  Creating view VW_RESOURCES_PERMISSIONS
---prompt  ======================================
---prompt 
+prompt
+prompt Creating view VW_RESOURCES_PERMISSIONS
+prompt ======================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_RESOURCES_PERMISSIONS AS
 SELECT a."RESOURCEPERMISSIONID",a."RESOURCETYPEID",a."RESOURCETYPE",a."RESOURCESUMMARY",a."RESOURCESTATUS",a."PERMISSION",a."PERMISSIONID",a."PERMISSIONCATEGORY",a."CONTROL",a."CONTROLDESCRIPTION",a."PERMISSIONGROUPING",a."PERMISSIONCATEGORYGROUP",a."QUALIFIEDFORPJ",a."QUALIFIEDFORPF" FROM (
   SELECT
-    resourcepermissionid,
-    a.resourcetypeid,
-    b.type                       AS resourcetype,
-    b.summary                    AS resourcesummary,
-    a.resourcestatus             AS resourcestatus,
-    resourcepermissionid         AS permissionid,
-    permission,
-    permissioncategory,
-    permissioncontrol            AS control,
-    permissioncontroldescription AS controldescription,
-    permissiongrouping,
-    permissioncategorygroup,
-    a.resourceisavailablebusiness AS qualifiedForPJ,
-    a.resourceisavailablepersonal AS qualifiedForPF
+    resourcepermissionid,                             --
+    a.resourcetypeid,                                 --
+    b.type                       AS resourcetype,     --
+    b.summary                    AS resourcesummary,  --
+    a.resourcestatus             AS resourcestatus,   --
+    resourcepermissionid         AS permissionid,     --
+    permission,                                       --
+    permissioncategory,                               --
+    permissioncontrol            AS control,          --
+    permissioncontroldescription AS controldescription, --
+    permissiongrouping,                                 --
+    permissioncategorygroup,                            --
+    a.resourceisavailablebusiness AS qualifiedForPJ,    --
+    a.resourceisavailablepersonal AS qualifiedForPF     --
   FROM
     OFB.RESOURCES_PERMISSIONS a
     INNER JOIN OFB.RESOURCES_TYPES b
     ON a.resourcetypeid = b.resourcetypeid
   ORDER BY
     a.permissioncategoryid,
-    a.permissioneventgroupid, a.permissioncategoryorder) a;
+    a.permissioneventgroupid, a.permissioncategoryorder) a
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_RESOURCES_PERMISSIONS
---prompt  ==============================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_RESOURCES_PERMISSIONS
+prompt ==============================================
+prompt
 create or replace synonym OFB.LIST_OF_RESOURCES_PERMISSIONS
   for OFB.VW_RESOURCES_PERMISSIONS;
 
---prompt 
---prompt  Creating view VW_RESOURCES_STATUS
---prompt  =================================
---prompt 
+prompt
+prompt Creating view VW_RESOURCES_STATUS
+prompt =================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_RESOURCES_STATUS AS
 SELECT
-  t.resourcestatusid,
-  t.status,
-  t.summary
+  t.resourcestatusid, --
+  t.status,           --
+  t.summary           --
 from
   OFB.RESOURCES_STATUS t
 ORDER BY
-  t.resourcestatusid;
+  t.resourcestatusid
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_RESOURCES_STATUS
---prompt  =========================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_RESOURCES_STATUS
+prompt =========================================
+prompt
 create or replace synonym OFB.LIST_OF_RESOURCES_STATUS
   for OFB.VW_RESOURCES_STATUS;
 
---prompt 
---prompt  Creating view VW_RESOURCES_TYPES
---prompt  ================================
---prompt 
+prompt
+prompt Creating view VW_RESOURCES_TYPES
+prompt ================================
+prompt
 CREATE OR REPLACE FORCE VIEW OFB.VW_RESOURCES_TYPES AS
 SELECT
-  t.resourceTYPEid   AS ResourceTYPEId,
-  t.type             AS ResourceType,
-  t.status           AS ResourceStatus,
-  t.summary          AS Summary,
-  t.description      AS Description
+  t.resourceTYPEid   AS ResourceTYPEId,       --
+  t.type             AS ResourceType,         --
+  t.status           AS ResourceStatus,       --
+  t.summary          AS Summary,              --
+  t.description      AS DESCRIPTION           --
 FROM
   OFB.RESOURCES_TYPES t
 ORDER BY
-  t.type;
+  t.type
+;
 
---prompt 
---prompt  Creating synonym LIST_OF_RESOURCES_TYPES
---prompt  ========================================
---prompt 
+prompt
+prompt Creating synonym LIST_OF_RESOURCES_TYPES
+prompt ========================================
+prompt
 create or replace synonym OFB.LIST_OF_RESOURCES_TYPES
   for OFB.VW_RESOURCES_TYPES;
 
---prompt 
---prompt  Creating trigger TRG_ACCOUNT_PERSONAL_DATA
---prompt  ==========================================
---prompt 
+prompt
+prompt Creating trigger TRG_ACCOUNT_PERSONAL_DATA
+prompt ==========================================
+prompt
 CREATE OR REPLACE NONEDITIONABLE TRIGGER OFB.TRG_ACCOUNT_PERSONAL_DATA
   AFTER UPDATE 
   OF ACCOUNTSTATUS
@@ -2022,45 +2155,33 @@ CREATE OR REPLACE NONEDITIONABLE TRIGGER OFB.TRG_ACCOUNT_PERSONAL_DATA
   FOR EACH ROW
 DECLARE
 resourceStatus NUMBER:= 0;
---PRAGMA AUTONOMOUS_TRANSACTION;
 BEGIN
---ACCOUNT_STATUS      RESOURCE STATUS
-------------------------------------------------
---ATIVA               1  Available
---ENCERRADA           2  Unavailable
---BLOQUEADA           3  Temporarily Unavailable
---                    4  Pending Authorisation
-------------------------------------------------
 
-/*  SELECT a.resourcestatus INTO resourceStatus 
-  FROM OFB.consents_personal_data_resources_confirmed a
-  WHERE
-  a.resourceid = :old.ACCOUNTID;
-  
-  IF resourceStatus = 4 THEN
-    RETURN;
-  ELSE*/
-    IF :NEW.ACCOUNTSTATUS = 'ATIVA' THEN
-      UPDATE  OFB.consents_personal_data_resources_authorised a
-      SET a.resourcestatus = 1
-       WHERE a.resourceid = :OLD.ACCOUNTID
-      AND a.resourcestatus != 4;
-      COMMIT;
-    ELSIF :NEW.ACCOUNTSTATUS = 'ENCERRADA' THEN
-      UPDATE  OFB.consents_personal_data_resources_authorised a
-      SET a.resourcestatus = 2
-      WHERE a.resourceid = :OLD.ACCOUNTID
-      AND a.resourcestatus != 4;
-      COMMIT;
-    ELSIF :NEW.ACCOUNTSTATUS = 'BLOQUEADA' THEN
-      UPDATE  OFB.consents_personal_data_resources_authorised a
-      SET a.resourcestatus = 3
-      WHERE a.resourceid = :OLD.ACCOUNTID
-      AND a.resourcestatus != 4;
-      COMMIT;
-    END IF;
---  END IF;
-  
+  IF :NEW.ACCOUNTSTATUS = 'ATIVA' THEN
+    UPDATE  
+        ofb.consents_personal_data_resources_authorised a
+        SET a.resourcestatus = 1
+    WHERE 
+        a.resourceid = :OLD.ACCOUNTID
+        AND a.resourcestatus != 4;
+  ELSIF :NEW.ACCOUNTSTATUS = 'ENCERRADA' THEN
+    UPDATE  
+        ofb.consents_personal_data_resources_authorised a
+    SET 
+        a.resourcestatus = 2
+    WHERE 
+        a.resourceid = :OLD.ACCOUNTID
+        AND a.resourcestatus != 4;
+  ELSIF :NEW.ACCOUNTSTATUS = 'BLOQUEADA' THEN
+    UPDATE  
+        ofb.consents_personal_data_resources_authorised a
+        SET a.resourcestatus = 3
+    WHERE 
+        a.resourceid = :OLD.ACCOUNTID
+        AND a.resourcestatus != 4;
+  END IF;
+
+  COMMIT;
 EXCEPTION
   WHEN OTHERS THEN
     RETURN;
@@ -2068,6 +2189,6 @@ END TRG_ACCOUNT_PERSONAL_DATA;
 /
 
 
---prompt  Done
---spool off
---set define on
+prompt Done
+spool off
+set define on

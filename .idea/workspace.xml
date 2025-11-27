@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start reorg implemention steps">
-      <change afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_003_MYSQL_INSERT_PARTICIPANTS_DATA.sql" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/ofb_db_structures.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/ofb_db_structures.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_001_MYSQL_CREATE_user_USER_AND_SECURITY_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_001_MYSQL_CREATE_user_USER_AND_SECURITY_OBJECTS.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_002_MYSQL_CREATE_USER_OFB_AND_AUDIT_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_002_MYSQL_CREATE_USER_OFB_AND_AUDIT_OBJECTS.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_003_MYSQL_INSERT_PARTICIPANTS_DATA.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_003_MYSQL_INSERT_PARTICIPANTS_DATA.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,10 +288,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\oracle" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__readme" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__backup" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\__ofb_revision\oracle" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -363,14 +365,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00060" summary="+ revision folders and authorization server">
-      <option name="closed" value="true" />
-      <created>1757688173083</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1757688173084</updated>
     </task>
     <task id="LOCAL-00061" summary="+ revision folders and authorization server">
       <option name="closed" value="true" />
@@ -756,7 +750,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764095987114</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="start documentation">
+      <option name="closed" value="true" />
+      <created>1764162926568</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1764162926575</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -772,7 +774,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="+ revision folders" />
     <MESSAGE value="+ revision folders and authorization server" />
     <MESSAGE value="+ final of authorization server" />
     <MESSAGE value="review folders structure" />
@@ -797,7 +798,8 @@
     <MESSAGE value="add participants domain API and revision participants business API" />
     <MESSAGE value="final before new tests" />
     <MESSAGE value="start reorg implemention steps" />
-    <option name="LAST_COMMIT_MESSAGE" value="start reorg implemention steps" />
+    <MESSAGE value="start documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="start documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
