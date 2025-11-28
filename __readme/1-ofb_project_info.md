@@ -108,14 +108,14 @@
 * org.SpringDoc UI tools
 * Springboot (2.7.11)
 * Spring AMQP
-* Spring Apache Camel
+* Apache Camel Orchestration (Spring framework)
 * SpringBatch
 * SpringCloud (with Eureka NetFlix)
-* SpringCloud (with Spring Gateway)
+* SpringCloud (with SpringGateway)
 * SpringSecurity (with JWT and OAuth2)
 * Resilience4J
-* Authentication Server
-* Authorization Server
+* Authentication Server (SpringSecurity framework)
+* Authorization Server (SpringSecurity framework)
 * MapStruct
 * JUnit
 * Lombok

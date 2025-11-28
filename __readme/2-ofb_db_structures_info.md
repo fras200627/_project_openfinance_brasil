@@ -1,3 +1,9 @@
+## OFB Database Informations
+#### (compiled at 27.11.2025)
+### Description ???
+    text
+---
+
 ### Database Environments 
 #### Dev (local)
 * Windows 11
@@ -21,13 +27,13 @@
 ---
 ### Database Structures
 #### Oracle
-* OFB Core and SpringBatch objects control
+* OFB Core and **SpringBatch** objects control
 #### MySQL
-* OFB Audit Core and SpringSecurity objects control 
+* OFB Audit Core and **SpringSecurity** objects control 
 
 ---
 ### Database Data Objects Structures
-#### Oracle
+### Oracle
 * **Connection**
     - Home: OraDB18Home2
     - DLL: C:\_development\_oraclexe21c\product\21c\dbhomeXE\bin\oci.dll
@@ -47,7 +53,7 @@
   - STEP_005_ORCL_OFB_INPUT_DATA.sql
 
 ---
-#### Oracle Schema: OFB
+#### Oracle Schema OFB
 All descriptions and details about the purpose of tables, views, and sequences,
 as well as the function of each field in the tables and views, are in the Oracle objects themselves
 in the comment fields.
@@ -132,47 +138,49 @@ in the comment fields.
       - Admin user: root (pwd: root)
       - Spring Security: user (pwd: user)
       - OFB Audit controls: ofb (pwd: ofb)
-* **Schemas**
-    - user (used in Spring Security)
-    - ofb (used in OFB Audit controls)
+      
+#### MySQL Schemas USER and OFB
+- user (used in Spring Security)
+- ofb (used in OFB Audit controls)
+
 * **Scripts for implementation**
     - STEP_001_MYSQL_CREATE_user_USER_AND_SECURITY_OBJECTS.sql
     - STEP_002_MYSQL_CREATE_USER_OFB_AND_AUDIT_OBJECTS.sql
     - STEP_003_MYSQL_INSERT_PARTICIPANTS_DATA.sql
 ---    
-* **MySQL Schema: USER (used in Spring Security)**
-    - Table Objects
-      - user.authorities
-      - user.clientdetails
-      - user.group_authorities
-      - user.group_members
-      - user.groups
-      - user.hibernate_sequence
-      - user.oauth2_authorization
-      - user.oauth2_authorization_consent
-      - user.oauth2_authorized_client
-      - **user.oauth2_registered_client** << participants records is here
-      - user.oauth_access_token
-      - user.oauth_approvals
-      - user.oauth_client_details
-      - user.oauth_client_token
-      - user.oauth_code
-      - user.oauth_refresh_token
-      - user.persistent_logins
-      - user.spring_session
-      - user.spring_session_attributes
-      - user.user_entity
-      - user.users
-    - Sequence Object
-      - **user.hibernate_sequence** << Used in participants pk
----
-* **MySQL Schema: OFB (used in OFB Audit controls)**
-    - Table Objects
-      - ofb.ofb_audit
-      - ofb.ofb_audit_authorization_consents
-      - ofb.ofb_audit_cancellation_consents
-      - ofb.ofb_audit_extends_consents
-      - ofb.ofb_audit_revoked_consents
+#### MySQL Schema: USER (used in Spring Security)
+- Table Objects
+  - user.authorities
+  - user.clientdetails
+  - user.group_authorities
+  - user.group_members
+  - user.groups
+  - user.hibernate_sequence
+  - user.oauth2_authorization
+  - user.oauth2_authorization_consent
+  - user.oauth2_authorized_client
+  - **user.oauth2_registered_client** << participants records is here
+  - user.oauth_access_token
+  - user.oauth_approvals
+  - user.oauth_client_details
+  - user.oauth_client_token
+  - user.oauth_code
+  - user.oauth_refresh_token
+  - user.persistent_logins
+  - user.spring_session
+  - user.spring_session_attributes
+  - user.user_entity
+  - user.users
+  - Sequence Object
+  - **user.hibernate_sequence** << Used in participants pk
+
+#### MySQL Schema: OFB (used in OFB Audit controls)
+- Table Objects
+  - ofb.ofb_audit
+  - ofb.ofb_audit_authorization_consents
+  - ofb.ofb_audit_cancellation_consents
+  - ofb.ofb_audit_extends_consents
+  - ofb.ofb_audit_revoked_consents
 
 
 

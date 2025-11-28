@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_001_MYSQL_CREATE_user_USER_AND_SECURITY_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_001_MYSQL_CREATE_user_USER_AND_SECURITY_OBJECTS.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_002_MYSQL_CREATE_USER_OFB_AND_AUDIT_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_002_MYSQL_CREATE_USER_OFB_AND_AUDIT_OBJECTS.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_003_MYSQL_INSERT_PARTICIPANTS_DATA.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/mysql/STEP_003_MYSQL_INSERT_PARTICIPANTS_DATA.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/diagram_oracle_ofb_objects.pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/diagram_oracle_springbatch_controls_objects.pdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/mer_oracle_ofb_objects.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/mer_oracle_springbatch_controls_objects.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1-ofb_project_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1-ofb_project_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2-ofb_db_structures_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2-ofb_db_structures_info.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,22 +367,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00061" summary="+ revision folders and authorization server">
-      <option name="closed" value="true" />
-      <created>1757968575949</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1757968575950</updated>
-    </task>
-    <task id="LOCAL-00062" summary="+ revision folders and authorization server">
-      <option name="closed" value="true" />
-      <created>1758037143644</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1758037143644</updated>
     </task>
     <task id="LOCAL-00063" summary="+ revision folders and authorization server">
       <option name="closed" value="true" />
@@ -758,7 +744,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764162926575</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="start documentation">
+      <option name="closed" value="true" />
+      <created>1764253543943</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1764253543943</updated>
+    </task>
+    <task id="LOCAL-00111" summary="start documentation">
+      <option name="closed" value="true" />
+      <created>1764326717534</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1764326717534</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
