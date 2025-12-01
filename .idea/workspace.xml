@@ -4,10 +4,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 04 documentation">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 05 documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/Map-OFB-1.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/Map-OFB-1.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/consents_flow.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/project-doc.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__docs/project-ofb-2025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/x.1-technical_project_description.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/x.1-technical_project_description.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,9 +297,9 @@
       <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\04.ofb.atoms\sboot-atom-ofb-consents\src\main\resources\openapi\client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\__readme" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation\oracle" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__docs" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\__readme" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\backup" />
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__databases_implementation" />
     </key>
@@ -363,14 +375,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00065" summary="+ final of authorization server">
-      <option name="closed" value="true" />
-      <created>1758205488989</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1758205488989</updated>
     </task>
     <task id="LOCAL-00066" summary="+ final of authorization server">
       <option name="closed" value="true" />
@@ -756,7 +760,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764590639382</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="commit 05 documentation">
+      <option name="closed" value="true" />
+      <created>1764590763018</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590763018</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -772,7 +784,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="review folders structure" />
     <MESSAGE value="resume authorization server" />
     <MESSAGE value="API Accounts+Authorization+Resources" />
     <MESSAGE value="API Accounts and Customers +Authorization+Resources" />
@@ -797,7 +808,8 @@
     <MESSAGE value="start documentation" />
     <MESSAGE value="commit 03 documentation" />
     <MESSAGE value="commit 04 documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 04 documentation" />
+    <MESSAGE value="commit 05 documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 05 documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

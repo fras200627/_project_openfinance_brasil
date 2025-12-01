@@ -26,18 +26,18 @@ Authentication Server
 Audit API
 Registered Clients OAuth2 API
 Users Control OAuth2 API
-    OpenAPI 3.0.3 - Ok
-    Lib Commons
+OpenAPI 3.0.3 - Ok
+Lib Commons
 
 Next Steps:
 Build Github repositories - OK 22.04.2025 - 09:29h
-    Build Linux WSL with Kubernetes ...
+Build Linux WSL with Kubernetes ...
 Study OpenFinance
 Create structure for OpenFinance
-    customers
-    branchs
-    accounts
-    credit cards
+customers
+branchs
+accounts
+credit cards
 Build OpenFinance APIs
 Build OpenFinance Orchs
 SpringBatch
@@ -50,14 +50,14 @@ Remain:
 
 =======================================================================
 WSL Ubuntu-22.04 ->> run ofb with Docker environment
-    PS C:\Users\fras200627> wsl -v -l
-    Versão do WSL: 2.4.11.0
-    Versão do kernel: 5.15.167.4-1
-    Versão do WSLg: 1.0.65
-    Versão do MSRDC: 1.2.5716
-    Versão do Direct3D: 1.611.1-81528511
-    Versão do DXCore: 10.0.26100.1-240331-1435.ge-release
-    Versão do Windows: 10.0.27823.1000
+PS C:\Users\fras200627> wsl -v -l
+Versão do WSL: 2.4.11.0
+Versão do kernel: 5.15.167.4-1
+Versão do WSLg: 1.0.65
+Versão do MSRDC: 1.2.5716
+Versão do Direct3D: 1.611.1-81528511
+Versão do DXCore: 10.0.26100.1-240331-1435.ge-release
+Versão do Windows: 10.0.27823.1000
 
     Docker version 26.1.3, build 26.1.3-0ubuntu1~22.04.1
 
@@ -73,47 +73,47 @@ Kubernetes
 Portainer
 
 Project
-    . Discovery Services
-    . API Gateway
-    . Authentication Server
-    . Commons Lib
+. Discovery Services
+. API Gateway
+. Authentication Server
+. Commons Lib
 
 02.04.2025
-    project-ofb-lib-?
-        lib-autoconfigure-amqp
-        lib-autoconfigure-handlers
-        lib-autoconfigure-interceptors
-            tracking preHandle
-            tracking afterCompletion
-        lib-autoconfigure-security
-    project-ofb-discovery-services
-    project-ofb-api-gateway
-        tracking calls
-        register audit messages
-    project-ofb-authentication-server
-    project-ofb-audit-api
-        rest implemented with openapi
-        persistence with JPA
-        listener for RabbitMQ
+project-ofb-lib-?
+lib-autoconfigure-amqp
+lib-autoconfigure-handlers
+lib-autoconfigure-interceptors
+tracking preHandle
+tracking afterCompletion
+lib-autoconfigure-security
+project-ofb-discovery-services
+project-ofb-api-gateway
+tracking calls
+register audit messages
+project-ofb-authentication-server
+project-ofb-audit-api
+rest implemented with openapi
+persistence with JPA
+listener for RabbitMQ
 
 Project Template
-    Services separated in projects specifics to
-        Business Resources
-        Domain Resources
+Services separated in projects specifics to
+Business Resources
+Domain Resources
 
 Environment
 Spring - 2.7.XX
-    .JDK 17
-    .logback profiles
-    .Spring Cloud
-    .Eureka Discovery
-    .Eureka Client
-    .Resilience4J
-    .Beans Validation
-    .Lombok
-    .MapStruct
-        .MapStruct with Lombok
-    .JUnit
+.JDK 17
+.logback profiles
+.Spring Cloud
+.Eureka Discovery
+.Eureka Client
+.Resilience4J
+.Beans Validation
+.Lombok
+.MapStruct
+.MapStruct with Lombok
+.JUnit
 
     .Exception Handlers
         .JWT (includes in lib commons)
@@ -143,31 +143,31 @@ Spring - 2.7.XX
         .Orchestration: Using Spring FeignClient
         .JpaSpecificationExecutor: Page, Pageable
 
-   Application files/profiles
-        .Use Profiles
-        .Properties Cloud, Resilience
-        .Ports Control x Discovery Services x API Gateway
+Application files/profiles
+.Use Profiles
+.Properties Cloud, Resilience
+.Ports Control x Discovery Services x API Gateway
 
 Maven
-    .POM properties
-    .POM dependencies
-    .POM builders
+.POM properties
+.POM dependencies
+.POM builders
 
 OpenAPI
-    .Documentation Repositories
-    .Generators for Clients
-    .Generators for Servers
-    .Swagger UI
-    .Swagger Editor yaml for OpenAPI generate
-        .Parameters
-            .types (enum, arrays, numbers, strings)
-            .properties
-            .validate
-        .Schemas
-            .objects pojo/dto
-            .objects enum
-        .Responses
-        .Security
-        .Tags/Groups
+.Documentation Repositories
+.Generators for Clients
+.Generators for Servers
+.Swagger UI
+.Swagger Editor yaml for OpenAPI generate
+.Parameters
+.types (enum, arrays, numbers, strings)
+.properties
+.validate
+.Schemas
+.objects pojo/dto
+.objects enum
+.Responses
+.Security
+.Tags/Groups
 
 

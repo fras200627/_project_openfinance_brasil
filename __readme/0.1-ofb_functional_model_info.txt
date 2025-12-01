@@ -1,3 +1,47 @@
+database x views x apis + orchs +listeners + batches
+
+personal customers + accounts + statement
+consents x accounts x resources x customers
+
+authentication x authorization
+
+
+
+Tasks
+project model OFB
+
+
+
+
+post > cpf + permissions -> new consents + consents-data-permissions -> (redirect) -> authorizations
+
+authorizations -> load data permissions -> find resources -> submit authorization
+
+create resources -> change status consents -> end
+
+
+minimal
+CUSTOMERS   RESOURCES_READ                              CPF + PersonalId
+CUSTOMERS   CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ     CPF + PersonalId
+
+addicional
+CUSTOMERS   RESOURCES_READ                              (redundance)
+CUSTOMERS   CUSTOMERS_PERSONAL_ADITTIONALINFO_READ      CPF + PersonalId
+
+ACCOUNTS    RESOURCES_READ
+ACCOUNTS    ACCOUNTS_READ
+
+ACCOUNTS    ACCOUNTS_BALANCES_READ
+ACCOUNTS    ACCOUNTS_OVERDRAFT_LIMITS_READ
+ACCOUNTS    ACCOUNTS_TRANSACTIONS_READ
+
+
+
+
+
+
+
+
 # Project Open Finance Brasil 2025 (01.09.2025)
 ### Description ???
 
@@ -125,13 +169,13 @@ Authorization - Fluxos de Open Finance
 Process 01: Authentication Mode: Bearer Token
 Process 02: Validação do AccessToken (extract claims)
 Database: none
-    AcessToken Expirou ? *
-    Informa o consentId ?
-    Informa o client.document ?
-    Informa o customer.document ?
-    Possui as roles minimas:
-        resurces_read
-        customers_read
+AcessToken Expirou ? *
+Informa o consentId ?
+Informa o client.document ?
+Informa o customer.document ?
+Possui as roles minimas:
+resurces_read
+customers_read
 
     * O access token gerado tem validade baseada no pedido do consentimento AUTHORISED:
         - Validade Trimestral (data hoje + 03 meses e horário 23:59:59)
@@ -142,21 +186,21 @@ Database: none
 Passo 03: Verificação do Particpante (client.document):
 Validação do Token: clientToken é baseado no cadastro de participantes (clients.business)
 Database: MySQL or Client Business API
-    O Parcipente existe na base de participantes ?
-    O Participante deve estar ATIVO e DESBLOQUEADO (status: ACTIVE, LOCKED, INACTIVE)
-    O Participante deve ter data de expiração válida. (client_secret_expires_at)
-    O Participanente possui as roles necessarias: client.ofb.read e client.ofb.write?
+O Parcipente existe na base de participantes ?
+O Participante deve estar ATIVO e DESBLOQUEADO (status: ACTIVE, LOCKED, INACTIVE)
+O Participante deve ter data de expiração válida. (client_secret_expires_at)
+O Participanente possui as roles necessarias: client.ofb.read e client.ofb.write?
 
 Passo 04: Verificação do Client (customer.document)
 Database: Oracle or Customers API
-    Customer existe na base de customers ?
-    Customer está ativo e desbloqueado?
+Customer existe na base de customers ?
+Customer está ativo e desbloqueado?
 
 Passo 05: Verificação do Consentimento (ofb.consent.id)
 Database: Oracle or ConsentsAPI
-    Consentimento existe na base de consentimentos?
-    Consentimento está com status AUTHORISED?
-    Consentimento expirou ?
+Consentimento existe na base de consentimentos?
+Consentimento está com status AUTHORISED?
+Consentimento expirou ?
 
 
 
