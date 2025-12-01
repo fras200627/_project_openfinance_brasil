@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="start documentation">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 04 documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/diagram_oracle_ofb_objects.pdd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/diagram_oracle_springbatch_controls_objects.pdd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/mer_oracle_ofb_objects.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/mer_oracle_springbatch_controls_objects.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/1-ofb_project_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1-ofb_project_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/2-ofb_db_structures_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2-ofb_db_structures_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,22 +363,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00063" summary="+ revision folders and authorization server">
-      <option name="closed" value="true" />
-      <created>1758120659066</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1758120659066</updated>
-    </task>
-    <task id="LOCAL-00064" summary="+ revision folders and authorization server">
-      <option name="closed" value="true" />
-      <created>1758130483329</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1758130483329</updated>
     </task>
     <task id="LOCAL-00065" summary="+ final of authorization server">
       <option name="closed" value="true" />
@@ -760,7 +740,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764326717534</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="commit 03 documentation">
+      <option name="closed" value="true" />
+      <created>1764327589528</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1764327589528</updated>
+    </task>
+    <task id="LOCAL-00113" summary="commit 04 documentation">
+      <option name="closed" value="true" />
+      <created>1764590639382</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1764590639382</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -776,8 +772,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="+ revision folders and authorization server" />
-    <MESSAGE value="+ final of authorization server" />
     <MESSAGE value="review folders structure" />
     <MESSAGE value="resume authorization server" />
     <MESSAGE value="API Accounts+Authorization+Resources" />
@@ -801,7 +795,9 @@
     <MESSAGE value="final before new tests" />
     <MESSAGE value="start reorg implemention steps" />
     <MESSAGE value="start documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="start documentation" />
+    <MESSAGE value="commit 03 documentation" />
+    <MESSAGE value="commit 04 documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 04 documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
