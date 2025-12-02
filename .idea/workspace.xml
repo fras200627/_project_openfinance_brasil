@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 06 documentation">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 07 documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.0-project_ofb_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-project_ofb_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.0-project_ofb_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,14 +374,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00067" summary="review folders structure">
-      <option name="closed" value="true" />
-      <created>1758205894067</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1758205894067</updated>
     </task>
     <task id="LOCAL-00068" summary="resume authorization server">
       <option name="closed" value="true" />
@@ -755,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764592122159</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="commit 07 documentation">
+      <option name="closed" value="true" />
+      <created>1764596296927</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1764596296927</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -771,7 +783,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="API Accounts+Authorization+Resources" />
     <MESSAGE value="API Accounts and Customers +Authorization+Resources" />
     <MESSAGE value="start orchs" />
     <MESSAGE value="start orch resources" />
@@ -796,7 +807,8 @@
     <MESSAGE value="commit 04 documentation" />
     <MESSAGE value="commit 05 documentation" />
     <MESSAGE value="commit 06 documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 06 documentation" />
+    <MESSAGE value="commit 07 documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 07 documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
