@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 07 documentation">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 08 documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.0-project_ofb_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" afterDir="false" />
@@ -374,14 +374,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00068" summary="resume authorization server">
-      <option name="closed" value="true" />
-      <created>1758548711144</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1758548711144</updated>
     </task>
     <task id="LOCAL-00069" summary="API Accounts+Authorization+Resources">
       <option name="closed" value="true" />
@@ -767,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764596296927</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="commit 08 documentation">
+      <option name="closed" value="true" />
+      <created>1764676915918</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1764676915918</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -783,7 +783,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="API Accounts and Customers +Authorization+Resources" />
     <MESSAGE value="start orchs" />
     <MESSAGE value="start orch resources" />
     <MESSAGE value="final orch resources" />
@@ -808,7 +807,8 @@
     <MESSAGE value="commit 05 documentation" />
     <MESSAGE value="commit 06 documentation" />
     <MESSAGE value="commit 07 documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 07 documentation" />
+    <MESSAGE value="commit 08 documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 08 documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
