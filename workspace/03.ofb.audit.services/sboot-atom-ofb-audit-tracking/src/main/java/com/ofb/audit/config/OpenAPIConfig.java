@@ -1,4 +1,4 @@
-package com.ofb.participants.config;
+package com.ofb.audit.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import java.time.ZoneOffset;
 
 @Configuration
@@ -28,14 +29,14 @@ public class OpenAPIConfig {
 
         return new OpenAPI()
                 .info(new Info()
-                .title(System.getProperty("App.Module.Name"))
-                .description(System.getProperty("App.Description") + "    " +
-                             "(Component: " + System.getProperty("App.Title") +  " :: " +
-                                             "Build version: " + System.getProperty("App.Build.Version") + " :: " +
-                                             "Build date: " + System.getProperty("App.Build.Date") +
-                             ")")
-                .version(System.getProperty("App.Build.Version"))
-                .contact(new Contact().name(System.getProperty("App.Contact.Name")))
+                        .title(System.getProperty("App.Module.Name"))
+                        .description(System.getProperty("App.Description") + "    " +
+                                "(Component: " + System.getProperty("App.Title") +  " :: " +
+                                "Build version: " + System.getProperty("App.Build.Version") + " :: " +
+                                "Build date: " + System.getProperty("App.Build.Date") +
+                                ")")
+                        .version(System.getProperty("App.Build.Version"))
+                        .contact(new Contact().name(System.getProperty("App.Contact.Name")))
                 );
     }
 

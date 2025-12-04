@@ -1,7 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="0.1-API Gateway" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="java-17.0.9" />
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="com.ofb.api.gateway.StartApplication" />
     <module name="sboot-atom-ofb-api-gateway" />
     <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />

@@ -12,13 +12,13 @@ info:
 security:
   - bearerAuth: []
 tags:
-  - name: clients.business.resources
-    description: 'registered.clients.business'
+  - name: audit.tracking.resources
+    description: 'registered.audit.tracking'
 paths:
-  /business/findAll:
+  /audit/findAll:
     get:
       tags:
-        - clients.business.resources
+        - audit.tracking.resources
       summary: 'Get all oauth2 registered clients'
       description: 'Get all oauth2 registered clients'
       operationId: getFindAll
@@ -38,10 +38,10 @@ paths:
           $ref: '#/components/responses/ResponseCode500Template'
         default:
           $ref: '#/components/responses/ResponseCodeDefaultTemplate'
-  /business/findById:
+  /audit/findById:
     get:
       tags:
-        - clients.business.resources
+        - audit.tracking.resources
       summary: 'Get a registered client in oauth2 by ID (ID is the UUID of a client)'
       description: 'Get a registered client in oauth2 by ID (ID is the UUID of a client)'
       operationId: getFindById
@@ -63,85 +63,10 @@ paths:
           $ref: '#/components/responses/ResponseCode500Template'
         default:
           $ref: '#/components/responses/ResponseCodeDefaultTemplate'
-  /business/findByClientId:
+  /audit/findByPageable:
     get:
       tags:
-        - clients.business.resources
-      summary: 'Get a registered client in oauth2 by ID (client ID is an alias/nickname of a client)'
-      description: 'Get a registered client in oauth2 by ID (client ID is an alias/nickname of a client)'
-      operationId: getFindByClientId
-      parameters:
-        - name: clientId
-          $ref: '#/components/parameters/OAuth2ClientId'
-      responses:
-        '200':
-          $ref: '#/components/responses/OAuth2ClientResponse'
-        '400':
-          $ref: '#/components/responses/ResponseCode400Template'
-        '401':
-          $ref: '#/components/responses/ResponseCode401Template'
-        '403':
-          $ref: '#/components/responses/ResponseCode403Template'
-        '404':
-          $ref: '#/components/responses/ResponseCode404Template'
-        '500':
-          $ref: '#/components/responses/ResponseCode500Template'
-        default:
-          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
-  /business/findByClientName:
-    get:
-      tags:
-        - clients.business.resources
-      summary: 'Get one oauth2 registered client by Description Name'
-      description: 'Get one oauth2 registered client by Description Name'
-      operationId: getFindByClientName
-      parameters:
-        - name: clientName
-          $ref: '#/components/parameters/OAuth2ClientName'
-      responses:
-        '200':
-          $ref: '#/components/responses/OAuth2ClientResponse'
-        '400':
-          $ref: '#/components/responses/ResponseCode400Template'
-        '401':
-          $ref: '#/components/responses/ResponseCode401Template'
-        '403':
-          $ref: '#/components/responses/ResponseCode403Template'
-        '404':
-          $ref: '#/components/responses/ResponseCode404Template'
-        '500':
-          $ref: '#/components/responses/ResponseCode500Template'
-        default:
-          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
-  /business/findByClientDocument:
-    get:
-      tags:
-        - clients.business.resources
-      summary: 'Get one oauth2 registered client by Document Number'
-      description: 'Get one oauth2 registered client by Document Number'
-      operationId: getFindByClientDocument
-      parameters:
-        - name: clientDocument
-          $ref: '#/components/parameters/OAuth2ClientDocument'
-      responses:
-        '200':
-          $ref: '#/components/responses/OAuth2ClientResponse'
-        '400':
-          $ref: '#/components/responses/ResponseCode400Template'
-        '401':
-          $ref: '#/components/responses/ResponseCode401Template'
-        '403':
-          $ref: '#/components/responses/ResponseCode403Template'
-        '404':
-          $ref: '#/components/responses/ResponseCode404Template'
-        '500':
-          $ref: '#/components/responses/ResponseCode500Template'
-        default:
-          $ref: '#/components/responses/ResponseCodeDefaultTemplate'
-  /business/findByPageable:
-    get:
-      tags:
-        - clients.business.resources
+        - audit.tracking.resources
       summary: 'Get oauth2 registered clients by Pageable'
       description: 'Get oauth2 registered clients by Pageable'
       operationId: getFindByPageable
@@ -169,10 +94,10 @@ paths:
           $ref: '#/components/responses/ResponseCode500Template'
         default:
           $ref: '#/components/responses/ResponseCodeDefaultTemplate'
-  /business/findByFilters:
+  /audit/findByFilters:
     get:
       tags:
-        - clients.business.resources
+        - audit.tracking.resources
       summary: 'Get oauth2 registered clients by Pageable and F\ilters'
       description: 'Get oauth2 registered clients by Pageable and Filters'
       operationId: getFindByFilters
@@ -232,7 +157,6 @@ components:
         nullable: true
     OAuth2ClientId:
       name: clientId
-      description: 'OAuth2 Client Id is a identified Id. Example: ofb-client-1'
       in: query
       required: true
       schema:
@@ -242,7 +166,6 @@ components:
         nullable: false
     OAuth2ClientIdOptional:
       name: clientId
-      description: 'OAuth2 Client Id is a identified Id. Example: ofb-client-1'
       in: query
       required: false
       schema:
@@ -252,7 +175,6 @@ components:
         nullable: true
     OAuth2ClientName:
       name: clientName
-      description: 'OAuth2 Client Name. Example: Tican Client 1'
       in: query
       required: true
       schema:
@@ -272,7 +194,6 @@ components:
         nullable: false
     OAuth2ClientNameOptional:
       name: clientName
-      description: 'OAuth2 Client Name. Example: Tican Client 1'
       in: query
       required: false
       schema:
@@ -282,21 +203,21 @@ components:
         nullable: true
     OAuth2SecurityScopes:
       name: securityScope
-      description: 'Required is: client.admin or client.read or client.write'
+      description: 'Required is: client.admin or client.ofb.read or client.write'
       in: query
       required: true
       schema:
         type: string
-        pattern: '(client.admin|client.root|client.read|client.write)'
+        pattern: '(client.admin|client.root|client.ofb.read|client.ofb.write)'
         nullable: false
     OAuth2SecurityScopesOptional:
       name: securityScope
-      description: 'Required is: client.admin or client.read or client.write or Empty Value'
+      description: 'Required is: client.admin or client.ofb.read or client.ofb.write or Empty Value'
       in: query
       required: false
       schema:
         type: string
-        pattern: '(client.admin|client.root|client.read|client.write)'
+        pattern: '(client.admin|client.root|client.ofb.read|client.ofb.write)'
         nullable: true
     PageNumber:
       name: pageNumber

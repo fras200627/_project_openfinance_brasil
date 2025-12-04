@@ -226,6 +226,10 @@
     <file url="file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/target/generated-sources/ofb/resources/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/target/generated-sources/server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/target/generated-sources/ofb/audit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/target/generated-sources/ofb/audit/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.participants/project-ofb-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/target/generated-sources/oauth2/clients/api/server/src/main/java" charset="UTF-8" />

@@ -120,7 +120,7 @@ spring:
     url: jdbc:mysql://10.0.1.100:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_ROOT_PWD:tican}
+    password: ${MYSQL_ROOT_PWD:ofb}
 eureka:
   client:
     serviceUrl:
@@ -163,8 +163,8 @@ spring:
   rabbitmq:
     host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
     port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
-    username: ${RABBITMQ_DEFAULT_USER:tican}
-    password: ${RABBITMQ_DEFAULT_PASS:tican}
+    username: ${RABBITMQ_DEFAULT_USER:ofb}
+    password: ${RABBITMQ_DEFAULT_PASS:ofb}
   security:
     oauth2:
       resource-server:

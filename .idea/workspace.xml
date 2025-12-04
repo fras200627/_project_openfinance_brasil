@@ -4,57 +4,90 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="reset project">
-      <change afterPath="$PROJECT_DIR$/.run/0.0-Discovery Services.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/0.1-API Gateway.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/1.0-Authentication Service.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/1.1-Authorization Service.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/2.1-Participants Domain.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/2.2-Participants Business.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Accounts.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Consents.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Customers.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Resources.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Listener - Audit.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Listener - Authorization.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/__ Listener - Cancellation.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Accounts.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Consents.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Customers.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Resources.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/keystore/app.private.key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/keystore/app.public.key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/openapi/server/openapi-atom-authentication-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-consents-resources.3.2.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-customers-resources.2.2.1.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/server/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="full reload project">
+      <change afterPath="$PROJECT_DIR$/.run/3.1-Audit Tracking.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/controller/AuditController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/domain/AuditPaginationSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/domain/AuditRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/entity/AuditAuthorizationConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/entity/AuditCancellationConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/entity/AuditEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/entity/AuditExtendsConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/entity/AuditRevokeConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/repository/AuditAuthorizationConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/repository/AuditCancellationConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/repository/AuditExtendsConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/repository/AuditRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/repository/AuditRevokedConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java/com/ofb/audit/service/AuditService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/keystore/app.private.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/keystore/app.public.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/resources/server/openapi-health-checks-resources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/StartApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/config/OpenAPIConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/controller/ActuatorInfoApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/controller/AuditApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/controller/HealthApiControllerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/domain/AuditPaginationSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/domain/AuditRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/entity/AuditAuthorizationConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/entity/AuditCancellationConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/entity/AuditEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/entity/AuditExtendsConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/entity/AuditRevokeConsentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/repository/AuditAuthorizationConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/repository/AuditCancellationConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/repository/AuditExtendsConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/repository/AuditRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/repository/AuditRevokedConsentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/service/AuditService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/keystore/app.private.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/keystore/app.public.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/openapi/server/openapi-atom-audit-tracking-server.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/resources/openapi/server/openapi-health-checks-resources.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/_project_openfinance_brasil.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/0.1-API Gateway.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/0.1-API Gateway.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/2.2-Participants Business.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/2.2-Participants Business.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/config/OpenAPIConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/java/com/ofb/participants/config/OpenAPIConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-docker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-k8s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/openapi/client/openapi-atom-participants-business-server.1.0.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/openapi/client/openapi-atom-participants-business-server.1.0.0.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +118,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/fras200627/_project_tican_openapi&quot;,
-    &quot;accountId&quot;: &quot;6842a840-eca6-411c-a4e7-058b6dbc93ca&quot;
+    &quot;accountId&quot;: &quot;d3f3e42d-a0c0-48a1-9169-0e65c59e5208&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -140,6 +173,7 @@
     "Application.3-Auth.executor": "Debug",
     "Application.3-Authentication.executor": "Debug",
     "Application.3-Authorization.executor": "Run",
+    "Application.3.1-Audit Tracking.executor": "Run",
     "Application.4-Clients-Business.executor": "Run",
     "Application.:: Atom - Accounts.executor": "Run",
     "Application.:: Atom - Consents.executor": "Run",
@@ -258,9 +292,13 @@
     "Maven.sboot-atom-ofb-accounts [install].executor": "Run",
     "Maven.sboot-atom-ofb-api-gateway [clean].executor": "Run",
     "Maven.sboot-atom-ofb-api-gateway [install].executor": "Run",
+    "Maven.sboot-atom-ofb-audit-requests [clean].executor": "Run",
+    "Maven.sboot-atom-ofb-audit-requests [install].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [install].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [verify].executor": "Run",
+    "Maven.sboot-atom-ofb-audit-tracking [clean].executor": "Run",
+    "Maven.sboot-atom-ofb-audit-tracking [install].executor": "Run",
     "Maven.sboot-atom-ofb-authentication-server [clean].executor": "Run",
     "Maven.sboot-atom-ofb-authentication-server [install].executor": "Run",
     "Maven.sboot-atom-ofb-authorization-server [clean].executor": "Run",
@@ -337,9 +375,9 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "1384e5ff",
+    "git-widget-placeholder": "0118868d",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain",
+    "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/controller",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.291954",
@@ -349,11 +387,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.participants\sboot-atom-ofb-participants-domain" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.participants\sboot-atom-ofb-participants-business" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.ofb.security\sboot-atom-ofb-authorization-server" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\02.ofb.security\sboot-atom-ofb-authentication-server" />
-      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\01.ofb.cloud.services\sboot-atom-ofb-discovery-services" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.audit.services\sboot-atom-ofb-audit-tracking\src\main\java\com\ofb\audit\controller" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.audit.services\sboot-atom-ofb-audit-tracking\src\main\java\com\ofb\audit\domain" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.audit.services\sboot-atom-ofb-audit-tracking\src\main\java\com\ofb\audit\repository" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.audit.services\sboot-atom-ofb-audit-tracking\src\main\java\com\ofb\audit\entity" />
+      <recent name="C:\_development\__projects\_project_openfinance_brasil\workspace\03.ofb.audit.services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\_development\__projects\_project_openfinance_brasil\__readme" />
@@ -376,11 +414,11 @@
       <recent name="com.ofb.authorization.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ofb.audit.service" />
+      <recent name="com.ofb.audit" />
+      <recent name="com.ofb.audit.config" />
       <recent name="com.ofb.consents.camel.processor" />
       <recent name="com.ofb.consents.camel.mapper" />
-      <recent name="com.ofb.consents.service.validation" />
-      <recent name="com.ofb.consents.camel.route" />
-      <recent name="com.ofb.consents.camel.orchestration" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -389,7 +427,7 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.o&gt; Batch - Expiration Control">
+  <component name="RunManager" selected="Application.3.1-Audit Tracking">
     <list>
       <item itemvalue="Application.0.0-Discovery Services" />
       <item itemvalue="Application.0.1-API Gateway" />
@@ -397,26 +435,21 @@
       <item itemvalue="Application.1.1-Authorization Service" />
       <item itemvalue="Application.2.1-Participants Domain" />
       <item itemvalue="Application.2.2-Participants Business" />
+      <item itemvalue="Application.3.1-Audit Tracking" />
       <item itemvalue="Application.:: Atom - Resources" />
-      <item itemvalue="Application.:: Atom - Customers" />
       <item itemvalue="Application.:: Atom - Accounts" />
       <item itemvalue="Application.:: Atom - Consents" />
-      <item itemvalue="Application.°::° Orch - Resources" />
-      <item itemvalue="Application.°::° Orch - Customers" />
-      <item itemvalue="Application.°::° Orch - Accounts" />
+      <item itemvalue="Application.:: Atom - Customers" />
       <item itemvalue="Application.°::° Orch - Consents" />
+      <item itemvalue="Application.°::° Orch - Accounts" />
+      <item itemvalue="Application.°::° Orch - Customers" />
+      <item itemvalue="Application.°::° Orch - Resources" />
       <item itemvalue="Application.&lt;&gt; Listener - Audit" />
-      <item itemvalue="Application.&lt;&gt; Listener - Authorization" />
       <item itemvalue="Application.&lt;&gt; Listener - Cancellation" />
+      <item itemvalue="Application.&lt;&gt; Listener - Authorization" />
       <item itemvalue="Application.o&gt; Batch - Approval Control" />
       <item itemvalue="Application.o&gt; Batch - Expiration Control" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.0.1-API Gateway" />
-        <item itemvalue="Application.0.0-Discovery Services" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -426,14 +459,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00070" summary="API Accounts and Customers +Authorization+Resources">
-      <option name="closed" value="true" />
-      <created>1758560922318</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1758560922318</updated>
     </task>
     <task id="LOCAL-00071" summary="start orchs">
       <option name="closed" value="true" />
@@ -819,7 +844,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764680483317</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="full reload project">
+      <option name="closed" value="true" />
+      <created>1764849530832</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1764849530832</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -847,7 +880,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="start orch resources" />
     <MESSAGE value="final orch resources" />
     <MESSAGE value="reorg components" />
     <MESSAGE value="end camel.orch.resource" />
@@ -872,7 +904,8 @@
     <MESSAGE value="commit 07 documentation" />
     <MESSAGE value="commit 08 documentation" />
     <MESSAGE value="commit 09 documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 09 documentation" />
+    <MESSAGE value="full reload project" />
+    <option name="LAST_COMMIT_MESSAGE" value="full reload project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -971,6 +1004,11 @@
           <url>file://$PROJECT_DIR$/workspace/05.ofb.camel.orchs/sboot-camel-orch-ofb-consents/src/main/java/com/ofb/consents/controller/ConsentsApiControllerImpl.java</url>
           <line>80</line>
           <option name="timeStamp" value="253" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java/com/ofb/audit/controller/ActuatorInfoApiControllerImpl.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/java/com/ofb/consents/model/ConsentPersonalModel.java</url>

@@ -232,7 +232,7 @@ components:
         nullable: true
     OAuth2ClientId:
       name: clientId
-      description: 'OAuth2 Client Id is a identified Id. Example: tican-client-1'
+      description: 'OAuth2 Client Id is a identified Id. Example: ofb-client-1'
       in: query
       required: true
       schema:
@@ -242,7 +242,7 @@ components:
         nullable: false
     OAuth2ClientIdOptional:
       name: clientId
-      description: 'OAuth2 Client Id is a identified Id. Example: tican-client-1'
+      description: 'OAuth2 Client Id is a identified Id. Example: ofb-client-1'
       in: query
       required: false
       schema:
