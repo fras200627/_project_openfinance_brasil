@@ -4,21 +4,57 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="commit 08 documentation">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="reset project">
+      <change afterPath="$PROJECT_DIR$/.run/0.0-Discovery Services.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/0.1-API Gateway.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/1.0-Authentication Service.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/1.1-Authorization Service.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/2.1-Participants Domain.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/2.2-Participants Business.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Accounts.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Consents.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Customers.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Atom - Resources.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Listener - Audit.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Listener - Authorization.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/__ Listener - Cancellation.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Accounts.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Consents.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Customers.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.run/°__° Orch - Resources.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/keystore/app.private.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/keystore/app.public.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/openapi/server/openapi-atom-authentication-server.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authentication-server/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-docker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-k8s.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/logback/logback-local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-clients-business-server.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-consents-resources.3.2.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/client/openapi-customers-resources.2.2.1.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/server/openapi-atom-authorization-server.1.0.0.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/_project_openfinance_brasil/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/resources/openapi/server/openapi-health-checks.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/__postman/Project OFB Local.postman_collection.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +129,25 @@
     "Application..:: ORCH :::.  Consents.executor": "Run",
     "Application..:: ORCH :::.  Customers.executor": "Run",
     "Application..:: ORCH :::.  Resources.executor": "Run",
+    "Application.0.0-Discovery Services.executor": "Run",
+    "Application.0.1-API Gateway.executor": "Run",
     "Application.1-Discovery.executor": "Run",
+    "Application.1.0-Authentication Service.executor": "Run",
+    "Application.1.1-Authorization Service.executor": "Run",
     "Application.2-Gateway.executor": "Run",
+    "Application.2.1-Participants Domain.executor": "Run",
+    "Application.2.2-Participants Business.executor": "Run",
     "Application.3-Auth.executor": "Debug",
     "Application.3-Authentication.executor": "Debug",
     "Application.3-Authorization.executor": "Run",
     "Application.4-Clients-Business.executor": "Run",
+    "Application.:: Atom - Accounts.executor": "Run",
+    "Application.:: Atom - Consents.executor": "Run",
+    "Application.:: Atom - Customers.executor": "Run",
+    "Application.:: Atom - Resources.executor": "Run",
+    "Application.<> Listener - Audit.executor": "Run",
+    "Application.<> Listener - Authorization.executor": "Run",
+    "Application.<> Listener - Cancellation.executor": "Run",
     "Application.Accounts.executor": "Debug",
     "Application.Atom-Accounts.executor": "Debug",
     "Application.Atom-Consents.executor": "Debug",
@@ -141,13 +190,21 @@
     "Application.SpringBootCamelIntegrationApplication.executor": "Debug",
     "Application.SpringJWT_1.executor": "Debug",
     "Application.SpringJWT_2.executor": "Run",
+    "Application.StartApplication.executor": "Run",
     "Application.Unnamed.executor": "Debug",
     "Application.XXX-Orch-Template.executor": "Run",
     "Application.com.example.demo2.DemoApplication.executor": "Debug",
+    "Application.com.ofb.api.gateway.StartApplication.executor": "Run",
+    "Application.o> Batch - Approval Control.executor": "Run",
+    "Application.o> Batch - Expiration Control.executor": "Run",
     "Application.¬| SVC |¬  API Gateway.executor": "Run",
     "Application.¬| SVC |¬  Authentication.executor": "Run",
     "Application.¬| SVC |¬  Authorization.executor": "Run",
     "Application.¬| SVC |¬  Discovery Services.executor": "Run",
+    "Application.°::° Orch - Accounts.executor": "Run",
+    "Application.°::° Orch - Consents.executor": "Run",
+    "Application.°::° Orch - Customers.executor": "Run",
+    "Application.°::° Orch - Resources.executor": "Run",
     "Application.ºº LISTENER  ºº  Listener Consents Authorizations.executor": "Debug",
     "Application.ºº LISTENER  ºº  Listener Consents Cancellations.executor": "Run",
     "Application.ºº LISTENER  ºº  Listener OFB Audit.executor": "Debug",
@@ -197,7 +254,9 @@
     "Maven.sboot-atom-cancellation-consents-services [clean].executor": "Run",
     "Maven.sboot-atom-cancellation-consents-services [install].executor": "Run",
     "Maven.sboot-atom-ofb-accounts [clean].executor": "Run",
+    "Maven.sboot-atom-ofb-accounts [compile].executor": "Run",
     "Maven.sboot-atom-ofb-accounts [install].executor": "Run",
+    "Maven.sboot-atom-ofb-api-gateway [clean].executor": "Run",
     "Maven.sboot-atom-ofb-api-gateway [install].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-audit-services [install].executor": "Run",
@@ -215,6 +274,7 @@
     "Maven.sboot-atom-ofb-customers [clean].executor": "Run",
     "Maven.sboot-atom-ofb-customers [install].executor": "Run",
     "Maven.sboot-atom-ofb-customers [validate].executor": "Run",
+    "Maven.sboot-atom-ofb-discovery-services [clean].executor": "Run",
     "Maven.sboot-atom-ofb-discovery-services [install].executor": "Run",
     "Maven.sboot-atom-ofb-participants-business [clean].executor": "Run",
     "Maven.sboot-atom-ofb-participants-business [install].executor": "Run",
@@ -277,7 +337,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "1384e5ff",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain",
     "project.structure.last.edited": "Modules",
@@ -323,48 +383,40 @@
       <recent name="com.ofb.consents.camel.orchestration" />
     </key>
   </component>
-  <component name="RunManager" selected="Application..:: ORCH :::.  Consents">
-    <configuration name="** ATOM --&gt; Participants Domain" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="java-17.0.9" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.ofb.participants.StartApplication" />
-      <module name="sboot-atom-ofb-participants-domain" />
-      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=local" />
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn compile" />
+      <command value="mvn install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.o&gt; Batch - Expiration Control">
     <list>
-      <item itemvalue="Application.¬| SVC |¬  Discovery Services" />
-      <item itemvalue="Application.¬| SVC |¬  API Gateway" />
-      <item itemvalue="Application.¬| SVC |¬  Authentication" />
-      <item itemvalue="Application.¬| SVC |¬  Authorization" />
-      <item itemvalue="Application..:: ORCH :::.   Accounts" />
-      <item itemvalue="Application..:: ORCH :::.  Consents" />
-      <item itemvalue="Application..:: ORCH :::.  Customers" />
-      <item itemvalue="Application..:: ORCH :::.  Resources" />
-      <item itemvalue="Application.** ATOM --&gt; Resources" />
-      <item itemvalue="Application.** ATOM --&gt; Customers" />
-      <item itemvalue="Application.** ATOM --&gt; Consents" />
-      <item itemvalue="Application.** ATOM --&gt; Accounts" />
-      <item itemvalue="Application.** ATOM --&gt; Participants Business" />
-      <item itemvalue="Application.** ATOM --&gt; Participants Domain" />
-      <item itemvalue="Application.** BATCH ** Approval Consents Control" />
-      <item itemvalue="Application.** BATCH ** Expiration Consents Control" />
-      <item itemvalue="Application.ºº LISTENER  ºº  Listener OFB Audit" />
-      <item itemvalue="Application.ºº LISTENER  ºº  Listener Consents Authorizations" />
-      <item itemvalue="Application.ºº LISTENER  ºº  Listener Consents Cancellations" />
+      <item itemvalue="Application.0.0-Discovery Services" />
+      <item itemvalue="Application.0.1-API Gateway" />
+      <item itemvalue="Application.1.0-Authentication Service" />
+      <item itemvalue="Application.1.1-Authorization Service" />
+      <item itemvalue="Application.2.1-Participants Domain" />
+      <item itemvalue="Application.2.2-Participants Business" />
+      <item itemvalue="Application.:: Atom - Resources" />
+      <item itemvalue="Application.:: Atom - Customers" />
+      <item itemvalue="Application.:: Atom - Accounts" />
+      <item itemvalue="Application.:: Atom - Consents" />
+      <item itemvalue="Application.°::° Orch - Resources" />
+      <item itemvalue="Application.°::° Orch - Customers" />
+      <item itemvalue="Application.°::° Orch - Accounts" />
+      <item itemvalue="Application.°::° Orch - Consents" />
+      <item itemvalue="Application.&lt;&gt; Listener - Audit" />
+      <item itemvalue="Application.&lt;&gt; Listener - Authorization" />
+      <item itemvalue="Application.&lt;&gt; Listener - Cancellation" />
+      <item itemvalue="Application.o&gt; Batch - Approval Control" />
+      <item itemvalue="Application.o&gt; Batch - Expiration Control" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.0.1-API Gateway" />
+        <item itemvalue="Application.0.0-Discovery Services" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -374,14 +426,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00069" summary="API Accounts+Authorization+Resources">
-      <option name="closed" value="true" />
-      <created>1758557672490</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1758557672490</updated>
     </task>
     <task id="LOCAL-00070" summary="API Accounts and Customers +Authorization+Resources">
       <option name="closed" value="true" />
@@ -767,7 +811,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764676915918</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="commit 09 documentation">
+      <option name="closed" value="true" />
+      <created>1764680483317</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1764680483317</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -775,7 +827,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -783,7 +847,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="start orchs" />
     <MESSAGE value="start orch resources" />
     <MESSAGE value="final orch resources" />
     <MESSAGE value="reorg components" />
@@ -808,7 +871,8 @@
     <MESSAGE value="commit 06 documentation" />
     <MESSAGE value="commit 07 documentation" />
     <MESSAGE value="commit 08 documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 08 documentation" />
+    <MESSAGE value="commit 09 documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 09 documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
