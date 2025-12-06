@@ -1,48 +1,41 @@
 package com.ofb.audit.service;
 
-import com.ofb.audit.domain.AuditPaginationSettings;
-import com.ofb.audit.domain.AuditRecord;
+import com.ofb.audit.mapper.AuditTrackingMapper;
 import com.ofb.audit.repository.AuditRepository;
+import com.ofb.audit.server.model.AuditResponse;
+import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Slf4j
 @Service
 public class AuditService {
 
-    private final static String NAMEMODULE = "Audit";
-
     @Autowired private
     AuditRepository repository;
 
-    public AuditRecord findByTicketNumber(Long ticketNumber, Jwt jwt, HttpServletRequest httpRequest) {
+    public AuditResponse findById(String id) {
+        try {
+            AuditResponse result = AuditTrackingMapper.INSTANCE.entityToResponse(repository.findById(Long.valueOf(id)).get());
+            return result;
+        } catch (Exception ex) {
+            throw new InternalErrorException("Audit id= [" + id + "] not found! Check and Try Again.");
+        }
+    }
 
-        AuditRecord result;
-        result = new AuditRecord(repository.findById(ticketNumber).get());
+    public List<AuditResponse> findAll() {
+        List<AuditResponse> result = AuditTrackingMapper.INSTANCE.listEntityToListResponse(repository.findAll(Sort.by(Sort.Direction.ASC, "id")));
         return result;
     }
 
-    public List<AuditRecord> findAll() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC, "ticket"))
-                .stream()
-                .map(AuditRecord::new)
-                .toList();
-    }
-
-    public Page<AuditRecord> findByPageable(AuditPaginationSettings pageParams,
-                                            Jwt jwt,
-                                            HttpServletRequest httpRequest)  {
-
-        return repository.findAll(AuditPaginationSettings
-                        .PaginationSettingsTemplate(pageParams, "ticket"))
-                        .map(AuditRecord::new);
-    }
+//    public Page<AuditRecord> findByPageable(AuditPaginationSettings pageParams)  {
+//
+//        return repository.findAll(AuditPaginationSettings
+//                        .PaginationSettingsTemplate(pageParams, "xTicketId"))
+//                        .map(AuditRecord::new);
+//    }
     
 }

@@ -1,13 +1,15 @@
 package com.ofb.audit.controller;
 
 import com.ofb.audit.server.handler.AuditApiDelegate;
-import com.ofb.audit.server.model.OAuth2ClientResponse;
-import com.ofb.audit.server.model.OAuth2ClientsPageable;
+import com.ofb.audit.server.model.AuditResponse;
+import com.ofb.audit.server.model.AuditResponsePageable;
 import com.ofb.audit.service.AuditService;
+import com.ofb.lib.security.profiles.CanClientOFBRead;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,24 +26,52 @@ public class AuditApiControllerImpl implements AuditApiDelegate {
     @Autowired private
     AuditService service;
 
-    @Override
-    public ResponseEntity<List<OAuth2ClientResponse>> getFindAll() {
-        return AuditApiDelegate.super.getFindAll();
+    @Override @CanClientOFBRead
+    public ResponseEntity<AuditResponse> getFindById(String auditId) {
+        return new ResponseEntity<>(service.findById(auditId),
+                HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<OAuth2ClientsPageable> getFindByFilters(Long pageNumber, Long pageSize, String pageSortField, String pageSortOrder, String registeredId, String clientId, String clientName, String securityScope) {
-        return AuditApiDelegate.super.getFindByFilters(pageNumber, pageSize, pageSortField, pageSortOrder, registeredId, clientId, clientName, securityScope);
+    @Override @CanClientOFBRead
+    public ResponseEntity<List<AuditResponse>> getFindAll() {
+        return new ResponseEntity<>(service.findAll(),
+                HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<OAuth2ClientResponse> getFindById(String registeredId) {
-        return AuditApiDelegate.super.getFindById(registeredId);
-    }
+
+
+
+
+
+
+
+
 
     @Override
-    public ResponseEntity<OAuth2ClientsPageable> getFindByPageable(Long pageNumber, Long pageSize, String pageSortField, String pageSortOrder) {
+    public ResponseEntity<AuditResponsePageable> getFindByFilters(Long pageNumber,
+                                                                  Long pageSize,
+                                                                  String pageSortField,
+                                                                  String pageSortOrder,
+                                                                  String auditId,
+                                                                  String xTicketIdId,
+                                                                  String xFapiInteractionId,
+                                                                  String requestTimeName,
+                                                                  String requestURI,
+                                                                  String requestMethod,
+                                                                  String requestUserName) {
+        return AuditApiDelegate.super.getFindByFilters(pageNumber,
+                pageSize, pageSortField, pageSortOrder, auditId,
+                xTicketIdId, xFapiInteractionId, requestTimeName,
+                requestURI, requestMethod, requestUserName);
+    }
+
+
+
+    @Override
+    public ResponseEntity<AuditResponsePageable> getFindByPageable(Long pageNumber,
+                                                                   Long pageSize,
+                                                                   String pageSortField,
+                                                                   String pageSortOrder) {
         return AuditApiDelegate.super.getFindByPageable(pageNumber, pageSize, pageSortField, pageSortOrder);
     }
-
 }

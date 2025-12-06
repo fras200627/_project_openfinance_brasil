@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Data @Builder @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(of= "id")
-public class AuditRevokeConsentEntity {
+public class AuditRevokedConsentEntity {
 
     @Id
     @Column(name= "ID")

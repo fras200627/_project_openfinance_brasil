@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity(name= "Audit")
-@Table(schema= "OFB", name= "OFB_AUDIT")
+@Table(schema= "ofb", name= "ofb_audit")
 //---------------------------------------------------
 @Data @Builder @AllArgsConstructor
 @RequiredArgsConstructor
