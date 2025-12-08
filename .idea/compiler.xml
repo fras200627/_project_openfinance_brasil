@@ -14,7 +14,7 @@
         <module name="sboot-atom-ofb-discovery-services" />
         <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sbatch-ofb-consents-expiration-control" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-participants-domain" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

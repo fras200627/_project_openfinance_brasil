@@ -1,8 +1,8 @@
 package com.ofb.consents.service.validation;
 
 import com.google.gson.Gson;
-import com.ofb.consents.client.participants.handler.ClientsBusinessResourcesApi;
-import com.ofb.consents.client.participants.model.OAuth2ClientResponse;
+import com.ofb.consents.client.participants.handler.ParticipantsBusinessResourcesApi;
+import com.ofb.consents.client.participants.model.*;
 import com.ofb.consents.server.model.*;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
@@ -32,7 +32,7 @@ public class ValidateBusinessEntityService {
     HttpServletRequest request;
 
     @Autowired
-    private ClientsBusinessResourcesApi registeredClientsResourcesApi;
+    private ParticipantsBusinessResourcesApi registeredClientsResourcesApi;
 
     /**
      * Validates a BusinessEntity for consent information

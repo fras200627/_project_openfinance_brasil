@@ -375,7 +375,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-atom-participants-business-server.1.0.0.yaml</inputSpec>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-atom-participants-business-server.1.1.0.yaml</inputSpec>
 							<apiPackage>com.ofb.participants.server.handler</apiPackage>
 							<modelPackage>com.ofb.participants.server.model</modelPackage>
 							<output>${openapi.output.path}</output>
