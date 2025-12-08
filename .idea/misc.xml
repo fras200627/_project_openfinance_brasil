@@ -59,6 +59,7 @@
         <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-authorization-consents/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-cancellation-consents/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

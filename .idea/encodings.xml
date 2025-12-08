@@ -228,6 +228,8 @@
     <file url="file://$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-authorization-consents/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-authorization-consents/target/generated-sources/ofb/audit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-cancellation-consents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-cancellation-consents/target/generated-sources/ofb/audit/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/target/generated-sources/ofb/audit/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/src/main/java" charset="UTF-8" />
