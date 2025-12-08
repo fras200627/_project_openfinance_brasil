@@ -14,7 +14,7 @@
         <module name="sboot-atom-ofb-discovery-services" />
         <module name="sboot-atom-ofb-api-gateway" />
       </profile>
-      <profile name="Annotation profile for sboot-atom-ofb-audit-cancellation-consents" enabled="true">
+      <profile name="Annotation profile for sboot-atom-ofb-audit-revoked-consents" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -43,9 +43,11 @@
         <module name="sbatch-ofb-consents-expiration-control" />
         <module name="sboot-atom-ofb-resources" />
         <module name="sboot-lib-ofb-autoconfigure-security" />
+        <module name="sboot-atom-ofb-audit-revoked-consents" />
         <module name="sboot-atom-ofb-authorization-server" />
         <module name="sboot-camel-orch-ofb-consents" />
         <module name="sboot-lib-ofb-autoconfigure-interceptors" />
+        <module name="sboot-atom-ofb-audit-extends-consents" />
         <module name="sboot-lib-ofb-autoconfigure-amqp" />
         <module name="sboot-lib-ofb-common-tools" />
         <module name="sboot-listener-ofb-audit-services" />
@@ -617,7 +619,9 @@
       <module name="sboot-atom-ofb-api-gateway" options="-parameters" />
       <module name="sboot-atom-ofb-audit-authorization-consents" options="-parameters" />
       <module name="sboot-atom-ofb-audit-cancellation-consents" options="-parameters" />
+      <module name="sboot-atom-ofb-audit-extends-consents" options="-parameters" />
       <module name="sboot-atom-ofb-audit-requests" options="-parameters" />
+      <module name="sboot-atom-ofb-audit-revoked-consents" options="-parameters" />
       <module name="sboot-atom-ofb-audit-services" options="-parameters" />
       <module name="sboot-atom-ofb-audit-tracking" options="-parameters" />
       <module name="sboot-atom-ofb-authentication-server" options="-parameters" />

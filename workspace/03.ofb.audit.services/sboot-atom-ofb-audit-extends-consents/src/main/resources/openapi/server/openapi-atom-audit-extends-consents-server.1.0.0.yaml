@@ -1,0 +1,266 @@
+openapi: 3.0.3
+info:
+  title: 'Project OFB - OpenAPI 3.0.3'
+  description: 'Project OFB using Open API'
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: fras200627@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+security:
+  - bearerAuth: []
+tags:
+  - name: audit.extends.consents.service
+    description: 'audit.extends.consents.service'
+paths:
+  /audit/extends/consents/findAll:
+    get:
+      tags:
+        - audit.extends.consents.service
+      summary: 'Get all Audit registers'
+      description: 'Get all Audit registers'
+      operationId: getFindAll
+      parameters: []
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditResponseList'
+  /audit/extends/consents/findById:
+    get:
+      tags:
+        - audit.extends.consents.service
+      summary: 'Get a Audit register by ID'
+      description: 'Get a Audit register by ID'
+      operationId: getFindById
+      parameters:
+        - name: auditId
+          $ref: '#/components/parameters/AuditId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditResponse'
+  /audit/extends/consents/findByPageable:
+    get:
+      tags:
+        - audit.extends.consents.service
+      summary: 'Get Audit registers by Pageable'
+      description: 'Get Audit registers by Pageable'
+      operationId: getFindByPageable
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortField'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrder'
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditResponsePageable'
+  /audit/extends/consents/findByFilters:
+    get:
+      tags:
+        - audit.extends.consents.service
+      summary: 'Get Audit registers by Pageable and Filters'
+      description: 'Get Audit registers by Pageable and Filters'
+      operationId: getFindByFilters
+      parameters:
+        - name: pageNumber
+          $ref: '#/components/parameters/PageNumber'
+        - name: pageSize
+          $ref: '#/components/parameters/PageSize'
+        - name: pageSortField
+          $ref: '#/components/parameters/PageSortField'
+        - name: pageSortOrder
+          $ref: '#/components/parameters/PageSortOrder'
+        - name: AuditId
+          $ref: '#/components/parameters/AuditId'
+        - name: xTicketId
+          $ref: '#/components/parameters/XTicketId'
+        - name: xFapiInteractionId
+          $ref: '#/components/parameters/XFapiInteractionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditResponsePageable'
+components:
+  parameters:
+    AuditId:
+      name: auditId
+      description: 'OAuth2 Registered Client Id in format UUID. Example: 42a60be9-6483-4ae2-9d0e-887aae23d0a7'
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 36
+        nullable: true
+    XTicketId:
+      name: xTicketIdId
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: false
+    XFapiInteractionId:
+      name: xFapiInteractionId
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+        nullable: true
+    PageNumber:
+      name: pageNumber
+      in: query
+      description: 'Page Number'
+      required: false
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 999999
+        default: 1
+        nullable: true
+    PageSize:
+      name: pageSize
+      in: query
+      description: 'Page Size'
+      required: false
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 1000
+        default: 20
+        nullable: true
+    PageSortField:
+      name: pageSortField
+      in: query
+      description: 'Field used for sorting on pages (regex)'
+      required: false
+      schema:
+        type: string
+        pattern: '(id|xTicketId|xFapiInteractionId)'
+        default: 'id'
+        nullable: true
+    PageSortOrder:
+      name: pageSortOrder
+      in: query
+      description: "Required is: 'ASC or DESC'"
+      required: false
+      schema:
+        type: string
+        pattern: '(ASC|DESC)'
+        default: 'ASC'
+        nullable: true
+  schemas:
+    AuditResponse:
+      type: object
+      description: 'Audit Response'
+      properties:
+        id:
+          type: string
+          description: 'Audit internal Id'
+        createAt:
+          type: string
+          description: 'Create At'
+        xTicketId:
+          type: string
+          description: 'xTicketId key'
+        xFapiInteractionId:
+          type: string
+          description: 'xFapiInteractionId key'
+        consentId:
+          type: string
+          description: 'Request consentId'
+        consentRequestDate:
+          type: string
+          description: 'Request Consent DateTime'
+        consentExtendsDate:
+          type: string
+          description: 'Consent Cancel DateTime'
+          example: "string"
+        payload:
+          type: string
+          description: 'Request PayLoad'
+          example: "string"
+    AuditResponseList:
+      description: 'AuditResponse LIst'
+      type: array
+      items:
+        $ref: '#/components/schemas/AuditResponse'
+    AuditResponsePageable:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/AuditResponseList'
+        pageable:
+          $ref: '#/components/schemas/PageableDetailsTemplate'
+    PageableDetailsTemplate:
+      type: object
+      description: 'Informations of pageable'
+      properties:
+        isEmptyResult:
+          type: boolean
+          example: false
+        pageNumberRequested:
+          type: integer
+          example: 1
+        pageSizeRequested:
+          type: integer
+          example: 10
+        sortFieldRequested:
+          type: string
+          example: field-a
+        pageNumberResulting:
+          type: integer
+          example: 1
+        pageSizeResulting:
+          type: integer
+          example: 20
+        isFirstPage:
+          type: boolean
+          example: true
+        isLastPage:
+          type: boolean
+          example: false
+        previousPageNumber:
+          type: integer
+          example: 1
+        nextPageNumber:
+          type: integer
+          example: 2
+        totalPagesExisting:
+          type: integer
+          example: 890
+        totalElementsExisting:
+          type: integer
+          example: 8899
+  responses:
+    AuditResponse:
+      description: 'Audit Response payload'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuditResponse'
+    AuditResponseList:
+      description: 'Audit List Response payload'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuditResponseList'
+    AuditResponsePageable:
+      description: 'List of Audit Records in Pageable options.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuditResponsePageable'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
