@@ -72,6 +72,8 @@ public class OAuth2RegisteredClientsService {
                         .requireAuthorizationConsent(Boolean.valueOf(clientRequest.getRequireAuthorizationConsent()))
                         .build().toString())
                 .status("LOCKED")
+                .document(clientRequest.getDocument())
+                .documentType(clientRequest.getDocumentType())
                 .build();
 
         repository.saveAndFlush(newRegister);
@@ -133,6 +135,8 @@ public class OAuth2RegisteredClientsService {
         }
 
         clientEntity.setStatus(clientRequest.getStatus() != null ? clientRequest.getStatus().toString() : clientEntity.getStatus());
+        clientEntity.setDocument(clientRequest.getDocument() != null ? clientRequest.getDocument() : clientEntity.getDocument());
+        clientEntity.setDocumentType(clientRequest.getDocumentType()!= null ? clientRequest.getDocumentType() : clientEntity.getDocumentType());
         repository.saveAndFlush(clientEntity);
 
         clientEntity = this.findById(clientRequest.getRegisteredId());

@@ -4,7 +4,7 @@ import com.ofb.participants.server.handler.BusinessApiDelegate;
 import com.ofb.participants.server.model.OAuth2ClientResponse;
 import com.ofb.participants.server.model.OAuth2ClientsPageable;
 import com.ofb.participants.service.ClientsBusinessService;
-import com.ofb.lib.security.profiles.CanClientOFBRead;
+import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -26,7 +26,7 @@ public class BusinessApiControllerImpl implements BusinessApiDelegate {
     @Autowired private
     ClientsBusinessService service;
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<List<OAuth2ClientResponse>> getFindAll() {
         return new ResponseEntity<>(service.findAll(),
                                     HttpStatus.OK);
@@ -38,25 +38,25 @@ public class BusinessApiControllerImpl implements BusinessApiDelegate {
                 HttpStatus.OK);
     }
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientResponse> getFindById(String registeredId) {
         return new ResponseEntity<>(service.findById(registeredId),
                 HttpStatus.OK);
     }
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientResponse> getFindByClientId(String clientId) {
         return new ResponseEntity<>(service.findByClientId(clientId),
                                     HttpStatus.OK);
     }
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientResponse> getFindByClientName(String clientName) {
         return new ResponseEntity<>(service.findByClientName(clientName),
                                     HttpStatus.OK);
     }
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientsPageable> getFindByFilters(Long pageNumber,
                                                                   Long pageSize,
                                                                   String pageSortField,
@@ -77,7 +77,7 @@ public class BusinessApiControllerImpl implements BusinessApiDelegate {
                                     HttpStatus.OK);
     }
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientsPageable> getFindByPageable(Long pageNumber,
                                                                    Long pageSize,
                                                                    String pageSortField,

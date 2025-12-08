@@ -349,6 +349,9 @@ components:
         document:
           type: string
           description: 'Client document number'
+        documentType:
+          type: string
+          description: 'Document Type'
         clientId:
           type: string
           description: 'Client id alias'

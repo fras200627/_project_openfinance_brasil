@@ -34,7 +34,7 @@ public class ClientsBusinessService {
     public OAuth2ClientResponse findById(String id) {
         try {
             OAuth2ClientResponse result = ClientsBusinessMapper.INSTANCE.entityToResponse(repository.findById(id).get());
-            //messageService.sendMessageAuditTemplate(request);
+//            messageService.sendMessageAuditTemplate(request);
             return result;
         } catch (Exception ex) {
             throw new InternalErrorException("Registered id= [" + id + "] not found! Check and Try Again.");
@@ -44,7 +44,7 @@ public class ClientsBusinessService {
     public OAuth2ClientResponse findByClientId(String client_id) {
         try {
             OAuth2ClientResponse result = ClientsBusinessMapper.INSTANCE.entityToResponse(repository.findByClientId(client_id));
-            messageService.sendMessageAuditTemplate(request);
+//            messageService.sendMessageAuditTemplate(request);
             return result;
         } catch (Exception ex) {
             throw new InternalErrorException("Client Id= [" + client_id + "] not found! Check and Try Again.");

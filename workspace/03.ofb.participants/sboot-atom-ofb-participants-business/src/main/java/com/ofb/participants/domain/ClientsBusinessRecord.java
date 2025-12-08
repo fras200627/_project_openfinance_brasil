@@ -24,7 +24,8 @@ public record ClientsBusinessRecord(
         boolean isAccountExpired,
         boolean isAccountLocked,
         boolean isCredentialsExpired,
-        boolean isEnabled
+        boolean isEnabled,
+        String document_type
 ) {
     public ClientsBusinessRecord(ClientsBusinessEntity response) {
         this(response.getId(),
@@ -43,7 +44,8 @@ public record ClientsBusinessRecord(
                 response.isAccountExpired(),
                 response.isAccountLocked(),
                 response.isCredentialsExpired(),
-                response.isEnabled()
+                response.isEnabled(),
+                response.getDocumentType()
         );
     }
 }

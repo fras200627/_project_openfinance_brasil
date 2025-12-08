@@ -223,6 +223,12 @@ components:
           type: string
           description: 'Access Status'
           example: 'true'
+        document:
+          type: string
+          description: 'document number'
+        documentType:
+          type: string
+          description: 'Document Type (CNPJ or CPF)'
 
     ClientCreateRecord:
       title: 'Payload a participant Create Record'
@@ -239,6 +245,8 @@ components:
         - listOfAuthorizationGrantTypes
         - listOfRedirectUris
         - listOfScopes
+        - document
+        - documentType
       properties:
         clientId:
           type: string
@@ -294,7 +302,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Scopes'
-
+        document:
+          type: string
+          description: 'document number'
+          nullable: false
+        documentType:
+          type: string
+          description: 'Document Type (CNPJ or CPF)'
+          pattern: '(CNPJ|CPF)'
+          nullable: false
     ClientUpdateRecord:
       title: 'Payload a participant Update Record'
       description: 'Payload a participant Update Record'
@@ -366,7 +382,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Scopes'
-
+        document:
+          type: string
+          description: 'document number'
+        documentType:
+          type: string
+          description: 'Document Type (CNPJ or CPF)'
+          pattern: '(CNPJ|CPF)'
     Methods:
       type: object
       properties:

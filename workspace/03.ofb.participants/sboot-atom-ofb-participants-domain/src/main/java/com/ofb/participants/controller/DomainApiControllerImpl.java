@@ -1,5 +1,6 @@
 package com.ofb.participants.controller;
 
+import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import com.ofb.participants.server.handler.DomainApiDelegate;
 import com.ofb.participants.server.model.ClientCreateRecord;
 import com.ofb.participants.server.model.ClientUpdateRecord;
@@ -29,7 +30,7 @@ public class DomainApiControllerImpl implements DomainApiDelegate {
 
     @Autowired private OAuth2RegisteredClientsService service;
 
-    @Override
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientResponse> createRegisteredClient(ClientCreateRecord clientCreateRecord) {
         OAuth2ClientResponse result = service.save(clientCreateRecord);
 
@@ -40,7 +41,7 @@ public class DomainApiControllerImpl implements DomainApiDelegate {
                 .body(result);
     }
 
-    @Override
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<OAuth2ClientResponse> updateRegisteredClient(ClientUpdateRecord clientUpdateRecord) {
         OAuth2ClientResponse result = service.replace(clientUpdateRecord);
 
@@ -51,7 +52,7 @@ public class DomainApiControllerImpl implements DomainApiDelegate {
                 .body(result);
     }
 
-    @Override
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<Code202Template> changeSecretRegisteredClient(String registeredId, String clientSecretOld, String clientSecretNew) {
         String result = service.changeClientSecret(registeredId, clientSecretOld, clientSecretNew);
 
@@ -64,7 +65,7 @@ public class DomainApiControllerImpl implements DomainApiDelegate {
                 );
     }
 
-    @Override
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<Code202Template> changeStatusRegisteredClient(String registeredId, String status) {
 
         String result = service.changeStatus(registeredId, status);

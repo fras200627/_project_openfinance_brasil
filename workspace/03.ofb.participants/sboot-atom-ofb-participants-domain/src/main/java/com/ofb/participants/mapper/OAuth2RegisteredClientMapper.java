@@ -62,6 +62,8 @@ public interface OAuth2RegisteredClientMapper {
     @Mapping(target = "isAccountLocked",            expression = "java(getIsAccountLocked(source))")
     @Mapping(target = "isCredentialsExpired",       expression = "java(getIsCredentialsExpired(source))")
     @Mapping(target = "isEnabled",                  expression = "java(getIsEnabled(source))")
+    @Mapping(target = "document",                   source = "source.document")
+    @Mapping(target = "documentType",              source = "source.documentType")
     OAuth2ClientResponse entityToResponse(OAuth2RegisteredClientsEntity source);
 
     /*

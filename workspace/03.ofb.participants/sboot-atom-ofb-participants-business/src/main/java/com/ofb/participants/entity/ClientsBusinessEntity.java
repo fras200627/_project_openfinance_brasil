@@ -12,7 +12,7 @@ import java.util.Date;
 //Schema+table Spring-Security defaults
 @Table(schema = "user", name = "oauth2_registered_client")
 @Entity(name = "Oauth2RegisteredClientEntity")
-@AllArgsConstructor @NoArgsConstructor @Builder @Data
+@AllArgsConstructor @NoArgsConstructor @Builder
 @EqualsAndHashCode(of= "id")
 public class ClientsBusinessEntity implements Serializable {
 
@@ -39,9 +39,6 @@ public class ClientsBusinessEntity implements Serializable {
 
     @Column(name = "clientId")
     private String clientId;
-
-    @Column(name = "document")
-    private String document;
 
     @Column(name = "clientIdIssuedAt")
     private Date clientIdIssuedAt;
@@ -75,6 +72,12 @@ public class ClientsBusinessEntity implements Serializable {
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "document")
+    private String document;
+
+    @Column(name = "document_type")
+    private String documentType;
 
     public boolean isAccountExpired() {
         if (this.status.equals("EXPIRED")) {
@@ -110,5 +113,125 @@ public class ClientsBusinessEntity implements Serializable {
         } else {
             return false;
         }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public Date getClientIdIssuedAt() {
+        return clientIdIssuedAt;
+    }
+
+    public void setClientIdIssuedAt(Date clientIdIssuedAt) {
+        this.clientIdIssuedAt = clientIdIssuedAt;
+    }
+
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    public void setClientSecret(String clientSecret) {
+        this.clientSecret = clientSecret;
+    }
+
+    public Date getClientSecretExpiresAt() {
+        return clientSecretExpiresAt;
+    }
+
+    public void setClientSecretExpiresAt(Date clientSecretExpiresAt) {
+        this.clientSecretExpiresAt = clientSecretExpiresAt;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getClientAuthenticationMethods() {
+        return clientAuthenticationMethods;
+    }
+
+    public void setClientAuthenticationMethods(String clientAuthenticationMethods) {
+        this.clientAuthenticationMethods = clientAuthenticationMethods;
+    }
+
+    public String getAuthorizationGrantTypes() {
+        return authorizationGrantTypes;
+    }
+
+    public void setAuthorizationGrantTypes(String authorizationGrantTypes) {
+        this.authorizationGrantTypes = authorizationGrantTypes;
+    }
+
+    public String getRedirectUris() {
+        return redirectUris;
+    }
+
+    public void setRedirectUris(String redirectUris) {
+        this.redirectUris = redirectUris;
+    }
+
+    public String getScopes() {
+        return scopes;
+    }
+
+    public void setScopes(String scopes) {
+        this.scopes = scopes;
+    }
+
+    public String getClientSettings() {
+        return clientSettings;
+    }
+
+    public void setClientSettings(String clientSettings) {
+        this.clientSettings = clientSettings;
+    }
+
+    public String getTokenSettings() {
+        return tokenSettings;
+    }
+
+    public void setTokenSettings(String tokenSettings) {
+        this.tokenSettings = tokenSettings;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
     }
 }

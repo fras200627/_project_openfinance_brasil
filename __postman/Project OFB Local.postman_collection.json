@@ -1190,7 +1190,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n\t\"clientId\": \"ofb-test-2\",\r\n\t\"clientName\": \"OFB Test 2\",\r\n\t\"clientSecret\": \"123456\",\r\n\t\"tokenDurationOfMinutes\": \"30\",\r\n\t\"clientSecretExpiresAtOfDays\": \"180\",\r\n\t\"requireAuthorizationConsent\": \"false\",\r\n\t\"listOfClientAuthenticationMethods\": [\r\n\t\t{\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n\t],\r\n\t\"listOfAuthorizationGrantTypes\": [\r\n\t\t{\"authorizationGrantType\": \"client_credentials\"}\r\n\t],\r\n\t\"listOfRedirectUris\": [\r\n\t\t{\"redirectUri\": \"nopnopnopnop3\"},\r\n\t\t{\"redirectUri\": \"nopnopnopnop4\"}\r\n\t],\r\n\t\"listOfScopes\": [\r\n\t\t{\"scope\": \"system.admin\"},\r\n\t\t{\"scope\": \"client.ofb.read\"},\r\n\t\t{\"scope\": \"client.ofb.write\"},\r\n\t\t{\"scope\": \"client.root\"}\r\n\t]\r\n}"
+											"raw": "{\r\n\t\"clientId\": \"ofb-test-4\",\r\n\t\"clientName\": \"OFB Test 4\",\r\n\t\"clientSecret\": \"123456\",\r\n\t\"tokenDurationOfMinutes\": \"30\",\r\n\t\"clientSecretExpiresAtOfDays\": \"180\",\r\n\t\"requireAuthorizationConsent\": \"false\",\r\n    \"document\": \"022022022000122\",\r\n    \"documentType\": \"CNPJ\",\r\n\t\"listOfClientAuthenticationMethods\": [\r\n\t\t{\"clientAuthenticationMethod\": \"client_secret_basic\"}\r\n\t],\r\n\t\"listOfAuthorizationGrantTypes\": [\r\n\t\t{\"authorizationGrantType\": \"client_credentials\"}\r\n\t],\r\n\t\"listOfRedirectUris\": [\r\n\t\t{\"redirectUri\": \"nopnopnopnop3\"},\r\n\t\t{\"redirectUri\": \"nopnopnopnop4\"}\r\n\t],\r\n\t\"listOfScopes\": [\r\n\t\t{\"scope\": \"system.admin\"},\r\n\t\t{\"scope\": \"client.ofb.read\"},\r\n\t\t{\"scope\": \"client.ofb.write\"},\r\n\t\t{\"scope\": \"client.root\"}\r\n\t]\r\n}"
 										},
 										"url": {
 											"raw": "http://localhost:3001/ofb-participants-domain-api/domain",
@@ -2253,6 +2253,556 @@
 										"ofb-audit-cancellation-consents-api",
 										"audit",
 										"cancellation",
+										"consents",
+										"findByFilters"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "pageSortField",
+											"value": "id"
+										},
+										{
+											"key": "pageSortOrder",
+											"value": "ASC"
+										},
+										{
+											"key": "registeredId",
+											"value": "4cc15249-9ca9-421a-a646-96a0328960fa"
+										},
+										{
+											"key": "clientId",
+											"value": "tican-client-2"
+										},
+										{
+											"key": "clientName",
+											"value": "tican client 2"
+										},
+										{
+											"key": "securityScope",
+											"value": "client.root",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Audit Extends Consents",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-extends-consents-api/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-extends-consents-api",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-extends-consents-api/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-extends-consents-api",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-extends-consents-api/audit/extends/consents/findById?auditId=1562014",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-extends-consents-api",
+										"audit",
+										"extends",
+										"consents",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "auditId",
+											"value": "1562014"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-extends-consents-api/audit/extends/consents/findAll",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-extends-consents-api",
+										"audit",
+										"extends",
+										"consents",
+										"findAll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Pageable",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-extends-consents-api/audit/extends/consents/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-extends-consents-api",
+										"audit",
+										"extends",
+										"consents",
+										"findByPageable"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "pageSortField",
+											"value": "id"
+										},
+										{
+											"key": "pageSortOrder",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Filters",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-extends-consents-api/audit/extends/consents/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-extends-consents-api",
+										"audit",
+										"extends",
+										"consents",
+										"findByFilters"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "pageSortField",
+											"value": "id"
+										},
+										{
+											"key": "pageSortOrder",
+											"value": "ASC"
+										},
+										{
+											"key": "registeredId",
+											"value": "4cc15249-9ca9-421a-a646-96a0328960fa"
+										},
+										{
+											"key": "clientId",
+											"value": "tican-client-2"
+										},
+										{
+											"key": "clientName",
+											"value": "tican client 2"
+										},
+										{
+											"key": "securityScope",
+											"value": "client.root",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Audit Revoked Consents",
+					"item": [
+						{
+							"name": "Health Check",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-revoked-consents-api/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-revoked-consents-api",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Info",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-revoked-consents-api/actuator/info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-revoked-consents-api",
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-revoked-consents-api/audit/revoked/consents/findById?auditId=459799827",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-revoked-consents-api",
+										"audit",
+										"revoked",
+										"consents",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "auditId",
+											"value": "459799827"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-revoked-consents-api/audit/revoked/consents/findAll",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-revoked-consents-api",
+										"audit",
+										"revoked",
+										"consents",
+										"findAll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Pageable",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-revoked-consents-api/audit/revoked/consents/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-revoked-consents-api",
+										"audit",
+										"revoked",
+										"consents",
+										"findByPageable"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "pageSortField",
+											"value": "id"
+										},
+										{
+											"key": "pageSortOrder",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Filters",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3001/ofb-audit-revoked-consents-api/audit/revoked/consents/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"ofb-audit-revoked-consents-api",
+										"audit",
+										"revoked",
 										"consents",
 										"findByFilters"
 									],
