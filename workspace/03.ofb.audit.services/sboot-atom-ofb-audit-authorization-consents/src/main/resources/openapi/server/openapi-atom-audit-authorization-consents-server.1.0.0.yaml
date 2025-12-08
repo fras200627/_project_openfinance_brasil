@@ -12,13 +12,13 @@ info:
 security:
   - bearerAuth: []
 tags:
-  - name: audit.tracking.service
-    description: 'audit.tracking.service'
+  - name: audit.authorization.consents.service
+    description: 'audit.authorization.consents.service'
 paths:
-  /audit/tracking/findAll:
+  /audit/authorization/consents/findAll:
     get:
       tags:
-        - audit.tracking.service
+        - audit.authorization.consents.service
       summary: 'Get all Audit registers'
       description: 'Get all Audit registers'
       operationId: getFindAll
@@ -26,10 +26,10 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/AuditResponseList'
-  /audit/tracking/findById:
+  /audit/authorization/consents/findById:
     get:
       tags:
-        - audit.tracking.service
+        - audit.authorization.consents.service
       summary: 'Get a Audit register by ID'
       description: 'Get a Audit register by ID'
       operationId: getFindById
@@ -39,10 +39,10 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/AuditResponse'
-  /audit/tracking/findByPageable:
+  /audit/authorization/consents/findByPageable:
     get:
       tags:
-        - audit.tracking.service
+        - audit.authorization.consents.service
       summary: 'Get Audit registers by Pageable'
       description: 'Get Audit registers by Pageable'
       operationId: getFindByPageable
@@ -58,10 +58,10 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/AuditResponsePageable'
-  /audit/tracking/findByFilters:
+  /audit/authorization/consents/findByFilters:
     get:
       tags:
-        - audit.tracking.service
+        - audit.authorization.consents.service
       summary: 'Get Audit registers by Pageable and Filters'
       description: 'Get Audit registers by Pageable and Filters'
       operationId: getFindByFilters
@@ -80,14 +80,6 @@ paths:
           $ref: '#/components/parameters/XTicketId'
         - name: xFapiInteractionId
           $ref: '#/components/parameters/XFapiInteractionId'
-        - name: requestTime
-          $ref: '#/components/parameters/RequestTime'
-        - name: requestURI
-          $ref: '#/components/parameters/RequestURI'
-        - name: requestMethod
-          $ref: '#/components/parameters/RequestMethod'
-        - name: requestUserName
-          $ref: '#/components/parameters/RequestUserName'
       responses:
         '200':
           $ref: '#/components/responses/AuditResponsePageable'
@@ -121,43 +113,6 @@ components:
         minLength: 3
         maxLength: 50
         nullable: true
-    RequestTime:
-      name: requestTimeName
-      in: query
-      required: false
-      schema:
-        type: string
-        minLength: 3
-        maxLength: 50
-        nullable: false
-    RequestURI:
-      name: requestURI
-      description: 'OAuth2 Client Document. Example: Client CNPJ'
-      in: query
-      required: false
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 50
-        nullable: false
-    RequestMethod:
-      name: requestMethod
-      in: query
-      required: false
-      schema:
-        type: string
-        minLength: 3
-        maxLength: 50
-        nullable: true
-    RequestUserName:
-      name: requestUserName
-      description: 'Required is: client.admin or client.ofb.read or client.write'
-      in: query
-      required: false
-      schema:
-        type: string
-        pattern: '(client.admin|client.root|client.ofb.read|client.ofb.write)'
-        nullable: false
     PageNumber:
       name: pageNumber
       in: query
@@ -219,19 +174,15 @@ components:
         xFapiInteractionId:
           type: string
           description: 'xFapiInteractionId key'
-        requestTime:
+        consentId:
           type: string
-          description: 'Request DateTime'
-        requestURI:
+          description: 'Request consentId'
+        consentRequestDate:
           type: string
-          description: 'Request URI'
-        requestMethod:
+          description: 'Request Consent DateTime'
+        consentApprovedDate:
           type: string
-          description: 'Request Method'
-          example: "string"
-        requestUserName:
-          type: string
-          description: 'Request UserName'
+          description: 'Consent Approvad DateTime'
           example: "string"
         payload:
           type: string

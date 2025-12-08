@@ -1548,7 +1548,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit//findById?auditId=72242",
+									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit/tracking/findById?auditId=72242",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1557,7 +1557,7 @@
 									"path": [
 										"ofb-audit-tracking-api",
 										"audit",
-										"",
+										"tracking",
 										"findById"
 									],
 									"query": [
@@ -1586,7 +1586,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit/findAll",
+									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit/tracking/findAll",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1595,6 +1595,7 @@
 									"path": [
 										"ofb-audit-tracking-api",
 										"audit",
+										"tracking",
 										"findAll"
 									]
 								}
@@ -1630,7 +1631,7 @@
 									"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
+									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit/tracking/findByPageable?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1639,6 +1640,7 @@
 									"path": [
 										"ofb-audit-tracking-api",
 										"audit",
+										"tracking",
 										"findByPageable"
 									],
 									"query": [
@@ -1692,15 +1694,16 @@
 									"raw": "{\r\n\"page_number\": 1,\r\n\"page_size\": 2,\r\n\"page_sort_field\": \"clientName\",\r\n\"page_sort_order\": \"ASC\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:3001/ofb-participants-business-api/business/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
+									"raw": "http://localhost:3001/ofb-audit-tracking-api/audit/tracking/findByFilters?pageNumber=1&pageSize=10&pageSortField=id&pageSortOrder=ASC&registeredId=4cc15249-9ca9-421a-a646-96a0328960fa&clientId=tican-client-2&clientName=tican client 2",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3001",
 									"path": [
-										"ofb-participants-business-api",
-										"business",
+										"ofb-audit-tracking-api",
+										"audit",
+										"tracking",
 										"findByFilters"
 									],
 									"query": [

@@ -11,11 +11,11 @@
 	</parent>
 
 	<groupId>com.ofb</groupId>
-	<artifactId>sboot-atom-ofb-audit-tracking</artifactId>
+	<artifactId>sboot-atom-ofb-audit-authorization-consents</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>sboot-atom-ofb-audit-tracking</name>
-	<description>Project OFB Audit Tracking All Requests API</description>
+	<name>sboot-atom-ofb-audit-authorization-consents</name>
+	<description>Project OFB Audit Authorization Consents Requests API</description>
 
 	<properties>
 		<!-- Project default infos -->
@@ -41,7 +41,7 @@
 		<ofb-lib-autoconfigure-security-version>1.0.0</ofb-lib-autoconfigure-security-version>
 
 		<!-- additional information used in <goal>build-info</goal> -->
-		<info.additional.project.module.name>API.AUDIT.TRACKING.SERVICES</info.additional.project.module.name>
+		<info.additional.project.module.name>API.AUDIT.AUTHORIZATION.CONSENTS.SERVICES</info.additional.project.module.name>
 		<info.additional.contact.name>fras200627</info.additional.contact.name>
 		<info.additional.contact.url>*</info.additional.contact.url>
 		<info.additional.contact.email>fras200627@gmail.com</info.additional.contact.email>
@@ -364,7 +364,7 @@
 							 The 'spring' type generates a server package ++++++++++++++-->
 							<generatorName>spring</generatorName>
 							<!-- OpenAPI generated artifacts settings ++++++++++++++++++-->
-							<inputSpec>${openapi.input.sec.path}/server/openapi-atom-audit-tracking-server.1.0.0.yaml</inputSpec>
+							<inputSpec>${openapi.input.sec.path}/server/openapi-atom-audit-authorization-consents-server.1.0.0.yaml</inputSpec>
 							<apiPackage>com.ofb.audit.server.handler</apiPackage>
 							<modelPackage>com.ofb.audit.server.model</modelPackage>
 							<output>${openapi.output.path}</output>

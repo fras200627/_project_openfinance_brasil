@@ -1,7 +1,7 @@
 package com.ofb.audit.service;
 
-import com.ofb.audit.mapper.AuditTrackingMapper;
-import com.ofb.audit.repository.AuditRepository;
+import com.ofb.audit.mapper.AuditAuthorizationConsentMapper;
+import com.ofb.audit.repository.AuditAuthorizationConsentRepository;
 import com.ofb.audit.server.model.AuditResponse;
 import com.ofb.lib.handlers.exception.ofb.InternalErrorException;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +15,11 @@ import java.util.List;
 public class AuditService {
 
     @Autowired private
-    AuditRepository repository;
+    AuditAuthorizationConsentRepository repository;
 
     public AuditResponse findById(String id) {
         try {
-            AuditResponse result = AuditTrackingMapper.INSTANCE.entityToResponse(repository.findById(Long.valueOf(id)).get());
+            AuditResponse result = AuditAuthorizationConsentMapper.INSTANCE.entityToResponse(repository.findById(Long.valueOf(id)).get());
             return result;
         } catch (Exception ex) {
             throw new InternalErrorException("Audit id= [" + id + "] not found! Check and Try Again.");
@@ -27,7 +27,7 @@ public class AuditService {
     }
 
     public List<AuditResponse> findAll() {
-        List<AuditResponse> result = AuditTrackingMapper.INSTANCE.listEntityToListResponse(repository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        List<AuditResponse> result = AuditAuthorizationConsentMapper.INSTANCE.listEntityToListResponse(repository.findAll(Sort.by(Sort.Direction.ASC, "id")));
         return result;
     }
 

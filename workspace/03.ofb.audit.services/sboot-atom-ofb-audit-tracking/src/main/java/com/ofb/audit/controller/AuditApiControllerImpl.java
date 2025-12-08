@@ -4,7 +4,7 @@ import com.ofb.audit.server.handler.AuditApiDelegate;
 import com.ofb.audit.server.model.AuditResponse;
 import com.ofb.audit.server.model.AuditResponsePageable;
 import com.ofb.audit.service.AuditService;
-import com.ofb.lib.security.profiles.CanClientOFBRead;
+import com.ofb.lib.security.profiles.CanSystemOFBAdmin;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -26,13 +26,13 @@ public class AuditApiControllerImpl implements AuditApiDelegate {
     @Autowired private
     AuditService service;
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<AuditResponse> getFindById(String auditId) {
         return new ResponseEntity<>(service.findById(auditId),
                 HttpStatus.OK);
     }
 
-    @Override @CanClientOFBRead
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<List<AuditResponse>> getFindAll() {
         return new ResponseEntity<>(service.findAll(),
                 HttpStatus.OK);
@@ -47,7 +47,7 @@ public class AuditApiControllerImpl implements AuditApiDelegate {
 
 
 
-    @Override
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<AuditResponsePageable> getFindByFilters(Long pageNumber,
                                                                   Long pageSize,
                                                                   String pageSortField,
@@ -67,7 +67,7 @@ public class AuditApiControllerImpl implements AuditApiDelegate {
 
 
 
-    @Override
+    @Override @CanSystemOFBAdmin
     public ResponseEntity<AuditResponsePageable> getFindByPageable(Long pageNumber,
                                                                    Long pageSize,
                                                                    String pageSortField,

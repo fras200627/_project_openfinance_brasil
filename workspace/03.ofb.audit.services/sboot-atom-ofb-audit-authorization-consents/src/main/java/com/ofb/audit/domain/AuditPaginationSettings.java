@@ -1,4 +1,4 @@
-package com.ofb.audit.mapper;
+package com.ofb.audit.domain;
 
 
 import org.hibernate.validator.constraints.Range;

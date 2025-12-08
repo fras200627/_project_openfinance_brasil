@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
-@Entity(name= "Audit")
-@Table(schema= "ofb", name= "ofb_audit")
+@Entity(name= "AuditAuthorizationConsent")
+@Table(schema= "OFB", name= "OFB_AUDIT_AUTHORIZATION_CONSENTS")
 //---------------------------------------------------
 @Builder @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(of= "id")
-public class AuditEntity {
-    
+public class AuditAuthorizationConsentEntity {
+
     @Id
     @Column(name= "ID")
     private Long id;
@@ -29,17 +29,14 @@ public class AuditEntity {
     @Column(name= "XFAPIINTERACTIONID")
     private String xFapiInteractionId;
 
-    @Column(name="REQUESTTIME")
-    private String requestTime;
+    @Column(name="CONSENTID")
+    private String consentId;
 
-    @Column(name= "REQUESTURI")
-    private String requestUri;
+    @Column(name= "CONSENTREQUESTDATE")
+    private Timestamp consentRequestDate;
 
-    @Column(name= "REQUESTMETHOD")
-    private String requestMethod;
-
-    @Column(name= "REQUESTUSERNAME")
-    private String requestUserName;
+    @Column(name= "CONSENTAPPROVEDDATE")
+    private Timestamp consentApprovedDate;
 
     @Column(name= "PAYLOAD")
     private String payload;
@@ -76,36 +73,28 @@ public class AuditEntity {
         this.xFapiInteractionId = xFapiInteractionId;
     }
 
-    public String getRequestTime() {
-        return requestTime;
+    public String getConsentId() {
+        return consentId;
     }
 
-    public void setRequestTime(String requestTime) {
-        this.requestTime = requestTime;
+    public void setConsentId(String consentId) {
+        this.consentId = consentId;
     }
 
-    public String getRequestUri() {
-        return requestUri;
+    public Timestamp getConsentRequestDate() {
+        return consentRequestDate;
     }
 
-    public void setRequestUri(String requestUri) {
-        this.requestUri = requestUri;
+    public void setConsentRequestDate(Timestamp consentRequestDate) {
+        this.consentRequestDate = consentRequestDate;
     }
 
-    public String getRequestMethod() {
-        return requestMethod;
+    public Timestamp getConsentApprovedDate() {
+        return consentApprovedDate;
     }
 
-    public void setRequestMethod(String requestMethod) {
-        this.requestMethod = requestMethod;
-    }
-
-    public String getRequestUserName() {
-        return requestUserName;
-    }
-
-    public void setRequestUserName(String requestUserName) {
-        this.requestUserName = requestUserName;
+    public void setConsentApprovedDate(Timestamp consentApprovedDate) {
+        this.consentApprovedDate = consentApprovedDate;
     }
 
     public String getPayload() {
