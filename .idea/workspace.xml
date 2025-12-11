@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="update IntelliJ version to 2025.2.5">
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Continuing with the documentation...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-index_project_ofb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/x.2-map_ofb_1.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/x.2-map_ofb_1.drawio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,7 +310,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "4474181a",
+    "git-widget-placeholder": "1696ee6d",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/workspace/04.ofb.atoms/sboot-atom-ofb-consents/src/main/resources/openapi/client",
     "project.structure.last.edited": "Modules",
@@ -396,14 +398,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00079" summary="reorg components">
-      <option name="closed" value="true" />
-      <created>1759757108845</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1759757108845</updated>
     </task>
     <task id="LOCAL-00080" summary="end camel.orch.resource">
       <option name="closed" value="true" />
@@ -789,7 +783,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765282570997</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="Continuing with the documentation...">
+      <option name="closed" value="true" />
+      <created>1765285855366</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1765285855366</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -817,7 +819,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="strat orch.camel.consents" />
     <MESSAGE value="build orch.camel.consents" />
     <MESSAGE value="review project" />
     <MESSAGE value="review and reorg project" />
@@ -842,7 +843,8 @@
     <MESSAGE value="chenges in participants" />
     <MESSAGE value="changes projects use client participant" />
     <MESSAGE value="update IntelliJ version to 2025.2.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="update IntelliJ version to 2025.2.5" />
+    <MESSAGE value="Continuing with the documentation..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Continuing with the documentation..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
