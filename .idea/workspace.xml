@@ -401,14 +401,6 @@
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
     </task>
-    <task id="LOCAL-00094" summary="build orch.camel.consents">
-      <option name="closed" value="true" />
-      <created>1761225290074</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1761225290076</updated>
-    </task>
     <task id="LOCAL-00095" summary="review project">
       <option name="closed" value="true" />
       <created>1761226493579</created>
@@ -793,7 +785,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766489789061</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="Continuing with the documentation...">
+      <option name="closed" value="true" />
+      <created>1766490052229</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1766490052229</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
