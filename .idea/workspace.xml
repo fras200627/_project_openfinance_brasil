@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Continuing with the documentation..." />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Continuing with the documentation...">
+      <change beforePath="$PROJECT_DIR$/__readme/0.0-project_openfinance_brasil.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-project_openfinance_brasil.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -399,22 +401,6 @@
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
     </task>
-    <task id="LOCAL-00092" summary="build orch.camel.consents">
-      <option name="closed" value="true" />
-      <created>1761077126743</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1761077126744</updated>
-    </task>
-    <task id="LOCAL-00093" summary="build orch.camel.consents">
-      <option name="closed" value="true" />
-      <created>1761078058370</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1761078058370</updated>
-    </task>
     <task id="LOCAL-00094" summary="build orch.camel.consents">
       <option name="closed" value="true" />
       <created>1761225290074</created>
@@ -791,7 +777,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766489318371</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Continuing with the documentation...">
+      <option name="closed" value="true" />
+      <created>1766489738917</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1766489738917</updated>
+    </task>
+    <task id="LOCAL-00142" summary="Continuing with the documentation...">
+      <option name="closed" value="true" />
+      <created>1766489789061</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1766489789061</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -800,12 +802,17 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="ofb-project/develop-ofb" />
                       </list>
                     </value>
                   </entry>
