@@ -38,12 +38,12 @@
     &quot;assignee&quot;: &quot;fras200627&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/fras200627/_project_openfinance_brasil",
-    "accountId": "6842a840-eca6-411c-a4e7-058b6dbc93ca"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fras200627/_project_openfinance_brasil&quot;,
+    &quot;accountId&quot;: &quot;6842a840-eca6-411c-a4e7-058b6dbc93ca&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="vcs://C:/_development/__projects/_project_openfinance_brasil/workspace/02.ofb.security/sboot-atom-ofb-authorization-server/src/main/java/com/ofb/authorization/controller/AuthorizationApiControllerImpl.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -312,7 +312,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "develop-ofb",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/_development/__projects/_project_openfinance_brasil/__readme",
     "project.structure.last.edited": "Modules",
