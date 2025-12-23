@@ -57,11 +57,6 @@
         <option value="$PROJECT_DIR$/workspace/07.ofb.batch.services/sbatch-ofb-consents-expiration-control/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-domain/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-tracking/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-authorization-consents/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-cancellation-consents/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-extends-consents/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-revoked-consents/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -77,7 +72,7 @@
         <option value="$PROJECT_DIR$/workspace/01.cloud/project-tican-discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-ofb-oauth2-registered-clients-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/03.oauth2.registered.clients/project-tican-oauth2-registered-clients-domain/pom.xml" />
-        <option value="$PROJECT_DIR$/workspace/03.ofb.audit.services/sboot-atom-ofb-audit-requests/pom.xml" />
+        <option value="$PROJECT_DIR$/workspace/03.ofb.participants/sboot-atom-ofb-participants-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-business/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/04.oauth2.users/project-tican-oauth2-users-domain/pom.xml" />
         <option value="$PROJECT_DIR$/workspace/07.audit.services/project-tican-audit-api/pom.xml" />
