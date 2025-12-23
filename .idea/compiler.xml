@@ -19,16 +19,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="sboot-lib-ofb-autoconfigure-handlers" />
         <module name="sboot-atom-ofb-consents" />
         <module name="sboot-atom-ofb-participants-domain" />
         <module name="sbatch-ofb-consents-approval-control" />
         <module name="sboot-camel-orch-ofb-resources" />
-        <module name="sboot-atom-ofb-participants-business" />
         <module name="sboot-atom-ofb-accounts" />
         <module name="sboot-camel-orch-ofb-customers" />
         <module name="sboot-atom-ofb-customers" />
@@ -47,9 +51,24 @@
         <module name="sboot-camel-orch-ofb-consents" />
         <module name="sboot-lib-ofb-autoconfigure-interceptors" />
         <module name="sboot-atom-ofb-audit-extends-consents" />
-        <module name="sboot-lib-ofb-autoconfigure-amqp" />
         <module name="sboot-lib-ofb-common-tools" />
         <module name="sboot-listener-ofb-audit-services" />
+      </profile>
+      <profile name="Annotation profile for sboot-lib-ofb-autoconfigure-amqp" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$PROJECT_DIR$/../../_maven/repository/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
+        </processorPath>
+        <module name="sboot-lib-ofb-autoconfigure-amqp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

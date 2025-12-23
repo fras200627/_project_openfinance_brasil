@@ -362,7 +362,7 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.o&gt; Batch - Approval Control">
     <list>
       <item itemvalue="Application.o&gt; Batch - Approval Control" />
       <item itemvalue="Application.2.1-Participants Domain" />
