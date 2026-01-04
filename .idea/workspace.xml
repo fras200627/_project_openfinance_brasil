@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Continuing with the documentation..." />
+    <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Continuing with the documentation...">
+      <change afterPath="$PROJECT_DIR$/__docs/resumo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.0-index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.0-project_openfinance_brasil.md" beforeDir="false" afterPath="$PROJECT_DIR$/__readme/0.0-project_openfinance_brasil.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.1-ofb_functional_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_performance_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.2-ofb_security_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.3-ofb_audit_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.5-ofb_service_discovery_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/0.6-ofb_api_gateway_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1.1-ofb_oracle_data_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/1.2-ofb_mysql_data_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.1-ofb_api_resources_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.2-ofb_orchestration_resources_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.3-ofb_listerner_services_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/2.4-ofb_batch_services_model_info.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/details/1.0-ofb_details_domains_core.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/project_ofb_directory.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/x.1-technical_project_description.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__readme/x.2-map_ofb_1.drawio" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -317,7 +338,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.291954&quot;,
     &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -362,8 +383,9 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.o&gt; Batch - Approval Control">
+  <component name="RunManager">
     <list>
+      <item itemvalue="Application.1.1-Authorization Service" />
       <item itemvalue="Application.o&gt; Batch - Approval Control" />
       <item itemvalue="Application.2.1-Participants Domain" />
       <item itemvalue="Application.3.1-Audit Tracking" />
@@ -397,14 +419,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
-    </task>
-    <task id="LOCAL-00097" summary="review and reorg project">
-      <option name="closed" value="true" />
-      <created>1761315990705</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1761315990705</updated>
     </task>
     <task id="LOCAL-00098" summary="review and reorg project">
       <option name="closed" value="true" />
@@ -790,7 +804,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766490470528</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="Continuing with the documentation...">
+      <option name="closed" value="true" />
+      <created>1766505216526</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1766505216526</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
