@@ -1,29 +1,33 @@
-Windows SubSystem Linux, Ubuntu, Docker, Kubernetes (microK8S pack), Oracle XE core version 21,
-MySQL CE core version 8.0,
-RabbitMQ 3.x,
-IntelliJ,
-OpenAPI (3.0.3),
-Swagger and Swagger Editor,
-Portainer,
-PL/SQL Development,
-MySQL Workbench,
-RabbitMQ Service Tools,
-Git Hub,
-Docker Hub,
-Maven,
-Java JDK-17,
-org.OpenAPITools,
-org.SpringDoc UI tools,
-Springboot (2.7.11),
-Spring AMQP,
-Apache Camel Orchestration (Spring framework),
-SpringBatch,
-SpringCloud (with Eureka NetFlix),
-SpringCloud (with SpringGateway),
-SpringSecurity (with JWT and OAuth2),
-Resilience4J,
-Authentication Server (SpringSecurity framework),
-Authorization Server (SpringSecurity framework),
-MapStruct,
-JUnit,
-Lombok
+Consents Atom
+
+-consents domain
+    Create Consent
+    Extends Consent
+    Delete Consent
+
+-consents business
+    Get Consent
+    Get Consent Extends
+    Get Access-Token
+    
+OpenFinance - Docker Environment
+\_project_openfinance_brasil\__wsl
+
+
+
+OpenFinance - Kubernetes Environment
+\_project_openfinance_brasil\__K8S_environment
+Host Environment:
+# wsl -d Ubuntu-24.04
+# sudo -s
+# microk8s status
+# systemctl status docker
+** portainer container
+# docker ps
+7bfa0a5ecace   portainer/portainer-ce:2.21.5   "/portainer"   
+12 minutes ago   Up 12 minutes   
+0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp, 0.0.0.0:9443->9443/tcp, [::]:9443->9443/tcp, 9000/tcp   portainer
+# https://localhost:9443/#!/auth
+admin
+@Capivara.12.2551
+

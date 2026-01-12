@@ -1,0 +1,14 @@
+#!/bin/bash
+#echo "delete ConfigMap Defaults"
+#microk8s kubectl delete -f ../00.config.map.defaults/00-config-map-defaults.yml
+echo "Remove db-oracle ConfigMap"
+microk8s kubectl delete -f 00-db-oracle-cmap.yml
+#echo "Remove db-oracle PersistentVolumeClaim"
+#microk8s kubectl delete -f 01-mq-rabbit-pvc.yml
+echo "Remove db-oracle StateFulSet Pods"
+microk8s kubectl delete -f 02-db-oracle-statefulset.yml
+echo "Remove Eure-Services Internal Service ClusterIP"
+microk8s kubectl delete -f 03-db-oracle-clusterip-svc.yml
+echo "Remove db-oracle Nodeport"
+microk8s kubectl delete -f 04-db-oracle-nodeport.yml
+

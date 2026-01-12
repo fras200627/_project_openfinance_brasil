@@ -1,0 +1,201 @@
+**************************************************************************************************
+Step 01: Install Linux on WSL
+**************************************************************************************************
+Open Terminal Window with Administrator Option
+Next, execute commands below::
+wsl --install Ubuntu-??.?? (ex: wsl --install Ubuntu-24.04. Use command wsl -l -o to view linux distros)
+Next install, create a root user:
+user: tican
+password: tican
+Next step, modify user to sudo user:
+sudo -s
+Next step, create access to developement folders:
+chmod 0777 /mnt/c/_development/__projects/ -R
+
+**************************************************************************************************
+Step 02: Configure Linux Basics
+**************************************************************************************************
+nano ~/.bashrc
+
+ADD LINES
+alias k8s='microk8s kubectl'
+alias kubectl='microk8s kubectl'
+alias wsl_path='cd /mnt/c/_development/__projects/__wsl/'
+alias wsl_open='cd /mnt/c/_development/__projects/_project_tican_openapi/__wsl/'
+
+source ~/.bashrc
+
+**************************************************************************************************
+Step 03: Configure All Linux add-ons  
+**************************************************************************************************
+Command:
+wsl_open
+Command:
+cd ./0-wsl_env_create
+Command:
+sh ./1.ubuntu_config.sh
+
+** Refresh Linux
+Command:
+exit
+wsl --shutdown
+wsl -d Ubuntu-??.??
+
+**************************************************************************************************
+Step 04: Install and Configure a Docker environment  
+**************************************************************************************************
+Command:
+wsl_open
+Command:
+cd ./0-wsl_env_create
+Command:
+sh ./2.docker_install.sh
+
+** Tests
+docker info
+systemctl status docker
+
+**************************************************************************************************
+Step 05: Install and Configure a MicroK8S environment  
+**************************************************************************************************
+Command:
+wsl_open
+Command:
+cd ./0-wsl_env_create
+Command:
+sh ./3.k8s_install.sh
+
+** Tests
+microk8s status
+-------------------------------------------------------------------
+
+
+
+
+BACKLOG COMMANDS
+Test:
+docker info
+systemctl status docker
+kubectl cluster-info
+docker-compose -v
+-------------------------------------------------------------------
+
+
+Docker images test
+------------------------------------------------------------------
+docker pull nginx
+docker run --name nginx-1 -d -p 8081:80 nginx
+test connect: http://localhost:8081
+-------------------------------------------------------------------
+docker pull httpd
+docker run --name apache-httpd -d -p 8083:80 nginx
+test connect: http://localhost:8083
+-------------------------------------------------------------------
+
+kubectl run nginx --image=nginx --port=8081 --expose=true
+
+Provisioning the new WSL instance Ubuntu-24.04
+This might take a while...
+Create a default Unix user account: tican
+New password:
+Retype new password:
+passwd: password updated successfully
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 5.15.167.4-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Apr 23 08:04:49 -03 2025
+
+  System load:  0.23                Processes:             32
+  Usage of /:   0.1% of 1006.85GB   Users logged in:       0
+  Memory usage: 2%                  IPv4 address for eth0: 172.19.140.58
+  Swap usage:   0%
+
+
+This message is shown once a day. To disable it please create the
+/home/tican/.hushlogin file.
+
+
+
+
+
+echo '********************************************************************************************'
+echo '                                VERIFY MICROK8S COMMANDS'
+echo '********************************************************************************************'
+echo 'FOR GET ALL STATUS: '
+echo 'microk8s status --wait-ready'
+echo '--------------------------------------------------------------------------------------------'
+echo 'FOR GET ALL NAMESPACES: '
+echo 'microk8s kubectl get all --all-namespaces'
+echo '--------------------------------------------------------------------------------------------'
+echo 'FOR GET STATUS A DASHBOARD and SHOW URL AND TOKEN ACCESS: '
+echo 'microk8s dashboard-proxy'
+echo '--------------------------------------------------------------------------------------------'
+echo 'FOR GET TOKEN FOR USE IN DASHBOARD: '
+echo 'token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)'
+echo 'microk8s kubectl -n kube-system describe secret $token'
+echo
+echo 'microk8s kubectl create token default'
+echo '--------------------------------------------------------------------------------------------'
+echo
+echo '********************************************************************************************'
+echo
+echo
+
+
+'nc'	Versátil, fácil de usar	Não possui recursos avançados
+'nmap'	Recursos poderosos de descoberta de rede e auditoria de segurança	Curva de aprendizado mais íngreme
+
+  System load:  1.13                Processes:             54
+  Usage of /:   0.4% of 1006.85GB   Users logged in:       0
+  Memory usage: 2%                  IPv4 address for eth0: wsl
+
+
+cd /etc/iptables
+nano rules.v4
+nano rules.v6
+
+apt-get install iptables-persistent
+apt-get install netfilter-persistent
+
+systemctl restart iptables
+service iptables status
+
+iptables-legacy-save
+ip6tables-legacy-save
+
+iptables-save  > /etc/iptables/rules.v4
+ip6tables-save > /etc/iptables/rules.v6
+
+iptables-restore  < /etc/iptables/rules.v4
+ip6tables-restore < /etc/iptables/rules.v6
+
+iptables -I INPUT -p tcp --dport 31435 -j ACCEPT
+
+nc -l -p 32631 -k
+
+
+wsl commands
+-------------------------------------------------------------------
+wsl --list --verbose
+wsl --list --running    
+wsl --list -o           * lista todas as disto disponiveis
+wsl --status
+wsl --version
+
+wsl --shutdown          * para todas as disto
+wsl --terminate disto   * para a disto
+wsl --unregister disto  * remove a disto 
+wsl --unistall          * remove o wsl
+wsl --update
+
+check:
+wsl --list --verbose
+  NAME            STATE           VERSION
+* Ubuntu-22.04    Stopped         2         <-- docker environment
+  Ubuntu-24.04    Stopped         2         <-- k8s environment

@@ -3,9 +3,8 @@
 -- Date: 2025-11-25 15:33
 -- All registers use a client_secret = 123456
 */
---CREATE SCHEMA user;
-
-CREATE DATABASE  IF NOT EXISTS `user` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+-- CREATE SCHEMA user;
+-- CREATE DATABASE  IF NOT EXISTS `user` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `user`;
 
 INSERT INTO user.oauth2_registered_client 

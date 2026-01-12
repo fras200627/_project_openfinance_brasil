@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mq-rabbit-cmap
+  labels:
+    app: mq-rabbit-cmap
+data:
+  RABBITMQ_IMAGE                   : 'rabbitmq:3-management'
+  RABBITMQ_HOST_NAME               : 'tican-rabbit-mq'
+  RABBITMQ_SERVICE_EXPOSE_PORT     : '5772'
+  RABBITMQ_CLUSTER_EXPOSE_PORT     : '5773'
+  RABBITMQ_DASHBOARD_EXPOSE_PORT   : '15772'
+  RABBITMQ_SERVICE_INTERNAL_PORT   : '5672'
+  RABBITMQ_CLUSTER_INTERNAL_PORT   : '5673'
+  RABBITMQ_DASHBOARD_INTERNAL_PORT : '15672'
+  RABBITMQ_DEFAULT_USER            : 'tican'
+  RABBITMQ_DEFAULT_PASS             : 'tican'
+  RABBITMQ_DATA_VOLUME             : '/opt/containerd/volume-docker/rabbitmq/rabbitmqdata'
+  RABBITMQ_BACKUP_VOLUME           : '/opt/containerd/volume-docker/rabbitmq/rabbitmqbackup'
+  # AMQP settings
+  API_AMQP_AUDIT_QUEUE : 'tican.audit.queue'
+  API_AMQP_AUDIT_EX    : 'tican.audit.ex'
+  API_AMQP_AUDIT_DLQ   : 'tican.audit.dlq'
+  API_AMQP_AUDIT_DLX   : 'tican.audit.dlx'
+  

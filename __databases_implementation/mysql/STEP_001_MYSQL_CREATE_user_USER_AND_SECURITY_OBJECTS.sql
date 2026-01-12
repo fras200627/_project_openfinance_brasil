@@ -1,49 +1,12 @@
---CREATE SCHEMA user;
-
-CREATE DATABASE  IF NOT EXISTS `user` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  
+IF NOT EXISTS `user` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `user`;
 
-CREATE TABLE `oauth2_registered_client` (
-  `id` varchar(256) NOT NULL COMMENT 'Id de participantes no formado UUID.',
-  `client_id` varchar(300) NOT NULL COMMENT 'Chave id que é informado de forma livre. Exemplo: santander_id_999.',
-  `client_id_issued_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Data de inclusão do registro.',
-  `client_secret` varchar(200) NOT NULL COMMENT 'Senha de acesso do participante. É livre de criação e ao ser criada ou alterada é encriptada no formado TLS254. ',
-  `client_secret_expires_at` timestamp NOT NULL COMMENT 'Data de expiração da senha. O padrão é 180 dias.',
-  `client_name` varchar(200) NOT NULL COMMENT 'Nome descritivo do participante',
-  `client_authentication_methods` varchar(1000) NOT NULL,
-  `authorization_grant_types` varchar(1000) NOT NULL,
-  `redirect_uris` varchar(1000) DEFAULT NULL,
-  `scopes` varchar(1000) NOT NULL COMMENT 'Os escopos possíveis são: client.admin, system.root, client.ofb.read, client.ofb.write.',
-  `client_settings` varchar(2000) DEFAULT NULL,
-  `token_settings` varchar(2000) DEFAULT NULL,
-  `status` varchar(30) NOT NULL DEFAULT 'LOCKED' COMMENT 'Os status possíveis são: ENBLED, DISABLE, LOCKED.',
-  `document` varchar(45) NOT NULL COMMENT 'O documento deve ser compátivel com o pertecente ao participante. Deve ser informado o CNPJ sem formatação.',
-  `document_type` varchar(45) NOT NULL DEFAULT 'CNPJ' COMMENT 'Tipo de documento possíveis são: CPF e CNPJ.',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
-COMMENT='Registro dos Participantes usados no fluxo de processamento do OpenFinance.	';
-
-CREATE TABLE `authorities` (
+CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
-  `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `ix_auth_username` (`username`,`authority`),
-  CONSTRAINT `fk_authorities_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `clientdetails` (
-  `appId` varchar(256) NOT NULL,
-  `resourceIds` varchar(256) DEFAULT NULL,
-  `appSecret` varchar(256) DEFAULT NULL,
-  `scope` varchar(256) DEFAULT NULL,
-  `grantTypes` varchar(256) DEFAULT NULL,
-  `redirectUrl` varchar(256) DEFAULT NULL,
-  `authorities` varchar(256) DEFAULT NULL,
-  `access_token_validity` int DEFAULT NULL,
-  `refresh_token_validity` int DEFAULT NULL,
-  `additionalInformation` varchar(4096) DEFAULT NULL,
-  `autoApproveScopes` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`appId`)
+  `password` varchar(50) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `group_authorities` (
@@ -68,10 +31,72 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`next_val`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `authorities` (
+  `username` varchar(50) NOT NULL,
+  `authority` varchar(50) NOT NULL,
+  UNIQUE KEY `ix_auth_username` (`username`,`authority`),
+  CONSTRAINT `fk_authorities_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_entity` (
+  `id` bigint NOT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_4xad1enskw4j1t2866f7sodrx` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `usuarios` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+CREATE TABLE `oauth2_registered_client` (
+  `id` varchar(256) NOT NULL COMMENT 'Id de participantes no formado UUID.',
+  `client_id` varchar(300) NOT NULL COMMENT 'Chave id que é informado de forma livre. Exemplo: santander_id_999.',
+  `client_id_issued_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Data de inclusão do registro.',
+  `client_secret` varchar(200) NOT NULL COMMENT 'Senha de acesso do participante. É livre de criação e ao ser criada ou alterada é encriptada no formado TLS254. ',
+  `client_secret_expires_at` timestamp NOT NULL COMMENT 'Data de expiração da senha. O padrão é 180 dias.',
+  `client_name` varchar(200) NOT NULL COMMENT 'Nome descritivo do participante',
+  `client_authentication_methods` varchar(1000) NOT NULL,
+  `authorization_grant_types` varchar(1000) NOT NULL,
+  `redirect_uris` varchar(1000) DEFAULT NULL,
+  `scopes` varchar(1000) NOT NULL COMMENT 'Os escopos possíveis são: client.admin, system.root, client.ofb.read, client.ofb.write.',
+  `client_settings` varchar(2000) DEFAULT NULL,
+  `token_settings` varchar(2000) DEFAULT NULL,
+  `status` varchar(30) NOT NULL DEFAULT 'LOCKED' COMMENT 'Os status possíveis são: ENBLED, DISABLE, LOCKED.',
+  `document` varchar(45) NOT NULL COMMENT 'O documento deve ser compátivel com o pertecente ao participante. Deve ser informado o CNPJ sem formatação.',
+  `document_type` varchar(45) NOT NULL DEFAULT 'CNPJ' COMMENT 'Tipo de documento possíveis são: CPF e CNPJ.',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
+COMMENT='Registro dos Participantes usados no fluxo de processamento do OpenFinance.	';
+
+
+CREATE TABLE `clientdetails` (
+  `appId` varchar(256) NOT NULL,
+  `resourceIds` varchar(256) DEFAULT NULL,
+  `appSecret` varchar(256) DEFAULT NULL,
+  `scope` varchar(256) DEFAULT NULL,
+  `grantTypes` varchar(256) DEFAULT NULL,
+  `redirectUrl` varchar(256) DEFAULT NULL,
+  `authorities` varchar(256) DEFAULT NULL,
+  `access_token_validity` int DEFAULT NULL,
+  `refresh_token_validity` int DEFAULT NULL,
+  `additionalInformation` varchar(4096) DEFAULT NULL,
+  `autoApproveScopes` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`appId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `oauth2_authorization` (
   `id` varchar(100) NOT NULL,
@@ -216,29 +241,10 @@ CREATE TABLE `spring_session_attributes` (
   CONSTRAINT `SPRING_SESSION_ATTRIBUTES_FK` FOREIGN KEY (`SESSION_PRIMARY_ID`) REFERENCES `spring_session` (`PRIMARY_ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `user_entity` (
-  `id` bigint NOT NULL,
-  `created_at` datetime(6) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_4xad1enskw4j1t2866f7sodrx` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `usuarios` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `login` varchar(100) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-CREATE TABLE user.hibernate_sequence (
-  next_val  BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY
-);
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`next_val`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 insert into user.hibernate_sequence (next_val) values (1);
 commit;

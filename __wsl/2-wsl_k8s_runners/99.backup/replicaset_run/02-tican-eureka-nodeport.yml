@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: tican-discovery-services-nodeport
+  labels:
+    app: tican-discovery-services-nodeport
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      nodePort: 31000
+  selector:
+    app: tican-discovery-services-pod

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-oracle-cmap
+  labels:
+    app: db-oracle-cmap
+data:
+  ORACLEXE_REPLICAS : "1"

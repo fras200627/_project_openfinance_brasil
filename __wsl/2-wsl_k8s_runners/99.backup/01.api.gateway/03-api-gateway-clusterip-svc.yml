@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tican-api-gateway-svc
+  labels:
+    app: tican-api-gateway-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: tican-api-gateway-pod
+  ports:
+    - port: 3001
+      targetPort: 30001

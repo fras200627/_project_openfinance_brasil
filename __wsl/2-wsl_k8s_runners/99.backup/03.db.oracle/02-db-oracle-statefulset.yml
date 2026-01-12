@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-oracle-services
+  labels:
+    app: db-oracle-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-oracle-pod
+  template:
+    metadata:
+      name: db-oracle-pod
+      labels:
+        app: db-oracle-pod
+    spec:
+      containers:
+        - name: db-oracle-container
+          image: 'fras200627/db-tican-oracle:1.0.0'
+          ports:
+            - containerPort: 1521
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: db-oracle-cmap
+          volumeMounts:
+            - name: db-oracle-persist
+              mountPath: /default/db-oracle-pvc
+          hostname: db-oracle-svc
+      volumes:
+        - name: db-oracle-persist
+          persistentVolumeClaim:
+            claimName: db-oracle-pvc
+  serviceName: db-oracle-services-stateful          

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-mysql-services
+  labels:
+    app: db-mysql-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-mysql-pod
+  template:
+    metadata:
+      name: db-mysql-pod
+      labels:
+        app: db-mysql-pod
+    spec:
+      containers:
+        - name: db-mysql-container
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: db-mysql-cmap
+          volumeMounts:
+            - name: db-mysql-persist
+              mountPath: /default/db-mysql-pvc
+          hostname: db-mysql-svc
+      volumes:
+        - name: db-mysql-persist
+          persistentVolumeClaim:
+            claimName: db-mysql-pvc
+  serviceName: db-mysql-services-stateful          

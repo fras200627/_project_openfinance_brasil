@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tican-api-gateway-services
+  labels:
+    app: tican-api-gateway-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tican-api-gateway-pod
+  template:
+    metadata:
+      name: tican-api-gateway-pod
+      labels:
+        app: tican-api-gateway-pod
+    spec:
+      containers:
+        - name: tican-api-gateway-container
+          image: fras200627/tican-api-gateway:1.0.0-openapi
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: config-map-defaults
+            - configMapRef:
+                name: tican-api-gateway-cmap  
+          volumeMounts:
+            - name: tican-api-gateway-persist
+              mountPath: /default/tican-api-gateway-pvc
+          hostname: tican-api-gateway-svc
+      restartPolicy: Always
+      volumes:
+        - name: tican-api-gateway-persist
+          persistentVolumeClaim:
+            claimName: tican-api-gateway-pvc
+  serviceName: tican-api-gateway-services-stateful
+    

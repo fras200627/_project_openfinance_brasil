@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db-oracle-pod
+  labels:
+    app: db-oracle-pod
+spec:
+  containers:
+    - name: db-oracle-container
+      image: 'fras200627/db-tican-oracle:210.0'
+      ports:
+        - containerPort: 1521
+      envFrom:
+        - configMapRef:
+            name: db-oracle-cmap

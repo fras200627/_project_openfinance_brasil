@@ -1,0 +1,26 @@
+# ---------------------------------------------------------------
+# This script includes volume
+# ---------------------------------------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx-pod
+spec:
+  containers:
+    - name: nginx-pod
+      image: nginx
+#      volumeMounts:
+#        - mountPath: /eureka-service
+#          name: nginx-pod-vol
+      ports:
+        - containerPort: 30083
+#      envFrom:
+#        - configMapRef:
+#            name: nginx-pod-cmap 
+#  volumes:
+#    - name: nginx-pod-vol
+#      hostPath:
+#        path: /C/temp/kubernetes/volumes
+#        type: Directory
