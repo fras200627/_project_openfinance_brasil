@@ -1,59 +1,6 @@
 version: '3.9'
 
 services:
-  tican-service-discovery:
-    image: ${SERVICE_DISCOVERY_IMAGE}
-    hostname: ${SERVICE_DISCOVERY_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - db-tican-mysql
-#      - db-tican-oracle
-#      - tican-rabbit-mq
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${SERVICE_DISCOVERY_HOST_IP}
-    ports:
-      - ${SERVICE_DISCOVERY_EXTERNAL_PORT}:${SERVICE_DISCOVERY_INTERNAL_PORT}
-    expose:
-      - ${SERVICE_DISCOVERY_EXPOSE_PORT}
-    volumes:
-      - discovery-services-data:${SERVICE_DISCOVERY_DATA_VOLUME}
-      - discovery-services-backup:${SERVICE_DISCOVERY_BACKUP_VOLUME}
-
-  # Tican API Gateway Service ###############################################
-  tican-api-gateway:
-    image: ${API_GATEWAY_IMAGE}
-    hostname: ${API_GATEWAY_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - ${SERVICE_DISCOVERY_HOST_NAME}
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 3s
-        max_attempts: 6
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${API_GATEWAY_HOST_IP}
-    ports:
-      - ${API_GATEWAY_EXTERNAL_PORT}:${API_GATEWAY_INTERNAL_PORT}
-    expose:
-      - ${API_GATEWAY_EXPOSE_PORT}
-    volumes:
-      - api-gateway-data:${API_GATEWAY_DATA_VOLUME}
-      - api-gateway-backup:${API_GATEWAY_BACKUP_VOLUME}
-
   #   MySQL 8.0 Service ###############################################
   db-mysql-svc:
     image: ${MYSQL_IMAGE}
@@ -68,7 +15,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
     networks:
-      tican-services-network:
+      ofb-services-network:
         ipv4_address: ${MYSQL_HOST_IP}
     ports:
       - ${MYSQL_EXTERNAL_PORT}:${MYSQL_INTERNAL_PORT}
@@ -76,7 +23,7 @@ services:
       - ${MYSQL_EXPOSE_PORT}
     volumes:
       - db-mysql-data:${MYSQL_DATA_VOLUME}
-      - db-mysql-backup:${MYSQL_BACKUP_VOLUME}
+      - db-mysql-backup:${MYSQL_BACKUP_VOLUME}  
 
   # Oracle Xe 21.c Service ##########################################
   db-oracle-svc:
@@ -92,7 +39,7 @@ services:
     environment:
       ORACLE_PASSWORD: ${ORACLE_SYS_PWD}
     networks:
-      tican-services-network:
+      ofb-services-network:
         ipv4_address: ${ORACLE_HOST_IP}
     ports:
       - ${ORACLE_EXTERNAL_PORT}:${ORACLE_INTERNAL_PORT}
@@ -106,7 +53,7 @@ services:
       interval: '30s'
       timeout: '10s'
       retries: 5
-
+      
   # Rabbit MQ 3.12.11 Service ##########################################
   mq-rabbit-svc:
     image: ${RABBITMQ_IMAGE}
@@ -122,7 +69,7 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PWD}
     networks:
-      tican-services-network:
+      ofb-services-network:
         ipv4_address: ${RABBITMQ_HOST_IP}
     ports:
       - ${RABBITMQ_SERVICE_EXPOSE_PORT}:${RABBITMQ_SERVICE_INTERNAL_PORT}
@@ -135,140 +82,13 @@ services:
     volumes:
       - mq-rabbit-data:${RABBITMQ_DATA_VOLUME}
       - mq-rabbit-backup:${RABBITMQ_BACKUP_VOLUME}
-
-  # Tican Authentication Server Service #########################################
-  tican-authentication-server:
-    image: ${AUTHENTICATION_SERVER_IMAGE}
-    hostname: ${AUTHENTICATION_SERVER_HOST_NAME}
+      
+  ofb-discovery-services:
+    image: ${DISCOVERY_SERVICES_IMAGE}
+    hostname: ${DISCOVERY_SERVICES_HOST_NAME}
     domainname: ${DOCKER_DOMAIN_NAME}
 #    depends_on:
-#      - tican-service-discovery
-#      - tican-api-gateway
 #      - db-tican-mysql
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${AUTHENTICATION_SERVER_HOST_IP}
-    volumes:
-      - auth-server-data:${AUTHENTICATION_SERVER_DATA_VOLUME}
-      - auth-server-backup:${AUTHENTICATION_SERVER_BACKUP_VOLUME}
-
-  # Tican OAuth2 Registered Clients Domain Service ###############################
-  tican-registered-clients-domain-svc:
-    image: ${OAUTH2_REGISTERED_CLIENTS_DOMAIN_IMAGE}
-    hostname: ${OAUTH2_REGISTERED_CLIENTS_DOMAIN_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - tican-service-discovery
-#      - tican-authentication-server
-#      - tican-api-gateway
-#      - db-tican-mysql
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${OAUTH2_REGISTERED_CLIENTS_DOMAIN_HOST_IP}
-    volumes:
-      - oauth2-registered-clients-domain-data:${OAUTH2_REGISTERED_CLIENTS_DOMAIN_DATA_VOLUME}
-      - oauth2-registered-clients-domain-backup:${OAUTH2_REGISTERED_CLIENTS_DOMAIN_BACKUP_VOLUME}
-
-  # Tican OAuth2 Registered Clients Business Service ###############################
-  tican-registered-clients-business-svc:
-    image: ${OAUTH2_REGISTERED_CLIENTS_BUSINESS_IMAGE}
-    hostname: ${OAUTH2_REGISTERED_CLIENTS_BUSINESS_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-    #    depends_on:
-    #      - tican-service-discovery
-    #      - tican-authentication-server
-    #      - tican-api-gateway
-    #      - db-tican-mysql
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${OAUTH2_REGISTERED_CLIENTS_BUSINESS_HOST_IP}
-    volumes:
-      - oauth2-registered-clients-business-data:${OAUTH2_REGISTERED_CLIENTS_BUSINESS_DATA_VOLUME}
-      - oauth2-registered-clients-business-backup:${OAUTH2_REGISTERED_CLIENTS_BUSINESS_BACKUP_VOLUME}
-
-  # Tican OAuth2 Users Business Service ###############################
-  tican-users-domain-svc:
-    image: ${OAUTH2_USERS_DOMAIN_IMAGE}
-    hostname: ${OAUTH2_USERS_DOMAIN_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-    #    depends_on:
-    #      - tican-service-discovery
-    #      - tican-authentication-server
-    #      - tican-api-gateway
-    #      - db-tican-mysql
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${OAUTH2_USERS_DOMAIN_HOST_IP}
-    volumes:
-      - oauth2-users-domain-data:${OAUTH2_USERS_DOMAIN_DATA_VOLUME}
-      - oauth2-users-domain-backup:${OAUTH2_USERS_DOMAIN_BACKUP_VOLUME}
-
-  # Tican OAuth2 Users Business Service ###############################
-  tican-users-business-svc:
-    image: ${OAUTH2_USERS_BUSINESS_IMAGE}
-    hostname: ${OAUTH2_USERS_BUSINESS_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-    #    depends_on:
-    #      - tican-service-discovery
-    #      - tican-authentication-server
-    #      - tican-api-gateway
-    #      - db-tican-mysql
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${OAUTH2_USERS_BUSINESS_HOST_IP}
-    volumes:
-      - oauth2-users-business-data:${OAUTH2_USERS_BUSINESS_DATA_VOLUME}
-      - oauth2-users-business-backup:${OAUTH2_USERS_BUSINESS_BACKUP_VOLUME}
-
-  # Tican Medical Substances Domain Service ###############################
-  tican-medical-substances-domain-svc:
-    image: ${SUBSTANCES_DOMAIN_IMAGE}
-    hostname: ${SUBSTANCES_DOMAIN_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - tican-service-discovery
-#      - tican-authentication-server
-#      - tican-api-gateway
 #      - db-tican-oracle
 #      - tican-rabbit-mq
     deploy:
@@ -280,122 +100,41 @@ services:
     environment:
       spring.profiles.active: ${PROFILE_ACTIVE}
     networks:
-      tican-services-network:
-        ipv4_address: ${SUBSTANCES_DOMAIN_HOST_IP}
+      ofb-services-network:
+        ipv4_address: ${DISCOVERY_SERVICES_HOST_IP}
+    ports:
+      - ${DISCOVERY_SERVICES_EXTERNAL_PORT}:${DISCOVERY_SERVICES_INTERNAL_PORT}
+    expose:
+      - ${DISCOVERY_SERVICES_EXPOSE_PORT}
     volumes:
-      - medical-substances-domain-data:${SUBSTANCES_DOMAIN_DATA_VOLUME}
-      - medical-substances-domain-backup:${SUBSTANCES_DOMAIN_BACKUP_VOLUME}
+      - discovery-services-data:${DISCOVERY_SERVICES_DATA_VOLUME}
+      - discovery-services-backup:${DISCOVERY_SERVICES_BACKUP_VOLUME}
 
-  # Tican Medical Substances Business Service ###############################
-  tican-medical-substances-business-svc:
-    image: ${SUBSTANCES_BUSINESS_IMAGE}
-    hostname: ${SUBSTANCES_BUSINESS_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - tican-service-discovery
-#      - tican-authentication-server
-#      - tican-api-gateway
-#      - db-tican-oracle
-#      - tican-rabbit-mq
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${SUBSTANCES_BUSINESS_HOST_IP}
-    volumes:
-      - medical-substances-business-data:${SUBSTANCES_BUSINESS_DATA_VOLUME}
-      - medical-substances-business-backup:${SUBSTANCES_BUSINESS_BACKUP_VOLUME}
-
-##########################################################################
-# ATTENTION!
-# MEDICAL SUBSTANCES DOMAIN and BUSINESS
-# ARE PRE-REQUISITES FOR
-# MEDICAL PRODUCTS
-#########################################################################
-
-  ## Tican Medical Products Domain Service ###############################
-  tican-medical-products-domain-svc:
-    image: ${PRODUCTS_DOMAIN_IMAGE}
-    hostname: ${PRODUCTS_DOMAIN_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - tican-service-discovery
-#      - tican-authentication-server
-#      - tican-api-gateway
-#      - db-tican-oracle
-#      - tican-rabbit-mq
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${PRODUCTS_DOMAIN_HOST_IP}
-    volumes:
-      - medical-products-domain-data:${PRODUCTS_DOMAIN_DATA_VOLUME}
-      - medical-products-domain-backup:${PRODUCTS_DOMAIN_BACKUP_VOLUME}
-
-  # Tican Medical Products Business Service ###############################
-  tican-medical-products-business-svc:
-    image: ${PRODUCTS_BUSINESS_IMAGE}
-    hostname: ${PRODUCTS_BUSINESS_HOST_NAME}
+  # API Gateway Service ###############################################
+  ofb-api-gateway:
+    image: ${API_GATEWAY_IMAGE}
+    hostname: ${API_GATEWAY_HOST_NAME}
     domainname: ${DOCKER_DOMAIN_NAME}
     #    depends_on:
-    #      - tican-service-discovery
-    #      - tican-authentication-server
-    #      - tican-api-gateway
-    #      - db-tican-oracle
-    #      - tican-rabbit-mq
+    #      - ${SERVICE_DISCOVERY_HOST_NAME}
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 5s
-        max_attempts: 3
+        delay: 3s
+        max_attempts: 6
         window: 120s
     environment:
       spring.profiles.active: ${PROFILE_ACTIVE}
     networks:
-      tican-services-network:
-        ipv4_address: ${PRODUCTS_BUSINESS_HOST_IP}
+      ofb-services-network:
+        ipv4_address: ${API_GATEWAY_HOST_IP}
+    ports:
+      - ${API_GATEWAY_EXTERNAL_PORT}:${API_GATEWAY_INTERNAL_PORT}
+    expose:
+      - ${API_GATEWAY_EXPOSE_PORT}
     volumes:
-      - medical-products-business-data:${PRODUCTS_BUSINESS_DATA_VOLUME}
-      - medical-products-business-backup:${PRODUCTS_BUSINESS_BACKUP_VOLUME}
-
-  # Tican Audit Service ###############################
-  tican-audit-services-svc:
-    image: ${AUDIT_IMAGE}
-    hostname: ${AUDIT_HOST_NAME}
-    domainname: ${DOCKER_DOMAIN_NAME}
-#    depends_on:
-#      - tican-service-discovery
-#      - tican-authentication-server
-#      - tican-api-gateway
-#      - db-tican-oracle
-#      - tican-rabbit-mq
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      spring.profiles.active: ${PROFILE_ACTIVE}
-    networks:
-      tican-services-network:
-        ipv4_address: ${AUDIT_HOST_IP}
-    volumes:
-      - audit-services-data:${AUDIT_DATA_VOLUME}
-      - audit-services-backup:${AUDIT_BACKUP_VOLUME}
+      - api-gateway-data:${API_GATEWAY_DATA_VOLUME}
+      - api-gateway-backup:${API_GATEWAY_BACKUP_VOLUME}
 
 #configs:
 
@@ -412,28 +151,8 @@ volumes:
   discovery-services-backup:
   api-gateway-data:
   api-gateway-backup:
-  auth-server-data:
-  auth-server-backup:
-  oauth2-registered-clients-domain-data:
-  oauth2-registered-clients-domain-backup:
-  oauth2-registered-clients-business-data:
-  oauth2-registered-clients-business-backup:
-  oauth2-users-business-data:
-  oauth2-users-business-backup:
-  oauth2-users-domain-data:
-  oauth2-users-domain-backup:
-  medical-substances-domain-data:
-  medical-substances-domain-backup:
-  medical-substances-business-data:
-  medical-substances-business-backup:
-  medical-products-domain-data:
-  medical-products-domain-backup:
-  medical-products-business-data:
-  medical-products-business-backup:
-  audit-services-data:
-  audit-services-backup:
 networks:
-  tican-services-network:
+  ofb-services-network:
     ipam:
       config:
         - subnet: 10.0.0.0/16

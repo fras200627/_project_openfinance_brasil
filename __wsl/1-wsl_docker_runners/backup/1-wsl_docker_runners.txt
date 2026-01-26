@@ -1,0 +1,60 @@
+docker run -d --name db-oracle-svc \
+-p 1621:1521 \
+-e ORACLE_PASSWORD=tican \
+-v oracle-volume:/opt/containerd/volume-docker/oracle/oradata \
+fras200627/db-tican-oracle:1.0.0
+
+docker run -d --name db-mysql-svc  \
+-p 13306:3306 \
+-e MYSQL_ROOT_PASSWORD=tican \
+-v mysql-data:/opt/containerd/volume-docker/mysql/mysqldata \
+fras200627/db-tican-mysql:1.0.0
+
+docker run -d --name mq-rabbit-svc \
+-p 5672:5672 \
+-p 5673:5673 \
+-p 16672:15672 \
+-v rabbitmq-data:/opt/containerd/volume-docker/rabbitmq/rabbitmqdata \
+-e RABBITMQ_DEFAULT_USER=tican \
+-e RABBITMQ_DEFAULT_PASS=tican \
+fras200627/mq-tican-rabbit:1.0.0
+
+><><><>> Commands <><><><><><><><><><><
+docker stop $(docker ps -a -q)
+docker rm <?> --force
+docker rm $(docker ps --filter status=exited -q)
+docker volume prune -a -f
+docker network prune
+docker restart $(docker ps -a -q)
+docker start $(docker ps -a -q -f status=exited)
+docker logs <?>
+docker images
+docker image rm <?>
+docker volume ls
+docker network ls
+><><><>><><><><><><><><><><><><><><><><
+
+-----------------------------------------------------------------------------------------------
+docker run -d --name tican-service-discovery  \
+-p 5000:3000 \
+-e SPRING_PROFILES_ACTIVE=docker \
+fras200627/tican-service-discovery:1.0.0
+
+docker run -d --name tican-api-gateway  \
+-p 5001:5001 \
+-e SPRING_PROFILES_ACTIVE=docker \
+fras200627/tican-api-gateway:1.0.0
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+docker run -d --name demo-1  \
+-p 3033:3033 \
+-e SPRING_PROFILES_ACTIVE=local \
+fras200627/demo:0.0.2

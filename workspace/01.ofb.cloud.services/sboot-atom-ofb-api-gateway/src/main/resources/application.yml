@@ -82,11 +82,11 @@ spring:
     activate:
       on-profile: docker
 server:
-  port: 3001
+  port: ${API_GATEWAY_INTERNAL_PORT:3001}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://${DISCOVERY_SERVICES_HOST_IP:10.0.1.1}:${DISCOVERY_SERVICES_INTERNAL_PORT:3000}/eureka
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"

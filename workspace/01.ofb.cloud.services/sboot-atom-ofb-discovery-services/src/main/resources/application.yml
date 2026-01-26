@@ -43,7 +43,7 @@ spring:
     activate:
       on-profile: docker
 server:
-  port: 3000
+  port: ${DISCOVERY_SERVICES_INTERNAL_PORT:3000}
 ---
 spring:
   config:
