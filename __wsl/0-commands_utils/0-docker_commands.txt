@@ -1,6 +1,19 @@
-docker image tag gvenzl/oracle-xe:latest fras200627/db-tican-oracle:1.0.0
-docker image tag mysql:8.0 fras200627/db-tican-mysql:1.0.0
-docker push fras200627/db-tican-mysql:1.0.0
+PS C:\> wsl -d Ubuntu-22.04 (ou Ubuntu-24.04)
+tican@NCC-1701-A-I7:/mnt/c$
+tican@NCC-1701-A-I7:/mnt/c$ sudo -s
+[sudo] password for tican:
+root@NCC-1701-A-I7:/mnt/c#
+
+path targets:
+-------------------
+wsl_path
+wsl_docker_path
+wsl_k8s_path
+
+---------------------------------------------------------------------------------
+docker image tag gvenzl/oracle-xe:latest fras200627/openapi/db-tican-oracle:1.0.0
+docker image tag mysql:8.0 fras200627/openapi/db-tican-mysql:1.0.0
+docker push fras200627/openapi/db-tican-mysql:1.0.0
 
 
 very good ###################################################
@@ -21,14 +34,14 @@ docker volume prune -a -f
 docker network prune
 
 #############################################################
-docker build -t fras200627/tican-service-discovery:latest .
-docker push fras200627/tican-service-discovery:latest
+docker build -t fras200627/openapi/tican-service-discovery:latest .
+docker push fras200627/openapi/tican-service-discovery:latest
 
-docker build -t fras200627/tican-api-gateway:latest .
-docker push fras200627/tican-api-gateway:latest
+docker build -t fras200627/openapi/tican-api-gateway:latest .
+docker push fras200627/openapi/tican-api-gateway:latest
 
-docker build -t fras200627/tican-authentication-server:latest .
-docker push fras200627/tican-service-discovery:latest
+docker build -t fras200627/openapi/tican-authentication-server:latest .
+docker push fras200627/openapi/tican-service-discovery:latest
 
 
 docker logs --since=1h <container_id>

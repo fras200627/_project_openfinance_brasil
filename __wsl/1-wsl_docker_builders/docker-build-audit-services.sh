@@ -6,7 +6,7 @@ echo "START BUILD AND PUSK COMPONENT"
 echo "-------------------------------------------------------------------------------------------------"
 echo "go a path project"
 echo "-------------------------------------------------------------------------------------------------"
-cd /mnt/c/_development/__projects/_project_tican_openapi/workspace/07.audit.services/project-tican-audit-api
+cd /mnt/c/_development/__projects/_project_openfinance_brasil/workspace/07.audit.services/project-tican-audit-api
 
 echo
 echo "-------------------------------------------------------------------------------------------------"
@@ -32,7 +32,7 @@ echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "go to a directory default"
 echo "-------------------------------------------------------------------------------------------------"
-cd /mnt/c/_development/__projects/_project_tican_openapi/__wsl/1-wsl_docker_builders/
+cd /mnt/c/_development/__projects/_project_openfinance_brasil/__wsl/1-wsl_docker_builders/
 echo "-------------------------------------------------------------------------------------------------"
 echo
 echo

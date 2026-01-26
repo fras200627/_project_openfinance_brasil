@@ -49,13 +49,6 @@ apt-get install docker-compose -y
 docker buildx install
 
 echo
-echo "PORTAINER INSTALL"
-echo "-------------------------------------------------------------------------------------------"
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 3003:3003 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-
-
-echo
 echo "-------------------------------------------------------------------------------------------"
 echo systemctl status docker ufw stat
 usermod -aG docker ${USER}

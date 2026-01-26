@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM amazoncorretto:17.0.7-alpine
 ARG JAR_FILE=target/tican-oauth2-registered-clients-business-api-1.0.3-openapi.jar
 ADD ${JAR_FILE} api_tican.jar
 ENTRYPOINT ["java", "-jar", "/api_tican.jar"]

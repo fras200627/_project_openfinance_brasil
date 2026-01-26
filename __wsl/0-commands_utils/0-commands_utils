@@ -1,0 +1,47 @@
+==================================================================================================
+WSL Commands
+==================================================================================================
+wsl -l --verbose
+wsl -l -o
+wsl -t <distro>
+
+==================================================================================================
+Linux Commands
+==================================================================================================
+shutdown now  or  exit
+sudo -s
+apt update 
+apt upgrade
+systemctl enable ssh --now
+systemctl ssh status
+ufw allow ssh
+ufw enable
+ufw status
+apt list --installed | grep ???
+lsof -i -P -n | grep LISTEN
+netstat -lntp | grep docker
+
+==================================================================================================
+Docker Commands
+==================================================================================================
+service docker start
+service docker status
+docker --version
+docker-compose -v
+netstat -lntp | grep docker
+-------------------------------------------------
+::docker hub login: docker login -u fras200627 -p @Xi057115
+-------------------------------------------------
+docker-compose kill
+docker-compose stop
+docker-compose create
+docker-compose start
+docker-compose up -d
+----------------------------------
+docker-compose pause
+docker-compose unpause
+----------------------------------
+<docker-compose down> 
+<docker system prune -a -f>
+docker volume prune -a -f
+docker network prune

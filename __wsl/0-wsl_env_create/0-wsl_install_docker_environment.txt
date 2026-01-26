@@ -1,11 +1,12 @@
 ==================================================================================================
 INSTALL DOCKER ENVIRONMENT
+==================================================================================================
 Linux Ubuntu-22.04
 Docker CE
 OracleXE
 MySQL 8.0
 RabbitMQ 3
-==================================================================================================
+
 
 **************************************************************************************************
 Step 01: Install Linux on WSL
@@ -34,7 +35,7 @@ ADD LINES
     alias k8s='microk8s kubectl'
     alias kubectl='microk8s kubectl'
     alias wsl_path='cd /mnt/c/_development/__projects/__wsl/'
-    alias wsl_open='cd /mnt/c/_development/__projects/_project_tican_openapi/__wsl/'
+    alias wsl_open='cd /mnt/c/_development/__projects/_project_openfinance_brasil/__wsl/'
 
 Refresh command:
     source ~/.bashrc
@@ -83,26 +84,12 @@ After, execute portainer verify
 Step 05: CREATE AND CONFIGURE OPENFINANCE ENVIRONMENT 
 **************************************************************************************************
 
--------------------------------------------------
-Checks:
--------------------------------------------------
-    service docker start
-    service docker status
-    docker --version
-    netstat -lntp | grep docker
-
--------------------------------------------------
-::docker hub login
--------------------------------------------------
-docker login -u fras200627 -p @Xi057115
-
 ------------------------------------------------
 DOCKER - NGINX IMAGE (NOT NECESSARY. test docker env only)
 ------------------------------------------------
 docker pull nginx
 
-ufw allow 8080
-docker run --name nginx-1 -d -p 8080:80 nginx
+docker run --name nginx --restart=always -d -p 8080:80 nginx
 
 test: http://localhost:8080
 
@@ -112,10 +99,7 @@ DOCKER - MYSQL IMAGE and CONTAINER
 verify: docker images
 docker pull mysql:8.0
 
-::
-ufw allow 13306
-
-docker run -d --name MySQL80  \
+docker run -d --name MySQL80 --restart=always \
 -p 13306:3306 \
 -e MYSQL_ROOT_PASSWORD=root \
 -v mysql-data:/opt/containerd/volume-docker/mysqldata \
@@ -128,27 +112,21 @@ verify: docker images
 docker pull gvenzl/oracle-xe
 
 :: user: sys, pwd: tican
-ufw allow 1523
-docker run -d \
---name OracleXE \
+
+docker run -d --name OracleXE --restart=always \
 -p 1523:1521 \
 -e ORACLE_PASSWORD=tican \
 -v oracle-volume:/opt/containerd/volume-docker/oradata \
 gvenzl/oracle-xe
 
 ------------------------------------------------
-DOCKER - RABBIT MQ IMAGE
+DOCKER - RABBITMQ IMAGE
 ------------------------------------------------
 verify: docker images
 docker pull rabbitmq:3-management
 
-::
-ufw allow 5762
-ufw allow 5773
-ufw allow 17672
-
 :: user: tican, pwd: tican
-docker run -d --name RabbitMQ \
+docker run -d --name RabbitMQ --restart=always \
 -p 5772:5672 \
 -p 5773:5673 \
 -p 17672:15672 \
@@ -160,23 +138,20 @@ rabbitmq:3-management
 :: Enable admin page
 apt install rabbitmq-server
 rabbitmq-plugins enable rabbitmq_management
+
+:: Rabbit Management Console test
 http://localhost:17672/#/
+
 ------------------------------------------------
+DOCKER - PORTAINER IMAGE
+------------------------------------------------
+docker pull portainer/portainer-ce:2.21.5
 
+docker volume create portainer_data
+docker run -d -p 8004:8000 -p 9445:9443 --name portainer \
+--restart=always -v /var/run/docker.sock:/var/run/docker.sock -v \
+portainer_data:/data portainer/portainer-ce:2.21.5
 
-docker run -d --name discovery-services \
--p 5000:3000 \
--e "SPRING_PROFILES_ACTIVE=local" \
-fras200627/discovery-services:1.0.0
-
-
-
-docker run -d --name discovery-services \
--it --log-opt mode=non-blocking --log-opt max-buffer-size=4m \
--p 5000:3000 \
--e "SPRING_PROFILES_ACTIVE=local" \
--v tican-data:/opt/containerd/volume-docker/discoveryservicedata \
-fras200627/discovery-services:1.0.0
 
 **************************************************************************************************
 Step 06: DATABASES IMPLEMENTATION OPENFINANCE ENVIRONMENT 
@@ -198,6 +173,20 @@ pull images to Docker Environment
 create a containers for APIs 
 
 
+
+docker run -d --name discovery-services \
+-it --log-opt mode=non-blocking --log-opt max-buffer-size=4m \
+-p 5000:3000 \
+-e "SPRING_PROFILES_ACTIVE=docker" \
+-v ofb-data:/opt/containerd/volume-docker/discoveryservicedata \
+fras200627/sboot-atom-ofb-discovery-services:1.0.0
+
+docker run -d --name api-gateway \
+-it --log-opt mode=non-blocking --log-opt max-buffer-size=4m \
+-p 5001:3001 \
+-e "SPRING_PROFILES_ACTIVE=docker" \
+-v ofb-data:/opt/containerd/volume-docker/apigatewaydata \
+fras200627/sboot-atom-ofb-api-gateway:1.0.0
 
 
 

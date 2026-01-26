@@ -1,0 +1,13 @@
+
+
+environment SO              host        ip          resource            port      
+local       windows11       .           .           .                   .
+docker      Ubuntu-22.04    .           .           .                   .
+
+
+
+OracleXE    21      local       NCC-1701-A-I7  172.19.128.1     1521    sys/tican
+OracleXE    21      docker      NCC-1701-A-I7  172.19.128.1     1523    sys/tican
+OracleXE    21      docker      NCC-1701-A-I7  172.19.128.1     1523    sys/tican
+
+Resource    env     host

@@ -36,9 +36,28 @@ systemctl enable ssh
 systemctl start ssh
 service ssh start
 ufw enable
+
 ufw allow 22
-#ufw allow 3000:8000/tcp
-#ufw allow 30000:33000/tcp
+ufw allow 5000
+ufw allow 5001
+ufw allow 8080
+ufw allow 8081
+ufw allow 8083
+ufw allow 1621
+ufw allow 13303
+ufw allow 16672
+ufw allow 1721
+ufw allow 23303
+ufw allow 5762
+ufw allow 5773
+ufw allow 17672
+ufw allow 13306
+ufw allow 1523
+ufw allow 8000
+ufw allow 8004
+ufw allow 9443
+ufw allow 9445
+
 ufw reload
 
 echo

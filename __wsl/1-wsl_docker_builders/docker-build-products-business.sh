@@ -6,7 +6,7 @@ echo "START BUILD AND PUSH COMPONENT"
 echo "-------------------------------------------------------------------------------------------------"
 echo "go a path project"
 echo "-------------------------------------------------------------------------------------------------"
-cd /mnt/c/_development/__projects/_project_openfinance_brasil/workspace/02.authentication.server/project-tican-authentication-server
+cd /mnt/c/_development/__projects/_project_tican_2_jdk17/workspace/06.medical.products/project-tican-products-business-api
 
 echo
 echo "-------------------------------------------------------------------------------------------------"
@@ -18,13 +18,13 @@ echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "build a springboot project"
 echo "-------------------------------------------------------------------------------------------------"
-docker build -t fras200627/tican-authentication-server:1.0.1-openapi .
+docker build -t fras200627/tican-medical-products-business-api:1.0.0 .
 
 echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "push a image to docker platform"
 echo "-------------------------------------------------------------------------------------------------"
-docker push fras200627/tican-authentication-server:1.0.1-openapi
+docker push fras200627/tican-medical-products-business-api:1.0.0
 
 echo
 echo "FINISH!"
@@ -32,7 +32,7 @@ echo
 echo "-------------------------------------------------------------------------------------------------"
 echo "go to a directory default"
 echo "-------------------------------------------------------------------------------------------------"
-cd /mnt/c/_development/__projects/_project_openfinance_brasil/__wsl/1-wsl_docker_builders/
+cd /mnt/c/__wsl/1-wsl_docker_runners
 echo "-------------------------------------------------------------------------------------------------"
 echo
 echo
