@@ -72,17 +72,18 @@ services:
       ofb-services-network:
         ipv4_address: ${RABBITMQ_HOST_IP}
     ports:
-      - ${RABBITMQ_SERVICE_EXPOSE_PORT}:${RABBITMQ_SERVICE_INTERNAL_PORT}
-      - ${RABBITMQ_CLUSTER_EXPOSE_PORT}:${RABBITMQ_CLUSTER_INTERNAL_PORT}
+#      - ${RABBITMQ_SERVICE_EXPOSE_PORT}:${RABBITMQ_SERVICE_INTERNAL_PORT}
+#      - ${RABBITMQ_CLUSTER_EXPOSE_PORT}:${RABBITMQ_CLUSTER_INTERNAL_PORT}
       - ${RABBITMQ_DASHBOARD_EXTERNAL_PORT}:${RABBITMQ_DASHBOARD_INTERNAL_PORT}
-    expose:
-      - ${RABBITMQ_SERVICE_EXPOSE_PORT}
-      - ${RABBITMQ_CLUSTER_EXPOSE_PORT}
-      - ${RABBITMQ_DASHBOARD_EXPOSE_PORT}
+#    expose:
+#      - ${RABBITMQ_SERVICE_EXPOSE_PORT}
+#      - ${RABBITMQ_CLUSTER_EXPOSE_PORT}
+#      - ${RABBITMQ_DASHBOARD_EXPOSE_PORT}
     volumes:
       - mq-rabbit-data:${RABBITMQ_DATA_VOLUME}
       - mq-rabbit-backup:${RABBITMQ_BACKUP_VOLUME}
       
+  # API Gateway Service ###############################################
   ofb-discovery-services:
     image: ${DISCOVERY_SERVICES_IMAGE}
     hostname: ${DISCOVERY_SERVICES_HOST_NAME}
@@ -115,8 +116,8 @@ services:
     image: ${API_GATEWAY_IMAGE}
     hostname: ${API_GATEWAY_HOST_NAME}
     domainname: ${DOCKER_DOMAIN_NAME}
-    #    depends_on:
-    #      - ${SERVICE_DISCOVERY_HOST_NAME}
+    depends_on:
+      - ${DISCOVERY_SERVICES_HOST_NAME}
     deploy:
       restart_policy:
         condition: on-failure

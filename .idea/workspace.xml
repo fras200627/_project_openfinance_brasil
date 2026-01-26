@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8a172dc-585b-4da0-95f3-03eb593ab0ba" name="Changes" comment="Create a Docker Environment">
-      <change afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/backup/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/backup/1-wsl_docker_runners.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/backup/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__wsl/1-wsl_docker_builders/3-docker-build-authentication-server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_builders/3-docker-build-authentication-server.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__wsl/1-wsl_docker_builders/4-docker-build-authorization-server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_builders/4-docker-build-authorization-server.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/.env" beforeDir="false" afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/__databases_implementation/oracle/STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/__wsl/1-wsl_docker_runners/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/01.ofb.cloud.services/sboot-atom-ofb-discovery-services/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,14 +404,6 @@
       <option name="presentableId" value="Default" />
       <updated>1692099149595</updated>
     </task>
-    <task id="LOCAL-00103" summary="add participants domain API and revision participants business API">
-      <option name="closed" value="true" />
-      <created>1763990162599</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1763990162599</updated>
-    </task>
     <task id="LOCAL-00104" summary="final before new tests">
       <option name="closed" value="true" />
       <created>1764005869639</created>
@@ -802,7 +788,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769444282522</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="Create a Docker Environment">
+      <option name="closed" value="true" />
+      <created>1769454519260</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1769454519260</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,12 +1,12 @@
-ï»¿prompt PL/SQL Developer Export User Objects for user OFB@XE
-prompt Created by fras200627 on quinta-feira, 27 de novembro de 2025
-set define off
-spool STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.log
+-- prompt PL/SQL Developer Export User Objects for user OFB@XE
+-- prompt Created by fras200627 on quinta-feira, 27 de novembro de 2025
+-- set define off
+-- spool STEP_002_ORCL_OFB_CREATE_ALL_OBJECTS.log
 
-prompt
-prompt Creating sequence BATCH_JOB_EXECUTION_SEQ
-prompt =========================================
-prompt
+-- prompt 
+-- prompt Creating sequence BATCH_JOB_EXECUTION_SEQ
+-- prompt =========================================
+-- prompt 
 create sequence OFB.BATCH_JOB_EXECUTION_SEQ
 minvalue 0
 maxvalue 9223372036854775807
@@ -14,10 +14,10 @@ start with 260
 increment by 1
 cache 20;
 
-prompt
-prompt Creating sequence BATCH_JOB_SEQ
-prompt ===============================
-prompt
+-- prompt 
+-- prompt Creating sequence BATCH_JOB_SEQ
+-- prompt ===============================
+-- prompt 
 create sequence OFB.BATCH_JOB_SEQ
 minvalue 0
 maxvalue 9223372036854775807
@@ -25,10 +25,10 @@ start with 220
 increment by 1
 cache 20;
 
-prompt
-prompt Creating sequence BATCH_STEP_EXECUTION_SEQ
-prompt ==========================================
-prompt
+-- prompt 
+-- prompt Creating sequence BATCH_STEP_EXECUTION_SEQ
+-- prompt ==========================================
+-- prompt 
 create sequence OFB.BATCH_STEP_EXECUTION_SEQ
 minvalue 0
 maxvalue 9223372036854775807
@@ -36,10 +36,10 @@ start with 220
 increment by 1
 cache 20;
 
-prompt
-prompt Creating sequence SQ_OFB_SYSTEM
-prompt ===============================
-prompt
+-- prompt 
+-- prompt Creating sequence SQ_OFB_SYSTEM
+-- prompt ===============================
+-- prompt 
 create sequence OFB.SQ_OFB_SYSTEM
 minvalue 1
 maxvalue 999999999999
@@ -48,10 +48,10 @@ increment by 1
 cache 20
 cycle;
 
-prompt
-prompt Creating table PERSONAL_DATA
-prompt ============================
-prompt
+-- prompt 
+-- prompt Creating table PERSONAL_DATA
+-- prompt ============================
+-- prompt 
 create table OFB.PERSONAL_DATA
 (
   personalid         CHAR(40) default 'custpf-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{3})([A-F0-9]{29})', '\1-\2') not null,
@@ -90,7 +90,7 @@ tablespace USERS
 comment on table OFB.PERSONAL_DATA
   is 'Registro dos customers utilizados no OFB.';
 comment on column OFB.PERSONAL_DATA.personalid
-  is 'Personal Id (Ã© o PK) assume como default um UUID';
+  is 'Personal Id (é o PK) assume como default um UUID';
 comment on column OFB.PERSONAL_DATA.civilname
   is 'Nome';
 comment on column OFB.PERSONAL_DATA.socialname
@@ -104,7 +104,7 @@ comment on column OFB.PERSONAL_DATA.sex
 comment on column OFB.PERSONAL_DATA.cpfnumber
   is 'CPF';
 comment on column OFB.PERSONAL_DATA.address
-  is 'EndereÃ§o';
+  is 'Endereço';
 comment on column OFB.PERSONAL_DATA.districtname
   is 'Bairro';
 comment on column OFB.PERSONAL_DATA.townname
@@ -120,15 +120,15 @@ comment on column OFB.PERSONAL_DATA.phonetype
 comment on column OFB.PERSONAL_DATA.phoneareacode
   is 'Area ';
 comment on column OFB.PERSONAL_DATA.phonenumber
-  is 'NÃºmero do telefone';
+  is 'Número do telefone';
 comment on column OFB.PERSONAL_DATA.email
   is 'enail';
 comment on column OFB.PERSONAL_DATA.create_at
-  is 'Data de criaÃ§Ã£o';
+  is 'Data de criação';
 comment on column OFB.PERSONAL_DATA.modify_at
-  is 'Data da Ãºltima modificaÃ§Ã£o';
+  is 'Data da última modificação';
 comment on column OFB.PERSONAL_DATA.user_code
-  is 'UsuÃ¡rio executor da criaÃ§Ã£o ou Ãºltima alteraÃ§Ã£o';
+  is 'Usuário executor da criação ou última alteração';
 comment on column OFB.PERSONAL_DATA.status
   is 'Status do customer';
 alter table OFB.PERSONAL_DATA
@@ -189,10 +189,10 @@ alter table OFB.PERSONAL_DATA
   add constraint PERSONAL_DATA_CHECK5
   check (UPPER(TRIM(STATUS)) IN ('ATIVO', 'INATIVO', 'BLOQUEADO', 'ENCERRADO'));
 
-prompt
-prompt Creating table ACCOUNT_PERSONAL_DATA
-prompt ====================================
-prompt
+-- prompt 
+-- prompt Creating table ACCOUNT_PERSONAL_DATA
+-- prompt ====================================
+-- prompt 
 create table OFB.ACCOUNT_PERSONAL_DATA
 (
   accountid                   CHAR(39) default 'accpf-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{3})([A-F0-9]{29})', '\1-\2') not null,
@@ -242,23 +242,23 @@ comment on column OFB.ACCOUNT_PERSONAL_DATA.accounttype
 comment on column OFB.ACCOUNT_PERSONAL_DATA.accountsubtype
   is 'SubType da conta';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.currency
-  is 'IdentificaÃ§Ã£o da moeda definida para a conta';
+  is 'Identificação da moeda definida para a conta';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.brandname
-  is 'Nome da InstituiÃ§Ã£o Financeira ';
+  is 'Nome da Instituição Financeira ';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.companycnpj
-  is 'CNPJ da InstituiÃ§Ã£o Financeira';
+  is 'CNPJ da Instituição Financeira';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.compecode
-  is 'CÃ³digo de CompensaÃ§Ã£o definida pelo Banco Central';
+  is 'Código de Compensação definida pelo Banco Central';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.branchcode
-  is 'CÃ³digo da InstituÃ§Ã£o Financeira';
+  is 'Código da Institução Financeira';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.accountnumber
-  is 'NÃºmero da conta-corrente';
+  is 'Número da conta-corrente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.accountcheckdigit
-  is 'DÃ­gito verificador da conta-corrente';
+  is 'Dígito verificador da conta-corrente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.updateamountsdatetime
-  is 'Data/Hora de Ãºltima atualizaÃ§Ã£o de valores da conta-corrente';
+  is 'Data/Hora de última atualização de valores da conta-corrente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.availableamount
-  is 'Saldo dÃ­sponÃ­vel';
+  is 'Saldo dísponível';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.blockedamount
   is 'Saldo Bloqueado';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.automaticallyinvestedamount
@@ -270,11 +270,11 @@ comment on column OFB.ACCOUNT_PERSONAL_DATA.overdraftusedlimit
 comment on column OFB.ACCOUNT_PERSONAL_DATA.unarrangedoverdraftamount
   is 'Valor negativo existente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.create_at
-  is 'Data de criaÃ§Ã£o';
+  is 'Data de criação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.modify_at
-  is 'Data da Ãºltima modificaÃ§Ã£o';
+  is 'Data da última modificação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA.user_code
-  is 'UsuÃ¡rio executar da criaÃ§Ã£o ou Ãºltima alteraÃ§Ã£o';
+  is 'Usuário executar da criação ou última alteração';
 alter table OFB.ACCOUNT_PERSONAL_DATA
   add constraint ACCOUNT_PK primary key (ACCOUNTID)
   using index
@@ -323,10 +323,10 @@ alter table OFB.ACCOUNT_PERSONAL_DATA
   check (UPPER(TRIM(accountSubtype)) IN (
   'INDIVIDUAL', 'CONJUNTA_SIMPLES', 'CONJUNTA_SOLIDARIA'));
 
-prompt
-prompt Creating table ACCOUNT_PERSONAL_DATA_STATEMENT
-prompt ==============================================
-prompt
+-- prompt 
+-- prompt Creating table ACCOUNT_PERSONAL_DATA_STATEMENT
+-- prompt ==============================================
+-- prompt 
 create table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
 (
   transactionid                  CHAR(39) default 'acctx-' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{32})', '\1') not null,
@@ -355,7 +355,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
-  is 'Registro de lanÃ§amentos de conta-corrente';
+  is 'Registro de lançamentos de conta-corrente';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactionid
   is 'Transaction Id';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.accountid
@@ -365,23 +365,23 @@ comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.referencetransactionid
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactiondatetime
   is 'Transation Date/Time';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.completedauthorisedpaymenttype
-  is 'Status Final da TransaÃ§Ã£o';
+  is 'Status Final da Transação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.creditdebittype
-  is 'debito ou crÃ©dito';
+  is 'debito ou crédito';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactionname
-  is 'DescriÃ§Ã£o da transaÃ§Ã£o';
+  is 'Descrição da transação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactiontype
-  is 'Tipo de transaÃ§Ã£o';
+  is 'Tipo de transação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactionamount
-  is 'Valor da transaÃ§Ã£o';
+  is 'Valor da transação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.transactioncurrency
-  is 'Moeda da transaÃ§Ã£o';
+  is 'Moeda da transação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.create_at
-  is 'Data de criaÃ§Ã£o';
+  is 'Data de criação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.modify_at
-  is 'Data da Ãºltima modificaÃ§Ã£o';
+  is 'Data da última modificação';
 comment on column OFB.ACCOUNT_PERSONAL_DATA_STATEMENT.user_code
-  is 'UsuÃ¡rio executar da criaÃ§Ã£o ou Ãºltima alteraÃ§Ã£o';
+  is 'Usuário executar da criação ou última alteração';
 alter table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
   add constraint TRANSACTION_PK primary key (TRANSACTIONID)
   using index
@@ -420,10 +420,10 @@ alter table OFB.ACCOUNT_PERSONAL_DATA_STATEMENT
  'RENDIMENTO_APLIC_FINANCEIRA', 'PORTABILIDADE_SALARIO',
  'RESGATE_APLIC_FINANCEIRA', 'OPERACAO_CREDITO', 'OUTROS'));
 
-prompt
-prompt Creating table BATCH_JOB_INSTANCE
-prompt =================================
-prompt
+-- prompt 
+-- prompt Creating table BATCH_JOB_INSTANCE
+-- prompt =================================
+-- prompt 
 create table OFB.BATCH_JOB_INSTANCE
 (
   job_instance_id NUMBER(19) not null,
@@ -443,7 +443,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.BATCH_JOB_INSTANCE
-  is 'MandatÃ³rio para as execuÃ§Ãµes do springbatch. Fluxos OFB nÃ£o utilizaÃ§Ã£o essa tabela.';
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_INSTANCE
   add primary key (JOB_INSTANCE_ID)
   using index
@@ -473,10 +473,10 @@ alter table OFB.BATCH_JOB_INSTANCE
     maxextents unlimited
   );
 
-prompt
-prompt Creating table BATCH_JOB_EXECUTION
-prompt ==================================
-prompt
+-- prompt 
+-- prompt Creating table BATCH_JOB_EXECUTION
+-- prompt ==================================
+-- prompt 
 create table OFB.BATCH_JOB_EXECUTION
 (
   job_execution_id           NUMBER(19) not null,
@@ -503,7 +503,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.BATCH_JOB_EXECUTION
-  is 'MandatÃ³rio para as execuÃ§Ãµes do springbatch. Fluxos OFB nÃ£o utilizaÃ§Ã£o essa tabela.';
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_EXECUTION
   add primary key (JOB_EXECUTION_ID)
   using index
@@ -522,10 +522,10 @@ alter table OFB.BATCH_JOB_EXECUTION
   add constraint JOB_INST_EXEC_FK foreign key (JOB_INSTANCE_ID)
   references OFB.BATCH_JOB_INSTANCE (JOB_INSTANCE_ID);
 
-prompt
-prompt Creating table BATCH_JOB_EXECUTION_CONTEXT
-prompt ==========================================
-prompt
+-- prompt 
+-- prompt Creating table BATCH_JOB_EXECUTION_CONTEXT
+-- prompt ==========================================
+-- prompt 
 create table OFB.BATCH_JOB_EXECUTION_CONTEXT
 (
   job_execution_id   NUMBER(19) not null,
@@ -544,7 +544,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.BATCH_JOB_EXECUTION_CONTEXT
-  is 'MandatÃ³rio para as execuÃ§Ãµes do springbatch. Fluxos OFB nÃ£o utilizaÃ§Ã£o essa tabela.';
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_EXECUTION_CONTEXT
   add primary key (JOB_EXECUTION_ID)
   using index
@@ -563,10 +563,10 @@ alter table OFB.BATCH_JOB_EXECUTION_CONTEXT
   add constraint JOB_EXEC_CTX_FK foreign key (JOB_EXECUTION_ID)
   references OFB.BATCH_JOB_EXECUTION (JOB_EXECUTION_ID);
 
-prompt
-prompt Creating table BATCH_JOB_EXECUTION_PARAMS
-prompt =========================================
-prompt
+-- prompt 
+-- prompt Creating table BATCH_JOB_EXECUTION_PARAMS
+-- prompt =========================================
+-- prompt 
 create table OFB.BATCH_JOB_EXECUTION_PARAMS
 (
   job_execution_id NUMBER(19) not null,
@@ -590,15 +590,15 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.BATCH_JOB_EXECUTION_PARAMS
-  is 'MandatÃ³rio para as execuÃ§Ãµes do springbatch. Fluxos OFB nÃ£o utilizaÃ§Ã£o essa tabela.';
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_JOB_EXECUTION_PARAMS
   add constraint JOB_EXEC_PARAMS_FK foreign key (JOB_EXECUTION_ID)
   references OFB.BATCH_JOB_EXECUTION (JOB_EXECUTION_ID);
 
-prompt
-prompt Creating table BATCH_STEP_EXECUTION
-prompt ===================================
-prompt
+-- prompt 
+-- prompt Creating table BATCH_STEP_EXECUTION
+-- prompt ===================================
+-- prompt 
 create table OFB.BATCH_STEP_EXECUTION
 (
   step_execution_id  NUMBER(19) not null,
@@ -632,7 +632,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.BATCH_STEP_EXECUTION
-  is 'MandatÃ³rio para as execuÃ§Ãµes do springbatch. Fluxos OFB nÃ£o utilizaÃ§Ã£o essa tabela.';
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_STEP_EXECUTION
   add primary key (STEP_EXECUTION_ID)
   using index
@@ -651,10 +651,10 @@ alter table OFB.BATCH_STEP_EXECUTION
   add constraint JOB_EXEC_STEP_FK foreign key (JOB_EXECUTION_ID)
   references OFB.BATCH_JOB_EXECUTION (JOB_EXECUTION_ID);
 
-prompt
-prompt Creating table BATCH_STEP_EXECUTION_CONTEXT
-prompt ===========================================
-prompt
+-- prompt 
+-- prompt Creating table BATCH_STEP_EXECUTION_CONTEXT
+-- prompt ===========================================
+-- prompt 
 create table OFB.BATCH_STEP_EXECUTION_CONTEXT
 (
   step_execution_id  NUMBER(19) not null,
@@ -673,7 +673,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.BATCH_STEP_EXECUTION_CONTEXT
-  is 'MandatÃ³rio para as execuÃ§Ãµes do springbatch. Fluxos OFB nÃ£o utilizaÃ§Ã£o essa tabela.';
+  is 'Mandatório para as execuções do springbatch. Fluxos OFB não utilização essa tabela.';
 alter table OFB.BATCH_STEP_EXECUTION_CONTEXT
   add primary key (STEP_EXECUTION_ID)
   using index
@@ -692,10 +692,10 @@ alter table OFB.BATCH_STEP_EXECUTION_CONTEXT
   add constraint STEP_EXEC_CTX_FK foreign key (STEP_EXECUTION_ID)
   references OFB.BATCH_STEP_EXECUTION (STEP_EXECUTION_ID);
 
-prompt
-prompt Creating table CONSENTS_STATUS
-prompt ==============================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_STATUS
+-- prompt ==============================
+-- prompt 
 create table OFB.CONSENTS_STATUS
 (
   consentstatusid        NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -720,7 +720,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.CONSENTS_STATUS
-  is 'Registro do dominÃ­o de status possÃ­veis para os consentimentos.';
+  is 'Registro do dominío de status possíveis para os consentimentos.';
 comment on column OFB.CONSENTS_STATUS.consentstatusid
   is 'Consent Status Id';
 comment on column OFB.CONSENTS_STATUS.consentstatuscontrolid
@@ -768,10 +768,10 @@ alter table OFB.CONSENTS_STATUS
     maxextents unlimited
   );
 
-prompt
-prompt Creating table CONSENTS_PERSONAL_DATA
-prompt =====================================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_PERSONAL_DATA
+-- prompt =====================================
+-- prompt 
 create table OFB.CONSENTS_PERSONAL_DATA
 (
   consentid                  VARCHAR2(256) default 'urn:bancotcn:' || regexp_replace(rawtohex(sys_guid()), '([A-F0-9]{32})', '\1') not null,
@@ -816,7 +816,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.CONSENTS_PERSONAL_DATA
-  is 'Registro dos consentimentos criados para as solicitaÃ§Ãµes recebidas dos clientes';
+  is 'Registro dos consentimentos criados para as solicitações recebidas dos clientes';
 comment on column OFB.CONSENTS_PERSONAL_DATA.consentid
   is 'consent id';
 comment on column OFB.CONSENTS_PERSONAL_DATA.creationdatetime
@@ -896,10 +896,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA
   add constraint CONSENTSPERSONALDATAFK3 foreign key (PERSONALID)
   references OFB.PERSONAL_DATA (PERSONALID);
 
-prompt
-prompt Creating table CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
-prompt ========================================================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+-- prompt ========================================================
+-- prompt 
 create table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
 (
   expirationcontrolid          NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -933,43 +933,43 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
-  is 'Registros de controle da expiraÃ§Ã£o dos consentimentos criados.';
+  is 'Registros de controle da expiração dos consentimentos criados.';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationcontrolid
   is 'Id gerado por sequence';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.consentid
   is 'Id do consentimento';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.requestdatetime
-  is 'Data/Hora da requisiÃ§Ã£o';
+  is 'Data/Hora da requisição';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.previusexpirationdatetime
-  is 'Data/Hora de expiraÃ§Ã£o do consentimento';
+  is 'Data/Hora de expiração do consentimento';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.xfapicustomeripaddress
-  is 'Controle da requisiÃ§Ã£o';
+  is 'Controle da requisição';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.xcustomeruseragent
-  is 'Controle da requisiÃ§Ã£o';
+  is 'Controle da requisição';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdatetime
-  is 'Data/Hora de expiraÃ§Ã£o atualmente valida.';
+  is 'Data/Hora de expiração atualmente valida.';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdatetimerequested
-  is 'Data/Hora de expiraÃ§Ã£o recebida na requsiÃ§Ã£o';
+  is 'Data/Hora de expiração recebida na requsição';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdatetimeadjusted
-  is 'Data/Hora de expiraÃ§Ã£o ajustada';
+  is 'Data/Hora de expiração ajustada';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationinmonths
-  is 'ExpiraÃ§Ã£o em meses';
+  is 'Expiração em meses';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.expirationdateinfo
-  is 'InformaÃ§Ã£o adicional sobre a expiraÃ§Ã£o';
+  is 'Informação adicional sobre a expiração';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.loggeduseridentification
-  is 'Documento de IdentificaÃ§Ã£o do cliente';
+  is 'Documento de Identificação do cliente';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.loggeduserdocumentrel
-  is 'Tipo de documento de identificaÃ§Ã£o do cliente';
+  is 'Tipo de documento de identificação do cliente';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.businessentityidentification
-  is 'Documento de identificaÃ§Ã£o do participante';
+  is 'Documento de identificação do participante';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.businessentitydocumentrel
-  is 'Tipo de documento de identificaÃ§Ã£o do participante';
+  is 'Tipo de documento de identificação do participante';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.create_at
-  is 'Data/Hora da criaÃ§Ã£o do registro';
+  is 'Data/Hora da criação do registro';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.modify_at
-  is 'Data/Hora da Ãºltima alteraÃ§Ã£o do registro';
+  is 'Data/Hora da última alteração do registro';
 comment on column OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL.user_code
-  is 'IdentificaÃ§Ã£o do user responsÃ¡vel pela criaÃ§Ã£o/alteraÃ§Ã£o do registro';
+  is 'Identificação do user responsável pela criação/alteração do registro';
 alter table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
   add constraint EXPIRATIONCONTROLPK primary key (EXPIRATIONCONTROLID)
   using index
@@ -988,10 +988,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
   add constraint CONSENTEXPIRATIONCONTROLFK1 foreign key (CONSENTID)
   references OFB.CONSENTS_PERSONAL_DATA (CONSENTID);
 
-prompt
-prompt Creating table RESOURCES_TYPES
-prompt ==============================
-prompt
+-- prompt 
+-- prompt Creating table RESOURCES_TYPES
+-- prompt ==============================
+-- prompt 
 create table OFB.RESOURCES_TYPES
 (
   resourcetypeid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1015,7 +1015,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.RESOURCES_TYPES
-  is 'Registro do dominÃ­os dos TYPES dos RESOURCES definidos no OFB. ';
+  is 'Registro do dominíos dos TYPES dos RESOURCES definidos no OFB. ';
 comment on column OFB.RESOURCES_TYPES.resourcetypeid
   is 'Resource type PK';
 comment on column OFB.RESOURCES_TYPES.type
@@ -1081,10 +1081,10 @@ alter table OFB.RESOURCES_TYPES
                               'FUND',
                               'EXCHANGE'));
 
-prompt
-prompt Creating table RESOURCES_PERMISSIONS
-prompt ====================================
-prompt
+-- prompt 
+-- prompt Creating table RESOURCES_PERMISSIONS
+-- prompt ====================================
+-- prompt 
 create table OFB.RESOURCES_PERMISSIONS
 (
   resourcepermissionid         NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1118,7 +1118,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.RESOURCES_PERMISSIONS
-  is 'Registros do dominÃ­o de controle das permissÃµes possÃ­veis para as RESOURCES definidos pelo OFB. ';
+  is 'Registros do dominío de controle das permissões possíveis para as RESOURCES definidos pelo OFB. ';
 comment on column OFB.RESOURCES_PERMISSIONS.resourcepermissionid
   is 'Resource Permission Id';
 comment on column OFB.RESOURCES_PERMISSIONS.resourcetypeid
@@ -1187,10 +1187,10 @@ alter table OFB.RESOURCES_PERMISSIONS
   add constraint RESOURCEPERMISSIONFK1 foreign key (RESOURCETYPEID)
   references OFB.RESOURCES_TYPES (RESOURCETYPEID);
 
-prompt
-prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
-prompt ============================================================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+-- prompt ============================================================
+-- prompt 
 create table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
 (
   consentpermissionauthorisedid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1212,13 +1212,13 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
-  is 'Registros das permissÃµes autorizadas para os consentimentos solicitados';
+  is 'Registros das permissões autorizadas para os consentimentos solicitados';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.consentpermissionauthorisedid
   is 'Id gerado pela sequence';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.consentid
   is 'Id do consentimento';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.permissionid
-  is 'Id da permissÃ£o';
+  is 'Id da permissão';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.create_at
   is 'Record creation date';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED.modify_at
@@ -1260,10 +1260,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
   add constraint CONSENTSPERMISSIONSAUTHORISEDFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
 
-prompt
-prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
-prompt ===========================================================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+-- prompt ===========================================================
+-- prompt 
 create table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
 (
   consentpermissionrequestedid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1285,7 +1285,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
-  is 'Registros das permissÃµes solicitadas dos consentimentos solicitados';
+  is 'Registros das permissões solicitadas dos consentimentos solicitados';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED.consentpermissionrequestedid
   is 'Consents Permission Id';
 comment on column OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED.consentid
@@ -1333,10 +1333,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
   add constraint CONSENTSPERMISSIONFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
 
-prompt
-prompt Creating table RESOURCES_STATUS
-prompt ===============================
-prompt
+-- prompt 
+-- prompt Creating table RESOURCES_STATUS
+-- prompt ===============================
+-- prompt 
 create table OFB.RESOURCES_STATUS
 (
   resourcestatusid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1358,7 +1358,7 @@ tablespace USERS
     maxextents unlimited
   );
 comment on table OFB.RESOURCES_STATUS
-  is 'Registro do dominÃ­do de controle do possÃ­veis status dos RESOURCES existentes no OFB.';
+  is 'Registro do dominído de controle do possíveis status dos RESOURCES existentes no OFB.';
 comment on column OFB.RESOURCES_STATUS.resourcestatusid
   is 'Resources Status Id';
 comment on column OFB.RESOURCES_STATUS.status
@@ -1400,10 +1400,10 @@ alter table OFB.RESOURCES_STATUS
     maxextents unlimited
   );
 
-prompt
-prompt Creating table CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
-prompt ==========================================================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+-- prompt ==========================================================
+-- prompt 
 create table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
 (
   consentresourceid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1486,10 +1486,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
   check (TRIM(resourceidsummary) IN
 ('customerId','accountId', 'creditCardAccountId', 'contractId', 'investmentId', 'operationId'));
 
-prompt
-prompt Creating table CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
-prompt ======================================================================
-prompt
+-- prompt 
+-- prompt Creating table CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
+-- prompt ======================================================================
+-- prompt 
 create table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
 (
   consentresourcepermissionid NUMBER default OFB.SQ_OFB_SYSTEM.NEXTVAL not null,
@@ -1519,11 +1519,11 @@ comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.co
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.permissionid
   is 'Resources Permission Id reference';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.create_at
-  is 'Data/Hora da criaÃ§Ã£o do registro';
+  is 'Data/Hora da criação do registro';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.modify_at
-  is 'Data/Hora da ultima alteraÃ§Ã£o do registro';
+  is 'Data/Hora da ultima alteração do registro';
 comment on column OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS.user_code
-  is 'CÃ³digo do usuÃ¡rio responsÃ¡vel pela criaÃ§Ã£o ou alteraÃ§Ã£o';
+  is 'Código do usuário responsável pela criação ou alteração';
 alter table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
   add constraint CONSENTRESOURCECONFIRMEDPERMISSIONPK primary key (CONSENTRESOURCEPERMISSIONID)
   using index
@@ -1559,10 +1559,10 @@ alter table OFB.CONSENTS_PERSONAL_DATA_RESOURSES_AUTHORISED_PERMISSIONS
   add constraint CONSENTRESOURCECONFIRMEDPERMISSIONFK2 foreign key (PERMISSIONID)
   references OFB.RESOURCES_PERMISSIONS (RESOURCEPERMISSIONID);
 
-prompt
-prompt Creating view VW_ACCOUNT_PERSONAL_DATA
-prompt ======================================
-prompt
+-- prompt 
+-- prompt Creating view VW_ACCOUNT_PERSONAL_DATA
+-- prompt ======================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_ACCOUNT_PERSONAL_DATA AS
 SELECT
   t.rowid AS ID,               --
@@ -1596,17 +1596,17 @@ ORDER BY
   v.cpfnumber, t.compecode, t.branchcode, t.accountnumber
 ;
 
-prompt
-prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA
-prompt ==============================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA
+-- prompt ==============================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_ACCOUNT_PERSONAL_DATA
   for OFB.VW_ACCOUNT_PERSONAL_DATA;
 
-prompt
-prompt Creating view VW_ACCOUNT_PERSONAL_DATA_STATEMENT
-prompt ================================================
-prompt
+-- prompt 
+-- prompt Creating view VW_ACCOUNT_PERSONAL_DATA_STATEMENT
+-- prompt ================================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT AS
 SELECT
   x.cpfnumber,         --
@@ -1640,17 +1640,17 @@ ORDER BY
   t.transactiondatetime
 ;
 
-prompt
-prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
-prompt ========================================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
+-- prompt ========================================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_ACCOUNT_PERSONAL_DATA_STATEMENT
   for OFB.VW_ACCOUNT_PERSONAL_DATA_STATEMENT;
 
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA
-prompt =======================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_PERSONAL_DATA
+-- prompt =======================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA AS
 SELECT z."CONSENTID",z."EXPIRATIONCONTROLID",z."PERSONALID",z."CIVILNAME",z."CPFNUMBER",z."CREATIONDATETIME",z."CONSENTSTATUSID",z."STATUS",z."ACCESSTOKENAUTHORISED",z."CONSENTSTATUSCONTROLID",z."STATUSSTEP",z."STATUSREASON",z."STATUSUPDATEDATETIME",z."EXPIRATIONDATETIME",z."EXPIRATIONINMONTHS",z."EXPIRATIONDATEINFO",z."LOGGEDUSERIDENTIFICATION",z."LOGGEDUSERDOCUMENTREL",z."BUSINESSENTITYIDENTIFICATION",z."BUSINESSENTITYDOCUMENTREL",z."AWAITINGAUTHBY",z."AWAITINGAUTHSTART",z."AWAITINGAUTHEND",z."AWAITINGAUTHADDITIONALINFO",z."AUTHORISEDBY",z."AUTHORISEDSTART",z."AUTHORISEDEND",z."AUTHORISEDADDITIONALINFO",z."REJECTEDBY",z."REJECTEDCODE",z."REJECTEDREASON",z."REJECTEDADDITIONALINFO",z."REJECTEDSTARTDATETIME",z."REJECTEDENDDATETIME",z."CANCELLEDBY",z."CANCELLEDREASON",z."CANCELLEDADDITIONALINFO" FROM (
 SELECT
@@ -1716,17 +1716,17 @@ order by
   z.cpfnumber, z.consentid
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA
-prompt ===============================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA
+-- prompt ===============================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA
   for OFB.VW_CONSENTS_PERSONAL_DATA;
 
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
-prompt ==========================================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+-- prompt ==========================================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL AS
 SELECT
   b.expirationcontrolid, --
@@ -1755,17 +1755,17 @@ order by
   a.consentid, b.requestdatetime DESC
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
-prompt ==================================================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
+-- prompt ==================================================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL
   for OFB.VW_CONSENTS_PERSONAL_DATA_EXPIRATION_CONTROL;
 
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
-prompt ==============================================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+-- prompt ==============================================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED AS
 SELECT
   A.CONSENTPERMISSIONAUTHORISEDID AS ID,                 --
@@ -1803,17 +1803,17 @@ ORDER BY
   C.PERMISSIONCATEGORYORDER
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
-prompt ======================================================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
+-- prompt ======================================================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED
   for OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_AUTHORISED;
 
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
-prompt =============================================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+-- prompt =============================================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED AS
 SELECT
   a.consentpermissionrequestedid,            --
@@ -1850,17 +1850,17 @@ ORDER BY
   c.permissioncategoryorder
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
-prompt =====================================================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
+-- prompt =====================================================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED
   for OFB.VW_CONSENTS_PERSONAL_DATA_PERMISSIONS_REQUESTED;
 
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
-prompt ============================================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+-- prompt ============================================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED AS
 SELECT
   A.CONSENTRESOURCEID           AS ID,                  --
@@ -1914,17 +1914,17 @@ ORDER BY
   F.CPFNUMBER, D.CREATIONDATETIME DESC, A.RESOURCEID
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
-prompt ====================================================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
+-- prompt ====================================================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED
   for OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED;
 
-prompt
-prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
-prompt ========================================================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
+-- prompt ========================================================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS AS
 SELECT
   G.CONSENTRESOURCEPERMISSIONID AS ID,                   --
@@ -1987,17 +1987,17 @@ ORDER BY
   H.PERMISSIONEVENTGROUPID, H.PERMISSIONCATEGORYORDER
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
-prompt ================================================================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
+-- prompt ================================================================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS
   for OFB.VW_CONSENTS_PERSONAL_DATA_RESOURCES_AUTHORISED_PERMISSIONS;
 
-prompt
-prompt Creating view VW_CONSENTS_STATUS
-prompt ================================
-prompt
+-- prompt 
+-- prompt Creating view VW_CONSENTS_STATUS
+-- prompt ================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_CONSENTS_STATUS AS
 SELECT
   t.CONSENTSTATUSID,         --
@@ -2013,17 +2013,17 @@ ORDER BY
   t.STATUSSTEP
 ;
 
-prompt
-prompt Creating synonym LIST_OF_CONSENTS_STATUS
-prompt ========================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_CONSENTS_STATUS
+-- prompt ========================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_CONSENTS_STATUS
   for OFB.VW_CONSENTS_STATUS;
 
-prompt
-prompt Creating view VW_PERSONAL_DATA
-prompt ==============================
-prompt
+-- prompt 
+-- prompt Creating view VW_PERSONAL_DATA
+-- prompt ==============================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_PERSONAL_DATA AS
 SELECT
   t.CPFNUMBER,         --
@@ -2054,17 +2054,17 @@ ORDER BY
   T.CPFNUMBER ASC
 ;
 
-prompt
-prompt Creating synonym LIST_OF_PERSONAL_DATA
-prompt ======================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_PERSONAL_DATA
+-- prompt ======================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_PERSONAL_DATA
   for OFB.VW_PERSONAL_DATA;
 
-prompt
-prompt Creating view VW_RESOURCES_PERMISSIONS
-prompt ======================================
-prompt
+-- prompt 
+-- prompt Creating view VW_RESOURCES_PERMISSIONS
+-- prompt ======================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_RESOURCES_PERMISSIONS AS
 SELECT a."RESOURCEPERMISSIONID",a."RESOURCETYPEID",a."RESOURCETYPE",a."RESOURCESUMMARY",a."RESOURCESTATUS",a."PERMISSION",a."PERMISSIONID",a."PERMISSIONCATEGORY",a."CONTROL",a."CONTROLDESCRIPTION",a."PERMISSIONGROUPING",a."PERMISSIONCATEGORYGROUP",a."QUALIFIEDFORPJ",a."QUALIFIEDFORPF" FROM (
   SELECT
@@ -2091,17 +2091,17 @@ SELECT a."RESOURCEPERMISSIONID",a."RESOURCETYPEID",a."RESOURCETYPE",a."RESOURCES
     a.permissioneventgroupid, a.permissioncategoryorder) a
 ;
 
-prompt
-prompt Creating synonym LIST_OF_RESOURCES_PERMISSIONS
-prompt ==============================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_RESOURCES_PERMISSIONS
+-- prompt ==============================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_RESOURCES_PERMISSIONS
   for OFB.VW_RESOURCES_PERMISSIONS;
 
-prompt
-prompt Creating view VW_RESOURCES_STATUS
-prompt =================================
-prompt
+-- prompt 
+-- prompt Creating view VW_RESOURCES_STATUS
+-- prompt =================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_RESOURCES_STATUS AS
 SELECT
   t.resourcestatusid, --
@@ -2113,17 +2113,17 @@ ORDER BY
   t.resourcestatusid
 ;
 
-prompt
-prompt Creating synonym LIST_OF_RESOURCES_STATUS
-prompt =========================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_RESOURCES_STATUS
+-- prompt =========================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_RESOURCES_STATUS
   for OFB.VW_RESOURCES_STATUS;
 
-prompt
-prompt Creating view VW_RESOURCES_TYPES
-prompt ================================
-prompt
+-- prompt 
+-- prompt Creating view VW_RESOURCES_TYPES
+-- prompt ================================
+-- prompt 
 CREATE OR REPLACE FORCE VIEW OFB.VW_RESOURCES_TYPES AS
 SELECT
   t.resourceTYPEid   AS ResourceTYPEId,       --
@@ -2137,17 +2137,17 @@ ORDER BY
   t.type
 ;
 
-prompt
-prompt Creating synonym LIST_OF_RESOURCES_TYPES
-prompt ========================================
-prompt
+-- prompt 
+-- prompt Creating synonym LIST_OF_RESOURCES_TYPES
+-- prompt ========================================
+-- prompt 
 create or replace synonym OFB.LIST_OF_RESOURCES_TYPES
   for OFB.VW_RESOURCES_TYPES;
 
-prompt
-prompt Creating trigger TRG_ACCOUNT_PERSONAL_DATA
-prompt ==========================================
-prompt
+-- prompt 
+-- prompt Creating trigger TRG_ACCOUNT_PERSONAL_DATA
+-- prompt ==========================================
+-- prompt 
 CREATE OR REPLACE NONEDITIONABLE TRIGGER OFB.TRG_ACCOUNT_PERSONAL_DATA
   AFTER UPDATE 
   OF ACCOUNTSTATUS
@@ -2189,6 +2189,6 @@ END TRG_ACCOUNT_PERSONAL_DATA;
 /
 
 
-prompt Done
-spool off
-set define on
+-- prompt Done
+-- spool off
+-- set define on
