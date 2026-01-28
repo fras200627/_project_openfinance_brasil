@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ofb-authorization-server
+    name: ${AUTHORIZATION_SERVER_APP_NAME:ofb-authorization-server}
   jpa:
     properties:
       hibernate:
@@ -138,7 +138,7 @@ spring:
     activate:
       on-profile: docker
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
+    url: jdbc:oracle:thin:@${ORACLE_HOST_IP:10.0.1.101}:${ORACLE_INTERNAL_PORT:1521}:${ORACLE_SID:XE}
     username: OFB_USER
     password: ofb
     driver-class-name: oracle.jdbc.OracleDriver
@@ -158,10 +158,10 @@ spring:
 app:
   paths:
     clients:
-      consents-api: 'http://localhost:3001/ofb-consents/'
-      customers-api: 'http://localhost:3001/ofb-customers/'
-      participants-api: 'http://localhost:3001/ofb-participants-business-api/'
-      resources-api: 'http://localhost:3001/ofb-resources/'
+      consents-api: http://${API_GATEWAY_HOST_IP:10.0.1.2}:${API_GATEWAY_EXPOSE_PORT:3001}/ofb-consents/    
+      customers-api: http://${API_GATEWAY_HOST_IP:10.0.1.2}:${API_GATEWAY_EXPOSE_PORT:3001}/ofb-customers/
+      participants-api: http://${API_GATEWAY_HOST_IP:10.0.1.2}:${API_GATEWAY_EXPOSE_PORT:3001}/ofb-participants-business-api/
+      resources-api: http://${API_GATEWAY_HOST_IP:10.0.1.2}:${API_GATEWAY_EXPOSE_PORT:3001}/ofb-resources/
   parameters:
     consents:
       organization: 'Banco TCN - OpenFinance Brasil'
@@ -173,7 +173,7 @@ app:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://${DISCOVERY_SERVICES_HOST_IP:10.0.1.1}:${DISCOVERY_SERVICES_EXPOSE_PORT:3000}/eureka
 amqp:
   ofb:
     exchange-direct: "ofb.exchange.direct"

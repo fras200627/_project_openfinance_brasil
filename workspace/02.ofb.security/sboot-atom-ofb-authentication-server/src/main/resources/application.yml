@@ -117,14 +117,14 @@ spring:
     activate:
       on-profile: docker
   datasource:
-    url: jdbc:mysql://10.0.1.100:3306/user?createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://${MYSQL_HOST_IP:10.0.1.100}:${MYSQL_INTERNAL_PORT:3306}/user?createDatabaseIfNotExist=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USER:root}
     password: ${MYSQL_ROOT_PWD:ofb}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.0.1.1:3000/eureka
+      defaultZone: http://${DISCOVERY_SERVICES_HOST_IP:10.0.1.1}:${DISCOVERY_SERVICES_INTERNAL_PORT:3000}/eureka
 app:
   token:
     client:

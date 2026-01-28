@@ -137,6 +137,61 @@ services:
       - api-gateway-data:${API_GATEWAY_DATA_VOLUME}
       - api-gateway-backup:${API_GATEWAY_BACKUP_VOLUME}
 
+  # Authentication Server Service #########################################
+  ofb-authentication-server:
+    image: ${AUTHENTICATION_SERVER_IMAGE}
+    hostname: ${AUTHENTICATION_SERVER_HOST_NAME}
+    domainname: ${DOCKER_DOMAIN_NAME}
+    depends_on:
+      - ${DISCOVERY_SERVICES_HOST_NAME}
+      - ${API_GATEWAY_HOST_NAME}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    environment:
+      spring.profiles.active: ${PROFILE_ACTIVE}
+    networks:
+      ofb-services-network:
+        ipv4_address: ${AUTHENTICATION_SERVER_HOST_IP}
+    ports:
+      - ${AUTHENTICATION_SERVER_EXPOSE_PORT}:${AUTHENTICATION_SERVER_INTERNAL_PORT}
+    expose:
+      - ${AUTHENTICATION_SERVER_EXPOSE_PORT}    
+    volumes:
+      - authentication-server-data:${AUTHENTICATION_SERVER_DATA_VOLUME}
+      - authentication-server-backup:${AUTHENTICATION_SERVER_BACKUP_VOLUME}
+
+  # Authorization Server Service #########################################
+  ofb-authorization-server:
+    image: ${AUTHORIZATION_SERVER_IMAGE}
+    hostname: ${AUTHORIZATION_SERVER_HOST_NAME}
+    domainname: ${DOCKER_DOMAIN_NAME}
+    depends_on:
+      - ${DISCOVERY_SERVICES_HOST_NAME}
+      - ${API_GATEWAY_HOST_NAME}
+      - ${AUTHENTICATION_SERVER_HOST_NAME}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    environment:
+      spring.profiles.active: ${PROFILE_ACTIVE}
+    networks:
+      ofb-services-network:
+        ipv4_address: ${AUTHORIZATION_SERVER_HOST_IP}
+    ports:
+      - ${AUTHORIZATION_SERVER_EXPOSE_PORT}:${AUTHORIZATION_SERVER_INTERNAL_PORT}
+    expose:
+      - ${AUTHORIZATION_SERVER_EXPOSE_PORT}
+    volumes:
+      - authorization-server-data:${AUTHORIZATION_SERVER_DATA_VOLUME}
+      - authorization-server-backup:${AUTHORIZATION_SERVER_BACKUP_VOLUME}
+
 #configs:
 
 #secrets:
@@ -152,6 +207,10 @@ volumes:
   discovery-services-backup:
   api-gateway-data:
   api-gateway-backup:
+  authentication-server-data:
+  authentication-server-backup:
+  authorization-server-data:
+  authorization-server-backup:
 networks:
   ofb-services-network:
     ipam:

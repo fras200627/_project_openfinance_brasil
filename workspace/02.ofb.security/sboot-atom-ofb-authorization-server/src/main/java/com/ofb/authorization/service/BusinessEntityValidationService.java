@@ -1,7 +1,7 @@
 package com.ofb.authorization.service;
 
 import com.google.gson.Gson;
-import com.ofb.authorization.client.participants.handler.ClientsBusinessResourcesApi;
+import com.ofb.authorization.client.participants.handler.ParticipantsBusinessResourcesApi;
 import com.ofb.authorization.client.participants.model.OAuth2ClientResponse;
 import com.ofb.authorization.server.authorizations.model.*;
 import com.ofb.lib.handlers.enums.ResponseOFBCodesEnum;
@@ -32,7 +32,7 @@ public class BusinessEntityValidationService {
     private String PATH_PARTICIPANTS_API;
 
     @Autowired private JwtDecoder jwtDecoder;
-    @Autowired private ClientsBusinessResourcesApi registeredClientsResourcesApi;
+    @Autowired private ParticipantsBusinessResourcesApi registeredClientsResourcesApi;
 
     //private Gson gson = new Gson();
     private Gson gson = new Gson();

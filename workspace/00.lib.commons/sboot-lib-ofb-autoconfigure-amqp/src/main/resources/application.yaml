@@ -45,10 +45,10 @@ spring:
     activate:
       on-profile: docker
   rabbitmq:
-    host: ${RABBITMQ_CLUSTERIP_SVC:10.152.183.205}
+    host: ${RABBITMQ_HOST_IP:10.0.1.102}
     port: ${RABBITMQ_SERVICE_INTERNAL_PORT:5672}
     username: ${RABBITMQ_DEFAULT_USER:ofb}
-    password: ${RABBITMQ_DEFAULT_PASS:ofb}
+    password: ${RABBITMQ_DEFAULT_PWD:ofb}
     audit:
       http-requests:
         queue: "ofb.audit.http.requests"
